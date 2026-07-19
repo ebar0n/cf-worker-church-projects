@@ -3,8 +3,6 @@ import { Hono } from "hono";
 // El documento nunca se guarda en claro: solo su hash con esta sal.
 const SALT = "aventureros-jordan-2026";
 
-// Máximo de puntos por día y por tipo de actividad (hora de Colombia):
-// una partida diaria de 5 comidas + 5 preguntas.
 const DAILY_LIMIT = { card: 5, quiz: 5 };
 
 async function docHash(doc) {
@@ -18,7 +16,6 @@ const normalizeName = (raw) => String(raw ?? "").trim().replace(/\s+/g, " ");
 const todayInBogota = () =>
   new Intl.DateTimeFormat("en-CA", { timeZone: "America/Bogota" }).format(new Date());
 
-// Puntos sumados hoy por tipo (solo interacciones positivas cuentan).
 async function todayCounts(db, playerId) {
   const { results } = await db
     .prepare(
@@ -94,10 +91,6 @@ app.post("/api/login", async (c) => {
   return c.json(await toProfile(c.env.DB, row));
 });
 
-// Cada respuesta queda registrada como una interacción (+1 o -1, con su tipo
-// y el día en hora de Colombia). Correcta: +1 punto hasta DAILY_LIMIT[kind]
-// por día. Incorrecta: -1 punto (nunca por debajo de 0), no consume intentos.
-// El documento valida que el perfil sea propio.
 app.post("/api/score", async (c) => {
   const body = await c.req.json().catch(() => ({}));
   const doc = normalizeDoc(body.doc);
@@ -108,17 +101,13 @@ app.post("/api/score", async (c) => {
 
   if (body.correct === false) {
     const row = await c.env.DB.prepare(
-      `UPDATE adventurers_players SET
-         points = MAX(points - 1, 0),
-         updated_at = datetime('now')
-       WHERE doc_hash = ?
-       RETURNING id, name, points`
+      "SELECT id, name, points FROM adventurers_players WHERE doc_hash = ?"
     )
       .bind(hash)
       .first();
     if (!row) return c.json({ error: "El documento no coincide con ningún perfil." }, 401);
     await c.env.DB.prepare(
-      "INSERT INTO adventurers_interactions (player_id, delta, day, kind) VALUES (?, -1, ?, ?)"
+      "INSERT INTO adventurers_interactions (player_id, delta, day, kind) VALUES (?, 0, ?, ?)"
     )
       .bind(row.id, today, kind)
       .run();

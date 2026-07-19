@@ -45,7 +45,7 @@ Static pages are served via [Workers Static Assets](https://developers.cloudflar
 
 #### Points challenge and leaderboard
 
-The game is played in **matches** (partidas): 5 surprise food cards followed by 5 quiz questions. Kids earn ⭐ 1 point per correct answer and lose 1 per wrong answer (never below 0). Earning is capped **per day and per type** — 5 card points + 5 quiz points (`DAILY_LIMIT` in `src/index.js`, America/Bogota time) — so one match a day scores and any extra matches automatically become practice (no judge buttons, just "next"). Every answer is stored as a row in `adventurers_interactions` (+1/-1 with its kind and the Bogota date), which is what the caps count — and doubles as an audit/stats trail. Totals live in `adventurers_players`; both tables are in the shared D1 database `church-jordan-projects` (`adventurers_` prefix). The club index shows the leaderboard (top 20).
+The game is played in **matches** (partidas): 5 surprise food cards followed by 5 quiz questions. Kids earn ⭐ 1 point per correct answer; wrong answers are only logged, they never subtract. Earning is capped **per day and per type** — 5 card points + 5 quiz points (`DAILY_LIMIT` in `src/index.js`, America/Bogota time) — so one match a day scores and any extra matches automatically become practice (no judge buttons, just "next"). Every answer is stored as a row in `adventurers_interactions` (delta +1 correct / 0 wrong, with its kind and the Bogota date), which is what the caps count — and doubles as an audit/stats trail. Totals live in `adventurers_players`; both tables are in the shared D1 database `church-jordan-projects` (`adventurers_` prefix). The club index shows the leaderboard (top 20).
 
 Profiles are keyed by the child's document number, so one family can't add points to another child's profile:
 
@@ -60,7 +60,7 @@ API (Hono, in `src/index.js`):
 | GET | `/api/leaderboard` | — | Top 20 `{name, points}` |
 | POST | `/api/register` | `{name, doc}` | Create profile (409 if the document already exists) |
 | POST | `/api/login` | `{doc}` | Fetch profile by document |
-| POST | `/api/score` | `{doc, correct, kind}` | `kind`: `card` \| `quiz`. `correct: true` adds 1 point (429 past that kind's daily cap); `correct: false` subtracts 1 (floor 0). 401 if the document doesn't match |
+| POST | `/api/score` | `{doc, correct, kind}` | `kind`: `card` \| `quiz`. `correct: true` adds 1 point (429 past that kind's daily cap); `correct: false` only logs the answer. 401 if the document doesn't match |
 
 ## Deployment
 

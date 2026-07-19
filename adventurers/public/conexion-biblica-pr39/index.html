@@ -49,7 +49,6 @@
     min-height:100%;
     padding-bottom:env(safe-area-inset-bottom);
   }
-  /* Mejor respuesta táctil en móvil */
   button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
   /* ── Cabecera ── */
@@ -174,6 +173,7 @@
     font-family:'Fredoka',sans-serif;
     font-weight:600;
   }
+  .judge span{flex-basis:100%;text-align:center}
   .judge[hidden]{display:none}
 
 
@@ -516,7 +516,7 @@
     <div class="judge" id="judge" hidden>
       <span id="judgeQ">¿Acertó?</span>
       <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
-      <button class="btn btn-outline btn-sm" id="judgeNo">😅 No, -1</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
     </div>
 
     <p class="practice-note" id="practiceNote" hidden>🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.</p>
@@ -561,7 +561,7 @@
     <ol>
       <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 comidas sorpresa</strong> y después <strong>5 preguntas relámpago</strong>.</li>
       <li>En cada comida, su hijo reacciona antes de revelar: si cree que es de la <strong>mesa del rey</strong>, se tapa la boca (🙊); si es de la <strong>mesa de Daniel</strong>, hace músculo (💪).</li>
-      <li>Toquen <strong>¡Revelar!</strong> y díganle a la app si acertó (⭐ +1) o no (-1).</li>
+      <li>Toquen <strong>¡Revelar!</strong> y díganle a la app si acertó (⭐ +1) o no.</li>
       <li>Luego vienen las preguntas, marcadas por edades (4–5, 6–7 y 8–9 años): revelen la respuesta y califiquen igual.</li>
       <li>También pueden imprimir las tarjetas físicas desde la pestaña <strong>🖨️</strong> y jugar sin pantalla: el puntico de color en la esquina es la clave del adulto.</li>
     </ol>
@@ -571,7 +571,7 @@
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 comidas sorpresa + 5 preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong> y cada incorrecta <strong>resta 1</strong>; por día se pueden ganar máximo <strong>5 puntos de comidas y 5 de preguntas</strong>. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Jueguen <strong>una partida por día</strong>: 5 comidas sorpresa + 5 preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong> (las incorrectas no restan); por día se pueden ganar máximo <strong>5 puntos de comidas y 5 de preguntas</strong>. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
     <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
   </div>
 </section>
@@ -665,8 +665,6 @@
     return 'done';
   }
 
-  // Preguntas equitativas: al menos una de cada nivel de edad por partida,
-  // el resto al azar, ordenadas de menor a mayor edad.
   function pickMatchQuiz(){
     const groups = {};
     QUIZ.forEach(q => (groups[q.tag] = groups[q.tag] || []).push(q));
@@ -681,7 +679,6 @@
     return picked.sort((a, b) => a.tag.localeCompare(b.tag));
   }
 
-  // Comidas balanceadas: al menos 2 de cada mesa por partida.
   function pickMatchCards(){
     const rey = shuffle(FOODS.filter(f => f.side === 'rey'));
     const daniel = shuffle(FOODS.filter(f => f.side === 'daniel'));
@@ -756,14 +753,12 @@
     const kind = ph === 'quiz' ? 'quiz' : 'card';
     const p = AvProfile.get();
     if(p && AvProfile.canScore(kind)){
-      // por puntos: el papá juzga y avanzamos
       judgeQ.textContent = ph === 'card' ? `¿${p.name} acertó?` : '¿Respondió bien?';
       judgeYes.hidden = false;
       judgeNo.hidden = false;
       judge.hidden = false;
       mainBtn.hidden = true;
     }else{
-      // práctica: solo avanzar
       judgeQ.textContent = p
         ? '🌙 Puntos completos: esta respuesta es de práctica.'
         : '👤 Sin perfil: este acierto no suma al tablero.';

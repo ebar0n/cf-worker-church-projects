@@ -11,7 +11,7 @@
    API:
      AvProfile.get()                 -> {id, name, points, today:{card,quiz}, limit:{card,quiz}, doc} | null
      AvProfile.canScore(kind?)       -> true si puede sumar puntos hoy ('card' | 'quiz')
-     AvProfile.score(correct, kind)  -> +1 (con tope diario por tipo) o -1 (piso 0)
+     AvProfile.score(correct, kind)  -> +1 con tope diario por tipo; la incorrecta solo se registra
      AvProfile.open()           -> abre el formulario de ingreso/cambio
      AvProfile.onChange(fn)     -> callback cuando cambia el perfil
 */
@@ -149,14 +149,11 @@
       close();
     });
     overlay.querySelector('.pf-close').addEventListener('click', close);
-    // cerrar tocando el fondo oscuro o con Escape
     overlay.addEventListener('click', e => { if(e.target === overlay) close(); });
     document.addEventListener('keydown', e => {
       if(e.key === 'Escape' && !overlay.hidden) close();
     });
 
-    // Al escribir el documento se busca el perfil: si existe, saluda con el
-    // nombre; si es nuevo, aparece el campo de nombre para crearlo.
     pfDoc.addEventListener('input', () => {
       clearTimeout(lookupTimer);
       lookup = null;
@@ -220,8 +217,6 @@
     });
   }
 
-  // Chip del jugador: muestra nombre + puntos, o "Ingresar" si no hay perfil.
-  // Tocarlo abre el formulario (sirve también para cambiar de jugador).
   function mountChip(el){
     if(!el) return;
     const render = () => {

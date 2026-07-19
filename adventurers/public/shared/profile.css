@@ -149,7 +149,6 @@
   padding:9px 20px;
 }
 
-/* Nunca imprimir el modal ni el chip */
 @media print{
   .pf-overlay,.pf-chip{display:none!important}
 }
