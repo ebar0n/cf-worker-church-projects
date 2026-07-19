@@ -9,9 +9,9 @@
      AvProfile.init({ chip: document.getElementById('playerChip'), autoOpen: true });
 
    API:
-     AvProfile.get()            -> {id, name, points, today, limit, doc} | null
-     AvProfile.canScore()       -> true si puede sumar puntos hoy
-     AvProfile.score(correct)   -> +1 (con tope diario) o -1 (piso 0)
+     AvProfile.get()                 -> {id, name, points, today:{card,quiz}, limit:{card,quiz}, doc} | null
+     AvProfile.canScore(kind?)       -> true si puede sumar puntos hoy ('card' | 'quiz')
+     AvProfile.score(correct, kind)  -> +1 (con tope diario por tipo) o -1 (piso 0)
      AvProfile.open()           -> abre el formulario de ingreso/cambio
      AvProfile.onChange(fn)     -> callback cuando cambia el perfil
 */
@@ -19,6 +19,9 @@
   const PKEY = 'aventureros-player';
   let player = null;
   try{ player = JSON.parse(localStorage.getItem(PKEY) || 'null') }catch(e){ player = null }
+
+  const LIMIT_FALLBACK = {card: 5, quiz: 5};
+  const normToday = t => (t && typeof t === 'object') ? {card: t.card || 0, quiz: t.quiz || 0} : {card: 0, quiz: 0};
 
   const listeners = [];
   const emit = () => listeners.forEach(fn => { try{ fn(player) }catch(e){} });
@@ -44,24 +47,35 @@
     else localStorage.removeItem(PKEY);
   }
   function setFromResponse(data, doc){
-    player = {...data.player, doc: String(doc).replace(/\D/g,''), today: data.today, limit: data.limit};
+    player = {
+      ...data.player,
+      doc: String(doc).replace(/\D/g,''),
+      today: normToday(data.today),
+      limit: data.limit || LIMIT_FALLBACK
+    };
     save();
     emit();
   }
-  function canScore(){
-    return !!player && !(player.limit && player.today >= player.limit);
+  function canScore(kind){
+    if(!player) return false;
+    const t = normToday(player.today);
+    const l = player.limit || LIMIT_FALLBACK;
+    if(kind) return t[kind] < (l[kind] ?? 5);
+    return t.card < (l.card ?? 5) || t.quiz < (l.quiz ?? 5);
   }
 
   let scoring = false;
-  async function score(correct){
+  async function score(correct, kind){
     if(!player || scoring) return;
     scoring = true;
     try{
-      const data = await api('score', {doc: player.doc, correct});
+      const data = await api('score', {doc: player.doc, correct, kind});
       setFromResponse(data, player.doc);
     }catch(err){
       if(err.status === 429 && player){
-        player.today = player.limit || 10;
+        const l = player.limit || LIMIT_FALLBACK;
+        player.today = normToday(player.today);
+        player.today[kind === 'quiz' ? 'quiz' : 'card'] = l[kind === 'quiz' ? 'quiz' : 'card'] ?? 5;
         save();
         emit();
       }
@@ -100,7 +114,7 @@
       <div class="pf-card">
         <button class="pf-close" type="button" aria-label="Cerrar">✕</button>
         <h2>🧒 ¿Quién va a jugar?</h2>
-        <p class="pf-sub">Cada respuesta correcta suma ⭐ 1 punto en el tablero del club.</p>
+        <p class="pf-sub">Cada acierto suma ⭐ 1 punto al tablero del club: hasta 5 de comidas y 5 de preguntas por día.</p>
         <form class="pf-form">
           <label>Número de documento del niño o la niña
             <input class="pf-doc" type="text" inputmode="numeric" autocomplete="off" maxlength="15" placeholder="Solo números">
@@ -211,8 +225,10 @@
   function mountChip(el){
     if(!el) return;
     const render = () => {
+      const t = player ? normToday(player.today) : null;
+      const l = player ? (player.limit || LIMIT_FALLBACK) : null;
       el.innerHTML = player
-        ? `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points}${player.limit ? ` · ${player.today}/${player.limit} hoy` : ''}</button>`
+        ? `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points} · ${t.card + t.quiz}/${(l.card ?? 5) + (l.quiz ?? 5)} hoy</button>`
         : `<button type="button" class="pf-chip pf-chip-empty" title="Ingresar">👤 Ingresar</button>`;
       el.querySelector('.pf-chip').addEventListener('click', open);
     };

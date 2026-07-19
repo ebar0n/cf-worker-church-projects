@@ -3,8 +3,9 @@ import { Hono } from "hono";
 // El documento nunca se guarda en claro: solo su hash con esta sal.
 const SALT = "aventureros-jordan-2026";
 
-// Máximo de puntos que un niño puede sumar por día (hora de Colombia).
-const DAILY_LIMIT = 10;
+// Máximo de puntos por día y por tipo de actividad (hora de Colombia):
+// una partida diaria de 5 comidas + 5 preguntas.
+const DAILY_LIMIT = { card: 5, quiz: 5 };
 
 async function docHash(doc) {
   const data = new TextEncoder().encode(`${SALT}:${doc}`);
@@ -17,21 +18,26 @@ const normalizeName = (raw) => String(raw ?? "").trim().replace(/\s+/g, " ");
 const todayInBogota = () =>
   new Intl.DateTimeFormat("en-CA", { timeZone: "America/Bogota" }).format(new Date());
 
-// Puntos sumados hoy (solo interacciones positivas cuentan para el tope).
-async function todayCount(db, playerId) {
-  const row = await db
+// Puntos sumados hoy por tipo (solo interacciones positivas cuentan).
+async function todayCounts(db, playerId) {
+  const { results } = await db
     .prepare(
-      "SELECT COUNT(*) AS n FROM adventurers_interactions WHERE player_id = ? AND day = ? AND delta > 0"
+      "SELECT kind, COUNT(*) AS n FROM adventurers_interactions WHERE player_id = ? AND day = ? AND delta > 0 GROUP BY kind"
     )
     .bind(playerId, todayInBogota())
-    .first();
-  return row?.n ?? 0;
+    .all();
+  const today = { card: 0, quiz: 0 };
+  for (const r of results || []) {
+    if (r.kind === "quiz") today.quiz += r.n;
+    else today.card += r.n; // filas históricas sin kind cuentan como tarjetas
+  }
+  return today;
 }
 
 async function toProfile(db, row) {
   return {
     player: { id: row.id, name: row.name, points: row.points },
-    today: await todayCount(db, row.id),
+    today: await todayCounts(db, row.id),
     limit: DAILY_LIMIT,
   };
 }
@@ -88,14 +94,15 @@ app.post("/api/login", async (c) => {
   return c.json(await toProfile(c.env.DB, row));
 });
 
-// Cada respuesta queda registrada como una interacción (+1 o -1, con el día
-// en hora de Colombia). Correcta: +1 punto hasta DAILY_LIMIT por día.
-// Incorrecta: -1 punto (nunca por debajo de 0), no consume intentos del día.
+// Cada respuesta queda registrada como una interacción (+1 o -1, con su tipo
+// y el día en hora de Colombia). Correcta: +1 punto hasta DAILY_LIMIT[kind]
+// por día. Incorrecta: -1 punto (nunca por debajo de 0), no consume intentos.
 // El documento valida que el perfil sea propio.
 app.post("/api/score", async (c) => {
   const body = await c.req.json().catch(() => ({}));
   const doc = normalizeDoc(body.doc);
   if (!doc) return c.json({ error: "Falta el documento." }, 400);
+  const kind = body.kind === "quiz" ? "quiz" : "card";
   const hash = await docHash(doc);
   const today = todayInBogota();
 
@@ -111,13 +118,14 @@ app.post("/api/score", async (c) => {
       .first();
     if (!row) return c.json({ error: "El documento no coincide con ningún perfil." }, 401);
     await c.env.DB.prepare(
-      "INSERT INTO adventurers_interactions (player_id, delta, day) VALUES (?, -1, ?)"
+      "INSERT INTO adventurers_interactions (player_id, delta, day, kind) VALUES (?, -1, ?, ?)"
     )
-      .bind(row.id, today)
+      .bind(row.id, today, kind)
       .run();
     return c.json(await toProfile(c.env.DB, row));
   }
 
+  const kindFilter = kind === "quiz" ? "i.kind = 'quiz'" : "(i.kind = 'card' OR i.kind = '')";
   const row = await c.env.DB.prepare(
     `UPDATE adventurers_players SET
        points = points + 1,
@@ -125,16 +133,16 @@ app.post("/api/score", async (c) => {
      WHERE doc_hash = ?1
        AND (SELECT COUNT(*) FROM adventurers_interactions i
               WHERE i.player_id = adventurers_players.id
-                AND i.day = ?2 AND i.delta > 0) < ${DAILY_LIMIT}
+                AND i.day = ?2 AND i.delta > 0 AND ${kindFilter}) < ${DAILY_LIMIT[kind]}
      RETURNING id, name, points`
   )
     .bind(hash, today)
     .first();
   if (row) {
     await c.env.DB.prepare(
-      "INSERT INTO adventurers_interactions (player_id, delta, day) VALUES (?, 1, ?)"
+      "INSERT INTO adventurers_interactions (player_id, delta, day, kind) VALUES (?, 1, ?, ?)"
     )
-      .bind(row.id, today)
+      .bind(row.id, today, kind)
       .run();
     return c.json(await toProfile(c.env.DB, row));
   }
@@ -142,8 +150,9 @@ app.post("/api/score", async (c) => {
     .bind(hash)
     .first();
   if (!exists) return c.json({ error: "El documento no coincide con ningún perfil." }, 401);
+  const label = kind === "quiz" ? "preguntas" : "comidas";
   return c.json(
-    { error: `🌙 ¡Ya sumaste tus ${DAILY_LIMIT} puntos de hoy! Vuelve mañana.`, limit: DAILY_LIMIT },
+    { error: `🌙 ¡Ya sumaste tus ${DAILY_LIMIT[kind]} puntos de ${label} de hoy!`, limit: DAILY_LIMIT },
     429
   );
 });

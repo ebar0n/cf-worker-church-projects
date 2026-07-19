@@ -177,6 +177,16 @@
   .legend-item .big{font-size:1.7rem}
   .legend-rey{background:var(--rey);color:#fff}
   .legend-daniel{background:var(--daniel);color:#fff}
+  .legend[hidden]{display:none}
+  .practice-note{
+    margin-top:16px;
+    text-align:center;
+    font-weight:700;
+    font-size:.95rem;
+    color:var(--gold-soft);
+    opacity:.9;
+  }
+  .practice-note[hidden]{display:none}
 
   /* ══════════ MODO JUEGO ══════════ */
   .stage{
@@ -456,23 +466,28 @@
 
 <!-- ══════════ MODO JUEGO ══════════ -->
 <section id="juego" class="active">
-  <div class="legend">
+  <div class="legend" id="legend">
     <div class="legend-item legend-rey"><span class="big">🙊</span> Mesa del rey → ¡tápate la boca!</div>
     <div class="legend-item legend-daniel"><span class="big">💪</span> Mesa de Daniel → ¡haz músculo!</div>
   </div>
 
   <div class="stage">
-    <div class="round-label" id="roundLabel">Tarjeta 1 de 14</div>
+    <div class="round-label" id="roundLabel">¿Listos, agentes?</div>
 
     <div class="game-card" id="gameCard" aria-live="polite">
-      <div class="emoji" id="cardEmoji">🍖</div>
-      <div class="food-name" id="cardName">Carne del banquete</div>
-      <div class="hint" id="cardHint">¿Qué hacemos, agentes?</div>
+      <div class="emoji">🎲</div>
+      <div class="food-name">¡Partida de agentes!</div>
+      <div class="hint">5 comidas sorpresa + 5 preguntas relámpago</div>
+    </div>
+
+    <div class="quiz-box" id="quizBox">
+      <span class="quiz-tag" id="quizTag">6–7 años</span>
+      <div class="quiz-q" id="quizQ"></div>
+      <div class="quiz-a" id="quizA"></div>
     </div>
 
     <div class="controls">
-      <button class="btn btn-gold" id="mainBtn">¡Revelar!</button>
-      <button class="btn btn-outline" id="shuffleBtn">🔀 Barajar de nuevo</button>
+      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
     </div>
 
     <div class="judge" id="judge" hidden>
@@ -481,24 +496,7 @@
       <button class="btn btn-outline btn-sm" id="judgeNo">😅 No, -1</button>
     </div>
 
-    <div class="controls">
-      <button class="btn btn-outline btn-sm" id="quizBtn">⚡ Pregunta relámpago</button>
-    </div>
-
-    <div class="quiz-box" id="quizBox">
-      <span class="quiz-tag" id="quizTag">6–7 años</span>
-      <div class="quiz-q" id="quizQ">¿Cuántos días duró la prueba?</div>
-      <div class="quiz-a" id="quizA">10 días</div>
-      <div class="quiz-actions">
-        <button class="btn btn-gold btn-sm" id="quizRevealBtn">Ver respuesta</button>
-        <button class="btn btn-outline btn-sm" id="quizNextBtn">Otra pregunta</button>
-      </div>
-      <div class="judge" id="quizJudge" hidden>
-        <span id="quizJudgeQ">¿Respondió bien?</span>
-        <button class="btn btn-gold btn-sm" id="quizYes">⭐ ¡Sí! +1</button>
-        <button class="btn btn-outline btn-sm" id="quizNo">😅 No, -1</button>
-      </div>
-    </div>
+    <p class="practice-note" id="practiceNote" hidden>🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.</p>
   </div>
 </section>
 
@@ -538,10 +536,10 @@
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Abran el <strong>🎮 modo juego</strong>: en pantalla sale una comida sorpresa.</li>
-      <li>Su hijo reacciona antes de revelar: si cree que es de la <strong>mesa del rey</strong>, se tapa la boca (🙊); si es de la <strong>mesa de Daniel</strong>, hace músculo (💪).</li>
-      <li>Toquen <strong>¡Revelar!</strong> para confirmar la respuesta y pasen a la siguiente tarjeta.</li>
-      <li>Entre tarjetas, usen las <strong>⚡ preguntas relámpago</strong>: están marcadas por edades (4–5, 6–7 y 8–9 años).</li>
+      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 comidas sorpresa</strong> y después <strong>5 preguntas relámpago</strong>.</li>
+      <li>En cada comida, su hijo reacciona antes de revelar: si cree que es de la <strong>mesa del rey</strong>, se tapa la boca (🙊); si es de la <strong>mesa de Daniel</strong>, hace músculo (💪).</li>
+      <li>Toquen <strong>¡Revelar!</strong> y díganle a la app si acertó (⭐ +1) o no (-1).</li>
+      <li>Luego vienen las preguntas, marcadas por edades (4–5, 6–7 y 8–9 años): revelen la respuesta y califiquen igual.</li>
       <li>También pueden imprimir las tarjetas físicas desde la pestaña <strong>🖨️</strong> y jugar sin pantalla: el puntico de color en la esquina es la clave del adulto.</li>
     </ol>
     <p>Las <strong>preguntas relámpago cubren todo el capítulo 39</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
@@ -550,7 +548,7 @@
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>en cada comida</strong>: saquen una tarjeta sorpresa y hagan una o dos preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong>, cada respuesta incorrecta <strong>resta 1</strong>, y se pueden sumar máximo <strong>10 puntos por día</strong> — más o menos 3 por comida. El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Jueguen <strong>una partida por día</strong>: 5 comidas sorpresa + 5 preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong> y cada incorrecta <strong>resta 1</strong>; por día se pueden ganar máximo <strong>5 puntos de comidas y 5 de preguntas</strong>. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
     <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
   </div>
 </section>
@@ -614,17 +612,19 @@
     {tag:'8–9 años', q:'Según el capítulo, ¿qué dio carácter a toda la vida de Daniel y sus amigos?', a:'La fidelidad en las cosas pequeñas'}
   ];
 
-  // ── Modo juego ──
-  let deck = [];
-  let idx = 0;
-  let revealed = false;
+  // ── Partida: 5 comidas + 5 preguntas ──
+  const MATCH_CARDS = 5;
+  const MATCH_QUIZ = 5;
+  let match = null; // {cards, quizzes, step, revealed, earned}
 
   const gameCard = document.getElementById('gameCard');
-  const cardEmoji = document.getElementById('cardEmoji');
-  const cardName = document.getElementById('cardName');
-  const cardHint = document.getElementById('cardHint');
+  const quizBox = document.getElementById('quizBox');
   const mainBtn = document.getElementById('mainBtn');
   const roundLabel = document.getElementById('roundLabel');
+  const judge = document.getElementById('judge');
+  const judgeQ = document.getElementById('judgeQ');
+  const judgeYes = document.getElementById('judgeYes');
+  const judgeNo = document.getElementById('judgeNo');
 
   function shuffle(arr){
     const a = arr.slice();
@@ -635,89 +635,188 @@
     return a;
   }
 
-  function newDeck(){
-    deck = shuffle(FOODS);
-    idx = 0;
-    showCard();
+  function phase(){
+    if(!match) return 'idle';
+    if(match.step < MATCH_CARDS) return 'card';
+    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
+    return 'done';
   }
 
-  function showCard(){
-    revealed = false;
-    document.getElementById('judge').hidden = true;
-    const f = deck[idx];
-    gameCard.classList.remove('revealed-rey','revealed-daniel');
-    gameCard.innerHTML = `
-      <div class="emoji">${f.emoji}</div>
-      <div class="food-name">${f.name}</div>
-      <div class="hint">¿Qué hacemos, agentes?</div>`;
-    mainBtn.textContent = '¡Revelar!';
-    roundLabel.textContent = `Tarjeta ${idx+1} de ${deck.length}`;
+  // Preguntas equitativas: al menos una de cada nivel de edad por partida,
+  // el resto al azar, ordenadas de menor a mayor edad.
+  function pickMatchQuiz(){
+    const groups = {};
+    QUIZ.forEach(q => (groups[q.tag] = groups[q.tag] || []).push(q));
+    const picked = [];
+    const leftover = [];
+    Object.keys(groups).forEach(tag => {
+      const g = shuffle(groups[tag]);
+      picked.push(g[0]);
+      leftover.push(...g.slice(1));
+    });
+    picked.push(...shuffle(leftover).slice(0, MATCH_QUIZ - picked.length));
+    return picked.sort((a, b) => a.tag.localeCompare(b.tag));
   }
 
-  function reveal(){
-    revealed = true;
-    const f = deck[idx];
-    const isRey = f.side === 'rey';
-    gameCard.classList.add(isRey ? 'revealed-rey' : 'revealed-daniel');
-    gameCard.innerHTML = `
-      <div class="emoji">${f.emoji}</div>
-      <div class="action-emoji">${isRey ? '🙊' : '💪'}</div>
-      <div class="action-name">${isRey ? '¡Mesa del rey!' : '¡Mesa de Daniel!'}</div>
-      <div class="hint">${isRey ? 'Tápate la boca — ¡no la comemos!' : 'Haz músculo — ¡más fuertes!'}</div>`;
-    mainBtn.textContent = idx < deck.length-1 ? 'Siguiente ▶' : '🔁 Jugar otra vez';
-    const p = AvProfile.get();
-    if(p){
-      const done = !AvProfile.canScore();
-      document.getElementById('judgeQ').textContent = done
-        ? '🌙 ¡Puntos de hoy completos! Vuelve mañana.'
-        : `¿${p.name} acertó?`;
-      document.getElementById('judgeYes').hidden = done;
-      document.getElementById('judgeNo').hidden = done;
-      document.getElementById('judge').hidden = false;
+  // Comidas balanceadas: al menos 2 de cada mesa por partida.
+  function pickMatchCards(){
+    const rey = shuffle(FOODS.filter(f => f.side === 'rey'));
+    const daniel = shuffle(FOODS.filter(f => f.side === 'daniel'));
+    const picked = [...rey.slice(0, 2), ...daniel.slice(0, 2)];
+    const leftover = shuffle([...rey.slice(2), ...daniel.slice(2)]);
+    picked.push(...leftover.slice(0, MATCH_CARDS - picked.length));
+    return shuffle(picked);
+  }
+
+  function startMatch(){
+    document.getElementById('legend').hidden = true;
+    document.getElementById('practiceNote').hidden = true;
+    match = {
+      cards: pickMatchCards(),
+      quizzes: pickMatchQuiz(),
+      step: 0,
+      revealed: false,
+      earned: 0
+    };
+    showStep();
+  }
+
+  function showStep(){
+    judge.hidden = true;
+    match.revealed = false;
+    const ph = phase();
+    if(ph === 'card'){
+      quizBox.classList.remove('show');
+      gameCard.style.display = '';
+      const f = match.cards[match.step];
+      roundLabel.textContent = `Comida ${match.step + 1} de ${MATCH_CARDS}`;
+      gameCard.classList.remove('revealed-rey','revealed-daniel');
+      gameCard.innerHTML = `
+        <div class="emoji">${f.emoji}</div>
+        <div class="food-name">${f.name}</div>
+        <div class="hint">¿Qué hacemos, agentes?</div>`;
+      mainBtn.textContent = '¡Revelar!';
+      mainBtn.hidden = false;
+    }else if(ph === 'quiz'){
+      gameCard.style.display = 'none';
+      quizBox.classList.add('show');
+      const q = match.quizzes[match.step - MATCH_CARDS];
+      roundLabel.textContent = `Pregunta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
+      document.getElementById('quizTag').textContent = q.tag;
+      document.getElementById('quizQ').textContent = q.q;
+      const quizA = document.getElementById('quizA');
+      quizA.textContent = q.a;
+      quizA.classList.remove('show');
+      mainBtn.textContent = 'Ver respuesta';
+      mainBtn.hidden = false;
+    }else{
+      finishMatch();
     }
   }
+
+  function revealStep(){
+    match.revealed = true;
+    const ph = phase();
+    if(ph === 'card'){
+      const f = match.cards[match.step];
+      const isRey = f.side === 'rey';
+      gameCard.classList.add(isRey ? 'revealed-rey' : 'revealed-daniel');
+      gameCard.innerHTML = `
+        <div class="emoji">${f.emoji}</div>
+        <div class="action-emoji">${isRey ? '🙊' : '💪'}</div>
+        <div class="action-name">${isRey ? '¡Mesa del rey!' : '¡Mesa de Daniel!'}</div>
+        <div class="hint">${isRey ? 'Tápate la boca — ¡no la comemos!' : 'Haz músculo — ¡más fuertes!'}</div>`;
+    }else{
+      document.getElementById('quizA').classList.add('show');
+    }
+
+    const kind = ph === 'quiz' ? 'quiz' : 'card';
+    const p = AvProfile.get();
+    if(p && AvProfile.canScore(kind)){
+      // por puntos: el papá juzga y avanzamos
+      judgeQ.textContent = ph === 'card' ? `¿${p.name} acertó?` : '¿Respondió bien?';
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      // práctica: solo avanzar
+      judgeQ.textContent = p
+        ? '🌙 Puntos completos: esta respuesta es de práctica.'
+        : '👤 Sin perfil: este acierto no suma al tablero.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Siguiente ▶';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function nextStep(){
+    match.step++;
+    showStep();
+  }
+
+  function finishMatch(){
+    document.getElementById('legend').hidden = false;
+    quizBox.classList.remove('show');
+    gameCard.style.display = '';
+    gameCard.classList.remove('revealed-rey','revealed-daniel');
+    roundLabel.textContent = '¡Bien hecho, agentes!';
+    const p = AvProfile.get();
+    const scored = p ? `<div class="hint">⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.</div>` : '';
+    const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
+      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
+    gameCard.innerHTML = `
+      <div class="emoji">🏁</div>
+      <div class="food-name">¡Partida completa!</div>
+      ${scored}${extra}`;
+    mainBtn.textContent = '🔁 Otra partida';
+    mainBtn.hidden = false;
+    match = null;
+    updateIdleHint();
+  }
+
+  function updateIdleHint(){
+    if(match) return;
+    const p = AvProfile.get();
+    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    const note = document.getElementById('practiceNote');
+    if(!p){
+      note.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      note.hidden = false;
+    }else if(practice){
+      note.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+      note.hidden = false;
+    }else{
+      note.hidden = true;
+    }
+    if(mainBtn.textContent.includes('Otra partida')){
+      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
+    }else if(mainBtn.textContent.includes('partida')){
+      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    }
+  }
+  AvProfile.onChange(updateIdleHint);
 
   mainBtn.addEventListener('click', () => {
-    if(!revealed){ reveal(); return; }
-    if(idx < deck.length-1){ idx++; showCard(); }
-    else { newDeck(); }
+    if(!match){ startMatch(); return; }
+    if(!match.revealed){ revealStep(); return; }
+    nextStep();
   });
 
-  document.getElementById('shuffleBtn').addEventListener('click', newDeck);
-
-  // ── Pregunta relámpago ──
-  let quizDeck = shuffle(QUIZ);
-  let quizIdx = -1;
-  const quizBox = document.getElementById('quizBox');
-  const quizTag = document.getElementById('quizTag');
-  const quizQ = document.getElementById('quizQ');
-  const quizA = document.getElementById('quizA');
-
-  function nextQuiz(){
-    quizIdx++;
-    if(quizIdx >= quizDeck.length){ quizDeck = shuffle(QUIZ); quizIdx = 0; }
-    const q = quizDeck[quizIdx];
-    quizTag.textContent = q.tag;
-    quizQ.textContent = q.q;
-    quizA.textContent = q.a;
-    quizA.classList.remove('show');
-    document.getElementById('quizJudge').hidden = true;
-    quizBox.classList.add('show');
-  }
-
-  document.getElementById('quizBtn').addEventListener('click', nextQuiz);
-  document.getElementById('quizNextBtn').addEventListener('click', nextQuiz);
-  document.getElementById('quizRevealBtn').addEventListener('click', () => {
-    quizA.classList.add('show');
-    if(AvProfile.get()){
-      const done = !AvProfile.canScore();
-      document.getElementById('quizJudgeQ').textContent = done
-        ? '🌙 ¡Puntos de hoy completos! Vuelve mañana.'
-        : '¿Respondió bien?';
-      document.getElementById('quizYes').hidden = done;
-      document.getElementById('quizNo').hidden = done;
-      document.getElementById('quizJudge').hidden = false;
-    }
+  judgeYes.addEventListener('click', () => {
+    judge.hidden = true;
+    const kind = phase() === 'quiz' ? 'quiz' : 'card';
+    AvProfile.score(true, kind);
+    match.earned++;
+    nextStep();
+  });
+  judgeNo.addEventListener('click', () => {
+    judge.hidden = true;
+    const kind = phase() === 'quiz' ? 'quiz' : 'card';
+    AvProfile.score(false, kind);
+    nextStep();
   });
 
   // ── Tarjetas imprimibles ──
@@ -763,16 +862,9 @@
     AvProfile.open();
   });
 
-  const judgeEl = document.getElementById('judge');
-  document.getElementById('judgeYes').addEventListener('click', () => { judgeEl.hidden = true; AvProfile.score(true); });
-  document.getElementById('judgeNo').addEventListener('click', () => { judgeEl.hidden = true; AvProfile.score(false); });
-  const quizJudgeEl = document.getElementById('quizJudge');
-  document.getElementById('quizYes').addEventListener('click', () => { quizJudgeEl.hidden = true; AvProfile.score(true); });
-  document.getElementById('quizNo').addEventListener('click', () => { quizJudgeEl.hidden = true; AvProfile.score(false); });
-
   // Iniciar
   AvProfile.init({ chip: document.getElementById('playerChip'), autoOpen: true });
-  newDeck();
+  updateIdleHint();
 </script>
 </body>
 </html>
