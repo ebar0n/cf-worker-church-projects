@@ -85,4 +85,12 @@ app.post("/api/score", async (c) => {
 
 app.notFound((c) => c.json({ error: "Not found" }, 404));
 
+app.onError((err, c) => {
+  console.error(err);
+  const hint = /no such table/i.test(String(err))
+    ? " Falta aplicar las migraciones de la base de datos (yarn migrate --local o --remote)."
+    : "";
+  return c.json({ error: `Error interno.${hint}` }, 500);
+});
+
 export default app;
