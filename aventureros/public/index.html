@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club de Aventureros · Actividades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Paleta Puerta de Ishtar: azul lapislázuli, oro vidriado, ladrillo, crema */
+    --lapis:#1B2F6E;
+    --lapis-deep:#12204D;
+    --gold:#F0B429;
+    --gold-soft:#FFD97A;
+    --brick:#C2542B;
+    --cream:#FFF6E3;
+    --ink:#231A0F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--lapis);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,217,122,.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(240,180,41,.07), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+  }
+
+  header{
+    text-align:center;
+    padding:36px 16px 10px;
+  }
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  h1{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.7rem,5.5vw,2.6rem);
+    line-height:1.15;
+    margin-top:8px;
+  }
+  .subtitle{margin-top:8px;font-size:1rem;opacity:.85}
+
+  main{
+    max-width:1000px;
+    margin:0 auto;
+    padding:28px 16px 70px;
+  }
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:18px;
+  }
+  .activity-card{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    background:var(--cream);
+    color:var(--ink);
+    border:5px solid var(--gold);
+    border-radius:24px;
+    padding:26px 22px 22px;
+    text-decoration:none;
+    box-shadow:0 8px 0 rgba(0,0,0,.28);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .activity-card:hover{transform:translateY(-4px);box-shadow:0 12px 0 rgba(0,0,0,.28)}
+  .activity-card:focus-visible{outline:3px solid #fff;outline-offset:4px}
+  .activity-card .emoji{font-size:3rem;line-height:1}
+  .activity-card .tag{
+    align-self:flex-start;
+    font-family:'Fredoka',sans-serif;
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    background:var(--brick);
+    color:#fff;
+    border-radius:999px;
+    padding:4px 12px;
+  }
+  .activity-card h2{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.25rem;
+    line-height:1.2;
+  }
+  .activity-card p{font-size:.95rem;opacity:.8}
+  .activity-card .go{
+    margin-top:auto;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    color:var(--brick);
+  }
+
+  .soon{
+    border-style:dashed;
+    background:rgba(255,246,227,.08);
+    color:var(--cream);
+    border-color:rgba(240,180,41,.5);
+    box-shadow:none;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    min-height:220px;
+    opacity:.8;
+  }
+  .soon .emoji{font-size:2.4rem}
+  .soon .tag{align-self:center;background:rgba(194,84,43,.85)}
+  .soon p{font-family:'Fredoka',sans-serif;font-size:1rem;opacity:.9}
+
+  footer{
+    text-align:center;
+    padding:0 16px 40px;
+    font-size:.85rem;
+    opacity:.6;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Iglesia Adventista · Jordán Ibagué</div>
+  <h1>Club de Aventureros</h1>
+  <p class="subtitle">Actividades y dinámicas interactivas para nuestros agentes del Reino</p>
+</header>
+
+<main>
+  <div class="card-grid">
+    <a class="activity-card" href="/conexion-biblica-pr39/">
+      <span class="emoji">🍖🥦</span>
+      <span class="tag">Conexión Bíblica · Cap. 39 · En la corte de Babilonia</span>
+      <h2>La mesa del rey vs. la mesa de Daniel</h2>
+      <p>Sale una comida… ¡y todos reaccionan! Juego de decisiones con tarjetas imprimibles y preguntas relámpago por edades.</p>
+      <span class="go">Jugar ▶</span>
+    </a>
+
+    <div class="activity-card soon">
+      <span class="emoji">🔥</span>
+      <span class="tag">Conexión Bíblica · Cap. 41</span>
+      <h2>El horno de fuego</h2>
+      <p>Pronto disponible…</p>
+    </div>
+
+    <div class="activity-card soon">
+      <span class="emoji">🦁</span>
+      <span class="tag">Conexión Bíblica · Cap. 44</span>
+      <h2>En el foso de los leones</h2>
+      <p>Pronto disponible…</p>
+    </div>
+  </div>
+</main>
+
+<footer>Club de Aventureros · hecho con ❤️ para los niños</footer>
+
+</body>
+</html>

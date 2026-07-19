@@ -1,0 +1,13 @@
+{
+  "name": "aventureros",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./public"
+  },
+  "routes": [
+    { "pattern": "aventureros.iglesiajordanibague.org", "custom_domain": true }
+  ],
+  // Solo accesible por el dominio propio: sin URL *.workers.dev ni URLs de preview
+  "workers_dev": false,
+  "preview_urls": false
+}
