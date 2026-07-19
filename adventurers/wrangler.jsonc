@@ -1,5 +1,5 @@
 {
-  "name": "aventureros",
+  "name": "cf-worker-church-projects-adventurers",
   "main": "src/index.js",
   "compatibility_date": "2026-07-01",
   "assets": {
