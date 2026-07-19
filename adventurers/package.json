@@ -6,10 +6,14 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "migrate": "wrangler d1 migrations apply church-jordan-projects",
+    "dev": "yarn migrate --local && wrangler dev",
+    "deploy": "yarn migrate --remote && wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4.112.0"
+  },
+  "dependencies": {
+    "hono": "^4.12.31"
   }
 }

@@ -43,7 +43,14 @@
   /* ── Cabecera ── */
   header{
     text-align:center;
-    padding:22px 16px 14px;
+    padding:10px 16px 12px;
+  }
+  @media (max-width:600px){
+    .subtitle{display:none}
+    header{padding-bottom:8px}
+    .legend{gap:8px;margin-bottom:14px}
+    .legend-item{padding:8px 12px;font-size:.82rem}
+    .legend-item .big{font-size:1.3rem}
   }
   .eyebrow{
     font-family:'Fredoka',sans-serif;
@@ -71,15 +78,34 @@
   }
   .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
 
-  /* ── Tabs ── */
-  .tabs{
+  /* ── Barra superior + menú ── */
+  .topbar{
     display:flex;
-    justify-content:center;
+    align-items:center;
     gap:10px;
-    padding:6px 16px 18px;
-    flex-wrap:wrap;
+    padding:10px 12px 0;
+    max-width:1000px;
+    margin:0 auto;
   }
-  .tab-btn{
+  .player-chip{
+    margin-left:auto;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    background:rgba(255,246,227,.12);
+    border:2px solid var(--gold);
+    color:var(--gold-soft);
+    border-radius:999px;
+    padding:7px 14px;
+    max-width:55vw;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .player-chip[hidden]{display:none}
+  .menu-wrap{position:relative;margin-left:auto}
+  .player-chip + .menu-wrap{margin-left:0}
+  .menu-btn{
     font-family:'Fredoka',sans-serif;
     font-size:1rem;
     font-weight:600;
@@ -87,17 +113,138 @@
     background:transparent;
     color:var(--gold-soft);
     border-radius:999px;
-    padding:10px 22px;
+    padding:8px 16px;
     min-height:44px;
     cursor:pointer;
-    transition:transform .12s ease, background .15s ease, color .15s ease;
   }
-  .tab-btn:hover{transform:translateY(-2px)}
-  .tab-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
-  .tab-btn.active{
-    background:var(--gold);
-    color:var(--lapis-deep);
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;
+    right:0;
+    top:calc(100% + 8px);
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+    min-width:240px;
+    background:var(--cream);
+    border:3px solid var(--gold);
+    border-radius:18px;
+    padding:8px;
+    box-shadow:0 10px 0 rgba(0,0,0,.3);
   }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    text-align:left;
+    background:transparent;
+    border:none;
+    color:var(--ink);
+    border-radius:12px;
+    padding:12px 14px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
+
+  /* ── Reto de puntos ── */
+  .judge{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:16px;
+    background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);
+    border-radius:16px;
+    padding:12px 14px;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+  }
+  .judge[hidden]{display:none}
+
+  /* ── Overlay de perfil ── */
+  .overlay{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(18,32,77,.85);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px;
+  }
+  .overlay[hidden]{display:none}
+  .overlay-card{
+    background:var(--cream);
+    color:var(--ink);
+    border:5px solid var(--gold);
+    border-radius:24px;
+    box-shadow:0 10px 0 rgba(0,0,0,.3);
+    padding:24px 20px;
+    width:min(420px,100%);
+    max-height:90dvh;
+    overflow-y:auto;
+  }
+  .overlay-card h2{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:1.4rem;
+    text-align:center;
+  }
+  .overlay-card>p{text-align:center;font-size:.95rem;opacity:.75;margin-top:6px}
+  .pf-tabs{
+    display:flex;
+    gap:8px;
+    margin:16px 0 14px;
+  }
+  .pf-tabs button{
+    flex:1;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    border:2px solid var(--lapis);
+    background:transparent;
+    color:var(--lapis);
+    border-radius:999px;
+    padding:9px 10px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .pf-tabs button.active{background:var(--lapis);color:var(--cream)}
+  #pfForm label{
+    display:block;
+    font-weight:800;
+    font-size:.9rem;
+    margin-bottom:12px;
+  }
+  #pfForm input{
+    display:block;
+    width:100%;
+    margin-top:5px;
+    font:inherit;
+    font-size:1.05rem;
+    border:2px solid var(--lapis);
+    border-radius:12px;
+    padding:11px 12px;
+    background:#fff;
+    color:var(--ink);
+  }
+  #pfForm input:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
+  .pf-note{font-size:.82rem;opacity:.7;margin-bottom:12px}
+  .pf-error{
+    color:var(--rey-deep);
+    font-weight:800;
+    font-size:.9rem;
+    min-height:1.2em;
+    margin-bottom:10px;
+  }
+  .pf-actions{display:flex;flex-direction:column;gap:10px}
+  .pf-actions .btn{width:100%}
 
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
@@ -192,7 +339,6 @@
   }
   @media (prefers-reduced-motion:reduce){
     .action-emoji,.action-name{animation:none}
-    .tab-btn:hover{transform:none}
   }
 
   .controls{
@@ -367,7 +513,7 @@
   /* ── Impresión ── */
   @media print{
     body{background:#fff;color:#000}
-    header,.tabs,#juego,#padres,.print-note,.legend{display:none!important}
+    header,.topbar,#juego,#padres,.print-note,.legend,.overlay{display:none!important}
     section{display:block!important;padding:0}
     #tarjetas{display:block!important}
     .card-grid{grid-template-columns:repeat(3,1fr);gap:10mm}
@@ -380,18 +526,25 @@
 </head>
 <body>
 
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← Actividades</a>
+  <div class="player-chip" id="playerChip" hidden></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ Menú</button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
+      <button class="menu-item" data-tab="tarjetas">🖨️ Tarjetas para imprimir</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
 <header>
-  <a class="back-link" href="/">← Todas las actividades</a>
   <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 39 · En la corte de Babilonia</div>
   <h1>La mesa del rey <span class="vs">VS</span> la mesa de Daniel</h1>
   <p class="subtitle">Sale una comida… ¡y todos reaccionan!</p>
 </header>
-
-<div class="tabs">
-  <button class="tab-btn active" data-tab="juego">🎮 Modo juego</button>
-  <button class="tab-btn" data-tab="tarjetas">🖨️ Tarjetas para imprimir</button>
-  <button class="tab-btn" data-tab="padres">👪 Para padres</button>
-</div>
 
 <!-- ══════════ MODO JUEGO ══════════ -->
 <section id="juego" class="active">
@@ -414,6 +567,12 @@
       <button class="btn btn-outline" id="shuffleBtn">🔀 Barajar de nuevo</button>
     </div>
 
+    <div class="judge" id="judge" hidden>
+      <span id="judgeQ">¿Acertó?</span>
+      <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo">Esta vez no</button>
+    </div>
+
     <div class="controls">
       <button class="btn btn-outline btn-sm" id="quizBtn">⚡ Pregunta relámpago</button>
     </div>
@@ -425,6 +584,11 @@
       <div class="quiz-actions">
         <button class="btn btn-gold btn-sm" id="quizRevealBtn">Ver respuesta</button>
         <button class="btn btn-outline btn-sm" id="quizNextBtn">Otra pregunta</button>
+      </div>
+      <div class="judge" id="quizJudge" hidden>
+        <span>¿Respondió bien?</span>
+        <button class="btn btn-gold btn-sm" id="quizYes">⭐ ¡Sí! +1</button>
+        <button class="btn btn-outline btn-sm" id="quizNo">Esta vez no</button>
       </div>
     </div>
   </div>
@@ -476,6 +640,31 @@
     <p>La idea no es memorizar una lista de comidas, sino conversar: <em>¿por qué Daniel decidió así? ¿Qué decisiones podemos tomar nosotros para honrar a Dios?</em></p>
   </div>
 </section>
+
+<div class="overlay" id="profileOverlay" hidden>
+  <div class="overlay-card">
+    <h2>🧒 ¿Quién va a jugar?</h2>
+    <p>Cada respuesta correcta suma ⭐ 1 punto en el tablero del club.</p>
+    <div class="pf-tabs">
+      <button type="button" id="pfLoginTab" class="active">Ya tengo perfil</button>
+      <button type="button" id="pfRegTab">Soy nuevo</button>
+    </div>
+    <form id="pfForm">
+      <label id="pfNameLabel" hidden>Nombre del niño o la niña
+        <input id="pfName" type="text" maxlength="40" autocomplete="off">
+      </label>
+      <label>Número de documento del niño o la niña
+        <input id="pfDoc" type="password" inputmode="numeric" autocomplete="off" maxlength="15">
+      </label>
+      <p class="pf-note">🔒 El documento nunca se muestra ni se guarda en claro: es solo la llave para sumar puntos a este perfil.</p>
+      <div class="pf-error" id="pfError"></div>
+      <div class="pf-actions">
+        <button class="btn btn-gold" type="submit" id="pfSubmit">Entrar</button>
+        <button class="btn btn-outline btn-sm" type="button" id="pfSkip">Jugar sin puntos</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <script>
   // ── Datos ──
@@ -563,6 +752,7 @@
 
   function showCard(){
     revealed = false;
+    document.getElementById('judge').hidden = true;
     const f = deck[idx];
     gameCard.classList.remove('revealed-rey','revealed-daniel');
     gameCard.innerHTML = `
@@ -584,6 +774,10 @@
       <div class="action-name">${isRey ? '¡Mesa del rey!' : '¡Mesa de Daniel!'}</div>
       <div class="hint">${isRey ? 'Tápate la boca — ¡no la comemos!' : 'Haz músculo — ¡más fuertes!'}</div>`;
     mainBtn.textContent = idx < deck.length-1 ? 'Siguiente ▶' : '🔁 Jugar otra vez';
+    if(player){
+      document.getElementById('judgeQ').textContent = `¿${player.name} acertó?`;
+      document.getElementById('judge').hidden = false;
+    }
   }
 
   mainBtn.addEventListener('click', () => {
@@ -610,12 +804,16 @@
     quizQ.textContent = q.q;
     quizA.textContent = q.a;
     quizA.classList.remove('show');
+    document.getElementById('quizJudge').hidden = true;
     quizBox.classList.add('show');
   }
 
   document.getElementById('quizBtn').addEventListener('click', nextQuiz);
   document.getElementById('quizNextBtn').addEventListener('click', nextQuiz);
-  document.getElementById('quizRevealBtn').addEventListener('click', () => quizA.classList.add('show'));
+  document.getElementById('quizRevealBtn').addEventListener('click', () => {
+    quizA.classList.add('show');
+    if(player) document.getElementById('quizJudge').hidden = false;
+  });
 
   // ── Tarjetas imprimibles ──
   function renderGrid(id, side){
@@ -630,17 +828,130 @@
   renderGrid('gridRey','rey');
   renderGrid('gridDaniel','daniel');
 
-  // ── Tabs ──
-  document.querySelectorAll('.tab-btn').forEach(btn => {
+  // ── Menú ──
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  function closeMenu(){
+    menuPanel.hidden = true;
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.menu-wrap')) closeMenu();
+  });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById(btn.dataset.tab).classList.add('active');
+      closeMenu();
     });
   });
 
+  // ── Perfil y puntos ──
+  const PKEY = 'aventureros-player';
+  let player = null;
+  try{ player = JSON.parse(localStorage.getItem(PKEY) || 'null') }catch(e){ player = null }
+
+  const overlay = document.getElementById('profileOverlay');
+  const playerChip = document.getElementById('playerChip');
+  const pfLoginTab = document.getElementById('pfLoginTab');
+  const pfRegTab = document.getElementById('pfRegTab');
+  const pfNameLabel = document.getElementById('pfNameLabel');
+  const pfName = document.getElementById('pfName');
+  const pfDoc = document.getElementById('pfDoc');
+  const pfError = document.getElementById('pfError');
+  const pfSubmit = document.getElementById('pfSubmit');
+
+  async function api(path, body){
+    const res = await fetch('/api/' + path, {
+      method:'POST',
+      headers:{'content-type':'application/json'},
+      body:JSON.stringify(body)
+    });
+    const data = await res.json().catch(() => ({}));
+    if(!res.ok) throw new Error(data.error || 'Algo salió mal. Intenta de nuevo.');
+    return data;
+  }
+
+  function savePlayer(){
+    if(player) localStorage.setItem(PKEY, JSON.stringify(player));
+    else localStorage.removeItem(PKEY);
+  }
+  function updateChip(){
+    playerChip.hidden = !player;
+    if(player) playerChip.textContent = `🧒 ${player.name} · ⭐ ${player.points}`;
+  }
+
+  let pfMode = 'login';
+  function setPfMode(m){
+    pfMode = m;
+    pfLoginTab.classList.toggle('active', m === 'login');
+    pfRegTab.classList.toggle('active', m === 'register');
+    pfNameLabel.hidden = m !== 'register';
+    pfSubmit.textContent = m === 'login' ? 'Entrar' : 'Crear perfil';
+    pfError.textContent = '';
+  }
+  pfLoginTab.addEventListener('click', () => setPfMode('login'));
+  pfRegTab.addEventListener('click', () => setPfMode('register'));
+
+  document.getElementById('pfForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    pfError.textContent = '';
+    pfSubmit.disabled = true;
+    try{
+      const doc = pfDoc.value;
+      const data = pfMode === 'login'
+        ? await api('login', {doc})
+        : await api('register', {name: pfName.value, doc});
+      player = {...data.player, doc: doc.replace(/\D/g,'')};
+      savePlayer();
+      updateChip();
+      overlay.hidden = true;
+      pfDoc.value = '';
+      pfName.value = '';
+    }catch(err){
+      pfError.textContent = err.message;
+    }
+    pfSubmit.disabled = false;
+  });
+
+  document.getElementById('pfSkip').addEventListener('click', () => { overlay.hidden = true; });
+  document.getElementById('changePlayerBtn').addEventListener('click', () => {
+    closeMenu();
+    setPfMode('login');
+    overlay.hidden = false;
+  });
+
+  let scoring = false;
+  async function addPoint(){
+    if(!player || scoring) return;
+    scoring = true;
+    try{
+      const data = await api('score', {doc: player.doc});
+      player.points = data.player.points;
+      savePlayer();
+      updateChip();
+    }catch(err){
+      alert(err.message);
+    }
+    scoring = false;
+  }
+
+  const judgeEl = document.getElementById('judge');
+  document.getElementById('judgeYes').addEventListener('click', () => { judgeEl.hidden = true; addPoint(); });
+  document.getElementById('judgeNo').addEventListener('click', () => { judgeEl.hidden = true; });
+  const quizJudgeEl = document.getElementById('quizJudge');
+  document.getElementById('quizYes').addEventListener('click', () => { quizJudgeEl.hidden = true; addPoint(); });
+  document.getElementById('quizNo').addEventListener('click', () => { quizJudgeEl.hidden = true; });
+
   // Iniciar
+  updateChip();
+  if(!player) overlay.hidden = false;
   newDeck();
 </script>
 </body>

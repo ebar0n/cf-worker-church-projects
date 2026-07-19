@@ -1,9 +1,18 @@
 {
   "name": "aventureros",
+  "main": "src/index.js",
   "compatibility_date": "2026-07-01",
   "assets": {
     "directory": "./public"
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "church-jordan-projects",
+      "database_id": "49904052-e0d9-407e-816b-f47450747360",
+      "migrations_dir": "./migrations"
+    }
+  ],
   "routes": [
     { "pattern": "aventureros.iglesiajordanibague.org", "custom_domain": true }
   ],
