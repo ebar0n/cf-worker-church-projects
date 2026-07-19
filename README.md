@@ -42,7 +42,7 @@ Static pages are served via [Workers Static Assets](https://developers.cloudflar
 
 #### Points challenge and leaderboard
 
-Kids earn ⭐ 1 point per correct answer and lose 1 per wrong answer (never below 0), in both the food cards and the quiz — one single score. Earning is capped at **10 points per day** (`DAILY_LIMIT` in `src/index.js`, América/Bogotá time), sized for the weekly ritual of playing at every meal (~3 points × 3 meals). Points live in the shared D1 database `church-jordan-projects`, in tables prefixed with `adventurers_`. The club index shows the leaderboard (top 20).
+Kids earn ⭐ 1 point per correct answer and lose 1 per wrong answer (never below 0), in both the food cards and the quiz — one single score. Earning is capped at **10 points per day** (`DAILY_LIMIT` in `src/index.js`, America/Bogota time), sized for the weekly ritual of playing at every meal (~3 points × 3 meals). Every answer is stored as a row in `adventurers_interactions` (+1/-1 with the Bogota date), which is what the daily cap counts — and doubles as an audit/stats trail. Totals live in `adventurers_players`; both tables are in the shared D1 database `church-jordan-projects` (`adventurers_` prefix). The club index shows the leaderboard (top 20).
 
 Profiles are keyed by the child's document number, so one family can't add points to another child's profile:
 

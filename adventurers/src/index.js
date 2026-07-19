@@ -17,12 +17,21 @@ const normalizeName = (raw) => String(raw ?? "").trim().replace(/\s+/g, " ");
 const todayInBogota = () =>
   new Intl.DateTimeFormat("en-CA", { timeZone: "America/Bogota" }).format(new Date());
 
-// Respuesta pública del perfil: cuántos puntos lleva hoy y el tope diario.
-function toProfile(row) {
-  const today = todayInBogota();
+// Puntos sumados hoy (solo interacciones positivas cuentan para el tope).
+async function todayCount(db, playerId) {
+  const row = await db
+    .prepare(
+      "SELECT COUNT(*) AS n FROM adventurers_interactions WHERE player_id = ? AND day = ? AND delta > 0"
+    )
+    .bind(playerId, todayInBogota())
+    .first();
+  return row?.n ?? 0;
+}
+
+async function toProfile(db, row) {
   return {
     player: { id: row.id, name: row.name, points: row.points },
-    today: row.day_date === today ? row.day_points : 0,
+    today: await todayCount(db, row.id),
     limit: DAILY_LIMIT,
   };
 }
@@ -56,17 +65,14 @@ app.post("/api/register", async (c) => {
     .bind(hash)
     .first();
   if (existing) {
-    return c.json(
-      { error: `Ese documento ya está registrado a nombre de ${existing.name}.` },
-      409
-    );
+    return c.json({ error: `Ese documento ya está registrado a nombre de ${existing.name}.` }, 409);
   }
   const row = await c.env.DB.prepare(
-    "INSERT INTO adventurers_players (name, doc_hash, doc_hint) VALUES (?, ?, ?) RETURNING id, name, points, day_points, day_date"
+    "INSERT INTO adventurers_players (name, doc_hash, doc_hint) VALUES (?, ?, ?) RETURNING id, name, points"
   )
     .bind(name, hash, doc.slice(-2))
     .first();
-  return c.json(toProfile(row), 201);
+  return c.json(await toProfile(c.env.DB, row), 201);
 });
 
 app.post("/api/login", async (c) => {
@@ -74,16 +80,17 @@ app.post("/api/login", async (c) => {
   const doc = normalizeDoc(body.doc);
   if (!doc) return c.json({ error: "Escribe el número de documento." }, 400);
   const row = await c.env.DB.prepare(
-    "SELECT id, name, points, day_points, day_date FROM adventurers_players WHERE doc_hash = ?"
+    "SELECT id, name, points FROM adventurers_players WHERE doc_hash = ?"
   )
     .bind(await docHash(doc))
     .first();
   if (!row) return c.json({ error: "not_found" }, 404);
-  return c.json(toProfile(row));
+  return c.json(await toProfile(c.env.DB, row));
 });
 
-// Respuesta correcta: +1 punto (máximo DAILY_LIMIT por día).
-// Respuesta incorrecta: -1 punto (nunca por debajo de 0).
+// Cada respuesta queda registrada como una interacción (+1 o -1, con el día
+// en hora de Colombia). Correcta: +1 punto hasta DAILY_LIMIT por día.
+// Incorrecta: -1 punto (nunca por debajo de 0), no consume intentos del día.
 // El documento valida que el perfil sea propio.
 app.post("/api/score", async (c) => {
   const body = await c.req.json().catch(() => ({}));
@@ -91,31 +98,46 @@ app.post("/api/score", async (c) => {
   if (!doc) return c.json({ error: "Falta el documento." }, 400);
   const hash = await docHash(doc);
   const today = todayInBogota();
+
   if (body.correct === false) {
     const row = await c.env.DB.prepare(
       `UPDATE adventurers_players SET
          points = MAX(points - 1, 0),
          updated_at = datetime('now')
        WHERE doc_hash = ?
-       RETURNING id, name, points, day_points, day_date`
+       RETURNING id, name, points`
     )
       .bind(hash)
       .first();
     if (!row) return c.json({ error: "El documento no coincide con ningún perfil." }, 401);
-    return c.json(toProfile(row));
+    await c.env.DB.prepare(
+      "INSERT INTO adventurers_interactions (player_id, delta, day) VALUES (?, -1, ?)"
+    )
+      .bind(row.id, today)
+      .run();
+    return c.json(await toProfile(c.env.DB, row));
   }
+
   const row = await c.env.DB.prepare(
     `UPDATE adventurers_players SET
        points = points + 1,
-       day_points = CASE WHEN day_date = ?2 THEN day_points + 1 ELSE 1 END,
-       day_date = ?2,
        updated_at = datetime('now')
-     WHERE doc_hash = ?1 AND (day_date <> ?2 OR day_points < ${DAILY_LIMIT})
-     RETURNING id, name, points, day_points, day_date`
+     WHERE doc_hash = ?1
+       AND (SELECT COUNT(*) FROM adventurers_interactions i
+              WHERE i.player_id = adventurers_players.id
+                AND i.day = ?2 AND i.delta > 0) < ${DAILY_LIMIT}
+     RETURNING id, name, points`
   )
     .bind(hash, today)
     .first();
-  if (row) return c.json(toProfile(row));
+  if (row) {
+    await c.env.DB.prepare(
+      "INSERT INTO adventurers_interactions (player_id, delta, day) VALUES (?, 1, ?)"
+    )
+      .bind(row.id, today)
+      .run();
+    return c.json(await toProfile(c.env.DB, row));
+  }
   const exists = await c.env.DB.prepare("SELECT id FROM adventurers_players WHERE doc_hash = ?")
     .bind(hash)
     .first();

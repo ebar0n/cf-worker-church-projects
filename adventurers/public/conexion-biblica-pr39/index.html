@@ -569,7 +569,7 @@
         <button class="btn btn-outline btn-sm" id="quizNextBtn">Otra pregunta</button>
       </div>
       <div class="judge" id="quizJudge" hidden>
-        <span>¿Respondió bien?</span>
+        <span id="quizJudgeQ">¿Respondió bien?</span>
         <button class="btn btn-gold btn-sm" id="quizYes">⭐ ¡Sí! +1</button>
         <button class="btn btn-outline btn-sm" id="quizNo">😅 No, -1</button>
       </div>
@@ -635,11 +635,11 @@
     <h2>🧒 ¿Quién va a jugar?</h2>
     <p>Cada respuesta correcta suma ⭐ 1 punto en el tablero del club.</p>
     <form id="pfForm">
-      <label>Número de documento del niño o la niña
-        <input id="pfDoc" type="text" inputmode="numeric" autocomplete="off" maxlength="15">
+      <label>Nombre del niño o la niña
+        <input id="pfName" type="text" maxlength="40" autocomplete="off" placeholder="Ej: Sara">
       </label>
-      <label>Nombre del niño o la niña <span class="pf-optional">(solo la primera vez)</span>
-        <input id="pfName" type="text" maxlength="40" autocomplete="off">
+      <label>Número de documento del niño o la niña
+        <input id="pfDoc" type="text" inputmode="numeric" autocomplete="off" maxlength="15" placeholder="Solo números, ej: 1018511410">
       </label>
       <p class="pf-note">🔒 En el tablero solo aparece el nombre: el documento no se muestra a nadie ni se guarda en claro.</p>
       <div class="pf-error" id="pfError"></div>
@@ -759,8 +759,13 @@
       <div class="action-name">${isRey ? '¡Mesa del rey!' : '¡Mesa de Daniel!'}</div>
       <div class="hint">${isRey ? 'Tápate la boca — ¡no la comemos!' : 'Haz músculo — ¡más fuertes!'}</div>`;
     mainBtn.textContent = idx < deck.length-1 ? 'Siguiente ▶' : '🔁 Jugar otra vez';
-    if(canScore()){
-      document.getElementById('judgeQ').textContent = `¿${player.name} acertó?`;
+    if(player){
+      const done = !canScore();
+      document.getElementById('judgeQ').textContent = done
+        ? '🌙 ¡Puntos de hoy completos! Vuelve mañana.'
+        : `¿${player.name} acertó?`;
+      document.getElementById('judgeYes').hidden = done;
+      document.getElementById('judgeNo').hidden = done;
       document.getElementById('judge').hidden = false;
     }
   }
@@ -797,7 +802,15 @@
   document.getElementById('quizNextBtn').addEventListener('click', nextQuiz);
   document.getElementById('quizRevealBtn').addEventListener('click', () => {
     quizA.classList.add('show');
-    if(canScore()) document.getElementById('quizJudge').hidden = false;
+    if(player){
+      const done = !canScore();
+      document.getElementById('quizJudgeQ').textContent = done
+        ? '🌙 ¡Puntos de hoy completos! Vuelve mañana.'
+        : '¿Respondió bien?';
+      document.getElementById('quizYes').hidden = done;
+      document.getElementById('quizNo').hidden = done;
+      document.getElementById('quizJudge').hidden = false;
+    }
   });
 
   // ── Tarjetas imprimibles ──
@@ -870,7 +883,10 @@
   }
   function updateChip(){
     playerChip.hidden = !player;
-    if(player) playerChip.textContent = `🧒 ${player.name} · ⭐ ${player.points}`;
+    if(player){
+      const day = player.limit ? ` · ${player.today}/${player.limit} hoy` : '';
+      playerChip.textContent = `🧒 ${player.name} · ⭐ ${player.points}${day}`;
+    }
   }
   function setPlayer(data, doc){
     player = {...data.player, doc: doc.replace(/\D/g,''), today: data.today, limit: data.limit};
@@ -887,6 +903,9 @@
     pfSubmit.disabled = true;
     try{
       const doc = pfDoc.value;
+      if(!doc.replace(/\D/g,'')){
+        throw new Error('El documento debe tener solo números.');
+      }
       let data;
       try{
         data = await api('login', {doc});
@@ -894,7 +913,7 @@
         if(err.status !== 404) throw err;
         // Documento nuevo: crear el perfil (necesita el nombre)
         if(!pfName.value.trim()){
-          throw new Error('Ese documento aún no está registrado. Escribe el nombre para crear el perfil.');
+          throw new Error('Escribe el nombre para crear el perfil.');
         }
         data = await api('register', {name: pfName.value, doc});
       }
