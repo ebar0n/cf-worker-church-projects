@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/profile.css">
 <style>
   :root{
     /* Paleta Puerta de Ishtar: azul lapislázuli, oro vidriado, ladrillo, crema */
@@ -36,9 +37,16 @@
   /* Mejor respuesta táctil en móvil */
   a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
+  .index-top{
+    display:flex;
+    justify-content:flex-end;
+    max-width:1000px;
+    margin:0 auto;
+    padding:12px 16px 0;
+  }
   header{
     text-align:center;
-    padding:36px 16px 10px;
+    padding:12px 16px 10px;
   }
   .eyebrow{
     font-family:'Fredoka',sans-serif;
@@ -199,6 +207,10 @@
 </head>
 <body>
 
+<div class="index-top">
+  <div class="player-chip" id="playerChip"></div>
+</div>
+
 <header>
   <div class="eyebrow">Iglesia Adventista · Jordán Ibagué</div>
   <h1>Club de Aventureros</h1>
@@ -240,7 +252,10 @@
 
 <footer>Club de Aventureros · hecho con ❤️ para los niños</footer>
 
+<script src="/shared/profile.js"></script>
 <script>
+  AvProfile.init({ chip: document.getElementById('playerChip') });
+
   (async () => {
     const empty = document.getElementById('boardEmpty');
     try{

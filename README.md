@@ -22,6 +22,9 @@ cf-worker-church-projects/
     │   └── 0001_create_adventurers_players.sql
     └── public/                   # Static assets served by the Worker
         ├── index.html            # Activity index (card grid) + leaderboard
+        ├── shared/
+        │   ├── profile.js        # Cross-page profile module (window.AvProfile)
+        │   └── profile.css       # Styles for the profile overlay + player chip
         └── conexion-biblica-pr39/
             └── index.html        # Activity: one page per activity
 ```
@@ -46,7 +49,8 @@ Kids earn ⭐ 1 point per correct answer and lose 1 per wrong answer (never belo
 
 Profiles are keyed by the child's document number, so one family can't add points to another child's profile:
 
-- One simple form: document number (+ name the first time). If the document exists the profile is unlocked; if not, it's created — duplicates are rejected with the registered name.
+- The profile UI lives in a shared module (`public/shared/profile.js` + `.css`) used by the index and every activity: include both files and call `AvProfile.init({chip, autoOpen})`. It renders the player chip (tap to switch player), the login overlay, and exposes `get/canScore/score/open/onChange`.
+- One simple form: typing the document looks up the profile live — if it exists it greets by name (no typing the name again); if new, the name field appears to create it. Duplicates are rejected with the registered name.
 - The document is **never stored or displayed in plain text** — only a salted SHA-256 hash is kept (plus the last 2 digits as a hint column); the leaderboard shows names and points only.
 
 API (Hono, in `src/index.js`):

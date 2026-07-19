@@ -1,0 +1,147 @@
+/* Estilos del perfil transversal (overlay de ingreso + chip del jugador).
+   Autocontenido: colores de la paleta del club como valores propios. */
+:root{
+  --pf-lapis:#1B2F6E;
+  --pf-lapis-deep:#12204D;
+  --pf-gold:#F0B429;
+  --pf-gold-soft:#FFD97A;
+  --pf-brick:#C2542B;
+  --pf-cream:#FFF6E3;
+  --pf-ink:#231A0F;
+  --pf-ok:#1E7040;
+  --pf-error:#A32C26;
+}
+
+/* ── Chip del jugador ── */
+.pf-chip{
+  font-family:'Fredoka',sans-serif;
+  font-weight:600;
+  font-size:.9rem;
+  background:rgba(255,246,227,.12);
+  border:2px solid var(--pf-gold);
+  color:var(--pf-gold-soft);
+  border-radius:999px;
+  padding:7px 14px;
+  min-height:38px;
+  cursor:pointer;
+  display:inline-block;
+  max-width:55vw;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.pf-chip:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* ── Overlay ── */
+.pf-overlay{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:rgba(18,32,77,.85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.pf-overlay[hidden]{display:none}
+.pf-card{
+  position:relative;
+  background:var(--pf-cream);
+  color:var(--pf-ink);
+  border:5px solid var(--pf-gold);
+  border-radius:24px;
+  box-shadow:0 10px 0 rgba(0,0,0,.3);
+  padding:24px 20px;
+  width:min(420px,100%);
+  max-height:90dvh;
+  overflow-y:auto;
+}
+.pf-close{
+  position:absolute;
+  top:10px;
+  right:10px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:2px solid var(--pf-lapis);
+  background:transparent;
+  color:var(--pf-lapis);
+  font-size:1rem;
+  font-weight:700;
+  line-height:1;
+  cursor:pointer;
+}
+.pf-close:hover{background:rgba(27,47,110,.1)}
+.pf-close:focus-visible{outline:3px solid var(--pf-gold);outline-offset:2px}
+.pf-card h2{
+  font-family:'Fredoka',sans-serif;
+  font-weight:700;
+  font-size:1.4rem;
+  text-align:center;
+}
+.pf-sub{text-align:center;font-size:.95rem;opacity:.75;margin-top:6px}
+.pf-form{margin-top:16px}
+.pf-form label{
+  display:block;
+  font-weight:800;
+  font-size:.9rem;
+  margin-bottom:12px;
+}
+.pf-form label[hidden]{display:none}
+.pf-form input{
+  display:block;
+  width:100%;
+  margin-top:5px;
+  font:inherit;
+  font-size:1.05rem;
+  border:2px solid var(--pf-lapis);
+  border-radius:12px;
+  padding:11px 12px;
+  background:#fff;
+  color:var(--pf-ink);
+}
+.pf-form input:focus-visible{outline:3px solid var(--pf-gold);outline-offset:1px}
+.pf-status{
+  font-family:'Fredoka',sans-serif;
+  font-weight:600;
+  font-size:.95rem;
+  margin:-4px 0 12px;
+  color:var(--pf-brick);
+}
+.pf-status.ok{color:var(--pf-ok);font-size:1.05rem}
+.pf-status[hidden]{display:none}
+.pf-note{font-size:.82rem;opacity:.7;margin-bottom:12px}
+.pf-error{
+  color:var(--pf-error);
+  font-weight:800;
+  font-size:.9rem;
+  min-height:1.2em;
+  margin-bottom:10px;
+}
+.pf-actions{display:flex;flex-direction:column;gap:10px}
+.pf-btn{
+  font-family:'Fredoka',sans-serif;
+  font-size:1.1rem;
+  font-weight:600;
+  border:none;
+  border-radius:999px;
+  padding:14px 30px;
+  min-height:48px;
+  cursor:pointer;
+  width:100%;
+  background:var(--pf-gold);
+  color:var(--pf-lapis-deep);
+  box-shadow:0 5px 0 rgba(0,0,0,.3);
+  transition:transform .1s ease;
+}
+.pf-btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+.pf-btn:focus-visible{outline:3px solid var(--pf-lapis);outline-offset:3px}
+.pf-btn-outline{
+  background:transparent;
+  color:var(--pf-brick);
+  border:2px solid var(--pf-brick);
+  box-shadow:none;
+  font-size:.95rem;
+  min-height:44px;
+  padding:9px 20px;
+}

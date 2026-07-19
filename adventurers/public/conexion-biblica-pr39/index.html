@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/profile.css">
 <style>
   :root{
     /* Paleta Puerta de Ishtar: azul lapislázuli, oro vidriado, ladrillo, crema */
@@ -87,22 +88,7 @@
     max-width:1000px;
     margin:0 auto;
   }
-  .player-chip{
-    margin-left:auto;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:.9rem;
-    background:rgba(255,246,227,.12);
-    border:2px solid var(--gold);
-    color:var(--gold-soft);
-    border-radius:999px;
-    padding:7px 14px;
-    max-width:55vw;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-  }
-  .player-chip[hidden]{display:none}
+  .player-chip{margin-left:auto;min-width:0}
   .menu-wrap{position:relative;margin-left:auto}
   .player-chip + .menu-wrap{margin-left:0}
   .menu-btn{
@@ -167,67 +153,6 @@
   }
   .judge[hidden]{display:none}
 
-  /* ── Overlay de perfil ── */
-  .overlay{
-    position:fixed;
-    inset:0;
-    z-index:100;
-    background:rgba(18,32,77,.85);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:16px;
-  }
-  .overlay[hidden]{display:none}
-  .overlay-card{
-    background:var(--cream);
-    color:var(--ink);
-    border:5px solid var(--gold);
-    border-radius:24px;
-    box-shadow:0 10px 0 rgba(0,0,0,.3);
-    padding:24px 20px;
-    width:min(420px,100%);
-    max-height:90dvh;
-    overflow-y:auto;
-  }
-  .overlay-card h2{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:1.4rem;
-    text-align:center;
-  }
-  .overlay-card>p{text-align:center;font-size:.95rem;opacity:.75;margin-top:6px}
-  #pfForm{margin-top:16px}
-  .pf-optional{font-weight:400;opacity:.6;font-size:.8rem}
-  #pfForm label{
-    display:block;
-    font-weight:800;
-    font-size:.9rem;
-    margin-bottom:12px;
-  }
-  #pfForm input{
-    display:block;
-    width:100%;
-    margin-top:5px;
-    font:inherit;
-    font-size:1.05rem;
-    border:2px solid var(--lapis);
-    border-radius:12px;
-    padding:11px 12px;
-    background:#fff;
-    color:var(--ink);
-  }
-  #pfForm input:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
-  .pf-note{font-size:.82rem;opacity:.7;margin-bottom:12px}
-  .pf-error{
-    color:var(--rey-deep);
-    font-weight:800;
-    font-size:.9rem;
-    min-height:1.2em;
-    margin-bottom:10px;
-  }
-  .pf-actions{display:flex;flex-direction:column;gap:10px}
-  .pf-actions .btn{width:100%}
 
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
@@ -511,7 +436,7 @@
 
 <div class="topbar">
   <a class="back-link" href="/" aria-label="Todas las actividades">← Actividades</a>
-  <div class="player-chip" id="playerChip" hidden></div>
+  <div class="player-chip" id="playerChip"></div>
   <div class="menu-wrap">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ Menú</button>
     <div class="menu-panel" id="menuPanel" hidden>
@@ -630,26 +555,7 @@
   </div>
 </section>
 
-<div class="overlay" id="profileOverlay" hidden>
-  <div class="overlay-card">
-    <h2>🧒 ¿Quién va a jugar?</h2>
-    <p>Cada respuesta correcta suma ⭐ 1 punto en el tablero del club.</p>
-    <form id="pfForm">
-      <label>Nombre del niño o la niña
-        <input id="pfName" type="text" maxlength="40" autocomplete="off" placeholder="Ej: Sara">
-      </label>
-      <label>Número de documento del niño o la niña
-        <input id="pfDoc" type="text" inputmode="numeric" autocomplete="off" maxlength="15" placeholder="Solo números">
-      </label>
-      <p class="pf-note">🔒 En el tablero solo aparece el nombre: el documento no se muestra a nadie ni se guarda en claro.</p>
-      <div class="pf-error" id="pfError"></div>
-      <div class="pf-actions">
-        <button class="btn btn-gold" type="submit" id="pfSubmit">¡A jugar!</button>
-        <button class="btn btn-outline btn-sm" type="button" id="pfSkip">Jugar sin puntos</button>
-      </div>
-    </form>
-  </div>
-</div>
+<script src="/shared/profile.js"></script>
 
 <script>
   // ── Datos ──
@@ -759,11 +665,12 @@
       <div class="action-name">${isRey ? '¡Mesa del rey!' : '¡Mesa de Daniel!'}</div>
       <div class="hint">${isRey ? 'Tápate la boca — ¡no la comemos!' : 'Haz músculo — ¡más fuertes!'}</div>`;
     mainBtn.textContent = idx < deck.length-1 ? 'Siguiente ▶' : '🔁 Jugar otra vez';
-    if(player){
-      const done = !canScore();
+    const p = AvProfile.get();
+    if(p){
+      const done = !AvProfile.canScore();
       document.getElementById('judgeQ').textContent = done
         ? '🌙 ¡Puntos de hoy completos! Vuelve mañana.'
-        : `¿${player.name} acertó?`;
+        : `¿${p.name} acertó?`;
       document.getElementById('judgeYes').hidden = done;
       document.getElementById('judgeNo').hidden = done;
       document.getElementById('judge').hidden = false;
@@ -802,8 +709,8 @@
   document.getElementById('quizNextBtn').addEventListener('click', nextQuiz);
   document.getElementById('quizRevealBtn').addEventListener('click', () => {
     quizA.classList.add('show');
-    if(player){
-      const done = !canScore();
+    if(AvProfile.get()){
+      const done = !AvProfile.canScore();
       document.getElementById('quizJudgeQ').textContent = done
         ? '🌙 ¡Puntos de hoy completos! Vuelve mañana.'
         : '¿Respondió bien?';
@@ -850,117 +757,21 @@
     });
   });
 
-  // ── Perfil y puntos ──
-  const PKEY = 'aventureros-player';
-  let player = null;
-  try{ player = JSON.parse(localStorage.getItem(PKEY) || 'null') }catch(e){ player = null }
-
-  const overlay = document.getElementById('profileOverlay');
-  const playerChip = document.getElementById('playerChip');
-  const pfName = document.getElementById('pfName');
-  const pfDoc = document.getElementById('pfDoc');
-  const pfError = document.getElementById('pfError');
-  const pfSubmit = document.getElementById('pfSubmit');
-
-  async function api(path, body){
-    const res = await fetch('/api/' + path, {
-      method:'POST',
-      headers:{'content-type':'application/json'},
-      body:JSON.stringify(body)
-    });
-    const data = await res.json().catch(() => ({}));
-    if(!res.ok){
-      const err = new Error(data.error || 'Algo salió mal. Intenta de nuevo.');
-      err.status = res.status;
-      throw err;
-    }
-    return data;
-  }
-
-  function savePlayer(){
-    if(player) localStorage.setItem(PKEY, JSON.stringify(player));
-    else localStorage.removeItem(PKEY);
-  }
-  function updateChip(){
-    playerChip.hidden = !player;
-    if(player){
-      const day = player.limit ? ` · ${player.today}/${player.limit} hoy` : '';
-      playerChip.textContent = `🧒 ${player.name} · ⭐ ${player.points}${day}`;
-    }
-  }
-  function setPlayer(data, doc){
-    player = {...data.player, doc: doc.replace(/\D/g,''), today: data.today, limit: data.limit};
-    savePlayer();
-    updateChip();
-  }
-  function canScore(){
-    return !!player && !(player.limit && player.today >= player.limit);
-  }
-
-  document.getElementById('pfForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    pfError.textContent = '';
-    pfSubmit.disabled = true;
-    try{
-      const doc = pfDoc.value;
-      if(!doc.replace(/\D/g,'')){
-        throw new Error('El documento debe tener solo números.');
-      }
-      let data;
-      try{
-        data = await api('login', {doc});
-      }catch(err){
-        if(err.status !== 404) throw err;
-        // Documento nuevo: crear el perfil (necesita el nombre)
-        if(!pfName.value.trim()){
-          throw new Error('Escribe el nombre para crear el perfil.');
-        }
-        data = await api('register', {name: pfName.value, doc});
-      }
-      setPlayer(data, doc);
-      overlay.hidden = true;
-      pfDoc.value = '';
-      pfName.value = '';
-    }catch(err){
-      pfError.textContent = err.message;
-    }
-    pfSubmit.disabled = false;
-  });
-
-  document.getElementById('pfSkip').addEventListener('click', () => { overlay.hidden = true; });
+  // ── Perfil y puntos (módulo compartido /shared/profile.js) ──
   document.getElementById('changePlayerBtn').addEventListener('click', () => {
     closeMenu();
-    pfError.textContent = '';
-    overlay.hidden = false;
+    AvProfile.open();
   });
 
-  let scoring = false;
-  async function score(correct){
-    if(!player || scoring) return;
-    scoring = true;
-    try{
-      const data = await api('score', {doc: player.doc, correct});
-      setPlayer(data, player.doc);
-    }catch(err){
-      if(err.status === 429 && player){
-        player.today = player.limit || 10;
-        savePlayer();
-      }
-      alert(err.message);
-    }
-    scoring = false;
-  }
-
   const judgeEl = document.getElementById('judge');
-  document.getElementById('judgeYes').addEventListener('click', () => { judgeEl.hidden = true; score(true); });
-  document.getElementById('judgeNo').addEventListener('click', () => { judgeEl.hidden = true; score(false); });
+  document.getElementById('judgeYes').addEventListener('click', () => { judgeEl.hidden = true; AvProfile.score(true); });
+  document.getElementById('judgeNo').addEventListener('click', () => { judgeEl.hidden = true; AvProfile.score(false); });
   const quizJudgeEl = document.getElementById('quizJudge');
-  document.getElementById('quizYes').addEventListener('click', () => { quizJudgeEl.hidden = true; score(true); });
-  document.getElementById('quizNo').addEventListener('click', () => { quizJudgeEl.hidden = true; score(false); });
+  document.getElementById('quizYes').addEventListener('click', () => { quizJudgeEl.hidden = true; AvProfile.score(true); });
+  document.getElementById('quizNo').addEventListener('click', () => { quizJudgeEl.hidden = true; AvProfile.score(false); });
 
   // Iniciar
-  updateChip();
-  if(!player) overlay.hidden = false;
+  AvProfile.init({ chip: document.getElementById('playerChip'), autoOpen: true });
   newDeck();
 </script>
 </body>
