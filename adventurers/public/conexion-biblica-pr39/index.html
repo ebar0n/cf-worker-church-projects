@@ -99,9 +99,21 @@
     max-width:1000px;
     margin:0 auto;
   }
-  .player-chip{margin-left:auto;min-width:0}
-  .menu-wrap{position:relative;margin-left:auto}
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{
+    margin-left:auto;
+    min-width:0;
+    display:flex;
+    justify-content:flex-end;
+  }
+  .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
   .player-chip + .menu-wrap{margin-left:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+    .back-link{padding:8px 10px}
+    .menu-btn{padding:8px 12px}
+  }
   .menu-btn{
     font-family:'Fredoka',sans-serif;
     font-size:1rem;
@@ -456,10 +468,10 @@
 <body>
 
 <div class="topbar">
-  <a class="back-link" href="/" aria-label="Todas las actividades">← Actividades</a>
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
   <div class="player-chip" id="playerChip"></div>
   <div class="menu-wrap">
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ Menú</button>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
     <div class="menu-panel" id="menuPanel" hidden>
       <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
       <button class="menu-item" data-tab="tarjetas">🖨️ Tarjetas para imprimir</button>

@@ -25,10 +25,13 @@
   min-height:38px;
   cursor:pointer;
   display:inline-block;
-  max-width:55vw;
+  max-width:100%;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
+}
+@media (max-width:400px){
+  .pf-chip{font-size:.78rem;padding:6px 10px;min-height:34px}
 }
 .pf-chip:focus-visible{outline:3px solid #fff;outline-offset:3px}
 
