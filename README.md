@@ -11,7 +11,7 @@ The apps themselves are written in Spanish (their audience is the local congrega
 ```
 cf-worker-church-projects/
 ├── README.md
-└── aventureros/                  # Adventurers Club Worker
+└── adventurers/                  # Adventurers Club Worker
     ├── wrangler.jsonc            # Worker config (name, custom domain, assets)
     ├── package.json              # Pins wrangler + dev/deploy scripts
     ├── yarn.lock
@@ -24,7 +24,7 @@ cf-worker-church-projects/
 
 ## Projects
 
-### aventureros
+### adventurers
 
 Interactive activities for the Adventurers Club (ages 4–9), served at `aventureros.iglesiajordanibague.org`.
 
@@ -42,7 +42,7 @@ The Worker serves the `public/` directory via [Workers Static Assets](https://de
 
 Connect this repository to Cloudflare in the dashboard (Workers & Pages → Create → Connect to Git):
 
-1. Set the project subfolder (e.g. `aventureros`) as the build **root directory**.
+1. Set the project subfolder (e.g. `adventurers`) as the build **root directory**.
 2. Cloudflare picks up that folder's `wrangler.jsonc` and deploys the Worker on every push.
 3. The custom domain is declared in `wrangler.jsonc` (`routes` with `custom_domain: true`); Cloudflare creates the DNS record on deploy. The zone must exist in the same Cloudflare account as the Worker.
 
@@ -51,7 +51,7 @@ Connect this repository to Cloudflare in the dashboard (Workers & Pages → Crea
 Requires Node 24 (latest LTS — see `.nvmrc`) and Yarn.
 
 ```bash
-cd aventureros
+cd adventurers
 nvm use          # switch to Node 24
 yarn install
 yarn dev         # local dev server
