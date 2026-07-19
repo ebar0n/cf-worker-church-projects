@@ -42,12 +42,11 @@ Static pages are served via [Workers Static Assets](https://developers.cloudflar
 
 #### Points challenge and leaderboard
 
-Kids earn ⭐ 1 point per correct answer (both the food cards and the quiz). Points live in the shared D1 database `church-jordan-projects`, in tables prefixed with `adventurers_`. The club index shows the leaderboard (top 20).
+Kids earn ⭐ 1 point per correct answer and lose 1 per wrong answer (never below 0), in both the food cards and the quiz — one single score. Earning is capped at **10 points per day** (`DAILY_LIMIT` in `src/index.js`, América/Bogotá time), sized for the weekly ritual of playing at every meal (~3 points × 3 meals). Points live in the shared D1 database `church-jordan-projects`, in tables prefixed with `adventurers_`. The club index shows the leaderboard (top 20).
 
 Profiles are keyed by the child's document number, so one family can't add points to another child's profile:
 
-- **First time**: register with the child's name + document number.
-- **Coming back**: enter the document number to unlock the profile.
+- One simple form: document number (+ name the first time). If the document exists the profile is unlocked; if not, it's created — duplicates are rejected with the registered name.
 - The document is **never stored or displayed in plain text** — only a salted SHA-256 hash is kept (plus the last 2 digits as a hint column); the leaderboard shows names and points only.
 
 API (Hono, in `src/index.js`):
@@ -57,7 +56,7 @@ API (Hono, in `src/index.js`):
 | GET | `/api/leaderboard` | — | Top 20 `{name, points}` |
 | POST | `/api/register` | `{name, doc}` | Create profile (409 if the document already exists) |
 | POST | `/api/login` | `{doc}` | Fetch profile by document |
-| POST | `/api/score` | `{doc}` | Add exactly 1 point (401 if the document doesn't match) |
+| POST | `/api/score` | `{doc, correct}` | `correct: true` adds 1 point (429 past the daily cap); `correct: false` subtracts 1 (floor 0). 401 if the document doesn't match |
 
 ## Deployment
 

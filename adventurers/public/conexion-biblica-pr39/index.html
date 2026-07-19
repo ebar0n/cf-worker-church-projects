@@ -197,25 +197,8 @@
     text-align:center;
   }
   .overlay-card>p{text-align:center;font-size:.95rem;opacity:.75;margin-top:6px}
-  .pf-tabs{
-    display:flex;
-    gap:8px;
-    margin:16px 0 14px;
-  }
-  .pf-tabs button{
-    flex:1;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:.95rem;
-    border:2px solid var(--lapis);
-    background:transparent;
-    color:var(--lapis);
-    border-radius:999px;
-    padding:9px 10px;
-    min-height:44px;
-    cursor:pointer;
-  }
-  .pf-tabs button.active{background:var(--lapis);color:var(--cream)}
+  #pfForm{margin-top:16px}
+  .pf-optional{font-weight:400;opacity:.6;font-size:.8rem}
   #pfForm label{
     display:block;
     font-weight:800;
@@ -570,7 +553,7 @@
     <div class="judge" id="judge" hidden>
       <span id="judgeQ">¿Acertó?</span>
       <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
-      <button class="btn btn-outline btn-sm" id="judgeNo">Esta vez no</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo">😅 No, -1</button>
     </div>
 
     <div class="controls">
@@ -588,7 +571,7 @@
       <div class="judge" id="quizJudge" hidden>
         <span>¿Respondió bien?</span>
         <button class="btn btn-gold btn-sm" id="quizYes">⭐ ¡Sí! +1</button>
-        <button class="btn btn-outline btn-sm" id="quizNo">Esta vez no</button>
+        <button class="btn btn-outline btn-sm" id="quizNo">😅 No, -1</button>
       </div>
     </div>
   </div>
@@ -639,27 +622,29 @@
     <p>Las <strong>preguntas relámpago cubren todo el capítulo 39</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
     <p>La idea no es memorizar una lista de comidas, sino conversar: <em>¿por qué Daniel decidió así? ¿Qué decisiones podemos tomar nosotros para honrar a Dios?</em></p>
   </div>
+
+  <div class="parent-box">
+    <h2>⭐ El reto de la semana</h2>
+    <p>Jueguen <strong>en cada comida</strong>: saquen una tarjeta sorpresa y hagan una o dos preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong>, cada respuesta incorrecta <strong>resta 1</strong>, y se pueden sumar máximo <strong>10 puntos por día</strong> — más o menos 3 por comida. El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+  </div>
 </section>
 
 <div class="overlay" id="profileOverlay" hidden>
   <div class="overlay-card">
     <h2>🧒 ¿Quién va a jugar?</h2>
     <p>Cada respuesta correcta suma ⭐ 1 punto en el tablero del club.</p>
-    <div class="pf-tabs">
-      <button type="button" id="pfLoginTab" class="active">Ya tengo perfil</button>
-      <button type="button" id="pfRegTab">Soy nuevo</button>
-    </div>
     <form id="pfForm">
-      <label id="pfNameLabel" hidden>Nombre del niño o la niña
+      <label>Número de documento del niño o la niña
+        <input id="pfDoc" type="text" inputmode="numeric" autocomplete="off" maxlength="15">
+      </label>
+      <label>Nombre del niño o la niña <span class="pf-optional">(solo la primera vez)</span>
         <input id="pfName" type="text" maxlength="40" autocomplete="off">
       </label>
-      <label>Número de documento del niño o la niña
-        <input id="pfDoc" type="password" inputmode="numeric" autocomplete="off" maxlength="15">
-      </label>
-      <p class="pf-note">🔒 El documento nunca se muestra ni se guarda en claro: es solo la llave para sumar puntos a este perfil.</p>
+      <p class="pf-note">🔒 En el tablero solo aparece el nombre: el documento no se muestra a nadie ni se guarda en claro.</p>
       <div class="pf-error" id="pfError"></div>
       <div class="pf-actions">
-        <button class="btn btn-gold" type="submit" id="pfSubmit">Entrar</button>
+        <button class="btn btn-gold" type="submit" id="pfSubmit">¡A jugar!</button>
         <button class="btn btn-outline btn-sm" type="button" id="pfSkip">Jugar sin puntos</button>
       </div>
     </form>
@@ -774,7 +759,7 @@
       <div class="action-name">${isRey ? '¡Mesa del rey!' : '¡Mesa de Daniel!'}</div>
       <div class="hint">${isRey ? 'Tápate la boca — ¡no la comemos!' : 'Haz músculo — ¡más fuertes!'}</div>`;
     mainBtn.textContent = idx < deck.length-1 ? 'Siguiente ▶' : '🔁 Jugar otra vez';
-    if(player){
+    if(canScore()){
       document.getElementById('judgeQ').textContent = `¿${player.name} acertó?`;
       document.getElementById('judge').hidden = false;
     }
@@ -812,7 +797,7 @@
   document.getElementById('quizNextBtn').addEventListener('click', nextQuiz);
   document.getElementById('quizRevealBtn').addEventListener('click', () => {
     quizA.classList.add('show');
-    if(player) document.getElementById('quizJudge').hidden = false;
+    if(canScore()) document.getElementById('quizJudge').hidden = false;
   });
 
   // ── Tarjetas imprimibles ──
@@ -859,9 +844,6 @@
 
   const overlay = document.getElementById('profileOverlay');
   const playerChip = document.getElementById('playerChip');
-  const pfLoginTab = document.getElementById('pfLoginTab');
-  const pfRegTab = document.getElementById('pfRegTab');
-  const pfNameLabel = document.getElementById('pfNameLabel');
   const pfName = document.getElementById('pfName');
   const pfDoc = document.getElementById('pfDoc');
   const pfError = document.getElementById('pfError');
@@ -874,7 +856,11 @@
       body:JSON.stringify(body)
     });
     const data = await res.json().catch(() => ({}));
-    if(!res.ok) throw new Error(data.error || 'Algo salió mal. Intenta de nuevo.');
+    if(!res.ok){
+      const err = new Error(data.error || 'Algo salió mal. Intenta de nuevo.');
+      err.status = res.status;
+      throw err;
+    }
     return data;
   }
 
@@ -886,18 +872,14 @@
     playerChip.hidden = !player;
     if(player) playerChip.textContent = `🧒 ${player.name} · ⭐ ${player.points}`;
   }
-
-  let pfMode = 'login';
-  function setPfMode(m){
-    pfMode = m;
-    pfLoginTab.classList.toggle('active', m === 'login');
-    pfRegTab.classList.toggle('active', m === 'register');
-    pfNameLabel.hidden = m !== 'register';
-    pfSubmit.textContent = m === 'login' ? 'Entrar' : 'Crear perfil';
-    pfError.textContent = '';
+  function setPlayer(data, doc){
+    player = {...data.player, doc: doc.replace(/\D/g,''), today: data.today, limit: data.limit};
+    savePlayer();
+    updateChip();
   }
-  pfLoginTab.addEventListener('click', () => setPfMode('login'));
-  pfRegTab.addEventListener('click', () => setPfMode('register'));
+  function canScore(){
+    return !!player && !(player.limit && player.today >= player.limit);
+  }
 
   document.getElementById('pfForm').addEventListener('submit', async e => {
     e.preventDefault();
@@ -905,12 +887,18 @@
     pfSubmit.disabled = true;
     try{
       const doc = pfDoc.value;
-      const data = pfMode === 'login'
-        ? await api('login', {doc})
-        : await api('register', {name: pfName.value, doc});
-      player = {...data.player, doc: doc.replace(/\D/g,'')};
-      savePlayer();
-      updateChip();
+      let data;
+      try{
+        data = await api('login', {doc});
+      }catch(err){
+        if(err.status !== 404) throw err;
+        // Documento nuevo: crear el perfil (necesita el nombre)
+        if(!pfName.value.trim()){
+          throw new Error('Ese documento aún no está registrado. Escribe el nombre para crear el perfil.');
+        }
+        data = await api('register', {name: pfName.value, doc});
+      }
+      setPlayer(data, doc);
       overlay.hidden = true;
       pfDoc.value = '';
       pfName.value = '';
@@ -923,31 +911,33 @@
   document.getElementById('pfSkip').addEventListener('click', () => { overlay.hidden = true; });
   document.getElementById('changePlayerBtn').addEventListener('click', () => {
     closeMenu();
-    setPfMode('login');
+    pfError.textContent = '';
     overlay.hidden = false;
   });
 
   let scoring = false;
-  async function addPoint(){
+  async function score(correct){
     if(!player || scoring) return;
     scoring = true;
     try{
-      const data = await api('score', {doc: player.doc});
-      player.points = data.player.points;
-      savePlayer();
-      updateChip();
+      const data = await api('score', {doc: player.doc, correct});
+      setPlayer(data, player.doc);
     }catch(err){
+      if(err.status === 429 && player){
+        player.today = player.limit || 10;
+        savePlayer();
+      }
       alert(err.message);
     }
     scoring = false;
   }
 
   const judgeEl = document.getElementById('judge');
-  document.getElementById('judgeYes').addEventListener('click', () => { judgeEl.hidden = true; addPoint(); });
-  document.getElementById('judgeNo').addEventListener('click', () => { judgeEl.hidden = true; });
+  document.getElementById('judgeYes').addEventListener('click', () => { judgeEl.hidden = true; score(true); });
+  document.getElementById('judgeNo').addEventListener('click', () => { judgeEl.hidden = true; score(false); });
   const quizJudgeEl = document.getElementById('quizJudge');
-  document.getElementById('quizYes').addEventListener('click', () => { quizJudgeEl.hidden = true; addPoint(); });
-  document.getElementById('quizNo').addEventListener('click', () => { quizJudgeEl.hidden = true; });
+  document.getElementById('quizYes').addEventListener('click', () => { quizJudgeEl.hidden = true; score(true); });
+  document.getElementById('quizNo').addEventListener('click', () => { quizJudgeEl.hidden = true; score(false); });
 
   // Iniciar
   updateChip();
