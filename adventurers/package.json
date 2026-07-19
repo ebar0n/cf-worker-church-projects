@@ -6,7 +6,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "migrate": "wrangler d1 migrations apply church-jordan-projects",
+    "migrate": "CI=true wrangler d1 migrations apply church-jordan-projects",
     "dev": "yarn migrate --local && wrangler dev",
     "deploy": "yarn migrate --remote && wrangler deploy"
   },
