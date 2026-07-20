@@ -64,6 +64,20 @@
     return t.card < (l.card ?? 5) || t.quiz < (l.quiz ?? 5);
   }
 
+  async function refresh(){
+    if(!player || !player.doc) return;
+    try{
+      const data = await api('login', {doc: player.doc});
+      setFromResponse(data, player.doc);
+    }catch(err){
+      if(err.status === 404){
+        player = null;
+        save();
+        emit();
+      }
+    }
+  }
+
   let scoring = false;
   async function score(correct, kind){
     if(!player || scoring) return;
@@ -235,6 +249,12 @@
     injectOverlay();
     if(opts.chip) mountChip(opts.chip);
     if(opts.autoOpen && !player) open();
+    refresh();
+    window.addEventListener('storage', e => {
+      if(e.key !== PKEY) return;
+      try{ player = JSON.parse(e.newValue || 'null') }catch(err){ player = null }
+      emit();
+    });
   }
 
   window.AvProfile = {
