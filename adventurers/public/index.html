@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1B2F6E">
-<title>Club de Aventureros · Actividades</title>
+<title>Club El Elohe Israel · Aventureros</title>
 <meta name="description" content="Actividades y dinámicas interactivas para los niños del Club de Aventureros: juega, aprende la lección y suma puntos en el tablero del club.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
-<meta property="og:title" content="Club de Aventureros">
+<meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="Club de Aventureros El Elohe Israel">
 <meta property="og:description" content="Actividades y dinámicas interactivas para los niños del club: juega, aprende la lección y suma puntos en el tablero.">
 <meta property="og:url" content="https://aventureros.iglesiajordanibague.org/">
 <meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
@@ -19,6 +19,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="El Elohe Israel">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="stylesheet" href="/shared/profile.css">
 <style>
   :root{
@@ -258,6 +266,22 @@
     font-size:.85rem;
     opacity:.6;
   }
+
+  .crest{
+    width:clamp(88px,22vw,124px);
+    height:auto;
+    display:block;
+    margin:0 auto 10px;
+    filter:drop-shadow(0 4px 6px rgba(0,0,0,.35));
+  }
+  .install-slot{
+    display:flex;
+    justify-content:center;
+    margin:26px auto 0;
+    padding:0 16px;
+    text-align:center;
+  }
+  .install-slot[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -267,8 +291,9 @@
 </div>
 
 <header>
-  <div class="eyebrow">Iglesia Adventista · Jordán Ibagué</div>
-  <h1>Club de Aventureros</h1>
+  <img class="crest" src="/icons/emblema.png" alt="Emblema del Club de Aventureros" width="416" height="386">
+  <div class="eyebrow">Club de Aventureros · Iglesia Adventista Jordán Ibagué</div>
+  <h1>El Elohe Israel</h1>
   <p class="subtitle">15 juegos de Conexión Bíblica para nuestros agentes del Reino</p>
 </header>
 
@@ -418,11 +443,16 @@
   </div>
 </main>
 
-<footer>Club de Aventureros · hecho con ❤️ para los niños</footer>
+<div class="install-slot" id="installSlot" hidden></div>
+
+<footer>Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué · hecho con ❤️ para los niños</footer>
 
 <script src="/shared/profile.js"></script>
 <script>
-  AvProfile.init({ chip: document.getElementById('playerChip') });
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    install: document.getElementById('installSlot')
+  });
 
   (async () => {
     const empty = document.getElementById('boardEmpty');
