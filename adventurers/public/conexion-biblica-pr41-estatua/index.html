@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1B2F6E">
+<title>La estatua de oro: ¿obedezco o no?</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Un «Simón dice» con discernimiento: obedece lo bueno y quédate firme ante las órdenes del rey. 5 órdenes + 5 preguntas por partida.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="La estatua de oro: ¿obedezco o no?">
+<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Suenan los instrumentos, llega la orden… ¿la obedeces o te quedas firme como Sadrac, Mesac y Abed-nego?">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr41-estatua/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    /* Paleta Puerta de Ishtar: azul lapislázuli, oro vidriado, ladrillo, crema */
+    --lapis:#1B2F6E;
+    --lapis-deep:#12204D;
+    --gold:#F0B429;
+    --gold-soft:#FFD97A;
+    --brick:#C2542B;
+    --cream:#FFF6E3;
+    --rey:#D6453D;      /* orden del rey → quedarse firme */
+    --rey-deep:#A32C26;
+    --buena:#2E9E5B;    /* orden buena → obedecer */
+    --buena-deep:#1E7040;
+    --ink:#231A0F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--lapis);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,217,122,.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(240,180,41,.07), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  /* ── Cabecera ── */
+  header{
+    text-align:center;
+    padding:10px 16px 12px;
+  }
+  @media (max-width:600px){
+    .subtitle{display:none}
+    header{padding-bottom:8px}
+    .legend{gap:8px;margin-bottom:14px}
+    .legend-item{padding:8px 12px;font-size:.82rem}
+    .legend-item .big{font-size:1.3rem}
+  }
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  h1{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.5rem,5vw,2.3rem);
+    line-height:1.15;
+    margin-top:6px;
+  }
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+
+  /* ── Barra superior + menú ── */
+  .topbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px 0;
+    max-width:1000px;
+    margin:0 auto;
+  }
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{
+    margin-left:auto;
+    min-width:0;
+    display:flex;
+    justify-content:flex-end;
+  }
+  .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
+  .player-chip + .menu-wrap{margin-left:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+    .back-link{padding:8px 10px}
+    .menu-btn{padding:8px 12px}
+  }
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    border:2px solid var(--gold);
+    background:transparent;
+    color:var(--gold-soft);
+    border-radius:999px;
+    padding:8px 16px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;
+    right:0;
+    top:calc(100% + 8px);
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+    min-width:240px;
+    background:var(--cream);
+    border:3px solid var(--gold);
+    border-radius:18px;
+    padding:8px;
+    box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    text-align:left;
+    background:transparent;
+    border:none;
+    color:var(--ink);
+    border-radius:12px;
+    padding:12px 14px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
+
+  /* ── Reto de puntos ── */
+  .judge{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:16px;
+    background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);
+    border-radius:16px;
+    padding:12px 14px;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+  }
+  .judge span{flex-basis:100%;text-align:center}
+  .judge[hidden]{display:none}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+
+  /* ── Leyenda de acciones ── */
+  .legend{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border-radius:16px;
+    padding:10px 18px;
+    font-weight:800;
+    font-size:.95rem;
+  }
+  .legend-item .big{font-size:1.7rem}
+  .legend-rey{background:var(--rey);color:#fff}
+  .legend-buena{background:var(--buena);color:#fff}
+  .legend[hidden]{display:none}
+  .practice-note{
+    margin-top:16px;
+    text-align:center;
+    font-weight:700;
+    font-size:.95rem;
+    color:var(--gold-soft);
+    opacity:.9;
+  }
+  .practice-note[hidden]{display:none}
+
+  /* ══════════ MODO JUEGO ══════════ */
+  .stage{
+    max-width:460px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .round-label{
+    font-family:'Fredoka',sans-serif;
+    color:var(--gold-soft);
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    font-size:.8rem;
+    margin-bottom:12px;
+  }
+  .game-card{
+    background:var(--cream);
+    color:var(--ink);
+    border-radius:28px;
+    border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);
+    padding:30px 18px 26px;
+    min-height:360px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    position:relative;
+    overflow:hidden;
+    transition:background .25s ease, border-color .25s ease, color .25s ease;
+  }
+  .game-card .emoji{
+    font-size:clamp(4.4rem,22vw,7rem);
+    line-height:1;
+    filter:drop-shadow(0 6px 0 rgba(0,0,0,.12));
+  }
+  .game-card .order-text{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.5rem,7.5vw,2.4rem);
+    line-height:1.15;
+    overflow-wrap:break-word;
+    hyphens:auto;
+  }
+  .game-card .hint{
+    font-weight:700;
+    font-size:1rem;
+    opacity:.65;
+  }
+  /* Estado revelado */
+  .game-card.revealed-rey{background:var(--rey);border-color:var(--rey-deep);color:#fff}
+  .game-card.revealed-buena{background:var(--buena);border-color:var(--buena-deep);color:#fff}
+  .game-card.revealed-rey .hint,
+  .game-card.revealed-buena .hint{opacity:.9}
+  .action-emoji{
+    font-size:clamp(3rem,16vw,4.6rem);
+    line-height:1;
+    animation:pop .35s cubic-bezier(.2,1.6,.4,1) both;
+  }
+  .action-name{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.4rem,6.5vw,2.1rem);
+    animation:pop .35s .06s cubic-bezier(.2,1.6,.4,1) both;
+  }
+  @keyframes pop{
+    from{transform:scale(.3);opacity:0}
+    to{transform:scale(1);opacity:1}
+  }
+
+  /* Orquesta de la llanura de Dura + cuenta atrás */
+  .band{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:6px 10px;
+    max-width:320px;
+  }
+  .band-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2px;
+    font-size:.62rem;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    opacity:.75;
+  }
+  .band-item .ins{
+    font-size:1.9rem;
+    line-height:1;
+    animation:toot 1s ease-in-out infinite;
+  }
+  .band-item:nth-child(2) .ins{animation-delay:.14s}
+  .band-item:nth-child(3) .ins{animation-delay:.28s}
+  .band-item:nth-child(4) .ins{animation-delay:.42s}
+  .band-item:nth-child(5) .ins{animation-delay:.56s}
+  .band-item:nth-child(6) .ins{animation-delay:.7s}
+  @keyframes toot{
+    0%,100%{transform:translateY(0) rotate(-4deg)}
+    50%{transform:translateY(-7px) rotate(4deg)}
+  }
+  .count-big{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(4rem,24vw,7rem);
+    line-height:1;
+    color:var(--brick);
+    animation:pop .3s cubic-bezier(.2,1.6,.4,1) both;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .action-emoji,.action-name,.count-big,.band-item .ins{animation:none}
+    .game-card{transition:none}
+  }
+
+  .controls{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    margin-top:22px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.1rem;
+    font-weight:600;
+    border:none;
+    border-radius:999px;
+    padding:14px 30px;
+    min-height:44px;
+    cursor:pointer;
+    box-shadow:0 5px 0 rgba(0,0,0,.3);
+    transition:transform .1s ease;
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-gold{background:var(--gold);color:var(--lapis-deep)}
+  .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-outline:active{transform:translateY(2px)}
+  .btn[hidden]{display:none}
+
+  /* Pregunta relámpago */
+  .quiz-box{
+    margin-top:26px;
+    background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);
+    border-radius:20px;
+    padding:18px 16px;
+    display:none;
+  }
+  .quiz-box.show{display:block}
+  .quiz-tag{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-size:.75rem;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    background:var(--brick);
+    color:#fff;
+    border-radius:999px;
+    padding:4px 12px;
+    margin-bottom:10px;
+  }
+  .quiz-q{font-size:1.1rem;font-weight:700}
+  .quiz-a{
+    margin-top:10px;
+    font-weight:800;
+    color:var(--gold-soft);
+    display:none;
+  }
+  .quiz-a.show{display:block}
+  .btn-sm{font-size:.95rem;padding:9px 20px;min-height:44px}
+
+  /* ══════════ TARJETAS IMPRIMIBLES ══════════ */
+  .print-note{
+    text-align:center;
+    font-size:.95rem;
+    opacity:.85;
+    max-width:560px;
+    margin:0 auto 20px;
+  }
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:14px;
+  }
+  .mini-card{
+    background:var(--cream);
+    color:var(--ink);
+    border-radius:18px;
+    border:4px solid var(--gold);
+    padding:18px 10px 12px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    position:relative;
+    box-shadow:0 5px 0 rgba(0,0,0,.25);
+  }
+  .mini-card .emoji{font-size:3rem;line-height:1}
+  .mini-card .order-name{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    line-height:1.2;
+    overflow-wrap:break-word;
+  }
+  .mini-card .order-answer{
+    font-size:.75rem;
+    line-height:1.25;
+    opacity:.75;
+    overflow-wrap:break-word;
+  }
+  .key-dot{
+    position:absolute;
+    top:8px;
+    right:8px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    border:2px solid rgba(0,0,0,.25);
+  }
+  .key-rey{background:var(--rey)}
+  .key-buena{background:var(--buena)}
+  .group-title{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin:26px 0 12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .group-title .chip{
+    font-size:1.4rem;
+    background:var(--cream);
+    border-radius:12px;
+    padding:2px 10px;
+  }
+
+  /* ── Volver al índice ── */
+  .back-link{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    color:var(--gold-soft);
+    text-decoration:none;
+    border:2px solid transparent;
+    border-radius:999px;
+    padding:8px 16px;
+    margin-bottom:8px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+  /* ══════════ PARA PADRES ══════════ */
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);
+    color:var(--ink);
+    border:4px solid var(--gold);
+    border-radius:22px;
+    padding:22px 20px;
+    margin-bottom:18px;
+    box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .verse{
+    border-left:5px solid var(--brick);
+    background:rgba(194,84,43,.08);
+    border-radius:0 12px 12px 0;
+    padding:12px 14px;
+    font-style:italic;
+    font-weight:700;
+  }
+  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
+
+  /* ── Impresión ── */
+  @media print{
+    body{background:#fff;color:#000}
+    header,.topbar,#juego,#padres,.print-note,.legend{display:none!important}
+    section{display:block!important;padding:0}
+    #tarjetas{display:block!important}
+    .card-grid{grid-template-columns:repeat(3,1fr);gap:8mm}
+    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:10mm 4mm 8mm}
+    .mini-card .emoji{font-size:18mm}
+    .group-title{color:#000;break-after:avoid}
+    .group-title .chip{border:1px solid #ccc}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
+      <button class="menu-item" data-tab="tarjetas">🖨️ Tarjetas para imprimir</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 41 · El horno de fuego</div>
+  <h1>La estatua de oro: ¿obedezco o no?</h1>
+  <p class="subtitle">Suenan los instrumentos… llega la orden. ¡Piensa antes de moverte!</p>
+</header>
+
+<!-- ══════════ MODO JUEGO ══════════ -->
+<section id="juego" class="active">
+  <div class="legend" id="legend">
+    <div class="legend-item legend-buena"><span class="big">🙌</span> Orden buena → ¡obedécela!</div>
+    <div class="legend-item legend-rey"><span class="big">🧍</span> Orden del rey → ¡quédate firme!</div>
+  </div>
+
+  <div class="stage">
+    <div class="round-label" id="roundLabel">¿Listos, valientes?</div>
+
+    <div class="game-card" id="gameCard" aria-live="polite">
+      <div class="emoji">🗿</div>
+      <div class="order-text">¡Partida en la llanura de Dura!</div>
+      <div class="hint">5 órdenes sorpresa + 5 preguntas relámpago</div>
+    </div>
+
+    <div class="quiz-box" id="quizBox">
+      <span class="quiz-tag" id="quizTag">6–7 años</span>
+      <div class="quiz-q" id="quizQ"></div>
+      <div class="quiz-a" id="quizA"></div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
+    </div>
+
+    <div class="judge" id="judge" hidden>
+      <span id="judgeQ">¿Acertó?</span>
+      <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
+    </div>
+
+    <p class="practice-note" id="practiceNote" hidden>🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.</p>
+  </div>
+</section>
+
+<!-- ══════════ TARJETAS IMPRIMIBLES ══════════ -->
+<section id="tarjetas">
+  <p class="print-note">
+    Usa <strong>Ctrl/Cmd + P</strong> para imprimir las tarjetas y jugar en el club sin pantalla:
+    el adulto canta la orden en voz alta y los niños deciden. El puntico de color en la esquina
+    es tu clave secreta de maestro: <span style="color:#8FE3AE">verde = orden buena (🙌 obedecer)</span>,
+    <span style="color:#FF9B94">rojo = orden del rey (🧍 quedarse firme)</span>.
+    ¡Los niños no ven el código… tú sí! Toda tarjeta pide un <strong>dato del capítulo</strong>:
+    en las órdenes buenas el dato está en la orden misma; en las del rey, después de quedarse
+    firme, lee la línea 🎯. La línea ✅ es la <strong>respuesta esperada</strong>: solo la ve el adulto que califica.
+  </p>
+
+  <div class="group-title"><span class="chip">📯</span> Antes de cada orden: ¡suena la orquesta! — adorno con los instrumentos de Daniel 3:5 (no es una tarjeta con puntos)</div>
+  <div class="card-grid" id="gridBanda"></div>
+
+  <div class="group-title"><span class="chip">🙌</span> Órdenes buenas — se obedecen con alegría… y cada una pide un dato del capítulo</div>
+  <div class="card-grid" id="gridBuena"></div>
+
+  <div class="group-title"><span class="chip">👑</span> Órdenes del rey y las que se repiten hoy — ¡NO NOS POSTRAMOS!… y después responde la pregunta 🎯</div>
+  <div class="card-grid" id="gridRey"></div>
+</section>
+
+<!-- ══════════ PARA PADRES ══════════ -->
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 La historia</h2>
+    <p>Esta dinámica está basada en <strong>Daniel 3</strong> (capítulo 41 de <em>Profetas y Reyes</em>, «El horno de fuego»). El rey Nabucodonosor levantó en la <strong>llanura de Dura</strong> una estatua <strong>toda de oro</strong>, de sesenta codos de alto y seis de ancho. En el día de la dedicación se decretó que, al sonar la música, todos los pueblos se postraran ante ella.</p>
+    <p>Cuando <strong>se oyó el sonido de la música</strong> (así lo dice el capítulo; los instrumentos que el juego muestra como adorno —bocina, flauta, tamboril, arpa, salterio, zampoña «y todo instrumento de música»— los nombra <strong>Daniel 3:5</strong>, no el capítulo), la multitud se postró… pero <strong>tres hombres no doblaron la rodilla</strong>: Sadrac, Mesac y Abed-nego. Todos entendían que postrarse ante la imagen era un acto de culto, y ese homenaje solo podían rendirlo a Dios.</p>
+    <p>El rey los amenazó con el horno y desafió: «¿Qué dios será aquel que os libre de mis manos?». Ellos respondieron con calma que su Dios podía librarlos, «y si no», igual no adorarían la estatua. Mandó calentar el horno <strong>siete veces más</strong>; la llama mató a los hombres fuertes que los echaron, pero dentro del fuego el rey vio <strong>cuatro varones sueltos</strong>, y el cuarto era «semejante a hijo de los dioses». Salieron ilesos: solo se quemaron sus ligaduras.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>💡 ¿Qué aprende su hijo?</h2>
+    <ul>
+      <li><strong>Obedecer no es obedecer todo</strong>: lo bueno se obedece con alegría; lo que deshonra a Dios se rechaza con respeto y firmeza.</li>
+      <li><strong>Decidir antes de la presión</strong>: los tres hebreos ya lo tenían resuelto cuando sonó la música.</li>
+      <li><strong>No estamos solos</strong>: el que anduvo con ellos en el horno acompaña hoy a sus hijos donde estén.</li>
+      <li><strong>Dios nunca obliga</strong>: deja a todos libres para elegir a quién quieren servir; por eso nosotros tampoco forzamos a nadie a creer.</li>
+    </ul>
+    <p class="verse">«Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti» <span>Isaías 43:2</span></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🏠 Cómo jugar la dinámica</h2>
+    <ol>
+      <li>Toquen <strong>▶ Jugar partida</strong>: vienen <strong>5 órdenes sorpresa</strong> y después <strong>5 preguntas relámpago</strong>.</li>
+      <li>En cada ronda toquen <strong>📯 ¡Suena la música!</strong>: aparecen, como adorno, los instrumentos que nombra <strong>Daniel 3:5</strong> con una cuenta de <strong>3… 2… 1…</strong> (ninguna pregunta del juego depende de ellos).</li>
+      <li>Entonces aparece la <strong>orden</strong> en grande. Léala en voz alta como el pregonero del rey, sin dar pistas. Su hijo decide solo:
+        <ul>
+          <li>si la orden es <strong>buena</strong>, la hace <em>y responde el dato que pide</em> (cuántas veces calentaron el horno, en qué llanura, qué contestaron al rey…);</li>
+          <li>si es una <strong>orden del rey que deshonra a Dios</strong>, no se mueve, se queda firme y grita <strong>«¡NO NOS POSTRAMOS!»</strong> — y enseguida la app le hace una <strong>pregunta del capítulo</strong> (🎯) que también debe contestar.</li>
+        </ul>
+      </li>
+      <li>Toquen <strong>🔎 ¡Descubrir!</strong>: la app muestra con color y emoji de qué tipo era la orden y, en todas, la <strong>respuesta esperada</strong> para que usted califique sin dudar. El punto se da por <em>las dos cosas</em>: la decisión correcta y el dato. Ahí ustedes le dicen a la app si acertó (⭐ +1) o no.</li>
+      <li>Luego vienen las preguntas: cuatro del capítulo —una de <strong>4–5</strong>, dos de <strong>6–7</strong> y una de <strong>8–9 años</strong>— y una de <strong>aplicación a hoy</strong>. Revelen la respuesta y califiquen igual.</li>
+      <li>Las órdenes y las preguntas <strong>no se repiten</strong> hasta agotarse: la app recuerda por niño lo que ya salió esta semana.</li>
+      <li>Para el club sin pantalla, impriman las tarjetas desde la pestaña <strong>🖨️</strong> y canten las órdenes en voz alta: el puntico de color es la clave del adulto.</li>
+    </ol>
+    <p>Las <strong>preguntas relámpago cubren todo el capítulo 41</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
+    <p><strong>Qué es repaso y qué es aplicación:</strong> cada partida tiene <strong>10 rondas que suman puntos</strong> (5 órdenes + 5 preguntas) y <strong>todas</strong> piden un dato del capítulo. De esas 10, <strong>8 son de la historia del capítulo 41</strong> y <strong>2 son aplicación a hoy</strong> —una orden y una pregunta—, exactamente 1 de cada 5. El propio capítulo hace ese salto: «En esta época nuestra, muchos de los siervos de Dios…», el decreto universal, el sábado del cuarto mandamiento y el tiempo de angustia.</p>
+    <p><strong>Lo que no sale del capítulo 41:</strong> solo los <strong>instrumentos</strong> de la cuenta regresiva (bocina, flauta, tamboril, arpa, salterio, zampoña «y todo instrumento de música»), que son de <strong>Daniel 3:5</strong> —el capítulo solo dice «el sonido de la música»—; son puro adorno y <em>ninguna</em> ronda con puntos pregunta por ellos. Los versículos que sí se preguntan (<strong>Isaías 43:2</strong>, <strong>Daniel 2:38</strong>, <strong>2:44, 45</strong> y <strong>2:47</strong>) están citados textualmente <em>dentro</em> del capítulo 41. Ningún dato aparece dos veces en la misma partida: las bolsas de órdenes y de preguntas no comparten respuestas.</p>
+    <p>La idea no es memorizar órdenes, sino conversar: <em>¿cómo sabemos cuándo una orden se obedece y cuándo no? ¿Qué hacemos cuando todos los demás se postran?</em></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ El reto de la semana</h2>
+    <p>Jueguen <strong>una partida por día</strong>: 5 órdenes + 5 preguntas. Cada acierto suma <strong>⭐ 1 punto</strong> (los fallos no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de órdenes y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Reto extra en casa: cada vez que alguien de la familia diga «¡No nos postramos!», los demás se quedan firmes como estatuas… menos la rodilla, que no se dobla ante nada que no sea Dios.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+
+<script>
+  // ── Datos ──
+  // Toda ronda que suma puntos pide un dato del capítulo: las órdenes buenas se
+  // obedecen y el niño dice el dato; las órdenes del rey no se obedecen (se queda
+  // firme y grita "¡NO NOS POSTRAMOS!") y entonces responde el dato de su campo `ask`.
+  const ORDERS = [
+    // ── Órdenes buenas del capítulo (8): el cuerpo se mueve y la respuesta es un dato ──
+    {emoji:'🦘', text:'¡Salta 7 veces, las veces que mandaron calentar el horno!', side:'buena', era:'capitulo', answer:'Siete veces más que de costumbre'},
+    {emoji:'🗣️', text:'¡Haz bocina con las manos y di cómo los llamó el rey desde la boca del horno!', side:'buena', era:'capitulo', answer:'«Sadrac, Mesac y Abed-nego, siervos del alto Dios, salid y venid»'},
+    {emoji:'🤲', text:'¡Mide con los brazos bien abiertos la estatua y di cuánto medía!', side:'buena', era:'capitulo', answer:'Sesenta codos de altura y seis codos de anchura'},
+    {emoji:'🌀', text:'¡Da una vuelta completa y di en qué llanura levantaron la estatua!', side:'buena', era:'capitulo', answer:'En la llanura de Dura'},
+    {emoji:'🦶', text:'¡Párate en un solo pie y di qué fue lo único que se les quemó!', side:'buena', era:'capitulo', answer:'Solo sus ligaduras: las cuerdas con que los ataron'},
+    {emoji:'✋', text:'¡Extiende la mano hacia arriba como el rey y di qué desafío gritó!', side:'buena', era:'capitulo', answer:'«¿Qué dios será aquel que os libre de mis manos?»'},
+    {emoji:'📖', text:'¡Abre las manos como un libro y completa: «Cuando pasares por el fuego…»!', side:'buena', era:'capitulo', answer:'«…no te quemarás, ni la llama arderá en ti» (Isaías 43:2, citado en el capítulo)'},
+    {emoji:'🧍', text:'¡Ponte firme y completa lo que respondieron: «Y si no, sepas, oh rey…»!', side:'buena', era:'capitulo', answer:'«…que tu dios no adoraremos, ni tampoco honraremos la estatua que has levantado»'},
+    // ── Órdenes buenas de aplicación a hoy (3): el capítulo mismo hace este salto ──
+    {emoji:'🤗', text:'¡Abraza a alguien y di quién acompañará a sus seguidores dondequiera que estén!', side:'buena', era:'hoy', answer:'El que anduvo con los hebreos en el horno de fuego'},
+    {emoji:'🛡️', text:'¡Ponte en guardia como un escudo y di quiénes protegerán a los santos de Dios!', side:'buena', era:'hoy', answer:'Ángeles excelsos en fortaleza'},
+    {emoji:'✌️', text:'¡Muestra cuatro dedos y di qué mandamiento santifican aquellos contra quienes se despertará la ira del hombre!', side:'buena', era:'hoy', answer:'El sábado del cuarto mandamiento'},
+    // ── Órdenes del rey en la llanura de Dura (8): NO se obedecen, y después piden un dato ──
+    {emoji:'🗿', text:'¡Postraos ante la estatua!', side:'rey', era:'capitulo',
+      ask:'Ahora que te quedaste firme: ¿de qué material era esa estatua?', answer:'Toda de oro, sin descenso de valores'},
+    {emoji:'👑', text:'¡Adora al dios de oro!', side:'rey', era:'capitulo',
+      ask:'Ahora que te quedaste firme: ¿cómo se llamaba el rey que la levantó?', answer:'Nabucodonosor'},
+    {emoji:'🔥', text:'¡Inclínate o irás al horno de fuego!', side:'rey', era:'capitulo',
+      ask:'Ahora que te quedaste firme: ¿qué les pasó a los hombres fuertes que los echaron al horno?', answer:'La llama del fuego los mató'},
+    {emoji:'🎶', text:'¡Suena la música: todos de rodillas ante la imagen!', side:'rey', era:'capitulo',
+      ask:'Ahora que te quedaste firme: ¿qué hicieron todos los pueblos cuando se oyó el sonido de la música?', answer:'«Se postraron, y adoraron la estatua de oro»'},
+    {emoji:'🗣️', text:'¡Grita que Babilonia es eterna!', side:'rey', era:'capitulo',
+      ask:'Ahora que te quedaste firme: ¿qué palabra del sueño le hizo creer al rey que su reino era la cabeza?', answer:'«Tú eres aquella cabeza de oro» (Daniel 2:38, citado en el capítulo)'},
+    {emoji:'🧎', text:'¡Dobla la rodilla ante la cabeza de oro!', side:'rey', era:'capitulo',
+      ask:'Ahora que te quedaste firme: ¿quiénes le propusieron al rey levantar esa imagen?', answer:'Los sabios de su reino, con una sugestión halagadora'},
+    {emoji:'🎤', text:'¡Canta un himno al ídolo de la llanura de Dura!', side:'rey', era:'capitulo',
+      ask:'Ahora que te quedaste firme: ¿quiénes acusaron a los tres delante del rey?', answer:'Unos sabios celosos de los honores que ellos tenían'},
+    {emoji:'🙅', text:'¡Niega a tu Dios y te salvas!', side:'rey', era:'capitulo',
+      ask:'Ahora que te quedaste firme: completa la respuesta que dieron, «No cuidamos de…»', answer:'«…responderte sobre este negocio»'},
+    // ── Órdenes que se repiten hoy (3): las que el capítulo anuncia para el final ──
+    {emoji:'📜', text:'¡Firma el decreto universal contra los que guardan el sábado!', side:'rey', era:'hoy',
+      ask:'Ahora que te quedaste firme: ¿como qué los denunciará ese decreto universal?', answer:'Como merecedores de muerte'},
+    {emoji:'🤏', text:'¡Haz solo una pequeña concesión al culto falso y sálvate!', side:'rey', era:'hoy',
+      ask:'Ahora que te quedaste firme: ¿qué no harán los hijos de Dios ni por su propia vida?', answer:'Ni la menor concesión a un culto falso'},
+    {emoji:'⚖️', text:'¡Obedece el mandamiento de los hombres antes que la Palabra del Dios eterno!', side:'rey', era:'hoy',
+      ask:'Ahora que te quedaste firme: ¿a qué obedecerán aunque el resultado sea encarcelamiento, destierro o muerte?', answer:'A la verdad'}
+  ];
+
+  // Adorno de la cuenta regresiva (no es una ronda con puntos): los instrumentos que
+  // nombra Daniel 3:5 en el orden de Reina Valera 1995, más «y todo instrumento de música».
+  // El capítulo 41 solo dice «el sonido de la música».
+  const BAND = [
+    {emoji:'📯', name:'Bocina'},
+    {emoji:'🎷', name:'Flauta'},
+    {emoji:'🥁', name:'Tamboril'},
+    {emoji:'🎻', name:'Arpa'},
+    {emoji:'🎸', name:'Salterio'},
+    {emoji:'🎺', name:'Zampoña'},
+    {emoji:'🎼', name:'…y todo instrumento de música'}
+  ];
+
+  const QUIZ = [
+    // ── Capítulo · 4–5 años (6) ──
+    {tag:'4–5 años', era:'capitulo', q:'¿A dónde echaron a los tres amigos?', a:'🔥 Al horno de fuego ardiendo'},
+    {tag:'4–5 años', era:'capitulo', q:'¿Cuántos amigos se quedaron firmes sin postrarse? Cuenten con los dedos.', a:'Tres: Sadrac, Mesac y Abed-nego'},
+    {tag:'4–5 años', era:'capitulo', q:'¿Cuántos varones vio el rey caminando dentro del fuego?', a:'Cuatro: ¡había uno más!'},
+    {tag:'4–5 años', era:'capitulo', q:'Después del milagro, ¿el rey se quedó sentado en su trono?', a:'No: descendió de su trono y fue hasta la boca del horno'},
+    {tag:'4–5 años', era:'capitulo', q:'¿Quién estaba con ellos dentro del fuego?', a:'El Salvador: se les reveló en persona y anduvo con ellos en medio del fuego'},
+    {tag:'4–5 años', era:'capitulo', q:'Cuando salieron, ¿tenían el pelo quemado?', a:'No: ni un cabello quemado, ni las ropas mudadas, ni olor de fuego'},
+    // ── Capítulo · 6–7 años (7) ──
+    {tag:'6–7 años', era:'capitulo', q:'¿Qué dijo el rey del cuarto varón que andaba en el fuego?', a:'«El parecer del cuarto es semejante a hijo de los dioses»'},
+    {tag:'6–7 años', era:'capitulo', q:'¿Cómo empezaron los acusadores su denuncia delante del rey?', a:'«Rey, para siempre vive… Hay unos varones judíos»'},
+    {tag:'6–7 años', era:'capitulo', q:'¿Quiénes se congregaron en la llanura para la dedicación?', a:'Un vasto concurso de todos los «pueblos, naciones y lenguas»'},
+    {tag:'6–7 años', era:'capitulo', q:'¿Qué decreto dio el rey después del milagro?', a:'Que quien blasfemara contra el Dios de Sadrac, Mesac y Abed-nego fuera descuartizado y su casa puesta por muladar'},
+    {tag:'6–7 años', era:'capitulo', q:'¿Qué razón dio el rey para ese decreto?', a:'«Por cuanto no hay dios que pueda librar como éste»'},
+    {tag:'6–7 años', era:'capitulo', q:'Según el rey humillado, ¿a quién había enviado el Dios de ellos?', a:'Su ángel: «Bendito el Dios de ellos… que envió su ángel»'},
+    {tag:'6–7 años', era:'capitulo', q:'¿Por qué no podían inclinarse solo un poquito para salvarse?', a:'Porque postrarse ante la imagen era un acto de culto, y solo a Dios podían rendirlo'},
+    // ── Capítulo · 8–9 años (5) ──
+    {tag:'8–9 años', era:'capitulo', q:'¿Cómo sabía el rey qué aspecto tendría el Hijo de Dios?', a:'Porque los hebreos le habían hablado de Cristo, el Redentor que iba a venir'},
+    {tag:'8–9 años', era:'capitulo', q:'¿En qué se excedió Nabucodonosor al dar su decreto?', a:'En obligar a otros a creer: nunca compele Dios a los hombres a obedecer, deja a todos libres para elegir a quién servir'},
+    {tag:'8–9 años', era:'capitulo', q:'Al interpretarse el sueño, ¿qué reconoció el rey acerca del Dios de Daniel?', a:'«Ciertamente que el Dios vuestro es Dios de dioses… y el descubridor de los misterios» (Daniel 2:47, citado en el capítulo)'},
+    {tag:'8–9 años', era:'capitulo', q:'¿Qué había dicho Daniel que levantaría el Dios del cielo en los días de estos reyes?', a:'«Un reino que nunca jamás se corromperá… y él permanecerá para siempre» (Daniel 2:44, 45, citado en el capítulo)'},
+    {tag:'8–9 años', era:'capitulo', q:'¿Qué buscaba Satanás con la imagen de oro?', a:'Estorbar el propósito divino: derrotar el plan de Dios de hacer del Israel cautivo una bendición para las naciones paganas'},
+    // ── Aplicación a hoy (4): el propio capítulo hace este salto ──
+    {tag:'4–5 años', era:'hoy', q:'¿Puede el diablo destruir al más débil de los hijos de Dios?', a:'No: Satanás, con toda la hueste del mal, no puede destruir al más débil de los santos de Dios'},
+    {tag:'6–7 años', era:'hoy', q:'¿Qué requerirá el tiempo de angustia que espera al pueblo de Dios?', a:'Una fe inquebrantable'},
+    {tag:'6–7 años', era:'hoy', q:'En medio del tiempo de angustia, ¿cómo permanecerán los escogidos de Dios?', a:'Inconmovibles'},
+    {tag:'8–9 años', era:'hoy', q:'Frente a la Palabra del Dios eterno, ¿qué valen los mandamientos de hombres pecaminosos y finitos?', a:'Para el corazón leal son insignificantes'}
+  ];
+
+  // ── Partida: 5 órdenes + 5 preguntas ──
+  const ACTIVITY = 'pr41-estatua';
+  const MATCH_CARDS = 5;
+  const MATCH_QUIZ = 5;
+  // Preguntas del capítulo por edad (4) + 1 de aplicación a hoy = MATCH_QUIZ.
+  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 1]];
+  const COUNT_MS = 800;
+  let match = null; // {cards, quizzes, step, stage, revealed, earned}
+  let cdTimer = null;
+
+  const gameCard = document.getElementById('gameCard');
+  const quizBox = document.getElementById('quizBox');
+  const mainBtn = document.getElementById('mainBtn');
+  const roundLabel = document.getElementById('roundLabel');
+  const judge = document.getElementById('judge');
+  const judgeQ = document.getElementById('judgeQ');
+  const judgeYes = document.getElementById('judgeYes');
+  const judgeNo = document.getElementById('judgeNo');
+  const legend = document.getElementById('legend');
+  const practiceNote = document.getElementById('practiceNote');
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function bandHTML(){
+    return '<div class="band">' + BAND.map(b =>
+      `<div class="band-item"><span class="ins">${b.emoji}</span>${b.name}</div>`).join('') + '</div>';
+  }
+
+  function stopCountdown(){
+    if(cdTimer){ clearTimeout(cdTimer); cdTimer = null; }
+  }
+
+  function phase(){
+    if(!match) return 'idle';
+    if(match.step < MATCH_CARDS) return 'card';
+    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
+    return 'done';
+  }
+
+  function pickMatchQuiz(){
+    // 4 del capítulo (repartidas por edad) + 1 de la bolsa de aplicación a hoy.
+    const cap = QUIZ.filter(q => q.era === 'capitulo');
+    const picked = [];
+    QUIZ_MIX.forEach(([tag, n]) => {
+      const group = cap.filter(q => q.tag === tag);
+      picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:capitulo:${tag}`, group, n, q => q.q));
+    });
+    picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:hoy`, QUIZ.filter(q => q.era === 'hoy'), 1, q => q.q));
+    return shuffle(picked);
+  }
+
+  function pickMatchCards(){
+    // 4 del capítulo (2 de cada lado) + 1 de la bolsa de aplicación a hoy.
+    const cap = ORDERS.filter(o => o.era === 'capitulo');
+    const picked = [
+      ...AvProfile.pick(`${ACTIVITY}:card:capitulo:buena`, cap.filter(o => o.side === 'buena'), 2, o => o.text),
+      ...AvProfile.pick(`${ACTIVITY}:card:capitulo:rey`, cap.filter(o => o.side === 'rey'), 2, o => o.text),
+      ...AvProfile.pick(`${ACTIVITY}:card:hoy`, ORDERS.filter(o => o.era === 'hoy'), 1, o => o.text)
+    ];
+    return shuffle(picked);
+  }
+
+  function startMatch(){
+    legend.hidden = true;
+    practiceNote.hidden = true;
+    match = {
+      cards: pickMatchCards(),
+      quizzes: pickMatchQuiz(),
+      step: 0,
+      stage: 'ready',
+      revealed: false,
+      earned: 0
+    };
+    showStep();
+  }
+
+  function showStep(){
+    stopCountdown();
+    judge.hidden = true;
+    match.revealed = false;
+    match.stage = 'ready';
+    const ph = phase();
+    if(ph === 'card'){
+      quizBox.classList.remove('show');
+      gameCard.style.display = '';
+      gameCard.classList.remove('revealed-rey','revealed-buena');
+      roundLabel.textContent = `Orden ${match.step + 1} de ${MATCH_CARDS}`;
+      gameCard.innerHTML = `
+        <div class="emoji">🎺</div>
+        <div class="order-text">¿Listo para la orden?</div>
+        <div class="hint">Primero suena la orquesta del rey…</div>`;
+      mainBtn.textContent = '📯 ¡Suena la música!';
+      mainBtn.hidden = false;
+    }else if(ph === 'quiz'){
+      gameCard.style.display = 'none';
+      quizBox.classList.add('show');
+      const q = match.quizzes[match.step - MATCH_CARDS];
+      roundLabel.textContent = `Pregunta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
+      document.getElementById('quizTag').textContent = q.tag;
+      document.getElementById('quizQ').textContent = q.q;
+      const quizA = document.getElementById('quizA');
+      quizA.textContent = q.a;
+      quizA.classList.remove('show');
+      mainBtn.textContent = 'Ver respuesta';
+      mainBtn.hidden = false;
+    }else{
+      finishMatch();
+    }
+  }
+
+  function playCountdown(){
+    match.stage = 'announce';
+    mainBtn.textContent = '⏭ Saltar';
+    mainBtn.hidden = false;
+    const seq = ['3','2','1','¡YA!'];
+    let i = 0;
+    const tick = () => {
+      if(i < seq.length){
+        gameCard.innerHTML = `
+          ${bandHTML()}
+          <div class="count-big">${seq[i]}</div>
+          <div class="hint">Suena la música: los instrumentos de Daniel 3:5…</div>`;
+        i++;
+        cdTimer = setTimeout(tick, COUNT_MS);
+      }else{
+        cdTimer = null;
+        showOrder();
+      }
+    };
+    tick();
+  }
+
+  function showOrder(){
+    stopCountdown();
+    match.stage = 'order';
+    const o = match.cards[match.step];
+    gameCard.classList.remove('revealed-rey','revealed-buena');
+    gameCard.innerHTML = `
+      <div class="order-text">${esc(o.text)}</div>
+      <div class="hint">¿La haces… o te quedas firme?</div>`;
+    mainBtn.textContent = '🔎 ¡Descubrir!';
+    mainBtn.hidden = false;
+  }
+
+  function revealStep(){
+    const ph = phase();
+    if(ph === 'card'){
+      match.stage = 'revealed';
+      const o = match.cards[match.step];
+      const isRey = o.side === 'rey';
+      gameCard.classList.add(isRey ? 'revealed-rey' : 'revealed-buena');
+      gameCard.innerHTML = `
+        <div class="emoji">${o.emoji}</div>
+        <div class="action-emoji">${isRey ? '🧍' : '🙌'}</div>
+        <div class="action-name">${isRey ? '¡Orden del rey!' : '¡Orden buena!'}</div>
+        <div class="hint">${isRey
+          ? 'No nos movemos. Grita: «¡NO NOS POSTRAMOS!»'
+          : 'Nada malo aquí: ¡obedécela con alegría!'}</div>
+        ${o.ask ? `<div class="order-text">${esc(o.ask)}</div>` : ''}
+        ${o.answer ? `<div class="hint">✅ Respuesta esperada: ${esc(o.answer)}</div>` : ''}`;
+    }else{
+      match.revealed = true;
+      document.getElementById('quizA').classList.add('show');
+    }
+
+    const kind = ph === 'quiz' ? 'quiz' : 'card';
+    const p = AvProfile.get();
+    if(p && AvProfile.canScore(kind)){
+      judgeQ.textContent = ph === 'card' ? `¿${p.name} acertó?` : '¿Respondió bien?';
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      judgeQ.textContent = p
+        ? '🌙 Puntos completos: esta ronda es de práctica.'
+        : '👤 Sin perfil: este acierto no suma al tablero.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Siguiente ▶';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function nextStep(){
+    match.step++;
+    showStep();
+  }
+
+  function finishMatch(){
+    stopCountdown();
+    legend.hidden = false;
+    quizBox.classList.remove('show');
+    gameCard.style.display = '';
+    gameCard.classList.remove('revealed-rey','revealed-buena');
+    roundLabel.textContent = '¡Bien hecho, valientes!';
+    const p = AvProfile.get();
+    const earned = match ? match.earned : 0;
+    const scored = p ? `<div class="hint">⭐ Sumaste ${earned} punto${earned === 1 ? '' : 's'} en esta partida.</div>` : '';
+    const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
+      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
+    gameCard.innerHTML = `
+      <div class="emoji">🏁</div>
+      <div class="order-text">¡Partida completa!</div>
+      ${scored}${extra}`;
+    mainBtn.dataset.mode = 'again';
+    mainBtn.textContent = '🔁 Otra partida';
+    mainBtn.hidden = false;
+    match = null;
+    updateIdleHint();
+  }
+
+  function updateIdleHint(){
+    if(match) return;
+    const p = AvProfile.get();
+    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    if(!p){
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.hidden = false;
+    }else if(practice){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+      practiceNote.hidden = false;
+    }else{
+      practiceNote.hidden = true;
+    }
+    if(mainBtn.dataset.mode === 'again'){
+      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
+    }else{
+      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    }
+  }
+  AvProfile.onChange(updateIdleHint);
+
+  mainBtn.addEventListener('click', () => {
+    if(!match){ startMatch(); return; }
+    if(phase() === 'card'){
+      if(match.stage === 'ready'){ playCountdown(); return; }
+      if(match.stage === 'announce'){ showOrder(); return; }
+      if(match.stage === 'order'){ revealStep(); return; }
+      nextStep();
+      return;
+    }
+    if(!match.revealed){ revealStep(); return; }
+    nextStep();
+  });
+
+  judgeYes.addEventListener('click', () => {
+    if(!match) return;
+    judge.hidden = true;
+    const kind = phase() === 'quiz' ? 'quiz' : 'card';
+    AvProfile.score(true, kind);
+    match.earned++;
+    nextStep();
+  });
+  judgeNo.addEventListener('click', () => {
+    if(!match) return;
+    judge.hidden = true;
+    const kind = phase() === 'quiz' ? 'quiz' : 'card';
+    AvProfile.score(false, kind);
+    nextStep();
+  });
+
+  // ── Tarjetas imprimibles ──
+  function renderGrid(id, side){
+    document.getElementById(id).innerHTML = ORDERS.filter(o => o.side === side).map(o => `
+      <div class="mini-card">
+        <span class="key-dot ${side === 'rey' ? 'key-rey' : 'key-buena'}" title="${side === 'rey' ? 'Orden del rey: quedarse firme' : 'Orden buena: obedecer'}"></span>
+        <div class="emoji">${o.emoji}</div>
+        <div class="order-name">${esc(o.text)}</div>
+        ${o.ask ? `<div class="order-answer">🎯 ${esc(o.ask)}</div>` : ''}
+        ${o.answer ? `<div class="order-answer">✅ ${esc(o.answer)}</div>` : ''}
+      </div>`).join('');
+  }
+  renderGrid('gridBuena','buena');
+  renderGrid('gridRey','rey');
+  document.getElementById('gridBanda').innerHTML = BAND.map(b => `
+    <div class="mini-card">
+      <div class="emoji">${b.emoji}</div>
+      <div class="order-name">${b.name}</div>
+    </div>`).join('');
+
+  // ── Menú ──
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  function closeMenu(){
+    menuPanel.hidden = true;
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.menu-wrap')) closeMenu();
+  });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      closeMenu();
+    });
+  });
+
+  // ── Perfil y puntos (módulo compartido /shared/profile.js) ──
+  document.getElementById('changePlayerBtn').addEventListener('click', () => {
+    closeMenu();
+    AvProfile.open();
+  });
+
+  // Iniciar
+  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
+  updateIdleHint();
+</script>
+</body>
+</html>

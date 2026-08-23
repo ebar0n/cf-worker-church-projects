@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1B2F6E">
+<title>Colorea la corte de Babilonia</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Un cuaderno para colorear con el dedo: 5 retos de color + 5 preguntas de «colorea y cuenta». ¡Suma puntos para el tablero del Club de Aventureros!">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="Colorea la corte de Babilonia">
+<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Cuatro escenas para colorear con el dedo: la puerta del palacio, la mesa del rey, el plato de Daniel y los cuatro jóvenes.">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr39-colorear/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    /* Paleta Puerta de Ishtar: azul lapislázuli, oro vidriado, ladrillo, crema */
+    --lapis:#1B2F6E;
+    --lapis-deep:#12204D;
+    --gold:#F0B429;
+    --gold-soft:#FFD97A;
+    --brick:#C2542B;
+    --cream:#FFF6E3;
+    --paper:#FFFDF5;
+    --ok:#2E9E5B;
+    --ink:#231A0F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--lapis);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,217,122,.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(240,180,41,.07), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  /* ── Cabecera ── */
+  header{text-align:center;padding:10px 16px 12px}
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  h1{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.5rem,5vw,2.3rem);
+    line-height:1.15;
+    margin-top:6px;
+  }
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+  @media (max-width:600px){
+    .subtitle{display:none}
+    header{padding-bottom:8px}
+  }
+
+  /* ── Barra superior + menú ── */
+  .topbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px 0;
+    max-width:1000px;
+    margin:0 auto;
+  }
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
+  .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
+  .player-chip + .menu-wrap{margin-left:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+    .back-link{padding:8px 10px}
+    .menu-btn{padding:8px 12px}
+  }
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    border:2px solid var(--gold);
+    background:transparent;
+    color:var(--gold-soft);
+    border-radius:999px;
+    padding:8px 16px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;
+    right:0;
+    top:calc(100% + 8px);
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+    min-width:250px;
+    background:var(--cream);
+    border:3px solid var(--gold);
+    border-radius:18px;
+    padding:8px;
+    box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    text-align:left;
+    background:transparent;
+    border:none;
+    color:var(--ink);
+    border-radius:12px;
+    padding:12px 14px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+
+  .back-link{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    color:var(--gold-soft);
+    text-decoration:none;
+    border:2px solid transparent;
+    border-radius:999px;
+    padding:8px 16px;
+    margin-bottom:8px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+  /* ══════════ MODO JUEGO ══════════ */
+  .stage{max-width:480px;margin:0 auto;text-align:center}
+  .round-label{
+    font-family:'Fredoka',sans-serif;
+    color:var(--gold-soft);
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    font-size:.8rem;
+    margin-bottom:10px;
+  }
+  .prompt{
+    background:var(--cream);
+    color:var(--ink);
+    border:5px solid var(--gold);
+    border-radius:22px;
+    box-shadow:0 8px 0 rgba(0,0,0,.28);
+    padding:16px 14px;
+    margin-bottom:14px;
+  }
+  .prompt .tag{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    background:var(--brick);
+    color:#fff;
+    border-radius:999px;
+    padding:4px 12px;
+    margin-bottom:8px;
+  }
+  .prompt .tag[hidden]{display:none}
+  .prompt .big-text{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.15rem,5vw,1.5rem);
+    line-height:1.25;
+  }
+  .prompt .small-text{margin-top:8px;font-weight:700;font-size:.95rem;opacity:.7}
+  .prompt .small-text[hidden]{display:none}
+
+  .options{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+  .options[hidden]{display:none}
+  .option{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.05rem;
+    font-weight:600;
+    min-height:56px;
+    border:4px solid var(--lapis);
+    background:#fff;
+    color:var(--ink);
+    border-radius:18px;
+    padding:12px 14px;
+    cursor:pointer;
+    line-height:1.2;
+  }
+  .option:hover{background:var(--gold-soft)}
+  .option:focus-visible{outline:3px solid var(--brick);outline-offset:3px}
+  .option.right{background:var(--ok);border-color:#1E7040;color:#fff}
+  .option.wrong{background:#D6453D;border-color:#A32C26;color:#fff}
+  .option:disabled{cursor:default}
+
+  /* Cuaderno de colorear */
+  .scene-tabs{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .scene-tab{
+    font-family:'Fredoka',sans-serif;
+    font-size:.85rem;
+    font-weight:600;
+    min-height:46px;
+    border:3px solid var(--gold);
+    background:transparent;
+    color:var(--gold-soft);
+    border-radius:14px;
+    padding:8px 6px;
+    cursor:pointer;
+    line-height:1.15;
+  }
+  .scene-tab.active{background:var(--gold);color:var(--lapis-deep)}
+  .scene-tab:focus-visible{outline:3px solid #fff;outline-offset:2px}
+
+  .canvas-frame{
+    background:var(--paper);
+    border:6px solid var(--gold);
+    border-radius:26px;
+    box-shadow:0 10px 0 rgba(0,0,0,.28);
+    padding:8px;
+  }
+  .scene-holder{display:none}
+  .scene-holder.active{display:block}
+  .scene-svg{width:100%;height:auto;display:block}
+  .scene-svg .z{
+    fill:var(--paper);
+    stroke:var(--ink);
+    stroke-width:5;
+    stroke-linejoin:round;
+    stroke-linecap:round;
+    cursor:pointer;
+  }
+  .scene-svg .ink{
+    fill:none;
+    stroke:var(--ink);
+    stroke-width:4;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    pointer-events:none;
+  }
+  .scene-svg .skin{
+    fill:#F6D3AE;
+    stroke:var(--ink);
+    stroke-width:5;
+    pointer-events:none;
+  }
+  .scene-svg .lbl{
+    font-family:'Fredoka',sans-serif;
+    font-size:12px;
+    font-weight:600;
+    fill:var(--ink);
+    stroke:none;
+    pointer-events:none;
+  }
+  .scene-svg .z.target{
+    stroke-width:7;
+    stroke-dasharray:12 9;
+    animation:dance 1.1s linear infinite;
+  }
+  @keyframes dance{to{stroke-dashoffset:-42}}
+
+  /* Paleta de colores */
+  .palette{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+    margin-top:14px;
+  }
+  .swatch{
+    min-height:56px;
+    border-radius:16px;
+    border:4px solid rgba(0,0,0,.3);
+    cursor:pointer;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.7rem;
+    color:#fff;
+    text-shadow:0 1px 2px rgba(0,0,0,.45);
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-bottom:5px;
+  }
+  .swatch.dark-text{color:var(--ink);text-shadow:none}
+  .swatch.sel{border-color:#fff;box-shadow:0 0 0 4px var(--gold)}
+  .swatch:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+  .btn{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.1rem;
+    font-weight:600;
+    border:none;
+    border-radius:999px;
+    padding:14px 30px;
+    min-height:52px;
+    cursor:pointer;
+    box-shadow:0 5px 0 rgba(0,0,0,.3);
+    transition:transform .1s ease;
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-gold{background:var(--gold);color:var(--lapis-deep)}
+  .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-outline:active{transform:translateY(2px)}
+  .btn-sm{font-size:.95rem;padding:10px 20px;min-height:46px}
+  .btn[hidden]{display:none}
+
+  .judge{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:16px;
+    background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);
+    border-radius:16px;
+    padding:12px 14px;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+  }
+  .judge span{flex-basis:100%;text-align:center;line-height:1.35}
+  .judge[hidden]{display:none}
+
+  .practice-note{
+    margin-top:16px;
+    text-align:center;
+    font-weight:700;
+    font-size:.95rem;
+    color:var(--gold-soft);
+    opacity:.9;
+  }
+  .practice-note[hidden]{display:none}
+
+  @media (prefers-reduced-motion:reduce){
+    .scene-svg .z.target{animation:none;stroke-dasharray:none;stroke-width:7}
+    .btn{transition:none}
+  }
+
+  /* ══════════ MATERIAL IMPRIMIBLE ══════════ */
+  .print-note{
+    text-align:center;
+    font-size:.95rem;
+    opacity:.9;
+    max-width:600px;
+    margin:0 auto 20px;
+    line-height:1.5;
+  }
+  .print-sheet{
+    background:#fff;
+    color:#000;
+    border-radius:18px;
+    border:4px solid var(--gold);
+    padding:16px;
+    margin-bottom:20px;
+  }
+  .print-sheet h3{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.1rem;
+    text-align:center;
+    margin-bottom:6px;
+    color:#000;
+  }
+  .print-sheet .sheet-sub{
+    text-align:center;
+    font-size:.85rem;
+    margin-bottom:10px;
+    color:#444;
+  }
+  .print-sheet .sheet-foot{
+    text-align:center;
+    font-size:.75rem;
+    margin-top:8px;
+    color:#666;
+  }
+  .print-sheet .scene-svg .z{fill:#fff;stroke:#000;cursor:default}
+  .print-sheet .scene-svg .ink{stroke:#000}
+  .print-sheet .scene-svg .skin{fill:#fff;stroke:#000}
+  .print-sheet .scene-svg .lbl{fill:#000}
+
+  /* ══════════ PARA PADRES ══════════ */
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);
+    color:var(--ink);
+    border:4px solid var(--gold);
+    border-radius:22px;
+    padding:22px 20px;
+    margin-bottom:18px;
+    box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .verse{
+    border-left:5px solid var(--brick);
+    background:rgba(194,84,43,.08);
+    border-radius:0 12px 12px 0;
+    padding:12px 14px;
+    font-style:italic;
+    font-weight:700;
+  }
+  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
+
+  /* ── Impresión ── */
+  @media print{
+    body{background:#fff;color:#000}
+    header,.topbar,#juego,#padres,.print-note{display:none!important}
+    section{display:block!important;padding:0}
+    #material{display:block!important}
+    .print-sheet{
+      border:none;
+      border-radius:0;
+      padding:0;
+      margin:0;
+      break-after:page;
+      page-break-after:always;
+      break-inside:avoid;
+    }
+    .print-sheet:last-child{break-after:auto;page-break-after:auto}
+    .print-sheet .scene-svg{width:100%;max-height:22cm}
+    .print-sheet h3{font-size:16pt;margin:6mm 0 2mm}
+    .print-sheet .sheet-sub{font-size:10pt}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="juego">🖍️ Cuaderno para colorear</button>
+      <button class="menu-item" data-tab="material">🖨️ Hojas para imprimir</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 39 · En la corte de Babilonia</div>
+  <h1>Colorea la corte de Babilonia</h1>
+  <p class="subtitle">Toca un color, toca el dibujo… ¡y la historia se llena de colores!</p>
+</header>
+
+<!-- ══════════ MOLDES DE LOS DIBUJOS (SVG inline, se clonan al juego y a las hojas) ══════════ -->
+<template id="tplPuerta">
+  <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="La puerta del palacio de Babilonia">
+    <rect class="z" data-zone="cielo" data-label="el cielo" x="8" y="8" width="304" height="284" rx="18"/>
+    <path class="z" data-zone="escalones" data-label="los escalones" d="M56 252 h208 v14 h-208 Z M40 268 h240 v18 h-240 Z"/>
+    <path class="z" data-zone="muro" data-label="el muro de ladrillos" d="M76 252 V128 Q160 48 244 128 V252 Z"/>
+    <path class="z" data-zone="torreIzq" data-label="la torre de la izquierda" d="M16 252 V128 h60 V252 Z"/>
+    <path class="z" data-zone="torreDer" data-label="la torre de la derecha" d="M244 252 V128 h60 V252 Z"/>
+    <path class="z" data-zone="almenas" data-label="las puntas de las torres" d="M10 128 V72 h76 v56 Z M234 128 V72 h76 v56 Z"/>
+    <path class="z" data-zone="arco" data-label="el arco de la puerta" d="M96 182 Q96 158 160 150 Q224 158 224 182 L212 182 Q212 168 160 160 Q108 168 108 182 Z"/>
+    <path class="z" data-zone="puertaIzq" data-label="la hoja izquierda de la puerta" d="M100 252 V182 Q100 166 158 160 V252 Z"/>
+    <path class="z" data-zone="puertaDer" data-label="la hoja derecha de la puerta" d="M216 252 V182 Q216 166 162 160 V252 Z"/>
+    <path class="z" data-zone="banderines" data-label="los banderines" d="M48 14 h58 q-12 29 0 58 h-58 Z M272 14 h-58 q12 29 0 58 h58 Z"/>
+    <g class="ink">
+      <path d="M46 72 V14"/>
+      <path d="M274 72 V14"/>
+      <path d="M34 78 v44 M62 78 v44"/>
+      <path d="M258 78 v44 M286 78 v44"/>
+      <path d="M16 164 h60 M16 196 h60 M16 228 h60"/>
+      <path d="M244 164 h60 M244 196 h60 M244 228 h60"/>
+      <path d="M160 166 V250"/>
+      <path d="M136 212 a8 8 0 1 0 0.1 0 M184 212 a8 8 0 1 0 0.1 0"/>
+    </g>
+  </svg>
+</template>
+
+<template id="tplMesa">
+  <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="La mesa del rey con la copa, la corona y los manjares">
+    <rect class="z" data-zone="fondo" data-label="el fondo del salón" x="8" y="8" width="304" height="284" rx="18"/>
+    <path class="z" data-zone="mesa" data-label="la mesa del rey" d="M24 208 h272 v24 h-272 Z"/>
+    <path class="z" data-zone="mantel" data-label="el mantel de la mesa" d="M44 232 h232 v54 q-116 14 -232 0 Z"/>
+    <path class="z" data-zone="corona" data-label="la corona del rey" d="M16 96 V42 L30 14 L46 42 L62 12 L78 42 L94 14 L108 42 V96 Z"/>
+    <ellipse class="z" data-zone="bandeja" data-label="la bandeja del banquete" cx="70" cy="192" rx="58" ry="16"/>
+    <path class="z" data-zone="manjares" data-label="los manjares del rey" d="M32 116 h72 q14 0 14 14 v36 q0 14 -14 14 h-72 q-14 0 -14 -14 v-36 q0 -14 14 -14 Z"/>
+    <path class="z" data-zone="copa" data-label="la copa del rey" d="M128 130 h88 l-6 58 h-76 Z M152 188 h40 v10 h-40 Z M140 198 h64 v10 h-64 Z"/>
+    <path class="z" data-zone="vino" data-label="el vino de la copa" d="M122 70 h100 l-6 60 h-88 Z"/>
+    <path class="z" data-zone="jarra" data-label="la jarra del banquete" d="M254 116 h28 v14 h8 q10 0 10 12 v50 q0 14 -14 14 h-46 q-14 0 -14 -14 v-50 q0 -12 10 -12 h8 Z"/>
+    <g class="ink">
+      <path d="M24 232 h272"/>
+      <path d="M32 70 a5 5 0 1 0 0.1 0 M62 70 a5 5 0 1 0 0.1 0 M92 70 a5 5 0 1 0 0.1 0"/>
+      <path d="M68 122 V174"/>
+      <path d="M226 152 h-8"/>
+      <path d="M128 130 h88"/>
+    </g>
+  </svg>
+</template>
+
+<template id="tplLegumbres">
+  <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="El plato de legumbres y el vaso de agua de Daniel">
+    <rect class="z" data-zone="fondo" data-label="el fondo" x="8" y="8" width="304" height="284" rx="18"/>
+    <path class="z" data-zone="mesa" data-label="la mesa" d="M12 226 h296 v62 h-296 Z"/>
+    <path class="z" data-zone="hoja" data-label="la hoja verde" d="M64 64 q0 -20 20 -20 h28 q20 0 20 20 v24 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
+    <path class="z" data-zone="gotas" data-label="las gotas de agua" d="M176 20 q8 16 25 26 q8 5 8 16 v26 q0 16 -16 16 h-34 q-16 0 -16 -16 v-26 q0 -11 8 -16 q17 -10 25 -26 Z M277 6 q8 16 25 26 q8 5 8 16 v26 q0 16 -16 16 h-34 q-16 0 -16 -16 v-26 q0 -11 8 -16 q17 -10 25 -26 Z"/>
+    <path class="z" data-zone="vaso" data-label="el vaso de Daniel" d="M244 116 h66 v96 q0 14 -14 14 h-38 q-14 0 -14 -14 Z"/>
+    <path class="z" data-zone="agua" data-label="el agua del vaso" d="M250 150 h54 v58 q0 10 -10 10 h-34 q-10 0 -10 -10 Z"/>
+    <rect class="z" data-zone="platoBorde" data-label="el plato" x="10" y="170" width="228" height="56" rx="26"/>
+    <path class="z" data-zone="legumbres" data-label="las legumbres de Daniel" d="M16 124 q0 -20 20 -20 h28 q20 0 20 20 v26 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
+    <path class="z" data-zone="legumbres" data-label="las legumbres de Daniel" d="M90 124 q0 -20 20 -20 h28 q20 0 20 20 v26 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
+    <path class="z" data-zone="legumbres" data-label="las legumbres de Daniel" d="M164 124 q0 -20 20 -20 h28 q20 0 20 20 v26 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
+    <g class="ink">
+      <path d="M98 52 V100 M98 68 l-18 -10 M98 84 l18 -10"/>
+      <path d="M50 104 v-10 M124 104 v-10 M198 104 v-10"/>
+      <path d="M30 208 h190"/>
+      <path d="M244 132 h66"/>
+    </g>
+  </svg>
+</template>
+
+<template id="tplJovenes">
+  <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="Los cuatro jóvenes hebreos de pie junto al trono del rey">
+    <rect class="z" data-zone="fondo" data-label="el fondo del palacio" x="8" y="8" width="304" height="284" rx="18"/>
+    <path class="z" data-zone="piso" data-label="el piso del palacio" d="M8 250 h304 v42 h-304 Z"/>
+    <ellipse class="z" data-zone="alfombra" data-label="la alfombra" cx="140" cy="256" rx="126" ry="34"/>
+    <path class="z" data-zone="trono" data-label="el trono del rey" d="M236 72 q0 -16 16 -16 h26 q16 0 16 16 V152 h8 v38 h-72 v-38 h8 Z M230 190 h72 v28 h-72 Z M234 218 h16 v32 h-16 Z M282 218 h16 v32 h-16 Z"/>
+    <path class="z" data-zone="corona" data-label="la corona del rey" d="M238 84 V28 L250 10 L262 28 L272 8 L284 28 L296 10 L302 28 V84 Z"/>
+    <circle class="skin" cx="39" cy="94" r="17"/>
+    <circle class="skin" cx="95" cy="94" r="17"/>
+    <circle class="skin" cx="151" cy="94" r="17"/>
+    <circle class="skin" cx="207" cy="94" r="17"/>
+    <path class="z" data-zone="tunicaDaniel" data-label="la túnica de Daniel" d="M12 126 q0 -14 14 -14 h26 q14 0 14 14 V234 h-54 Z"/>
+    <path class="z" data-zone="tunicaAnanias" data-label="la túnica de Ananías" d="M68 126 q0 -14 14 -14 h26 q14 0 14 14 V234 h-54 Z"/>
+    <path class="z" data-zone="tunicaMisael" data-label="la túnica de Misael" d="M124 126 q0 -14 14 -14 h26 q14 0 14 14 V234 h-54 Z"/>
+    <path class="z" data-zone="tunicaAzarias" data-label="la túnica de Azarías" d="M180 126 q0 -14 14 -14 h26 q14 0 14 14 V234 h-54 Z"/>
+    <g class="ink">
+      <path d="M33 90 a3 3 0 1 0 0.1 0 M45 90 a3 3 0 1 0 0.1 0 M33 100 q6 6 12 0"/>
+      <path d="M89 90 a3 3 0 1 0 0.1 0 M101 90 a3 3 0 1 0 0.1 0 M89 100 q6 6 12 0"/>
+      <path d="M145 90 a3 3 0 1 0 0.1 0 M157 90 a3 3 0 1 0 0.1 0 M145 100 q6 6 12 0"/>
+      <path d="M201 90 a3 3 0 1 0 0.1 0 M213 90 a3 3 0 1 0 0.1 0 M201 100 q6 6 12 0"/>
+      <path d="M25 244 h12 M41 244 h12"/>
+      <path d="M81 244 h12 M97 244 h12"/>
+      <path d="M137 244 h12 M153 244 h12"/>
+      <path d="M193 244 h12 M209 244 h12"/>
+      <path d="M246 86 h38 M240 174 h52"/>
+    </g>
+    <text class="lbl" x="39" y="278" text-anchor="middle">Daniel</text>
+    <text class="lbl" x="95" y="278" text-anchor="middle">Ananías</text>
+    <text class="lbl" x="151" y="278" text-anchor="middle">Misael</text>
+    <text class="lbl" x="207" y="278" text-anchor="middle">Azarías</text>
+  </svg>
+</template>
+
+<!-- ══════════ CUADERNO PARA COLOREAR ══════════ -->
+<section id="juego" class="active">
+  <div class="stage">
+    <div class="round-label" id="roundLabel">¡Toca un color y pinta!</div>
+
+    <div class="prompt" id="prompt">
+      <span class="tag" id="promptTag" hidden></span>
+      <div class="big-text" id="promptText">🖍️ Colorea libre… ¡o toca «Jugar partida»!</div>
+      <div class="small-text" id="promptHint">5 retos de color + 5 preguntas de «colorea y cuenta»</div>
+    </div>
+
+    <div class="options" id="options" hidden></div>
+
+    <div class="scene-tabs" id="sceneTabs"></div>
+
+    <div class="canvas-frame">
+      <div id="sceneWrap"></div>
+    </div>
+
+    <div class="palette" id="palette"></div>
+
+    <div class="controls">
+      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
+      <button class="btn btn-outline btn-sm" id="eraseSceneBtn">🧽 Borrar esta escena</button>
+      <button class="btn btn-outline btn-sm" id="eraseAllBtn">♻️ Empezar de nuevo</button>
+    </div>
+
+    <div class="judge" id="judge" hidden>
+      <span id="judgeMsg"></span>
+    </div>
+
+    <p class="practice-note" id="practiceNote" hidden></p>
+  </div>
+</section>
+
+<!-- ══════════ HOJAS PARA IMPRIMIR ══════════ -->
+<section id="material">
+  <p class="print-note">
+    Las <strong>cuatro escenas en blanco y negro</strong>, una por hoja, listas para crayones.
+    Usa <strong>Ctrl/Cmd + P</strong> e imprime en hoja carta: se imprimen solo los dibujos.
+    Al frente de cada hoja escriban el nombre del niño y la fecha… ¡y luego péguenlas en la nevera!
+  </p>
+  <div id="printSheets"></div>
+</section>
+
+<!-- ══════════ PARA PADRES ══════════ -->
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 La historia</h2>
+    <p>Este cuaderno está basado en <strong>Daniel 1</strong> (capítulo 39 de <em>Profetas y Reyes</em>, «En la corte de Babilonia»). Daniel, Ananías, Misael y Azarías fueron llevados cautivos desde Judá hasta Babilonia, a la corte del rey <strong>Nabucodonosor</strong>, para estudiar durante <strong>tres años</strong> las letras y la lengua de los caldeos. Allí les cambiaron los nombres: Beltsasar, Sadrac, Mesac y Abed-nego.</p>
+    <p>Les sirvieron la comida y el vino de la mesa del rey, pero una porción de esos alimentos se ofrecía a los ídolos: comerlos habría sido rendir homenaje a los dioses de Babilonia. Daniel <strong>propuso en su corazón no contaminarse</strong> y pidió a <strong>Melsar</strong> una prueba de <strong>diez días</strong> con alimento sencillo y agua. Al final de la prueba sus rostros se veían mejores y más nutridos, y Dios les dio conocimiento e inteligencia: el rey los halló <strong>diez veces mejores</strong> que todos los magos y astrólogos de su reino.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>💡 ¿Qué aprende su hijo?</h2>
+    <ul>
+      <li><strong>Decidir antes</strong>: Daniel ya había decidido en su corazón, y por eso no dudó cuando llegó la bandeja del rey.</li>
+      <li><strong>Cuidar el cuerpo</strong>: la comida sencilla y el agua los dejaron más fuertes y más sanos que a los demás.</li>
+      <li><strong>Ser fiel en lo pequeño</strong>: «Fue la fidelidad en las cosas pequeñas lo que dio carácter a toda su vida».</li>
+      <li>Y, mientras colorea, los <strong>nombres, los números y los lugares</strong> del capítulo se quedan solitos en la memoria.</li>
+    </ul>
+    <p class="verse">«Yo honraré a los que me honran» <span>1 Samuel 2:30</span></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🏠 Cómo jugar la dinámica</h2>
+    <ol>
+      <li>Su hijo toca un <strong>color</strong> de la paleta y después toca la <strong>zona del dibujo</strong>. No hay que arrastrar el dedo: tocar y tocar.</li>
+      <li>Con los botones de arriba del dibujo cambia de <strong>escena</strong>: la puerta del palacio, la mesa del rey, el plato de Daniel y los cuatro jóvenes.</li>
+      <li>Toquen <strong>▶ Jugar partida</strong>. Primero vienen <strong>5 retos de color</strong>: la app pide algo concreto («pinta de dorado la copa del rey») y marca la zona con un contorno que baila. Cuando terminen, toquen <strong>✅ Ya lo pinté</strong> y la app revisa sola el color.</li>
+      <li>Si no coincide, hay <strong>un segundo intento</strong>; si tampoco, la app lo pinta y explica con cariño. Cada reto suma máximo <strong>⭐ 1 punto</strong>.</li>
+      <li>Después vienen <strong>5 preguntas de «colorea y cuenta»</strong>, marcadas por edades (una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>): el niño sigue pintando mientras usted lee la pregunta, y responde tocando una de las opciones grandes.</li>
+      <li>Los retos y las preguntas <strong>no se repiten</strong> hasta agotarse: la app recuerda por niño lo que ya salió esta semana.</li>
+      <li>El dibujo <strong>se guarda solo</strong> en este dispositivo, así que pueden seguir coloreando mañana. Con <strong>♻️ Empezar de nuevo</strong> queda todo en blanco otra vez.</li>
+      <li>En la pestaña <strong>🖨️</strong> están las cuatro escenas en blanco y negro para imprimir y colorear con crayones, sin pantalla.</li>
+    </ol>
+    <p>Mientras colorean, conversen: <em>¿por qué Daniel dijo no a la copa del rey? ¿En qué cosa pequeña podemos ser fieles hoy?</em></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ El reto de la semana</h2>
+    <p>Jueguen <strong>una partida por día</strong>: 5 retos de color + 5 preguntas. Cada acierto suma <strong>⭐ 1 punto</strong> (los errores no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de retos y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir? ¡Las partidas extra son de práctica y el cuaderno siempre se puede colorear! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+
+<script>
+  const ACTIVITY = 'pr39-colorear';
+  const MATCH_CARDS = 5;
+  const MATCH_QUIZ = 5;
+  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
+
+  // ── Colores de la paleta ──
+  const COLORS = [
+    {key:'rojo',    name:'Rojo',    hex:'#D6453D'},
+    {key:'naranja', name:'Naranja', hex:'#E8752B'},
+    {key:'dorado',  name:'Dorado',  hex:'#F0B429', dark:true},
+    {key:'verde',   name:'Verde',   hex:'#2E9E5B'},
+    {key:'azul',    name:'Azul',    hex:'#2F6BD6'},
+    {key:'morado',  name:'Morado',  hex:'#7B4FB5'},
+    {key:'cafe',    name:'Café',    hex:'#8A5A2B'},
+    {key:'rosado',  name:'Rosado',  hex:'#E86FA8'},
+    {key:'gris',    name:'Gris',    hex:'#9AA3AD'},
+    {key:'celeste', name:'Celeste', hex:'#67C7E8', dark:true}
+  ];
+  const COLOR_BY_KEY = {};
+  COLORS.forEach(c => COLOR_BY_KEY[c.key] = c);
+
+  // ── Escenas ──
+  const SCENES = [
+    {id:'puerta',    tpl:'tplPuerta',    tab:'🏛️ La puerta del palacio', title:'La puerta del palacio de Babilonia', sub:'Aquí llegaron Daniel y sus tres amigos, llevados cautivos desde Judá.'},
+    {id:'mesa',      tpl:'tplMesa',      tab:'👑 La mesa del rey',        title:'La mesa del rey Nabucodonosor', sub:'La comida y el vino del rey estaban consagrados a los ídolos: Daniel dijo no.'},
+    {id:'legumbres', tpl:'tplLegumbres', tab:'🥦 El plato de Daniel',     title:'El plato de legumbres y el vaso de agua', sub:'La prueba de diez días: alimento sencillo y agua.'},
+    {id:'jovenes',   tpl:'tplJovenes',   tab:'🧑‍🤝‍🧑 Los cuatro jóvenes',  title:'Los cuatro jóvenes ante el rey', sub:'Daniel, Ananías, Misael y Azarías: diez veces mejores que todos los sabios.'}
+  ];
+  const SCENE_BY_ID = {};
+  SCENES.forEach(s => SCENE_BY_ID[s.id] = s);
+
+  // ── Retos de color (24) ──
+  const RETOS = [
+    // La puerta del palacio (5)
+    {scene:'puerta', zones:['cielo'], color:'azul', text:'Pinta de azul el cielo de Babilonia.', tip:'Babilonia era la ciudad más grande del mundo… ¡y allí llegaron los cuatro amigos!'},
+    {scene:'puerta', zones:['muro'], color:'cafe', text:'Pinta de café el muro de ladrillos del palacio.', tip:'El palacio del rey Nabucodonosor era enorme.'},
+    {scene:'puerta', zones:['puertaIzq','puertaDer'], color:'dorado', text:'Pinta de dorado las dos hojas de la puerta.', tip:'Son dos: la de la izquierda y la de la derecha.'},
+    {scene:'puerta', zones:['banderines'], color:'rojo', text:'Pinta de rojo los banderines de las torres.', tip:'Uno arriba de cada torre.'},
+    {scene:'puerta', zones:['almenas'], color:'morado', text:'Pinta de morado las puntas de las torres.', tip:'El bloque cuadrado de arriba de cada torre.'},
+    // La mesa del rey (6)
+    {scene:'mesa', zones:['copa'], color:'dorado', text:'Pinta de dorado la copa del rey.', tip:'La parte de abajo de la copa, con su pie: de esa copa Daniel no quiso beber.'},
+    {scene:'mesa', zones:['vino'], color:'morado', text:'Pinta de morado el vino de la copa.', tip:'Es la parte de arriba de la copa: «ni en el vino de su beber», dice Daniel 1.'},
+    {scene:'mesa', zones:['mantel'], color:'rojo', text:'Pinta de rojo el mantel de la mesa del rey.', tip:'El mantel es la tela que cuelga de la mesa.'},
+    {scene:'mesa', zones:['corona'], color:'dorado', text:'Pinta de dorado la corona del rey Nabucodonosor.', tip:'La corona grande del lado izquierdo, con puntas.'},
+    {scene:'mesa', zones:['jarra'], color:'naranja', text:'Pinta de naranja la jarra del banquete.', tip:'La jarra grande del lado derecho de la copa.'},
+    {scene:'mesa', zones:['manjares'], color:'rosado', text:'Pinta de rosado los manjares de la bandeja del rey.', tip:'Es la comida grande que está sobre la bandeja.'},
+    // El plato de Daniel (6)
+    {scene:'legumbres', zones:['legumbres'], color:'verde', text:'Pinta de verde las legumbres de Daniel.', tip:'Son las tres del plato: hay que pintarlas todas.'},
+    {scene:'legumbres', zones:['agua'], color:'azul', text:'Pinta de azul el agua del vaso.', tip:'Daniel pidió alimento sencillo y agua.'},
+    {scene:'legumbres', zones:['hoja'], color:'verde', text:'Pinta de verde la hoja que está sobre el plato.', tip:'La hoja grande de arriba, sobre el plato.'},
+    {scene:'legumbres', zones:['platoBorde'], color:'naranja', text:'Pinta de naranja el plato de Daniel.', tip:'El plato grande que está debajo de las legumbres.'},
+    {scene:'legumbres', zones:['mesa'], color:'cafe', text:'Pinta de café la mesa donde está el plato.', tip:'La tabla de madera bajo el plato.'},
+    {scene:'legumbres', zones:['gotas'], color:'celeste', text:'Pinta de celeste las dos gotas de agua.', tip:'Son dos: las dos bolitas grandes de arriba, junto al vaso.'},
+    // Los cuatro jóvenes (7)
+    {scene:'jovenes', zones:['tunicaDaniel'], color:'azul', text:'Pinta de azul la túnica de Daniel.', tip:'Daniel es el primero de la fila.'},
+    {scene:'jovenes', zones:['tunicaAnanias'], color:'rojo', text:'Pinta de rojo la túnica de Ananías.', tip:'A Ananías le pusieron el nombre Sadrac.'},
+    {scene:'jovenes', zones:['tunicaMisael'], color:'verde', text:'Pinta de verde la túnica de Misael.', tip:'A Misael le pusieron el nombre Mesac.'},
+    {scene:'jovenes', zones:['tunicaAzarias'], color:'morado', text:'Pinta de morado la túnica de Azarías.', tip:'A Azarías le pusieron el nombre Abed-nego.'},
+    {scene:'jovenes', zones:['trono'], color:'dorado', text:'Pinta de dorado el trono del rey.', tip:'La silla grande del rey, al lado derecho de los cuatro jóvenes.'},
+    {scene:'jovenes', zones:['alfombra'], color:'rosado', text:'Pinta de rosado la alfombra del palacio.', tip:'Es el óvalo del piso donde están parados.'},
+    {scene:'jovenes', zones:['corona'], color:'dorado', text:'Pinta de dorado la corona sobre el trono.', tip:'Arriba del trono, con puntas.'}
+  ];
+
+  // ── Preguntas «colorea y cuenta» (23) ──
+  const QUIZ = [
+    // 4–5 años (6)
+    {tag:'4–5 años', q:'¿Cómo se llamaba el joven valiente de esta historia?', opts:['Daniel','Noé','David'], a:'Daniel'},
+    {tag:'4–5 años', q:'¿Cuántos amigos hebreos eran en total?', opts:['4','10','2'], a:'4'},
+    {tag:'4–5 años', q:'¿Qué pidió Daniel para comer y beber?', opts:['Comida sencilla y agua','El vino del rey','Dulces del palacio'], a:'Comida sencilla y agua'},
+    {tag:'4–5 años', q:'¿Qué NO quiso beber Daniel?', opts:['El vino del rey','El agua','La leche'], a:'El vino del rey'},
+    {tag:'4–5 años', q:'¿A quién quería honrar Daniel?', opts:['A Dios','A los ídolos','A nadie'], a:'A Dios'},
+    {tag:'4–5 años', q:'Después de la prueba, ¿cómo se veían sus caras?', opts:['Mejores y más sanas','Más tristes','Iguales'], a:'Mejores y más sanas'},
+    // 6–7 años (9)
+    {tag:'6–7 años', q:'¿Cuántos días duró la prueba de la comida?', opts:['10 días','3 días','70 días'], a:'10 días'},
+    {tag:'6–7 años', q:'¿Cómo se llamaba el rey de Babilonia?', opts:['Nabucodonosor','Faraón','Melsar'], a:'Nabucodonosor'},
+    {tag:'6–7 años', q:'¿A qué ciudad se llevaron cautivo a Daniel?', opts:['A Babilonia','A Jerusalén','A Egipto'], a:'A Babilonia'},
+    {tag:'6–7 años', q:'¿Cuántos años estudiaron en la corte del rey?', opts:['3 años','10 años','7 años'], a:'3 años'},
+    {tag:'6–7 años', q:'¿Qué nombre nuevo le pusieron a Daniel?', opts:['Beltsasar','Sadrac','Aspenaz'], a:'Beltsasar'},
+    {tag:'6–7 años', q:'¿Cómo se llamaban los tres amigos de Daniel?', opts:['Ananías, Misael y Azarías','Melsar, Aspenaz y Sadrac','Sadrac, Nadab y Abihú'], a:'Ananías, Misael y Azarías'},
+    {tag:'6–7 años', q:'¿Qué estudiaron durante esos tres años?', opts:['Las letras y la lengua de los caldeos','A construir muros','A cocinar para el rey'], a:'Las letras y la lengua de los caldeos'},
+    {tag:'6–7 años', q:'¿Dónde propuso Daniel no contaminarse?', opts:['En su corazón','En un papel','En voz alta ante el rey'], a:'En su corazón'},
+    {tag:'6–7 años', q:'¿A quién le pidió Daniel la prueba de los diez días?', opts:['A Melsar','Al rey Nabucodonosor','A sus papás'], a:'A Melsar'},
+    // 8–9 años (8)
+    {tag:'8–9 años', q:'¿Por qué comer de la mesa del rey deshonraba a Dios?', opts:['Porque una porción se ofrecía a los ídolos','Porque estaba fría','Porque era muy poca'], a:'Porque una porción se ofrecía a los ídolos'},
+    {tag:'8–9 años', q:'¿Cuántas veces mejores los halló el rey que a los magos y astrólogos?', opts:['Diez veces mejores','Tres veces mejores','Cien veces mejores'], a:'Diez veces mejores'},
+    {tag:'8–9 años', q:'¿Cómo se llamaba el príncipe de los eunucos?', opts:['Aspenaz','Melsar','Beltsasar'], a:'Aspenaz'},
+    {tag:'8–9 años', q:'Además del conocimiento, ¿qué don especial recibió Daniel?', opts:['Entendimiento en toda visión y sueños','Fuerza para pelear','Una voz para cantar'], a:'Entendimiento en toda visión y sueños'},
+    {tag:'8–9 años', q:'¿Qué promesa de 1 Samuel 2:30 se cumplió en ellos?', opts:['«Yo honraré a los que me honran»','«No temas, yo te ayudo»','«Yo soy el pan de vida»'], a:'«Yo honraré a los que me honran»'},
+    {tag:'8–9 años', q:'¿Cuántos años duraría el cautiverio en Babilonia?', opts:['70 años','40 años','7 años'], a:'70 años'},
+    {tag:'8–9 años', q:'Según el capítulo, ¿qué dio carácter a toda su vida?', opts:['La fidelidad en las cosas pequeñas','La riqueza del palacio','La fuerza de su cuerpo'], a:'La fidelidad en las cosas pequeñas'},
+    {tag:'8–9 años', q:'¿Por qué el príncipe temía cambiarles la comida?', opts:['Temía que el rey lo condenara si los veía tristes','No había más comida','No sabía cocinar legumbres'], a:'Temía que el rey lo condenara si los veía tristes'}
+  ];
+
+  // ── Utilidades ──
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  // ── Elementos ──
+  const sceneWrap = document.getElementById('sceneWrap');
+  const sceneTabs = document.getElementById('sceneTabs');
+  const palette = document.getElementById('palette');
+  const promptTag = document.getElementById('promptTag');
+  const promptText = document.getElementById('promptText');
+  const promptHint = document.getElementById('promptHint');
+  const optionsBox = document.getElementById('options');
+  const roundLabel = document.getElementById('roundLabel');
+  const mainBtn = document.getElementById('mainBtn');
+  const judge = document.getElementById('judge');
+  const judgeMsg = document.getElementById('judgeMsg');
+  const practiceNote = document.getElementById('practiceNote');
+
+  // ── Estado del cuaderno ──
+  let activeScene = SCENES[0].id;
+  let selectedColor = 'dorado';
+  let painted = {}; // {escena: {zona: colorKey}}
+
+  function storeKey(){
+    const p = AvProfile.get();
+    return `${ACTIVITY}:progreso:${p ? p.id : 'anon'}`;
+  }
+  function loadPainted(){
+    let data = null;
+    try{ data = JSON.parse(localStorage.getItem(storeKey()) || 'null') }catch(e){ data = null }
+    painted = (data && typeof data === 'object') ? data : {};
+    SCENES.forEach(s => { if(!painted[s.id] || typeof painted[s.id] !== 'object') painted[s.id] = {} });
+  }
+  function savePainted(){
+    try{ localStorage.setItem(storeKey(), JSON.stringify(painted)) }catch(e){}
+  }
+
+  // ── Construir escenas y hojas imprimibles ──
+  SCENES.forEach((s, i) => {
+    const tab = document.createElement('button');
+    tab.className = 'scene-tab' + (i === 0 ? ' active' : '');
+    tab.type = 'button';
+    tab.dataset.scene = s.id;
+    tab.textContent = s.tab;
+    sceneTabs.appendChild(tab);
+
+    const holder = document.createElement('div');
+    holder.className = 'scene-holder' + (i === 0 ? ' active' : '');
+    holder.dataset.scene = s.id;
+    holder.appendChild(document.getElementById(s.tpl).content.cloneNode(true));
+    sceneWrap.appendChild(holder);
+  });
+
+  const printSheets = document.getElementById('printSheets');
+  SCENES.forEach((s, i) => {
+    const sheet = document.createElement('div');
+    sheet.className = 'print-sheet';
+    const h3 = document.createElement('h3');
+    h3.textContent = `${i + 1}. ${s.title}`;
+    const sub = document.createElement('p');
+    sub.className = 'sheet-sub';
+    sub.textContent = s.sub;
+    const foot = document.createElement('p');
+    foot.className = 'sheet-foot';
+    foot.textContent = 'Club de Aventureros · Profetas y Reyes cap. 39 · En la corte de Babilonia';
+    sheet.appendChild(h3);
+    sheet.appendChild(sub);
+    sheet.appendChild(document.getElementById(s.tpl).content.cloneNode(true));
+    sheet.appendChild(foot);
+    printSheets.appendChild(sheet);
+  });
+
+  // ── Paleta ──
+  COLORS.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'swatch' + (c.dark ? ' dark-text' : '') + (c.key === selectedColor ? ' sel' : '');
+    b.type = 'button';
+    b.dataset.color = c.key;
+    b.style.background = c.hex;
+    b.textContent = c.name;
+    b.setAttribute('aria-label', 'Color ' + c.name);
+    palette.appendChild(b);
+  });
+  palette.addEventListener('click', e => {
+    const b = e.target.closest('.swatch');
+    if(!b) return;
+    selectedColor = b.dataset.color;
+    palette.querySelectorAll('.swatch').forEach(s => s.classList.toggle('sel', s.dataset.color === selectedColor));
+  });
+
+  // ── Pintar ──
+  function zoneEls(sceneId, zone){
+    return sceneWrap.querySelectorAll(`.scene-holder[data-scene="${sceneId}"] .z[data-zone="${zone}"]`);
+  }
+  function paint(sceneId, zone, colorKey){
+    const c = COLOR_BY_KEY[colorKey];
+    zoneEls(sceneId, zone).forEach(el => { el.style.fill = c ? c.hex : '' });
+    if(c) painted[sceneId][zone] = colorKey;
+    else delete painted[sceneId][zone];
+    savePainted();
+  }
+  function repaintAll(){
+    SCENES.forEach(s => {
+      sceneWrap.querySelectorAll(`.scene-holder[data-scene="${s.id}"] .z`).forEach(el => { el.style.fill = '' });
+      Object.keys(painted[s.id] || {}).forEach(zone => {
+        const c = COLOR_BY_KEY[painted[s.id][zone]];
+        if(c) zoneEls(s.id, zone).forEach(el => { el.style.fill = c.hex });
+      });
+    });
+  }
+  sceneWrap.addEventListener('click', e => {
+    const z = e.target.closest('.z');
+    if(!z) return;
+    const holder = z.closest('.scene-holder');
+    if(!holder) return;
+    paint(holder.dataset.scene, z.dataset.zone, selectedColor);
+  });
+
+  function showScene(id){
+    activeScene = id;
+    sceneWrap.querySelectorAll('.scene-holder').forEach(h => h.classList.toggle('active', h.dataset.scene === id));
+    sceneTabs.querySelectorAll('.scene-tab').forEach(t => t.classList.toggle('active', t.dataset.scene === id));
+  }
+  sceneTabs.addEventListener('click', e => {
+    const t = e.target.closest('.scene-tab');
+    if(t) showScene(t.dataset.scene);
+  });
+
+  document.getElementById('eraseSceneBtn').addEventListener('click', () => {
+    painted[activeScene] = {};
+    savePainted();
+    repaintAll();
+  });
+  document.getElementById('eraseAllBtn').addEventListener('click', () => {
+    SCENES.forEach(s => { painted[s.id] = {} });
+    savePainted();
+    repaintAll();
+  });
+
+  function clearTargets(){
+    sceneWrap.querySelectorAll('.z.target').forEach(el => el.classList.remove('target'));
+  }
+  function markTargets(reto){
+    clearTargets();
+    reto.zones.forEach(zone => zoneEls(reto.scene, zone).forEach(el => el.classList.add('target')));
+  }
+
+  // ══════════ PARTIDA ══════════
+  let match = null; // {retos, quizzes, step, tries, answered, earned}
+
+  function phase(){
+    if(!match) return 'idle';
+    if(match.step < MATCH_CARDS) return 'card';
+    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
+    return 'done';
+  }
+  function canScoreNow(kind){
+    const p = AvProfile.get();
+    return !!p && AvProfile.canScore(kind);
+  }
+
+  function pickMatchRetos(){
+    const order = shuffle(SCENES.map(s => s.id));
+    const counts = [2, 1, 1, 1];
+    const out = [];
+    order.forEach((sceneId, i) => {
+      const pool = RETOS.filter(r => r.scene === sceneId);
+      out.push(...AvProfile.pick(`${ACTIVITY}:reto:${sceneId}`, pool, counts[i], r => r.text));
+    });
+    return out.slice(0, MATCH_CARDS);
+  }
+  function pickMatchQuiz(){
+    const out = [];
+    QUIZ_MIX.forEach(([tag, n]) => {
+      const group = QUIZ.filter(q => q.tag === tag);
+      out.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.q));
+    });
+    return out.slice(0, MATCH_QUIZ);
+  }
+
+  function startMatch(){
+    practiceNote.hidden = true;
+    const p0 = AvProfile.get();
+    match = {
+      practice: !p0 || (!AvProfile.canScore('card') && !AvProfile.canScore('quiz')),
+      retos: pickMatchRetos(),
+      quizzes: pickMatchQuiz(),
+      step: 0,
+      tries: 0,
+      answered: false,
+      earned: 0
+    };
+    showStep();
+  }
+
+  function showStep(){
+    judge.hidden = true;
+    optionsBox.hidden = true;
+    optionsBox.innerHTML = '';
+    match.tries = 0;
+    match.answered = false;
+    const ph = phase();
+    if(ph === 'card'){
+      const r = match.retos[match.step];
+      // Si esa zona ya venía con el color pedido, la dejamos en blanco: el reto
+      // se gana pintando, no encontrándolo hecho de una partida anterior.
+      r.zones.forEach(z => { if(painted[r.scene][z] === r.color) paint(r.scene, z, null) });
+      showScene(r.scene);
+      markTargets(r);
+      roundLabel.textContent = `Reto de color ${match.step + 1} de ${MATCH_CARDS}`;
+      promptTag.hidden = true;
+      promptText.textContent = '🖍️ ' + r.text;
+      promptHint.textContent = r.tip;
+      promptHint.hidden = false;
+      mainBtn.textContent = '✅ Ya lo pinté';
+      mainBtn.hidden = false;
+    }else if(ph === 'quiz'){
+      clearTargets();
+      const q = match.quizzes[match.step - MATCH_CARDS];
+      roundLabel.textContent = `Colorea y cuenta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
+      promptTag.hidden = false;
+      promptTag.textContent = q.tag;
+      promptText.textContent = q.q;
+      promptHint.textContent = 'Sigue pintando lo que quieras… y toca tu respuesta.';
+      promptHint.hidden = false;
+      shuffle(q.opts).forEach(opt => {
+        const b = document.createElement('button');
+        b.className = 'option';
+        b.type = 'button';
+        b.textContent = opt;
+        b.addEventListener('click', () => answerQuiz(b, opt, q));
+        optionsBox.appendChild(b);
+      });
+      optionsBox.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      finishMatch();
+    }
+  }
+
+  function feedback(html){
+    judgeMsg.innerHTML = html;
+    judge.hidden = false;
+  }
+
+  function checkReto(){
+    const r = match.retos[match.step];
+    const target = COLOR_BY_KEY[r.color];
+    const done = r.zones.every(z => painted[r.scene][z] === r.color);
+    if(done){
+      clearTargets();
+      if(canScoreNow('card')){
+        AvProfile.score(true, 'card');
+        match.earned++;
+        feedback(`⭐ ¡Perfecto! Quedó ${esc(target.name.toLowerCase())}. <strong>+1 punto</strong>`);
+      }else{
+        feedback(`⭐ ¡Perfecto! Quedó ${esc(target.name.toLowerCase())}. ${AvProfile.get() ? '🌙 Este reto es de práctica.' : '👤 Sin perfil: no suma al tablero.'}`);
+      }
+      match.answered = true;
+      mainBtn.textContent = 'Siguiente ▶';
+      return;
+    }
+    match.tries++;
+    if(match.tries === 1){
+      const faltan = r.zones.filter(z => painted[r.scene][z] !== r.color);
+      const labelEl = zoneEls(r.scene, faltan[0])[0];
+      const label = labelEl ? labelEl.dataset.label : 'esa parte';
+      feedback(`😊 Casi, casi. Falta pintar <strong>${esc(label)}</strong> de <strong>${esc(target.name.toLowerCase())}</strong>. Toca el color ${esc(target.name.toLowerCase())} y luego el dibujo… ¡tienes otro intento!`);
+      return;
+    }
+    // Segundo intento: lo pintamos juntos y explicamos con cariño.
+    r.zones.forEach(z => paint(r.scene, z, r.color));
+    clearTargets();
+    if(canScoreNow('card')){
+      AvProfile.score(false, 'card');
+    }
+    feedback(`🤗 Tranquilo, mira: así queda <strong>${esc(target.name.toLowerCase())}</strong>. Lo pintamos juntos. ¡En el siguiente reto te va a salir!`);
+    match.answered = true;
+    mainBtn.textContent = 'Siguiente ▶';
+    mainBtn.hidden = false;
+  }
+
+  function answerQuiz(btn, opt, q){
+    if(match.answered) return;
+    match.answered = true;
+    const ok = opt === q.a;
+    optionsBox.querySelectorAll('.option').forEach(b => {
+      b.disabled = true;
+      if(b.textContent === q.a) b.classList.add('right');
+    });
+    if(!ok) btn.classList.add('wrong');
+    if(canScoreNow('quiz')){
+      AvProfile.score(ok, 'quiz');
+      if(ok) match.earned++;
+      feedback(ok ? '⭐ ¡Correcto! <strong>+1 punto</strong>' : `😊 La respuesta era: <strong>${esc(q.a)}</strong>. ¡Ya la sabes para la próxima!`);
+    }else{
+      const nota = AvProfile.get() ? '🌙 Esta pregunta es de práctica.' : '👤 Sin perfil: no suma al tablero.';
+      feedback(ok ? `⭐ ¡Correcto! ${nota}` : `😊 La respuesta era: <strong>${esc(q.a)}</strong>. ${nota}`);
+    }
+    mainBtn.textContent = 'Siguiente ▶';
+    mainBtn.hidden = false;
+  }
+
+  function nextStep(){
+    match.step++;
+    showStep();
+  }
+
+  function finishMatch(){
+    clearTargets();
+    optionsBox.hidden = true;
+    optionsBox.innerHTML = '';
+    const p = AvProfile.get();
+    roundLabel.textContent = '¡Qué cuaderno tan bonito!';
+    promptTag.hidden = true;
+    promptText.textContent = '🏁 ¡Partida completa!';
+    promptHint.hidden = false;
+    promptHint.textContent = (p && !match.practice)
+      ? `⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida. Puedes seguir coloreando todo lo que quieras.`
+      : 'Puedes seguir coloreando todo lo que quieras.';
+    judge.hidden = true;
+    mainBtn.textContent = '🔁 Otra partida';
+    mainBtn.hidden = false;
+    match = null;
+    updateIdleHint();
+  }
+
+  function updateIdleHint(){
+    if(match) return;
+    const p = AvProfile.get();
+    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    if(!p){
+      practiceNote.innerHTML = '👤 Estás coloreando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.hidden = false;
+    }else if(practice){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero. ¡El cuaderno se puede colorear siempre!';
+      practiceNote.hidden = false;
+    }else{
+      practiceNote.hidden = true;
+    }
+    if(mainBtn.textContent.indexOf('Otra partida') !== -1){
+      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
+    }else if(mainBtn.textContent.indexOf('partida') !== -1){
+      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    }
+  }
+
+  mainBtn.addEventListener('click', () => {
+    if(!match){ startMatch(); return; }
+    if(phase() === 'card' && !match.answered){ checkReto(); return; }
+    if(match.answered){ nextStep(); }
+  });
+
+  // ── Menú ──
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  function closeMenu(){
+    menuPanel.hidden = true;
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.menu-wrap')) closeMenu();
+  });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      closeMenu();
+    });
+  });
+
+  document.getElementById('changePlayerBtn').addEventListener('click', () => {
+    closeMenu();
+    AvProfile.open();
+  });
+
+  // ── Iniciar ──
+  AvProfile.onChange(() => {
+    loadPainted();
+    repaintAll();
+    updateIdleHint();
+  });
+  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
+  loadPainted();
+  repaintAll();
+  updateIdleHint();
+</script>
+</body>
+</html>

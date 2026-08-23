@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2A1B4E">
+<title>El laberinto de Daniel</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Una partida diaria: lleva a Daniel por el laberinto hasta la ventana que mira a Jerusalén y responde 5 preguntas. ¡Suma puntos para el tablero del Club de Aventureros!">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="El laberinto de Daniel">
+<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Esquiva las trampas de los príncipes, recoge 5 estrellas y llega a la ventana que mira a Jerusalén.">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr44-laberinto/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    /* Paleta foso de los leones: noche medo-persa, oro del sello, melena de león */
+    --night:#2A1B4E;
+    --night-deep:#1B1136;
+    --gold:#F0B429;
+    --gold-soft:#FFD97A;
+    --brick:#C2542B;
+    --lion:#C97A2B;
+    --lion-deep:#8A4E15;
+    --star:#F7D23C;
+    --daniel:#2E9E5B;
+    --daniel-deep:#1E7040;
+    --cream:#FFF6E3;
+    --ink:#231A0F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--night);
+    background-image:
+      radial-gradient(circle at 18% 8%, rgba(255,217,122,.09), transparent 42%),
+      radial-gradient(circle at 88% 92%, rgba(201,122,43,.10), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  /* ── Cabecera ── */
+  header{text-align:center;padding:10px 16px 12px}
+  @media (max-width:600px){
+    .subtitle{display:none}
+    header{padding-bottom:8px}
+  }
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  h1{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.5rem,5vw,2.3rem);
+    line-height:1.15;
+    margin-top:6px;
+  }
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+
+  /* ── Barra superior + menú ── */
+  .topbar{
+    display:flex;align-items:center;gap:10px;
+    padding:10px 12px 0;max-width:1000px;margin:0 auto;
+  }
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
+  .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
+  .player-chip + .menu-wrap{margin-left:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+    .back-link{padding:8px 10px}
+    .menu-btn{padding:8px 12px}
+  }
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;
+    border:2px solid var(--gold);background:transparent;color:var(--gold-soft);
+    border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;
+    display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;
+    padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;
+    background:transparent;border:none;color:var(--ink);border-radius:12px;
+    padding:12px 14px;min-height:44px;cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--night);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--night-deep)}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+
+  /* ── Reto de puntos ── */
+  .judge{
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+    margin-top:16px;background:rgba(255,255,255,.07);border:2px dashed var(--gold);
+    border-radius:16px;padding:12px 14px;font-family:'Fredoka',sans-serif;font-weight:600;
+  }
+  .judge span{flex-basis:100%;text-align:center}
+  .judge[hidden]{display:none}
+  .practice-note{
+    margin-top:16px;text-align:center;font-weight:700;font-size:.95rem;
+    color:var(--gold-soft);opacity:.9;
+  }
+  .practice-note[hidden]{display:none}
+
+  /* ── Leyenda ── */
+  .legend{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+  .legend-item{
+    display:flex;align-items:center;gap:8px;border-radius:14px;
+    padding:8px 14px;font-weight:800;font-size:.88rem;
+  }
+  .legend-item .big{font-size:1.4rem}
+  .legend-house{background:var(--brick);color:#fff}
+  .legend-star{background:var(--star);color:var(--ink)}
+  .legend-lion{background:var(--lion);color:#fff}
+  .legend-win{background:var(--daniel);color:#fff}
+  .legend[hidden]{display:none}
+
+  /* ══════════ MODO JUEGO ══════════ */
+  .stage{max-width:460px;margin:0 auto;text-align:center}
+  .round-label{
+    font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.14em;
+    text-transform:uppercase;font-size:.8rem;margin-bottom:10px;
+  }
+  .hud{
+    display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.95rem;
+    margin-bottom:10px;
+  }
+  .hud[hidden]{display:none}
+  .hud b{color:var(--gold-soft)}
+
+  /* Nivel */
+  .level-picker{margin:0 auto 16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .level-picker[hidden]{display:none}
+  .level-btn{
+    font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:600;
+    background:transparent;color:var(--gold-soft);border:2px solid var(--gold);
+    border-radius:999px;padding:10px 16px;min-height:44px;cursor:pointer;
+  }
+  .level-btn.active{background:var(--gold);color:var(--night-deep)}
+  .level-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+  /* Laberinto */
+  .maze-box{
+    background:var(--cream);border:6px solid var(--gold);border-radius:24px;
+    box-shadow:0 12px 0 rgba(0,0,0,.28);padding:8px;margin-bottom:12px;
+  }
+  .maze-box[hidden]{display:none}
+  .maze-box svg{display:block;width:100%;height:auto}
+
+  .mz-bg{fill:var(--cream)}
+  /* Solo las casillas reciben el toque: lo pintado encima no debe robarlo. */
+  .maze-box svg > *{pointer-events:none}
+  .maze-box svg > .mz-cell{pointer-events:all}
+  .mz-cell{fill:transparent;cursor:pointer}
+  .mz-hint{fill:rgba(46,158,91,.55);stroke:var(--daniel-deep);stroke-width:1.5}
+  .mz-wall{stroke:var(--night);stroke-width:6;stroke-linecap:round}
+  .mz-house{fill:var(--brick);stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
+  .mz-house-door{fill:var(--gold-soft);stroke:var(--ink);stroke-width:3}
+  .mz-win{fill:#BFE4FF;stroke:var(--daniel-deep);stroke-width:3;stroke-linejoin:round}
+  .mz-win-bar{stroke:var(--daniel-deep);stroke-width:3;fill:none}
+  .mz-star{fill:var(--star);stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round}
+  .mz-star.taken{fill:#fff;opacity:.35}
+  .mz-lion{fill:var(--lion);stroke:var(--ink);stroke-width:3}
+  .mz-lion-face{fill:var(--gold-soft);stroke:var(--ink);stroke-width:2.5}
+  .mz-lion-dot{fill:var(--ink)}
+  .mz-lion-line{stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round}
+  .mz-token{filter:drop-shadow(0 0 3px var(--cream)) drop-shadow(0 0 3px var(--cream))}
+  .mz-token-body{fill:var(--daniel);stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
+  .mz-token-head{fill:var(--gold-soft);stroke:var(--ink);stroke-width:3}
+  .mz-here{fill:none;stroke:var(--daniel-deep);stroke-width:3;stroke-dasharray:5 5}
+
+  /* Botonera de flechas */
+  .pad{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+    max-width:280px;margin:0 auto 6px;
+  }
+  .pad[hidden]{display:none}
+  .pad button{
+    font-size:1.7rem;line-height:1;min-height:58px;border:none;border-radius:18px;
+    background:var(--gold);color:var(--night-deep);cursor:pointer;
+    box-shadow:0 5px 0 rgba(0,0,0,.3);
+  }
+  .pad button:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .pad button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .pad .up{grid-column:2}
+  .pad .left{grid-column:1;grid-row:2}
+  .pad .down{grid-column:2;grid-row:2}
+  .pad .right{grid-column:3;grid-row:2}
+
+  .msg{
+    min-height:2.6em;margin:10px auto 0;max-width:420px;
+    font-weight:700;font-size:1rem;line-height:1.35;
+  }
+  .msg.bad{color:var(--gold-soft)}
+  .msg.good{color:#9FE7BC}
+  .msg .pop{display:inline-block;animation:pop .35s cubic-bezier(.2,1.6,.4,1) both}
+  @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+  @media (prefers-reduced-motion:reduce){.msg .pop{animation:none}}
+
+  .game-card{
+    background:var(--cream);color:var(--ink);border-radius:28px;
+    border:6px solid var(--gold);box-shadow:0 12px 0 rgba(0,0,0,.28);
+    padding:30px 20px 26px;min-height:250px;display:flex;flex-direction:column;
+    justify-content:center;align-items:center;gap:12px;
+  }
+  .game-card[hidden]{display:none}
+  .game-card .emoji{font-size:clamp(4rem,20vw,6.5rem);line-height:1}
+  .game-card .big-name{
+    font-family:'Fredoka',sans-serif;font-weight:700;
+    font-size:clamp(1.3rem,5.5vw,1.9rem);line-height:1.15;
+  }
+  .game-card .hint{font-weight:700;font-size:1rem;opacity:.7}
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+  .btn{
+    font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;border:none;
+    border-radius:999px;padding:14px 30px;cursor:pointer;min-height:48px;
+    box-shadow:0 5px 0 rgba(0,0,0,.3);transition:transform .1s ease;
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-gold{background:var(--gold);color:var(--night-deep)}
+  .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-outline:active{transform:translateY(2px)}
+  .btn-sm{font-size:.95rem;padding:9px 20px;min-height:44px}
+  .btn[hidden]{display:none}
+
+  /* Preguntas */
+  .quiz-box{
+    margin-top:6px;background:rgba(255,255,255,.07);border:2px dashed var(--gold);
+    border-radius:20px;padding:18px 16px;
+  }
+  .quiz-box[hidden]{display:none}
+  .quiz-tag{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-size:.75rem;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;background:var(--brick);color:#fff;
+    border-radius:999px;padding:4px 12px;margin-bottom:10px;
+  }
+  .quiz-q{font-size:1.1rem;font-weight:700}
+  .quiz-a{margin-top:10px;font-weight:800;color:var(--gold-soft);display:none}
+  .quiz-a.show{display:block}
+
+  /* ══════════ IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:600px;margin:0 auto 20px}
+  .print-maze{
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);
+    border-radius:22px;padding:16px;margin:0 auto 24px;max-width:560px;
+    box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .print-maze h3{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;margin-bottom:4px;
+  }
+  .print-maze p{font-size:.9rem;margin-bottom:10px}
+  .print-maze svg{display:block;width:100%;height:auto;max-width:460px;margin:0 auto}
+
+  /* ── Volver al índice ── */
+  .back-link{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--gold-soft);text-decoration:none;border:2px solid transparent;
+    border-radius:999px;padding:8px 16px;margin-bottom:8px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+  /* ══════════ PARA PADRES ══════════ */
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);
+    border-radius:22px;padding:22px 20px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.2rem;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .verse{
+    border-left:5px solid var(--brick);background:rgba(194,84,43,.08);
+    border-radius:0 12px 12px 0;padding:12px 14px;font-style:italic;font-weight:700;
+  }
+  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
+
+  /* ── Impresión: un laberinto por hoja, en blanco y negro ── */
+  @media print{
+    body{background:#fff;color:#000}
+    header,.topbar,#juego,#padres,.print-note{display:none!important}
+    section{display:block!important;padding:0}
+    #material{display:block!important}
+    .print-maze{
+      box-shadow:none;border:none;padding:0;max-width:none;
+      break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid;
+    }
+    .print-maze:last-child{break-after:auto;page-break-after:auto}
+    .print-maze svg{max-width:165mm}
+    .mz-bg{fill:#fff}
+    .mz-wall{stroke:#000}
+    .mz-house,.mz-house-door,.mz-win,.mz-star,.mz-lion,.mz-lion-face{fill:#fff;stroke:#000}
+    .mz-lion-line{stroke:#000}
+    .mz-win-bar{stroke:#000}
+    .mz-lion-dot{fill:#000}
+    .mz-hint{fill:none}
+    .mz-here{fill:none;stroke:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="juego">🌀 El laberinto</button>
+      <button class="menu-item" data-tab="material">🖨️ Laberintos para imprimir</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 44 · En el foso de los leones</div>
+  <h1>El laberinto de Daniel</h1>
+  <p class="subtitle">De su casa a la ventana abierta que mira a Jerusalén.</p>
+</header>
+
+<!-- ══════════ MODO JUEGO ══════════ -->
+<section id="juego" class="active">
+  <div class="legend" id="legend">
+    <div class="legend-item legend-house"><span class="big">🏠</span> La casa de Daniel</div>
+    <div class="legend-item legend-star"><span class="big">⭐</span> Estrella = +1 punto</div>
+    <div class="legend-item legend-lion"><span class="big">🦁</span> Trampa de los príncipes</div>
+    <div class="legend-item legend-win"><span class="big">🪟</span> La ventana a Jerusalén</div>
+  </div>
+
+  <div class="stage">
+    <div class="round-label" id="roundLabel">¿Listos, aventureros?</div>
+
+    <div class="hud" id="hud" hidden>
+      <span>⭐ <b id="starCount">0</b>/5 estrellas</span>
+      <span>🌀 <b id="mazeName">—</b></span>
+      <span>👣 <b id="stepCount">0</b> pasos</span>
+    </div>
+
+    <div class="maze-box" id="mazeBox" hidden aria-live="polite"></div>
+
+    <div class="pad" id="pad" hidden role="group" aria-label="Mover a Daniel">
+      <button class="up" id="btnUp" type="button" aria-label="Mover arriba">⬆️</button>
+      <button class="left" id="btnLeft" type="button" aria-label="Mover a la izquierda">⬅️</button>
+      <button class="down" id="btnDown" type="button" aria-label="Mover abajo">⬇️</button>
+      <button class="right" id="btnRight" type="button" aria-label="Mover a la derecha">➡️</button>
+    </div>
+
+    <div class="game-card" id="gameCard">
+      <div class="emoji">🌀</div>
+      <div class="big-name">¡Partida de laberinto!</div>
+      <div class="hint">5 estrellas en el camino + 5 preguntas del capítulo</div>
+    </div>
+
+    <div class="quiz-box" id="quizBox" hidden>
+      <span class="quiz-tag" id="quizTag">6–7 años</span>
+      <div class="quiz-q" id="quizQ"></div>
+      <div class="quiz-a" id="quizA"></div>
+    </div>
+
+    <p class="msg" id="msg" aria-live="polite"></p>
+
+    <div class="level-picker" id="levelPicker" role="group" aria-label="Elige el nivel">
+      <button class="level-btn" type="button" data-level="facil">🐣 4–5 años</button>
+      <button class="level-btn active" type="button" data-level="medio">🙂 6–7 años</button>
+      <button class="level-btn" type="button" data-level="largo">🦉 8–9 años</button>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-gold" id="mainBtn" type="button">▶ Jugar partida</button>
+      <button class="btn btn-outline btn-sm" id="newMazeBtn" type="button" hidden>🔁 Otro laberinto</button>
+      <button class="btn btn-outline btn-sm" id="skipMazeBtn" type="button" hidden>Ir a las preguntas ▶</button>
+    </div>
+
+    <div class="judge" id="judge" hidden>
+      <span id="judgeQ">¿Acertó?</span>
+      <button class="btn btn-gold btn-sm" id="judgeYes" type="button">⭐ ¡Sí! +1</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo" type="button">😅 Esta vez no</button>
+    </div>
+
+    <p class="practice-note" id="practiceNote" hidden></p>
+  </div>
+</section>
+
+<!-- ══════════ IMPRIMIBLE ══════════ -->
+<section id="material">
+  <p class="print-note">
+    Usa <strong>Ctrl/Cmd + P</strong>: sale <strong>un laberinto por hoja</strong>, en blanco y negro,
+    listo para resolver con lápiz. Empiecen en la <strong>casa</strong> (abajo a la izquierda),
+    pasen por las <strong>5 estrellas</strong>, esquiven los <strong>leones</strong> y lleguen a la
+    <strong>ventana</strong> (arriba a la derecha). Aquí van <strong>6 laberintos</strong> de muestra
+    (dos por nivel); en pantalla hay <strong>10 por nivel</strong>.
+  </p>
+  <div id="printMazes"></div>
+</section>
+
+<!-- ══════════ PARA PADRES ══════════ -->
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 La historia</h2>
+    <p>Esta dinámica está basada en <strong>Daniel 6</strong> (capítulo 44 de <em>Profetas y Reyes</em>, «En el foso de los leones»). Cuando Darío el Medo reorganizó el reino, puso <strong>120 gobernadores</strong> y <strong>tres presidentes</strong>, y Daniel era el primero de ellos: el rey pensaba ponerlo sobre todo el reino.</p>
+    <p>Los celos hicieron que los príncipes buscaran una falta en Daniel, pero «él era fiel, y ningún vicio ni falta fue en él hallado». Entonces prepararon una trampa: un <strong>decreto</strong> que prohibía por <strong>30 días</strong> pedir algo a Dios o a los hombres, excepto al rey, con el foso de los leones como castigo. Apelaron a la vanidad de Darío, y él lo firmó.</p>
+    <p>Daniel entendió el plan, pero «no cambió su conducta en un solo detalle»: siguió entrando a su cámara <strong>tres veces al día</strong>, con las <strong>ventanas abiertas hacia Jerusalén</strong>. Lo espiaron todo un día, lo acusaron y lo echaron al foso. A la mañana siguiente Daniel respondió: «El Dios mío envió su ángel, el cual cerró la boca de los leones». No se halló ninguna lesión en él, y Darío proclamó a todos los pueblos que el Dios de Daniel es «el Dios viviente y permanente por todos los siglos».</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>💡 ¿Qué aprende su hijo?</h2>
+    <ul>
+      <li><strong>Orar siempre</strong>: Daniel no dejó de orar cuando fue peligroso. «¿Por qué dejaría de orar ahora, cuando más necesitaba hacerlo?»</li>
+      <li><strong>Ser el mismo en la prueba y en la calma</strong>: en el foso Daniel fue igual que en el palacio.</li>
+      <li><strong>Reconocer las trampas</strong>: el decreto, la adulación, la envidia, el espionaje y el miedo a orar. En el juego son los leones que hay que esquivar.</li>
+      <li><strong>Nadie se mete entre nosotros y Dios</strong>: «ninguna potencia terrenal tiene derecho a interponerse entre el alma y Dios».</li>
+    </ul>
+    <p class="verse">«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal» <span>Daniel 6:22</span></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🏠 Cómo jugar la dinámica</h2>
+    <ol>
+      <li>Elijan el <strong>nivel</strong> según la edad (🐣 4–5, 🙂 6–7, 🦉 8–9) y toquen <strong>▶ Jugar partida</strong>.</li>
+      <li>Mueve a Daniel con las <strong>flechas grandes</strong> (⬆️⬇️⬅️➡️) o tocando una casilla vecina. Las paredes no se pueden atravesar.</li>
+      <li>Cada <strong>⭐ estrella</strong> del camino suma <strong>1 punto</strong> (son 5 por laberinto) y se convierte en el nuevo punto de partida del tramo.</li>
+      <li>Si cae en un <strong>🦁 león</strong>, no pierde nada: se muestra <em>qué trampa</em> pusieron los príncipes y Daniel vuelve al inicio de ese tramo. Aprovechen para conversar sobre esa trampa.</li>
+      <li>Al llegar a la <strong>🪟 ventana</strong>, Daniel ora tres veces al día… y salen <strong>5 preguntas</strong> del capítulo, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Revelen la respuesta y digan a la app si acertó.</li>
+      <li>Los laberintos y las preguntas <strong>no se repiten</strong> hasta agotarse: la app recuerda por niño lo que ya salió esta semana.</li>
+      <li>Sin pantalla: impriman los laberintos desde la pestaña <strong>🖨️</strong> y resuélvanlos con lápiz.</li>
+    </ol>
+    <p>Las preguntas cubren todo el capítulo 44, así que también sirven de repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ El reto de la semana</h2>
+    <p>Jueguen <strong>una partida por día</strong>: un laberinto con 5 estrellas + 5 preguntas. Cada acierto suma <strong>⭐ 1 punto</strong> (las fallas no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de laberinto y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. Las partidas extra son <strong>de práctica</strong>. El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>El reto de la casa: escojan <strong>tres momentos del día</strong> (mañana, tarde y noche) para orar juntos, como Daniel. Marquen en el laberinto impreso una estrella cada vez que lo cumplan.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+
+<script>
+  // ── Datos: laberintos de 7x7 ──
+  // grid: 15 filas x 15 columnas. '#' = pared, '.' = paso.
+  // La casilla (r,c) vive en grid[2r+1][2c+1]; la pared entre dos casillas
+  // vecinas vive en grid[r1+r2+1][c1+c2+1].
+  // Salida (casa): fila 6, columna 0. Llegada (ventana): fila 0, columna 6.
+  const MAZES = [
+    {id:'facil0', level:'facil', tag:'4–5 años', nivel:'Fácil', pasos:16, print:true,
+     grid:[
+       '###############',
+       '#.....#.#.....#',
+       '#####.#.#####.#',
+       '#.....#.......#',
+       '#.#.#.###.###.#',
+       '#.#.#.#.#.#.#.#',
+       '###.###.###.#.#',
+       '#.....#.#.#...#',
+       '#.#####.#.###.#',
+       '#.........#...#',
+       '#.###.###.###.#',
+       '#...#.#...#...#',
+       '#.#######.#.#.#',
+       '#.....#.....#.#',
+       '###############'
+     ],
+     stars:[[4,1],[4,4],[6,4],[5,5],[3,6]],
+     lions:[[4,5],[6,3],[5,1],[3,5],[3,0]]},
+    {id:'facil1', level:'facil', tag:'4–5 años', nivel:'Fácil', pasos:14, print:true,
+     grid:[
+       '###############',
+       '#.#.#.#...#...#',
+       '#.#.#.#.###.#.#',
+       '#.#...#.....#.#',
+       '#.#.#####.#####',
+       '#...#.........#',
+       '###.#.#.###.###',
+       '#.....#...#...#',
+       '###.###.###.###',
+       '#.....#...#...#',
+       '#.#####.#####.#',
+       '#.....#.....#.#',
+       '###.#########.#',
+       '#.........#...#',
+       '###############'
+     ],
+     stars:[[5,0],[4,1],[3,2],[2,3],[1,4]],
+     lions:[[5,2],[4,2],[2,5],[1,6],[2,1]]},
+    {id:'facil2', level:'facil', tag:'4–5 años', nivel:'Fácil', pasos:14, print:false,
+     grid:[
+       '###############',
+       '#.#.....#.#.#.#',
+       '#.#####.#.#.#.#',
+       '#.#.......#.#.#',
+       '#.###.###.#.#.#',
+       '#.....#...#.#.#',
+       '#####.###.#.#.#',
+       '#...#.#.#.#...#',
+       '#.#####.#.#.###',
+       '#...#.........#',
+       '#.#######.#.###',
+       '#.#.#...#.#.#.#',
+       '#.#.#.#.#.#.#.#',
+       '#.....#...#...#',
+       '###############'
+     ],
+     stars:[[5,2],[6,3],[5,4],[4,5],[3,6]],
+     lions:[[5,5],[5,1],[4,6],[4,3],[3,4]]},
+    {id:'facil3', level:'facil', tag:'4–5 años', nivel:'Fácil', pasos:16, print:false,
+     grid:[
+       '###############',
+       '#.............#',
+       '#.#.###.#.###.#',
+       '#.#...#.#.#...#',
+       '#.#####.#.###.#',
+       '#.....#.#.#...#',
+       '###.#####.#####',
+       '#...#.#.#...#.#',
+       '###.#.#.#.###.#',
+       '#.......#.#...#',
+       '#####.#####.#.#',
+       '#.......#.#.#.#',
+       '###.###.#.#.###',
+       '#.....#.......#',
+       '###############'
+     ],
+     stars:[[5,2],[3,1],[2,0],[0,0],[0,3]],
+     lions:[[5,3],[1,3],[2,2],[6,2],[4,0]]},
+    {id:'facil4', level:'facil', tag:'4–5 años', nivel:'Fácil', pasos:16, print:false,
+     grid:[
+       '###############',
+       '#.......#.....#',
+       '#######.#.#####',
+       '#...#.....#...#',
+       '#.###.#.#.###.#',
+       '#.....#.#.....#',
+       '#.###.###.###.#',
+       '#.#.....#.#.#.#',
+       '#.###.###.#.###',
+       '#.#.#.#.....#.#',
+       '#.#.#######.#.#',
+       '#.....#...#.#.#',
+       '#####.#.###.#.#',
+       '#.......#.....#',
+       '###############'
+     ],
+     stars:[[5,2],[4,0],[2,0],[2,2],[1,4]],
+     lions:[[3,2],[6,3],[1,0],[2,3],[2,4]]},
+    {id:'facil5', level:'facil', tag:'4–5 años', nivel:'Fácil', pasos:14, print:false,
+     grid:[
+       '###############',
+       '#.....#.#.#...#',
+       '#.#####.#.###.#',
+       '#.#...#...#.#.#',
+       '#.#.#####.#.#.#',
+       '#.......#...#.#',
+       '#.#######.###.#',
+       '#.#.#.....#.#.#',
+       '#.#.#####.#.#.#',
+       '#.........#...#',
+       '#.#######.#.###',
+       '#.....#.......#',
+       '#.#.###.###.###',
+       '#.#.#.....#...#',
+       '###############'
+     ],
+     stars:[[4,1],[4,3],[5,4],[4,5],[3,6]],
+     lions:[[5,1],[6,5],[3,4],[3,5],[3,0]]},
+    {id:'facil6', level:'facil', tag:'4–5 años', nivel:'Fácil', pasos:12, print:false,
+     grid:[
+       '###############',
+       '#.......#.....#',
+       '#######.###.###',
+       '#.....#...#...#',
+       '#####.#.###.#.#',
+       '#.#.#.#.....#.#',
+       '#.#.#.#.#.#.#.#',
+       '#.#.....#.#.#.#',
+       '#.#.###.#.#####',
+       '#.#...#.#...#.#',
+       '#.#.###.#.#.#.#',
+       '#...#...#.#...#',
+       '#.###.#.#.#.###',
+       '#...#.#.#.#...#',
+       '###############'
+     ],
+     stars:[[4,1],[3,1],[3,3],[2,4],[2,5]],
+     lions:[[4,0],[1,6],[0,4],[4,2],[4,3]]},
+    {id:'facil7', level:'facil', tag:'4–5 años', nivel:'Fácil', pasos:16, print:false,
+     grid:[
+       '###############',
+       '#...#...#.#...#',
+       '###.###.#.###.#',
+       '#.....#.#.....#',
+       '#.#.#.#.#.#.###',
+       '#.#.#.....#...#',
+       '#.###.###.#.#.#',
+       '#...#...#.#.#.#',
+       '#.#.#.#.###.###',
+       '#.#.#.#...#...#',
+       '#.#######.#.#.#',
+       '#.......#.#.#.#',
+       '###.#.#.#.#####',
+       '#...#.#.#.....#',
+       '###############'
+     ],
+     stars:[[5,0],[2,0],[1,1],[2,2],[1,4]],
+     lions:[[3,2],[2,5],[1,3],[2,1],[0,1]]},
+    {id:'facil8', level:'facil', tag:'4–5 años', nivel:'Fácil', pasos:14, print:false,
+     grid:[
+       '###############',
+       '#.#.....#.....#',
+       '#.#####.###.###',
+       '#.#...#.......#',
+       '#.#.#####.###.#',
+       '#...#.#...#...#',
+       '###.#.###.###.#',
+       '#.......#.#...#',
+       '#######.#####.#',
+       '#...#...#.#...#',
+       '#.#####.#.#.#.#',
+       '#.#.#.......#.#',
+       '#.#.###.#.###.#',
+       '#.......#...#.#',
+       '###############'
+     ],
+     stars:[[6,3],[5,4],[4,5],[3,6],[1,6]],
+     lions:[[4,4],[6,4],[2,5],[0,4],[5,1]]},
+    {id:'facil9', level:'facil', tag:'4–5 años', nivel:'Fácil', pasos:12, print:false,
+     grid:[
+       '###############',
+       '#.........#...#',
+       '###.#.###.#.###',
+       '#.#.#.#.......#',
+       '#.#######.###.#',
+       '#...#.#.....#.#',
+       '###.#.#.#.#####',
+       '#.......#.....#',
+       '#####.#.###.###',
+       '#.....#.#.#...#',
+       '#.###.###.#.###',
+       '#...#.....#...#',
+       '#.#####.#.###.#',
+       '#...#...#...#.#',
+       '###############'
+     ],
+     stars:[[4,1],[4,2],[3,3],[2,4],[1,4]],
+     lions:[[5,2],[1,6],[3,4],[1,3],[2,5]]},
+    {id:'medio0', level:'medio', tag:'6–7 años', nivel:'Medio', pasos:26, print:true,
+     grid:[
+       '###############',
+       '#.#.....#.#...#',
+       '#.#.###.#.#.###',
+       '#.....#...#...#',
+       '#.#######.###.#',
+       '#.......#.#...#',
+       '#.#.###.#.#.#.#',
+       '#.#.#...#...#.#',
+       '#.#####.#####.#',
+       '#.#.......#.#.#',
+       '#####.#.#.#.###',
+       '#...#.#.#.....#',
+       '###.#.###.#####',
+       '#.......#.....#',
+       '###############'
+     ],
+     stars:[[4,3],[2,1],[0,1],[1,4],[2,5]],
+     lions:[[4,1],[3,0],[3,1],[3,6],[0,0]]},
+    {id:'medio1', level:'medio', tag:'6–7 años', nivel:'Medio', pasos:28, print:true,
+     grid:[
+       '###############',
+       '#.#.#.#.#.....#',
+       '#.#.#.#.###.###',
+       '#.......#.#...#',
+       '###.#####.###.#',
+       '#...#...#.#.#.#',
+       '###.###.#.#.#.#',
+       '#...#.#.......#',
+       '#.#.#.###.#####',
+       '#.#.....#.....#',
+       '#.#####.#####.#',
+       '#.....#...#...#',
+       '#####.#.#.#.#.#',
+       '#.....#.#...#.#',
+       '###############'
+     ],
+     stars:[[5,0],[4,2],[6,4],[4,6],[3,6]],
+     lions:[[3,3],[6,6],[2,1],[6,3],[3,2]]},
+    {id:'medio2', level:'medio', tag:'6–7 años', nivel:'Medio', pasos:22, print:false,
+     grid:[
+       '###############',
+       '#...#.....#.#.#',
+       '###.###.#.#.#.#',
+       '#.......#...#.#',
+       '#######.#.#.#.#',
+       '#.#...#.#.#.#.#',
+       '#.###.#.###.#.#',
+       '#.#.......#...#',
+       '#.#######.#.#.#',
+       '#.#...#...#.#.#',
+       '#.#.#.#.#######',
+       '#...#.........#',
+       '###.#####.#.#.#',
+       '#.......#.#.#.#',
+       '###############'
+     ],
+     stars:[[4,2],[4,4],[2,3],[0,4],[3,5]],
+     lions:[[0,5],[2,4],[5,0],[6,2],[5,4]]},
+    {id:'medio3', level:'medio', tag:'6–7 años', nivel:'Medio', pasos:24, print:false,
+     grid:[
+       '###############',
+       '#...#.#.....#.#',
+       '#.###.###.#.#.#',
+       '#...#.#...#.#.#',
+       '#.#.#.###.#.#.#',
+       '#.#.....#.#.#.#',
+       '#.#.###.#.#.#.#',
+       '#.#...#.#.#...#',
+       '#.#.#####.###.#',
+       '#.#.......#.#.#',
+       '#.#####.#.#.#.#',
+       '#.....#.#...#.#',
+       '#.#.#.#.#.#.#.#',
+       '#.#.#.#.#.#.#.#',
+       '###############'
+     ],
+     stars:[[1,0],[3,1],[4,4],[0,4],[2,5]],
+     lions:[[5,1],[2,2],[4,6],[5,3],[0,0]]},
+    {id:'medio4', level:'medio', tag:'6–7 años', nivel:'Medio', pasos:26, print:false,
+     grid:[
+       '###############',
+       '#.#...........#',
+       '#.###.#########',
+       '#.#.#.#.......#',
+       '#.#.#.#.#####.#',
+       '#.......#.....#',
+       '#########.#####',
+       '#.......#.....#',
+       '###.#.#.###.#.#',
+       '#.#.#.#.....#.#',
+       '#.###.#######.#',
+       '#.#.....#...#.#',
+       '#.#.#.###.#.###',
+       '#...#.....#...#',
+       '###############'
+     ],
+     stars:[[3,2],[4,5],[2,5],[1,4],[1,2]],
+     lions:[[2,1],[5,3],[0,1],[6,2],[5,0]]},
+    {id:'medio5', level:'medio', tag:'6–7 años', nivel:'Medio', pasos:24, print:false,
+     grid:[
+       '###############',
+       '#.........#.#.#',
+       '#####.###.#.#.#',
+       '#.....#...#.#.#',
+       '###.###.###.#.#',
+       '#...#.#.......#',
+       '###.#.#########',
+       '#.#...........#',
+       '#.#####.#.#.#.#',
+       '#.......#.#.#.#',
+       '#.#######.#####',
+       '#.......#.....#',
+       '###.###.###.#.#',
+       '#...#.....#.#.#',
+       '###############'
+     ],
+     stars:[[4,1],[3,3],[1,1],[0,4],[2,3]],
+     lions:[[1,5],[2,0],[5,2],[2,2],[0,1]]},
+    {id:'medio6', level:'medio', tag:'6–7 años', nivel:'Medio', pasos:28, print:false,
+     grid:[
+       '###############',
+       '#.............#',
+       '#.#############',
+       '#.#...........#',
+       '#.#.#########.#',
+       '#.....#.......#',
+       '#.#####.#.#####',
+       '#.#.....#.....#',
+       '###.#######.#.#',
+       '#.......#...#.#',
+       '#####.###.###.#',
+       '#.#.#...#.#...#',
+       '#.#.#.#.#######',
+       '#.....#.......#',
+       '###############'
+     ],
+     stars:[[4,1],[2,4],[1,5],[1,1],[0,1]],
+     lions:[[5,0],[4,0],[3,4],[3,0],[4,3]]},
+    {id:'medio7', level:'medio', tag:'6–7 años', nivel:'Medio', pasos:26, print:false,
+     grid:[
+       '###############',
+       '#.#.#.#.#.....#',
+       '#.#.#.#.#.#####',
+       '#.........#...#',
+       '#####.###.#.#.#',
+       '#...#...#...#.#',
+       '###.#######.#.#',
+       '#.#...#...#.#.#',
+       '#.#.#####.###.#',
+       '#.......#...#.#',
+       '#.#.#####.#.#.#',
+       '#.#...#...#.#.#',
+       '#.###.###.#.#.#',
+       '#...#.....#...#',
+       '###############'
+     ],
+     stars:[[5,2],[5,4],[6,5],[3,6],[2,5]],
+     lions:[[3,0],[3,4],[3,1],[1,3],[5,3]]},
+    {id:'medio8', level:'medio', tag:'6–7 años', nivel:'Medio', pasos:26, print:false,
+     grid:[
+       '###############',
+       '#.....#.....#.#',
+       '#.###.###.#.#.#',
+       '#...#.....#.#.#',
+       '#######.###.#.#',
+       '#.....#...#.#.#',
+       '#####.#.###.#.#',
+       '#.#...#.#.#.#.#',
+       '#.#.###.#.#.#.#',
+       '#.......#...#.#',
+       '###.#.###.###.#',
+       '#...#.#.#.#...#',
+       '#.###.#.#.#.###',
+       '#...#.#.......#',
+       '###############'
+     ],
+     stars:[[4,3],[1,4],[2,5],[5,4],[5,6]],
+     lions:[[1,2],[6,6],[5,2],[6,1],[0,3]]},
+    {id:'medio9', level:'medio', tag:'6–7 años', nivel:'Medio', pasos:28, print:false,
+     grid:[
+       '###############',
+       '#.............#',
+       '#.#############',
+       '#.#...#.....#.#',
+       '#.#.#.#.#.###.#',
+       '#...#...#.....#',
+       '#############.#',
+       '#.............#',
+       '###.#.#.#.###.#',
+       '#.#.#.#.#.#.#.#',
+       '#.#.#.#.###.###',
+       '#...#.#.......#',
+       '#.#######.#.###',
+       '#.......#.#...#',
+       '###############'
+     ],
+     stars:[[3,2],[2,6],[1,3],[1,1],[0,1]],
+     lions:[[4,3],[4,2],[4,4],[3,0],[4,6]]},
+    {id:'largo0', level:'largo', tag:'8–9 años', nivel:'Largo', pasos:42, print:true,
+     grid:[
+       '###############',
+       '#...........#.#',
+       '#.#######.#.#.#',
+       '#...#...#.#.#.#',
+       '###.#.#.###.#.#',
+       '#.....#.#...#.#',
+       '#######.#.###.#',
+       '#.#.....#...#.#',
+       '#.#.#######.#.#',
+       '#.#...#.....#.#',
+       '#.###.#.#####.#',
+       '#.....#.#...#.#',
+       '#.###.#.#.#.#.#',
+       '#...#.#...#...#',
+       '###############'
+     ],
+     stars:[[3,3],[1,1],[0,5],[4,4],[5,5]],
+     lions:[[1,4],[2,0],[6,2],[6,1],[4,0]]},
+    {id:'largo1', level:'largo', tag:'8–9 años', nivel:'Largo', pasos:34, print:true,
+     grid:[
+       '###############',
+       '#...#...#...#.#',
+       '#.#.#.#.#.#.#.#',
+       '#.#...#...#...#',
+       '#.#############',
+       '#.#...........#',
+       '#.#.#######.#.#',
+       '#.#.#.......#.#',
+       '#.#.#.#.#.#.###',
+       '#.#.#.#.#.#...#',
+       '#.#.#.#######.#',
+       '#...#.#...#...#',
+       '#####.#.#.###.#',
+       '#.......#.#...#',
+       '###############'
+     ],
+     stars:[[3,3],[2,2],[5,0],[0,0],[1,3]],
+     lions:[[6,3],[4,4],[4,3],[4,5],[2,6]]},
+    {id:'largo2', level:'largo', tag:'8–9 años', nivel:'Largo', pasos:34, print:false,
+     grid:[
+       '###############',
+       '#...#...#.....#',
+       '#.#.#.#.#.#####',
+       '#.#...#.#.....#',
+       '#.#####.###.#.#',
+       '#.#.......#.#.#',
+       '#.###.#######.#',
+       '#.#.....#.....#',
+       '#.#.#########.#',
+       '#.#...........#',
+       '#.#####.#.#.#.#',
+       '#.....#.#.#.#.#',
+       '#####.###.#.#.#',
+       '#.......#.#.#.#',
+       '###############'
+     ],
+     stars:[[4,0],[1,1],[2,3],[4,2],[2,6]],
+     lions:[[5,3],[3,5],[5,5],[5,6],[6,3]]},
+    {id:'largo3', level:'largo', tag:'8–9 años', nivel:'Largo', pasos:38, print:false,
+     grid:[
+       '###############',
+       '#.....#.#.....#',
+       '#.###.#.###.###',
+       '#...#.....#...#',
+       '#.#.###.#####.#',
+       '#.#...#.....#.#',
+       '#####.#.###.#.#',
+       '#.....#.#...#.#',
+       '#.#########.#.#',
+       '#.........#.#.#',
+       '#.#######.#.#.#',
+       '#.#.....#.#...#',
+       '###.#.###.#####',
+       '#...#.........#',
+       '###############'
+     ],
+     stars:[[5,4],[3,0],[1,0],[2,3],[5,6]],
+     lions:[[0,4],[3,4],[0,3],[3,3],[1,4]]},
+    {id:'largo4', level:'largo', tag:'8–9 años', nivel:'Largo', pasos:38, print:false,
+     grid:[
+       '###############',
+       '#.#.#.....#...#',
+       '#.#.###.#.#.###',
+       '#.......#.#...#',
+       '###.#####.###.#',
+       '#.#.#.....#...#',
+       '#.#.#.#####.###',
+       '#...#.#...#...#',
+       '#.###.#.#.###.#',
+       '#...#...#.#...#',
+       '###.#####.#.###',
+       '#.....#...#...#',
+       '#.#####.#.###.#',
+       '#...#...#.....#',
+       '###############'
+     ],
+     stars:[[2,1],[1,4],[4,3],[6,5],[3,6]],
+     lions:[[0,2],[6,1],[5,3],[1,0],[2,0]]},
+    {id:'largo5', level:'largo', tag:'8–9 años', nivel:'Largo', pasos:32, print:false,
+     grid:[
+       '###############',
+       '#.....#.....#.#',
+       '#.###.#.#.###.#',
+       '#...#...#...#.#',
+       '###.#######.#.#',
+       '#.....#...#.#.#',
+       '###.###.#.#.#.#',
+       '#...#...#...#.#',
+       '#.###.#.#####.#',
+       '#...#.#.......#',
+       '###.#######.###',
+       '#.....#.......#',
+       '###.#.###.#.###',
+       '#...#...#.#...#',
+       '###############'
+     ],
+     stars:[[3,1],[0,1],[0,4],[3,4],[4,4]],
+     lions:[[0,5],[5,0],[2,2],[3,2],[2,0]]},
+    {id:'largo6', level:'largo', tag:'8–9 años', nivel:'Largo', pasos:36, print:false,
+     grid:[
+       '###############',
+       '#.............#',
+       '#.#.###########',
+       '#.#.#...#.....#',
+       '#.###.#.#.###.#',
+       '#.....#.#.#...#',
+       '#######.#.#.#.#',
+       '#.....#...#.#.#',
+       '#.###.#####.###',
+       '#...#.....#...#',
+       '###.###.#.#.###',
+       '#.#...#.#.....#',
+       '#.#.#####.#.#.#',
+       '#.......#.#.#.#',
+       '###############'
+     ],
+     stars:[[3,2],[5,5],[1,5],[1,3],[1,0]],
+     lions:[[5,6],[4,6],[3,6],[5,3],[6,2]]},
+    {id:'largo7', level:'largo', tag:'8–9 años', nivel:'Largo', pasos:34, print:false,
+     grid:[
+       '###############',
+       '#.........#.#.#',
+       '###.#####.#.#.#',
+       '#.......#.#...#',
+       '#.#####.#.###.#',
+       '#.#.....#.....#',
+       '###.###.#######',
+       '#.#.#.........#',
+       '#.#######.#####',
+       '#.......#.....#',
+       '#.#####.#####.#',
+       '#...#...#.#...#',
+       '###.#.###.###.#',
+       '#...#.........#',
+       '###############'
+     ],
+     stars:[[4,2],[6,4],[4,5],[1,3],[0,4]],
+     lions:[[1,5],[5,5],[1,0],[2,2],[3,2]]},
+    {id:'largo8', level:'largo', tag:'8–9 años', nivel:'Largo', pasos:40, print:false,
+     grid:[
+       '###############',
+       '#.......#...#.#',
+       '#####.#.#.#.#.#',
+       '#.....#...#.#.#',
+       '###.#######.#.#',
+       '#.#...#.....#.#',
+       '#.###.###.###.#',
+       '#.....#...#...#',
+       '#.#####.###.###',
+       '#...#.....#...#',
+       '###.#####.###.#',
+       '#...#.....#...#',
+       '#.###.#####.###',
+       '#.#...........#',
+       '###############'
+     ],
+     stars:[[3,2],[1,3],[2,4],[5,3],[5,6]],
+     lions:[[6,1],[4,2],[0,1],[2,3],[6,6]]},
+    {id:'largo9', level:'largo', tag:'8–9 años', nivel:'Largo', pasos:42, print:false,
+     grid:[
+       '###############',
+       '#.........#...#',
+       '#.#######.###.#',
+       '#.......#.....#',
+       '#.#####.#######',
+       '#.#...#.#.....#',
+       '###.#.#.#.###.#',
+       '#...#.#...#...#',
+       '#.###.#####.###',
+       '#...#.....#...#',
+       '###.#.###.#.###',
+       '#...#.#...#...#',
+       '#.#####.#####.#',
+       '#.#...........#',
+       '###############'
+     ],
+     stars:[[2,2],[5,3],[4,5],[3,3],[0,0]],
+     lions:[[0,5],[4,6],[6,2],[2,0],[5,2]]}
+  ];
+
+  const START = [6, 0];
+  const END = [0, 6];
+
+  const TRAPS = [
+    {name:'El decreto', emoji:'📜', text:'Los príncipes escribieron un decreto: por 30 días nadie podía pedirle nada a Dios. ¡Pero Daniel siguió orando!'},
+    {name:'La adulación', emoji:'👑', text:'Le dijeron cosas bonitas al rey Darío para que firmara sin pensar. ¡Cuidado con las palabras dulces que esconden algo malo!'},
+    {name:'La envidia', emoji:'😠', text:'Los príncipes tenían celos porque el rey quería poner a Daniel sobre todo el reino. La envidia es una trampa fea.'},
+    {name:'El espionaje', emoji:'👀', text:'Todo un día vigilaron a Daniel y tres veces lo oyeron orar. Daniel no se escondió: oró con la ventana abierta.'},
+    {name:'El miedo a orar', emoji:'😨', text:'Querían que Daniel se asustara y dejara de orar. Él dijo: ¿por qué dejaría de orar ahora, cuando más lo necesito?'}
+  ];
+
+  const QUIZ = [
+    {tag:'4–5 años', q:'¿Qué animales había en el foso donde echaron a Daniel?', a:'🦁 ¡Leones!'},
+    {tag:'4–5 años', q:'¿Cuántas veces al día oraba Daniel? Cuenten con los dedos.', a:'Tres veces al día'},
+    {tag:'4–5 años', q:'¿Le pasó algo malo a Daniel entre los leones?', a:'No: «ninguna lesión se halló en él»'},
+    {tag:'4–5 años', q:'¿Hacia qué ciudad miraban las ventanas abiertas de Daniel?', a:'Hacia Jerusalén'},
+    {tag:'4–5 años', q:'¿Quién cerró la boca de los leones?', a:'El ángel que Dios envió'},
+    {tag:'4–5 años', q:'Muéstrenme cómo oraba Daniel junto a su ventana abierta.', a:'🙏 ¡Así, sin esconderse, mirando a Jerusalén!'},
+    {tag:'6–7 años', q:'¿Cómo se llamaba el rey que firmó el decreto?', a:'Darío el Medo'},
+    {tag:'6–7 años', q:'¿Por cuántos días prohibía el decreto pedirle algo a Dios?', a:'Treinta días'},
+    {tag:'6–7 años', q:'¿Cuántos gobernadores puso Darío sobre el reino?', a:'Ciento veinte gobernadores'},
+    {tag:'6–7 años', q:'¿Cuántos presidentes había sobre esos gobernadores?', a:'Tres, y Daniel era uno de ellos'},
+    {tag:'6–7 años', q:'¿Por qué los príncipes tenían celos de Daniel?', a:'Porque el rey pensaba ponerlo sobre todo el reino'},
+    {tag:'6–7 años', q:'¿Qué castigo tenía el que desobedeciera el decreto?',  a:'Ser echado en el foso de los leones'},
+    {tag:'6–7 años', q:'¿Dejó Daniel de orar cuando salió el decreto?', a:'No: siguió orando tres veces al día, con las ventanas abiertas'},
+    {tag:'6–7 años', q:'¿Qué hizo el rey Darío esa noche, cuando Daniel estaba en el foso?', a:'Se acostó en ayunas, no quiso música y no pudo dormir'},
+    {tag:'8–9 años', q:'¿Qué falta encontraron los enemigos en Daniel cuando lo investigaron?', a:'Ninguna: «él era fiel, y ningún vicio ni falta fue en él hallado»'},
+    {tag:'8–9 años', q:'¿Cómo convencieron los príncipes al rey de firmar el decreto?', a:'Apelando a su vanidad: le dijeron que acrecentaría su honor y su autoridad'},
+    {tag:'8–9 años', q:'¿Por qué el rey no pudo cambiar el decreto para salvar a Daniel?', a:'Porque conforme a la ley de Media y de Persia, un decreto del rey no se abroga'},
+    {tag:'8–9 años', q:'¿Con qué se selló la piedra puesta a la entrada del foso?', a:'Con el anillo del rey y con el anillo de sus príncipes'},
+    {tag:'8–9 años', q:'¿Qué le respondió Daniel al rey en la mañana?', a:'«El Dios mío envió su ángel, el cual cerró la boca de los leones»'},
+    {tag:'8–9 años', q:'¿Qué proclamó Darío a todos los pueblos, naciones y lenguas?', a:'Que todos teman al Dios de Daniel, «el Dios viviente y permanente por todos los siglos»'},
+    {tag:'8–9 años', q:'Según el capítulo, ¿quién movió a los príncipes a la envidia?', a:'Satanás y los malos ángeles, y los príncipes se prestaron a ser instrumentos del mal'},
+    {tag:'8–9 años', q:'¿Qué verdad declaró Daniel con su ejemplo sereno y humilde?', a:'Que ninguna potencia terrenal tiene derecho a interponerse entre el alma y Dios'},
+    {tag:'8–9 años', q:'¿Qué aprendemos del relato, según el final del capítulo?', a:'Que en la prueba el hijo de Dios debe ser el mismo que cuando todo va bien: en el foso Daniel fue el mismo que en el palacio'},
+    {tag:'8–9 años', q:'¿Cómo le fue a Daniel después de aquella noche?', a:'«Daniel fue prosperado durante el reinado de Darío, y durante el reinado de Ciro, Persa»'}
+  ];
+
+  // ── Partida: 5 estrellas ('card') + 5 preguntas ('quiz') ──
+  const ACTIVITY = 'pr44-laberinto';
+  const MATCH_CARDS = 5;
+  const MATCH_QUIZ = 5;
+  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
+  const LEVEL_KEY = ACTIVITY + ':nivel';
+  const LEVEL_NAME = {facil:'4–5 años', medio:'6–7 años', largo:'8–9 años'};
+
+  let level = 'medio';
+  try{
+    const saved = localStorage.getItem(LEVEL_KEY);
+    if(saved && LEVEL_NAME[saved]) level = saved;
+  }catch(e){}
+
+  let match = null;
+
+  const el = id => document.getElementById(id);
+  const gameCard = el('gameCard');
+  const quizBox = el('quizBox');
+  const mazeBox = el('mazeBox');
+  const pad = el('pad');
+  const hud = el('hud');
+  const mainBtn = el('mainBtn');
+  const roundLabel = el('roundLabel');
+  const msg = el('msg');
+  const judge = el('judge');
+  const judgeQ = el('judgeQ');
+  const judgeYes = el('judgeYes');
+  const judgeNo = el('judgeNo');
+  const levelPicker = el('levelPicker');
+  const newMazeBtn = el('newMazeBtn');
+  const skipMazeBtn = el('skipMazeBtn');
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const ck = (r, c) => r + ',' + c;
+
+  // ── Dibujo del laberinto (SVG inline, hecho a mano) ──
+  const CELL = 44, PAD = 12;
+  const SIZE = PAD * 2 + CELL * 7;
+  const cx = c => PAD + c * CELL + CELL / 2;
+  const cy = r => PAD + r * CELL + CELL / 2;
+  const at = (r, c) => 'translate(' + (PAD + c * CELL) + ',' + (PAD + r * CELL) + ')';
+
+  const STAR_PTS = '22.0,6.0 25.9,16.7 37.2,17.1 28.3,24.0 31.4,34.9 22.0,28.6 12.6,34.9 15.7,24.0 6.8,17.1 18.1,16.7';
+
+  function wallBetween(maze, r1, c1, r2, c2){
+    return maze.grid[r1 + r2 + 1].charAt(c1 + c2 + 1) === '#';
+  }
+  function inGrid(r, c){ return r >= 0 && r < 7 && c >= 0 && c < 7 }
+  function canGo(maze, r, c, dr, dc){
+    const r2 = r + dr, c2 = c + dc;
+    if(!inGrid(r2, c2)) return false;
+    return !wallBetween(maze, r, c, r2, c2);
+  }
+
+  function houseSVG(){
+    return '<g class="mz-piece">'
+      + '<path class="mz-house" d="M5,21 L22,6 L39,21 Z"/>'
+      + '<path class="mz-house" d="M9,21 H35 V39 H9 Z"/>'
+      + '<path class="mz-house-door" d="M18,28 H26 V39 H18 Z"/>'
+      + '</g>';
+  }
+  function windowSVG(){
+    return '<g class="mz-piece">'
+      + '<path class="mz-win" d="M8,5 H36 V39 H8 Z"/>'
+      + '<path class="mz-win-bar" d="M22,5 V39 M8,22 H36"/>'
+      + '<path class="mz-win-bar" d="M12,10 L18,16 M12,28 L18,34"/>'
+      + '</g>';
+  }
+  function starSVG(taken){
+    return '<polygon class="mz-star' + (taken ? ' taken' : '') + '" points="' + STAR_PTS + '"/>';
+  }
+  const MANE_PTS = '22.0,2.5 27.5,8.6 35.8,8.2 35.4,16.5 41.5,22.0 35.4,27.5 35.8,35.8 27.5,35.4 '
+    + '22.0,41.5 16.5,35.4 8.2,35.8 8.6,27.5 2.5,22.0 8.6,16.5 8.2,8.2 16.5,8.6';
+
+  function lionSVG(){
+    return '<g class="mz-piece">'
+      + '<polygon class="mz-lion" points="' + MANE_PTS + '"/>'
+      + '<circle class="mz-lion" cx="12.5" cy="11" r="4"/>'
+      + '<circle class="mz-lion" cx="31.5" cy="11" r="4"/>'
+      + '<circle class="mz-lion-face" cx="22" cy="22" r="11.5"/>'
+      + '<circle class="mz-lion-dot" cx="18" cy="19" r="1.8"/>'
+      + '<circle class="mz-lion-dot" cx="26" cy="19" r="1.8"/>'
+      + '<path class="mz-lion-line" d="M22,23 L19,26 M22,23 L25,26"/>'
+      + '<circle class="mz-lion-face" cx="22" cy="28" r="4.2"/>'
+      + '</g>';
+  }
+  function tokenSVG(){
+    return '<g class="mz-piece mz-token">'
+      + '<path class="mz-token-body" d="M13,39 L17,21 Q22,18 27,21 L31,39 Z"/>'
+      + '<path class="mz-token-body" d="M17,23 L11,14 M27,23 L33,14"/>'
+      + '<circle class="mz-token-head" cx="22" cy="12" r="6.5"/>'
+      + '</g>';
+  }
+
+  // opts: {token:[r,c]|null, taken:Set, cells:boolean}
+  function mazeSVG(maze, opts){
+    const o = opts || {};
+    const taken = o.taken || new Set();
+    let out = '<svg viewBox="0 0 ' + SIZE + ' ' + SIZE + '" role="img" aria-label="Laberinto de 7 por 7 casillas">';
+    out += '<rect class="mz-bg" x="0" y="0" width="' + SIZE + '" height="' + SIZE + '" rx="14"/>';
+
+    // Casillas tocables + pistas de movimiento
+    if(o.cells){
+      for(let r = 0; r < 7; r++){
+        for(let c = 0; c < 7; c++){
+          out += '<rect class="mz-cell" data-r="' + r + '" data-c="' + c + '" x="' + (PAD + c * CELL)
+            + '" y="' + (PAD + r * CELL) + '" width="' + CELL + '" height="' + CELL + '"/>';
+        }
+      }
+      if(o.token){
+        [[-1,0],[1,0],[0,-1],[0,1]].forEach(d => {
+          if(canGo(maze, o.token[0], o.token[1], d[0], d[1])){
+            out += '<circle class="mz-hint" cx="' + cx(o.token[1] + d[1]) + '" cy="' + cy(o.token[0] + d[0]) + '" r="5"/>';
+          }
+        });
+      }
+    }
+
+    // Piezas del camino
+    out += '<g transform="' + at(START[0], START[1]) + '">' + houseSVG() + '</g>';
+    out += '<g transform="' + at(END[0], END[1]) + '">' + windowSVG() + '</g>';
+    maze.stars.forEach(s => {
+      out += '<g transform="' + at(s[0], s[1]) + '">' + starSVG(taken.has(ck(s[0], s[1]))) + '</g>';
+    });
+    maze.lions.forEach(l => {
+      out += '<g transform="' + at(l[0], l[1]) + '">' + lionSVG() + '</g>';
+    });
+
+    // Paredes encima de todo
+    let w = '';
+    for(let r = 0; r < 7; r++){
+      for(let c = 0; c < 7; c++){
+        const x = PAD + c * CELL, y = PAD + r * CELL;
+        if(maze.grid[2 * r].charAt(2 * c + 1) === '#') w += 'M' + x + ',' + y + ' h' + CELL + ' ';
+        if(maze.grid[2 * r + 1].charAt(2 * c) === '#') w += 'M' + x + ',' + y + ' v' + CELL + ' ';
+        if(c === 6 && maze.grid[2 * r + 1].charAt(14) === '#') w += 'M' + (x + CELL) + ',' + y + ' v' + CELL + ' ';
+        if(r === 6 && maze.grid[14].charAt(2 * c + 1) === '#') w += 'M' + x + ',' + (y + CELL) + ' h' + CELL + ' ';
+      }
+    }
+    out += '<path class="mz-wall" fill="none" d="' + w.trim() + '"/>';
+
+    if(o.token){
+      out += '<rect class="mz-here" x="' + (PAD + o.token[1] * CELL + 3) + '" y="' + (PAD + o.token[0] * CELL + 3)
+        + '" width="' + (CELL - 6) + '" height="' + (CELL - 6) + '" rx="8"/>';
+      const onPiece = (o.token[0] === START[0] && o.token[1] === START[1])
+        || (o.token[0] === END[0] && o.token[1] === END[1]);
+      // Sobre la casa o la ventana, Daniel va pequeño y a un lado para no taparlas.
+      const inner = onPiece ? ' translate(15,17) scale(.5)' : '';
+      out += '<g transform="' + at(o.token[0], o.token[1]) + inner + '">' + tokenSVG() + '</g>';
+    }
+    out += '</svg>';
+    return out;
+  }
+
+  // ── Vistas ──
+  function setView(view){
+    const isMaze = view === 'maze';
+    mazeBox.hidden = !(isMaze || view === 'window');
+    pad.hidden = !isMaze;
+    hud.hidden = !(isMaze || view === 'window');
+    gameCard.hidden = isMaze || view === 'quiz';
+    quizBox.hidden = view !== 'quiz';
+    levelPicker.hidden = !(view === 'idle' || view === 'done');
+    newMazeBtn.hidden = !isMaze;
+    skipMazeBtn.hidden = !isMaze;
+    el('legend').hidden = !(view === 'idle' || view === 'done' || isMaze);
+  }
+
+  function phaseKind(){
+    return (match && match.phase === 'quiz') ? 'quiz' : 'card';
+  }
+
+  function setMsg(text, cls){
+    msg.className = 'msg' + (cls ? ' ' + cls : '');
+    msg.innerHTML = text ? '<span class="pop">' + text + '</span>' : '';
+  }
+
+  function drawMaze(){
+    mazeBox.innerHTML = mazeSVG(match.maze, {token: match.pos, taken: match.taken, cells: true});
+    mazeBox.querySelectorAll('.mz-cell').forEach(rect => {
+      rect.addEventListener('click', () => {
+        const r = +rect.dataset.r, c = +rect.dataset.c;
+        const dr = r - match.pos[0], dc = c - match.pos[1];
+        if(Math.abs(dr) + Math.abs(dc) !== 1){
+          setMsg('👉 Toca una casilla <strong>vecina</strong> o usa las flechas.', 'bad');
+          return;
+        }
+        move(dr, dc);
+      });
+    });
+  }
+
+  function refreshHud(){
+    el('starCount').textContent = match.collected;
+    el('mazeName').textContent = match.maze.nivel + ' · ' + LEVEL_NAME[match.maze.level];
+    el('stepCount').textContent = match.steps;
+  }
+
+  function pickMatchQuiz(){
+    const picked = [];
+    QUIZ_MIX.forEach(pair => {
+      const group = QUIZ.filter(q => q.tag === pair[0]);
+      picked.push.apply(picked, AvProfile.pick(ACTIVITY + ':quiz:' + pair[0], group, pair[1], q => q.q));
+    });
+    return picked;
+  }
+
+  function loadMaze(){
+    const pool = MAZES.filter(m => m.level === level);
+    const maze = AvProfile.pick(ACTIVITY + ':maze:' + level, pool, 1, m => m.id)[0] || pool[0];
+    const traps = AvProfile.pick(ACTIVITY + ':trampa', TRAPS, 5, t => t.name);
+    const lionMap = {};
+    maze.lions.forEach((l, i) => { lionMap[ck(l[0], l[1])] = traps[i % traps.length] || TRAPS[i % TRAPS.length] });
+    match.maze = maze;
+    match.lionMap = lionMap;
+    match.pos = START.slice();
+    match.segStart = START.slice();
+    match.taken = new Set();
+    match.collected = 0;
+    match.steps = 0;
+    match.phase = 'maze';
+    roundLabel.textContent = 'Laberinto ' + maze.nivel + ' · recoge las 5 ⭐';
+    mainBtn.hidden = true;
+    setView('maze');
+    refreshHud();
+    drawMaze();
+  }
+
+  function startMatch(){
+    match = {
+      quizzes: pickMatchQuiz(),
+      qi: 0,
+      revealed: false,
+      earned: 0
+    };
+    el('practiceNote').hidden = true;
+    loadMaze();
+    setMsg('🏠 Daniel sale de su casa. Llévalo hasta la 🪟 ventana que mira a Jerusalén.');
+  }
+
+  // Las estrellas ya sumadas se quedan: solo cambia el laberinto.
+  function newMaze(){
+    if(!match || match.phase !== 'maze') return;
+    loadMaze();
+    setMsg('🌀 ¡Otro laberinto! Las estrellas que ya sumaste se quedan contigo.');
+  }
+
+  function skipMaze(){
+    if(!match || match.phase !== 'maze') return;
+    match.qi = 0;
+    showQuiz();
+    setMsg('👍 Dejamos el laberinto para otro día. ¡Vamos con las preguntas!');
+  }
+
+  function move(dr, dc){
+    if(!match || match.phase !== 'maze') return;
+    const r = match.pos[0], c = match.pos[1];
+    if(!canGo(match.maze, r, c, dr, dc)){
+      setMsg('🧱 Por ahí hay una pared. ¡Busca otro camino!', 'bad');
+      return;
+    }
+    match.pos = [r + dr, c + dc];
+    match.steps++;
+    const key = ck(match.pos[0], match.pos[1]);
+
+    // ¿Trampa de los príncipes?
+    const trap = match.lionMap[key];
+    if(trap){
+      match.pos = match.segStart.slice();
+      refreshHud();
+      drawMaze();
+      setMsg('🦁 <strong>' + trap.emoji + ' ' + trap.name + '</strong><br>' + trap.text
+        + '<br>Daniel vuelve al inicio de este tramo. ¡No perdiste ningún punto!', 'bad');
+      return;
+    }
+
+    // ¿Estrella?
+    if(!match.taken.has(key) && match.maze.stars.some(s => ck(s[0], s[1]) === key)){
+      match.taken.add(key);
+      match.collected++;
+      match.segStart = match.pos.slice();
+      const p = AvProfile.get();
+      if(p && AvProfile.canScore('card')){
+        AvProfile.score(true, 'card');
+        match.earned++;
+        setMsg('⭐ ¡Estrella ' + match.collected + ' de 5! <strong>+1 punto</strong> para ' + esc(p.name) + '.', 'good');
+      }else{
+        setMsg('⭐ ¡Estrella ' + match.collected + ' de 5! '
+          + (p ? '🌙 Los puntos de hoy ya están completos: esta es de práctica.'
+               : '👤 Sin perfil: esta estrella no suma al tablero.'), 'good');
+      }
+      refreshHud();
+      drawMaze();
+      return;
+    }
+
+    refreshHud();
+    drawMaze();
+
+    // ¿Ventana?
+    if(match.pos[0] === END[0] && match.pos[1] === END[1]){
+      if(match.collected < MATCH_CARDS){
+        setMsg('🪟 ¡Llegaste a la ventana! Pero faltan estrellas: te quedan '
+          + (MATCH_CARDS - match.collected) + ' ⭐ en el laberinto.', 'bad');
+        return;
+      }
+      reachWindow();
+      return;
+    }
+    setMsg('');
+  }
+
+  function reachWindow(){
+    match.phase = 'window';
+    setView('window');
+    roundLabel.textContent = '¡Llegaste a la ventana!';
+    gameCard.innerHTML = '<div class="emoji">🪟</div>'
+      + '<div class="big-name">Daniel ora tres veces al día</div>'
+      + '<div class="hint">Con las ventanas abiertas hacia Jerusalén, sin esconderse. Recogiste las 5 ⭐.</div>';
+    mainBtn.textContent = 'Ahora, 5 preguntas ▶';
+    mainBtn.hidden = false;
+    setMsg('🙏 Una, dos y tres veces: ¡oren juntos ahora mismo, como Daniel!', 'good');
+  }
+
+  function showQuiz(){
+    match.phase = 'quiz';
+    match.revealed = false;
+    judge.hidden = true;
+    setView('quiz');
+    const q = match.quizzes[match.qi];
+    roundLabel.textContent = 'Pregunta ' + (match.qi + 1) + ' de ' + MATCH_QUIZ;
+    el('quizTag').textContent = q.tag;
+    el('quizQ').textContent = q.q;
+    const quizA = el('quizA');
+    quizA.textContent = q.a;
+    quizA.classList.remove('show');
+    mainBtn.textContent = 'Ver respuesta';
+    mainBtn.hidden = false;
+    setMsg('');
+  }
+
+  function revealQuiz(){
+    match.revealed = true;
+    el('quizA').classList.add('show');
+    const p = AvProfile.get();
+    if(p && AvProfile.canScore('quiz')){
+      judgeQ.textContent = '¿' + p.name + ' respondió bien?';
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      judgeQ.textContent = p
+        ? '🌙 Puntos completos: esta respuesta es de práctica.'
+        : '👤 Sin perfil: este acierto no suma al tablero.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Siguiente ▶';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function nextQuiz(){
+    judge.hidden = true;
+    match.qi++;
+    if(match.qi >= MATCH_QUIZ){ finishMatch(); return }
+    showQuiz();
+  }
+
+  function finishMatch(){
+    const earned = match.earned;
+    match = null;
+    setView('done');
+    roundLabel.textContent = '¡Bien hecho, aventureros!';
+    const p = AvProfile.get();
+    const scored = p
+      ? '<div class="hint">⭐ Sumaste ' + earned + ' punto' + (earned === 1 ? '' : 's') + ' en esta partida.</div>'
+      : '';
+    const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
+      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
+    gameCard.innerHTML = '<div class="emoji">🏁</div>'
+      + '<div class="big-name">¡Partida completa!</div>' + scored + extra;
+    mainBtn.textContent = '🔁 Otra partida';
+    mainBtn.hidden = false;
+    setMsg('«El Dios mío envió su ángel, el cual cerró la boca de los leones.» — Daniel 6:22', 'good');
+    updateIdleHint();
+  }
+
+  function updateIdleHint(){
+    if(match) return;
+    const p = AvProfile.get();
+    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    const note = el('practiceNote');
+    if(!p){
+      note.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      note.hidden = false;
+    }else if(practice){
+      note.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+      note.hidden = false;
+    }else{
+      note.hidden = true;
+    }
+    if(mainBtn.textContent.indexOf('Otra partida') >= 0){
+      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
+    }else if(mainBtn.textContent.indexOf('partida') >= 0){
+      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    }
+  }
+  AvProfile.onChange(updateIdleHint);
+
+  // ── Controles ──
+  mainBtn.addEventListener('click', () => {
+    if(!match){ startMatch(); return }
+    if(match.phase === 'window'){ match.qi = 0; showQuiz(); return }
+    if(match.phase === 'quiz'){
+      if(!match.revealed){ revealQuiz(); return }
+      nextQuiz();
+    }
+  });
+
+  newMazeBtn.addEventListener('click', newMaze);
+  skipMazeBtn.addEventListener('click', skipMaze);
+
+  el('btnUp').addEventListener('click', () => move(-1, 0));
+  el('btnDown').addEventListener('click', () => move(1, 0));
+  el('btnLeft').addEventListener('click', () => move(0, -1));
+  el('btnRight').addEventListener('click', () => move(0, 1));
+
+  document.addEventListener('keydown', e => {
+    if(!match || match.phase !== 'maze') return;
+    const map = {ArrowUp:[-1,0], ArrowDown:[1,0], ArrowLeft:[0,-1], ArrowRight:[0,1]};
+    const d = map[e.key];
+    if(!d) return;
+    e.preventDefault();
+    move(d[0], d[1]);
+  });
+
+  judgeYes.addEventListener('click', () => {
+    judge.hidden = true;
+    AvProfile.score(true, 'quiz');
+    match.earned++;
+    nextQuiz();
+  });
+  judgeNo.addEventListener('click', () => {
+    judge.hidden = true;
+    AvProfile.score(false, 'quiz');
+    nextQuiz();
+  });
+
+  levelPicker.querySelectorAll('.level-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      level = btn.dataset.level;
+      try{ localStorage.setItem(LEVEL_KEY, level) }catch(e){}
+      levelPicker.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      setMsg('🌀 Nivel <strong>' + LEVEL_NAME[level] + '</strong> listo. Toca jugar.');
+    });
+  });
+  levelPicker.querySelectorAll('.level-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.level === level);
+  });
+
+  // ── Laberintos imprimibles: uno por hoja ──
+  (function renderPrint(){
+    const box = el('printMazes');
+    box.innerHTML = MAZES.filter(m => m.print).map((m, i) =>
+      '<div class="print-maze">'
+      + '<h3>Laberinto ' + (i + 1) + ' · ' + m.nivel + ' (' + LEVEL_NAME[m.level] + ')</h3>'
+      + '<p>Desde la 🏠 casa de Daniel hasta la 🪟 ventana que mira a Jerusalén. '
+      + 'Pasa por las 5 ⭐ y esquiva los 🦁 (el decreto, la adulación, la envidia, el espionaje y el miedo a orar). '
+      + 'Camino más corto: ' + m.pasos + ' pasos.</p>'
+      + mazeSVG(m, {})
+      + '</div>').join('');
+  })();
+
+  // ── Menú ──
+  const menuBtn = el('menuBtn');
+  const menuPanel = el('menuPanel');
+  function closeMenu(){
+    menuPanel.hidden = true;
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.menu-wrap')) closeMenu();
+  });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      el(btn.dataset.tab).classList.add('active');
+      closeMenu();
+    });
+  });
+
+  el('changePlayerBtn').addEventListener('click', () => {
+    closeMenu();
+    AvProfile.open();
+  });
+
+  // ── Iniciar ──
+  setView('idle');
+  AvProfile.init({ chip: el('playerChip'), activity: ACTIVITY, autoOpen: true });
+  updateIdleHint();
+</script>
+</body>
+</html>

@@ -120,12 +120,56 @@
     line-height:1.2;
   }
   .activity-card p{font-size:.95rem;opacity:.8}
+  .activity-card .meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    font-family:'Fredoka',sans-serif;
+    font-size:.72rem;
+    font-weight:600;
+  }
+  .activity-card .meta span{
+    background:rgba(27,47,110,.1);
+    border:1px solid rgba(27,47,110,.2);
+    border-radius:999px;
+    padding:3px 10px;
+  }
   .activity-card .go{
     margin-top:auto;
     font-family:'Fredoka',sans-serif;
     font-weight:600;
     color:var(--brick);
   }
+
+  /* ── Capítulos ── */
+  .chapter{margin-top:34px}
+  .chapter:first-of-type{margin-top:6px}
+  .chapter-head{
+    display:flex;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:14px;
+    padding-bottom:10px;
+    border-bottom:2px dashed rgba(240,180,41,.4);
+  }
+  .chapter-head h2{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.2rem,4.5vw,1.6rem);
+  }
+  .chapter-head .cap{
+    font-family:'Fredoka',sans-serif;
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    background:var(--gold);
+    color:var(--lapis-deep);
+    border-radius:999px;
+    padding:4px 12px;
+  }
+  .chapter-head .count{margin-left:auto;font-size:.85rem;opacity:.7}
 
   .soon{
     border-style:dashed;
@@ -225,36 +269,149 @@
 <header>
   <div class="eyebrow">Iglesia Adventista · Jordán Ibagué</div>
   <h1>Club de Aventureros</h1>
-  <p class="subtitle">Actividades y dinámicas interactivas para nuestros agentes del Reino</p>
+  <p class="subtitle">15 juegos de Conexión Bíblica para nuestros agentes del Reino</p>
 </header>
 
 <main>
-  <div class="card-grid">
-    <a class="activity-card" href="/conexion-biblica-pr39/">
-      <span class="emoji">🍖🥦</span>
-      <span class="tag">Conexión Bíblica · Cap. 39 · En la corte de Babilonia</span>
-      <h2>La mesa del rey vs. la mesa de Daniel</h2>
-      <p>Sale una comida… ¡y todos reaccionan! Juego de decisiones con tarjetas imprimibles y preguntas relámpago por edades.</p>
-      <span class="go">Jugar ▶</span>
-    </a>
-
-    <div class="activity-card soon">
-      <span class="emoji">🔥</span>
-      <span class="tag">Conexión Bíblica · Cap. 41</span>
-      <h2>El horno de fuego</h2>
-      <p>Pronto disponible…</p>
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="cap">Cap. 39</span>
+      <h2>🏛️ En la corte de Babilonia</h2>
+      <span class="count">5 juegos</span>
     </div>
-
-    <div class="activity-card soon">
-      <span class="emoji">🦁</span>
-      <span class="tag">Conexión Bíblica · Cap. 44</span>
-      <h2>En el foso de los leones</h2>
-      <p>Pronto disponible…</p>
+    <div class="card-grid">
+      <a class="activity-card" href="/conexion-biblica-pr39/">
+        <span class="emoji">🍖🥦</span>
+        <h2>La mesa del rey vs. la mesa de Daniel</h2>
+        <p>Sale una comida y todos reaccionan: ¿te tapas la boca o haces músculo?</p>
+        <div class="meta"><span>🏃 Se mueve</span><span>4–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr39-prueba10/">
+        <span class="emoji">📅</span>
+        <h2>La prueba de los 10 días</h2>
+        <p>Un tablero de 10 casillas: avanza un día por ronda y llega al palacio.</p>
+        <div class="meta"><span>🎲 Tablero</span><span>5–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr39-nombres/">
+        <span class="emoji">🔤</span>
+        <h2>El cambia-nombres de Babilonia</h2>
+        <p>Babilonia les cambió el nombre… ¿puedes emparejarlos de nuevo?</p>
+        <div class="meta"><span>🧠 Piensa</span><span>6–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr39-rompecabezas/">
+        <span class="emoji">🧩</span>
+        <h2>Arma la mesa de Daniel</h2>
+        <p>Diez piezas para armar la escena, y cada pieza esconde un detalle.</p>
+        <div class="meta"><span>🧩 Rompecabezas</span><span>4–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr39-colorear/">
+        <span class="emoji">🎨</span>
+        <h2>Colorea la corte de Babilonia</h2>
+        <p>Cuatro escenas para pintar con el dedo y retos de color.</p>
+        <div class="meta"><span>🎨 Crea</span><span>4–7 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
     </div>
-  </div>
+  </section>
+
+
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="cap">Cap. 41</span>
+      <h2>🔥 El horno de fuego</h2>
+      <span class="count">5 juegos</span>
+    </div>
+    <div class="card-grid">
+      <a class="activity-card" href="/conexion-biblica-pr41/">
+        <span class="emoji">🙇🧍</span>
+        <h2>¡Firmes o inclinados!</h2>
+        <p>¿Eso lo hizo la multitud de Dura o los tres amigos? ¡Reacciona con el cuerpo!</p>
+        <div class="meta"><span>🏃 Se mueve</span><span>4–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr41-estatua/">
+        <span class="emoji">🗿</span>
+        <h2>La estatua de oro: ¿obedezco o no?</h2>
+        <p>Un Simón dice con discernimiento: no toda orden se obedece.</p>
+        <div class="meta"><span>🏃 Se mueve</span><span>5–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr41-horno/">
+        <span class="emoji">🔥</span>
+        <h2>El Cuarto en el fuego</h2>
+        <p>Verdadero o falso con el termómetro del horno subiendo a siete.</p>
+        <div class="meta"><span>🧠 Piensa</span><span>4–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr41-secuencia/">
+        <span class="emoji">🔢</span>
+        <h2>Ordena la historia del horno</h2>
+        <p>¿Qué pasó primero? Seis escenas en desorden para acomodar.</p>
+        <div class="meta"><span>🧠 Piensa</span><span>5–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr41-versiculo/">
+        <span class="emoji">📖</span>
+        <h2>El versículo que no se quema</h2>
+        <p>Isaías 43:2 con gestos, y las palabras se van borrando.</p>
+        <div class="meta"><span>💭 Memoriza</span><span>5–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+    </div>
+  </section>
+
+
+  <section class="chapter">
+    <div class="chapter-head">
+      <span class="cap">Cap. 44</span>
+      <h2>🦁 En el foso de los leones</h2>
+      <span class="count">5 juegos</span>
+    </div>
+    <div class="card-grid">
+      <a class="activity-card" href="/conexion-biblica-pr44/">
+        <span class="emoji">🪟🦁</span>
+        <h2>¿Ventana abierta o trampa del foso?</h2>
+        <p>¿Es cosa de Daniel o trampa de los príncipes? ¡Ora o ruge!</p>
+        <div class="meta"><span>🏃 Se mueve</span><span>4–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr44-reloj/">
+        <span class="emoji">🕐</span>
+        <h2>El reloj de oración de Daniel</h2>
+        <p>Gira la ruleta, cae en un momento del día y recibe tu reto.</p>
+        <div class="meta"><span>🎲 Tablero</span><span>4–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr44-quien-lo-dijo/">
+        <span class="emoji">💬</span>
+        <h2>¿Quién lo dijo?</h2>
+        <p>¿Fue Darío, Daniel o los envidiosos? Adivina de quién es la frase.</p>
+        <div class="meta"><span>🧠 Piensa</span><span>6–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr44-laberinto/">
+        <span class="emoji">🌀</span>
+        <h2>El laberinto de Daniel</h2>
+        <p>Llévalo de su casa hasta la ventana que mira a Jerusalén.</p>
+        <div class="meta"><span>🧩 Rompecabezas</span><span>4–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+      <a class="activity-card" href="/conexion-biblica-pr44-diferencias/">
+        <span class="emoji">🔍</span>
+        <h2>Busca las diferencias en el foso</h2>
+        <p>Dos dibujos casi iguales y cinco diferencias escondidas.</p>
+        <div class="meta"><span>🔍 Observa</span><span>5–9 años</span></div>
+        <span class="go">Jugar ▶</span>
+      </a>
+    </div>
+  </section>
 
   <h2 class="board-title">🏆 Tablero de puntos</h2>
-  <p class="board-sub">El reto: cada respuesta correcta suma ⭐ 1 punto.</p>
+  <p class="board-sub">El reto: cada acierto suma ⭐ 1 punto, y cada juego tiene su propio cupo diario.</p>
   <div class="board-card">
     <ol class="board-list" id="boardList"></ol>
     <p class="board-empty" id="boardEmpty" hidden>Aún no hay puntos registrados… ¡sé el primero!</p>

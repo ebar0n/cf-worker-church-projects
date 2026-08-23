@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1B2F6E">
+<title>¡Firmes o inclinados!</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Una partida diaria: 5 situaciones sorpresa + 5 preguntas relámpago. ¡Agáchate o quédate firme y suma puntos para el tablero del Club de Aventureros!">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="¡Firmes o inclinados!">
+<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 41, El horno de fuego. Sale una situación: ¿te agachas como la multitud de Dura o te quedas firme como los tres amigos?">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr41/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    /* Paleta Llanura de Dura: azul lapislázuli, oro de la estatua, ladrillo del horno, crema */
+    --lapis:#1B2F6E;
+    --lapis-deep:#12204D;
+    --gold:#F0B429;
+    --gold-soft:#FFD97A;
+    --brick:#C2542B;
+    --cream:#FFF6E3;
+    --inclina:#C0392B;      /* agacharse: la multitud de Dura */
+    --inclina-deep:#8E241A;
+    --firme:#2E9E5B;        /* de pie y firme: los tres amigos */
+    --firme-deep:#1E7040;
+    --ink:#231A0F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--lapis);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,217,122,.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(240,180,41,.07), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  /* ── Cabecera ── */
+  header{
+    text-align:center;
+    padding:10px 16px 12px;
+  }
+  @media (max-width:600px){
+    .subtitle{display:none}
+    header{padding-bottom:8px}
+    .legend{gap:8px;margin-bottom:14px}
+    .legend-item{padding:8px 12px;font-size:.82rem}
+    .legend-item .big{font-size:1.3rem}
+  }
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  h1{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.5rem,5vw,2.3rem);
+    line-height:1.15;
+    margin-top:6px;
+  }
+  h1 .vs{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--lapis-deep);
+    border-radius:999px;
+    font-size:.55em;
+    padding:.15em .7em;
+    margin:0 .25em;
+    vertical-align:middle;
+  }
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+
+  /* ── Barra superior + menú ── */
+  .topbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px 0;
+    max-width:1000px;
+    margin:0 auto;
+  }
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{
+    margin-left:auto;
+    min-width:0;
+    display:flex;
+    justify-content:flex-end;
+  }
+  .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
+  .player-chip + .menu-wrap{margin-left:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+    .back-link{padding:8px 10px}
+    .menu-btn{padding:8px 12px}
+  }
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    border:2px solid var(--gold);
+    background:transparent;
+    color:var(--gold-soft);
+    border-radius:999px;
+    padding:8px 16px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;
+    right:0;
+    top:calc(100% + 8px);
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+    min-width:240px;
+    background:var(--cream);
+    border:3px solid var(--gold);
+    border-radius:18px;
+    padding:8px;
+    box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    text-align:left;
+    background:transparent;
+    border:none;
+    color:var(--ink);
+    border-radius:12px;
+    padding:12px 14px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
+
+  /* ── Reto de puntos ── */
+  .judge{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:16px;
+    background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);
+    border-radius:16px;
+    padding:12px 14px;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+  }
+  .judge span{flex-basis:100%;text-align:center}
+  .judge[hidden]{display:none}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+
+  /* ── Leyenda de acciones ── */
+  .legend{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .legend-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border-radius:16px;
+    padding:10px 18px;
+    font-weight:800;
+    font-size:.95rem;
+  }
+  .legend-item .big{font-size:1.7rem}
+  .legend-inclina{background:var(--inclina);color:#fff}
+  .legend-firme{background:var(--firme);color:#fff}
+  .legend[hidden]{display:none}
+  .practice-note{
+    margin-top:16px;
+    text-align:center;
+    font-weight:700;
+    font-size:.95rem;
+    color:var(--gold-soft);
+    opacity:.9;
+  }
+  .practice-note[hidden]{display:none}
+
+  /* ── Termómetro del horno: 7 llamas ── */
+  .furnace{
+    max-width:460px;
+    margin:0 auto 16px;
+    background:rgba(0,0,0,.18);
+    border:2px solid rgba(240,180,41,.5);
+    border-radius:16px;
+    padding:10px 12px;
+    text-align:center;
+  }
+  .furnace-title{
+    font-family:'Fredoka',sans-serif;
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    opacity:.85;
+    margin-bottom:6px;
+  }
+  .flames{
+    display:flex;
+    justify-content:center;
+    gap:4px;
+    flex-wrap:wrap;
+  }
+  .flames .flame{
+    font-size:clamp(1.2rem,5.5vw,1.6rem);
+    line-height:1;
+    opacity:.22;
+    filter:grayscale(1);
+    transition:opacity .25s ease, filter .25s ease, transform .25s ease;
+  }
+  .flames .flame.on{
+    opacity:1;
+    filter:none;
+    animation:flicker 1.6s ease-in-out infinite alternate;
+  }
+  @keyframes flicker{
+    from{transform:translateY(0) scale(1)}
+    to{transform:translateY(-2px) scale(1.08)}
+  }
+  .furnace-msg{
+    margin-top:6px;
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--gold-soft);
+    opacity:.9;
+  }
+
+  /* ══════════ MODO JUEGO ══════════ */
+  .stage{
+    max-width:460px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .round-label{
+    font-family:'Fredoka',sans-serif;
+    color:var(--gold-soft);
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    font-size:.8rem;
+    margin-bottom:12px;
+  }
+  .game-card{
+    background:var(--cream);
+    color:var(--ink);
+    border-radius:28px;
+    border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);
+    padding:34px 20px 30px;
+    min-height:360px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    position:relative;
+    overflow:hidden;
+    transition:background .25s ease, border-color .25s ease, color .25s ease;
+  }
+  .game-card .emoji{
+    font-size:clamp(5rem,26vw,8rem);
+    line-height:1;
+    filter:drop-shadow(0 6px 0 rgba(0,0,0,.12));
+  }
+  .game-card .case-name{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.15rem,5vw,1.7rem);
+    line-height:1.2;
+  }
+  .game-card .hint{
+    font-weight:700;
+    font-size:1rem;
+    opacity:.65;
+  }
+  /* Estado revelado: el dato del capítulo sigue a la vista mientras se refuerza */
+  .game-card .emoji.small{font-size:clamp(2.4rem,11vw,3.4rem)}
+  .game-card .case-name.recap{
+    font-size:clamp(1rem,3.8vw,1.2rem);
+    font-weight:600;
+  }
+  .game-card.revealed-inclina{background:var(--inclina);border-color:var(--inclina-deep);color:#fff}
+  .game-card.revealed-firme{background:var(--firme);border-color:var(--firme-deep);color:#fff}
+  .game-card.revealed-inclina,
+  .game-card.revealed-firme{gap:10px}
+  .game-card.revealed-inclina .hint,
+  .game-card.revealed-firme .hint{opacity:.9}
+  .action-emoji{
+    font-size:clamp(3.4rem,18vw,5rem);
+    line-height:1;
+    animation:pop .35s cubic-bezier(.2,1.6,.4,1) both;
+  }
+  .action-name{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.4rem,6.5vw,2.1rem);
+    animation:pop .35s .06s cubic-bezier(.2,1.6,.4,1) both;
+  }
+  @keyframes pop{
+    from{transform:scale(.3);opacity:0}
+    to{transform:scale(1);opacity:1}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .action-emoji,.action-name{animation:none}
+    .flames .flame.on{animation:none}
+    .btn{transition:none}
+  }
+
+  .controls{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    margin-top:22px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.1rem;
+    font-weight:600;
+    border:none;
+    border-radius:999px;
+    padding:14px 30px;
+    min-height:44px;
+    cursor:pointer;
+    box-shadow:0 5px 0 rgba(0,0,0,.3);
+    transition:transform .1s ease;
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-gold{background:var(--gold);color:var(--lapis-deep)}
+  .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-outline:active{transform:translateY(2px)}
+
+  /* Pregunta relámpago */
+  .quiz-box{
+    margin-top:26px;
+    background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);
+    border-radius:20px;
+    padding:18px 16px;
+    display:none;
+  }
+  .quiz-box.show{display:block}
+  .quiz-tag{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-size:.75rem;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    background:var(--brick);
+    color:#fff;
+    border-radius:999px;
+    padding:4px 12px;
+    margin-bottom:10px;
+  }
+  .quiz-q{font-size:1.1rem;font-weight:700}
+  .quiz-a{
+    margin-top:10px;
+    font-weight:800;
+    color:var(--gold-soft);
+    display:none;
+  }
+  .quiz-a.show{display:block}
+  .btn-sm{font-size:.95rem;padding:9px 20px;min-height:44px}
+
+  /* ══════════ TARJETAS IMPRIMIBLES ══════════ */
+  .print-note{
+    text-align:center;
+    font-size:.95rem;
+    opacity:.85;
+    max-width:560px;
+    margin:0 auto 20px;
+  }
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:14px;
+  }
+  .mini-card{
+    background:var(--cream);
+    color:var(--ink);
+    border-radius:18px;
+    border:4px solid var(--gold);
+    padding:18px 10px 12px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    position:relative;
+    box-shadow:0 5px 0 rgba(0,0,0,.25);
+  }
+  .mini-card .emoji{font-size:3.2rem;line-height:1}
+  .mini-card .case-name{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    line-height:1.25;
+  }
+  .key-dot{
+    position:absolute;
+    top:8px;
+    right:8px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    border:2px solid rgba(0,0,0,.25);
+  }
+  .key-inclina{background:var(--inclina)}
+  .key-firme{background:var(--firme)}
+  .group-title{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin:26px 0 12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .group-title .chip{
+    font-size:1.4rem;
+    background:var(--cream);
+    border-radius:12px;
+    padding:2px 10px;
+  }
+
+  /* ── Volver al índice ── */
+  .back-link{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    color:var(--gold-soft);
+    text-decoration:none;
+    border:2px solid transparent;
+    border-radius:999px;
+    padding:8px 16px;
+    margin-bottom:8px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+  /* ══════════ PARA PADRES ══════════ */
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);
+    color:var(--ink);
+    border:4px solid var(--gold);
+    border-radius:22px;
+    padding:22px 20px;
+    margin-bottom:18px;
+    box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .verse{
+    border-left:5px solid var(--brick);
+    background:rgba(194,84,43,.08);
+    border-radius:0 12px 12px 0;
+    padding:12px 14px;
+    font-style:italic;
+    font-weight:700;
+  }
+  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
+
+  /* ── Impresión ── */
+  @media print{
+    body{background:#fff;color:#000}
+    header,.topbar,#juego,#padres,.print-note,.legend{display:none!important}
+    section{display:block!important;padding:0}
+    #tarjetas{display:block!important}
+    .card-grid{grid-template-columns:repeat(3,1fr);gap:8mm}
+    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:12mm 4mm 8mm}
+    .mini-card .emoji{font-size:20mm}
+    .group-title{color:#000}
+    .group-title .chip{border:1px solid #ccc}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
+      <button class="menu-item" data-tab="tarjetas">🖨️ Tarjetas para imprimir</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 41 · El horno de fuego</div>
+  <h1>¡Firmes <span class="vs">O</span> inclinados!</h1>
+  <p class="subtitle">Sale una situación… ¡y tu cuerpo responde antes de revelar!</p>
+</header>
+
+<!-- ══════════ MODO JUEGO ══════════ -->
+<section id="juego" class="active">
+  <div class="legend" id="legend">
+    <div class="legend-item legend-inclina"><span class="big">🙇</span> Del lado de la multitud de Dura → ¡agáchate!</div>
+    <div class="legend-item legend-firme"><span class="big">🧍</span> Del lado de los tres amigos → ¡de pie y firme!</div>
+  </div>
+
+  <div class="furnace" id="furnace">
+    <div class="furnace-title">Termómetro del horno · siete veces más caliente</div>
+    <div class="flames" id="flames" aria-hidden="true"></div>
+    <div class="furnace-msg" id="furnaceMsg">El horno está apagado… todavía.</div>
+  </div>
+
+  <div class="stage">
+    <div class="round-label" id="roundLabel">¿Listos, valientes de Dura?</div>
+
+    <div class="game-card" id="gameCard" aria-live="polite">
+      <div class="emoji">🔥</div>
+      <div class="case-name">¡Partida en la llanura de Dura!</div>
+      <div class="hint">5 situaciones sorpresa + 5 preguntas relámpago</div>
+    </div>
+
+    <div class="quiz-box" id="quizBox">
+      <span class="quiz-tag" id="quizTag">6–7 años</span>
+      <div class="quiz-q" id="quizQ"></div>
+      <div class="quiz-a" id="quizA"></div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
+    </div>
+
+    <div class="judge" id="judge" hidden>
+      <span id="judgeQ">¿Acertó?</span>
+      <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
+    </div>
+
+    <p class="practice-note" id="practiceNote" hidden>🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.</p>
+  </div>
+</section>
+
+<!-- ══════════ TARJETAS IMPRIMIBLES ══════════ -->
+<section id="tarjetas">
+  <p class="print-note">
+    Usa <strong>Ctrl/Cmd + P</strong> para imprimirlas. El puntico de color en la esquina
+    es tu clave secreta de maestro: <span style="color:#FF9B94">rojo = la multitud de Dura (🙇 agacharse)</span>,
+    <span style="color:#8FE3AE">verde = los tres amigos (🧍 de pie y firme)</span>. Los niños no saben el código… ¡tú sí!
+    Dentro de cada lado, las tarjetas van primero <strong>las del capítulo 41</strong> (escenas y frases de Daniel 3)
+    y después las de <strong>aplicación a la vida de hoy</strong>: si vas a repasar para el examen, imprime las primeras.
+  </p>
+
+  <div class="group-title"><span class="chip">🗿</span> Del lado de la multitud de Dura — 🙇 ¡agáchate!</div>
+  <div class="card-grid" id="gridInclina"></div>
+
+  <div class="group-title"><span class="chip">🧍</span> Del lado de los tres amigos — 🧍 ¡de pie y firme!</div>
+  <div class="card-grid" id="gridFirme"></div>
+</section>
+
+<!-- ══════════ PARA PADRES ══════════ -->
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 La historia</h2>
+    <p>Esta dinámica está basada en <strong>Daniel 3</strong> (capítulo 41 de <em>Profetas y Reyes</em>, «El horno de fuego»). El rey <strong>Nabucodonosor</strong> mandó hacer una gran estatua, toda de oro, de <strong>sesenta codos de alto y seis de ancho</strong>, y la levantó en la <strong>llanura de Dura</strong>. Se decretó que, al oír la música, todos los pueblos, naciones y lenguas se postraran para adorarla.</p>
+    <p>La multitud se postró; pero <strong>tres hombres se quedaron de pie</strong>: Sadrac, Mesac y Abed-nego. Ante la amenaza del horno respondieron: «Nuestro Dios puede librarnos… <strong>y si no</strong>, sepas, oh rey, que tu dios no adoraremos». El rey mandó calentar el horno <strong>siete veces más</strong> de lo acostumbrado y los echó atados dentro.</p>
+    <p>Entonces el rey se levantó pálido de su trono: veía <strong>cuatro varones sueltos</strong> paseándose en medio del fuego, y el cuarto «semejante a hijo de los dioses». Salieron ilesos: ni un cabello quemado, ni olor de fuego. Solo se quemaron sus <strong>ligaduras</strong>. Y el rey bendijo al Dios de Sadrac, Mesac y Abed-nego.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>💡 ¿Qué aprende su hijo?</h2>
+    <ul>
+      <li><strong>Solo a Dios adoramos</strong>: postrarse ante la estatua era un acto de culto, y ese homenaje es solo para Dios.</li>
+      <li><strong>Fidelidad sin condiciones</strong>: el «y si no… igual serviremos a Dios» enseña a obedecer sin pedirle a Dios un premio primero.</li>
+      <li><strong>No seguir a la multitud</strong>: cuando todos se agachan, se puede quedar de pie.</li>
+      <li><strong>Dios acompaña en la prueba</strong>: el que caminó con ellos en el fuego acompaña también a sus hijos hoy.</li>
+    </ul>
+    <p class="verse">«Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti» <span>Isaías 43:2</span></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🏠 Cómo jugar la dinámica</h2>
+    <ol>
+      <li>Despejen un espacio para moverse y toquen <strong>▶ Jugar partida</strong>: salen <strong>5 situaciones sorpresa</strong> y después <strong>5 preguntas relámpago</strong>.</li>
+      <li>En cada situación su hijo reacciona <strong>antes</strong> de revelar: si cree que la situación es del lado de <strong>la multitud de Dura</strong>, se agacha (🙇); si cree que es del lado de <strong>los tres amigos</strong>, se pone de pie y firme con las manos arriba (🧍).</li>
+      <li>Toquen <strong>¡Revelar!</strong> y díganle a la app si acertó (⭐ +1) o no.</li>
+      <li>Miren el <strong>termómetro del horno</strong>: sus 7 llamas se encienden a medida que avanza la partida («siete veces más caliente»). Al terminar, las llamas no queman a nadie… y aparece el <strong>Cuarto varón</strong> caminando en el fuego.</li>
+      <li>Luego vienen las preguntas, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Revelen la respuesta y califiquen igual.</li>
+      <li>Las situaciones y las preguntas <strong>no se repiten</strong> hasta que se agoten todas: la app recuerda por niño lo que ya salió esta semana.</li>
+      <li>También pueden imprimir las tarjetas desde la pestaña <strong>🖨️</strong> y jugar sin pantalla: el puntico de color en la esquina es la clave del adulto.</li>
+    </ol>
+    <p>Las <strong>preguntas relámpago cubren todo el capítulo 41</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026.</p>
+    <p><strong>Sobre las citas:</strong> las frases entre comillas del juego están copiadas <em>tal como las trae el capítulo 41 de Profetas y Reyes</em>, que usa una redacción antigua («ni cabello de sus cabezas <em>fué</em> quemado», «no cuidamos de responderte sobre este <em>negocio</em>»). Si el examen del campamento se toma en <strong>Reina Valera 1995</strong>, la redacción de Daniel 3 en esa versión cambia un poco: sirven igual para el dato (quién, cuántos, dónde, qué pasó), pero no las usen para memorizar palabra por palabra.</p>
+    <p><strong>Qué es repaso y qué es aplicación:</strong> de las 5 situaciones de cada partida, <strong>4 son del capítulo 41</strong> (escenas, cifras y frases textuales de Daniel 3: la llanura de Dura, los sesenta codos, «no cuidamos de responderte sobre este negocio», el Cuarto varón, «ni cabello de sus cabezas fué quemado»…) y <strong>solo 1 es aplicación a la vida de hoy</strong> — el propio capítulo autoriza ese salto: «En esta época nuestra, muchos de los siervos de Dios…». Las <strong>5 preguntas son todas del capítulo</strong>. El único versículo de fuera de Daniel 3 es <strong>Isaías 43:2</strong>, y aparece porque el capítulo 41 lo cita. Para el examen del campamento, cuenten las 4 situaciones del capítulo y las 5 preguntas; la situación de hoy es para conversar.</p>
+    <p>La idea no es memorizar una lista, sino conversar: <em>¿cuándo me toca a mí quedarme de pie? ¿Qué es lo más difícil de decir NO cuando todos dicen sí?</em></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ El reto de la semana</h2>
+    <p>Jueguen <strong>una partida por día</strong>: 5 situaciones sorpresa + 5 preguntas relámpago. Cada acierto suma <strong>⭐ 1 punto</strong> (los fallos no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de juego y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Además, el reto de la casa: <strong>una vez al día, quédense de pie</strong>. Cada noche cuenten un momento en que le tocó «no agacharse» — en el colegio, con los amigos o con el celular — y oren juntos por valentía para el día siguiente.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+
+<script>
+  // ── Datos ──
+  // era:'capitulo' = escena, frase o dato que el capítulo 41 sí menciona.
+  // era:'hoy'      = aplicación a la vida de hoy (el capítulo la autoriza: "En esta época nuestra…").
+  const CASES = [
+    // ── La multitud de Dura · del capítulo ──
+    {emoji:'🗿', name:'«Se postraron y adoraron la estatua de oro»', side:'inclina', era:'capitulo'},
+    {emoji:'🎵', name:'Al oír el sonido de la música, todos al suelo', side:'inclina', era:'capitulo'},
+    {emoji:'📜', name:'El decreto: en el día de la dedicación, todos se postran ante la imagen', side:'inclina', era:'capitulo'},
+    {emoji:'📐', name:'Una estatua de sesenta codos de alto y seis de ancho, consagrada como objeto de culto', side:'inclina', era:'capitulo'},
+    {emoji:'🏜️', name:'La imagen de oro levantada en la llanura de Dura para representar la gloria de Babilonia', side:'inclina', era:'capitulo'},
+    {emoji:'🌍', name:'Un vasto concurso de todos los «pueblos, naciones y lenguas» se congrega en la llanura de Dura', side:'inclina', era:'capitulo'},
+    {emoji:'🥇', name:'Los sabios proponen hacer la imagen para exaltar la «cabeza de oro» del rey', side:'inclina', era:'capitulo'},
+    {emoji:'🗣️', name:'Los sabios celosos acusan: «estos varones, oh rey, no han hecho cuenta de ti»', side:'inclina', era:'capitulo'},
+    {emoji:'🙊', name:'«¿No honráis a mi dios, ni adoráis la estatua de oro que he levantado?»', side:'inclina', era:'capitulo'},
+    {emoji:'🔥', name:'La amenaza: «en la misma hora seréis echados en medio de un horno de fuego ardiendo»', side:'inclina', era:'capitulo'},
+    {emoji:'✊', name:'El rey desafía con la mano extendida: «¿Qué dios será aquel que os libre de mis manos?»', side:'inclina', era:'capitulo'},
+    {emoji:'🌡️', name:'Mandar calentar el horno siete veces más que de costumbre', side:'inclina', era:'capitulo'},
+    {emoji:'💪', name:'Los hombres fuertes del ejército atan a los tres hebreos y los echan al horno', side:'inclina', era:'capitulo'},
+    // ── La multitud de Dura · aplicación de hoy ──
+    {emoji:'😶', name:'Callar lo que creo por miedo', side:'inclina', era:'hoy'},
+    {emoji:'👥', name:'Hacer algo malo porque "todos lo hacen"', side:'inclina', era:'hoy'},
+    {emoji:'🙈', name:'Esconder que oro antes de comer', side:'inclina', era:'hoy'},
+    {emoji:'😜', name:'Burlarse del que dice NO', side:'inclina', era:'hoy'},
+    {emoji:'🏅', name:'Aceptar un premio por hacer trampa', side:'inclina', era:'hoy'},
+    {emoji:'📱', name:'Copiar en el examen con el celular', side:'inclina', era:'hoy'},
+    {emoji:'🤥', name:'Decir una mentira para caer bien', side:'inclina', era:'hoy'},
+    {emoji:'🫣', name:'Quedarse callado cuando molestan a un compañero', side:'inclina', era:'hoy'},
+    // ── Los tres amigos · del capítulo ──
+    {emoji:'🙏', name:'Su Dios era Rey de reyes: ante ningún otro se postrarían', side:'firme', era:'capitulo'},
+    {emoji:'🧍', name:'Tres hombres se quedan de pie en medio de la multitud de adoradores', side:'firme', era:'capitulo'},
+    {emoji:'💬', name:'«No cuidamos de responderte sobre este negocio»', side:'firme', era:'capitulo'},
+    {emoji:'🛡️', name:'«Nuestro Dios… puede librarnos del horno de fuego ardiendo»', side:'firme', era:'capitulo'},
+    {emoji:'📣', name:'«Y si no, sepas, oh rey, que tu dios no adoraremos»', side:'firme', era:'capitulo'},
+    {emoji:'🔥', name:'Entrar atados al horno antes que adorar la estatua', side:'firme', era:'capitulo'},
+    {emoji:'💼', name:'Ser fieles en los negocios de la provincia que el rey les dio', side:'firme', era:'capitulo'},
+    {emoji:'📖', name:'Recordar en la prueba: «cuando pasares por el fuego, no te quemarás» (Isaías 43:2)', side:'firme', era:'capitulo'},
+    {emoji:'👣', name:'El Cuarto varón: «el parecer del cuarto es semejante a hijo de los dioses»', side:'firme', era:'capitulo'},
+    {emoji:'💇', name:'Salir ilesos: «ni cabello de sus cabezas fué quemado»', side:'firme', era:'capitulo'},
+    {emoji:'🪢', name:'Lo único quemado: sus ligaduras', side:'firme', era:'capitulo'},
+    {emoji:'🙌', name:'El rey humillado reconoce: «Bendito el Dios de ellos, de Sadrac, Mesac y Abed-nego»', side:'firme', era:'capitulo'},
+    {emoji:'😌', name:'Mirando con calma el horno, le responden al rey sin vacilar', side:'firme', era:'capitulo'},
+    {emoji:'🤲', name:'«Entregaron sus cuerpos antes que sirviesen ni adorasen otro dios que su Dios»', side:'firme', era:'capitulo'},
+    // ── Los tres amigos · aplicación de hoy ──
+    {emoji:'😇', name:'Contar de Jesús a los amigos', side:'firme', era:'hoy'},
+    {emoji:'✋', name:'Decir NO cuando todos dicen sí', side:'firme', era:'hoy'},
+    {emoji:'🌱', name:'Ser fiel en lo pequeño', side:'firme', era:'hoy'},
+    {emoji:'🤝', name:'Perdonar en vez de vengarse', side:'firme', era:'hoy'},
+    {emoji:'📚', name:'Leer la Biblia aunque nadie mire', side:'firme', era:'hoy'},
+    {emoji:'🍽️', name:'Orar antes de comer en el colegio', side:'firme', era:'hoy'},
+    {emoji:'✍️', name:'Entregar el examen sin copiar', side:'firme', era:'hoy'},
+    {emoji:'🗓️', name:'Guardar el sábado aunque cueste', side:'firme', era:'hoy'}
+  ];
+
+  const QUIZ = [
+    {tag:'4–5 años', q:'¿Cuántos amigos se quedaron de pie sin agacharse? Cuenten con los dedos.', a:'3: Sadrac, Mesac y Abed-nego'},
+    {tag:'4–5 años', q:'¡Pónganse de pie como los tres amigos y díganme qué hizo toda la demás gente cuando sonó la música!', a:'Se postraron y adoraron la estatua de oro'},
+    {tag:'4–5 años', q:'¿De qué estaba hecha la estatua grande del rey?', a:'De oro, toda de oro'},
+    {tag:'4–5 años', q:'¿A quién adoraban solamente los tres amigos?', a:'Solo a Dios'},
+    {tag:'4–5 años', q:'¿Se quemaron los tres amigos dentro del fuego?', a:'No: salieron sin ningún daño'},
+    {tag:'4–5 años', q:'¿Cuántos varones vio el rey caminando en el fuego?', a:'Cuatro'},
+    {tag:'6–7 años', q:'¿Cómo se llamaban los tres amigos valientes?', a:'Sadrac, Mesac y Abed-nego'},
+    {tag:'6–7 años', q:'¿Cómo se llamaba el rey que mandó hacer la estatua de oro?', a:'Nabucodonosor'},
+    {tag:'6–7 años', q:'¿En qué llanura levantaron la estatua de oro?', a:'En la llanura de Dura'},
+    {tag:'6–7 años', q:'¿Qué tenía que hacer la gente cuando se oía la música?', a:'Postrarse y adorar la estatua de oro'},
+    {tag:'6–7 años', q:'¿Cuál era el castigo para el que no adorara la estatua?', a:'Ser echado en medio de un horno de fuego ardiendo'},
+    {tag:'6–7 años', q:'¿Cuántas veces más caliente mandó calentar el horno el rey?', a:'Siete veces más de lo acostumbrado'},
+    {tag:'6–7 años', q:'¿A quién reconoció el rey en el cuarto varón que andaba en el fuego?', a:'Al Hijo de Dios, el Salvador'},
+    {tag:'6–7 años', q:'¿Qué fue lo único que se les quemó a los tres amigos?', a:'Sus ligaduras, las cuerdas con que los ataron'},
+    {tag:'6–7 años', q:'¿Qué dijo el rey cuando los vio salir ilesos?', a:'"Bendito el Dios de ellos, de Sadrac, Mesac y Abed-nego"'},
+    {tag:'8–9 años', q:'¿Cuánto medía la estatua de oro?', a:'Sesenta codos de altura y seis codos de anchura'},
+    {tag:'8–9 años', q:'¿Por qué el rey hizo la estatua toda de oro y no como la del sueño?', a:'Para que toda ella simbolizara a Babilonia como reino eterno, indestructible y todopoderoso'},
+    {tag:'8–9 años', q:'Completa: "Y si no, sepas, oh rey, que tu dios no ________, ni tampoco honraremos la estatua que has levantado".', a:'Adoraremos'},
+    {tag:'8–9 años', q:'¿Qué preguntó el rey con la mano extendida en son de desafío?', a:'"¿Qué dios será aquel que os libre de mis manos?"'},
+    {tag:'8–9 años', q:'¿Quiénes le avisaron al rey que los tres no adoraban la estatua?', a:'Ciertos sabios celosos de los honores dados a los compañeros de Daniel'},
+    {tag:'8–9 años', q:'¿A quiénes mató la llama del fuego?', a:'A los hombres fuertes que echaron a Sadrac, Mesac y Abed-nego al horno'},
+    {tag:'8–9 años', q:'¿Qué promesa recordaron en la hora de su prueba? (Isaías 43:2)', a:'"Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti"'},
+    {tag:'8–9 años', q:'¿Cómo sabía el rey qué aspecto tendría el Hijo de Dios?', a:'Porque los cautivos hebreos le habían hablado de Cristo, el Redentor que iba a venir'},
+    {tag:'8–9 años', q:'¿Obliga Dios a los hombres a obedecerle?', a:'No: nunca compele; deja a todos libres para elegir a quién quieren servir'},
+    {tag:'8–9 años', q:'¿Qué decreto promulgó el rey después de aquel día?', a:'Que quien dijera blasfemia contra el Dios de Sadrac, Mesac y Abed-nego fuera descuartizado y su casa puesta por muladar'},
+    {tag:'8–9 años', q:'Según el capítulo, ¿qué probaron los tres hebreos delante de toda Babilonia?', a:'Su fe en Aquel a quien adoraban: entregaron sus cuerpos antes que servir a otro dios'}
+  ];
+
+  // ── Partida: 5 situaciones + 5 preguntas ──
+  const ACTIVITY = 'pr41';
+  const MATCH_CARDS_CHAPTER_PER_SIDE = 2;
+  const MATCH_CARDS_TODAY = 1;
+  const MATCH_CARDS = MATCH_CARDS_CHAPTER_PER_SIDE * 2 + MATCH_CARDS_TODAY;
+  const MATCH_QUIZ = 5;
+  const TOTAL_STEPS = MATCH_CARDS + MATCH_QUIZ;
+  const FLAMES = 7; // "siete veces más caliente"
+  // Cuántas preguntas de cada edad entran en una partida (suman MATCH_QUIZ).
+  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
+  let match = null; // {cards, quizzes, step, revealed, earned}
+
+  const gameCard = document.getElementById('gameCard');
+  const quizBox = document.getElementById('quizBox');
+  const mainBtn = document.getElementById('mainBtn');
+  const roundLabel = document.getElementById('roundLabel');
+  const judge = document.getElementById('judge');
+  const judgeQ = document.getElementById('judgeQ');
+  const judgeYes = document.getElementById('judgeYes');
+  const judgeNo = document.getElementById('judgeNo');
+  const flamesEl = document.getElementById('flames');
+  const furnaceMsg = document.getElementById('furnaceMsg');
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  // ── Termómetro del horno ──
+  flamesEl.innerHTML = Array.from({length: FLAMES}, () => '<span class="flame">🔥</span>').join('');
+  function setFurnace(lit, msg){
+    const flames = flamesEl.querySelectorAll('.flame');
+    flames.forEach((f, i) => f.classList.toggle('on', i < lit));
+    furnaceMsg.textContent = msg;
+  }
+  function furnaceForStep(step){
+    const lit = Math.min(FLAMES, Math.ceil((step / TOTAL_STEPS) * FLAMES));
+    if(lit <= 0) setFurnace(0, 'El horno está apagado… todavía.');
+    else if(lit < FLAMES) setFurnace(lit, `El horno se calienta: ${lit} de ${FLAMES} llamas.`);
+    else setFurnace(FLAMES, '¡Siete veces más caliente! Y ellos siguen firmes.');
+  }
+  setFurnace(0, 'El horno está apagado… todavía.');
+
+  function phase(){
+    if(!match) return 'idle';
+    if(match.step < MATCH_CARDS) return 'card';
+    if(match.step < TOTAL_STEPS) return 'quiz';
+    return 'done';
+  }
+
+  function pickMatchQuiz(){
+    const picked = [];
+    QUIZ_MIX.forEach(([tag, n]) => {
+      const group = QUIZ.filter(q => q.tag === tag);
+      picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.q));
+    });
+    return picked;
+  }
+
+  // 4 situaciones del capítulo (2 por lado) + 1 aplicación de hoy: bolsas separadas por era.
+  function pickMatchCards(){
+    const picked = [];
+    ['inclina', 'firme'].forEach(side => {
+      const bag = CASES.filter(c => c.era === 'capitulo' && c.side === side);
+      picked.push(...AvProfile.pick(`${ACTIVITY}:card:capitulo:${side}`, bag, MATCH_CARDS_CHAPTER_PER_SIDE, c => c.name));
+    });
+    picked.push(...AvProfile.pick(`${ACTIVITY}:card:hoy`, CASES.filter(c => c.era === 'hoy'), MATCH_CARDS_TODAY, c => c.name));
+    return shuffle(picked);
+  }
+
+  function startMatch(){
+    document.getElementById('legend').hidden = true;
+    document.getElementById('practiceNote').hidden = true;
+    match = {
+      cards: pickMatchCards(),
+      quizzes: pickMatchQuiz(),
+      step: 0,
+      revealed: false,
+      earned: 0
+    };
+    showStep();
+  }
+
+  function showStep(){
+    judge.hidden = true;
+    match.revealed = false;
+    const ph = phase();
+    if(ph === 'done'){ finishMatch(); return; }
+    furnaceForStep(match.step);
+    if(ph === 'card'){
+      quizBox.classList.remove('show');
+      gameCard.style.display = '';
+      const c = match.cards[match.step];
+      roundLabel.textContent = `Situación ${match.step + 1} de ${MATCH_CARDS}`;
+      gameCard.classList.remove('revealed-inclina','revealed-firme');
+      gameCard.innerHTML = `
+        <div class="emoji">${c.emoji}</div>
+        <div class="case-name">${c.name}</div>
+        <div class="hint">¿Te agachas o te quedas firme?</div>`;
+      mainBtn.textContent = '¡Revelar!';
+      mainBtn.hidden = false;
+    }else{
+      gameCard.style.display = 'none';
+      quizBox.classList.add('show');
+      const q = match.quizzes[match.step - MATCH_CARDS];
+      roundLabel.textContent = `Pregunta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
+      document.getElementById('quizTag').textContent = q.tag;
+      document.getElementById('quizQ').textContent = q.q;
+      const quizA = document.getElementById('quizA');
+      quizA.textContent = q.a;
+      quizA.classList.remove('show');
+      mainBtn.textContent = 'Ver respuesta';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function revealStep(){
+    match.revealed = true;
+    const ph = phase();
+    if(ph === 'card'){
+      const c = match.cards[match.step];
+      const inclina = c.side === 'inclina';
+      gameCard.classList.add(inclina ? 'revealed-inclina' : 'revealed-firme');
+      gameCard.innerHTML = `
+        <div class="emoji small">${c.emoji}</div>
+        <div class="case-name recap">${c.name}</div>
+        <div class="action-emoji">${inclina ? '🙇' : '🧍'}</div>
+        <div class="action-name">${inclina ? '¡La multitud de Dura!' : '¡Los tres amigos!'}</div>
+        <div class="hint">${inclina ? 'Como la multitud de Dura — ¡agáchate!' : 'Como los tres amigos — ¡de pie y firme!'}</div>`;
+    }else{
+      document.getElementById('quizA').classList.add('show');
+    }
+
+    const kind = ph === 'quiz' ? 'quiz' : 'card';
+    const p = AvProfile.get();
+    if(p && AvProfile.canScore(kind)){
+      judgeQ.textContent = ph === 'card' ? `¿${p.name} acertó?` : '¿Respondió bien?';
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      judgeQ.textContent = p
+        ? '🌙 Puntos completos: esta respuesta es de práctica.'
+        : '👤 Sin perfil: este acierto no suma al tablero.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Siguiente ▶';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function nextStep(){
+    match.step++;
+    showStep();
+  }
+
+  function finishMatch(){
+    document.getElementById('legend').hidden = false;
+    quizBox.classList.remove('show');
+    gameCard.style.display = '';
+    gameCard.classList.remove('revealed-inclina','revealed-firme');
+    setFurnace(FLAMES, '🔥🔥🔥 Las llamas no quemaron a nadie: ni un cabello, ni olor de fuego.');
+    roundLabel.textContent = '¡Bien hecho, valientes!';
+    const p = AvProfile.get();
+    const scored = p ? `<div class="hint">⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.</div>` : '';
+    const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
+      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
+    gameCard.innerHTML = `
+      <div class="emoji">👣</div>
+      <div class="case-name">¡Y apareció el Cuarto varón caminando en el fuego!</div>
+      <div class="hint">"He aquí que yo veo cuatro varones sueltos… y ningún daño hay en ellos."</div>
+      ${scored}${extra}`;
+    mainBtn.textContent = '🔁 Otra partida';
+    mainBtn.hidden = false;
+    match = null;
+    updateIdleHint();
+  }
+
+  function updateIdleHint(){
+    if(match) return;
+    const p = AvProfile.get();
+    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    const note = document.getElementById('practiceNote');
+    if(!p){
+      note.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      note.hidden = false;
+    }else if(practice){
+      note.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+      note.hidden = false;
+    }else{
+      note.hidden = true;
+    }
+    if(mainBtn.textContent.includes('Otra partida')){
+      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
+    }else if(mainBtn.textContent.includes('partida')){
+      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    }
+  }
+  AvProfile.onChange(updateIdleHint);
+
+  mainBtn.addEventListener('click', () => {
+    if(!match){ startMatch(); return; }
+    if(!match.revealed){ revealStep(); return; }
+    nextStep();
+  });
+
+  judgeYes.addEventListener('click', () => {
+    judge.hidden = true;
+    const kind = phase() === 'quiz' ? 'quiz' : 'card';
+    AvProfile.score(true, kind);
+    match.earned++;
+    nextStep();
+  });
+  judgeNo.addEventListener('click', () => {
+    judge.hidden = true;
+    const kind = phase() === 'quiz' ? 'quiz' : 'card';
+    AvProfile.score(false, kind);
+    nextStep();
+  });
+
+  // ── Tarjetas imprimibles ──
+  function renderGrid(id, side){
+    const grid = document.getElementById(id);
+    const label = side === 'inclina' ? 'La multitud de Dura' : 'Los tres amigos';
+    grid.innerHTML = CASES.filter(c => c.side === side).map(c => `
+      <div class="mini-card">
+        <span class="key-dot ${side === 'inclina' ? 'key-inclina' : 'key-firme'}" title="${label}"></span>
+        <div class="emoji">${c.emoji}</div>
+        <div class="case-name">${c.name}</div>
+      </div>`).join('');
+  }
+  renderGrid('gridInclina','inclina');
+  renderGrid('gridFirme','firme');
+
+  // ── Menú ──
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  function closeMenu(){
+    menuPanel.hidden = true;
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.menu-wrap')) closeMenu();
+  });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      closeMenu();
+    });
+  });
+
+  // ── Perfil y puntos (módulo compartido /shared/profile.js) ──
+  document.getElementById('changePlayerBtn').addEventListener('click', () => {
+    closeMenu();
+    AvProfile.open();
+  });
+
+  // Iniciar
+  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
+  updateIdleHint();
+</script>
+</body>
+</html>

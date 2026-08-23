@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1B2F6E">
 <title>La mesa del rey vs. la mesa de Daniel</title>
-<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Una partida diaria: 5 comidas sorpresa + 5 preguntas relámpago. ¡Suma puntos para el tablero del Club de Aventureros!">
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Una partida diaria: 5 tarjetas sorpresa + 5 preguntas relámpago. ¡Suma puntos para el tablero del Club de Aventureros!">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
 <meta property="og:title" content="La mesa del rey vs. la mesa de Daniel">
-<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Una partida diaria: 5 comidas sorpresa + 5 preguntas relámpago. ¡Suma puntos para el tablero del club!">
+<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Una partida diaria: 5 tarjetas sorpresa + 5 preguntas relámpago. ¡Suma puntos para el tablero del club!">
 <meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr39/">
 <meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/mesa-del-rey.png">
 <meta property="og:image:width" content="1200">
@@ -451,6 +451,9 @@
   }
   .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
 
+  .mini-ask{font-size:.72rem;font-weight:700;line-height:1.3;margin-top:6px;opacity:.85}
+  .mini-key{font-size:.66rem;font-weight:800;line-height:1.3;margin-top:4px;color:var(--brick)}
+
   /* ── Impresión ── */
   @media print{
     body{background:#fff;color:#000}
@@ -484,7 +487,7 @@
 <header>
   <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 39 · En la corte de Babilonia</div>
   <h1>La mesa del rey <span class="vs">VS</span> la mesa de Daniel</h1>
-  <p class="subtitle">Sale una comida… ¡y todos reaccionan!</p>
+  <p class="subtitle">Sale una tarjeta… ¡y todos reaccionan!</p>
 </header>
 
 <!-- ══════════ MODO JUEGO ══════════ -->
@@ -500,7 +503,7 @@
     <div class="game-card" id="gameCard" aria-live="polite">
       <div class="emoji">🎲</div>
       <div class="food-name">¡Partida de agentes!</div>
-      <div class="hint">5 comidas sorpresa + 5 preguntas relámpago</div>
+      <div class="hint">5 tarjetas sorpresa + 5 preguntas relámpago</div>
     </div>
 
     <div class="quiz-box" id="quizBox">
@@ -530,6 +533,12 @@
     es tu clave secreta de maestro: <span style="color:#FF9B94">rojo = mesa del rey (🙊)</span>,
     <span style="color:#8FE3AE">verde = mesa de Daniel (💪)</span>. Los niños no saben el código… ¡tú sí!
   </p>
+  <p class="print-note">
+    En cada grupo van primero las tarjetas de <strong>repaso del capítulo 39</strong> (escenas y decisiones
+    del relato) y al final las de <strong>aplicación de hoy</strong> (comidas y decisiones de salud).
+    Cada tarjeta de repaso trae abajo el <strong>dato que el niño debe decir</strong> y, en rojo con 🔑,
+    la respuesta para el adulto.
+  </p>
 
   <div class="group-title"><span class="chip">👑</span> Mesa del rey — 🙊 ¡tápate la boca!</div>
   <div class="card-grid" id="gridRey"></div>
@@ -543,7 +552,7 @@
   <div class="parent-box">
     <h2>📖 La historia</h2>
     <p>Esta dinámica está basada en <strong>Daniel 1</strong> (capítulo 39 de <em>Profetas y Reyes</em>, «En la corte de Babilonia»). Daniel y sus tres amigos fueron llevados cautivos al palacio del rey Nabucodonosor, donde les ofrecieron la comida y el vino de la mesa real: alimentos que deshonraban a Dios.</p>
-    <p>Daniel <strong>propuso en su corazón no contaminarse</strong> y pidió una prueba de 10 días comiendo legumbres y agua. Al final, él y sus amigos estaban más sanos y fuertes, y Dios les dio sabiduría: el rey los halló <strong>diez veces mejores</strong> que todos sus sabios.</p>
+    <p>Daniel <strong>propuso en su corazón no contaminarse</strong> y pidió una prueba de 10 días comiendo <strong>alimento sencillo</strong> (la frase «legumbres y agua» es de Daniel 1:12, no del capítulo 39). Al final, él y sus amigos estaban más sanos y fuertes, y Dios les dio sabiduría: el rey los halló <strong>diez veces mejores</strong> que todos sus sabios.</p>
   </div>
 
   <div class="parent-box">
@@ -559,19 +568,36 @@
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 comidas sorpresa</strong> y después <strong>5 preguntas relámpago</strong>.</li>
-      <li>En cada comida, su hijo reacciona antes de revelar: si cree que es de la <strong>mesa del rey</strong>, se tapa la boca (🙊); si es de la <strong>mesa de Daniel</strong>, hace músculo (💪).</li>
-      <li>Toquen <strong>¡Revelar!</strong> y díganle a la app si acertó (⭐ +1) o no.</li>
-      <li>Luego vienen las preguntas, marcadas por edades (4–5, 6–7 y 8–9 años): revelen la respuesta y califiquen igual.</li>
+      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 tarjetas sorpresa</strong> (4 del capítulo 39 y 1 de aplicación de hoy) y después <strong>5 preguntas relámpago</strong>. <strong>Las 10 rondas suman puntos</strong> y las 10 son contenido evaluable.</li>
+      <li>En cada tarjeta, su hijo reacciona antes de revelar: si cree que es de la <strong>mesa del rey</strong>, se tapa la boca (🙊); si es de la <strong>mesa de Daniel</strong>, hace músculo (💪). <strong>Y además dice el dato que pide la tarjeta</strong> (un nombre, un número, un orden o una frase del capítulo): ese dato es lo que se califica.</li>
+      <li>Toquen <strong>¡Revelar!</strong>: la app muestra la mesa y la respuesta correcta del dato. Díganle si su hijo lo dijo bien (⭐ +1) o no.</li>
+      <li>Luego vienen las preguntas, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Revelen la respuesta y califiquen igual.</li>
+      <li>Las tarjetas y preguntas <strong>no se repiten</strong> hasta que se agoten todas: la app recuerda por niño lo que ya salió esta semana.</li>
       <li>También pueden imprimir las tarjetas físicas desde la pestaña <strong>🖨️</strong> y jugar sin pantalla: el puntico de color en la esquina es la clave del adulto.</li>
     </ol>
     <p>Las <strong>preguntas relámpago cubren todo el capítulo 39</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
+    <p><strong>Cuántas rondas suman puntos:</strong> una partida son <strong>10 rondas con punto</strong>
+      —5 tarjetas (máximo ⭐ 5 al día) y 5 preguntas (máximo ⭐ 5 al día)—. De esas 10, <strong>9 son repaso del
+      capítulo 39</strong> y <strong>1 es aplicación de hoy</strong> (la tarjeta de comida actual).</p>
+    <p><strong>Qué es repaso y qué es aplicación (para preparar el examen):</strong> las <strong>29 tarjetas de repaso</strong>
+      (13 de la mesa del rey y 16 de la mesa de Daniel) son escenas y decisiones que el capítulo 39 sí menciona
+      —«la ración de la comida del rey», «el vino de su beber», «propuso en su corazón no contaminarse», la prueba
+      de diez días, «el alimento sencillo», Melsar y el príncipe de los eunucos, Nadab y Abihú, «la fidelidad en
+      las cosas pequeñas»— y cada una <strong>pide un dato del capítulo</strong>. Las <strong>23 tarjetas de
+      aplicación de hoy</strong> (tocino, camarones, langosta, golosinas, gaseosa, frutas, avena…) <em>no</em> están en
+      el capítulo: unas vienen de las leyes de alimentación de Levítico 11 y otras son decisiones de salud de hoy;
+      ahí también va «legumbres y agua», que es de Daniel 1:12 y no del capítulo 39, y así aparece anotada.
+      Cada partida saca <strong>4 tarjetas del capítulo y solo 1 de aplicación</strong>.</p>
+    <p><strong>Nota para el examen:</strong> el capítulo 39 dice que Daniel pidió «alimento sencillo» y que se le
+      permitió seguir «su régimen sencillo»; «legumbres y agua» es la cita de Daniel 1:12. Los nombres caldeos
+      (Beltsasar, Sadrac, Mesac, Abed-nego) <em>sí</em> fueron cambiados y Daniel los aceptó: lo único que rechazó
+      fue la comida y el vino del rey.</p>
     <p>La idea no es memorizar una lista de comidas, sino conversar: <em>¿por qué Daniel decidió así? ¿Qué decisiones podemos tomar nosotros para honrar a Dios?</em></p>
   </div>
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 comidas sorpresa + 5 preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong> (las incorrectas no restan); por día se pueden ganar máximo <strong>5 puntos de comidas y 5 de preguntas</strong>. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Jueguen <strong>una partida por día</strong>: 5 tarjetas sorpresa + 5 preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong> (las incorrectas no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de tarjetas y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
     <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
   </div>
 </section>
@@ -581,50 +607,111 @@
 <script>
   // ── Datos ──
   const FOODS = [
-    // Mesa del rey — de Babilonia
-    {emoji:'🥓', name:'Tocino de cerdo', side:'rey'},
-    {emoji:'🍖', name:'Costillas de cerdo', side:'rey'},
-    {emoji:'🦐', name:'Camarones', side:'rey'},
-    {emoji:'🦞', name:'Langosta', side:'rey'},
-    {emoji:'🦀', name:'Cangrejo', side:'rey'},
-    {emoji:'🍷', name:'Vino del rey', side:'rey'},
-    {emoji:'🍺', name:'Cerveza del banquete', side:'rey'},
-    // Mesa del rey — de hoy
-    {emoji:'🍬', name:'Golosinas', side:'rey'},
-    {emoji:'🍭', name:'Chupetas', side:'rey'},
-    {emoji:'🥤', name:'Gaseosa', side:'rey'},
-    {emoji:'🍟', name:'Papitas fritas', side:'rey'},
-    {emoji:'🍩', name:'Donas azucaradas', side:'rey'},
-    // Mesa de Daniel — de Babilonia
-    {emoji:'🥦', name:'Legumbres', side:'daniel'},
-    {emoji:'🫘', name:'Frijoles', side:'daniel'},
-    {emoji:'🥕', name:'Zanahorias', side:'daniel'},
-    {emoji:'🍎', name:'Manzanas', side:'daniel'},
-    {emoji:'🍇', name:'Uvas', side:'daniel'},
-    {emoji:'💧', name:'Agua fresca', side:'daniel'},
-    {emoji:'🌽', name:'Maíz', side:'daniel'},
-    {emoji:'🥒', name:'Pepinos', side:'daniel'},
-    // Mesa de Daniel — de hoy
-    {emoji:'🍌', name:'Banano', side:'daniel'},
-    {emoji:'🥗', name:'Ensalada fresca', side:'daniel'},
-    {emoji:'🥜', name:'Maní y nueces', side:'daniel'},
-    {emoji:'🥣', name:'Avena', side:'daniel'},
-    {emoji:'🍊', name:'Naranjas', side:'daniel'}
+    // ── Mesa del rey · repaso del capítulo 39 (cada tarjeta pide un dato del capítulo) ──
+    {emoji:'🍖', name:'La ración de la comida del rey', side:'rey', era:'capitulo',
+      ask:'…y completa la frase: «Propuso en su ______ de no contaminarse en la ración de la comida del rey»', ans:'Corazón'},
+    {emoji:'🍷', name:'El vino de su beber', side:'rey', era:'capitulo',
+      ask:'…y di qué les quedaría perjudicado por tomar vino', ans:'Sus facultades físicas y mentales'},
+    {emoji:'🗿', name:'Comer lo que se ofrecía a los ídolos', side:'rey', era:'capitulo',
+      ask:'…y di a los dioses de qué ciudad sería rendir homenaje', ans:'A los dioses de Babilonia'},
+    {emoji:'🙇', name:'Rendir homenaje a los dioses de Babilonia', side:'rey', era:'capitulo',
+      ask:'…y di el nombre del único Dios al que ellos adoraban', ans:'Jehová, el Dios viviente'},
+    {emoji:'🏛️', name:'Adorar como los caldeos', side:'rey', era:'capitulo',
+      ask:'…y di qué sí aprendieron de los caldeos', ans:'«Las letras y la lengua de los Caldeos»'},
+    {emoji:'🍽️', name:'Los manjares del rey que comían los otros muchachos', side:'rey', era:'capitulo',
+      ask:'…y di cuántos días duró la prueba que los comparó', ans:'10 días'},
+    {emoji:'🍶', name:'La intemperancia que describían los pergaminos del Pentateuco', side:'rey', era:'capitulo',
+      ask:'…y di los nombres de esos dos hombres', ans:'Nadab y Abihú'},
+    {emoji:'🎭', name:'Hacer como que comía del alimento del rey', side:'rey', era:'capitulo',
+      ask:'…y di qué habría sido eso, según el capítulo', ans:'Negar su fe'},
+    {emoji:'🎉', name:'El lujo y la disipación de la corte', side:'rey', era:'capitulo',
+      ask:'…y di sobre qué tres desarrollos tenían efecto', ans:'El físico, el mental y el espiritual'},
+    {emoji:'🤝', name:'Transigir con los idólatras', side:'rey', era:'capitulo',
+      ask:'…y di qué debían considerar como alto honor', ans:'La fe que sostenían y el nombre de adoradores del Dios viviente'},
+    {emoji:'😵', name:'Debilitar las facultades con el vino', side:'rey', era:'capitulo',
+      ask:'…y di quién los tendría por responsables de sus facultades', ans:'Dios'},
+    {emoji:'🚪', name:'El primer paso en la dirección errónea', side:'rey', era:'capitulo',
+      ask:'…y di quiénes les habían inculcado hábitos de estricta templanza', ans:'Sus padres'},
+    {emoji:'📜', name:'Una excusa plausible para dejar los hábitos temperantes', side:'rey', era:'capitulo',
+      ask:'…y di qué apreciaba Daniel más que el favor del rey', ans:'La aprobación de Dios'},
+    // ── Mesa del rey · aplicación de hoy (salud y decisiones) ──
+    {emoji:'🥓', name:'Tocino de cerdo', side:'rey', era:'hoy'},
+    {emoji:'🍖', name:'Costillas de cerdo', side:'rey', era:'hoy'},
+    {emoji:'🦐', name:'Camarones', side:'rey', era:'hoy'},
+    {emoji:'🦞', name:'Langosta', side:'rey', era:'hoy'},
+    {emoji:'🦀', name:'Cangrejo', side:'rey', era:'hoy'},
+    {emoji:'🍺', name:'Cerveza', side:'rey', era:'hoy'},
+    {emoji:'🍬', name:'Golosinas', side:'rey', era:'hoy'},
+    {emoji:'🍭', name:'Chupetas', side:'rey', era:'hoy'},
+    {emoji:'🥤', name:'Gaseosa', side:'rey', era:'hoy'},
+    {emoji:'🍟', name:'Papitas fritas', side:'rey', era:'hoy'},
+    {emoji:'🍩', name:'Donas azucaradas', side:'rey', era:'hoy'},
+    // ── Mesa de Daniel · repaso del capítulo 39 (cada tarjeta pide un dato del capítulo) ──
+    {emoji:'🥗', name:'El alimento sencillo', side:'daniel', era:'capitulo',
+      ask:'…y di cuántos días duró la prueba', ans:'10 días'},
+    {emoji:'🍲', name:'Su régimen sencillo durante todo el curso de su educación', side:'daniel', era:'capitulo',
+      ask:'…y di cuántos años duró esa educación', ans:'3 años'},
+    {emoji:'❤️', name:'Proponer en su corazón no contaminarse', side:'daniel', era:'capitulo',
+      ask:'…y di las dos cosas en que no quiso contaminarse', ans:'En la ración de la comida del rey y en el vino de su beber'},
+    {emoji:'🔟', name:'Pedir la prueba de diez días', side:'daniel', era:'capitulo',
+      ask:'…y di el nombre del oficial que consintió en la prueba', ans:'Melsar'},
+    {emoji:'🙏', name:'Apelar primero al príncipe de los eunucos y después a Melsar', side:'daniel', era:'capitulo',
+      ask:'…y di el orden: ¿a quién apeló primero y a quién después?', ans:'Primero al príncipe de los eunucos, después a Melsar'},
+    {emoji:'📚', name:'Aprender la lengua de los caldeos sin dejar a Dios', side:'daniel', era:'capitulo',
+      ask:'…y di qué estudiaron durante tres años', ans:'«Las letras y la lengua de los Caldeos»'},
+    {emoji:'🤏', name:'La fidelidad en las cosas pequeñas', side:'daniel', era:'capitulo',
+      ask:'…y di qué fue lo que dió carácter a toda su vida', ans:'La fidelidad en las cosas pequeñas'},
+    {emoji:'🛡️', name:'No renunciar a la fe para hacerse idólatra', side:'daniel', era:'capitulo',
+      ask:'…y di cómo esperaba el rey lograr que renunciaran', ans:'Gradualmente'},
+    {emoji:'⚖️', name:'Hábitos de estricta templanza', side:'daniel', era:'capitulo',
+      ask:'…y di quiénes se los habían inculcado', ans:'Sus padres'},
+    {emoji:'🧎', name:'Orar por sabiduría y vivir según sus oraciones', side:'daniel', era:'capitulo',
+      ask:'…y di qué don especial recibió Daniel', ans:'Entendimiento en toda visión y sueños'},
+    {emoji:'🎯', name:'Un propósito ferviente, diligencia y constancia', side:'daniel', era:'capitulo',
+      ask:'…y di cuántas veces mejores los halló el rey', ans:'Diez veces mejores'},
+    {emoji:'😊', name:'El rostro «mejor y más nutrido de carne»', side:'daniel', era:'capitulo',
+      ask:'…y completa: «pareció el rostro de ellos ______ y más nutrido de carne»', ans:'Mejor'},
+    {emoji:'🏅', name:'Ser hallados diez veces mejores', side:'daniel', era:'capitulo',
+      ask:'…y di mejores que quiénes', ans:'Que todos los magos y astrólogos del reino'},
+    {emoji:'🕊️', name:'Honrar a Dios en la prosperidad y en la adversidad', side:'daniel', era:'capitulo',
+      ask:'…y di la promesa que se cumplió en ellos (1 Samuel 2:30)', ans:'«Yo honraré a los que me honran»'},
+    {emoji:'🚶', name:'Andar con Dios como lo hizo aquel patriarca', side:'daniel', era:'capitulo',
+      ask:'…y di el nombre de ese patriarca', ans:'Enoc'},
+    {emoji:'🧠', name:'Los cuatro muchachos «en quienes no hubiese tacha alguna»', side:'daniel', era:'capitulo',
+      ask:'…y di los nombres de los cuatro', ans:'Daniel, Ananías, Misael y Azarías'},
+    // ── Mesa de Daniel · aplicación de hoy (salud y decisiones) ──
+    {emoji:'💧', name:'Legumbres y agua (Daniel 1:12, no el capítulo 39)', side:'daniel', era:'hoy'},
+    {emoji:'🥦', name:'Brócoli', side:'daniel', era:'hoy'},
+    {emoji:'🫘', name:'Frijoles', side:'daniel', era:'hoy'},
+    {emoji:'🥕', name:'Zanahorias', side:'daniel', era:'hoy'},
+    {emoji:'🍎', name:'Manzanas', side:'daniel', era:'hoy'},
+    {emoji:'🍇', name:'Uvas', side:'daniel', era:'hoy'},
+    {emoji:'🌽', name:'Maíz', side:'daniel', era:'hoy'},
+    {emoji:'🥒', name:'Pepinos', side:'daniel', era:'hoy'},
+    {emoji:'🍌', name:'Banano', side:'daniel', era:'hoy'},
+    {emoji:'🥜', name:'Maní y nueces', side:'daniel', era:'hoy'},
+    {emoji:'🥣', name:'Avena', side:'daniel', era:'hoy'},
+    {emoji:'🍊', name:'Naranjas', side:'daniel', era:'hoy'}
   ];
 
   const QUIZ = [
-    {tag:'4–5 años', q:'¡Muéstrenme la cara de Daniel diciendo NO a la comida del rey!', a:'😤 ¡Esa carita valiente!'},
-    {tag:'4–5 años', q:'¿Cómo quedaron Daniel y sus amigos comiendo la comida sencilla? ¡Muéstrenme!', a:'💪 ¡Más fuertes!'},
-    {tag:'4–5 años', q:'¿Cuántos amigos eran en total? Cuenten con los dedos.', a:'4: Daniel, Ananías, Misael y Azarías'},
-    {tag:'4–5 años', q:'¿Qué pidió Daniel para comer y beber?', a:'🥦 Legumbres y 💧 agua'},
+    {tag:'4–5 años', q:'🙊 ¡Tápate la boca y di qué NO quiso comer ni beber Daniel!', a:'La comida del rey y el vino de su beber'},
+    {tag:'4–5 años', q:'💪 ¡Haz músculo y di cuántos días duró la prueba de la comida!', a:'10 días'},
+    {tag:'4–5 años', q:'¿Cuántos muchachos hebreos eran? Cuenten con los dedos.', a:'4: Daniel, Ananías, Misael y Azarías'},
+    {tag:'4–5 años', q:'¿Qué pidió Daniel que les dieran de comer durante la prueba?', a:'Alimento sencillo (la frase «legumbres y agua» es de Daniel 1:12)'},
+    {tag:'4–5 años', q:'¿A qué ciudad se llevaron cautivos a Daniel y sus amigos?', a:'A Babilonia'},
+    {tag:'4–5 años', q:'💪 ¡Haz músculo y completa: «pareció el rostro de ellos ______ y más nutrido de carne»!', a:'Mejor'},
     {tag:'6–7 años', q:'¿Cuántos días duró la prueba de la comida?', a:'10 días'},
     {tag:'6–7 años', q:'¿Cuántos años estudiaron en Babilonia?', a:'3 años'},
     {tag:'6–7 años', q:'¿Qué nombre nuevo le pusieron a Daniel?', a:'Beltsasar'},
     {tag:'6–7 años', q:'¿Qué nombres nuevos les pusieron a Ananías, Misael y Azarías?', a:'Sadrac, Mesac y Abed-nego'},
+    {tag:'6–7 años', q:'¿Cómo se llamaban los tres compañeros de Daniel?', a:'Ananías, Misael y Azarías'},
     {tag:'6–7 años', q:'¿Cómo se llamaba el rey de Babilonia?', a:'Nabucodonosor'},
-    {tag:'6–7 años', q:'¿De dónde se llevaron cautivos a Daniel y sus amigos?', a:'De Judá (Jerusalén) a Babilonia'},
+    {tag:'6–7 años', q:'Según el capítulo, ¿de los hijos de quién eran Daniel y sus amigos, y a dónde fueron llevados?', a:'De los hijos de Judá, llevados a Babilonia'},
     {tag:'6–7 años', q:'¿Qué estudiaron en la escuela de Babilonia?', a:'Las letras y la lengua de los caldeos'},
+    {tag:'6–7 años', q:'¿Cómo se llamaba el príncipe de los eunucos a quien el rey dio la orden?', a:'Aspenaz'},
     {tag:'8–9 años', q:'¿Cómo se llamaba el oficial a quien Daniel pidió la prueba de los 10 días?', a:'Melsar'},
+    {tag:'8–9 años', q:'¿En qué orden apeló Daniel: a quién primero y a quién después?', a:'Primero al príncipe de los eunucos (Aspenaz) y después a Melsar'},
     {tag:'8–9 años', q:'¿Cuántas veces mejores los halló el rey que a sus magos y astrólogos?', a:'Diez veces mejores'},
     {tag:'8–9 años', q:'¿Por qué comer la comida del rey era deshonrar a Dios?', a:'Porque estaba ofrecida a los ídolos: comerla era rendir homenaje a los dioses de Babilonia'},
     {tag:'8–9 años', q:'Completa: "Daniel propuso en su ________ no contaminarse".', a:'Corazón'},
@@ -632,12 +719,19 @@
     {tag:'8–9 años', q:'¿Cuántos años duraría el cautiverio de Israel en Babilonia?', a:'70 años'},
     {tag:'8–9 años', q:'¿Por qué tenía miedo el príncipe de los eunucos de cambiarles la comida?', a:'Temía que el rey los viera más tristes y desmejorados y lo condenara a él: "condenaréis para con el rey mi cabeza"'},
     {tag:'8–9 años', q:'Además de conocimiento, ¿qué don especial le dio Dios a Daniel?', a:'Entendimiento en toda visión y sueños'},
-    {tag:'8–9 años', q:'Según el capítulo, ¿qué dio carácter a toda la vida de Daniel y sus amigos?', a:'La fidelidad en las cosas pequeñas'}
+    {tag:'8–9 años', q:'Según el capítulo, ¿qué dio carácter a toda la vida de Daniel y sus amigos?', a:'La fidelidad en las cosas pequeñas'},
+    {tag:'8–9 años', q:'¿Qué muchachos pidió el rey que le trajeran? Di tres requisitos.', a:'«En quienes no hubiese tacha alguna, y de buen parecer, y enseñados en toda sabiduría»'},
+    {tag:'8–9 años', q:'¿Qué dos hombres del Pentateuco conocían como ejemplo de intemperancia?', a:'Nadab y Abihú'},
+    {tag:'8–9 años', q:'El capítulo dice que anduvieron con Dios como lo hizo… ¿quién?', a:'Enoc'},
+    {tag:'8–9 años', q:'¿Qué obraba Dios en ellos, según Filipenses 2:13?', a:'«El querer como el hacer, por su buena voluntad»'}
   ];
 
   // ── Partida: 5 comidas + 5 preguntas ──
+  const ACTIVITY = 'pr39';
   const MATCH_CARDS = 5;
   const MATCH_QUIZ = 5;
+  // Cuántas preguntas de cada edad entran en una partida (suman MATCH_QUIZ).
+  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
   let match = null; // {cards, quizzes, step, revealed, earned}
 
   const gameCard = document.getElementById('gameCard');
@@ -666,25 +760,22 @@
   }
 
   function pickMatchQuiz(){
-    const groups = {};
-    QUIZ.forEach(q => (groups[q.tag] = groups[q.tag] || []).push(q));
     const picked = [];
-    const leftover = [];
-    Object.keys(groups).forEach(tag => {
-      const g = shuffle(groups[tag]);
-      picked.push(g[0]);
-      leftover.push(...g.slice(1));
+    QUIZ_MIX.forEach(([tag, n]) => {
+      const group = QUIZ.filter(q => q.tag === tag);
+      picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.q));
     });
-    picked.push(...shuffle(leftover).slice(0, MATCH_QUIZ - picked.length));
-    return picked.sort((a, b) => a.tag.localeCompare(b.tag));
+    return picked;
   }
 
+  // 4 tarjetas de repaso del capítulo (2 por lado) + 1 de aplicación de hoy.
   function pickMatchCards(){
-    const rey = shuffle(FOODS.filter(f => f.side === 'rey'));
-    const daniel = shuffle(FOODS.filter(f => f.side === 'daniel'));
-    const picked = [...rey.slice(0, 2), ...daniel.slice(0, 2)];
-    const leftover = shuffle([...rey.slice(2), ...daniel.slice(2)]);
-    picked.push(...leftover.slice(0, MATCH_CARDS - picked.length));
+    const capitulo = side => FOODS.filter(f => f.era === 'capitulo' && f.side === side);
+    const picked = [
+      ...AvProfile.pick(`${ACTIVITY}:card:capitulo:rey`, capitulo('rey'), 2, f => f.name),
+      ...AvProfile.pick(`${ACTIVITY}:card:capitulo:daniel`, capitulo('daniel'), 2, f => f.name),
+      ...AvProfile.pick(`${ACTIVITY}:card:hoy`, FOODS.filter(f => f.era === 'hoy'), 1, f => f.name)
+    ];
     return shuffle(picked);
   }
 
@@ -709,12 +800,14 @@
       quizBox.classList.remove('show');
       gameCard.style.display = '';
       const f = match.cards[match.step];
-      roundLabel.textContent = `Comida ${match.step + 1} de ${MATCH_CARDS}`;
+      roundLabel.textContent = `Tarjeta ${match.step + 1} de ${MATCH_CARDS}`;
       gameCard.classList.remove('revealed-rey','revealed-daniel');
       gameCard.innerHTML = `
         <div class="emoji">${f.emoji}</div>
         <div class="food-name">${f.name}</div>
-        <div class="hint">¿Qué hacemos, agentes?</div>`;
+        <div class="hint">${f.ask
+          ? '🙊 o 💪 <strong>' + f.ask + '</strong>'
+          : '¿Qué hacemos, agentes? (tarjeta de aplicación de hoy)'}</div>`;
       mainBtn.textContent = '¡Revelar!';
       mainBtn.hidden = false;
     }else if(ph === 'quiz'){
@@ -745,7 +838,8 @@
         <div class="emoji">${f.emoji}</div>
         <div class="action-emoji">${isRey ? '🙊' : '💪'}</div>
         <div class="action-name">${isRey ? '¡Mesa del rey!' : '¡Mesa de Daniel!'}</div>
-        <div class="hint">${isRey ? 'Tápate la boca — ¡no la comemos!' : 'Haz músculo — ¡más fuertes!'}</div>`;
+        <div class="hint">${isRey ? 'Tápate la boca — ¡eso no, como Daniel!' : 'Haz músculo — ¡más fuertes!'}</div>
+        ${f.ans ? `<div class="hint">✅ El dato: <strong>${f.ans}</strong></div>` : ''}`;
     }else{
       document.getElementById('quizA').classList.add('show');
     }
@@ -753,7 +847,10 @@
     const kind = ph === 'quiz' ? 'quiz' : 'card';
     const p = AvProfile.get();
     if(p && AvProfile.canScore(kind)){
-      judgeQ.textContent = ph === 'card' ? `¿${p.name} acertó?` : '¿Respondió bien?';
+      const card = ph === 'card' ? match.cards[match.step] : null;
+      judgeQ.textContent = ph === 'card'
+        ? (card.ask ? `¿${p.name} dijo bien el dato?` : `¿${p.name} acertó la mesa?`)
+        : '¿Respondió bien?';
       judgeYes.hidden = false;
       judgeNo.hidden = false;
       judge.hidden = false;
@@ -789,6 +886,7 @@
       <div class="emoji">🏁</div>
       <div class="food-name">¡Partida completa!</div>
       ${scored}${extra}`;
+    mainBtn.dataset.mode = 'again';
     mainBtn.textContent = '🔁 Otra partida';
     mainBtn.hidden = false;
     match = null;
@@ -809,9 +907,9 @@
     }else{
       note.hidden = true;
     }
-    if(mainBtn.textContent.includes('Otra partida')){
+    if(mainBtn.dataset.mode === 'again'){
       mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
-    }else if(mainBtn.textContent.includes('partida')){
+    }else{
       mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
     }
   }
@@ -840,11 +938,14 @@
   // ── Tarjetas imprimibles ──
   function renderGrid(id, side){
     const grid = document.getElementById(id);
-    grid.innerHTML = FOODS.filter(f => f.side === side).map(f => `
+    const cards = FOODS.filter(f => f.side === side);
+    const ordered = [...cards.filter(f => f.era === 'capitulo'), ...cards.filter(f => f.era === 'hoy')];
+    grid.innerHTML = ordered.map(f => `
       <div class="mini-card">
         <span class="key-dot ${side === 'rey' ? 'key-rey' : 'key-daniel'}" title="${side === 'rey' ? 'Mesa del rey' : 'Mesa de Daniel'}"></span>
         <div class="emoji">${f.emoji}</div>
         <div class="food-name">${f.name}</div>
+        ${f.ask ? `<div class="mini-ask">${f.ask}</div><div class="mini-key">🔑 ${f.ans}</div>` : ''}
       </div>`).join('');
   }
   renderGrid('gridRey','rey');
@@ -881,7 +982,7 @@
   });
 
   // Iniciar
-  AvProfile.init({ chip: document.getElementById('playerChip'), autoOpen: true });
+  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
   updateIdleHint();
 </script>
 </body>

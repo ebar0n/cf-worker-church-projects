@@ -3,6 +3,25 @@ import { Hono } from "hono";
 // El documento nunca se guarda en claro: solo su hash con esta sal.
 const SALT = "aventureros-jordan-2026";
 
+// El tope diario es por actividad: cada juego tiene sus propias 5 tarjetas
+// y 5 preguntas. En la base de datos `kind` guarda '<actividad>:<tipo>'.
+const ACTIVITIES = [
+  "pr39",
+  "pr39-prueba10",
+  "pr39-nombres",
+  "pr39-rompecabezas",
+  "pr39-colorear",
+  "pr41",
+  "pr41-estatua",
+  "pr41-horno",
+  "pr41-secuencia",
+  "pr41-versiculo",
+  "pr44",
+  "pr44-reloj",
+  "pr44-quien-lo-dijo",
+  "pr44-laberinto",
+  "pr44-diferencias",
+];
 const DAILY_LIMIT = { card: 5, quiz: 5 };
 
 async function docHash(doc) {
@@ -23,10 +42,11 @@ async function todayCounts(db, playerId) {
     )
     .bind(playerId, todayInBogota())
     .all();
-  const today = { card: 0, quiz: 0 };
+  const today = {};
+  for (const activity of ACTIVITIES) today[activity] = { card: 0, quiz: 0 };
   for (const r of results || []) {
-    if (r.kind === "quiz") today.quiz += r.n;
-    else today.card += r.n; // filas históricas sin kind cuentan como tarjetas
+    const [activity, type] = String(r.kind || "").split(":");
+    if (today[activity] && (type === "card" || type === "quiz")) today[activity][type] += r.n;
   }
   return today;
 }
@@ -96,6 +116,11 @@ app.post("/api/score", async (c) => {
   const doc = normalizeDoc(body.doc);
   if (!doc) return c.json({ error: "Falta el documento." }, 400);
   const kind = body.kind === "quiz" ? "quiz" : "card";
+  const activity = body.activity === undefined ? ACTIVITIES[0] : String(body.activity);
+  if (!ACTIVITIES.includes(activity)) {
+    return c.json({ error: `La actividad '${activity}' no existe.` }, 400);
+  }
+  const scopedKind = `${activity}:${kind}`;
   const hash = await docHash(doc);
   const today = todayInBogota();
 
@@ -109,12 +134,11 @@ app.post("/api/score", async (c) => {
     await c.env.DB.prepare(
       "INSERT INTO adventurers_interactions (player_id, delta, day, kind) VALUES (?, 0, ?, ?)"
     )
-      .bind(row.id, today, kind)
+      .bind(row.id, today, scopedKind)
       .run();
     return c.json(await toProfile(c.env.DB, row));
   }
 
-  const kindFilter = kind === "quiz" ? "i.kind = 'quiz'" : "(i.kind = 'card' OR i.kind = '')";
   const row = await c.env.DB.prepare(
     `UPDATE adventurers_players SET
        points = points + 1,
@@ -122,16 +146,16 @@ app.post("/api/score", async (c) => {
      WHERE doc_hash = ?1
        AND (SELECT COUNT(*) FROM adventurers_interactions i
               WHERE i.player_id = adventurers_players.id
-                AND i.day = ?2 AND i.delta > 0 AND ${kindFilter}) < ${DAILY_LIMIT[kind]}
+                AND i.day = ?2 AND i.delta > 0 AND i.kind = ?3) < ${DAILY_LIMIT[kind]}
      RETURNING id, name, points`
   )
-    .bind(hash, today)
+    .bind(hash, today, scopedKind)
     .first();
   if (row) {
     await c.env.DB.prepare(
       "INSERT INTO adventurers_interactions (player_id, delta, day, kind) VALUES (?, 1, ?, ?)"
     )
-      .bind(row.id, today, kind)
+      .bind(row.id, today, scopedKind)
       .run();
     return c.json(await toProfile(c.env.DB, row));
   }
@@ -139,9 +163,12 @@ app.post("/api/score", async (c) => {
     .bind(hash)
     .first();
   if (!exists) return c.json({ error: "El documento no coincide con ningún perfil." }, 401);
-  const label = kind === "quiz" ? "preguntas" : "comidas";
+  const label = kind === "quiz" ? "preguntas" : "juego";
   return c.json(
-    { error: `🌙 ¡Ya sumaste tus ${DAILY_LIMIT[kind]} puntos de ${label} de hoy!`, limit: DAILY_LIMIT },
+    {
+      error: `🌙 ¡Ya sumaste tus ${DAILY_LIMIT[kind]} puntos de ${label} de hoy en esta actividad!`,
+      limit: DAILY_LIMIT,
+    },
     429
   );
 });
