@@ -22,16 +22,17 @@
   color:var(--pf-gold-soft);
   border-radius:999px;
   padding:7px 14px;
-  min-height:38px;
+  min-height:44px;
   cursor:pointer;
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
   max-width:100%;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
 }
 @media (max-width:400px){
-  .pf-chip{font-size:.78rem;padding:6px 10px;min-height:34px}
+  .pf-chip{font-size:.78rem;padding:6px 10px}
 }
 .pf-chip:focus-visible{outline:3px solid #fff;outline-offset:3px}
 
@@ -162,10 +163,20 @@ button,.pf-chip,.legend-item,svg{
   user-select:none;
 }
 
-/* En modo standalone no hay barra del navegador: la barra superior tiene que
-   respetar la muesca y el reloj del sistema. */
-@media (display-mode:standalone),(display-mode:fullscreen){
-  .topbar,.index-top{padding-top:max(10px,env(safe-area-inset-top))}
+/* La barra superior respeta la muesca, la isla y los bordes redondeados.
+   Va sin condicionar a display-mode: en iOS esa consulta no siempre coincide
+   aunque la app esté instalada, y sin el relleno el botón de ingresar queda
+   debajo del reloj y no recibe el toque. Donde no hay muesca, env() es 0. */
+/* Va con `body` delante a propósito: este archivo se carga ANTES del <style>
+   de cada página, que declara `.topbar{padding:...}` con la misma
+   especificidad y ganaría por orden. */
+body .topbar,body .index-top{
+  padding-top:max(10px,env(safe-area-inset-top));
+  padding-left:max(12px,env(safe-area-inset-left));
+  padding-right:max(12px,env(safe-area-inset-right));
+  position:relative;
+  z-index:60;
+  --pf-safe-area:applied;
 }
 
 /* ── Avisos que no bloquean (reemplazan a alert) ── */
