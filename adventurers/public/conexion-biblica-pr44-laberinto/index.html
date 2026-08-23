@@ -179,7 +179,7 @@
   .maze-box svg > *{pointer-events:none}
   .maze-box svg > .mz-cell{pointer-events:all}
   .mz-cell{fill:transparent;cursor:pointer}
-  .mz-hint{fill:rgba(46,158,91,.30)}
+  .mz-hint{fill:rgba(46,158,91,.55);stroke:var(--daniel-deep);stroke-width:1.5}
   .mz-wall{stroke:var(--night);stroke-width:6;stroke-linecap:round}
   .mz-house{fill:var(--brick);stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
   .mz-house-door{fill:var(--gold-soft);stroke:var(--ink);stroke-width:3}
@@ -191,6 +191,7 @@
   .mz-lion-face{fill:var(--gold-soft);stroke:var(--ink);stroke-width:2.5}
   .mz-lion-dot{fill:var(--ink)}
   .mz-lion-line{stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round}
+  .mz-token{filter:drop-shadow(0 0 3px var(--cream)) drop-shadow(0 0 3px var(--cream))}
   .mz-token-body{fill:var(--daniel);stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
   .mz-token-head{fill:var(--gold-soft);stroke:var(--ink);stroke-width:3}
   .mz-here{fill:none;stroke:var(--daniel-deep);stroke-width:3;stroke-dasharray:5 5}
@@ -339,7 +340,7 @@
   <div class="menu-wrap">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
     <div class="menu-panel" id="menuPanel" hidden>
-      <button class="menu-item active" data-tab="juego">🧩 El laberinto</button>
+      <button class="menu-item active" data-tab="juego">🌀 El laberinto</button>
       <button class="menu-item" data-tab="material">🖨️ Laberintos para imprimir</button>
       <button class="menu-item" data-tab="padres">👪 Para padres</button>
       <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
@@ -367,7 +368,7 @@
 
     <div class="hud" id="hud" hidden>
       <span>⭐ <b id="starCount">0</b>/5 estrellas</span>
-      <span>🧩 <b id="mazeName">—</b></span>
+      <span>🌀 <b id="mazeName">—</b></span>
       <span>👣 <b id="stepCount">0</b> pasos</span>
     </div>
 
@@ -381,7 +382,7 @@
     </div>
 
     <div class="game-card" id="gameCard">
-      <div class="emoji">🧩</div>
+      <div class="emoji">🌀</div>
       <div class="big-name">¡Partida de laberinto!</div>
       <div class="hint">5 estrellas en el camino + 5 preguntas del capítulo</div>
     </div>
@@ -1207,7 +1208,7 @@
       + '</g>';
   }
   function tokenSVG(){
-    return '<g class="mz-piece">'
+    return '<g class="mz-piece mz-token">'
       + '<path class="mz-token-body" d="M13,39 L17,21 Q22,18 27,21 L31,39 Z"/>'
       + '<path class="mz-token-body" d="M17,23 L11,14 M27,23 L33,14"/>'
       + '<circle class="mz-token-head" cx="22" cy="12" r="6.5"/>'
@@ -1364,7 +1365,7 @@
   function newMaze(){
     if(!match || match.phase !== 'maze') return;
     loadMaze();
-    setMsg('🧩 ¡Otro laberinto! Las estrellas que ya sumaste se quedan contigo.');
+    setMsg('🌀 ¡Otro laberinto! Las estrellas que ya sumaste se quedan contigo.');
   }
 
   function skipMaze(){
@@ -1576,7 +1577,7 @@
       try{ localStorage.setItem(LEVEL_KEY, level) }catch(e){}
       levelPicker.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      setMsg('🧩 Nivel <strong>' + LEVEL_NAME[level] + '</strong> listo. Toca jugar.');
+      setMsg('🌀 Nivel <strong>' + LEVEL_NAME[level] + '</strong> listo. Toca jugar.');
     });
   });
   levelPicker.querySelectorAll('.level-btn').forEach(b => {

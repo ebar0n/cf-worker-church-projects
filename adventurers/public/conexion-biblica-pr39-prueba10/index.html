@@ -563,7 +563,11 @@
   <p class="print-note">
     Usa <strong>Ctrl/Cmd + P</strong> para imprimir. Recorta el <strong>camino de 10 casillas</strong>,
     pégalo en el suelo o en una cartulina y consigan una ficha (una tapa, una piedrita o un botón).
-    Recorten también las <strong>tarjetas de retos</strong>, revuélvanlas boca abajo y saquen una por día.
+    Recorten también las <strong>tarjetas de retos del capítulo</strong> (las dos primeras rejillas),
+    revuélvanlas boca abajo y saquen una por día. Cada tarjeta trae abajo la <strong>respuesta esperada</strong>,
+    para que el adulto califique sin dudar. Las <strong>cuatro tarjetas de <em>aplicación de hoy</em></strong>
+    van aparte, en su propia rejilla: no tienen respuesta evaluable, así que se usa
+    <strong>solo una cada cinco días</strong> y el resto de los días sale del capítulo.
     El puntico de la esquina es la clave del adulto:
     <span style="color:#8FE3AE">verde = reto de mover el cuerpo</span>,
     <span style="color:#A8C4FF">azul = reto de conversar</span>.
@@ -577,6 +581,9 @@
 
   <div class="group-title"><span class="chip">💬</span> Tarjetas de retos — conversar</div>
   <div class="card-grid" id="gridHablar"></div>
+
+  <div class="group-title"><span class="chip">🌱</span> Aplicación de hoy — usar solo 1 cada 5 días</div>
+  <div class="card-grid" id="gridHoy"></div>
 </section>
 
 <!-- ══════════ PARA PADRES ══════════ -->
@@ -602,14 +609,16 @@
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
       <li>Toquen <strong>▶ Jugar partida</strong>. Arriba verán el <strong>camino de 10 casillas</strong>: son los diez días de la prueba de Daniel, y la ficha ⭐ marca en qué día va su hijo.</li>
-      <li>Cada ronda es <strong>un día</strong>: sale un reto cortito, de mover el cuerpo (💪) o de conversar (💬). Su hijo lo hace y ustedes le dicen a la app si lo logró (⭐ +1) o no. Con cada reto la ficha avanza un día.</li>
+      <li>Cada ronda es <strong>un día</strong>: sale un reto cortito, de mover el cuerpo (💪) o de conversar (💬). El niño se mueve o actúa, pero <strong>lo que responde es un dato del capítulo</strong>, y al revelar el reto la app les muestra la <strong>respuesta esperada</strong> para que ustedes califiquen sin dudar (⭐ +1 o no). Con cada reto la ficha avanza un día.</li>
+      <li>De los <strong>5 retos de la partida, 4 son del capítulo 39</strong> (los cuatro jóvenes, los 10 días, los 3 años, Nabucodonosor, Aspenaz, Melsar, «diez veces mejores»…) y <strong>1 es de aplicación a la vida de hoy</strong>, donde vale cualquier respuesta sincera.</li>
       <li>Una partida avanza <strong>5 días</strong>. Al jugar la segunda partida (o seguir en modo práctica) llegan al <strong>día 10</strong>: se abre el 🏛️ palacio y aparece la escena final, con los cuatro jóvenes de rostro «mejor y más nutrido de carne» y «diez veces mejores». Ahí el camino vuelve a empezar.</li>
       <li>Después de los 5 días vienen <strong>5 preguntas del capítulo</strong>, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Revelen la respuesta y califiquen igual.</li>
       <li>Los retos y las preguntas <strong>no se repiten</strong> hasta que se agote la bolsa: la app recuerda por niño lo que ya salió esta semana.</li>
       <li>Sin pantalla: impriman el tablero y las tarjetas desde la pestaña <strong>🖨️</strong>, pónganlo en el suelo y avancen con una ficha real, un día por reto.</li>
     </ol>
     <p>Las <strong>preguntas cubren todo el capítulo 39</strong>, así que también sirven de repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
-    <p>La idea no es memorizar datos, sino conversar: <em>¿por qué Daniel decidió así? ¿Qué decisión pequeña podemos tomar hoy nosotros para honrar a Dios?</em></p>
+    <p><strong>Qué es repaso y qué es aplicación:</strong> los 23 retos marcados como del capítulo y las 25 preguntas salen todos del capítulo 39 (Daniel 1); la cita «Yo honraré a los que me honran» (1 Samuel 2:30) y la historia de Nadab y Abiú son referencias que el propio capítulo hace. Los 4 retos de <em>aplicación de hoy</em> (la partida saca 1) no tienen respuesta evaluable: sirven para conversar, no para el examen.</p>
+    <p>Además de los datos, aprovechen para conversar: <em>¿por qué Daniel decidió así? ¿Qué decisión pequeña podemos tomar hoy nosotros para honrar a Dios?</em></p>
   </div>
 
   <div class="parent-box">
@@ -624,31 +633,39 @@
 
 <script>
   // ── Datos ──
-  // Retos de mover el cuerpo (12)
+  // Retos del capítulo 39 (23: 15 de mover, 8 de conversar) + 4 de aplicación de hoy.
+  // era:'capitulo' → la respuesta es un dato del capítulo (campo a). era:'hoy' → aplicación abierta.
   const RETOS = [
-    {emoji:'💪', kind:'mover', name:'Haz músculo', text:'Haz músculo con los dos brazos y di fuerte: "¡Dios me hace fuerte!"'},
-    {emoji:'💧', kind:'mover', name:'Brindis de agua', text:'Llena tu vaso de agua y brinda por Daniel, que no quiso el vino del rey: "¡Salud, con agua!"'},
-    {emoji:'🥦', kind:'mover', name:'Tres verduras', text:'Di el nombre de 3 verduras sin repetir… ¡saltando en un pie!'},
-    {emoji:'🙊', kind:'mover', name:'Cuatro veces no', text:'Tápate la boca y di NO con la cabeza 4 veces, una por cada joven valiente.'},
-    {emoji:'🦶', kind:'mover', name:'Diez pasos gigantes', text:'Da 10 pasos gigantes contando en voz alta los 10 días de la prueba.'},
-    {emoji:'🙏', kind:'mover', name:'Oración cortita', text:'Arrodíllate y haz una oración de una frase: "Dios, ayúdame a decidir bien".'},
-    {emoji:'🚶', kind:'mover', name:'Paso de palacio', text:'Camina como los jóvenes hebreos: espalda derecha y paso firme y elástico.'},
-    {emoji:'🍎', kind:'mover', name:'Trofeo de la cocina', text:'Ve a la cocina, trae una fruta o una verdura y muéstrala como un trofeo.'},
-    {emoji:'👏', kind:'mover', name:'Diez veces mejores', text:'Aplaude 10 veces diciendo en cada aplauso: "diez veces mejores".'},
-    {emoji:'😄', kind:'mover', name:'Cara de sano', text:'Haz la cara de alguien sano y bien alimentado… y luego la cara de cansado.'},
-    {emoji:'🌱', kind:'mover', name:'Planta que crece', text:'Agáchate hasta el suelo y estírate hacia arriba, como una planta que crece sana.'},
-    {emoji:'🗣️', kind:'mover', name:'Los cuatro nombres', text:'Di en voz alta los 4 nombres: Daniel, Ananías, Misael y Azarías.'},
-    // Retos de conversar (10)
-    {emoji:'💬', kind:'hablar', name:'Mi propio NO', text:'Cuenta algo a lo que hoy le dijiste NO porque no era bueno para ti.'},
-    {emoji:'🥗', kind:'hablar', name:'Comida sencilla', text:'¿Qué comida sencilla te gusta más? Dile por qué a quien está jugando contigo.'},
-    {emoji:'❤️', kind:'hablar', name:'Lo propongo en mi corazón', text:'Daniel "propuso en su corazón". Di una cosa que tú decides de una vez para toda la semana.'},
-    {emoji:'🤏', kind:'hablar', name:'Cosas pequeñas', text:'Nombra 2 cosas pequeñas que puedes hacer bien hoy en casa sin que te las pidan.'},
-    {emoji:'🛡️', kind:'hablar', name:'Mis palabras', text:'Si alguien te ofrece algo que no honra a Dios, ¿qué palabras exactas le dirías?'},
-    {emoji:'😰', kind:'hablar', name:'El miedo de Melsar', text:'¿Por qué crees que Melsar tenía miedo de cambiarles la comida a los jóvenes?'},
-    {emoji:'😳', kind:'hablar', name:'Me dio pena', text:'Daniel dijo no aunque dependía del rey. Cuenta una vez que te dio pena decir no.'},
-    {emoji:'🤲', kind:'hablar', name:'Pedir ayuda', text:'Daniel le pidió ayuda a Dios. Pídesela tú en voz alta para algo de esta semana.'},
-    {emoji:'🏷️', kind:'hablar', name:'Mi nombre nuevo', text:'A Daniel le cambiaron el nombre. Inventa un nombre que recuerde que tú amas a Dios.'},
-    {emoji:'🙌', kind:'hablar', name:'Gracias por mi cuerpo', text:'Di dos cosas de tu cuerpo por las que le das gracias a Dios hoy.'}
+    // ── Capítulo · mover el cuerpo ──
+    {emoji:'💪', kind:'mover', era:'capitulo', name:'Haz músculo', text:'Haz músculo con los dos brazos y di cuántos hijos de Judá nombra el capítulo, con sus nombres.', a:'4: Daniel, Ananías, Misael y Azarías'},
+    {emoji:'🦶', kind:'mover', era:'capitulo', name:'Pasos de la prueba', text:'Da un paso gigante por cada día que duró la prueba que pidió Daniel, contando en voz alta.', a:'10 días'},
+    {emoji:'👏', kind:'mover', era:'capitulo', name:'Diez veces mejores', text:'Aplaude una vez por cada vez que el rey los halló mejores que sus magos y di la frase completa: el rey los halló ______ que todos sus magos y astrólogos.', a:'«Diez veces mejores»'},
+    {emoji:'🕒', kind:'mover', era:'capitulo', name:'Los años de estudio', text:'Salta en un pie y di cuántos años estudiaron los jóvenes hebreos en Babilonia.', a:'3 años'},
+    {emoji:'🗣️', kind:'mover', era:'capitulo', name:'Los cuatro nombres', text:'Marcha en tu puesto y di un nombre hebreo por cada paso, los cuatro.', a:'Daniel, Ananías, Misael y Azarías'},
+    {emoji:'🏷️', kind:'mover', era:'capitulo', name:'Los nombres nuevos', text:'Da media vuelta por cada nombre nuevo que les pusieron en Babilonia y dilos en orden.', a:'Beltsasar (Daniel), Sadrac (Ananías), Mesac (Misael) y Abed-nego (Azarías)'},
+    {emoji:'👑', kind:'mover', era:'capitulo', name:'La corona del rey', text:'Ponte una corona imaginaria, siéntate como un rey y di el nombre del rey que mandó traer a los jóvenes.', a:'Nabucodonosor'},
+    {emoji:'🫡', kind:'mover', era:'capitulo', name:'El príncipe de los eunucos', text:'Haz un saludo firme y di el nombre del príncipe de los eunucos a quien el rey le dio la orden.', a:'Aspenaz'},
+    {emoji:'🍽️', kind:'mover', era:'capitulo', name:'Quien sirvió la prueba', text:'Haz como si sirvieras un plato y di a quién le pidió Daniel la prueba de los diez días.', a:'Melsar'},
+    {emoji:'🙅', kind:'mover', era:'capitulo', name:'Las dos cosas que no quiso', text:'Di NO con la mano dos veces y nombra las DOS cosas en que Daniel propuso no contaminarse.', a:'«La ración de la comida del rey» y «el vino de su beber»'},
+    {emoji:'😄', kind:'mover', era:'capitulo', name:'Rostro de los diez días', text:'Pon tu mejor cara de salud y di la frase del capítulo sobre cómo se vio su rostro al final de la prueba.', a:'«Mejor y más nutrido de carne» que los otros muchachos'},
+    {emoji:'📜', kind:'mover', era:'capitulo', name:'Los años del cautiverio', text:'Cuenta de diez en diez dando un salto en cada número hasta llegar a los años que duraría el cautiverio.', a:'70 años'},
+    {emoji:'❤️', kind:'mover', era:'capitulo', name:'Lo propuso en su…', text:'Ponte la mano en el pecho y completa la frase: «Daniel propuso en su ______ de no contaminarse».', a:'Corazón'},
+    {emoji:'📖', kind:'mover', era:'capitulo', name:'Letras y lengua', text:'Haz como si leyeras un rollo grande y di qué estudiaron los jóvenes durante los tres años.', a:'«Las letras y la lengua de los caldeos»'},
+    {emoji:'🌙', kind:'mover', era:'capitulo', name:'El don de Daniel', text:'Acuéstate como quien duerme, levántate y di qué don especial recibió solo Daniel, además del conocimiento en las letras.', a:'Entendimiento en toda visión y sueños'},
+    // ── Capítulo · conversar ──
+    {emoji:'🏛️', kind:'hablar', era:'capitulo', name:'De dónde los trajeron', text:'Cuéntale a quien juega contigo de qué pueblo y de qué linaje fueron llevados los cuatro jóvenes.', a:'De los hijos de Judá, del linaje real de los príncipes'},
+    {emoji:'😰', kind:'hablar', era:'capitulo', name:'El temor del príncipe', text:'Di con voz de miedo lo que temía el príncipe de los eunucos si el rey veía tristes a los jóvenes.', a:'«Condenaréis para con el rey mi cabeza»'},
+    {emoji:'🥗', kind:'hablar', era:'capitulo', name:'Los dos menús', text:'Explica qué comerían los jóvenes hebreos durante los diez días y qué comerían sus compañeros.', a:'Ellos, alimento sencillo; los demás, los manjares y el vino de la mesa del rey'},
+    {emoji:'⛔', kind:'hablar', era:'capitulo', name:'¿Por qué no comer del rey?', text:'Explica por qué comer de la mesa del rey habría deshonrado a Dios.', a:'Porque una porción se ofrecía a los ídolos: compartirla era rendir homenaje a los dioses de Babilonia'},
+    {emoji:'🙌', kind:'hablar', era:'capitulo', name:'La promesa cumplida', text:'Di en voz alta la promesa que se cumplió en ellos (1 Samuel 2:30).', a:'«Yo honraré a los que me honran»'},
+    {emoji:'🤏', kind:'hablar', era:'capitulo', name:'Lo que dio carácter', text:'Según el capítulo, ¿qué fue lo que dio carácter a toda su vida? Dilo con tus palabras.', a:'La fidelidad en las cosas pequeñas'},
+    {emoji:'🗿', kind:'hablar', era:'capitulo', name:'Nombres con dioses ajenos', text:'Explica para qué el rey les cambió los nombres a los cuatro jóvenes.', a:'Los nombres nuevos conmemoraban divinidades caldeas: quería llevarlos poco a poco a la idolatría'},
+    {emoji:'🍷', kind:'hablar', era:'capitulo', name:'La historia del Pentateuco', text:'Cuenta qué historia de los pergaminos del Pentateuco les recordaba el peligro de la intemperancia.', a:'La de Nadab y Abiú'},
+    // ── Aplicación de hoy (la partida saca solo 1) ──
+    {emoji:'💬', kind:'hablar', era:'hoy', name:'Mi propio NO', text:'Cuenta algo a lo que hoy le dijiste NO porque no era bueno para ti.', a:'Aplicación de hoy: vale cualquier respuesta sincera.'},
+    {emoji:'🤲', kind:'hablar', era:'hoy', name:'Pedir ayuda', text:'Daniel confió en Dios. Pídele ayuda en voz alta para algo de esta semana.', a:'Aplicación de hoy: vale cualquier respuesta sincera.'},
+    {emoji:'🍎', kind:'mover', era:'hoy', name:'Trofeo de la cocina', text:'Ve a la cocina, trae una fruta o una verdura y di qué vas a escoger esta semana, como Daniel.', a:'Aplicación de hoy: vale cualquier respuesta sincera.'},
+    {emoji:'🌱', kind:'mover', era:'hoy', name:'Diez días míos', text:'Estírate como una planta que crece y di una cosa pequeña que harás diez días seguidos.', a:'Aplicación de hoy: vale cualquier respuesta sincera.'}
   ];
 
   const QUIZ = [
@@ -685,7 +702,8 @@
   const MATCH_QUIZ = 5;
   const TOTAL_DAYS = 10;
   const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
-  const RETO_MIX = [['mover', 3], ['hablar', 2]];
+  const RETO_MIX_CAPITULO = [['mover', 3], ['hablar', 1]];
+  const MATCH_HOY = 1;
   let match = null; // {cards, quizzes, step, revealed, earned, startDay, palaceDue, palaceShown}
 
   const board = document.getElementById('board');
@@ -767,10 +785,12 @@
 
   function pickMatchRetos(){
     const picked = [];
-    RETO_MIX.forEach(([kind, n]) => {
-      const group = RETOS.filter(r => r.kind === kind);
-      picked.push(...AvProfile.pick(`${ACTIVITY}:reto:${kind}`, group, n, r => r.name));
+    RETO_MIX_CAPITULO.forEach(([kind, n]) => {
+      const group = RETOS.filter(r => r.era === 'capitulo' && r.kind === kind);
+      picked.push(...AvProfile.pick(`${ACTIVITY}:card:capitulo:${kind}`, group, n, r => r.name));
     });
+    const hoy = RETOS.filter(r => r.era === 'hoy');
+    picked.push(...AvProfile.pick(`${ACTIVITY}:card:hoy`, hoy, MATCH_HOY, r => r.name));
     return shuffle(picked);
   }
 
@@ -854,7 +874,8 @@
         <span class="day-tag">Día ${day} de ${TOTAL_DAYS}</span>
         <span class="kind-chip ${r.kind}">${r.kind === 'mover' ? '💪 Mueve el cuerpo' : '💬 Conversa'}</span>
         <div class="emoji pop">${r.emoji}</div>
-        <div class="reto-name pop">${r.text}</div>`;
+        <div class="reto-name pop">${r.text}</div>
+        <div class="hint">${r.era === 'capitulo' ? '✅ Respuesta: ' + r.a : '💬 ' + r.a}</div>`;
     }else{
       document.getElementById('quizA').classList.add('show');
     }
@@ -985,18 +1006,20 @@
     html += '<div class="print-cell goal"><span class="pn">🏛️ ¡Al palacio!</span><span class="pd">“Hallólos diez veces mejores que todos los magos y astrólogos”</span></div>';
     document.getElementById('printBoard').innerHTML = html;
   }
-  function renderGrid(id, kind){
-    document.getElementById(id).innerHTML = RETOS.filter(r => r.kind === kind).map(r => `
+  function renderGrid(id, filter){
+    document.getElementById(id).innerHTML = RETOS.filter(filter).map(r => `
       <div class="mini-card">
-        <span class="key-dot ${kind === 'mover' ? 'key-mover' : 'key-hablar'}" title="${kind === 'mover' ? 'Mover el cuerpo' : 'Conversar'}"></span>
+        <span class="key-dot ${r.kind === 'mover' ? 'key-mover' : 'key-hablar'}" title="${r.kind === 'mover' ? 'Mover el cuerpo' : 'Conversar'}"></span>
         <div class="emoji">${r.emoji}</div>
         <div class="reto-name">${r.name}</div>
         <div class="reto-text">${r.text}</div>
+        <div class="reto-text">${r.era === 'capitulo' ? '<strong>Respuesta:</strong> ' + r.a : '<strong>Aplicación de hoy:</strong> vale cualquier respuesta sincera.'}</div>
       </div>`).join('');
   }
   renderPrintBoard();
-  renderGrid('gridMover','mover');
-  renderGrid('gridHablar','hablar');
+  renderGrid('gridMover', r => r.kind === 'mover' && r.era === 'capitulo');
+  renderGrid('gridHablar', r => r.kind === 'hablar' && r.era === 'capitulo');
+  renderGrid('gridHoy', r => r.era === 'hoy');
 
   // ── Menú ──
   const menuBtn = document.getElementById('menuBtn');

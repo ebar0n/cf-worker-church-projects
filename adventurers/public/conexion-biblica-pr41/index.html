@@ -306,9 +306,16 @@
     font-size:1rem;
     opacity:.65;
   }
-  /* Estado revelado */
+  /* Estado revelado: el dato del capítulo sigue a la vista mientras se refuerza */
+  .game-card .emoji.small{font-size:clamp(2.4rem,11vw,3.4rem)}
+  .game-card .case-name.recap{
+    font-size:clamp(1rem,3.8vw,1.2rem);
+    font-weight:600;
+  }
   .game-card.revealed-inclina{background:var(--inclina);border-color:var(--inclina-deep);color:#fff}
   .game-card.revealed-firme{background:var(--firme);border-color:var(--firme-deep);color:#fff}
+  .game-card.revealed-inclina,
+  .game-card.revealed-firme{gap:10px}
   .game-card.revealed-inclina .hint,
   .game-card.revealed-firme .hint{opacity:.9}
   .action-emoji{
@@ -585,6 +592,8 @@
     Usa <strong>Ctrl/Cmd + P</strong> para imprimirlas. El puntico de color en la esquina
     es tu clave secreta de maestro: <span style="color:#FF9B94">rojo = la multitud de Dura (🙇 agacharse)</span>,
     <span style="color:#8FE3AE">verde = los tres amigos (🧍 de pie y firme)</span>. Los niños no saben el código… ¡tú sí!
+    Dentro de cada lado, las tarjetas van primero <strong>las del capítulo 41</strong> (escenas y frases de Daniel 3)
+    y después las de <strong>aplicación a la vida de hoy</strong>: si vas a repasar para el examen, imprime las primeras.
   </p>
 
   <div class="group-title"><span class="chip">🗿</span> Del lado de la multitud de Dura — 🙇 ¡agáchate!</div>
@@ -625,7 +634,9 @@
       <li>Las situaciones y las preguntas <strong>no se repiten</strong> hasta que se agoten todas: la app recuerda por niño lo que ya salió esta semana.</li>
       <li>También pueden imprimir las tarjetas desde la pestaña <strong>🖨️</strong> y jugar sin pantalla: el puntico de color en la esquina es la clave del adulto.</li>
     </ol>
-    <p>Las <strong>preguntas relámpago cubren todo el capítulo 41</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
+    <p>Las <strong>preguntas relámpago cubren todo el capítulo 41</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026.</p>
+    <p><strong>Sobre las citas:</strong> las frases entre comillas del juego están copiadas <em>tal como las trae el capítulo 41 de Profetas y Reyes</em>, que usa una redacción antigua («ni cabello de sus cabezas <em>fué</em> quemado», «no cuidamos de responderte sobre este <em>negocio</em>»). Si el examen del campamento se toma en <strong>Reina Valera 1995</strong>, la redacción de Daniel 3 en esa versión cambia un poco: sirven igual para el dato (quién, cuántos, dónde, qué pasó), pero no las usen para memorizar palabra por palabra.</p>
+    <p><strong>Qué es repaso y qué es aplicación:</strong> de las 5 situaciones de cada partida, <strong>4 son del capítulo 41</strong> (escenas, cifras y frases textuales de Daniel 3: la llanura de Dura, los sesenta codos, «no cuidamos de responderte sobre este negocio», el Cuarto varón, «ni cabello de sus cabezas fué quemado»…) y <strong>solo 1 es aplicación a la vida de hoy</strong> — el propio capítulo autoriza ese salto: «En esta época nuestra, muchos de los siervos de Dios…». Las <strong>5 preguntas son todas del capítulo</strong>. El único versículo de fuera de Daniel 3 es <strong>Isaías 43:2</strong>, y aparece porque el capítulo 41 lo cita. Para el examen del campamento, cuenten las 4 situaciones del capítulo y las 5 preguntas; la situación de hoy es para conversar.</p>
     <p>La idea no es memorizar una lista, sino conversar: <em>¿cuándo me toca a mí quedarme de pie? ¿Qué es lo más difícil de decir NO cuando todos dicen sí?</em></p>
   </div>
 
@@ -641,44 +652,61 @@
 
 <script>
   // ── Datos ──
+  // era:'capitulo' = escena, frase o dato que el capítulo 41 sí menciona.
+  // era:'hoy'      = aplicación a la vida de hoy (el capítulo la autoriza: "En esta época nuestra…").
   const CASES = [
-    // La multitud de Dura — del capítulo
-    {emoji:'🗿', name:'Postrarse ante la estatua de oro', side:'inclina'},
-    {emoji:'🎵', name:'"Suena la música… ¡todos al suelo!"', side:'inclina'},
-    {emoji:'👑', name:'Adorar al rey como si fuera Dios', side:'inclina'},
-    {emoji:'🙊', name:'Decir "yo también adoro tus dioses" para no meterse en problemas', side:'inclina'},
-    {emoji:'🐍', name:'Obedecer al rey antes que a Dios', side:'inclina'},
-    {emoji:'🗣️', name:'Acusar a los que no se postraron', side:'inclina'},
-    // La multitud de Dura — de hoy
-    {emoji:'😶', name:'Callar lo que creo por miedo', side:'inclina'},
-    {emoji:'👥', name:'Hacer algo malo porque "todos lo hacen"', side:'inclina'},
-    {emoji:'🙈', name:'Esconder que oro antes de comer', side:'inclina'},
-    {emoji:'😜', name:'Burlarse del que dice NO', side:'inclina'},
-    {emoji:'🏅', name:'Aceptar un premio por hacer trampa', side:'inclina'},
-    {emoji:'📱', name:'Copiar en el examen con el celular', side:'inclina'},
-    {emoji:'🤥', name:'Decir una mentira para caer bien', side:'inclina'},
-    {emoji:'🫣', name:'Quedarse callado cuando molestan a un compañero', side:'inclina'},
-    // Los tres amigos — del capítulo
-    {emoji:'🙏', name:'"Solo a Dios adoramos"', side:'firme'},
-    {emoji:'🔥', name:'Entrar al horno antes que desobedecer', side:'firme'},
-    {emoji:'💬', name:'"Y si no… igual serviremos a Dios"', side:'firme'},
-    {emoji:'🧍', name:'Quedarse de pie cuando todos se postran', side:'firme'},
-    {emoji:'🛡️', name:'Confiar en que Dios puede librarnos', side:'firme'},
-    {emoji:'💼', name:'Ser fiel en el trabajo que el rey les dio', side:'firme'},
-    // Los tres amigos — de hoy
-    {emoji:'😇', name:'Contar de Jesús a los amigos', side:'firme'},
-    {emoji:'✋', name:'Decir NO cuando todos dicen sí', side:'firme'},
-    {emoji:'🌱', name:'Ser fiel en lo pequeño', side:'firme'},
-    {emoji:'🤝', name:'Perdonar en vez de vengarse', side:'firme'},
-    {emoji:'📖', name:'Leer la Biblia aunque nadie mire', side:'firme'},
-    {emoji:'🍽️', name:'Orar antes de comer en el colegio', side:'firme'},
-    {emoji:'✍️', name:'Entregar el examen sin copiar', side:'firme'},
-    {emoji:'🕊️', name:'Guardar el sábado aunque cueste', side:'firme'}
+    // ── La multitud de Dura · del capítulo ──
+    {emoji:'🗿', name:'«Se postraron y adoraron la estatua de oro»', side:'inclina', era:'capitulo'},
+    {emoji:'🎵', name:'Al oír el sonido de la música, todos al suelo', side:'inclina', era:'capitulo'},
+    {emoji:'📜', name:'El decreto: en el día de la dedicación, todos se postran ante la imagen', side:'inclina', era:'capitulo'},
+    {emoji:'📐', name:'Una estatua de sesenta codos de alto y seis de ancho, consagrada como objeto de culto', side:'inclina', era:'capitulo'},
+    {emoji:'🏜️', name:'La imagen de oro levantada en la llanura de Dura para representar la gloria de Babilonia', side:'inclina', era:'capitulo'},
+    {emoji:'🌍', name:'Un vasto concurso de todos los «pueblos, naciones y lenguas» se congrega en la llanura de Dura', side:'inclina', era:'capitulo'},
+    {emoji:'🥇', name:'Los sabios proponen hacer la imagen para exaltar la «cabeza de oro» del rey', side:'inclina', era:'capitulo'},
+    {emoji:'🗣️', name:'Los sabios celosos acusan: «estos varones, oh rey, no han hecho cuenta de ti»', side:'inclina', era:'capitulo'},
+    {emoji:'🙊', name:'«¿No honráis a mi dios, ni adoráis la estatua de oro que he levantado?»', side:'inclina', era:'capitulo'},
+    {emoji:'🔥', name:'La amenaza: «en la misma hora seréis echados en medio de un horno de fuego ardiendo»', side:'inclina', era:'capitulo'},
+    {emoji:'✊', name:'El rey desafía con la mano extendida: «¿Qué dios será aquel que os libre de mis manos?»', side:'inclina', era:'capitulo'},
+    {emoji:'🌡️', name:'Mandar calentar el horno siete veces más que de costumbre', side:'inclina', era:'capitulo'},
+    {emoji:'💪', name:'Los hombres fuertes del ejército atan a los tres hebreos y los echan al horno', side:'inclina', era:'capitulo'},
+    // ── La multitud de Dura · aplicación de hoy ──
+    {emoji:'😶', name:'Callar lo que creo por miedo', side:'inclina', era:'hoy'},
+    {emoji:'👥', name:'Hacer algo malo porque "todos lo hacen"', side:'inclina', era:'hoy'},
+    {emoji:'🙈', name:'Esconder que oro antes de comer', side:'inclina', era:'hoy'},
+    {emoji:'😜', name:'Burlarse del que dice NO', side:'inclina', era:'hoy'},
+    {emoji:'🏅', name:'Aceptar un premio por hacer trampa', side:'inclina', era:'hoy'},
+    {emoji:'📱', name:'Copiar en el examen con el celular', side:'inclina', era:'hoy'},
+    {emoji:'🤥', name:'Decir una mentira para caer bien', side:'inclina', era:'hoy'},
+    {emoji:'🫣', name:'Quedarse callado cuando molestan a un compañero', side:'inclina', era:'hoy'},
+    // ── Los tres amigos · del capítulo ──
+    {emoji:'🙏', name:'Su Dios era Rey de reyes: ante ningún otro se postrarían', side:'firme', era:'capitulo'},
+    {emoji:'🧍', name:'Tres hombres se quedan de pie en medio de la multitud de adoradores', side:'firme', era:'capitulo'},
+    {emoji:'💬', name:'«No cuidamos de responderte sobre este negocio»', side:'firme', era:'capitulo'},
+    {emoji:'🛡️', name:'«Nuestro Dios… puede librarnos del horno de fuego ardiendo»', side:'firme', era:'capitulo'},
+    {emoji:'📣', name:'«Y si no, sepas, oh rey, que tu dios no adoraremos»', side:'firme', era:'capitulo'},
+    {emoji:'🔥', name:'Entrar atados al horno antes que adorar la estatua', side:'firme', era:'capitulo'},
+    {emoji:'💼', name:'Ser fieles en los negocios de la provincia que el rey les dio', side:'firme', era:'capitulo'},
+    {emoji:'📖', name:'Recordar en la prueba: «cuando pasares por el fuego, no te quemarás» (Isaías 43:2)', side:'firme', era:'capitulo'},
+    {emoji:'👣', name:'El Cuarto varón: «el parecer del cuarto es semejante a hijo de los dioses»', side:'firme', era:'capitulo'},
+    {emoji:'💇', name:'Salir ilesos: «ni cabello de sus cabezas fué quemado»', side:'firme', era:'capitulo'},
+    {emoji:'🪢', name:'Lo único quemado: sus ligaduras', side:'firme', era:'capitulo'},
+    {emoji:'🙌', name:'El rey humillado reconoce: «Bendito el Dios de ellos, de Sadrac, Mesac y Abed-nego»', side:'firme', era:'capitulo'},
+    {emoji:'😌', name:'Mirando con calma el horno, le responden al rey sin vacilar', side:'firme', era:'capitulo'},
+    {emoji:'🤲', name:'«Entregaron sus cuerpos antes que sirviesen ni adorasen otro dios que su Dios»', side:'firme', era:'capitulo'},
+    // ── Los tres amigos · aplicación de hoy ──
+    {emoji:'😇', name:'Contar de Jesús a los amigos', side:'firme', era:'hoy'},
+    {emoji:'✋', name:'Decir NO cuando todos dicen sí', side:'firme', era:'hoy'},
+    {emoji:'🌱', name:'Ser fiel en lo pequeño', side:'firme', era:'hoy'},
+    {emoji:'🤝', name:'Perdonar en vez de vengarse', side:'firme', era:'hoy'},
+    {emoji:'📚', name:'Leer la Biblia aunque nadie mire', side:'firme', era:'hoy'},
+    {emoji:'🍽️', name:'Orar antes de comer en el colegio', side:'firme', era:'hoy'},
+    {emoji:'✍️', name:'Entregar el examen sin copiar', side:'firme', era:'hoy'},
+    {emoji:'🗓️', name:'Guardar el sábado aunque cueste', side:'firme', era:'hoy'}
   ];
 
   const QUIZ = [
     {tag:'4–5 años', q:'¿Cuántos amigos se quedaron de pie sin agacharse? Cuenten con los dedos.', a:'3: Sadrac, Mesac y Abed-nego'},
-    {tag:'4–5 años', q:'¡Muéstrenme cómo se quedaron los tres amigos cuando sonó la música!', a:'🧍 ¡De pie y firmes!'},
+    {tag:'4–5 años', q:'¡Pónganse de pie como los tres amigos y díganme qué hizo toda la demás gente cuando sonó la música!', a:'Se postraron y adoraron la estatua de oro'},
     {tag:'4–5 años', q:'¿De qué estaba hecha la estatua grande del rey?', a:'De oro, toda de oro'},
     {tag:'4–5 años', q:'¿A quién adoraban solamente los tres amigos?', a:'Solo a Dios'},
     {tag:'4–5 años', q:'¿Se quemaron los tres amigos dentro del fuego?', a:'No: salieron sin ningún daño'},
@@ -707,7 +735,9 @@
 
   // ── Partida: 5 situaciones + 5 preguntas ──
   const ACTIVITY = 'pr41';
-  const MATCH_CARDS = 5;
+  const MATCH_CARDS_CHAPTER_PER_SIDE = 2;
+  const MATCH_CARDS_TODAY = 1;
+  const MATCH_CARDS = MATCH_CARDS_CHAPTER_PER_SIDE * 2 + MATCH_CARDS_TODAY;
   const MATCH_QUIZ = 5;
   const TOTAL_STEPS = MATCH_CARDS + MATCH_QUIZ;
   const FLAMES = 7; // "siete veces más caliente"
@@ -766,12 +796,14 @@
     return picked;
   }
 
+  // 4 situaciones del capítulo (2 por lado) + 1 aplicación de hoy: bolsas separadas por era.
   function pickMatchCards(){
-    const sides = Math.random() < .5 ? ['inclina', 'firme'] : ['firme', 'inclina'];
-    const picked = [
-      ...AvProfile.pick(`${ACTIVITY}:card:${sides[0]}`, CASES.filter(c => c.side === sides[0]), 3, c => c.name),
-      ...AvProfile.pick(`${ACTIVITY}:card:${sides[1]}`, CASES.filter(c => c.side === sides[1]), 2, c => c.name)
-    ];
+    const picked = [];
+    ['inclina', 'firme'].forEach(side => {
+      const bag = CASES.filter(c => c.era === 'capitulo' && c.side === side);
+      picked.push(...AvProfile.pick(`${ACTIVITY}:card:capitulo:${side}`, bag, MATCH_CARDS_CHAPTER_PER_SIDE, c => c.name));
+    });
+    picked.push(...AvProfile.pick(`${ACTIVITY}:card:hoy`, CASES.filter(c => c.era === 'hoy'), MATCH_CARDS_TODAY, c => c.name));
     return shuffle(picked);
   }
 
@@ -829,7 +861,8 @@
       const inclina = c.side === 'inclina';
       gameCard.classList.add(inclina ? 'revealed-inclina' : 'revealed-firme');
       gameCard.innerHTML = `
-        <div class="emoji">${c.emoji}</div>
+        <div class="emoji small">${c.emoji}</div>
+        <div class="case-name recap">${c.name}</div>
         <div class="action-emoji">${inclina ? '🙇' : '🧍'}</div>
         <div class="action-name">${inclina ? '¡La multitud de Dura!' : '¡Los tres amigos!'}</div>
         <div class="hint">${inclina ? 'Como la multitud de Dura — ¡agáchate!' : 'Como los tres amigos — ¡de pie y firme!'}</div>`;

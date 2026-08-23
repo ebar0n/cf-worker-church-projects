@@ -436,7 +436,7 @@
     },
     manos: {
       nombre: 'Manos juntas',
-      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="44" width="32" height="26" rx="13"/><path d="M42 51 q 11 -7 11 5 q 0 12 -11 5"/><rect x="58" y="44" width="32" height="26" rx="13"/><path d="M58 51 q -11 -7 -11 5 q 0 12 11 5"/><path class="thin" d="M50 26 v 8 M36 30 l 5 6 M64 30 l -5 6"/></svg>'
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M14 88 L14 72 C6 70 6 58 14 56 L14 46 A4.5 4.5 0 0 1 23 46 L24.5 56 L26 38 A4.5 4.5 0 0 1 35 38 L38 50 L41 34 A4.5 4.5 0 0 1 50 34 L50 88 Z"/><path d="M86 88 L86 72 C94 70 94 58 86 56 L86 46 A4.5 4.5 0 0 0 77 46 L75.5 56 L74 38 A4.5 4.5 0 0 0 65 38 L62 50 L59 34 A4.5 4.5 0 0 0 50 34 L50 88 Z"/></svg>'
     },
     rio: {
       nombre: 'Río',
@@ -452,7 +452,7 @@
     },
     soplo: {
       nombre: 'Sopla y sacude las manos',
-      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="34" cy="50" r="22"/><circle cx="28" cy="44" r="3"/><path d="M56 46 q 16 -8 30 -2"/><path d="M56 56 q 18 -2 30 8"/><path d="M52 66 q 12 6 22 4"/></svg>'
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M42 22 A24 24 0 0 1 63 36 L70 42 L64 52 A24 24 0 0 1 48 69 A24 24 0 0 1 18 46 A24 24 0 0 1 42 22 Z"/><circle cx="36" cy="36" r="2.5"/><circle cx="52" cy="58" r="5"/><path class="thin" d="M68 52 q 9 -4 16 -2"/><path class="thin" d="M69 60 q 9 1 16 4"/><path class="thin" d="M66 68 q 8 5 14 9"/></svg>'
     },
     llama: {
       nombre: 'Una llamita en la mano',
@@ -464,7 +464,7 @@
     },
     dedo: {
       nombre: 'Un dedo firme al cielo',
-      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 10 v 34"/><rect x="30" y="44" width="40" height="34" rx="14"/><path d="M30 56 q -12 -4 -12 8 q 0 12 12 8"/></svg>'
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M38 22 A7 7 0 0 1 52 22 L52 46 L66 46 A8 8 0 0 1 74 54 L74 78 A8 8 0 0 1 66 86 L36 86 A8 8 0 0 1 28 78 L28 54 A8 8 0 0 1 36 46 L38 46 Z"/><path class="thin" d="M28 60 C18 58 16 74 28 74"/></svg>'
     },
     corona: {
       nombre: 'Corona del rey',
@@ -476,7 +476,7 @@
     },
     abrir: {
       nombre: 'Abre las manos: ¡libres!',
-      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="48" width="30" height="26" rx="13"/><path d="M38 55 q 10 -7 10 5 q 0 12 -10 5"/><rect x="62" y="48" width="30" height="26" rx="13"/><path d="M62 55 q -10 -7 -10 5 q 0 12 10 5"/><path class="thin" d="M50 14 v 12 M30 20 l 7 9 M70 20 l -7 9"/></svg>'
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 86 L24 70 C10 68 8 52 22 52 L22 46 A5.5 5.5 0 0 1 33 46 L35 54 L37 36 A5.5 5.5 0 0 1 48 36 L50 46 L52 34 A5.5 5.5 0 0 1 63 34 L65 46 L67 42 A5.5 5.5 0 0 1 78 42 L78 86 Z"/><path class="thin" d="M50 20 v -8 M32 24 l -4 -7 M68 24 l 4 -7"/></svg>'
     }
   };
 
@@ -555,17 +555,32 @@
     {id:'t12', t:'Dilo y al final grita: ¡Dios va conmigo!'}
   ];
 
-  // Recortes para armar: tramos seguidos de palabras
-  function buildSpans(verse, len){
+  // Recortes para armar: frases completas (uno o varios trozos seguidos del
+  // versículo), nunca ventanas que corten un trozo por la mitad.
+  const SPAN_MIN_WORDS = 2;
+  const SPAN_MAX_WORDS = 8;
+  const SPAN_MAX_CHUNKS = 3;
+
+  function buildSpans(verse){
     const out = [];
-    for(let i = 0; i + len <= verse.words.length; i++){
-      out.push({
-        key: `${verse.id}:${i}:${len}`,
-        words: verse.words.slice(i, i + len).map(o => o.w),
-        chunkIdx: verse.words[i].ci
-      });
+    for(let i = 0; i < verse.chunks.length; i++){
+      let words = [];
+      for(let j = i; j < verse.chunks.length && j - i < SPAN_MAX_CHUNKS; j++){
+        words = words.concat(verse.chunks[j].wordIdx.map(k => verse.words[k].w));
+        if(words.length > SPAN_MAX_WORDS) break;
+        if(words.length < SPAN_MIN_WORDS) continue;
+        out.push({key: `${verse.id}:${i}-${j}`, words: words.slice(), from: i, to: j});
+      }
+    }
+    if(!out.length){
+      out.push({key: `${verse.id}:todo`, words: verse.words.map(o => o.w), from: 0, to: verse.chunks.length - 1});
     }
     return out;
+  }
+
+  // ¿uno de los dos recortes está contenido en el otro?
+  function spanContains(a, b){
+    return (a.from <= b.from && b.to <= a.to) || (b.from <= a.from && a.to <= b.to);
   }
 
   // ══════════ Partida ══════════
@@ -573,9 +588,9 @@
   const MATCH_CARDS = 5;
   const MATCH_QUIZ = 5;
   const FRACS = [0, .3, .55, .8, 1];
-  const SPAN_MIX = [[3, 2], [4, 2], [5, 1]];
 
   let match = null;
+  let celebrando = false;
 
   const gameCard = document.getElementById('gameCard');
   const mainBtn = document.getElementById('mainBtn');
@@ -625,23 +640,23 @@
   }
 
   function pickSpans(verse){
+    const bag = buildSpans(verse);
+    const orden = AvProfile.pick(`${ACTIVITY}:arma:${verse.id}`, bag, bag.length, s => s.key);
     const picked = [];
-    SPAN_MIX.forEach(([len, n]) => {
-      const bag = buildSpans(verse, Math.min(len, verse.words.length));
-      if(!bag.length) return;
-      picked.push(...AvProfile.pick(`${ACTIVITY}:arma:${verse.id}:${len}`, bag, n, s => s.key));
+    const resto = [];
+    // Dentro de una misma partida, que ningún recorte contenga a otro.
+    orden.forEach(s => {
+      if(picked.length < MATCH_QUIZ && !picked.some(q => spanContains(q, s))) picked.push(s);
+      else resto.push(s);
     });
-    // Red de seguridad: si algún grupo no alcanzó, se rellena con tramos de 3.
-    for(let guard = 0; picked.length < MATCH_QUIZ && guard < 5; guard++){
-      const bag = buildSpans(verse, Math.min(3, verse.words.length));
-      if(!bag.length) break;
-      picked.push(...AvProfile.pick(`${ACTIVITY}:arma:${verse.id}:3`, bag, MATCH_QUIZ - picked.length, s => s.key));
-    }
-    return picked.slice(0, MATCH_QUIZ);
+    while(picked.length < MATCH_QUIZ && resto.length) picked.push(resto.shift());
+    return picked.slice(0, MATCH_QUIZ).sort((a, b) => a.words.length - b.words.length);
   }
 
   function startMatch(){
     practiceNote.hidden = true;
+    celebrando = false;
+    renderMedals();
     const verse = AvProfile.pick(`${ACTIVITY}:versiculo`, VERSES, 1, v => v.id)[0] || VERSES[0];
     const patron = AvProfile.pick(`${ACTIVITY}:patron`, PATRONES, 1, p => p.id)[0] || PATRONES[0];
     match = {
@@ -713,12 +728,14 @@
     match.placed = 0;
     match.errors = 0;
     roundLabel.textContent = `Armar ${idx + 1} de ${MATCH_QUIZ}`;
-    const chunk = match.verse.chunks[span.chunkIdx];
+    const trozos = match.verse.chunks.slice(span.from, span.to + 1);
+    const emojis = trozos.map(c => c.emoji).join(' ');
+    const gestos = trozos.map(c => c.gesto).join(', luego ');
     const pool = shuffle(span.words.map((w, i) => ({w, i})));
     gameCard.innerHTML = `
       <span class="verse-ref">${esc(match.verse.ref)}</span>
       <div class="big-title">Arma el versículo</div>
-      <div class="hint">${esc(chunk.emoji)} Toca las palabras <strong>en orden</strong>. Pista: ${esc(chunk.gesto)}.</div>
+      <div class="hint">${esc(emojis)} Toca las palabras <strong>en orden</strong>. Pista: ${esc(gestos)}.</div>
       <div class="arma-target" id="armaTarget">${
         span.words.map(() => '<span class="slot empty">▁▁▁</span>').join('')
       }</div>
@@ -824,12 +841,15 @@
       : '';
     const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
       ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
+    const album = celebrando
+      ? `<div class="coach-tip">🎉 ¡Completaste el álbum! Te sabes los <strong>${VERSES.length} versículos</strong> del capítulo. El álbum se limpió solo para volver a empezar.</div>`
+      : '';
     gameCard.innerHTML = `
-      <div class="emoji">🏁</div>
-      <div class="big-title">¡Partida completa!</div>
+      <div class="emoji">${celebrando ? '🎉' : '🏁'}</div>
+      <div class="big-title">${celebrando ? '¡Álbum completo!' : '¡Partida completa!'}</div>
       <span class="verse-ref">${esc(v.ref)}</span>
       <div class="hint">Armaste ${match.quizOk} de ${MATCH_QUIZ} recortes sin ayuda.</div>
-      ${scored}${extra}
+      ${album}${scored}${extra}
       <div class="coach-tip">🔥 Recuerda: Dios no apagó el horno… ¡entró con ellos!</div>`;
     mainBtn.textContent = '🔁 Otra partida';
     mainBtn.hidden = false;
@@ -856,13 +876,14 @@
     if(!list.includes(id)) list.push(id);
     if(list.length >= VERSES.length){
       writeProgress([]);
-      renderMedals(true);
+      celebrando = true;
+      renderMedals();
       return;
     }
     writeProgress(list);
-    renderMedals(false);
+    renderMedals();
   }
-  function renderMedals(celebrar){
+  function renderMedals(){
     const list = readProgress();
     medalList.innerHTML = VERSES.map(v => {
       const done = list.includes(v.id);
@@ -870,19 +891,20 @@
           <span class="mark" aria-hidden="true">${done ? '🏅' : '⬜'}</span>
           <span>${esc(v.ref)} — ${esc(v.titulo)}</span>
         </div>`;
-    }).join('') + (celebrar
+    }).join('') + (celebrando
       ? '<div class="medal done"><span class="mark" aria-hidden="true">🎉</span><span>¡Los tres versículos de memoria! El álbum se limpió para volver a empezar.</span></div>'
       : '');
   }
 
   document.getElementById('resetProgress').addEventListener('click', () => {
     writeProgress([]);
-    renderMedals(false);
+    celebrando = false;
+    renderMedals();
   });
 
   // ══════════ Estado sin partida ══════════
   function updateIdleHint(){
-    renderMedals(false);
+    renderMedals();
     if(match) return;
     const p = AvProfile.get();
     const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');

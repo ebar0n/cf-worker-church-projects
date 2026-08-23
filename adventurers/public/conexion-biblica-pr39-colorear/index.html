@@ -273,7 +273,7 @@
   }
   .scene-svg .lbl{
     font-family:'Fredoka',sans-serif;
-    font-size:13px;
+    font-size:12px;
     font-weight:600;
     fill:var(--ink);
     stroke:none;
@@ -490,42 +490,44 @@
   <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="La puerta del palacio de Babilonia">
     <rect class="z" data-zone="cielo" data-label="el cielo" x="8" y="8" width="304" height="284" rx="18"/>
     <path class="z" data-zone="escalones" data-label="los escalones" d="M56 252 h208 v14 h-208 Z M40 268 h240 v18 h-240 Z"/>
-    <path class="z" data-zone="muro" data-label="el muro de ladrillos" d="M84 252 V132 Q160 66 236 132 V252 Z"/>
-    <path class="z" data-zone="torreIzq" data-label="la torre de la izquierda" d="M28 252 V104 h56 V252 Z"/>
-    <path class="z" data-zone="torreDer" data-label="la torre de la derecha" d="M236 252 V104 h56 V252 Z"/>
-    <path class="z" data-zone="almenas" data-label="las puntas de las torres" d="M28 104 V76 h18 v28 Z M66 104 V76 h18 v28 Z M236 104 V76 h18 v28 Z M274 104 V76 h18 v28 Z"/>
-    <path class="z" data-zone="arco" data-label="el arco de la puerta" d="M96 170 Q96 112 160 104 Q224 112 224 170 L212 170 Q212 124 160 116 Q108 124 108 170 Z"/>
-    <path class="z" data-zone="puertaIzq" data-label="la hoja izquierda de la puerta" d="M108 252 V170 Q108 124 158 117 V252 Z"/>
-    <path class="z" data-zone="puertaDer" data-label="la hoja derecha de la puerta" d="M212 252 V170 Q212 124 162 117 V252 Z"/>
-    <path class="z" data-zone="banderines" data-label="los banderines" d="M46 28 L86 44 L46 60 Z M274 28 L234 44 L274 60 Z"/>
+    <path class="z" data-zone="muro" data-label="el muro de ladrillos" d="M76 252 V128 Q160 48 244 128 V252 Z"/>
+    <path class="z" data-zone="torreIzq" data-label="la torre de la izquierda" d="M16 252 V128 h60 V252 Z"/>
+    <path class="z" data-zone="torreDer" data-label="la torre de la derecha" d="M244 252 V128 h60 V252 Z"/>
+    <path class="z" data-zone="almenas" data-label="las puntas de las torres" d="M10 128 V72 h76 v56 Z M234 128 V72 h76 v56 Z"/>
+    <path class="z" data-zone="arco" data-label="el arco de la puerta" d="M96 182 Q96 158 160 150 Q224 158 224 182 L212 182 Q212 168 160 160 Q108 168 108 182 Z"/>
+    <path class="z" data-zone="puertaIzq" data-label="la hoja izquierda de la puerta" d="M100 252 V182 Q100 166 158 160 V252 Z"/>
+    <path class="z" data-zone="puertaDer" data-label="la hoja derecha de la puerta" d="M216 252 V182 Q216 166 162 160 V252 Z"/>
+    <path class="z" data-zone="banderines" data-label="los banderines" d="M48 14 h58 q-12 29 0 58 h-58 Z M272 14 h-58 q12 29 0 58 h58 Z"/>
     <g class="ink">
-      <path d="M46 76 V26"/>
-      <path d="M274 76 V26"/>
-      <path d="M28 142 h56 M28 180 h56 M28 218 h56"/>
-      <path d="M236 142 h56 M236 180 h56 M236 218 h56"/>
-      <path d="M160 118 V250"/>
-      <path d="M136 196 a8 8 0 1 0 0.1 0 M184 196 a8 8 0 1 0 0.1 0"/>
+      <path d="M46 72 V14"/>
+      <path d="M274 72 V14"/>
+      <path d="M34 78 v44 M62 78 v44"/>
+      <path d="M258 78 v44 M286 78 v44"/>
+      <path d="M16 164 h60 M16 196 h60 M16 228 h60"/>
+      <path d="M244 164 h60 M244 196 h60 M244 228 h60"/>
+      <path d="M160 166 V250"/>
+      <path d="M136 212 a8 8 0 1 0 0.1 0 M184 212 a8 8 0 1 0 0.1 0"/>
     </g>
   </svg>
 </template>
 
 <template id="tplMesa">
-  <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="La mesa del rey con la copa y los manjares">
+  <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="La mesa del rey con la copa, la corona y los manjares">
     <rect class="z" data-zone="fondo" data-label="el fondo del salón" x="8" y="8" width="304" height="284" rx="18"/>
-    <path class="z" data-zone="mesa" data-label="la mesa del rey" d="M28 172 h264 v22 h-264 Z"/>
-    <path class="z" data-zone="mantel" data-label="el mantel de la mesa" d="M48 194 h224 v54 q-112 18 -224 0 Z"/>
-    <path class="z" data-zone="patas" data-label="las patas de la mesa" d="M62 242 h20 v44 h-20 Z M238 242 h20 v44 h-20 Z"/>
-    <ellipse class="z" data-zone="bandeja" data-label="la bandeja del banquete" cx="72" cy="160" rx="38" ry="12"/>
-    <circle class="z" data-zone="manjares" data-label="los manjares del rey" cx="58" cy="140" r="17"/>
-    <circle class="z" data-zone="manjares" data-label="los manjares del rey" cx="90" cy="142" r="15"/>
-    <path class="z" data-zone="copa" data-label="la copa del rey" d="M116 88 h56 v30 a28 26 0 0 1 -56 0 Z M138 146 h12 v16 h-12 Z M124 162 h40 v10 h-40 Z"/>
-    <path class="z" data-zone="vino" data-label="el vino de la copa" d="M126 98 h36 v20 a18 16 0 0 1 -36 0 Z"/>
-    <path class="z" data-zone="jarra" data-label="la jarra del banquete" d="M216 104 h30 v12 q18 20 12 42 q-5 14 -27 14 q-22 0 -27 -14 q-6 -22 12 -42 Z"/>
-    <path class="z" data-zone="corona" data-label="la corona del rey" d="M114 68 L120 22 L142 46 L160 16 L178 46 L200 22 L206 68 Z"/>
+    <path class="z" data-zone="mesa" data-label="la mesa del rey" d="M24 208 h272 v24 h-272 Z"/>
+    <path class="z" data-zone="mantel" data-label="el mantel de la mesa" d="M44 232 h232 v54 q-116 14 -232 0 Z"/>
+    <path class="z" data-zone="corona" data-label="la corona del rey" d="M16 96 V42 L30 14 L46 42 L62 12 L78 42 L94 14 L108 42 V96 Z"/>
+    <ellipse class="z" data-zone="bandeja" data-label="la bandeja del banquete" cx="70" cy="192" rx="58" ry="16"/>
+    <path class="z" data-zone="manjares" data-label="los manjares del rey" d="M32 116 h72 q14 0 14 14 v36 q0 14 -14 14 h-72 q-14 0 -14 -14 v-36 q0 -14 14 -14 Z"/>
+    <path class="z" data-zone="copa" data-label="la copa del rey" d="M128 130 h88 l-6 58 h-76 Z M152 188 h40 v10 h-40 Z M140 198 h64 v10 h-64 Z"/>
+    <path class="z" data-zone="vino" data-label="el vino de la copa" d="M122 70 h100 l-6 60 h-88 Z"/>
+    <path class="z" data-zone="jarra" data-label="la jarra del banquete" d="M254 116 h28 v14 h8 q10 0 10 12 v50 q0 14 -14 14 h-46 q-14 0 -14 -14 v-50 q0 -12 10 -12 h8 Z"/>
     <g class="ink">
-      <path d="M28 194 h264"/>
-      <path d="M232 132 h-8"/>
-      <path d="M160 24 v10 M142 52 v8 M178 52 v8"/>
+      <path d="M24 232 h272"/>
+      <path d="M32 70 a5 5 0 1 0 0.1 0 M62 70 a5 5 0 1 0 0.1 0 M92 70 a5 5 0 1 0 0.1 0"/>
+      <path d="M68 122 V174"/>
+      <path d="M226 152 h-8"/>
+      <path d="M128 130 h88"/>
     </g>
   </svg>
 </template>
@@ -533,55 +535,54 @@
 <template id="tplLegumbres">
   <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="El plato de legumbres y el vaso de agua de Daniel">
     <rect class="z" data-zone="fondo" data-label="el fondo" x="8" y="8" width="304" height="284" rx="18"/>
-    <path class="z" data-zone="mesa" data-label="la mesa" d="M24 214 h272 v22 h-272 Z"/>
-    <path class="z" data-zone="mantel" data-label="el mantel" d="M44 236 h232 v48 q-116 16 -232 0 Z"/>
-    <ellipse class="z" data-zone="platoBorde" data-label="el borde del plato" cx="118" cy="196" rx="92" ry="28"/>
-    <ellipse class="z" data-zone="platoFondo" data-label="el fondo del plato" cx="118" cy="194" rx="66" ry="18"/>
-    <circle class="z" data-zone="legumbres" data-label="las legumbres de Daniel" cx="90" cy="182" r="17"/>
-    <circle class="z" data-zone="legumbres" data-label="las legumbres de Daniel" cx="122" cy="188" r="16"/>
-    <ellipse class="z" data-zone="legumbres" data-label="las legumbres de Daniel" cx="154" cy="180" rx="19" ry="14"/>
-    <path class="z" data-zone="hoja" data-label="la hoja verde" d="M110 154 q26 -22 44 0 q-22 24 -44 0 Z"/>
-    <path class="z" data-zone="vaso" data-label="el vaso de Daniel" d="M226 118 h62 l-11 98 h-40 Z"/>
-    <path class="z" data-zone="agua" data-label="el agua del vaso" d="M233 150 h48 l-8 62 h-32 Z"/>
-    <circle class="z" data-zone="gotas" data-label="las gotas de agua" cx="204" cy="102" r="16"/>
-    <circle class="z" data-zone="gotas" data-label="las gotas de agua" cx="298" cy="132" r="14"/>
+    <path class="z" data-zone="mesa" data-label="la mesa" d="M12 226 h296 v62 h-296 Z"/>
+    <path class="z" data-zone="hoja" data-label="la hoja verde" d="M64 64 q0 -20 20 -20 h28 q20 0 20 20 v24 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
+    <path class="z" data-zone="gotas" data-label="las gotas de agua" d="M176 20 q8 16 25 26 q8 5 8 16 v26 q0 16 -16 16 h-34 q-16 0 -16 -16 v-26 q0 -11 8 -16 q17 -10 25 -26 Z M277 6 q8 16 25 26 q8 5 8 16 v26 q0 16 -16 16 h-34 q-16 0 -16 -16 v-26 q0 -11 8 -16 q17 -10 25 -26 Z"/>
+    <path class="z" data-zone="vaso" data-label="el vaso de Daniel" d="M244 116 h66 v96 q0 14 -14 14 h-38 q-14 0 -14 -14 Z"/>
+    <path class="z" data-zone="agua" data-label="el agua del vaso" d="M250 150 h54 v58 q0 10 -10 10 h-34 q-10 0 -10 -10 Z"/>
+    <rect class="z" data-zone="platoBorde" data-label="el plato" x="10" y="170" width="228" height="56" rx="26"/>
+    <path class="z" data-zone="legumbres" data-label="las legumbres de Daniel" d="M16 124 q0 -20 20 -20 h28 q20 0 20 20 v26 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
+    <path class="z" data-zone="legumbres" data-label="las legumbres de Daniel" d="M90 124 q0 -20 20 -20 h28 q20 0 20 20 v26 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
+    <path class="z" data-zone="legumbres" data-label="las legumbres de Daniel" d="M164 124 q0 -20 20 -20 h28 q20 0 20 20 v26 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
     <g class="ink">
-      <path d="M24 236 h272"/>
-      <path d="M132 154 v-16"/>
-      <path d="M236 150 h-3"/>
+      <path d="M98 52 V100 M98 68 l-18 -10 M98 84 l18 -10"/>
+      <path d="M50 104 v-10 M124 104 v-10 M198 104 v-10"/>
+      <path d="M30 208 h190"/>
+      <path d="M244 132 h66"/>
     </g>
   </svg>
 </template>
 
 <template id="tplJovenes">
-  <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="Los cuatro jóvenes hebreos de pie ante el rey">
+  <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="Los cuatro jóvenes hebreos de pie junto al trono del rey">
     <rect class="z" data-zone="fondo" data-label="el fondo del palacio" x="8" y="8" width="304" height="284" rx="18"/>
     <path class="z" data-zone="piso" data-label="el piso del palacio" d="M8 250 h304 v42 h-304 Z"/>
-    <ellipse class="z" data-zone="alfombra" data-label="la alfombra" cx="150" cy="272" rx="132" ry="18"/>
-    <path class="z" data-zone="trono" data-label="el trono del rey" d="M206 180 V96 q0 -30 44 -30 q44 0 44 30 V180 Z"/>
-    <path class="z" data-zone="corona" data-label="la corona del rey" d="M216 62 L220 20 L238 40 L250 14 L262 40 L280 20 L284 62 Z"/>
-    <circle class="skin" cx="42" cy="96" r="17"/>
-    <circle class="skin" cx="108" cy="96" r="17"/>
-    <circle class="skin" cx="176" cy="96" r="17"/>
-    <circle class="skin" cx="244" cy="96" r="17"/>
-    <path class="z" data-zone="tunicaDaniel" data-label="la túnica de Daniel" d="M24 114 h36 l16 28 l-11 8 l-5 -9 v99 h-40 v-99 l-5 9 l-11 -8 Z"/>
-    <path class="z" data-zone="tunicaAnanias" data-label="la túnica de Ananías" d="M90 114 h36 l16 28 l-11 8 l-5 -9 v99 h-40 v-99 l-5 9 l-11 -8 Z"/>
-    <path class="z" data-zone="tunicaMisael" data-label="la túnica de Misael" d="M158 114 h36 l16 28 l-11 8 l-5 -9 v99 h-40 v-99 l-5 9 l-11 -8 Z"/>
-    <path class="z" data-zone="tunicaAzarias" data-label="la túnica de Azarías" d="M226 114 h36 l16 28 l-11 8 l-5 -9 v99 h-40 v-99 l-5 9 l-11 -8 Z"/>
+    <ellipse class="z" data-zone="alfombra" data-label="la alfombra" cx="140" cy="256" rx="126" ry="34"/>
+    <path class="z" data-zone="trono" data-label="el trono del rey" d="M236 72 q0 -16 16 -16 h26 q16 0 16 16 V152 h8 v38 h-72 v-38 h8 Z M230 190 h72 v28 h-72 Z M234 218 h16 v32 h-16 Z M282 218 h16 v32 h-16 Z"/>
+    <path class="z" data-zone="corona" data-label="la corona del rey" d="M238 84 V28 L250 10 L262 28 L272 8 L284 28 L296 10 L302 28 V84 Z"/>
+    <circle class="skin" cx="39" cy="94" r="17"/>
+    <circle class="skin" cx="95" cy="94" r="17"/>
+    <circle class="skin" cx="151" cy="94" r="17"/>
+    <circle class="skin" cx="207" cy="94" r="17"/>
+    <path class="z" data-zone="tunicaDaniel" data-label="la túnica de Daniel" d="M12 126 q0 -14 14 -14 h26 q14 0 14 14 V234 h-54 Z"/>
+    <path class="z" data-zone="tunicaAnanias" data-label="la túnica de Ananías" d="M68 126 q0 -14 14 -14 h26 q14 0 14 14 V234 h-54 Z"/>
+    <path class="z" data-zone="tunicaMisael" data-label="la túnica de Misael" d="M124 126 q0 -14 14 -14 h26 q14 0 14 14 V234 h-54 Z"/>
+    <path class="z" data-zone="tunicaAzarias" data-label="la túnica de Azarías" d="M180 126 q0 -14 14 -14 h26 q14 0 14 14 V234 h-54 Z"/>
     <g class="ink">
-      <path d="M36 92 a3 3 0 1 0 0.1 0 M48 92 a3 3 0 1 0 0.1 0 M36 102 q6 6 12 0"/>
-      <path d="M102 92 a3 3 0 1 0 0.1 0 M114 92 a3 3 0 1 0 0.1 0 M102 102 q6 6 12 0"/>
-      <path d="M170 92 a3 3 0 1 0 0.1 0 M182 92 a3 3 0 1 0 0.1 0 M170 102 q6 6 12 0"/>
-      <path d="M238 92 a3 3 0 1 0 0.1 0 M250 92 a3 3 0 1 0 0.1 0 M238 102 q6 6 12 0"/>
-      <path d="M26 250 h14 M46 250 h14"/>
-      <path d="M92 250 h14 M112 250 h14"/>
-      <path d="M160 250 h14 M180 250 h14"/>
-      <path d="M228 250 h14 M248 250 h14"/>
+      <path d="M33 90 a3 3 0 1 0 0.1 0 M45 90 a3 3 0 1 0 0.1 0 M33 100 q6 6 12 0"/>
+      <path d="M89 90 a3 3 0 1 0 0.1 0 M101 90 a3 3 0 1 0 0.1 0 M89 100 q6 6 12 0"/>
+      <path d="M145 90 a3 3 0 1 0 0.1 0 M157 90 a3 3 0 1 0 0.1 0 M145 100 q6 6 12 0"/>
+      <path d="M201 90 a3 3 0 1 0 0.1 0 M213 90 a3 3 0 1 0 0.1 0 M201 100 q6 6 12 0"/>
+      <path d="M25 244 h12 M41 244 h12"/>
+      <path d="M81 244 h12 M97 244 h12"/>
+      <path d="M137 244 h12 M153 244 h12"/>
+      <path d="M193 244 h12 M209 244 h12"/>
+      <path d="M246 86 h38 M240 174 h52"/>
     </g>
-    <text class="lbl" x="42" y="277" text-anchor="middle">Daniel</text>
-    <text class="lbl" x="108" y="277" text-anchor="middle">Ananías</text>
-    <text class="lbl" x="176" y="277" text-anchor="middle">Misael</text>
-    <text class="lbl" x="244" y="277" text-anchor="middle">Azarías</text>
+    <text class="lbl" x="39" y="278" text-anchor="middle">Daniel</text>
+    <text class="lbl" x="95" y="278" text-anchor="middle">Ananías</text>
+    <text class="lbl" x="151" y="278" text-anchor="middle">Misael</text>
+    <text class="lbl" x="207" y="278" text-anchor="middle">Azarías</text>
   </svg>
 </template>
 
@@ -712,27 +713,27 @@
     {scene:'puerta', zones:['muro'], color:'cafe', text:'Pinta de café el muro de ladrillos del palacio.', tip:'El palacio del rey Nabucodonosor era enorme.'},
     {scene:'puerta', zones:['puertaIzq','puertaDer'], color:'dorado', text:'Pinta de dorado las dos hojas de la puerta.', tip:'Son dos: la de la izquierda y la de la derecha.'},
     {scene:'puerta', zones:['banderines'], color:'rojo', text:'Pinta de rojo los banderines de las torres.', tip:'Uno arriba de cada torre.'},
-    {scene:'puerta', zones:['almenas'], color:'morado', text:'Pinta de morado las puntas de las torres.', tip:'Las puntitas cuadradas de arriba.'},
+    {scene:'puerta', zones:['almenas'], color:'morado', text:'Pinta de morado las puntas de las torres.', tip:'El bloque cuadrado de arriba de cada torre.'},
     // La mesa del rey (6)
-    {scene:'mesa', zones:['copa'], color:'dorado', text:'Pinta de dorado la copa del rey.', tip:'De esa copa Daniel no quiso beber.'},
-    {scene:'mesa', zones:['vino'], color:'morado', text:'Pinta de morado el vino de la copa.', tip:'«Ni en el vino de su beber», dice Daniel 1.'},
+    {scene:'mesa', zones:['copa'], color:'dorado', text:'Pinta de dorado la copa del rey.', tip:'La parte de abajo de la copa, con su pie: de esa copa Daniel no quiso beber.'},
+    {scene:'mesa', zones:['vino'], color:'morado', text:'Pinta de morado el vino de la copa.', tip:'Es la parte de arriba de la copa: «ni en el vino de su beber», dice Daniel 1.'},
     {scene:'mesa', zones:['mantel'], color:'rojo', text:'Pinta de rojo el mantel de la mesa del rey.', tip:'El mantel es la tela que cuelga de la mesa.'},
-    {scene:'mesa', zones:['corona'], color:'dorado', text:'Pinta de dorado la corona del rey Nabucodonosor.', tip:'Es la corona de arriba, con puntas.'},
-    {scene:'mesa', zones:['jarra'], color:'naranja', text:'Pinta de naranja la jarra del banquete.', tip:'Está al lado derecho de la copa.'},
-    {scene:'mesa', zones:['manjares'], color:'rosado', text:'Pinta de rosado los manjares de la bandeja del rey.', tip:'Son las dos bolitas de comida sobre la bandeja.'},
+    {scene:'mesa', zones:['corona'], color:'dorado', text:'Pinta de dorado la corona del rey Nabucodonosor.', tip:'La corona grande del lado izquierdo, con puntas.'},
+    {scene:'mesa', zones:['jarra'], color:'naranja', text:'Pinta de naranja la jarra del banquete.', tip:'La jarra grande del lado derecho de la copa.'},
+    {scene:'mesa', zones:['manjares'], color:'rosado', text:'Pinta de rosado los manjares de la bandeja del rey.', tip:'Es la comida grande que está sobre la bandeja.'},
     // El plato de Daniel (6)
     {scene:'legumbres', zones:['legumbres'], color:'verde', text:'Pinta de verde las legumbres de Daniel.', tip:'Son las tres del plato: hay que pintarlas todas.'},
     {scene:'legumbres', zones:['agua'], color:'azul', text:'Pinta de azul el agua del vaso.', tip:'Daniel pidió alimento sencillo y agua.'},
-    {scene:'legumbres', zones:['hoja'], color:'verde', text:'Pinta de verde la hoja que está sobre el plato.', tip:'La hojita de arriba.'},
-    {scene:'legumbres', zones:['platoBorde'], color:'naranja', text:'Pinta de naranja el borde del plato.', tip:'Solo el borde, el anillo de afuera.'},
+    {scene:'legumbres', zones:['hoja'], color:'verde', text:'Pinta de verde la hoja que está sobre el plato.', tip:'La hoja grande de arriba, sobre el plato.'},
+    {scene:'legumbres', zones:['platoBorde'], color:'naranja', text:'Pinta de naranja el plato de Daniel.', tip:'El plato grande que está debajo de las legumbres.'},
     {scene:'legumbres', zones:['mesa'], color:'cafe', text:'Pinta de café la mesa donde está el plato.', tip:'La tabla de madera bajo el plato.'},
-    {scene:'legumbres', zones:['gotas'], color:'celeste', text:'Pinta de celeste las dos gotas de agua.', tip:'Son dos: una a cada lado del vaso.'},
+    {scene:'legumbres', zones:['gotas'], color:'celeste', text:'Pinta de celeste las dos gotas de agua.', tip:'Son dos: las dos bolitas grandes de arriba, junto al vaso.'},
     // Los cuatro jóvenes (7)
     {scene:'jovenes', zones:['tunicaDaniel'], color:'azul', text:'Pinta de azul la túnica de Daniel.', tip:'Daniel es el primero de la fila.'},
     {scene:'jovenes', zones:['tunicaAnanias'], color:'rojo', text:'Pinta de rojo la túnica de Ananías.', tip:'A Ananías le pusieron el nombre Sadrac.'},
     {scene:'jovenes', zones:['tunicaMisael'], color:'verde', text:'Pinta de verde la túnica de Misael.', tip:'A Misael le pusieron el nombre Mesac.'},
     {scene:'jovenes', zones:['tunicaAzarias'], color:'morado', text:'Pinta de morado la túnica de Azarías.', tip:'A Azarías le pusieron el nombre Abed-nego.'},
-    {scene:'jovenes', zones:['trono'], color:'dorado', text:'Pinta de dorado el trono del rey.', tip:'Está detrás de los jóvenes.'},
+    {scene:'jovenes', zones:['trono'], color:'dorado', text:'Pinta de dorado el trono del rey.', tip:'La silla grande del rey, al lado derecho de los cuatro jóvenes.'},
     {scene:'jovenes', zones:['alfombra'], color:'rosado', text:'Pinta de rosado la alfombra del palacio.', tip:'Es el óvalo del piso donde están parados.'},
     {scene:'jovenes', zones:['corona'], color:'dorado', text:'Pinta de dorado la corona sobre el trono.', tip:'Arriba del trono, con puntas.'}
   ];

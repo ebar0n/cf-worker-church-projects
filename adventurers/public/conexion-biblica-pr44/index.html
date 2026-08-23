@@ -420,6 +420,29 @@
     font-size:.95rem;
     line-height:1.2;
   }
+  .dato{
+    margin-top:8px;
+    font-weight:800;
+    color:#fff;
+    background:rgba(0,0,0,.22);
+    border-radius:12px;
+    padding:6px 10px;
+    opacity:1 !important;
+  }
+  .mini-ask{
+    margin-top:6px;
+    font-size:.8rem;
+    font-weight:700;
+    line-height:1.25;
+  }
+  .mini-dato{
+    margin-top:6px;
+    font-size:.75rem;
+    font-weight:800;
+    line-height:1.25;
+    border-top:1px dashed rgba(0,0,0,.3);
+    padding-top:5px;
+  }
   .key-dot{
     position:absolute;
     top:8px;
@@ -536,8 +559,8 @@
 <!-- ══════════ MODO JUEGO ══════════ -->
 <section id="juego" class="active">
   <div class="legend" id="legend">
-    <div class="legend-item legend-ventana"><span class="big">🙏</span> Como Daniel → junta las manos y abre la ventana</div>
-    <div class="legend-item legend-trampa"><span class="big">🦁</span> Trampa del foso → ¡ruge, león!</div>
+    <div class="legend-item legend-ventana"><span class="big">🙏</span> Del lado de Daniel → junta las manos y abre la ventana</div>
+    <div class="legend-item legend-trampa"><span class="big">🦁</span> Del lado de la trampa → ¡ruge, león!</div>
   </div>
 
   <div class="prayers-label">Las tres oraciones del día de Daniel</div>
@@ -580,14 +603,17 @@
 <section id="material">
   <p class="print-note">
     Usa <strong>Ctrl/Cmd + P</strong> para imprimirlas. El puntico de color en la esquina
-    es tu clave secreta de maestro: <span style="color:#8FE3AE">verde = como Daniel (🙏 junta las manos)</span>,
-    <span style="color:#FF9B94">rojo = trampa del foso (🦁 ¡ruge!)</span>. Los niños no saben el código… ¡tú sí!
+    es tu clave secreta de maestro: <span style="color:#8FE3AE">verde = del lado de Daniel (🙏 junta las manos)</span>,
+    <span style="color:#FF9B94">rojo = del lado de la trampa (🦁 ¡ruge!)</span>. Los niños no saben el código… ¡tú sí!
+    Cada tarjeta del capítulo trae debajo <strong>el dato que el niño debe decir</strong> y, tras la línea de puntos,
+    <strong>la respuesta (✅) solo para el adulto</strong>: tápala con el dedo al mostrar la tarjeta.
+    Las tarjetas marcadas <strong>«hoy»</strong> son la aplicación a la vida de ahora y no piden dato.
   </p>
 
-  <div class="group-title"><span class="chip">🪟</span> Como Daniel — 🙏 junta las manos y abre la ventana</div>
+  <div class="group-title"><span class="chip">🪟</span> Del lado de Daniel — 🙏 junta las manos y abre la ventana</div>
   <div class="card-grid" id="gridVentana"></div>
 
-  <div class="group-title"><span class="chip">🕳️</span> Trampa del foso — 🦁 ¡ruge, león!</div>
+  <div class="group-title"><span class="chip">🕳️</span> Del lado de la trampa — 🦁 ¡ruge, león!</div>
   <div class="card-grid" id="gridTrampa"></div>
 </section>
 
@@ -615,15 +641,18 @@
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 tarjetas sorpresa</strong> y después <strong>5 preguntas relámpago</strong>.</li>
-      <li>En cada tarjeta, su hijo reacciona <em>antes</em> de revelar: si la acción es <strong>como Daniel</strong>, junta las manos y «abre la ventana» (🙏); si es una <strong>trampa del foso</strong>, ruge como león (🦁).</li>
-      <li>Toquen <strong>¡Revelar!</strong> y díganle a la app si acertó (⭐ +1) o no.</li>
+      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 tarjetas sorpresa</strong> (4 del capítulo + 1 de aplicación a hoy) y después <strong>5 preguntas relámpago</strong> del capítulo.</li>
+      <li>En cada tarjeta, su hijo reacciona <em>antes</em> de revelar: si la escena está <strong>del lado de Daniel</strong> (lo que hicieron bien Daniel, Dios o el rey al querer salvarlo), junta las manos y «abre la ventana» (🙏); si está <strong>del lado de la trampa</strong> (lo que tramaron los príncipes), ruge como león (🦁).</li>
+      <li>Las 4 tarjetas del capítulo <strong>además piden un dato</strong>: «…¡y di cuántas veces al día oraba Daniel!», «…¡y di hacia qué ciudad abría las ventanas!». La reacción del cuerpo es el envoltorio; <strong>el punto se gana al decir el dato</strong>. Solo la tarjeta «hoy» se gana con la reacción sola.</li>
+      <li>Toquen <strong>¡Revelar!</strong>: sale el lado y, debajo, <strong>✅ el dato correcto</strong>. Díganle a la app si acertó (⭐ +1) o no.</li>
       <li>Con las rondas se van encendiendo <strong>las tres oraciones del día</strong>, como las tres veces al día que Daniel oraba.</li>
       <li>Luego vienen las preguntas, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Revelen la respuesta y califiquen igual.</li>
       <li>Las tarjetas y preguntas <strong>no se repiten</strong> hasta que se agoten todas: la app recuerda por niño lo que ya salió esta semana.</li>
       <li>También pueden imprimir las tarjetas físicas desde la pestaña <strong>🖨️</strong> y jugar sin pantalla: el puntico de color en la esquina es la clave del adulto.</li>
     </ol>
-    <p>Las <strong>preguntas relámpago cubren todo el capítulo 44</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
+    <p>Las <strong>preguntas relámpago cubren todo el capítulo 44</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026.</p>
+    <p><strong>Sobre las citas textuales:</strong> las frases entre comillas del juego están copiadas tal cual del capítulo 44 de <em>Profetas y Reyes</em>, que usa la <strong>Valera antigua</strong> («fue echado», «no se abroga», «ningún vicio ni falta fue en él hallado»). Si el examen del campamento se toma en <strong>Reina Valera 1995</strong>, el sentido es el mismo pero algunas palabras cambian: no exijan la frase palabra por palabra, y si van a memorizar textos, háganlo con la Biblia que usará el examen.</p>
+    <p><strong>Qué es repaso y qué es aplicación:</strong> de las 5 tarjetas de cada partida, <strong>4 son del capítulo 44</strong> (2 del lado de Daniel y 2 del lado de la trampa) y <strong>cada una pide un dato del capítulo</strong>: el decreto de 30 días, las tres oraciones al día, Jerusalén, la ley de Media y de Persia, la piedra sellada con el anillo del rey… <strong>1 sola tarjeta es aplicación a la vida de hoy</strong> (marcada «hoy» en las tarjetas imprimibles) y esa sí suma puntos por la reacción. Las 5 preguntas relámpago son todas del capítulo. Es decir: <strong>9 de las 10 rondas que suman puntos se ganan diciendo un dato del capítulo 44; 1 es aplicación</strong>.</p>
     <p>La idea no es memorizar la lista, sino conversar: <em>¿por qué Daniel no se escondió para orar? ¿Cuándo nos cuesta a nosotros hacer lo correcto? ¿A quién le pedimos ayuda cuando tenemos miedo?</em></p>
   </div>
 
@@ -640,74 +669,102 @@
 <script>
   // ── Datos ──
   const CARDS = [
-    // ── Como Daniel (ventana abierta) ──
-    {emoji:'🪟', name:'Orar con la ventana abierta hacia Jerusalén', side:'ventana'},
-    {emoji:'🙏', name:'Orar tres veces al día', side:'ventana'},
-    {emoji:'🙌', name:'Seguir orando aunque haya un decreto que lo prohíbe', side:'ventana'},
-    {emoji:'✅', name:'Trabajar sin trampas ni mentiras', side:'ventana'},
-    {emoji:'🪞', name:'Ser el mismo en el foso que en el palacio', side:'ventana'},
-    {emoji:'💬', name:'Decirle la verdad al rey', side:'ventana'},
-    {emoji:'🧹', name:'Hacer bien la tarea aunque nadie mire', side:'ventana'},
-    {emoji:'🍎', name:'Dar gracias antes de comer en el colegio', side:'ventana'},
-    {emoji:'👑', name:'Obedecer al rey en todo lo que sí es correcto', side:'ventana'},
-    {emoji:'😌', name:'No temblar de miedo: confiar en Dios', side:'ventana'},
-    {emoji:'🤝', name:'Ser amable y cortés con todos, hasta con los que me envidian', side:'ventana'},
-    {emoji:'🕯️', name:'Ser una luz aunque todos alrededor sirvan a ídolos', side:'ventana'},
-    {emoji:'😇', name:'Pedirle a Dios cuando más miedo tengo', side:'ventana'},
-    {emoji:'📖', name:'Contarle a todos que Dios es el Dios viviente', side:'ventana'},
-    // ── Trampa del foso ──
-    {emoji:'📜', name:'El decreto de los 30 días: solo pedirle al rey', side:'trampa'},
-    {emoji:'🍯', name:'Adular al rey para engañarlo', side:'trampa'},
-    {emoji:'😠', name:'Envidiar al que le va bien', side:'trampa'},
-    {emoji:'👀', name:'Espiar a otro todo el día para acusarlo', side:'trampa'},
-    {emoji:'🙈', name:'Esconderse para orar por miedo', side:'trampa'},
-    {emoji:'🗿', name:'Pedirle solo al rey Darío y no a Dios', side:'trampa'},
-    {emoji:'🕳️', name:'Prepararle una trampa a un amigo', side:'trampa'},
-    {emoji:'🤐', name:'Prohibirle a alguien hablar con Dios', side:'trampa'},
-    {emoji:'✍️', name:'Firmar sin pensar lo que otros me piden', side:'trampa'},
-    {emoji:'💥', name:'Vengarse de quien me hizo daño', side:'trampa'},
-    {emoji:'🎭', name:'Ser bueno solo cuando me están mirando', side:'trampa'},
-    {emoji:'🗣️', name:'Ir a acusar a otro delante del rey por celos', side:'trampa'},
-    {emoji:'🤥', name:'Hacer trampa en el trabajo y esconderlo', side:'trampa'},
-    {emoji:'😰', name:'Dejar de orar cuando la cosa se pone difícil', side:'trampa'}
+    // ── Del lado de Daniel · del capítulo (cada tarjeta pide un dato) ──
+    {emoji:'🙏', name:'Daniel entra en su cámara a la hora de la oración', side:'ventana', era:'capitulo',
+      ask:'di cuántas veces al día oraba Daniel', dato:'3 veces al día'},
+    {emoji:'🪟', name:'Daniel deja las ventanas de su cámara abiertas', side:'ventana', era:'capitulo',
+      ask:'di hacia qué ciudad las abría', dato:'Hacia Jerusalén'},
+    {emoji:'✅', name:'Los enemigos revisan todo el trabajo de Daniel', side:'ventana', era:'capitulo',
+      ask:'di qué falta le encontraron', dato:'Ninguna: «ningún vicio ni falta fue en él hallado»'},
+    {emoji:'✨', name:'Daniel era superior a los otros gobernadores y presidentes', side:'ventana', era:'capitulo',
+      ask:'completa: «porque había en él más abundancia de ______»', dato:'de espíritu'},
+    {emoji:'🏛️', name:'Daniel sigue cumpliendo con calma su cargo en el reino', side:'ventana', era:'capitulo',
+      ask:'di qué cargo tenía Daniel', dato:'Presidente: uno de los tres presidentes del reino'},
+    {emoji:'👐', name:'Daniel ora a la vista de todos', side:'ventana', era:'capitulo',
+      ask:'completa: «No procuraba ______ su acto»', dato:'ocultar'},
+    {emoji:'🌅', name:'Darío se esfuerza por librar a Daniel', side:'ventana', era:'capitulo',
+      ask:'di hasta qué hora trabajó el rey', dato:'Hasta la puesta del sol'},
+    {emoji:'😇', name:'Dios envía su ángel al foso', side:'ventana', era:'capitulo',
+      ask:'di qué hizo el ángel', dato:'Cerró la boca de los leones'},
+    {emoji:'🦁', name:'Sacan a Daniel del foso a la mañana siguiente', side:'ventana', era:'capitulo',
+      ask:'di qué lesión le hallaron', dato:'Ninguna lesión'},
+    {emoji:'📯', name:'Darío escribe a todos los pueblos, naciones y lenguas', side:'ventana', era:'capitulo',
+      ask:'di qué dijo del Dios de Daniel', dato:'Que es «el Dios viviente y permanente por todos los siglos»'},
+    {emoji:'👑', name:'Daniel obedece al rey en todo lo que el rey sí podía ordenar', side:'ventana', era:'capitulo',
+      ask:'di en qué NO le obedeció', dato:'En el decreto de no orar: siguió orando a Dios'},
+    {emoji:'🕊️', name:'Daniel es prosperado después del foso', side:'ventana', era:'capitulo',
+      ask:'di en el reinado de qué dos reyes', dato:'Darío el Medo y Ciro el Persa'},
+    // ── Del lado de Daniel · aplicación de hoy (sin dato: es la ronda de aplicación) ──
+    {emoji:'🍎', name:'Dar gracias antes de comer en el colegio', side:'ventana', era:'hoy'},
+    {emoji:'🧹', name:'Hacer bien la tarea aunque nadie me mire', side:'ventana', era:'hoy'},
+    {emoji:'🛏️', name:'Pedirle ayuda a Dios cuando tengo miedo', side:'ventana', era:'hoy'},
+    {emoji:'📖', name:'Contarle a un amigo que Dios está vivo', side:'ventana', era:'hoy'},
+    // ── Del lado de la trampa · del capítulo (cada tarjeta pide un dato) ──
+    {emoji:'📜', name:'Los príncipes preparan un decreto contra Daniel', side:'trampa', era:'capitulo',
+      ask:'di por cuántos días prohibía pedirle algo a Dios', dato:'30 días'},
+    {emoji:'🗿', name:'El decreto deja una sola excepción', side:'trampa', era:'capitulo',
+      ask:'di a quién sí se le podía pedir', dato:'Solo al rey Darío'},
+    {emoji:'🍯', name:'Los príncipes convencen al rey de firmar', side:'trampa', era:'capitulo',
+      ask:'di a qué del rey apelaron', dato:'A su vanidad: le dijeron que acrecentaría su honor y autoridad'},
+    {emoji:'😠', name:'Los príncipes buscan ocasión de quejarse contra Daniel', side:'trampa', era:'capitulo',
+      ask:'di qué los movió', dato:'Los celos, porque el rey lo honraba'},
+    {emoji:'😈', name:'Alguien movió a los príncipes a envidia', side:'trampa', era:'capitulo',
+      ask:'di quién, según el capítulo', dato:'Satanás y los malos ángeles'},
+    {emoji:'👀', name:'Los príncipes vigilan a Daniel todo el día', side:'trampa', era:'capitulo',
+      ask:'di cuántas veces lo vieron orar ese día', dato:'Tres veces'},
+    {emoji:'🕳️', name:'El castigo que fijaba el decreto', side:'trampa', era:'capitulo',
+      ask:'di cuál era el castigo', dato:'Ser echado en el foso de los leones'},
+    {emoji:'📕', name:'El rey ya no puede cambiar el decreto que firmó', side:'trampa', era:'capitulo',
+      ask:'di qué ley se lo impedía', dato:'La ley de Media y de Persia, que no se abroga'},
+    {emoji:'🪨', name:'Sellan la piedra a la entrada del foso', side:'trampa', era:'capitulo',
+      ask:'di con qué la sellaron', dato:'Con el anillo del rey y el de sus príncipes'},
+    {emoji:'🌙', name:'La noche que el rey pasó en su palacio', side:'trampa', era:'capitulo',
+      ask:'di tres cosas que le faltaron esa noche', dato:'Comida (se acostó ayuno), música y sueño'},
+    // ── Del lado de la trampa · aplicación de hoy (sin dato) ──
+    {emoji:'💥', name:'Vengarme de quien me hizo daño', side:'trampa', era:'hoy'},
+    {emoji:'🎭', name:'Portarme bien solo cuando me están mirando', side:'trampa', era:'hoy'},
+    {emoji:'🤥', name:'Hacer trampa en la tarea y esconderlo', side:'trampa', era:'hoy'},
+    {emoji:'🪤', name:'Prepararle una trampa a un compañero', side:'trampa', era:'hoy'}
   ];
 
   const QUIZ = [
     // ── 4–5 años ──
-    {tag:'4–5 años', q:'¿A dónde echaron a Daniel? ¡Ruge como el león!', a:'🦁 Al foso de los leones'},
-    {tag:'4–5 años', q:'¿Qué hacía Daniel tres veces al día? ¡Muéstrenme cómo!', a:'🙏 Oraba a Dios'},
-    {tag:'4–5 años', q:'¿Los leones le hicieron daño a Daniel?', a:'No: no se halló ninguna lesión en él'},
-    {tag:'4–5 años', q:'¿Quién cerró la boca de los leones?', a:'😇 El ángel que Dios envió'},
-    {tag:'4–5 años', q:'¿Cómo oraba Daniel: escondido o con la ventana abierta?',a:'🪟 Con las ventanas abiertas hacia Jerusalén'},
-    {tag:'4–5 años', q:'Cuenten con los dedos: ¿cuántas veces al día oraba Daniel?', a:'3 veces al día'},
+    {era:'capitulo', tag:'4–5 años', q:'¿A dónde echaron a Daniel? ¡Ruge como el león!', a:'🦁 Al foso de los leones'},
+    {era:'capitulo', tag:'4–5 años', q:'¿Qué hacía Daniel tres veces al día? ¡Muéstrenme cómo!', a:'🙏 Oraba a Dios'},
+    {era:'capitulo', tag:'4–5 años', q:'¿Los leones le hicieron daño a Daniel?', a:'No: no se halló ninguna lesión en él'},
+    {era:'capitulo', tag:'4–5 años', q:'¿Quién cerró la boca de los leones?', a:'😇 El ángel que Dios envió'},
+    {era:'capitulo', tag:'4–5 años', q:'¿Cómo oraba Daniel: escondido o con la ventana abierta?',a:'🪟 Con las ventanas abiertas hacia Jerusalén'},
+    {era:'capitulo', tag:'4–5 años', q:'Cuenten con los dedos: ¿cuántas veces al día oraba Daniel?', a:'3 veces al día'},
     // ── 6–7 años ──
-    {tag:'6–7 años', q:'¿Cómo se llamaba el rey que firmó el decreto?', a:'Darío el Medo'},
-    {tag:'6–7 años', q:'¿Cuántos días prohibía el decreto pedirle algo a Dios?', a:'30 días'},
-    {tag:'6–7 años', q:'¿Hacia qué ciudad abría Daniel sus ventanas para orar?', a:'Hacia Jerusalén'},
-    {tag:'6–7 años', q:'¿Por qué los príncipes querían dañar a Daniel?', a:'Por celos: el rey lo honraba y pensaba ponerlo sobre todo el reino'},
-    {tag:'6–7 años', q:'¿Qué le pusieron a la entrada del foso?', a:'Una piedra sellada con el anillo del rey y de sus príncipes'},
-    {tag:'6–7 años', q:'¿Qué hizo el rey esa noche mientras Daniel estaba en el foso?', a:'Se acostó en ayunas, sin música, y se le fue el sueño'},
-    {tag:'6–7 años', q:'¿Qué le dijo el rey a Daniel antes de echarlo al foso?', a:'«El Dios tuyo, a quien tú continuamente sirves, él te libre»'},
-    {tag:'6–7 años', q:'¿Qué encontraron los enemigos de malo en el trabajo de Daniel?', a:'Nada: «ningún vicio ni falta fue en él hallado»'},
-    {tag:'6–7 años', q:'Cuando Daniel supo del decreto, ¿dejó de orar?', a:'No: no cambió su conducta en un solo detalle'},
+    {era:'capitulo', tag:'6–7 años', q:'¿Cómo se llamaba el rey que firmó el decreto?', a:'Darío el Medo'},
+    {era:'capitulo', tag:'6–7 años', q:'¿Cuántos días prohibía el decreto pedirle algo a Dios?', a:'30 días'},
+    {era:'capitulo', tag:'6–7 años', q:'¿Hacia qué ciudad abría Daniel sus ventanas para orar?', a:'Hacia Jerusalén'},
+    {era:'capitulo', tag:'6–7 años', q:'¿Por qué los príncipes querían dañar a Daniel?', a:'Por celos: el rey lo honraba y pensaba ponerlo sobre todo el reino'},
+    {era:'capitulo', tag:'6–7 años', q:'¿Qué le pusieron a la entrada del foso?', a:'Una piedra sellada con el anillo del rey y de sus príncipes'},
+    {era:'capitulo', tag:'6–7 años', q:'¿Qué hizo el rey esa noche mientras Daniel estaba en el foso?', a:'Se acostó en ayunas, sin música, y se le fue el sueño'},
+    {era:'capitulo', tag:'6–7 años', q:'¿Qué le dijo el rey a Daniel antes de echarlo al foso?', a:'«El Dios tuyo, a quien tú continuamente sirves, él te libre»'},
+    {era:'capitulo', tag:'6–7 años', q:'¿Qué encontraron los enemigos de malo en el trabajo de Daniel?', a:'Nada: «ningún vicio ni falta fue en él hallado»'},
+    {era:'capitulo', tag:'6–7 años', q:'Cuando Daniel supo del decreto, ¿dejó de orar?', a:'No: no cambió su conducta en un solo detalle'},
     // ── 8–9 años ──
-    {tag:'8–9 años', q:'¿Cuántos gobernadores y cuántos presidentes puso Darío sobre el reino?', a:'120 gobernadores y 3 presidentes; Daniel era uno de los tres'},
-    {tag:'8–9 años', q:'¿Por qué Daniel era superior a los otros gobernadores y presidentes?', a:'«Porque había en él más abundancia de espíritu»'},
-    {tag:'8–9 años', q:'¿Cómo convencieron los príncipes al rey de firmar el decreto?', a:'Apelando a su vanidad: le dijeron que acrecentaría su honor y autoridad'},
-    {tag:'8–9 años', q:'Cuando el rey quiso salvar a Daniel, ¿por qué no pudo cambiar el decreto?', a:'Porque la ley de Media y de Persia no se abroga: ningún decreto firmado podía mudarse'},
-    {tag:'8–9 años', q:'¿Hasta qué hora trabajó el rey para librar a Daniel?', a:'«Hasta puestas del sol trabajó para librarle»'},
-    {tag:'8–9 años', q:'¿Qué respondió Daniel desde el foso cuando el rey lo llamó?', a:'«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal»'},
-    {tag:'8–9 años', q:'¿Qué les pasó a los hombres que habían acusado a Daniel?', a:'Fueron echados al foso y los leones se apoderaron de ellos'},
-    {tag:'8–9 años', q:'¿Qué proclamó Darío a todos los pueblos, naciones y lenguas?', a:'Que temieran al Dios de Daniel, «el Dios viviente y permanente por todos los siglos»'},
-    {tag:'8–9 años', q:'Según el capítulo, ¿qué verdad declaró Daniel con su ejemplo?', a:'Que ninguna potencia terrenal tiene derecho a interponerse entre el alma y Dios'},
-    {tag:'8–9 años', q:'¿Qué aprendemos de que Daniel fuera igual en el foso y en el palacio?', a:'Que quien se apoya en Dios es en la hora de la prueba el mismo que en la prosperidad'},
-    {tag:'8–9 años', q:'¿Por qué Dios permitió que echaran a Daniel al foso?', a:'Para recalcar más su liberación y que la derrota de los enemigos de la verdad fuera más completa'},
-    {tag:'8–9 años', q:'¿Durante los reinados de qué dos reyes fue prosperado Daniel?', a:'Darío el Medo y Ciro el Persa'}
+    {era:'capitulo', tag:'8–9 años', q:'¿Cuántos gobernadores y cuántos presidentes puso Darío sobre el reino?', a:'120 gobernadores y 3 presidentes; Daniel era uno de los tres'},
+    {era:'capitulo', tag:'8–9 años', q:'¿Por qué Daniel era superior a los otros gobernadores y presidentes?', a:'«Porque había en él más abundancia de espíritu»'},
+    {era:'capitulo', tag:'8–9 años', q:'¿Cómo convencieron los príncipes al rey de firmar el decreto?', a:'Apelando a su vanidad: le dijeron que acrecentaría su honor y autoridad'},
+    {era:'capitulo', tag:'8–9 años', q:'Cuando el rey quiso salvar a Daniel, ¿por qué no pudo cambiar el decreto?', a:'Porque la ley de Media y de Persia no se abroga: ningún decreto firmado podía mudarse'},
+    {era:'capitulo', tag:'8–9 años', q:'¿Hasta qué hora trabajó el rey para librar a Daniel?', a:'«Hasta puestas del sol trabajó para librarle»'},
+    {era:'capitulo', tag:'8–9 años', q:'¿Qué respondió Daniel desde el foso cuando el rey lo llamó?', a:'«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal»'},
+    {era:'capitulo', tag:'8–9 años', q:'¿Qué les pasó a los hombres que habían acusado a Daniel?', a:'Fueron echados al foso y los leones se apoderaron de ellos'},
+    {era:'capitulo', tag:'8–9 años', q:'¿Qué proclamó Darío a todos los pueblos, naciones y lenguas?', a:'Que temieran al Dios de Daniel, «el Dios viviente y permanente por todos los siglos»'},
+    {era:'capitulo', tag:'8–9 años', q:'Según el capítulo, ¿qué verdad declaró Daniel con su ejemplo?', a:'Que ninguna potencia terrenal tiene derecho a interponerse entre el alma y Dios'},
+    {era:'capitulo', tag:'8–9 años', q:'¿Qué aprendemos de que Daniel fuera igual en el foso y en el palacio?', a:'Que quien se apoya en Dios es en la hora de la prueba el mismo que en la prosperidad'},
+    {era:'capitulo', tag:'8–9 años', q:'¿Por qué Dios permitió que echaran a Daniel al foso?', a:'Para recalcar más su liberación y que la derrota de los enemigos de la verdad fuera más completa'},
+    {era:'capitulo', tag:'8–9 años', q:'¿Durante los reinados de qué dos reyes fue prosperado Daniel?', a:'Darío el Medo y Ciro el Persa'}
   ];
 
   // ── Partida: 5 tarjetas + 5 preguntas ──
   const ACTIVITY = 'pr44';
-  const MATCH_CARDS = 5;
+  const CAP_PER_SIDE = 2;   // tarjetas del capítulo por lado
+  const HOY_PER_MATCH = 1;  // única tarjeta de aplicación a hoy
+  const MATCH_CARDS = CAP_PER_SIDE * 2 + HOY_PER_MATCH;
   const MATCH_QUIZ = 5;
   // Cuántas preguntas de cada edad entran en una partida (suman MATCH_QUIZ).
   const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
@@ -747,20 +804,24 @@
     return 'done';
   }
 
+  // Las 5 preguntas salen siempre de la bolsa `capitulo`: la ronda de aplicación
+  // a hoy es la tarjeta `hoy`, y no puede haber dos por partida.
   function pickMatchQuiz(){
     const picked = [];
     QUIZ_MIX.forEach(([tag, n]) => {
-      const group = QUIZ.filter(q => q.tag === tag);
+      const group = QUIZ.filter(q => q.era === 'capitulo' && q.tag === tag);
       picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.q));
     });
     return picked;
   }
 
+  // 4 tarjetas del capítulo (2 por lado) + 1 aplicación de hoy: bolsas separadas por era.
   function pickMatchCards(){
-    const sides = Math.random() < .5 ? ['ventana', 'trampa'] : ['trampa', 'ventana'];
+    const bag = (era, side) => CARDS.filter(c => c.era === era && (!side || c.side === side));
     const picked = [
-      ...AvProfile.pick(`${ACTIVITY}:card:${sides[0]}`, CARDS.filter(c => c.side === sides[0]), 3, c => c.name),
-      ...AvProfile.pick(`${ACTIVITY}:card:${sides[1]}`, CARDS.filter(c => c.side === sides[1]), 2, c => c.name)
+      ...AvProfile.pick(`${ACTIVITY}:card:capitulo:ventana`, bag('capitulo','ventana'), CAP_PER_SIDE, c => c.name),
+      ...AvProfile.pick(`${ACTIVITY}:card:capitulo:trampa`, bag('capitulo','trampa'), CAP_PER_SIDE, c => c.name),
+      ...AvProfile.pick(`${ACTIVITY}:card:hoy`, bag('hoy'), HOY_PER_MATCH, c => c.name)
     ];
     return shuffle(picked);
   }
@@ -793,7 +854,9 @@
       gameCard.innerHTML = `
         <div class="emoji">${c.emoji}</div>
         <div class="card-name">${esc(c.name)}</div>
-        <div class="hint">¿Qué hacemos, valientes?</div>`;
+        <div class="hint">${c.ask
+          ? `Reacciona… ¡y ${esc(c.ask)}!`
+          : '¿Qué hacemos, valientes?'}</div>`;
       mainBtn.textContent = '¡Revelar!';
       mainBtn.hidden = false;
     }else if(ph === 'quiz'){
@@ -824,8 +887,9 @@
       gameCard.innerHTML = `
         <div class="emoji">${c.emoji}</div>
         <div class="action-emoji">${esVentana ? '🙏' : '🦁'}</div>
-        <div class="action-name">${esVentana ? '¡Como Daniel!' : '¡Trampa del foso!'}</div>
-        <div class="hint">${esVentana ? 'Junta las manos y abre la ventana' : '¡Ruge, león! Eso no lo hacemos'}</div>`;
+        <div class="action-name">${esVentana ? '¡Del lado de Daniel!' : '¡Del lado de la trampa!'}</div>
+        <div class="hint">${esVentana ? 'Junta las manos y abre la ventana' : '¡Ruge, león! Eso no lo hacemos'}</div>
+        ${c.dato ? `<div class="hint dato">✅ ${esc(c.dato)}</div>` : ''}`;
       setPrayers(PRAYER_STEPS[match.step + 1]);
     }else{
       document.getElementById('quizA').classList.add('show');
@@ -834,7 +898,12 @@
     const kind = ph === 'quiz' ? 'quiz' : 'card';
     const p = AvProfile.get();
     if(p && AvProfile.canScore(kind)){
-      judgeQ.textContent = ph === 'card' ? `¿${p.name} acertó?` : '¿Respondió bien?';
+      const cardNow = ph === 'card' ? match.cards[match.step] : null;
+      judgeQ.textContent = ph !== 'card'
+        ? '¿Respondió bien?'
+        : cardNow.dato
+          ? `¿${p.name} reaccionó bien Y dijo el dato?`
+          : `¿${p.name} reaccionó bien?`;
       judgeYes.hidden = false;
       judgeNo.hidden = false;
       judge.hidden = false;
@@ -925,9 +994,11 @@
     const grid = document.getElementById(id);
     grid.innerHTML = CARDS.filter(c => c.side === side).map(c => `
       <div class="mini-card">
-        <span class="key-dot ${side === 'ventana' ? 'key-ventana' : 'key-trampa'}" title="${side === 'ventana' ? 'Como Daniel' : 'Trampa del foso'}"></span>
+        <span class="key-dot ${side === 'ventana' ? 'key-ventana' : 'key-trampa'}" title="${side === 'ventana' ? 'Del lado de Daniel' : 'Del lado de la trampa'}"></span>
         <div class="emoji">${c.emoji}</div>
-        <div class="card-name">${esc(c.name)}</div>
+        <div class="card-name">${esc(c.name)}${c.era === 'hoy' ? ' (hoy)' : ''}</div>
+        ${c.ask ? `<div class="mini-ask">…¡y ${esc(c.ask)}!</div>` : ''}
+        ${c.dato ? `<div class="mini-dato">✅ ${esc(c.dato)}</div>` : ''}
       </div>`).join('');
   }
   renderGrid('gridVentana','ventana');

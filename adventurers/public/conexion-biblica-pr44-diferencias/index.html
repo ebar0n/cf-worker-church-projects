@@ -67,6 +67,10 @@
     margin-top:6px;
   }
   .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+  @media (max-width:700px){
+    /* Con los dos dibujos apilados, la cabecera tiene que ceder espacio. */
+    .eyebrow{display:none}
+  }
   @media (max-width:600px){
     .subtitle{display:none}
     header{padding-bottom:8px}
@@ -184,9 +188,19 @@
   .boards{display:grid;grid-template-columns:1fr;gap:14px}
   .boards[hidden]{display:none}
   @media (min-width:820px){.boards{grid-template-columns:1fr 1fr}}
+  /* En celular van uno debajo del otro y se acota el alto para que los dos
+     quepan en pantalla: lado a lado cada dibujo queda de ~190px y un niño de
+     5 años no distingue nada. */
+  @media (max-width:819px){
+    .boards{grid-template-columns:1fr;gap:8px}
+    .board{padding:6px 6px 2px;border-width:4px;border-radius:16px}
+    .board .scene{max-height:30vh}
+    .board-tag{font-size:.68rem;letter-spacing:.06em;padding:3px 9px;margin-bottom:2px}
+  }
   @media (max-width:420px){
-    #juego{padding-left:6px;padding-right:6px}
-    .board{padding:6px 4px 2px;border-width:4px}
+    #juego{padding-left:8px;padding-right:8px}
+    .boards{gap:6px}
+    .board{padding:5px 5px 2px}
   }
   .board{
     background:var(--cream);
@@ -221,7 +235,7 @@
   .scene .mane{fill:var(--gold)}
   .scene .head,.scene .body{fill:var(--gold-soft)}
   .scene .stone{fill:#D9CDB8}
-  .scene .seal{fill:var(--brick)}
+  .scene .seal{fill:var(--gold)}
   .scene .pit{fill:#EFE3C8;stroke-width:5}
   .scene .win{fill:var(--lapis)}
   .scene .mouth{fill:var(--brick)}
@@ -450,7 +464,7 @@
     #material{display:block!important}
     .print-title{display:block;text-align:center;font-family:'Fredoka',sans-serif;font-size:14pt;color:#000;margin-bottom:4mm}
     .print-grid{display:block}
-    .print-card{border:1px solid #999;border-radius:4mm;margin:0 auto 5mm;width:120mm;padding:2mm;break-inside:avoid}
+    .print-card{border:1px solid #999;border-radius:4mm;margin:0 auto 4mm;width:100mm;padding:2mm;break-inside:avoid}
     .print-card h3{color:#000;font-size:11pt}
     .answers{border:1px solid #999;color:#000;break-inside:avoid;padding:4mm}
     .scene .o,.scene .pit,.scene .win,.scene .head,.scene .body,
@@ -581,9 +595,9 @@
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>. Aparecen <strong>dos dibujos del foso</strong> casi iguales: en celular uno debajo del otro, en pantalla grande lado a lado.</li>
+      <li>Toquen <strong>▶ Jugar partida</strong>. Aparecen <strong>dos dibujos del foso</strong> casi iguales, lado a lado, para poder compararlos de un vistazo.</li>
       <li>Su hijo <strong>toca la diferencia</strong> en cualquiera de los dos dibujos. Si acierta, se marca con un círculo verde y suma <strong>⭐ 1 punto</strong> (hay 5 diferencias).</li>
-      <li>Si toca donde no hay nada, <strong>no pierde puntos</strong>: solo aparece un «sigue buscando». Si se atasca, está el botón <strong>💡 Dame una pista</strong>, que dice en qué parte del dibujo mirar.</li>
+      <li>Si toca donde no hay nada, <strong>no pierde puntos</strong>: solo aparece un «sigue buscando». Si se atasca, está el botón <strong>💡 Dame una pista</strong>, que dice en qué parte del dibujo mirar; a la tercera pista aparece <strong>Saltar a las preguntas ▶</strong> para no quedarse trabado.</li>
       <li>Después vienen <strong>5 rondas de «¿qué está pasando aquí?»</strong>: se señala una parte del dibujo con un círculo rojo y el niño elige entre 3 opciones qué dice el capítulo sobre eso. La app califica sola.</li>
       <li>Las rondas vienen marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Lean las opciones en voz alta a los más pequeños.</li>
       <li>Las diferencias y las preguntas <strong>no se repiten</strong> hasta agotarse: la app recuerda por niño lo que ya salió esta semana, así cada día el foso cambia en otras cosas.</li>
@@ -661,8 +675,8 @@
     <rect class="o win" data-p="win3" x="334" y="66" width="22" height="28" rx="8"/>
   </g>
   <g class="off" data-p="harp">
-    <path class="ln" d="M348 122 q-8 -34 24 -34 q-12 16 -10 34"/>
-    <path class="ln thin" d="M354 120 v-26 M361 120 v-28 M368 120 v-27"/>
+    <path class="o" d="M394 118 V78 Q394 66 382 70 L366 118 Z"/>
+    <path class="ln thin" d="M374 113 v-18 M381 113 v-38 M388 113 v-40"/>
   </g>
 
   <!-- el suelo -->
@@ -709,7 +723,7 @@
   <ellipse class="o stone" data-p="stone" cx="80" cy="116" rx="54" ry="30"/>
   <g data-p="sealRing">
     <circle class="o seal" cx="80" cy="114" r="14"/>
-    <path class="ln thin" d="M71 107 l18 14 M71 121 l18 -14"/>
+    <circle class="ln thin" cx="80" cy="114" r="7" fill="none"/>
   </g>
   <path class="ln off" data-p="sealCrack" d="M60 98 l12 12 -9 8 13 10"/>
 
@@ -748,8 +762,8 @@
      hint:'Cuenta las ventanas del palacio, arriba a la derecha.',
      answer:'Falta una ventana del palacio (Daniel oraba con las ventanas abiertas).',
      mut:[['hide','win3']]},
-    {id:'arpa-aparece', slot:'muro', at:[358,108,30],
-     hint:'Mira abajo del palacio, a la derecha: apareció algo que no estaba.',
+    {id:'arpa-aparece', slot:'muro', at:[374,98,26],
+     hint:'Mira en el suelo, a la derecha del palacio: apareció algo que no estaba.',
      answer:'Apareció un arpa; esa noche NO le llevaron instrumentos de música al rey.',
      mut:[['show','harp']]},
 
@@ -1042,6 +1056,11 @@
     match.hintAt++;
     tapMsg.className = 'tap-msg';
     tapMsg.textContent = '💡 ' + d.hint;
+    if(match.hintAt >= 3){
+      mainBtn.hidden = false;
+      mainBtn.textContent = 'Saltar a las preguntas ▶';
+      tapMsg.textContent += ' (o pasa a las preguntas con el botón de abajo)';
+    }
   }
 
   function startMatch(){
@@ -1177,7 +1196,7 @@
 
   mainBtn.addEventListener('click', () => {
     if(!match){ startMatch(); return; }
-    if(match.stage === 'card' && match.found.length >= MATCH_CARDS){ showQuiz(); return; }
+    if(match.stage === 'card'){ showQuiz(); return; }
   });
   hintBtn.addEventListener('click', showHint);
   nextBtn.addEventListener('click', nextRound);
