@@ -6,9 +6,10 @@
     "node": ">=24"
   },
   "scripts": {
+    "verify": "node scripts/check-games.mjs",
     "migrate": "CI=true wrangler d1 migrations apply church-jordan-projects",
     "dev": "yarn migrate --local && wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "yarn migrate --remote && wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4.112.0"

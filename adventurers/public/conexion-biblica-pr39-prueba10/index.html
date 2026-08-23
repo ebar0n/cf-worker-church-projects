@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1B2F6E">
+<title>La prueba de los 10 días</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Un tablero de 10 casillas: avanza un día por reto y llega al palacio. 5 retos + 5 preguntas por partida para el tablero del Club de Aventureros.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="La prueba de los 10 días">
+<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Camina los 10 días de la prueba de Daniel: un reto por día y 5 preguntas del capítulo. ¡Suma puntos para el tablero del club!">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr39-prueba10/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    /* Paleta Puerta de Ishtar: azul lapislázuli, oro vidriado, ladrillo, crema */
+    --lapis:#1B2F6E;
+    --lapis-deep:#12204D;
+    --gold:#F0B429;
+    --gold-soft:#FFD97A;
+    --brick:#C2542B;
+    --cream:#FFF6E3;
+    --mover:#2E9E5B;      /* retos de movimiento */
+    --mover-deep:#1E7040;
+    --hablar:#3B6FD4;     /* retos de conversación */
+    --hablar-deep:#26499A;
+    --ink:#231A0F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--lapis);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,217,122,.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(240,180,41,.07), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  /* ── Cabecera ── */
+  header{text-align:center;padding:10px 16px 12px}
+  @media (max-width:600px){
+    .subtitle{display:none}
+    header{padding-bottom:8px}
+  }
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  h1{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.5rem,5vw,2.3rem);
+    line-height:1.15;
+    margin-top:6px;
+  }
+  h1 .ten{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--lapis-deep);
+    border-radius:999px;
+    font-size:.85em;
+    padding:.05em .5em;
+    margin:0 .08em;
+  }
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+
+  /* ── Barra superior + menú ── */
+  .topbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px 0;
+    max-width:1000px;
+    margin:0 auto;
+  }
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
+  .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
+  .player-chip + .menu-wrap{margin-left:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+    .back-link{padding:8px 10px}
+    .menu-btn{padding:8px 12px}
+  }
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    border:2px solid var(--gold);
+    background:transparent;
+    color:var(--gold-soft);
+    border-radius:999px;
+    padding:8px 16px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;
+    right:0;
+    top:calc(100% + 8px);
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+    min-width:240px;
+    background:var(--cream);
+    border:3px solid var(--gold);
+    border-radius:18px;
+    padding:8px;
+    box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    text-align:left;
+    background:transparent;
+    border:none;
+    color:var(--ink);
+    border-radius:12px;
+    padding:12px 14px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+
+  /* ── Tablero de 10 casillas ── */
+  .board-wrap{max-width:520px;margin:0 auto 18px}
+  .board-title{
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    text-align:center;
+    margin-bottom:8px;
+  }
+  .board{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:5px;
+  }
+  .cell{
+    position:relative;
+    border-radius:12px;
+    border:2px solid rgba(255,217,122,.45);
+    background:rgba(255,255,255,.06);
+    min-height:52px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:1px;
+    padding:3px 1px;
+  }
+  .cell .n{
+    font-family:'Fredoka',sans-serif;
+    font-size:.62rem;
+    font-weight:600;
+    letter-spacing:.04em;
+    color:var(--gold-soft);
+    line-height:1;
+  }
+  .cell .mark{font-size:1.1rem;line-height:1}
+  .cell.done{background:rgba(46,158,91,.45);border-color:var(--mover)}
+  .cell.done .n{color:#EAFBF0}
+  .cell.now{
+    background:var(--gold);
+    border-color:#fff;
+    box-shadow:0 0 0 3px rgba(255,255,255,.35);
+  }
+  .cell.now .n{color:var(--lapis-deep)}
+  .cell.palace{
+    grid-column:span 2;
+    background:rgba(194,84,43,.35);
+    border-color:var(--brick);
+  }
+  .cell.palace.open{background:var(--brick);border-color:var(--gold)}
+  .cell.palace .mark{font-size:1.5rem}
+  .board-legend{
+    margin-top:8px;
+    text-align:center;
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--gold-soft);
+    opacity:.9;
+  }
+
+  /* ── Reto de puntos ── */
+  .judge{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:16px;
+    background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);
+    border-radius:16px;
+    padding:12px 14px;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+  }
+  .judge span{flex-basis:100%;text-align:center}
+  .judge[hidden]{display:none}
+  .practice-note{
+    margin-top:16px;
+    text-align:center;
+    font-weight:700;
+    font-size:.95rem;
+    color:var(--gold-soft);
+    opacity:.9;
+  }
+  .practice-note[hidden]{display:none}
+
+  /* ══════════ MODO JUEGO ══════════ */
+  .stage{max-width:460px;margin:0 auto;text-align:center}
+  .round-label{
+    font-family:'Fredoka',sans-serif;
+    color:var(--gold-soft);
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    font-size:.8rem;
+    margin-bottom:12px;
+  }
+  .game-card{
+    background:var(--cream);
+    color:var(--ink);
+    border-radius:28px;
+    border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);
+    padding:30px 18px 26px;
+    min-height:320px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    position:relative;
+    overflow:hidden;
+    transition:background .25s ease, border-color .25s ease, color .25s ease;
+  }
+  .game-card .emoji{
+    font-size:clamp(3.6rem,20vw,6rem);
+    line-height:1;
+    filter:drop-shadow(0 6px 0 rgba(0,0,0,.12));
+  }
+  .game-card .day-tag{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-size:.78rem;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    background:var(--lapis);
+    color:var(--gold-soft);
+    border-radius:999px;
+    padding:4px 14px;
+  }
+  .game-card .reto-name{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.15rem,5vw,1.6rem);
+    line-height:1.2;
+  }
+  .game-card .hint{font-weight:700;font-size:.98rem;opacity:.7}
+  .game-card.kind-mover{border-color:var(--mover-deep)}
+  .game-card.kind-hablar{border-color:var(--hablar-deep)}
+  .game-card.palacio{background:var(--brick);color:#fff;border-color:var(--gold)}
+  .game-card.palacio .hint{opacity:.95}
+  .kind-chip{
+    font-family:'Fredoka',sans-serif;
+    font-size:.75rem;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#fff;
+    border-radius:999px;
+    padding:4px 12px;
+  }
+  .kind-chip.mover{background:var(--mover)}
+  .kind-chip.hablar{background:var(--hablar)}
+  .pop{animation:pop .35s cubic-bezier(.2,1.6,.4,1) both}
+  @keyframes pop{
+    from{transform:scale(.4);opacity:0}
+    to{transform:scale(1);opacity:1}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .pop{animation:none}
+    .game-card{transition:none}
+  }
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+  .btn{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.1rem;
+    font-weight:600;
+    border:none;
+    border-radius:999px;
+    padding:14px 28px;
+    min-height:48px;
+    cursor:pointer;
+    box-shadow:0 5px 0 rgba(0,0,0,.3);
+    transition:transform .1s ease;
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-gold{background:var(--gold);color:var(--lapis-deep)}
+  .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-outline:active{transform:translateY(2px)}
+  .btn-sm{font-size:.95rem;padding:9px 18px;min-height:44px}
+
+  /* Pregunta del capítulo */
+  .quiz-box{
+    margin-top:26px;
+    background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);
+    border-radius:20px;
+    padding:18px 16px;
+    display:none;
+  }
+  .quiz-box.show{display:block}
+  .quiz-tag{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-size:.75rem;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    background:var(--brick);
+    color:#fff;
+    border-radius:999px;
+    padding:4px 12px;
+    margin-bottom:10px;
+  }
+  .quiz-q{font-size:1.1rem;font-weight:700}
+  .quiz-a{margin-top:10px;font-weight:800;color:var(--gold-soft);display:none}
+  .quiz-a.show{display:block}
+
+  /* ══════════ MATERIAL IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:600px;margin:0 auto 20px}
+  .group-title{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin:26px 0 12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .group-title .chip{font-size:1.4rem;background:var(--cream);border-radius:12px;padding:2px 10px}
+  .print-board{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+    max-width:700px;
+  }
+  .print-cell{
+    background:var(--cream);
+    color:var(--ink);
+    border:4px solid var(--gold);
+    border-radius:16px;
+    min-height:88px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    padding:8px 4px;
+    text-align:center;
+  }
+  .print-cell .pn{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.5rem;line-height:1}
+  .print-cell .pd{font-size:.7rem;font-weight:700;opacity:.7;line-height:1.15}
+  .print-cell.goal{background:var(--brick);color:#fff;grid-column:span 5}
+  .print-cell.goal .pn{font-size:1.6rem}
+  @media (max-width:420px){
+    .print-board{grid-template-columns:repeat(2,1fr)}
+    .print-cell.goal{grid-column:span 2}
+  }
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .mini-card{
+    background:var(--cream);
+    color:var(--ink);
+    border-radius:18px;
+    border:4px solid var(--gold);
+    padding:16px 10px 12px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    position:relative;
+    box-shadow:0 5px 0 rgba(0,0,0,.25);
+  }
+  .mini-card .emoji{font-size:2.6rem;line-height:1}
+  .mini-card .reto-name{font-family:'Fredoka',sans-serif;font-weight:600;font-size:.95rem;line-height:1.25}
+  .mini-card .reto-text{font-size:.8rem;font-weight:600;opacity:.8;line-height:1.3}
+  .key-dot{
+    position:absolute;
+    top:8px;
+    right:8px;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    border:2px solid rgba(0,0,0,.25);
+  }
+  .key-mover{background:var(--mover)}
+  .key-hablar{background:var(--hablar)}
+
+  /* ── Volver al índice ── */
+  .back-link{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    color:var(--gold-soft);
+    text-decoration:none;
+    border:2px solid transparent;
+    border-radius:999px;
+    padding:8px 16px;
+    margin-bottom:8px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+  /* ══════════ PARA PADRES ══════════ */
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);
+    color:var(--ink);
+    border:4px solid var(--gold);
+    border-radius:22px;
+    padding:22px 20px;
+    margin-bottom:18px;
+    box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .verse{
+    border-left:5px solid var(--brick);
+    background:rgba(194,84,43,.08);
+    border-radius:0 12px 12px 0;
+    padding:12px 14px;
+    font-style:italic;
+    font-weight:700;
+  }
+  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
+
+  /* ── Impresión ── */
+  @media print{
+    body{background:#fff;color:#000}
+    header,.topbar,#juego,#padres,.print-note{display:none!important}
+    section{display:block!important;padding:0}
+    #material{display:block!important}
+    .group-title{color:#000}
+    .group-title .chip{border:1px solid #ccc}
+    .print-board{gap:5mm;max-width:none}
+    .print-cell{box-shadow:none;border-color:#C89B22;break-inside:avoid;min-height:32mm}
+    .print-cell.goal{background:#fff;color:#000;border-color:#C2542B}
+    .card-grid{grid-template-columns:repeat(3,1fr);gap:8mm}
+    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:8mm 4mm 6mm}
+    .mini-card .emoji{font-size:16mm}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
+      <button class="menu-item" data-tab="material">🖨️ Tablero para imprimir</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 39 · En la corte de Babilonia</div>
+  <h1>La prueba de los <span class="ten">10</span> días</h1>
+  <p class="subtitle">Un reto por día… ¡hasta llegar al palacio!</p>
+</header>
+
+<!-- ══════════ MODO JUEGO ══════════ -->
+<section id="juego" class="active">
+  <div class="board-wrap">
+    <div class="board-title" id="boardTitle">Camino de la prueba</div>
+    <div class="board" id="board" aria-live="polite"></div>
+    <p class="board-legend" id="boardLegend">Cada reto avanza un día. ¡A los 10 días se abre el palacio!</p>
+  </div>
+
+  <div class="stage">
+    <div class="round-label" id="roundLabel">¿Listos para la prueba?</div>
+
+    <div class="game-card" id="gameCard" aria-live="polite">
+      <div class="emoji">🎲</div>
+      <div class="reto-name">¡La prueba de los 10 días!</div>
+      <div class="hint">5 días de retos + 5 preguntas del capítulo</div>
+    </div>
+
+    <div class="quiz-box" id="quizBox">
+      <span class="quiz-tag" id="quizTag">6–7 años</span>
+      <div class="quiz-q" id="quizQ"></div>
+      <div class="quiz-a" id="quizA"></div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-gold" id="mainBtn" data-mode="start">▶ Jugar partida</button>
+    </div>
+
+    <div class="judge" id="judge" hidden>
+      <span id="judgeQ">¿Lo hizo?</span>
+      <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
+    </div>
+
+    <p class="practice-note" id="practiceNote" hidden>🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.</p>
+  </div>
+</section>
+
+<!-- ══════════ MATERIAL IMPRIMIBLE ══════════ -->
+<section id="material">
+  <p class="print-note">
+    Usa <strong>Ctrl/Cmd + P</strong> para imprimir. Recorta el <strong>camino de 10 casillas</strong>,
+    pégalo en el suelo o en una cartulina y consigan una ficha (una tapa, una piedrita o un botón).
+    Recorten también las <strong>tarjetas de retos</strong>, revuélvanlas boca abajo y saquen una por día.
+    El puntico de la esquina es la clave del adulto:
+    <span style="color:#8FE3AE">verde = reto de mover el cuerpo</span>,
+    <span style="color:#A8C4FF">azul = reto de conversar</span>.
+  </p>
+
+  <div class="group-title"><span class="chip">🛤️</span> Camino de la prueba — 10 días</div>
+  <div class="print-board" id="printBoard"></div>
+
+  <div class="group-title"><span class="chip">💪</span> Tarjetas de retos — mover el cuerpo</div>
+  <div class="card-grid" id="gridMover"></div>
+
+  <div class="group-title"><span class="chip">💬</span> Tarjetas de retos — conversar</div>
+  <div class="card-grid" id="gridHablar"></div>
+</section>
+
+<!-- ══════════ PARA PADRES ══════════ -->
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 La historia</h2>
+    <p>Esta dinámica está basada en <strong>Daniel 1</strong> (capítulo 39 de <em>Profetas y Reyes</em>, «En la corte de Babilonia»). Daniel, Ananías, Misael y Azarías fueron llevados cautivos desde Judá al palacio del rey Nabucodonosor. Allí les cambiaron los nombres —Beltsasar, Sadrac, Mesac y Abed-nego— y les sirvieron la comida y el vino de la mesa real, alimentos que una parte se ofrecía a los ídolos.</p>
+    <p>Daniel <strong>propuso en su corazón no contaminarse</strong> y le pidió a Melsar, el oficial encargado de los jóvenes, <strong>una prueba de diez días</strong> con alimento sencillo, mientras los demás muchachos comían los manjares del rey. Al final de los diez días su rostro se veía «mejor y más nutrido de carne» que el de los otros. Tres años después, el rey los halló <strong>diez veces mejores</strong> que todos sus magos y astrólogos.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>💡 ¿Qué aprende su hijo?</h2>
+    <ul>
+      <li><strong>Decidir de antemano</strong>: Daniel resolvió honrar a Dios <em>antes</em> de que le pusieran la bandeja del rey enfrente.</li>
+      <li><strong>Cuidar el cuerpo</strong>: el vigor físico y mental es un regalo de Dios, y se cuida con lo que comemos y bebemos.</li>
+      <li><strong>Fidelidad en lo pequeño</strong>: «Fué la fidelidad en las cosas pequeñas lo que dió carácter a toda su vida». Un día a la vez, diez días seguidos.</li>
+      <li><strong>Valentía para decir no</strong>, aunque todos los demás digan que sí.</li>
+    </ul>
+    <p class="verse">«Yo honraré a los que me honran» <span>1 Samuel 2:30</span></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🏠 Cómo jugar la dinámica</h2>
+    <ol>
+      <li>Toquen <strong>▶ Jugar partida</strong>. Arriba verán el <strong>camino de 10 casillas</strong>: son los diez días de la prueba de Daniel, y la ficha ⭐ marca en qué día va su hijo.</li>
+      <li>Cada ronda es <strong>un día</strong>: sale un reto cortito, de mover el cuerpo (💪) o de conversar (💬). Su hijo lo hace y ustedes le dicen a la app si lo logró (⭐ +1) o no. Con cada reto la ficha avanza un día.</li>
+      <li>Una partida avanza <strong>5 días</strong>. Al jugar la segunda partida (o seguir en modo práctica) llegan al <strong>día 10</strong>: se abre el 🏛️ palacio y aparece la escena final, con los cuatro jóvenes de rostro «mejor y más nutrido de carne» y «diez veces mejores». Ahí el camino vuelve a empezar.</li>
+      <li>Después de los 5 días vienen <strong>5 preguntas del capítulo</strong>, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Revelen la respuesta y califiquen igual.</li>
+      <li>Los retos y las preguntas <strong>no se repiten</strong> hasta que se agote la bolsa: la app recuerda por niño lo que ya salió esta semana.</li>
+      <li>Sin pantalla: impriman el tablero y las tarjetas desde la pestaña <strong>🖨️</strong>, pónganlo en el suelo y avancen con una ficha real, un día por reto.</li>
+    </ol>
+    <p>Las <strong>preguntas cubren todo el capítulo 39</strong>, así que también sirven de repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
+    <p>La idea no es memorizar datos, sino conversar: <em>¿por qué Daniel decidió así? ¿Qué decisión pequeña podemos tomar hoy nosotros para honrar a Dios?</em></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ El reto de la semana</h2>
+    <p>Jueguen <strong>una partida por día</strong>: 5 días de retos + 5 preguntas. Cada logro suma <strong>⭐ 1 punto</strong> (los fallos no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de retos y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Y el reto grande de la casa: escojan <strong>una sola cosa</strong> —tomar agua en vez de gaseosa, comer una fruta al día, orar antes de dormir— y háganla <strong>diez días seguidos</strong>, como Daniel. Marquen cada día en el tablero impreso.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+
+<script>
+  // ── Datos ──
+  // Retos de mover el cuerpo (12)
+  const RETOS = [
+    {emoji:'💪', kind:'mover', name:'Haz músculo', text:'Haz músculo con los dos brazos y di fuerte: "¡Dios me hace fuerte!"'},
+    {emoji:'💧', kind:'mover', name:'Brindis de agua', text:'Llena tu vaso de agua y brinda por Daniel, que no quiso el vino del rey: "¡Salud, con agua!"'},
+    {emoji:'🥦', kind:'mover', name:'Tres verduras', text:'Di el nombre de 3 verduras sin repetir… ¡saltando en un pie!'},
+    {emoji:'🙊', kind:'mover', name:'Cuatro veces no', text:'Tápate la boca y di NO con la cabeza 4 veces, una por cada joven valiente.'},
+    {emoji:'🦶', kind:'mover', name:'Diez pasos gigantes', text:'Da 10 pasos gigantes contando en voz alta los 10 días de la prueba.'},
+    {emoji:'🙏', kind:'mover', name:'Oración cortita', text:'Arrodíllate y haz una oración de una frase: "Dios, ayúdame a decidir bien".'},
+    {emoji:'🚶', kind:'mover', name:'Paso de palacio', text:'Camina como los jóvenes hebreos: espalda derecha y paso firme y elástico.'},
+    {emoji:'🍎', kind:'mover', name:'Trofeo de la cocina', text:'Ve a la cocina, trae una fruta o una verdura y muéstrala como un trofeo.'},
+    {emoji:'👏', kind:'mover', name:'Diez veces mejores', text:'Aplaude 10 veces diciendo en cada aplauso: "diez veces mejores".'},
+    {emoji:'😄', kind:'mover', name:'Cara de sano', text:'Haz la cara de alguien sano y bien alimentado… y luego la cara de cansado.'},
+    {emoji:'🌱', kind:'mover', name:'Planta que crece', text:'Agáchate hasta el suelo y estírate hacia arriba, como una planta que crece sana.'},
+    {emoji:'🗣️', kind:'mover', name:'Los cuatro nombres', text:'Di en voz alta los 4 nombres: Daniel, Ananías, Misael y Azarías.'},
+    // Retos de conversar (10)
+    {emoji:'💬', kind:'hablar', name:'Mi propio NO', text:'Cuenta algo a lo que hoy le dijiste NO porque no era bueno para ti.'},
+    {emoji:'🥗', kind:'hablar', name:'Comida sencilla', text:'¿Qué comida sencilla te gusta más? Dile por qué a quien está jugando contigo.'},
+    {emoji:'❤️', kind:'hablar', name:'Lo propongo en mi corazón', text:'Daniel "propuso en su corazón". Di una cosa que tú decides de una vez para toda la semana.'},
+    {emoji:'🤏', kind:'hablar', name:'Cosas pequeñas', text:'Nombra 2 cosas pequeñas que puedes hacer bien hoy en casa sin que te las pidan.'},
+    {emoji:'🛡️', kind:'hablar', name:'Mis palabras', text:'Si alguien te ofrece algo que no honra a Dios, ¿qué palabras exactas le dirías?'},
+    {emoji:'😰', kind:'hablar', name:'El miedo de Melsar', text:'¿Por qué crees que Melsar tenía miedo de cambiarles la comida a los jóvenes?'},
+    {emoji:'😳', kind:'hablar', name:'Me dio pena', text:'Daniel dijo no aunque dependía del rey. Cuenta una vez que te dio pena decir no.'},
+    {emoji:'🤲', kind:'hablar', name:'Pedir ayuda', text:'Daniel le pidió ayuda a Dios. Pídesela tú en voz alta para algo de esta semana.'},
+    {emoji:'🏷️', kind:'hablar', name:'Mi nombre nuevo', text:'A Daniel le cambiaron el nombre. Inventa un nombre que recuerde que tú amas a Dios.'},
+    {emoji:'🙌', kind:'hablar', name:'Gracias por mi cuerpo', text:'Di dos cosas de tu cuerpo por las que le das gracias a Dios hoy.'}
+  ];
+
+  const QUIZ = [
+    {tag:'4–5 años', q:'¿Cuántos días duró la prueba de Daniel? Cuenta con los dedos.', a:'10 días'},
+    {tag:'4–5 años', q:'¿Qué pidió Daniel para comer y beber?', a:'🍽️ Alimento sencillo, sin el vino del rey'},
+    {tag:'4–5 años', q:'¿Cuántos amigos valientes eran en total? Cuéntalos.', a:'4: Daniel, Ananías, Misael y Azarías'},
+    {tag:'4–5 años', q:'Después de los 10 días, ¿cómo se veían? ¡Muéstrame con tu cara!', a:'😄 Mejor de rostro y más nutridos que los demás'},
+    {tag:'4–5 años', q:'¿A qué ciudad grande se llevaron a Daniel?', a:'A Babilonia'},
+    {tag:'4–5 años', q:'¿Quién ayudó a Daniel a ser fuerte y sabio?', a:'Dios'},
+    {tag:'6–7 años', q:'¿Cómo se llamaba el rey de Babilonia?', a:'Nabucodonosor'},
+    {tag:'6–7 años', q:'¿Cuántos años debían estudiar los jóvenes en Babilonia?', a:'3 años'},
+    {tag:'6–7 años', q:'¿Qué nombre nuevo le pusieron a Daniel?', a:'Beltsasar'},
+    {tag:'6–7 años', q:'¿Qué nombres nuevos les pusieron a Ananías, Misael y Azarías?', a:'Sadrac, Mesac y Abed-nego'},
+    {tag:'6–7 años', q:'¿Qué comían los otros muchachos mientras duraba la prueba?', a:'Los manjares y el vino de la mesa del rey'},
+    {tag:'6–7 años', q:'¿Qué estudiaron los jóvenes hebreos en Babilonia?', a:'Las letras y la lengua de los caldeos'},
+    {tag:'6–7 años', q:'¿De dónde se llevaron cautivos a Daniel y sus amigos?', a:'De Judá, del linaje real de los príncipes'},
+    {tag:'6–7 años', q:'¿Cuántas veces mejores los halló el rey que a sus magos y astrólogos?', a:'Diez veces mejores'},
+    {tag:'6–7 años', q:'¿Qué NO quiso beber Daniel?', a:'El vino de la mesa del rey'},
+    {tag:'8–9 años', q:'¿Cómo se llamaba el oficial a quien Daniel pidió la prueba de los diez días?', a:'Melsar'},
+    {tag:'8–9 años', q:'¿Quién era Aspenaz?', a:'El príncipe de los eunucos de Nabucodonosor, encargado de traer a los jóvenes de Israel'},
+    {tag:'8–9 años', q:'¿Por qué comer la comida del rey habría deshonrado a Dios?', a:'Porque una porción se ofrecía a los ídolos: compartirla era rendir homenaje a los dioses de Babilonia'},
+    {tag:'8–9 años', q:'Completa: "Daniel propuso en su ________ de no contaminarse".', a:'Corazón'},
+    {tag:'8–9 años', q:'¿Qué temía el príncipe de los eunucos si les cambiaba la comida?', a:'Que el rey viera sus rostros más tristes y lo condenara: "condenaréis para con el rey mi cabeza"'},
+    {tag:'8–9 años', q:'¿Qué promesa se cumplió en ellos? (1 Samuel 2:30)', a:'"Yo honraré a los que me honran"'},
+    {tag:'8–9 años', q:'Además de conocimiento en las letras y la ciencia, ¿qué don especial recibió Daniel?', a:'Entendimiento en toda visión y sueños'},
+    {tag:'8–9 años', q:'Según el capítulo, ¿qué dio carácter a toda su vida?', a:'La fidelidad en las cosas pequeñas'},
+    {tag:'8–9 años', q:'¿Cuántos años duraría el cautiverio de Israel en Babilonia?', a:'70 años'},
+    {tag:'8–9 años', q:'¿Qué historia del Pentateuco les recordaba el peligro de la intemperancia?', a:'La de Nadab y Abiú'}
+  ];
+
+  // ── Partida: 5 días de retos + 5 preguntas ──
+  const ACTIVITY = 'pr39-prueba10';
+  const MATCH_CARDS = 5;
+  const MATCH_QUIZ = 5;
+  const TOTAL_DAYS = 10;
+  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
+  const RETO_MIX = [['mover', 3], ['hablar', 2]];
+  let match = null; // {cards, quizzes, step, revealed, earned, startDay, palaceDue, palaceShown}
+
+  const board = document.getElementById('board');
+  const boardLegend = document.getElementById('boardLegend');
+  const gameCard = document.getElementById('gameCard');
+  const quizBox = document.getElementById('quizBox');
+  const mainBtn = document.getElementById('mainBtn');
+  const roundLabel = document.getElementById('roundLabel');
+  const judge = document.getElementById('judge');
+  const judgeQ = document.getElementById('judgeQ');
+  const judgeYes = document.getElementById('judgeYes');
+  const judgeNo = document.getElementById('judgeNo');
+  const practiceNote = document.getElementById('practiceNote');
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  // ── Día alcanzado (persistente por jugador) ──
+  function dayKey(){
+    const p = AvProfile.get();
+    return `${ACTIVITY}:dia:${p ? p.id : 'anon'}`;
+  }
+  function loadDay(){
+    let n = 0;
+    try{ n = parseInt(localStorage.getItem(dayKey()) || '0', 10) }catch(e){ n = 0 }
+    if(!(n >= 0 && n < TOTAL_DAYS)) n = 0;
+    return n;
+  }
+  function saveDay(n){
+    try{ localStorage.setItem(dayKey(), String(n)) }catch(e){}
+  }
+
+  // ── Tablero ──
+  function renderBoard(current, active){
+    let html = '';
+    for(let d = 1; d <= TOTAL_DAYS; d++){
+      const isNow = active === d;
+      const isDone = d <= current;
+      const cls = isNow ? 'cell now' : (isDone ? 'cell done' : 'cell');
+      const mark = isNow ? '⭐' : (isDone ? '✅' : '·');
+      html += `<div class="${cls}"><span class="n">D${d}</span><span class="mark">${mark}</span></div>`;
+    }
+    const open = current >= TOTAL_DAYS;
+    html += `<div class="cell palace${open ? ' open' : ''}"><span class="n">Palacio</span><span class="mark">🏛️</span></div>`;
+    board.innerHTML = html;
+  }
+
+  function boardState(){
+    if(match) return {current: match.startDay + match.step, active: null};
+    return {current: loadDay(), active: null};
+  }
+  function refreshBoard(active){
+    const st = boardState();
+    renderBoard(st.current, active === undefined ? null : active);
+  }
+
+  function phase(){
+    if(!match) return 'idle';
+    if(match.step < MATCH_CARDS) return 'card';
+    if(match.step === MATCH_CARDS && match.palaceDue && !match.palaceShown) return 'palace';
+    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
+    return 'done';
+  }
+
+  function pickMatchQuiz(){
+    const picked = [];
+    QUIZ_MIX.forEach(([tag, n]) => {
+      const group = QUIZ.filter(q => q.tag === tag);
+      picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.q));
+    });
+    return picked;
+  }
+
+  function pickMatchRetos(){
+    const picked = [];
+    RETO_MIX.forEach(([kind, n]) => {
+      const group = RETOS.filter(r => r.kind === kind);
+      picked.push(...AvProfile.pick(`${ACTIVITY}:reto:${kind}`, group, n, r => r.name));
+    });
+    return shuffle(picked);
+  }
+
+  function startMatch(){
+    practiceNote.hidden = true;
+    let startDay = loadDay();
+    if(startDay + MATCH_CARDS > TOTAL_DAYS) startDay = TOTAL_DAYS - MATCH_CARDS;
+    match = {
+      cards: pickMatchRetos(),
+      quizzes: pickMatchQuiz(),
+      step: 0,
+      revealed: false,
+      earned: 0,
+      startDay: startDay,
+      palaceDue: startDay + MATCH_CARDS >= TOTAL_DAYS,
+      palaceShown: false
+    };
+    showStep();
+  }
+
+  function showStep(){
+    judge.hidden = true;
+    match.revealed = false;
+    const ph = phase();
+    if(ph === 'card'){
+      const day = match.startDay + match.step + 1;
+      const r = match.cards[match.step];
+      quizBox.classList.remove('show');
+      gameCard.style.display = '';
+      gameCard.className = 'game-card kind-' + r.kind;
+      roundLabel.textContent = `Reto ${match.step + 1} de ${MATCH_CARDS}`;
+      gameCard.innerHTML = `
+        <span class="day-tag">Día ${day} de ${TOTAL_DAYS}</span>
+        <div class="emoji">${r.emoji}</div>
+        <div class="reto-name">${r.name}</div>
+        <div class="hint">Toca “¡Ver el reto!” para saber qué toca hoy.</div>`;
+      mainBtn.textContent = '¡Ver el reto!';
+      mainBtn.hidden = false;
+      refreshBoard(day);
+      boardLegend.textContent = `Vas en el día ${day}. Faltan ${TOTAL_DAYS - day} para el palacio.`;
+    }else if(ph === 'palace'){
+      quizBox.classList.remove('show');
+      gameCard.style.display = '';
+      gameCard.className = 'game-card palacio';
+      roundLabel.textContent = '¡Diez días completos!';
+      gameCard.innerHTML = `
+        <span class="day-tag">Día 10 de 10</span>
+        <div class="emoji pop">🏛️</div>
+        <div class="reto-name pop">¡Llegaste al palacio!</div>
+        <div class="hint">Al final de la prueba, el rostro de los cuatro jóvenes “pareció mejor y más nutrido de carne” que el de los demás muchachos.</div>
+        <div class="hint">Y después de tres años, el rey los halló <strong>diez veces mejores</strong> que todos sus magos y astrólogos. 💪✨</div>`;
+      mainBtn.textContent = 'Seguir a las preguntas ▶';
+      mainBtn.hidden = false;
+      match.revealed = true;
+      renderBoard(TOTAL_DAYS, null);
+      boardLegend.textContent = '🏛️ El palacio se abrió. El camino vuelve a empezar en el día 1.';
+    }else if(ph === 'quiz'){
+      gameCard.style.display = 'none';
+      quizBox.classList.add('show');
+      const q = match.quizzes[match.step - MATCH_CARDS];
+      roundLabel.textContent = `Pregunta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
+      document.getElementById('quizTag').textContent = q.tag;
+      document.getElementById('quizQ').textContent = q.q;
+      const quizA = document.getElementById('quizA');
+      quizA.textContent = q.a;
+      quizA.classList.remove('show');
+      mainBtn.textContent = 'Ver respuesta';
+      mainBtn.hidden = false;
+    }else{
+      finishMatch();
+    }
+  }
+
+  function revealStep(){
+    match.revealed = true;
+    const ph = phase();
+    if(ph === 'card'){
+      const day = match.startDay + match.step + 1;
+      const r = match.cards[match.step];
+      gameCard.innerHTML = `
+        <span class="day-tag">Día ${day} de ${TOTAL_DAYS}</span>
+        <span class="kind-chip ${r.kind}">${r.kind === 'mover' ? '💪 Mueve el cuerpo' : '💬 Conversa'}</span>
+        <div class="emoji pop">${r.emoji}</div>
+        <div class="reto-name pop">${r.text}</div>`;
+    }else{
+      document.getElementById('quizA').classList.add('show');
+    }
+
+    const kind = ph === 'quiz' ? 'quiz' : 'card';
+    const p = AvProfile.get();
+    if(p && AvProfile.canScore(kind)){
+      judgeQ.textContent = ph === 'card' ? `¿${p.name} lo hizo?` : '¿Respondió bien?';
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      judgeQ.textContent = p
+        ? '🌙 Puntos completos: este día es de práctica.'
+        : '👤 Sin perfil: este logro no suma al tablero.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Siguiente ▶';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function nextStep(){
+    if(phase() === 'palace'){
+      match.palaceShown = true;
+      saveDay(0);
+      showStep();
+      return;
+    }
+    if(phase() === 'card'){
+      const day = match.startDay + match.step + 1;
+      saveDay(day >= TOTAL_DAYS ? 0 : day);
+    }
+    match.step++;
+    showStep();
+  }
+
+  function finishMatch(){
+    quizBox.classList.remove('show');
+    gameCard.style.display = '';
+    gameCard.className = 'game-card';
+    roundLabel.textContent = '¡Bien hecho!';
+    const p = AvProfile.get();
+    const scored = p ? `<div class="hint">⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.</div>` : '';
+    const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
+      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
+    const dayNow = loadDay();
+    const camino = dayNow === 0
+      ? '<div class="hint">🛤️ El camino vuelve a empezar en el día 1.</div>'
+      : `<div class="hint">🛤️ Vas en el día ${dayNow} de ${TOTAL_DAYS}: la próxima partida llega al palacio.</div>`;
+    gameCard.innerHTML = `
+      <div class="emoji">🏁</div>
+      <div class="reto-name">¡Partida completa!</div>
+      ${scored}${camino}${extra}`;
+    mainBtn.dataset.mode = 'again';
+    mainBtn.textContent = '🔁 Otra partida';
+    mainBtn.hidden = false;
+    match = null;
+    refreshBoard();
+    boardLegend.textContent = dayNow === 0
+      ? 'Cada reto avanza un día. ¡A los 10 días se abre el palacio!'
+      : `Vas en el día ${dayNow}. Faltan ${TOTAL_DAYS - dayNow} para el palacio.`;
+    updateIdleHint();
+  }
+
+  function updateIdleHint(){
+    if(match) return;
+    const p = AvProfile.get();
+    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    if(!p){
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los logros no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.hidden = false;
+    }else if(practice){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+      practiceNote.hidden = false;
+    }else{
+      practiceNote.hidden = true;
+    }
+    if(mainBtn.dataset.mode === 'again'){
+      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
+    }else if(mainBtn.dataset.mode === 'start'){
+      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    }
+    refreshBoard();
+  }
+  AvProfile.onChange(updateIdleHint);
+
+  mainBtn.addEventListener('click', () => {
+    if(!match){ startMatch(); return; }
+    if(!match.revealed){ revealStep(); return; }
+    nextStep();
+  });
+
+  judgeYes.addEventListener('click', () => {
+    judge.hidden = true;
+    const kind = phase() === 'quiz' ? 'quiz' : 'card';
+    AvProfile.score(true, kind);
+    match.earned++;
+    nextStep();
+  });
+  judgeNo.addEventListener('click', () => {
+    judge.hidden = true;
+    const kind = phase() === 'quiz' ? 'quiz' : 'card';
+    AvProfile.score(false, kind);
+    nextStep();
+  });
+
+  // ── Material imprimible ──
+  function renderPrintBoard(){
+    const notas = [
+      'Daniel lo propuso en su corazón',
+      'Sus tres amigos lo apoyaron',
+      'Melsar aceptó la prueba',
+      'Alimento sencillo, sin el vino del rey',
+      'Los otros comían del rey',
+      'Nadie se contaminó',
+      'Fieles en lo pequeño',
+      'Confiaron en Dios',
+      'Nada los apartó',
+      '¡Mejor de rostro que los demás!'
+    ];
+    let html = '';
+    for(let d = 1; d <= TOTAL_DAYS; d++){
+      html += `<div class="print-cell"><span class="pn">Día ${d}</span><span class="pd">${notas[d-1]}</span></div>`;
+    }
+    html += '<div class="print-cell goal"><span class="pn">🏛️ ¡Al palacio!</span><span class="pd">“Hallólos diez veces mejores que todos los magos y astrólogos”</span></div>';
+    document.getElementById('printBoard').innerHTML = html;
+  }
+  function renderGrid(id, kind){
+    document.getElementById(id).innerHTML = RETOS.filter(r => r.kind === kind).map(r => `
+      <div class="mini-card">
+        <span class="key-dot ${kind === 'mover' ? 'key-mover' : 'key-hablar'}" title="${kind === 'mover' ? 'Mover el cuerpo' : 'Conversar'}"></span>
+        <div class="emoji">${r.emoji}</div>
+        <div class="reto-name">${r.name}</div>
+        <div class="reto-text">${r.text}</div>
+      </div>`).join('');
+  }
+  renderPrintBoard();
+  renderGrid('gridMover','mover');
+  renderGrid('gridHablar','hablar');
+
+  // ── Menú ──
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  function closeMenu(){
+    menuPanel.hidden = true;
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.menu-wrap')) closeMenu();
+  });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      closeMenu();
+    });
+  });
+
+  // ── Perfil y puntos (módulo compartido /shared/profile.js) ──
+  document.getElementById('changePlayerBtn').addEventListener('click', () => {
+    closeMenu();
+    AvProfile.open();
+  });
+
+  // Iniciar
+  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
+  refreshBoard();
+  updateIdleHint();
+</script>
+</body>
+</html>

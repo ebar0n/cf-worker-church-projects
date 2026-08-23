@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1B2F6E">
-<title>La mesa del rey vs. la mesa de Daniel</title>
-<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Una partida diaria: 5 comidas sorpresa + 5 preguntas relámpago. ¡Suma puntos para el tablero del Club de Aventureros!">
+<title>¿Ventana abierta o trampa del foso?</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Una partida diaria: 5 tarjetas sorpresa + 5 preguntas relámpago sobre Daniel en el foso de los leones. ¡Suma puntos para el tablero del Club de Aventureros!">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
-<meta property="og:title" content="La mesa del rey vs. la mesa de Daniel">
-<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Una partida diaria: 5 comidas sorpresa + 5 preguntas relámpago. ¡Suma puntos para el tablero del club!">
-<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr39/">
-<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/mesa-del-rey.png">
+<meta property="og:title" content="¿Ventana abierta o trampa del foso?">
+<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Junta las manos como Daniel o ruge como león: 5 tarjetas sorpresa + 5 preguntas relámpago.">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr44/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_CO">
@@ -22,17 +22,17 @@
 <link rel="stylesheet" href="/shared/profile.css">
 <style>
   :root{
-    /* Paleta Puerta de Ishtar: azul lapislázuli, oro vidriado, ladrillo, crema */
+    /* Paleta Medo-Persa: azul noche, oro del sello real, ladrillo, crema */
     --lapis:#1B2F6E;
     --lapis-deep:#12204D;
     --gold:#F0B429;
     --gold-soft:#FFD97A;
     --brick:#C2542B;
     --cream:#FFF6E3;
-    --rey:#D6453D;      /* tapar la boca */
-    --rey-deep:#A32C26;
-    --daniel:#2E9E5B;   /* hacer músculo */
-    --daniel-deep:#1E7040;
+    --trampa:#D6453D;      /* ¡ruge, león! */
+    --trampa-deep:#A32C26;
+    --ventana:#2E9E5B;     /* junta las manos */
+    --ventana-deep:#1E7040;
     --ink:#231A0F;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -176,7 +176,6 @@
   .judge span{flex-basis:100%;text-align:center}
   .judge[hidden]{display:none}
 
-
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
 
@@ -198,8 +197,8 @@
     font-size:.95rem;
   }
   .legend-item .big{font-size:1.7rem}
-  .legend-rey{background:var(--rey);color:#fff}
-  .legend-daniel{background:var(--daniel);color:#fff}
+  .legend-trampa{background:var(--trampa);color:#fff}
+  .legend-ventana{background:var(--ventana);color:#fff}
   .legend[hidden]{display:none}
   .practice-note{
     margin-top:16px;
@@ -210,6 +209,51 @@
     opacity:.9;
   }
   .practice-note[hidden]{display:none}
+
+  /* ── Las tres oraciones del día ── */
+  .prayers{
+    display:flex;
+    justify-content:center;
+    align-items:stretch;
+    gap:8px;
+    max-width:460px;
+    margin:0 auto 14px;
+  }
+  .prayer{
+    flex:1 1 0;
+    min-width:0;
+    border:2px solid rgba(255,217,122,.35);
+    border-radius:14px;
+    padding:8px 4px 6px;
+    text-align:center;
+    background:rgba(255,255,255,.05);
+    opacity:.45;
+    transition:opacity .25s ease, background .25s ease, border-color .25s ease;
+  }
+  .prayer .p-emoji{font-size:1.5rem;line-height:1.1;display:block}
+  .prayer .p-name{
+    font-family:'Fredoka',sans-serif;
+    font-size:.7rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    display:block;
+    margin-top:2px;
+  }
+  .prayer.on{
+    opacity:1;
+    background:rgba(240,180,41,.22);
+    border-color:var(--gold);
+  }
+  .prayers-label{
+    text-align:center;
+    font-family:'Fredoka',sans-serif;
+    font-size:.72rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    opacity:.8;
+    margin-bottom:6px;
+  }
 
   /* ══════════ MODO JUEGO ══════════ */
   .stage{
@@ -243,15 +287,15 @@
     transition:background .25s ease, border-color .25s ease, color .25s ease;
   }
   .game-card .emoji{
-    font-size:clamp(5rem,26vw,8rem);
+    font-size:clamp(4rem,20vw,6.5rem);
     line-height:1;
     filter:drop-shadow(0 6px 0 rgba(0,0,0,.12));
   }
-  .game-card .food-name{
+  .game-card .card-name{
     font-family:'Fredoka',sans-serif;
     font-weight:700;
-    font-size:clamp(1.4rem,6vw,2rem);
-    line-height:1.15;
+    font-size:clamp(1.15rem,5vw,1.7rem);
+    line-height:1.2;
   }
   .game-card .hint{
     font-weight:700;
@@ -259,19 +303,19 @@
     opacity:.65;
   }
   /* Estado revelado */
-  .game-card.revealed-rey{background:var(--rey);border-color:var(--rey-deep);color:#fff}
-  .game-card.revealed-daniel{background:var(--daniel);border-color:var(--daniel-deep);color:#fff}
-  .game-card.revealed-rey .hint,
-  .game-card.revealed-daniel .hint{opacity:.9}
+  .game-card.revealed-trampa{background:var(--trampa);border-color:var(--trampa-deep);color:#fff}
+  .game-card.revealed-ventana{background:var(--ventana);border-color:var(--ventana-deep);color:#fff}
+  .game-card.revealed-trampa .hint,
+  .game-card.revealed-ventana .hint{opacity:.9}
   .action-emoji{
-    font-size:clamp(3.4rem,18vw,5rem);
+    font-size:clamp(3rem,16vw,4.6rem);
     line-height:1;
     animation:pop .35s cubic-bezier(.2,1.6,.4,1) both;
   }
   .action-name{
     font-family:'Fredoka',sans-serif;
     font-weight:700;
-    font-size:clamp(1.5rem,7vw,2.2rem);
+    font-size:clamp(1.3rem,6vw,2rem);
     animation:pop .35s .06s cubic-bezier(.2,1.6,.4,1) both;
   }
   @keyframes pop{
@@ -280,6 +324,8 @@
   }
   @media (prefers-reduced-motion:reduce){
     .action-emoji,.action-name{animation:none}
+    .prayer{transition:none}
+    .game-card{transition:none}
   }
 
   .controls{
@@ -296,6 +342,7 @@
     border:none;
     border-radius:999px;
     padding:14px 30px;
+    min-height:44px;
     cursor:pointer;
     box-shadow:0 5px 0 rgba(0,0,0,.3);
     transition:transform .1s ease;
@@ -337,7 +384,6 @@
     display:none;
   }
   .quiz-a.show{display:block}
-  .quiz-actions{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
   .btn-sm{font-size:.95rem;padding:9px 20px;min-height:44px}
 
   /* ══════════ TARJETAS IMPRIMIBLES ══════════ */
@@ -367,11 +413,11 @@
     position:relative;
     box-shadow:0 5px 0 rgba(0,0,0,.25);
   }
-  .mini-card .emoji{font-size:3.2rem;line-height:1}
-  .mini-card .food-name{
+  .mini-card .emoji{font-size:3rem;line-height:1}
+  .mini-card .card-name{
     font-family:'Fredoka',sans-serif;
     font-weight:600;
-    font-size:1rem;
+    font-size:.95rem;
     line-height:1.2;
   }
   .key-dot{
@@ -383,8 +429,8 @@
     border-radius:50%;
     border:2px solid rgba(0,0,0,.25);
   }
-  .key-rey{background:var(--rey)}
-  .key-daniel{background:var(--daniel)}
+  .key-trampa{background:var(--trampa)}
+  .key-ventana{background:var(--ventana)}
   .group-title{
     font-family:'Fredoka',sans-serif;
     font-weight:600;
@@ -456,10 +502,10 @@
     body{background:#fff;color:#000}
     header,.topbar,#juego,#padres,.print-note,.legend{display:none!important}
     section{display:block!important;padding:0}
-    #tarjetas{display:block!important}
-    .card-grid{grid-template-columns:repeat(3,1fr);gap:10mm}
-    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:14mm 4mm 10mm}
-    .mini-card .emoji{font-size:22mm}
+    #material{display:block!important}
+    .card-grid{grid-template-columns:repeat(3,1fr);gap:8mm}
+    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:12mm 4mm 8mm}
+    .mini-card .emoji{font-size:18mm}
     .group-title{color:#000}
     .group-title .chip{border:1px solid #ccc}
   }
@@ -474,7 +520,7 @@
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
     <div class="menu-panel" id="menuPanel" hidden>
       <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
-      <button class="menu-item" data-tab="tarjetas">🖨️ Tarjetas para imprimir</button>
+      <button class="menu-item" data-tab="material">🖨️ Tarjetas para imprimir</button>
       <button class="menu-item" data-tab="padres">👪 Para padres</button>
       <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
     </div>
@@ -482,25 +528,32 @@
 </div>
 
 <header>
-  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 39 · En la corte de Babilonia</div>
-  <h1>La mesa del rey <span class="vs">VS</span> la mesa de Daniel</h1>
-  <p class="subtitle">Sale una comida… ¡y todos reaccionan!</p>
+  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 44 · En el foso de los leones</div>
+  <h1>¿Ventana abierta <span class="vs">O</span> trampa del foso?</h1>
+  <p class="subtitle">Sale una tarjeta… ¡y todos reaccionan con el cuerpo!</p>
 </header>
 
 <!-- ══════════ MODO JUEGO ══════════ -->
 <section id="juego" class="active">
   <div class="legend" id="legend">
-    <div class="legend-item legend-rey"><span class="big">🙊</span> Mesa del rey → ¡tápate la boca!</div>
-    <div class="legend-item legend-daniel"><span class="big">💪</span> Mesa de Daniel → ¡haz músculo!</div>
+    <div class="legend-item legend-ventana"><span class="big">🙏</span> Como Daniel → junta las manos y abre la ventana</div>
+    <div class="legend-item legend-trampa"><span class="big">🦁</span> Trampa del foso → ¡ruge, león!</div>
+  </div>
+
+  <div class="prayers-label">Las tres oraciones del día de Daniel</div>
+  <div class="prayers" id="prayers" aria-label="Las tres oraciones del día">
+    <div class="prayer" id="prayer0"><span class="p-emoji">🙏</span><span class="p-name">1ª oración</span></div>
+    <div class="prayer" id="prayer1"><span class="p-emoji">🙏</span><span class="p-name">2ª oración</span></div>
+    <div class="prayer" id="prayer2"><span class="p-emoji">🙏</span><span class="p-name">3ª oración</span></div>
   </div>
 
   <div class="stage">
-    <div class="round-label" id="roundLabel">¿Listos, agentes?</div>
+    <div class="round-label" id="roundLabel">¿Listos, valientes?</div>
 
     <div class="game-card" id="gameCard" aria-live="polite">
-      <div class="emoji">🎲</div>
-      <div class="food-name">¡Partida de agentes!</div>
-      <div class="hint">5 comidas sorpresa + 5 preguntas relámpago</div>
+      <div class="emoji">🪟</div>
+      <div class="card-name">¡Partida de valientes!</div>
+      <div class="hint">5 tarjetas sorpresa + 5 preguntas relámpago</div>
     </div>
 
     <div class="quiz-box" id="quizBox">
@@ -524,55 +577,60 @@
 </section>
 
 <!-- ══════════ TARJETAS IMPRIMIBLES ══════════ -->
-<section id="tarjetas">
+<section id="material">
   <p class="print-note">
     Usa <strong>Ctrl/Cmd + P</strong> para imprimirlas. El puntico de color en la esquina
-    es tu clave secreta de maestro: <span style="color:#FF9B94">rojo = mesa del rey (🙊)</span>,
-    <span style="color:#8FE3AE">verde = mesa de Daniel (💪)</span>. Los niños no saben el código… ¡tú sí!
+    es tu clave secreta de maestro: <span style="color:#8FE3AE">verde = como Daniel (🙏 junta las manos)</span>,
+    <span style="color:#FF9B94">rojo = trampa del foso (🦁 ¡ruge!)</span>. Los niños no saben el código… ¡tú sí!
   </p>
 
-  <div class="group-title"><span class="chip">👑</span> Mesa del rey — 🙊 ¡tápate la boca!</div>
-  <div class="card-grid" id="gridRey"></div>
+  <div class="group-title"><span class="chip">🪟</span> Como Daniel — 🙏 junta las manos y abre la ventana</div>
+  <div class="card-grid" id="gridVentana"></div>
 
-  <div class="group-title"><span class="chip">🌿</span> Mesa de Daniel — 💪 ¡haz músculo!</div>
-  <div class="card-grid" id="gridDaniel"></div>
+  <div class="group-title"><span class="chip">🕳️</span> Trampa del foso — 🦁 ¡ruge, león!</div>
+  <div class="card-grid" id="gridTrampa"></div>
 </section>
 
 <!-- ══════════ PARA PADRES ══════════ -->
 <section id="padres">
   <div class="parent-box">
     <h2>📖 La historia</h2>
-    <p>Esta dinámica está basada en <strong>Daniel 1</strong> (capítulo 39 de <em>Profetas y Reyes</em>, «En la corte de Babilonia»). Daniel y sus tres amigos fueron llevados cautivos al palacio del rey Nabucodonosor, donde les ofrecieron la comida y el vino de la mesa real: alimentos que deshonraban a Dios.</p>
-    <p>Daniel <strong>propuso en su corazón no contaminarse</strong> y pidió una prueba de 10 días comiendo legumbres y agua. Al final, él y sus amigos estaban más sanos y fuertes, y Dios les dio sabiduría: el rey los halló <strong>diez veces mejores</strong> que todos sus sabios.</p>
+    <p>Esta dinámica está basada en <strong>Daniel 6</strong> (capítulo 44 de <em>Profetas y Reyes</em>, «En el foso de los leones»). Darío el Medo reorganizó su reino con ciento veinte gobernadores y tres presidentes; Daniel era uno de ellos y era el mejor de todos, «porque había en él más abundancia de espíritu». El rey pensaba ponerlo sobre todo el reino.</p>
+    <p>Los celos hicieron que los príncipes buscaran de qué acusarlo, pero <strong>«él era fiel, y ningún vicio ni falta fue en él hallado»</strong>. Entonces prepararon una trampa: convencieron al rey, adulando su vanidad, de firmar un decreto que prohibía por <strong>treinta días</strong> pedir algo a Dios o a los hombres, excepto al rey Darío. Quien lo violara sería echado al foso de los leones.</p>
+    <p>Daniel reconoció la trampa, pero <strong>no cambió su conducta en un solo detalle</strong>: siguió entrando en su cámara con las ventanas abiertas hacia Jerusalén y orando <strong>tres veces al día</strong>. Lo acusaron, el rey trabajó hasta la puesta del sol para librarlo y no pudo, porque la ley de Media y de Persia no se abrogaba. Daniel fue echado al foso; la piedra fue sellada con el anillo del rey, y Darío pasó la noche sin comer y sin dormir.</p>
+    <p>Al amanecer el rey corrió al foso y Daniel respondió: <strong>«El Dios mío envió su ángel, el cual cerró la boca de los leones»</strong>. Lo sacaron sin ninguna lesión. Los acusadores fueron echados al foso, y Darío escribió a todos los pueblos que el Dios de Daniel «es el Dios viviente y permanente por todos los siglos». Daniel fue prosperado en el reinado de Darío y en el de Ciro el persa.</p>
   </div>
 
   <div class="parent-box">
     <h2>💡 ¿Qué aprende su hijo?</h2>
     <ul>
-      <li><strong>Decidir de antemano</strong>: como Daniel, elegir honrar a Dios antes de que llegue la tentación.</li>
-      <li><strong>Cuidar el cuerpo</strong>: es el templo de Dios, y lo cuidamos con lo que comemos y bebemos.</li>
-      <li><strong>Valentía para decir no</strong>, aunque todos los demás digan que sí.</li>
+      <li><strong>Orar sin esconderse</strong>: ninguna potencia terrenal tiene derecho a interponerse entre el alma y Dios.</li>
+      <li><strong>Ser el mismo siempre</strong>: en el foso Daniel fue el mismo que en el palacio. «Un hombre cuyo corazón se apoya en Dios será en la hora de su prueba el mismo que en la prosperidad».</li>
+      <li><strong>Trabajar sin trampas</strong>: cuando revisaron todo lo que Daniel hacía, no hallaron ni un vicio ni una falta.</li>
+      <li><strong>Cuidarse de los celos</strong>: la envidia fue lo que movió a los príncipes a preparar la trampa.</li>
     </ul>
-    <p class="verse">«Yo honraré a los que me honran» <span>1 Samuel 2:30</span></p>
+    <p class="verse">«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal» <span>Daniel 6:22</span></p>
   </div>
 
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 comidas sorpresa</strong> y después <strong>5 preguntas relámpago</strong>.</li>
-      <li>En cada comida, su hijo reacciona antes de revelar: si cree que es de la <strong>mesa del rey</strong>, se tapa la boca (🙊); si es de la <strong>mesa de Daniel</strong>, hace músculo (💪).</li>
+      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 tarjetas sorpresa</strong> y después <strong>5 preguntas relámpago</strong>.</li>
+      <li>En cada tarjeta, su hijo reacciona <em>antes</em> de revelar: si la acción es <strong>como Daniel</strong>, junta las manos y «abre la ventana» (🙏); si es una <strong>trampa del foso</strong>, ruge como león (🦁).</li>
       <li>Toquen <strong>¡Revelar!</strong> y díganle a la app si acertó (⭐ +1) o no.</li>
+      <li>Con las rondas se van encendiendo <strong>las tres oraciones del día</strong>, como las tres veces al día que Daniel oraba.</li>
       <li>Luego vienen las preguntas, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Revelen la respuesta y califiquen igual.</li>
-      <li>Las comidas y preguntas <strong>no se repiten</strong> hasta que se agoten todas: la app recuerda por niño lo que ya salió esta semana.</li>
+      <li>Las tarjetas y preguntas <strong>no se repiten</strong> hasta que se agoten todas: la app recuerda por niño lo que ya salió esta semana.</li>
       <li>También pueden imprimir las tarjetas físicas desde la pestaña <strong>🖨️</strong> y jugar sin pantalla: el puntico de color en la esquina es la clave del adulto.</li>
     </ol>
-    <p>Las <strong>preguntas relámpago cubren todo el capítulo 39</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
-    <p>La idea no es memorizar una lista de comidas, sino conversar: <em>¿por qué Daniel decidió así? ¿Qué decisiones podemos tomar nosotros para honrar a Dios?</em></p>
+    <p>Las <strong>preguntas relámpago cubren todo el capítulo 44</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
+    <p>La idea no es memorizar la lista, sino conversar: <em>¿por qué Daniel no se escondió para orar? ¿Cuándo nos cuesta a nosotros hacer lo correcto? ¿A quién le pedimos ayuda cuando tenemos miedo?</em></p>
   </div>
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 comidas sorpresa + 5 preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong> (las incorrectas no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de comidas y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Jueguen <strong>una partida por día</strong>: 5 tarjetas sorpresa + 5 preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong> (las incorrectas no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de juego y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Y el reto de casa: <strong>orar tres veces al día como Daniel</strong> — elijan en familia los tres momentos — durante toda la semana. Pongan una silla junto a una ventana y que sea «la ventana de Daniel».</p>
     <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
   </div>
 </section>
@@ -581,67 +639,80 @@
 
 <script>
   // ── Datos ──
-  const FOODS = [
-    // Mesa del rey — de Babilonia
-    {emoji:'🥓', name:'Tocino de cerdo', side:'rey'},
-    {emoji:'🍖', name:'Costillas de cerdo', side:'rey'},
-    {emoji:'🦐', name:'Camarones', side:'rey'},
-    {emoji:'🦞', name:'Langosta', side:'rey'},
-    {emoji:'🦀', name:'Cangrejo', side:'rey'},
-    {emoji:'🍷', name:'Vino del rey', side:'rey'},
-    {emoji:'🍺', name:'Cerveza del banquete', side:'rey'},
-    // Mesa del rey — de hoy
-    {emoji:'🍬', name:'Golosinas', side:'rey'},
-    {emoji:'🍭', name:'Chupetas', side:'rey'},
-    {emoji:'🥤', name:'Gaseosa', side:'rey'},
-    {emoji:'🍟', name:'Papitas fritas', side:'rey'},
-    {emoji:'🍩', name:'Donas azucaradas', side:'rey'},
-    // Mesa de Daniel — de Babilonia
-    {emoji:'🥦', name:'Legumbres', side:'daniel'},
-    {emoji:'🫘', name:'Frijoles', side:'daniel'},
-    {emoji:'🥕', name:'Zanahorias', side:'daniel'},
-    {emoji:'🍎', name:'Manzanas', side:'daniel'},
-    {emoji:'🍇', name:'Uvas', side:'daniel'},
-    {emoji:'💧', name:'Agua fresca', side:'daniel'},
-    {emoji:'🌽', name:'Maíz', side:'daniel'},
-    {emoji:'🥒', name:'Pepinos', side:'daniel'},
-    // Mesa de Daniel — de hoy
-    {emoji:'🍌', name:'Banano', side:'daniel'},
-    {emoji:'🥗', name:'Ensalada fresca', side:'daniel'},
-    {emoji:'🥜', name:'Maní y nueces', side:'daniel'},
-    {emoji:'🥣', name:'Avena', side:'daniel'},
-    {emoji:'🍊', name:'Naranjas', side:'daniel'}
+  const CARDS = [
+    // ── Como Daniel (ventana abierta) ──
+    {emoji:'🪟', name:'Orar con la ventana abierta hacia Jerusalén', side:'ventana'},
+    {emoji:'🙏', name:'Orar tres veces al día', side:'ventana'},
+    {emoji:'🙌', name:'Seguir orando aunque haya un decreto que lo prohíbe', side:'ventana'},
+    {emoji:'✅', name:'Trabajar sin trampas ni mentiras', side:'ventana'},
+    {emoji:'🪞', name:'Ser el mismo en el foso que en el palacio', side:'ventana'},
+    {emoji:'💬', name:'Decirle la verdad al rey', side:'ventana'},
+    {emoji:'🧹', name:'Hacer bien la tarea aunque nadie mire', side:'ventana'},
+    {emoji:'🍎', name:'Dar gracias antes de comer en el colegio', side:'ventana'},
+    {emoji:'👑', name:'Obedecer al rey en todo lo que sí es correcto', side:'ventana'},
+    {emoji:'😌', name:'No temblar de miedo: confiar en Dios', side:'ventana'},
+    {emoji:'🤝', name:'Ser amable y cortés con todos, hasta con los que me envidian', side:'ventana'},
+    {emoji:'🕯️', name:'Ser una luz aunque todos alrededor sirvan a ídolos', side:'ventana'},
+    {emoji:'😇', name:'Pedirle a Dios cuando más miedo tengo', side:'ventana'},
+    {emoji:'📖', name:'Contarle a todos que Dios es el Dios viviente', side:'ventana'},
+    // ── Trampa del foso ──
+    {emoji:'📜', name:'El decreto de los 30 días: solo pedirle al rey', side:'trampa'},
+    {emoji:'🍯', name:'Adular al rey para engañarlo', side:'trampa'},
+    {emoji:'😠', name:'Envidiar al que le va bien', side:'trampa'},
+    {emoji:'👀', name:'Espiar a otro todo el día para acusarlo', side:'trampa'},
+    {emoji:'🙈', name:'Esconderse para orar por miedo', side:'trampa'},
+    {emoji:'🗿', name:'Pedirle solo al rey Darío y no a Dios', side:'trampa'},
+    {emoji:'🕳️', name:'Prepararle una trampa a un amigo', side:'trampa'},
+    {emoji:'🤐', name:'Prohibirle a alguien hablar con Dios', side:'trampa'},
+    {emoji:'✍️', name:'Firmar sin pensar lo que otros me piden', side:'trampa'},
+    {emoji:'💥', name:'Vengarse de quien me hizo daño', side:'trampa'},
+    {emoji:'🎭', name:'Ser bueno solo cuando me están mirando', side:'trampa'},
+    {emoji:'🗣️', name:'Ir a acusar a otro delante del rey por celos', side:'trampa'},
+    {emoji:'🤥', name:'Hacer trampa en el trabajo y esconderlo', side:'trampa'},
+    {emoji:'😰', name:'Dejar de orar cuando la cosa se pone difícil', side:'trampa'}
   ];
 
   const QUIZ = [
-    {tag:'4–5 años', q:'¡Muéstrenme la cara de Daniel diciendo NO a la comida del rey!', a:'😤 ¡Esa carita valiente!'},
-    {tag:'4–5 años', q:'¿Cómo quedaron Daniel y sus amigos comiendo la comida sencilla? ¡Muéstrenme!', a:'💪 ¡Más fuertes!'},
-    {tag:'4–5 años', q:'¿Cuántos amigos eran en total? Cuenten con los dedos.', a:'4: Daniel, Ananías, Misael y Azarías'},
-    {tag:'4–5 años', q:'¿Qué pidió Daniel para comer y beber?', a:'🥦 Legumbres y 💧 agua'},
-    {tag:'6–7 años', q:'¿Cuántos días duró la prueba de la comida?', a:'10 días'},
-    {tag:'6–7 años', q:'¿Cuántos años estudiaron en Babilonia?', a:'3 años'},
-    {tag:'6–7 años', q:'¿Qué nombre nuevo le pusieron a Daniel?', a:'Beltsasar'},
-    {tag:'6–7 años', q:'¿Qué nombres nuevos les pusieron a Ananías, Misael y Azarías?', a:'Sadrac, Mesac y Abed-nego'},
-    {tag:'6–7 años', q:'¿Cómo se llamaba el rey de Babilonia?', a:'Nabucodonosor'},
-    {tag:'6–7 años', q:'¿De dónde se llevaron cautivos a Daniel y sus amigos?', a:'De Judá (Jerusalén) a Babilonia'},
-    {tag:'6–7 años', q:'¿Qué estudiaron en la escuela de Babilonia?', a:'Las letras y la lengua de los caldeos'},
-    {tag:'8–9 años', q:'¿Cómo se llamaba el oficial a quien Daniel pidió la prueba de los 10 días?', a:'Melsar'},
-    {tag:'8–9 años', q:'¿Cuántas veces mejores los halló el rey que a sus magos y astrólogos?', a:'Diez veces mejores'},
-    {tag:'8–9 años', q:'¿Por qué comer la comida del rey era deshonrar a Dios?', a:'Porque estaba ofrecida a los ídolos: comerla era rendir homenaje a los dioses de Babilonia'},
-    {tag:'8–9 años', q:'Completa: "Daniel propuso en su ________ no contaminarse".', a:'Corazón'},
-    {tag:'8–9 años', q:'¿Qué promesa se cumplió en ellos? (1 Samuel 2:30)', a:'"Yo honraré a los que me honran"'},
-    {tag:'8–9 años', q:'¿Cuántos años duraría el cautiverio de Israel en Babilonia?', a:'70 años'},
-    {tag:'8–9 años', q:'¿Por qué tenía miedo el príncipe de los eunucos de cambiarles la comida?', a:'Temía que el rey los viera más tristes y desmejorados y lo condenara a él: "condenaréis para con el rey mi cabeza"'},
-    {tag:'8–9 años', q:'Además de conocimiento, ¿qué don especial le dio Dios a Daniel?', a:'Entendimiento en toda visión y sueños'},
-    {tag:'8–9 años', q:'Según el capítulo, ¿qué dio carácter a toda la vida de Daniel y sus amigos?', a:'La fidelidad en las cosas pequeñas'}
+    // ── 4–5 años ──
+    {tag:'4–5 años', q:'¿A dónde echaron a Daniel? ¡Ruge como el león!', a:'🦁 Al foso de los leones'},
+    {tag:'4–5 años', q:'¿Qué hacía Daniel tres veces al día? ¡Muéstrenme cómo!', a:'🙏 Oraba a Dios'},
+    {tag:'4–5 años', q:'¿Los leones le hicieron daño a Daniel?', a:'No: no se halló ninguna lesión en él'},
+    {tag:'4–5 años', q:'¿Quién cerró la boca de los leones?', a:'😇 El ángel que Dios envió'},
+    {tag:'4–5 años', q:'¿Cómo oraba Daniel: escondido o con la ventana abierta?',a:'🪟 Con las ventanas abiertas hacia Jerusalén'},
+    {tag:'4–5 años', q:'Cuenten con los dedos: ¿cuántas veces al día oraba Daniel?', a:'3 veces al día'},
+    // ── 6–7 años ──
+    {tag:'6–7 años', q:'¿Cómo se llamaba el rey que firmó el decreto?', a:'Darío el Medo'},
+    {tag:'6–7 años', q:'¿Cuántos días prohibía el decreto pedirle algo a Dios?', a:'30 días'},
+    {tag:'6–7 años', q:'¿Hacia qué ciudad abría Daniel sus ventanas para orar?', a:'Hacia Jerusalén'},
+    {tag:'6–7 años', q:'¿Por qué los príncipes querían dañar a Daniel?', a:'Por celos: el rey lo honraba y pensaba ponerlo sobre todo el reino'},
+    {tag:'6–7 años', q:'¿Qué le pusieron a la entrada del foso?', a:'Una piedra sellada con el anillo del rey y de sus príncipes'},
+    {tag:'6–7 años', q:'¿Qué hizo el rey esa noche mientras Daniel estaba en el foso?', a:'Se acostó en ayunas, sin música, y se le fue el sueño'},
+    {tag:'6–7 años', q:'¿Qué le dijo el rey a Daniel antes de echarlo al foso?', a:'«El Dios tuyo, a quien tú continuamente sirves, él te libre»'},
+    {tag:'6–7 años', q:'¿Qué encontraron los enemigos de malo en el trabajo de Daniel?', a:'Nada: «ningún vicio ni falta fue en él hallado»'},
+    {tag:'6–7 años', q:'Cuando Daniel supo del decreto, ¿dejó de orar?', a:'No: no cambió su conducta en un solo detalle'},
+    // ── 8–9 años ──
+    {tag:'8–9 años', q:'¿Cuántos gobernadores y cuántos presidentes puso Darío sobre el reino?', a:'120 gobernadores y 3 presidentes; Daniel era uno de los tres'},
+    {tag:'8–9 años', q:'¿Por qué Daniel era superior a los otros gobernadores y presidentes?', a:'«Porque había en él más abundancia de espíritu»'},
+    {tag:'8–9 años', q:'¿Cómo convencieron los príncipes al rey de firmar el decreto?', a:'Apelando a su vanidad: le dijeron que acrecentaría su honor y autoridad'},
+    {tag:'8–9 años', q:'Cuando el rey quiso salvar a Daniel, ¿por qué no pudo cambiar el decreto?', a:'Porque la ley de Media y de Persia no se abroga: ningún decreto firmado podía mudarse'},
+    {tag:'8–9 años', q:'¿Hasta qué hora trabajó el rey para librar a Daniel?', a:'«Hasta puestas del sol trabajó para librarle»'},
+    {tag:'8–9 años', q:'¿Qué respondió Daniel desde el foso cuando el rey lo llamó?', a:'«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal»'},
+    {tag:'8–9 años', q:'¿Qué les pasó a los hombres que habían acusado a Daniel?', a:'Fueron echados al foso y los leones se apoderaron de ellos'},
+    {tag:'8–9 años', q:'¿Qué proclamó Darío a todos los pueblos, naciones y lenguas?', a:'Que temieran al Dios de Daniel, «el Dios viviente y permanente por todos los siglos»'},
+    {tag:'8–9 años', q:'Según el capítulo, ¿qué verdad declaró Daniel con su ejemplo?', a:'Que ninguna potencia terrenal tiene derecho a interponerse entre el alma y Dios'},
+    {tag:'8–9 años', q:'¿Qué aprendemos de que Daniel fuera igual en el foso y en el palacio?', a:'Que quien se apoya en Dios es en la hora de la prueba el mismo que en la prosperidad'},
+    {tag:'8–9 años', q:'¿Por qué Dios permitió que echaran a Daniel al foso?', a:'Para recalcar más su liberación y que la derrota de los enemigos de la verdad fuera más completa'},
+    {tag:'8–9 años', q:'¿Durante los reinados de qué dos reyes fue prosperado Daniel?', a:'Darío el Medo y Ciro el Persa'}
   ];
 
-  // ── Partida: 5 comidas + 5 preguntas ──
-  const ACTIVITY = 'pr39';
+  // ── Partida: 5 tarjetas + 5 preguntas ──
+  const ACTIVITY = 'pr44';
   const MATCH_CARDS = 5;
   const MATCH_QUIZ = 5;
   // Cuántas preguntas de cada edad entran en una partida (suman MATCH_QUIZ).
   const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
+  // Cuántas de las tres oraciones del día quedan encendidas según las rondas hechas.
+  const PRAYER_STEPS = [0, 1, 1, 2, 2, 3];
   let match = null; // {cards, quizzes, step, revealed, earned}
 
   const gameCard = document.getElementById('gameCard');
@@ -652,6 +723,9 @@
   const judgeQ = document.getElementById('judgeQ');
   const judgeYes = document.getElementById('judgeYes');
   const judgeNo = document.getElementById('judgeNo');
+  const prayerEls = [0,1,2].map(i => document.getElementById('prayer' + i));
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
   function shuffle(arr){
     const a = arr.slice();
@@ -660,6 +734,10 @@
       [a[i],a[j]] = [a[j],a[i]];
     }
     return a;
+  }
+
+  function setPrayers(n){
+    prayerEls.forEach((el, i) => el.classList.toggle('on', i < n));
   }
 
   function phase(){
@@ -679,10 +757,10 @@
   }
 
   function pickMatchCards(){
-    const sides = Math.random() < .5 ? ['rey', 'daniel'] : ['daniel', 'rey'];
+    const sides = Math.random() < .5 ? ['ventana', 'trampa'] : ['trampa', 'ventana'];
     const picked = [
-      ...AvProfile.pick(`${ACTIVITY}:card:${sides[0]}`, FOODS.filter(f => f.side === sides[0]), 3, f => f.name),
-      ...AvProfile.pick(`${ACTIVITY}:card:${sides[1]}`, FOODS.filter(f => f.side === sides[1]), 2, f => f.name)
+      ...AvProfile.pick(`${ACTIVITY}:card:${sides[0]}`, CARDS.filter(c => c.side === sides[0]), 3, c => c.name),
+      ...AvProfile.pick(`${ACTIVITY}:card:${sides[1]}`, CARDS.filter(c => c.side === sides[1]), 2, c => c.name)
     ];
     return shuffle(picked);
   }
@@ -697,6 +775,7 @@
       revealed: false,
       earned: 0
     };
+    setPrayers(0);
     showStep();
   }
 
@@ -707,18 +786,20 @@
     if(ph === 'card'){
       quizBox.classList.remove('show');
       gameCard.style.display = '';
-      const f = match.cards[match.step];
-      roundLabel.textContent = `Comida ${match.step + 1} de ${MATCH_CARDS}`;
-      gameCard.classList.remove('revealed-rey','revealed-daniel');
+      const c = match.cards[match.step];
+      roundLabel.textContent = `Tarjeta ${match.step + 1} de ${MATCH_CARDS}`;
+      setPrayers(PRAYER_STEPS[match.step]);
+      gameCard.classList.remove('revealed-ventana','revealed-trampa');
       gameCard.innerHTML = `
-        <div class="emoji">${f.emoji}</div>
-        <div class="food-name">${f.name}</div>
-        <div class="hint">¿Qué hacemos, agentes?</div>`;
+        <div class="emoji">${c.emoji}</div>
+        <div class="card-name">${esc(c.name)}</div>
+        <div class="hint">¿Qué hacemos, valientes?</div>`;
       mainBtn.textContent = '¡Revelar!';
       mainBtn.hidden = false;
     }else if(ph === 'quiz'){
       gameCard.style.display = 'none';
       quizBox.classList.add('show');
+      setPrayers(3);
       const q = match.quizzes[match.step - MATCH_CARDS];
       roundLabel.textContent = `Pregunta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
       document.getElementById('quizTag').textContent = q.tag;
@@ -737,14 +818,15 @@
     match.revealed = true;
     const ph = phase();
     if(ph === 'card'){
-      const f = match.cards[match.step];
-      const isRey = f.side === 'rey';
-      gameCard.classList.add(isRey ? 'revealed-rey' : 'revealed-daniel');
+      const c = match.cards[match.step];
+      const esVentana = c.side === 'ventana';
+      gameCard.classList.add(esVentana ? 'revealed-ventana' : 'revealed-trampa');
       gameCard.innerHTML = `
-        <div class="emoji">${f.emoji}</div>
-        <div class="action-emoji">${isRey ? '🙊' : '💪'}</div>
-        <div class="action-name">${isRey ? '¡Mesa del rey!' : '¡Mesa de Daniel!'}</div>
-        <div class="hint">${isRey ? 'Tápate la boca — ¡no la comemos!' : 'Haz músculo — ¡más fuertes!'}</div>`;
+        <div class="emoji">${c.emoji}</div>
+        <div class="action-emoji">${esVentana ? '🙏' : '🦁'}</div>
+        <div class="action-name">${esVentana ? '¡Como Daniel!' : '¡Trampa del foso!'}</div>
+        <div class="hint">${esVentana ? 'Junta las manos y abre la ventana' : '¡Ruge, león! Eso no lo hacemos'}</div>`;
+      setPrayers(PRAYER_STEPS[match.step + 1]);
     }else{
       document.getElementById('quizA').classList.add('show');
     }
@@ -778,17 +860,18 @@
     document.getElementById('legend').hidden = false;
     quizBox.classList.remove('show');
     gameCard.style.display = '';
-    gameCard.classList.remove('revealed-rey','revealed-daniel');
-    roundLabel.textContent = '¡Bien hecho, agentes!';
+    gameCard.classList.remove('revealed-ventana','revealed-trampa');
+    setPrayers(3);
+    roundLabel.textContent = '¡Bien hecho, valientes!';
     const p = AvProfile.get();
     const scored = p ? `<div class="hint">⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.</div>` : '';
     const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
       ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
     gameCard.innerHTML = `
-      <div class="emoji">🏁</div>
-      <div class="food-name">¡Partida completa!</div>
+      <div class="emoji">🦁🤐</div>
+      <div class="card-name">¡El ángel cerró la boca de los leones! 😇</div>
+      <div class="hint">Daniel salió del foso sin ninguna lesión.</div>
       ${scored}${extra}`;
-    mainBtn.dataset.mode = 'again';
     mainBtn.textContent = '🔁 Otra partida';
     mainBtn.hidden = false;
     match = null;
@@ -809,9 +892,9 @@
     }else{
       note.hidden = true;
     }
-    if(mainBtn.dataset.mode === 'again'){
+    if(mainBtn.textContent.includes('Otra partida')){
       mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
-    }else{
+    }else if(mainBtn.textContent.includes('partida')){
       mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
     }
   }
@@ -840,15 +923,15 @@
   // ── Tarjetas imprimibles ──
   function renderGrid(id, side){
     const grid = document.getElementById(id);
-    grid.innerHTML = FOODS.filter(f => f.side === side).map(f => `
+    grid.innerHTML = CARDS.filter(c => c.side === side).map(c => `
       <div class="mini-card">
-        <span class="key-dot ${side === 'rey' ? 'key-rey' : 'key-daniel'}" title="${side === 'rey' ? 'Mesa del rey' : 'Mesa de Daniel'}"></span>
-        <div class="emoji">${f.emoji}</div>
-        <div class="food-name">${f.name}</div>
+        <span class="key-dot ${side === 'ventana' ? 'key-ventana' : 'key-trampa'}" title="${side === 'ventana' ? 'Como Daniel' : 'Trampa del foso'}"></span>
+        <div class="emoji">${c.emoji}</div>
+        <div class="card-name">${esc(c.name)}</div>
       </div>`).join('');
   }
-  renderGrid('gridRey','rey');
-  renderGrid('gridDaniel','daniel');
+  renderGrid('gridVentana','ventana');
+  renderGrid('gridTrampa','trampa');
 
   // ── Menú ──
   const menuBtn = document.getElementById('menuBtn');

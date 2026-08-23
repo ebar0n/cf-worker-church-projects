@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1B2F6E">
-<title>La mesa del rey vs. la mesa de Daniel</title>
-<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Una partida diaria: 5 comidas sorpresa + 5 preguntas relámpago. ¡Suma puntos para el tablero del Club de Aventureros!">
+<title>¡Firmes o inclinados!</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Una partida diaria: 5 situaciones sorpresa + 5 preguntas relámpago. ¡Agáchate o quédate firme y suma puntos para el tablero del Club de Aventureros!">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
-<meta property="og:title" content="La mesa del rey vs. la mesa de Daniel">
-<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Una partida diaria: 5 comidas sorpresa + 5 preguntas relámpago. ¡Suma puntos para el tablero del club!">
-<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr39/">
-<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/mesa-del-rey.png">
+<meta property="og:title" content="¡Firmes o inclinados!">
+<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 41, El horno de fuego. Sale una situación: ¿te agachas como la multitud de Dura o te quedas firme como los tres amigos?">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr41/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_CO">
@@ -22,17 +22,17 @@
 <link rel="stylesheet" href="/shared/profile.css">
 <style>
   :root{
-    /* Paleta Puerta de Ishtar: azul lapislázuli, oro vidriado, ladrillo, crema */
+    /* Paleta Llanura de Dura: azul lapislázuli, oro de la estatua, ladrillo del horno, crema */
     --lapis:#1B2F6E;
     --lapis-deep:#12204D;
     --gold:#F0B429;
     --gold-soft:#FFD97A;
     --brick:#C2542B;
     --cream:#FFF6E3;
-    --rey:#D6453D;      /* tapar la boca */
-    --rey-deep:#A32C26;
-    --daniel:#2E9E5B;   /* hacer músculo */
-    --daniel-deep:#1E7040;
+    --inclina:#C0392B;      /* agacharse: la multitud de Dura */
+    --inclina-deep:#8E241A;
+    --firme:#2E9E5B;        /* de pie y firme: los tres amigos */
+    --firme-deep:#1E7040;
     --ink:#231A0F;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -176,7 +176,6 @@
   .judge span{flex-basis:100%;text-align:center}
   .judge[hidden]{display:none}
 
-
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
 
@@ -198,8 +197,8 @@
     font-size:.95rem;
   }
   .legend-item .big{font-size:1.7rem}
-  .legend-rey{background:var(--rey);color:#fff}
-  .legend-daniel{background:var(--daniel);color:#fff}
+  .legend-inclina{background:var(--inclina);color:#fff}
+  .legend-firme{background:var(--firme);color:#fff}
   .legend[hidden]{display:none}
   .practice-note{
     margin-top:16px;
@@ -210,6 +209,55 @@
     opacity:.9;
   }
   .practice-note[hidden]{display:none}
+
+  /* ── Termómetro del horno: 7 llamas ── */
+  .furnace{
+    max-width:460px;
+    margin:0 auto 16px;
+    background:rgba(0,0,0,.18);
+    border:2px solid rgba(240,180,41,.5);
+    border-radius:16px;
+    padding:10px 12px;
+    text-align:center;
+  }
+  .furnace-title{
+    font-family:'Fredoka',sans-serif;
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    opacity:.85;
+    margin-bottom:6px;
+  }
+  .flames{
+    display:flex;
+    justify-content:center;
+    gap:4px;
+    flex-wrap:wrap;
+  }
+  .flames .flame{
+    font-size:clamp(1.2rem,5.5vw,1.6rem);
+    line-height:1;
+    opacity:.22;
+    filter:grayscale(1);
+    transition:opacity .25s ease, filter .25s ease, transform .25s ease;
+  }
+  .flames .flame.on{
+    opacity:1;
+    filter:none;
+    animation:flicker 1.6s ease-in-out infinite alternate;
+  }
+  @keyframes flicker{
+    from{transform:translateY(0) scale(1)}
+    to{transform:translateY(-2px) scale(1.08)}
+  }
+  .furnace-msg{
+    margin-top:6px;
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--gold-soft);
+    opacity:.9;
+  }
 
   /* ══════════ MODO JUEGO ══════════ */
   .stage{
@@ -247,11 +295,11 @@
     line-height:1;
     filter:drop-shadow(0 6px 0 rgba(0,0,0,.12));
   }
-  .game-card .food-name{
+  .game-card .case-name{
     font-family:'Fredoka',sans-serif;
     font-weight:700;
-    font-size:clamp(1.4rem,6vw,2rem);
-    line-height:1.15;
+    font-size:clamp(1.15rem,5vw,1.7rem);
+    line-height:1.2;
   }
   .game-card .hint{
     font-weight:700;
@@ -259,10 +307,10 @@
     opacity:.65;
   }
   /* Estado revelado */
-  .game-card.revealed-rey{background:var(--rey);border-color:var(--rey-deep);color:#fff}
-  .game-card.revealed-daniel{background:var(--daniel);border-color:var(--daniel-deep);color:#fff}
-  .game-card.revealed-rey .hint,
-  .game-card.revealed-daniel .hint{opacity:.9}
+  .game-card.revealed-inclina{background:var(--inclina);border-color:var(--inclina-deep);color:#fff}
+  .game-card.revealed-firme{background:var(--firme);border-color:var(--firme-deep);color:#fff}
+  .game-card.revealed-inclina .hint,
+  .game-card.revealed-firme .hint{opacity:.9}
   .action-emoji{
     font-size:clamp(3.4rem,18vw,5rem);
     line-height:1;
@@ -271,7 +319,7 @@
   .action-name{
     font-family:'Fredoka',sans-serif;
     font-weight:700;
-    font-size:clamp(1.5rem,7vw,2.2rem);
+    font-size:clamp(1.4rem,6.5vw,2.1rem);
     animation:pop .35s .06s cubic-bezier(.2,1.6,.4,1) both;
   }
   @keyframes pop{
@@ -280,6 +328,8 @@
   }
   @media (prefers-reduced-motion:reduce){
     .action-emoji,.action-name{animation:none}
+    .flames .flame.on{animation:none}
+    .btn{transition:none}
   }
 
   .controls{
@@ -296,6 +346,7 @@
     border:none;
     border-radius:999px;
     padding:14px 30px;
+    min-height:44px;
     cursor:pointer;
     box-shadow:0 5px 0 rgba(0,0,0,.3);
     transition:transform .1s ease;
@@ -337,7 +388,6 @@
     display:none;
   }
   .quiz-a.show{display:block}
-  .quiz-actions{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
   .btn-sm{font-size:.95rem;padding:9px 20px;min-height:44px}
 
   /* ══════════ TARJETAS IMPRIMIBLES ══════════ */
@@ -368,11 +418,11 @@
     box-shadow:0 5px 0 rgba(0,0,0,.25);
   }
   .mini-card .emoji{font-size:3.2rem;line-height:1}
-  .mini-card .food-name{
+  .mini-card .case-name{
     font-family:'Fredoka',sans-serif;
     font-weight:600;
-    font-size:1rem;
-    line-height:1.2;
+    font-size:.95rem;
+    line-height:1.25;
   }
   .key-dot{
     position:absolute;
@@ -383,8 +433,8 @@
     border-radius:50%;
     border:2px solid rgba(0,0,0,.25);
   }
-  .key-rey{background:var(--rey)}
-  .key-daniel{background:var(--daniel)}
+  .key-inclina{background:var(--inclina)}
+  .key-firme{background:var(--firme)}
   .group-title{
     font-family:'Fredoka',sans-serif;
     font-weight:600;
@@ -457,9 +507,9 @@
     header,.topbar,#juego,#padres,.print-note,.legend{display:none!important}
     section{display:block!important;padding:0}
     #tarjetas{display:block!important}
-    .card-grid{grid-template-columns:repeat(3,1fr);gap:10mm}
-    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:14mm 4mm 10mm}
-    .mini-card .emoji{font-size:22mm}
+    .card-grid{grid-template-columns:repeat(3,1fr);gap:8mm}
+    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:12mm 4mm 8mm}
+    .mini-card .emoji{font-size:20mm}
     .group-title{color:#000}
     .group-title .chip{border:1px solid #ccc}
   }
@@ -482,25 +532,31 @@
 </div>
 
 <header>
-  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 39 · En la corte de Babilonia</div>
-  <h1>La mesa del rey <span class="vs">VS</span> la mesa de Daniel</h1>
-  <p class="subtitle">Sale una comida… ¡y todos reaccionan!</p>
+  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 41 · El horno de fuego</div>
+  <h1>¡Firmes <span class="vs">O</span> inclinados!</h1>
+  <p class="subtitle">Sale una situación… ¡y tu cuerpo responde antes de revelar!</p>
 </header>
 
 <!-- ══════════ MODO JUEGO ══════════ -->
 <section id="juego" class="active">
   <div class="legend" id="legend">
-    <div class="legend-item legend-rey"><span class="big">🙊</span> Mesa del rey → ¡tápate la boca!</div>
-    <div class="legend-item legend-daniel"><span class="big">💪</span> Mesa de Daniel → ¡haz músculo!</div>
+    <div class="legend-item legend-inclina"><span class="big">🙇</span> Del lado de la multitud de Dura → ¡agáchate!</div>
+    <div class="legend-item legend-firme"><span class="big">🧍</span> Del lado de los tres amigos → ¡de pie y firme!</div>
+  </div>
+
+  <div class="furnace" id="furnace">
+    <div class="furnace-title">Termómetro del horno · siete veces más caliente</div>
+    <div class="flames" id="flames" aria-hidden="true"></div>
+    <div class="furnace-msg" id="furnaceMsg">El horno está apagado… todavía.</div>
   </div>
 
   <div class="stage">
-    <div class="round-label" id="roundLabel">¿Listos, agentes?</div>
+    <div class="round-label" id="roundLabel">¿Listos, valientes de Dura?</div>
 
     <div class="game-card" id="gameCard" aria-live="polite">
-      <div class="emoji">🎲</div>
-      <div class="food-name">¡Partida de agentes!</div>
-      <div class="hint">5 comidas sorpresa + 5 preguntas relámpago</div>
+      <div class="emoji">🔥</div>
+      <div class="case-name">¡Partida en la llanura de Dura!</div>
+      <div class="hint">5 situaciones sorpresa + 5 preguntas relámpago</div>
     </div>
 
     <div class="quiz-box" id="quizBox">
@@ -527,52 +583,56 @@
 <section id="tarjetas">
   <p class="print-note">
     Usa <strong>Ctrl/Cmd + P</strong> para imprimirlas. El puntico de color en la esquina
-    es tu clave secreta de maestro: <span style="color:#FF9B94">rojo = mesa del rey (🙊)</span>,
-    <span style="color:#8FE3AE">verde = mesa de Daniel (💪)</span>. Los niños no saben el código… ¡tú sí!
+    es tu clave secreta de maestro: <span style="color:#FF9B94">rojo = la multitud de Dura (🙇 agacharse)</span>,
+    <span style="color:#8FE3AE">verde = los tres amigos (🧍 de pie y firme)</span>. Los niños no saben el código… ¡tú sí!
   </p>
 
-  <div class="group-title"><span class="chip">👑</span> Mesa del rey — 🙊 ¡tápate la boca!</div>
-  <div class="card-grid" id="gridRey"></div>
+  <div class="group-title"><span class="chip">🗿</span> Del lado de la multitud de Dura — 🙇 ¡agáchate!</div>
+  <div class="card-grid" id="gridInclina"></div>
 
-  <div class="group-title"><span class="chip">🌿</span> Mesa de Daniel — 💪 ¡haz músculo!</div>
-  <div class="card-grid" id="gridDaniel"></div>
+  <div class="group-title"><span class="chip">🧍</span> Del lado de los tres amigos — 🧍 ¡de pie y firme!</div>
+  <div class="card-grid" id="gridFirme"></div>
 </section>
 
 <!-- ══════════ PARA PADRES ══════════ -->
 <section id="padres">
   <div class="parent-box">
     <h2>📖 La historia</h2>
-    <p>Esta dinámica está basada en <strong>Daniel 1</strong> (capítulo 39 de <em>Profetas y Reyes</em>, «En la corte de Babilonia»). Daniel y sus tres amigos fueron llevados cautivos al palacio del rey Nabucodonosor, donde les ofrecieron la comida y el vino de la mesa real: alimentos que deshonraban a Dios.</p>
-    <p>Daniel <strong>propuso en su corazón no contaminarse</strong> y pidió una prueba de 10 días comiendo legumbres y agua. Al final, él y sus amigos estaban más sanos y fuertes, y Dios les dio sabiduría: el rey los halló <strong>diez veces mejores</strong> que todos sus sabios.</p>
+    <p>Esta dinámica está basada en <strong>Daniel 3</strong> (capítulo 41 de <em>Profetas y Reyes</em>, «El horno de fuego»). El rey <strong>Nabucodonosor</strong> mandó hacer una gran estatua, toda de oro, de <strong>sesenta codos de alto y seis de ancho</strong>, y la levantó en la <strong>llanura de Dura</strong>. Se decretó que, al oír la música, todos los pueblos, naciones y lenguas se postraran para adorarla.</p>
+    <p>La multitud se postró; pero <strong>tres hombres se quedaron de pie</strong>: Sadrac, Mesac y Abed-nego. Ante la amenaza del horno respondieron: «Nuestro Dios puede librarnos… <strong>y si no</strong>, sepas, oh rey, que tu dios no adoraremos». El rey mandó calentar el horno <strong>siete veces más</strong> de lo acostumbrado y los echó atados dentro.</p>
+    <p>Entonces el rey se levantó pálido de su trono: veía <strong>cuatro varones sueltos</strong> paseándose en medio del fuego, y el cuarto «semejante a hijo de los dioses». Salieron ilesos: ni un cabello quemado, ni olor de fuego. Solo se quemaron sus <strong>ligaduras</strong>. Y el rey bendijo al Dios de Sadrac, Mesac y Abed-nego.</p>
   </div>
 
   <div class="parent-box">
     <h2>💡 ¿Qué aprende su hijo?</h2>
     <ul>
-      <li><strong>Decidir de antemano</strong>: como Daniel, elegir honrar a Dios antes de que llegue la tentación.</li>
-      <li><strong>Cuidar el cuerpo</strong>: es el templo de Dios, y lo cuidamos con lo que comemos y bebemos.</li>
-      <li><strong>Valentía para decir no</strong>, aunque todos los demás digan que sí.</li>
+      <li><strong>Solo a Dios adoramos</strong>: postrarse ante la estatua era un acto de culto, y ese homenaje es solo para Dios.</li>
+      <li><strong>Fidelidad sin condiciones</strong>: el «y si no… igual serviremos a Dios» enseña a obedecer sin pedirle a Dios un premio primero.</li>
+      <li><strong>No seguir a la multitud</strong>: cuando todos se agachan, se puede quedar de pie.</li>
+      <li><strong>Dios acompaña en la prueba</strong>: el que caminó con ellos en el fuego acompaña también a sus hijos hoy.</li>
     </ul>
-    <p class="verse">«Yo honraré a los que me honran» <span>1 Samuel 2:30</span></p>
+    <p class="verse">«Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti» <span>Isaías 43:2</span></p>
   </div>
 
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 comidas sorpresa</strong> y después <strong>5 preguntas relámpago</strong>.</li>
-      <li>En cada comida, su hijo reacciona antes de revelar: si cree que es de la <strong>mesa del rey</strong>, se tapa la boca (🙊); si es de la <strong>mesa de Daniel</strong>, hace músculo (💪).</li>
+      <li>Despejen un espacio para moverse y toquen <strong>▶ Jugar partida</strong>: salen <strong>5 situaciones sorpresa</strong> y después <strong>5 preguntas relámpago</strong>.</li>
+      <li>En cada situación su hijo reacciona <strong>antes</strong> de revelar: si cree que la situación es del lado de <strong>la multitud de Dura</strong>, se agacha (🙇); si cree que es del lado de <strong>los tres amigos</strong>, se pone de pie y firme con las manos arriba (🧍).</li>
       <li>Toquen <strong>¡Revelar!</strong> y díganle a la app si acertó (⭐ +1) o no.</li>
+      <li>Miren el <strong>termómetro del horno</strong>: sus 7 llamas se encienden a medida que avanza la partida («siete veces más caliente»). Al terminar, las llamas no queman a nadie… y aparece el <strong>Cuarto varón</strong> caminando en el fuego.</li>
       <li>Luego vienen las preguntas, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Revelen la respuesta y califiquen igual.</li>
-      <li>Las comidas y preguntas <strong>no se repiten</strong> hasta que se agoten todas: la app recuerda por niño lo que ya salió esta semana.</li>
-      <li>También pueden imprimir las tarjetas físicas desde la pestaña <strong>🖨️</strong> y jugar sin pantalla: el puntico de color en la esquina es la clave del adulto.</li>
+      <li>Las situaciones y las preguntas <strong>no se repiten</strong> hasta que se agoten todas: la app recuerda por niño lo que ya salió esta semana.</li>
+      <li>También pueden imprimir las tarjetas desde la pestaña <strong>🖨️</strong> y jugar sin pantalla: el puntico de color en la esquina es la clave del adulto.</li>
     </ol>
-    <p>Las <strong>preguntas relámpago cubren todo el capítulo 39</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
-    <p>La idea no es memorizar una lista de comidas, sino conversar: <em>¿por qué Daniel decidió así? ¿Qué decisiones podemos tomar nosotros para honrar a Dios?</em></p>
+    <p>Las <strong>preguntas relámpago cubren todo el capítulo 41</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
+    <p>La idea no es memorizar una lista, sino conversar: <em>¿cuándo me toca a mí quedarme de pie? ¿Qué es lo más difícil de decir NO cuando todos dicen sí?</em></p>
   </div>
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 comidas sorpresa + 5 preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong> (las incorrectas no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de comidas y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Jueguen <strong>una partida por día</strong>: 5 situaciones sorpresa + 5 preguntas relámpago. Cada acierto suma <strong>⭐ 1 punto</strong> (los fallos no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de juego y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Además, el reto de la casa: <strong>una vez al día, quédense de pie</strong>. Cada noche cuenten un momento en que le tocó «no agacharse» — en el colegio, con los amigos o con el celular — y oren juntos por valentía para el día siguiente.</p>
     <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
   </div>
 </section>
@@ -581,65 +641,76 @@
 
 <script>
   // ── Datos ──
-  const FOODS = [
-    // Mesa del rey — de Babilonia
-    {emoji:'🥓', name:'Tocino de cerdo', side:'rey'},
-    {emoji:'🍖', name:'Costillas de cerdo', side:'rey'},
-    {emoji:'🦐', name:'Camarones', side:'rey'},
-    {emoji:'🦞', name:'Langosta', side:'rey'},
-    {emoji:'🦀', name:'Cangrejo', side:'rey'},
-    {emoji:'🍷', name:'Vino del rey', side:'rey'},
-    {emoji:'🍺', name:'Cerveza del banquete', side:'rey'},
-    // Mesa del rey — de hoy
-    {emoji:'🍬', name:'Golosinas', side:'rey'},
-    {emoji:'🍭', name:'Chupetas', side:'rey'},
-    {emoji:'🥤', name:'Gaseosa', side:'rey'},
-    {emoji:'🍟', name:'Papitas fritas', side:'rey'},
-    {emoji:'🍩', name:'Donas azucaradas', side:'rey'},
-    // Mesa de Daniel — de Babilonia
-    {emoji:'🥦', name:'Legumbres', side:'daniel'},
-    {emoji:'🫘', name:'Frijoles', side:'daniel'},
-    {emoji:'🥕', name:'Zanahorias', side:'daniel'},
-    {emoji:'🍎', name:'Manzanas', side:'daniel'},
-    {emoji:'🍇', name:'Uvas', side:'daniel'},
-    {emoji:'💧', name:'Agua fresca', side:'daniel'},
-    {emoji:'🌽', name:'Maíz', side:'daniel'},
-    {emoji:'🥒', name:'Pepinos', side:'daniel'},
-    // Mesa de Daniel — de hoy
-    {emoji:'🍌', name:'Banano', side:'daniel'},
-    {emoji:'🥗', name:'Ensalada fresca', side:'daniel'},
-    {emoji:'🥜', name:'Maní y nueces', side:'daniel'},
-    {emoji:'🥣', name:'Avena', side:'daniel'},
-    {emoji:'🍊', name:'Naranjas', side:'daniel'}
+  const CASES = [
+    // La multitud de Dura — del capítulo
+    {emoji:'🗿', name:'Postrarse ante la estatua de oro', side:'inclina'},
+    {emoji:'🎵', name:'"Suena la música… ¡todos al suelo!"', side:'inclina'},
+    {emoji:'👑', name:'Adorar al rey como si fuera Dios', side:'inclina'},
+    {emoji:'🙊', name:'Decir "yo también adoro tus dioses" para no meterse en problemas', side:'inclina'},
+    {emoji:'🐍', name:'Obedecer al rey antes que a Dios', side:'inclina'},
+    {emoji:'🗣️', name:'Acusar a los que no se postraron', side:'inclina'},
+    // La multitud de Dura — de hoy
+    {emoji:'😶', name:'Callar lo que creo por miedo', side:'inclina'},
+    {emoji:'👥', name:'Hacer algo malo porque "todos lo hacen"', side:'inclina'},
+    {emoji:'🙈', name:'Esconder que oro antes de comer', side:'inclina'},
+    {emoji:'😜', name:'Burlarse del que dice NO', side:'inclina'},
+    {emoji:'🏅', name:'Aceptar un premio por hacer trampa', side:'inclina'},
+    {emoji:'📱', name:'Copiar en el examen con el celular', side:'inclina'},
+    {emoji:'🤥', name:'Decir una mentira para caer bien', side:'inclina'},
+    {emoji:'🫣', name:'Quedarse callado cuando molestan a un compañero', side:'inclina'},
+    // Los tres amigos — del capítulo
+    {emoji:'🙏', name:'"Solo a Dios adoramos"', side:'firme'},
+    {emoji:'🔥', name:'Entrar al horno antes que desobedecer', side:'firme'},
+    {emoji:'💬', name:'"Y si no… igual serviremos a Dios"', side:'firme'},
+    {emoji:'🧍', name:'Quedarse de pie cuando todos se postran', side:'firme'},
+    {emoji:'🛡️', name:'Confiar en que Dios puede librarnos', side:'firme'},
+    {emoji:'💼', name:'Ser fiel en el trabajo que el rey les dio', side:'firme'},
+    // Los tres amigos — de hoy
+    {emoji:'😇', name:'Contar de Jesús a los amigos', side:'firme'},
+    {emoji:'✋', name:'Decir NO cuando todos dicen sí', side:'firme'},
+    {emoji:'🌱', name:'Ser fiel en lo pequeño', side:'firme'},
+    {emoji:'🤝', name:'Perdonar en vez de vengarse', side:'firme'},
+    {emoji:'📖', name:'Leer la Biblia aunque nadie mire', side:'firme'},
+    {emoji:'🍽️', name:'Orar antes de comer en el colegio', side:'firme'},
+    {emoji:'✍️', name:'Entregar el examen sin copiar', side:'firme'},
+    {emoji:'🕊️', name:'Guardar el sábado aunque cueste', side:'firme'}
   ];
 
   const QUIZ = [
-    {tag:'4–5 años', q:'¡Muéstrenme la cara de Daniel diciendo NO a la comida del rey!', a:'😤 ¡Esa carita valiente!'},
-    {tag:'4–5 años', q:'¿Cómo quedaron Daniel y sus amigos comiendo la comida sencilla? ¡Muéstrenme!', a:'💪 ¡Más fuertes!'},
-    {tag:'4–5 años', q:'¿Cuántos amigos eran en total? Cuenten con los dedos.', a:'4: Daniel, Ananías, Misael y Azarías'},
-    {tag:'4–5 años', q:'¿Qué pidió Daniel para comer y beber?', a:'🥦 Legumbres y 💧 agua'},
-    {tag:'6–7 años', q:'¿Cuántos días duró la prueba de la comida?', a:'10 días'},
-    {tag:'6–7 años', q:'¿Cuántos años estudiaron en Babilonia?', a:'3 años'},
-    {tag:'6–7 años', q:'¿Qué nombre nuevo le pusieron a Daniel?', a:'Beltsasar'},
-    {tag:'6–7 años', q:'¿Qué nombres nuevos les pusieron a Ananías, Misael y Azarías?', a:'Sadrac, Mesac y Abed-nego'},
-    {tag:'6–7 años', q:'¿Cómo se llamaba el rey de Babilonia?', a:'Nabucodonosor'},
-    {tag:'6–7 años', q:'¿De dónde se llevaron cautivos a Daniel y sus amigos?', a:'De Judá (Jerusalén) a Babilonia'},
-    {tag:'6–7 años', q:'¿Qué estudiaron en la escuela de Babilonia?', a:'Las letras y la lengua de los caldeos'},
-    {tag:'8–9 años', q:'¿Cómo se llamaba el oficial a quien Daniel pidió la prueba de los 10 días?', a:'Melsar'},
-    {tag:'8–9 años', q:'¿Cuántas veces mejores los halló el rey que a sus magos y astrólogos?', a:'Diez veces mejores'},
-    {tag:'8–9 años', q:'¿Por qué comer la comida del rey era deshonrar a Dios?', a:'Porque estaba ofrecida a los ídolos: comerla era rendir homenaje a los dioses de Babilonia'},
-    {tag:'8–9 años', q:'Completa: "Daniel propuso en su ________ no contaminarse".', a:'Corazón'},
-    {tag:'8–9 años', q:'¿Qué promesa se cumplió en ellos? (1 Samuel 2:30)', a:'"Yo honraré a los que me honran"'},
-    {tag:'8–9 años', q:'¿Cuántos años duraría el cautiverio de Israel en Babilonia?', a:'70 años'},
-    {tag:'8–9 años', q:'¿Por qué tenía miedo el príncipe de los eunucos de cambiarles la comida?', a:'Temía que el rey los viera más tristes y desmejorados y lo condenara a él: "condenaréis para con el rey mi cabeza"'},
-    {tag:'8–9 años', q:'Además de conocimiento, ¿qué don especial le dio Dios a Daniel?', a:'Entendimiento en toda visión y sueños'},
-    {tag:'8–9 años', q:'Según el capítulo, ¿qué dio carácter a toda la vida de Daniel y sus amigos?', a:'La fidelidad en las cosas pequeñas'}
+    {tag:'4–5 años', q:'¿Cuántos amigos se quedaron de pie sin agacharse? Cuenten con los dedos.', a:'3: Sadrac, Mesac y Abed-nego'},
+    {tag:'4–5 años', q:'¡Muéstrenme cómo se quedaron los tres amigos cuando sonó la música!', a:'🧍 ¡De pie y firmes!'},
+    {tag:'4–5 años', q:'¿De qué estaba hecha la estatua grande del rey?', a:'De oro, toda de oro'},
+    {tag:'4–5 años', q:'¿A quién adoraban solamente los tres amigos?', a:'Solo a Dios'},
+    {tag:'4–5 años', q:'¿Se quemaron los tres amigos dentro del fuego?', a:'No: salieron sin ningún daño'},
+    {tag:'4–5 años', q:'¿Cuántos varones vio el rey caminando en el fuego?', a:'Cuatro'},
+    {tag:'6–7 años', q:'¿Cómo se llamaban los tres amigos valientes?', a:'Sadrac, Mesac y Abed-nego'},
+    {tag:'6–7 años', q:'¿Cómo se llamaba el rey que mandó hacer la estatua de oro?', a:'Nabucodonosor'},
+    {tag:'6–7 años', q:'¿En qué llanura levantaron la estatua de oro?', a:'En la llanura de Dura'},
+    {tag:'6–7 años', q:'¿Qué tenía que hacer la gente cuando se oía la música?', a:'Postrarse y adorar la estatua de oro'},
+    {tag:'6–7 años', q:'¿Cuál era el castigo para el que no adorara la estatua?', a:'Ser echado en medio de un horno de fuego ardiendo'},
+    {tag:'6–7 años', q:'¿Cuántas veces más caliente mandó calentar el horno el rey?', a:'Siete veces más de lo acostumbrado'},
+    {tag:'6–7 años', q:'¿A quién reconoció el rey en el cuarto varón que andaba en el fuego?', a:'Al Hijo de Dios, el Salvador'},
+    {tag:'6–7 años', q:'¿Qué fue lo único que se les quemó a los tres amigos?', a:'Sus ligaduras, las cuerdas con que los ataron'},
+    {tag:'6–7 años', q:'¿Qué dijo el rey cuando los vio salir ilesos?', a:'"Bendito el Dios de ellos, de Sadrac, Mesac y Abed-nego"'},
+    {tag:'8–9 años', q:'¿Cuánto medía la estatua de oro?', a:'Sesenta codos de altura y seis codos de anchura'},
+    {tag:'8–9 años', q:'¿Por qué el rey hizo la estatua toda de oro y no como la del sueño?', a:'Para que toda ella simbolizara a Babilonia como reino eterno, indestructible y todopoderoso'},
+    {tag:'8–9 años', q:'Completa: "Y si no, sepas, oh rey, que tu dios no ________, ni tampoco honraremos la estatua que has levantado".', a:'Adoraremos'},
+    {tag:'8–9 años', q:'¿Qué preguntó el rey con la mano extendida en son de desafío?', a:'"¿Qué dios será aquel que os libre de mis manos?"'},
+    {tag:'8–9 años', q:'¿Quiénes le avisaron al rey que los tres no adoraban la estatua?', a:'Ciertos sabios celosos de los honores dados a los compañeros de Daniel'},
+    {tag:'8–9 años', q:'¿A quiénes mató la llama del fuego?', a:'A los hombres fuertes que echaron a Sadrac, Mesac y Abed-nego al horno'},
+    {tag:'8–9 años', q:'¿Qué promesa recordaron en la hora de su prueba? (Isaías 43:2)', a:'"Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti"'},
+    {tag:'8–9 años', q:'¿Cómo sabía el rey qué aspecto tendría el Hijo de Dios?', a:'Porque los cautivos hebreos le habían hablado de Cristo, el Redentor que iba a venir'},
+    {tag:'8–9 años', q:'¿Obliga Dios a los hombres a obedecerle?', a:'No: nunca compele; deja a todos libres para elegir a quién quieren servir'},
+    {tag:'8–9 años', q:'¿Qué decreto promulgó el rey después de aquel día?', a:'Que quien dijera blasfemia contra el Dios de Sadrac, Mesac y Abed-nego fuera descuartizado y su casa puesta por muladar'},
+    {tag:'8–9 años', q:'Según el capítulo, ¿qué probaron los tres hebreos delante de toda Babilonia?', a:'Su fe en Aquel a quien adoraban: entregaron sus cuerpos antes que servir a otro dios'}
   ];
 
-  // ── Partida: 5 comidas + 5 preguntas ──
-  const ACTIVITY = 'pr39';
+  // ── Partida: 5 situaciones + 5 preguntas ──
+  const ACTIVITY = 'pr41';
   const MATCH_CARDS = 5;
   const MATCH_QUIZ = 5;
+  const TOTAL_STEPS = MATCH_CARDS + MATCH_QUIZ;
+  const FLAMES = 7; // "siete veces más caliente"
   // Cuántas preguntas de cada edad entran en una partida (suman MATCH_QUIZ).
   const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
   let match = null; // {cards, quizzes, step, revealed, earned}
@@ -652,6 +723,8 @@
   const judgeQ = document.getElementById('judgeQ');
   const judgeYes = document.getElementById('judgeYes');
   const judgeNo = document.getElementById('judgeNo');
+  const flamesEl = document.getElementById('flames');
+  const furnaceMsg = document.getElementById('furnaceMsg');
 
   function shuffle(arr){
     const a = arr.slice();
@@ -662,10 +735,25 @@
     return a;
   }
 
+  // ── Termómetro del horno ──
+  flamesEl.innerHTML = Array.from({length: FLAMES}, () => '<span class="flame">🔥</span>').join('');
+  function setFurnace(lit, msg){
+    const flames = flamesEl.querySelectorAll('.flame');
+    flames.forEach((f, i) => f.classList.toggle('on', i < lit));
+    furnaceMsg.textContent = msg;
+  }
+  function furnaceForStep(step){
+    const lit = Math.min(FLAMES, Math.ceil((step / TOTAL_STEPS) * FLAMES));
+    if(lit <= 0) setFurnace(0, 'El horno está apagado… todavía.');
+    else if(lit < FLAMES) setFurnace(lit, `El horno se calienta: ${lit} de ${FLAMES} llamas.`);
+    else setFurnace(FLAMES, '¡Siete veces más caliente! Y ellos siguen firmes.');
+  }
+  setFurnace(0, 'El horno está apagado… todavía.');
+
   function phase(){
     if(!match) return 'idle';
     if(match.step < MATCH_CARDS) return 'card';
-    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
+    if(match.step < TOTAL_STEPS) return 'quiz';
     return 'done';
   }
 
@@ -679,10 +767,10 @@
   }
 
   function pickMatchCards(){
-    const sides = Math.random() < .5 ? ['rey', 'daniel'] : ['daniel', 'rey'];
+    const sides = Math.random() < .5 ? ['inclina', 'firme'] : ['firme', 'inclina'];
     const picked = [
-      ...AvProfile.pick(`${ACTIVITY}:card:${sides[0]}`, FOODS.filter(f => f.side === sides[0]), 3, f => f.name),
-      ...AvProfile.pick(`${ACTIVITY}:card:${sides[1]}`, FOODS.filter(f => f.side === sides[1]), 2, f => f.name)
+      ...AvProfile.pick(`${ACTIVITY}:card:${sides[0]}`, CASES.filter(c => c.side === sides[0]), 3, c => c.name),
+      ...AvProfile.pick(`${ACTIVITY}:card:${sides[1]}`, CASES.filter(c => c.side === sides[1]), 2, c => c.name)
     ];
     return shuffle(picked);
   }
@@ -704,19 +792,21 @@
     judge.hidden = true;
     match.revealed = false;
     const ph = phase();
+    if(ph === 'done'){ finishMatch(); return; }
+    furnaceForStep(match.step);
     if(ph === 'card'){
       quizBox.classList.remove('show');
       gameCard.style.display = '';
-      const f = match.cards[match.step];
-      roundLabel.textContent = `Comida ${match.step + 1} de ${MATCH_CARDS}`;
-      gameCard.classList.remove('revealed-rey','revealed-daniel');
+      const c = match.cards[match.step];
+      roundLabel.textContent = `Situación ${match.step + 1} de ${MATCH_CARDS}`;
+      gameCard.classList.remove('revealed-inclina','revealed-firme');
       gameCard.innerHTML = `
-        <div class="emoji">${f.emoji}</div>
-        <div class="food-name">${f.name}</div>
-        <div class="hint">¿Qué hacemos, agentes?</div>`;
+        <div class="emoji">${c.emoji}</div>
+        <div class="case-name">${c.name}</div>
+        <div class="hint">¿Te agachas o te quedas firme?</div>`;
       mainBtn.textContent = '¡Revelar!';
       mainBtn.hidden = false;
-    }else if(ph === 'quiz'){
+    }else{
       gameCard.style.display = 'none';
       quizBox.classList.add('show');
       const q = match.quizzes[match.step - MATCH_CARDS];
@@ -728,8 +818,6 @@
       quizA.classList.remove('show');
       mainBtn.textContent = 'Ver respuesta';
       mainBtn.hidden = false;
-    }else{
-      finishMatch();
     }
   }
 
@@ -737,14 +825,14 @@
     match.revealed = true;
     const ph = phase();
     if(ph === 'card'){
-      const f = match.cards[match.step];
-      const isRey = f.side === 'rey';
-      gameCard.classList.add(isRey ? 'revealed-rey' : 'revealed-daniel');
+      const c = match.cards[match.step];
+      const inclina = c.side === 'inclina';
+      gameCard.classList.add(inclina ? 'revealed-inclina' : 'revealed-firme');
       gameCard.innerHTML = `
-        <div class="emoji">${f.emoji}</div>
-        <div class="action-emoji">${isRey ? '🙊' : '💪'}</div>
-        <div class="action-name">${isRey ? '¡Mesa del rey!' : '¡Mesa de Daniel!'}</div>
-        <div class="hint">${isRey ? 'Tápate la boca — ¡no la comemos!' : 'Haz músculo — ¡más fuertes!'}</div>`;
+        <div class="emoji">${c.emoji}</div>
+        <div class="action-emoji">${inclina ? '🙇' : '🧍'}</div>
+        <div class="action-name">${inclina ? '¡La multitud de Dura!' : '¡Los tres amigos!'}</div>
+        <div class="hint">${inclina ? 'Como la multitud de Dura — ¡agáchate!' : 'Como los tres amigos — ¡de pie y firme!'}</div>`;
     }else{
       document.getElementById('quizA').classList.add('show');
     }
@@ -778,17 +866,18 @@
     document.getElementById('legend').hidden = false;
     quizBox.classList.remove('show');
     gameCard.style.display = '';
-    gameCard.classList.remove('revealed-rey','revealed-daniel');
-    roundLabel.textContent = '¡Bien hecho, agentes!';
+    gameCard.classList.remove('revealed-inclina','revealed-firme');
+    setFurnace(FLAMES, '🔥🔥🔥 Las llamas no quemaron a nadie: ni un cabello, ni olor de fuego.');
+    roundLabel.textContent = '¡Bien hecho, valientes!';
     const p = AvProfile.get();
     const scored = p ? `<div class="hint">⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.</div>` : '';
     const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
       ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
     gameCard.innerHTML = `
-      <div class="emoji">🏁</div>
-      <div class="food-name">¡Partida completa!</div>
+      <div class="emoji">👣</div>
+      <div class="case-name">¡Y apareció el Cuarto varón caminando en el fuego!</div>
+      <div class="hint">"He aquí que yo veo cuatro varones sueltos… y ningún daño hay en ellos."</div>
       ${scored}${extra}`;
-    mainBtn.dataset.mode = 'again';
     mainBtn.textContent = '🔁 Otra partida';
     mainBtn.hidden = false;
     match = null;
@@ -809,9 +898,9 @@
     }else{
       note.hidden = true;
     }
-    if(mainBtn.dataset.mode === 'again'){
+    if(mainBtn.textContent.includes('Otra partida')){
       mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
-    }else{
+    }else if(mainBtn.textContent.includes('partida')){
       mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
     }
   }
@@ -840,15 +929,16 @@
   // ── Tarjetas imprimibles ──
   function renderGrid(id, side){
     const grid = document.getElementById(id);
-    grid.innerHTML = FOODS.filter(f => f.side === side).map(f => `
+    const label = side === 'inclina' ? 'La multitud de Dura' : 'Los tres amigos';
+    grid.innerHTML = CASES.filter(c => c.side === side).map(c => `
       <div class="mini-card">
-        <span class="key-dot ${side === 'rey' ? 'key-rey' : 'key-daniel'}" title="${side === 'rey' ? 'Mesa del rey' : 'Mesa de Daniel'}"></span>
-        <div class="emoji">${f.emoji}</div>
-        <div class="food-name">${f.name}</div>
+        <span class="key-dot ${side === 'inclina' ? 'key-inclina' : 'key-firme'}" title="${label}"></span>
+        <div class="emoji">${c.emoji}</div>
+        <div class="case-name">${c.name}</div>
       </div>`).join('');
   }
-  renderGrid('gridRey','rey');
-  renderGrid('gridDaniel','daniel');
+  renderGrid('gridInclina','inclina');
+  renderGrid('gridFirme','firme');
 
   // ── Menú ──
   const menuBtn = document.getElementById('menuBtn');

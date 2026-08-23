@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2A1147">
+<title>El versículo que no se quema</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Memoriza Isaías 43:2 con gestos: 5 rondas de palabras que se borran + 5 rondas para armar el versículo. ¡Suma puntos para el tablero del Club de Aventureros!">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="El versículo que no se quema">
+<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Memoriza Isaías 43:2 con gestos: 5 rondas de palabras que se borran + 5 rondas para armar el versículo.">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr41-versiculo/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    /* Paleta horno de fuego: violeta de brasa, oro, ladrillo encendido, crema */
+    --night:#2A1147;
+    --night-deep:#1B0B2E;
+    --gold:#F5B324;
+    --gold-soft:#FFD97A;
+    --ember:#E2521F;
+    --ember-deep:#A73512;
+    --cream:#FFF4E2;
+    --ok:#2E9E5B;
+    --ok-deep:#1E7040;
+    --ink:#2A1B10;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--night);
+    background-image:
+      radial-gradient(circle at 50% 100%, rgba(226,82,31,.30), transparent 55%),
+      radial-gradient(circle at 15% 8%, rgba(255,217,122,.10), transparent 42%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.03) 46px 48px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  /* ── Cabecera ── */
+  header{text-align:center;padding:10px 16px 12px}
+  @media (max-width:600px){
+    .subtitle{display:none}
+    header{padding-bottom:8px}
+  }
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  h1{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.5rem,5vw,2.3rem);
+    line-height:1.15;
+    margin-top:6px;
+  }
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+
+  /* ── Barra superior + menú ── */
+  .topbar{
+    display:flex;align-items:center;gap:10px;
+    padding:10px 12px 0;max-width:1000px;margin:0 auto;
+  }
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
+  .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
+  .player-chip + .menu-wrap{margin-left:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+    .back-link{padding:8px 10px}
+    .menu-btn{padding:8px 12px}
+  }
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;
+    border:2px solid var(--gold);background:transparent;color:var(--gold-soft);
+    border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;
+    display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;
+    padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;
+    background:transparent;border:none;color:var(--ink);border-radius:12px;
+    padding:12px 14px;min-height:44px;cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(245,179,36,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--night);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--night-deep)}
+
+  .back-link{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--gold-soft);text-decoration:none;border:2px solid transparent;
+    border-radius:999px;padding:8px 16px;margin-bottom:8px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+
+  /* ── Reto de puntos ── */
+  .judge{
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+    margin-top:16px;background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);border-radius:16px;padding:12px 14px;
+    font-family:'Fredoka',sans-serif;font-weight:600;
+  }
+  .judge span{flex-basis:100%;text-align:center}
+  .judge[hidden]{display:none}
+  .practice-note{
+    margin-top:16px;text-align:center;font-weight:700;font-size:.95rem;
+    color:var(--gold-soft);opacity:.9;
+  }
+  .practice-note[hidden]{display:none}
+
+  /* ══════════ MODO JUEGO ══════════ */
+  .stage{max-width:520px;margin:0 auto;text-align:center}
+  .round-label{
+    font-family:'Fredoka',sans-serif;color:var(--gold-soft);
+    letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;margin-bottom:12px;
+  }
+  .game-card{
+    background:var(--cream);color:var(--ink);border-radius:28px;
+    border:6px solid var(--gold);box-shadow:0 12px 0 rgba(0,0,0,.28);
+    padding:24px 16px 22px;min-height:340px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;
+  }
+  .game-card .emoji{font-size:clamp(4rem,20vw,6.4rem);line-height:1}
+  .game-card .big-title{
+    font-family:'Fredoka',sans-serif;font-weight:700;
+    font-size:clamp(1.3rem,5.5vw,1.9rem);line-height:1.15;
+  }
+  .game-card .hint{font-weight:700;font-size:1rem;opacity:.7}
+  .verse-ref{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    background:var(--ember);color:#fff;border-radius:999px;padding:4px 14px;
+  }
+  .verse-box{display:flex;flex-direction:column;gap:12px;width:100%}
+  .chunk{
+    display:flex;align-items:flex-start;gap:10px;text-align:left;
+    background:rgba(245,179,36,.14);border-radius:14px;padding:8px 10px;
+  }
+  .chunk .gest{font-size:1.9rem;line-height:1.1;flex-shrink:0}
+  .chunk .words{
+    font-family:'Fredoka',sans-serif;font-weight:600;
+    font-size:clamp(1rem,4.4vw,1.25rem);line-height:1.4;
+  }
+  .chunk .gest-name{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.75rem;opacity:.62;margin-top:2px}
+  .w{display:inline-block;margin-right:.28em}
+  .w.gone{
+    color:var(--ember-deep);background:rgba(226,82,31,.18);
+    border-radius:6px;padding:0 .18em;letter-spacing:.06em;
+  }
+  .verse-box.full .w{color:var(--ok-deep)}
+  .coach-tip{
+    font-weight:700;font-size:.95rem;background:rgba(42,17,71,.08);
+    border-radius:12px;padding:8px 12px;
+  }
+
+  /* Armar el versículo */
+  .arma-target{
+    display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+    min-height:60px;width:100%;
+    background:rgba(46,158,91,.14);border:3px dashed var(--ok-deep);
+    border-radius:16px;padding:10px;
+  }
+  .slot{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;
+    background:var(--ok);color:#fff;border-radius:12px;padding:8px 12px;min-height:44px;
+    display:flex;align-items:center;
+  }
+  .slot.empty{background:transparent;color:var(--ink);opacity:.45;border:2px dashed rgba(42,27,16,.35)}
+  .arma-pool{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:100%}
+  .word-btn{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;
+    background:var(--night);color:var(--cream);border:3px solid var(--gold);
+    border-radius:14px;padding:10px 16px;min-height:48px;cursor:pointer;
+  }
+  .word-btn:focus-visible{outline:3px solid var(--ember);outline-offset:3px}
+  .word-btn[hidden]{display:none}
+  .word-btn.wrong{animation:shake .3s}
+  @keyframes shake{
+    0%,100%{transform:translateX(0)}
+    25%{transform:translateX(-7px)}
+    75%{transform:translateX(7px)}
+  }
+  .feedback{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem}
+  .feedback.ok{color:var(--ok-deep)}
+  .feedback.bad{color:var(--ember-deep)}
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+  .btn{
+    font-family:'Fredoka',sans-serif;font-size:1.1rem;font-weight:600;border:none;
+    border-radius:999px;padding:14px 30px;cursor:pointer;min-height:48px;
+    box-shadow:0 5px 0 rgba(0,0,0,.3);transition:transform .1s ease;
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-gold{background:var(--gold);color:var(--night-deep)}
+  .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-outline:active{transform:translateY(2px)}
+  .btn-sm{font-size:.95rem;padding:9px 20px;min-height:44px}
+  .btn[hidden]{display:none}
+
+  /* Medallas del versículo */
+  .medals{
+    margin-top:22px;background:rgba(255,255,255,.07);border:2px solid rgba(245,179,36,.5);
+    border-radius:16px;padding:14px;
+  }
+  .medals h3{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;
+    color:var(--gold-soft);margin-bottom:10px;
+  }
+  .medal-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+  .medal{
+    display:flex;align-items:center;gap:10px;text-align:left;
+    font-weight:700;font-size:.9rem;line-height:1.3;
+  }
+  .medal .mark{font-size:1.3rem;flex-shrink:0}
+  .medal.done{color:var(--gold-soft)}
+
+  /* ══════════ MATERIAL IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:620px;margin:0 auto 20px}
+  .sheet-title{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.2rem;
+    margin:26px 0 12px;display:flex;align-items:center;gap:10px;
+  }
+  .strip-set{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+  .tira{
+    display:flex;align-items:center;gap:12px;
+    background:var(--cream);color:var(--ink);
+    border:3px dashed var(--ember-deep);border-radius:12px;padding:10px 12px;
+  }
+  .tira .n{
+    font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;
+    background:var(--gold);color:var(--night-deep);border-radius:999px;
+    width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .tira .txt{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;line-height:1.25}
+  .tira .txt small{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.78rem;opacity:.65}
+  .tira .mini{width:44px;height:44px;flex-shrink:0}
+  .gest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+  .gest-card{
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:18px;
+    padding:12px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;
+    box-shadow:0 5px 0 rgba(0,0,0,.25);break-inside:avoid;
+  }
+  .gest-card svg{width:100%;height:auto;max-width:120px}
+  .gest-card .name{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;line-height:1.2}
+  .gest-card .what{font-weight:700;font-size:.8rem;opacity:.7;line-height:1.25}
+  .g-svg{fill:none;stroke:var(--ink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+  .g-svg .thin{stroke-width:4}
+
+  /* ══════════ PARA PADRES ══════════ */
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);
+    border-radius:22px;padding:22px 20px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.2rem;
+    margin-bottom:10px;display:flex;align-items:center;gap:8px;
+  }
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .verse{
+    border-left:5px solid var(--ember);background:rgba(226,82,31,.08);
+    border-radius:0 12px 12px 0;padding:12px 14px;font-style:italic;font-weight:700;
+  }
+  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--ember-deep)}
+
+  @media (prefers-reduced-motion:reduce){
+    .word-btn.wrong{animation:none}
+    .btn{transition:none}
+  }
+
+  /* ── Impresión ── */
+  @media print{
+    body{background:#fff;color:#000;background-image:none}
+    header,.topbar,#juego,#padres,.print-note{display:none!important}
+    section{display:none!important}
+    #material{display:block!important;padding:0}
+    .sheet-title{color:#000}
+    .tira{border:2px dashed #000;background:#fff;break-inside:avoid;padding:6mm 4mm}
+    .tira .n{background:#fff;border:1px solid #000;color:#000}
+    .tira .txt{font-size:14pt}
+    .gest-grid{grid-template-columns:repeat(3,1fr);gap:8mm}
+    .gest-card{box-shadow:none;background:#fff;border-color:#000;padding:6mm 3mm}
+    .g-svg{stroke:#000;fill:#fff}
+    .page-break{break-before:page}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
+      <button class="menu-item" data-tab="material">🖨️ Tiras y gestos para imprimir</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 41 · El horno de fuego</div>
+  <h1>El versículo que no se quema</h1>
+  <p class="subtitle">Las palabras se van borrando… ¡pero los gestos te ayudan a recordarlas!</p>
+</header>
+
+<!-- ══════════ MODO JUEGO ══════════ -->
+<section id="juego" class="active">
+  <div class="stage">
+    <div class="round-label" id="roundLabel">¿Listos para memorizar?</div>
+
+    <div class="game-card" id="gameCard" aria-live="polite">
+      <div class="emoji">🔥</div>
+      <div class="big-title">¡Partida del versículo!</div>
+      <div class="hint">5 rondas de palabras que se borran + 5 rondas para armar el versículo</div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
+    </div>
+
+    <div class="judge" id="judge" hidden>
+      <span id="judgeQ">¿Lo dijo completo?</span>
+      <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
+    </div>
+
+    <p class="practice-note" id="practiceNote" hidden>🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.</p>
+
+    <div class="medals">
+      <h3>🏅 Versículos que ya dijiste de memoria</h3>
+      <div class="medal-list" id="medalList"></div>
+      <button class="btn btn-outline btn-sm" id="resetProgress">🧹 Empezar el álbum de nuevo</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MATERIAL IMPRIMIBLE ══════════ -->
+<section id="material">
+  <p class="print-note">
+    Usa <strong>Ctrl/Cmd + P</strong> para imprimir. Primero salen las <strong>tiras del versículo</strong>
+    (se recortan por la línea punteada, se revuelven y el niño las ordena en el piso o en la mesa) y después
+    la <strong>hoja de gestos</strong> para pegar en la pared del club.
+  </p>
+
+  <div class="sheet-title"><span>✂️</span> Tiras para recortar y ordenar</div>
+  <div id="stripSheets"></div>
+
+  <div class="sheet-title page-break"><span>🙌</span> Hoja de gestos para la pared</div>
+  <div class="gest-grid" id="gestSheet"></div>
+</section>
+
+<!-- ══════════ PARA PADRES ══════════ -->
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 La historia</h2>
+    <p>Esta dinámica está basada en <strong>Daniel 3</strong> (capítulo 41 de <em>Profetas y Reyes</em>, «El horno de fuego»). Nabucodonosor levantó en la llanura de Dura una imagen de oro de <strong>sesenta codos de altura y seis de anchura</strong>, y decretó que al sonar la música todos se postraran ante ella.</p>
+    <p>Tres jóvenes hebreos —<strong>Sadrac, Mesac y Abed-nego</strong>— no doblaron la rodilla. Le respondieron al rey: «He aquí nuestro Dios a quien honramos, puede librarnos del horno de fuego ardiendo… <strong>y si no, sepas, oh rey, que tu dios no adoraremos</strong>». El horno se calentó siete veces más de lo acostumbrado, pero dentro del fuego el rey vio <strong>cuatro varones</strong>: el Salvador mismo caminaba con ellos. Salieron ilesos: ni un cabello quemado, ni olor de fuego en sus ropas.</p>
+    <p>El capítulo dice que, en la hora de su prueba, ellos <strong>recordaron una promesa</strong>. Esa promesa es el versículo de este juego.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>💡 ¿Qué aprende su hijo?</h2>
+    <ul>
+      <li><strong>Guardar la Palabra en el corazón</strong>: lo que se memoriza hoy es lo que se recuerda en el día difícil, como les pasó a los tres jóvenes.</li>
+      <li><strong>Aprender con el cuerpo</strong>: los gestos anclan las palabras. Un niño de 4 años que no lee todavía puede decir el versículo completo si tiene el gesto.</li>
+      <li><strong>Fidelidad sin condiciones</strong>: «y si no» — obedecer a Dios aunque no sepamos cómo termina la historia.</li>
+      <li><strong>Dios acompaña</strong>: no siempre apaga el horno; entra en él con nosotros.</li>
+    </ul>
+    <p class="verse">«Cuando pasares por las aguas, yo seré contigo; y por los ríos, no te anegarán. Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti.» <span>Isaías 43:2</span></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🏠 Cómo jugar la dinámica</h2>
+    <ol>
+      <li>Toquen <strong>▶ Jugar partida</strong>. La app elige el versículo de la semana: Isaías 43:2 o una de las dos frases cortas del capítulo.</li>
+      <li><strong>Rondas 1 a 5 (palabras que se borran).</strong> En la ronda 1 el versículo está completo: léanlo juntos en voz alta <em>haciendo los gestos</em> que aparecen al lado de cada trozo. En cada ronda desaparecen más palabras (quedan chamuscadas 🔥) hasta que en la ronda 5 no queda ninguna: su hijo lo dice completo de memoria, solo con los gestos como pista.</li>
+      <li>Después de cada ronda, ustedes confirman en el bloque punteado: <strong>⭐ ¡Sí! +1</strong> si lo dijo, o <strong>😅 Esta vez no</strong>. El adulto es el juez: aquí no se califica solo, porque lo que importa es la voz y el gesto.</li>
+      <li><strong>Rondas 6 a 10 (armar el versículo).</strong> Salen unas palabras revueltas en botones grandes y su hijo las toca <em>en orden</em>. Esta mitad la califica la app sola: si toca todo en orden a la primera, suma ⭐. Si se equivoca, el botón se sacude y puede seguir intentando hasta completarlo.</li>
+      <li>Cada partida usa un <strong>recorte distinto</strong> del versículo y unas palabras borradas distintas: la app recuerda por niño y por semana lo que ya salió, así que no se repite hasta agotar la bolsa.</li>
+      <li>Cuando su hijo dice un versículo completo de memoria en la ronda 5, se le pega una 🏅 en el <strong>álbum</strong> de la parte de abajo. Al completar los tres, el álbum celebra y se limpia para volver a empezar.</li>
+      <li>Sin pantalla: impriman las <strong>tiras</strong> desde la pestaña 🖨️, recórtenlas, revuélvanlas y que las ordene en el piso. La <strong>hoja de gestos</strong> se pega en la pared del club.</li>
+    </ol>
+    <p>Los tres versículos salen del capítulo 41 de <em>Profetas y Reyes</em> (versión Reina Valera), así que también sirven de repaso para el examen didáctico de Conexión Bíblica 2026.</p>
+    <p>Y lo más importante: conversen. <em>¿Por qué crees que ellos recordaron ese versículo justo frente al horno? ¿Qué “fuego” te da miedo a ti? ¿Quién camina contigo ahí?</em></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ El reto de la semana</h2>
+    <p>Jueguen <strong>una partida por día</strong>: 5 rondas de memoria + 5 rondas de armar. Cada acierto suma <strong>⭐ 1 punto</strong> (los fallos no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de memoria y 5 de armar</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Reto extra para el sábado: que su hijo diga <strong>Isaías 43:2 completo con gestos</strong> delante de la clase, y que enseñe los gestos a otro niño. Enseñar es la mejor manera de no olvidar.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+
+<script>
+  // ══════════ Gestos (SVG inline, contorno gordo) ══════════
+  const GESTOS = {
+    olas: {
+      nombre: 'Olas',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M12 34 q 9.5 -14 19 0 t 19 0 t 19 0 t 19 0"/><path d="M12 54 q 9.5 -14 19 0 t 19 0 t 19 0 t 19 0"/><path d="M12 74 q 9.5 -14 19 0 t 19 0 t 19 0 t 19 0"/></svg>'
+    },
+    manos: {
+      nombre: 'Manos juntas',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><rect x="10" y="44" width="32" height="26" rx="13"/><path d="M42 51 q 11 -7 11 5 q 0 12 -11 5"/><rect x="58" y="44" width="32" height="26" rx="13"/><path d="M58 51 q -11 -7 -11 5 q 0 12 11 5"/><path class="thin" d="M50 26 v 8 M36 30 l 5 6 M64 30 l -5 6"/></svg>'
+    },
+    rio: {
+      nombre: 'Río',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M20 10 q 16 30 4 80"/><path d="M80 10 q -16 30 -4 80"/><path class="thin" d="M38 34 q 12 -10 24 0"/><path class="thin" d="M38 54 q 12 -10 24 0"/><path class="thin" d="M38 74 q 12 -10 24 0"/></svg>'
+    },
+    no: {
+      nombre: 'Brazos cruzados: ¡NO!',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34"/><path d="M30 30 L70 70"/><path d="M70 30 L30 70"/></svg>'
+    },
+    fuego: {
+      nombre: 'Dedos como llamas',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 12 C 64 30 74 40 74 58 C 74 76 63 88 50 88 C 37 88 26 76 26 58 C 26 42 38 38 44 24 C 44 42 54 46 54 56 C 61 48 58 28 50 12 Z"/></svg>'
+    },
+    soplo: {
+      nombre: 'Sopla y sacude las manos',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="34" cy="50" r="22"/><circle cx="28" cy="44" r="3"/><path d="M56 46 q 16 -8 30 -2"/><path d="M56 56 q 18 -2 30 8"/><path d="M52 66 q 12 6 22 4"/></svg>'
+    },
+    llama: {
+      nombre: 'Una llamita en la mano',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 16 C 58 28 64 34 64 44 C 64 54 58 60 50 60 C 42 60 36 54 36 44 C 36 36 43 33 46 24 C 46 36 52 38 52 44 C 56 40 55 26 50 16 Z"/><rect x="26" y="66" width="48" height="22" rx="11"/></svg>'
+    },
+    corazon: {
+      nombre: 'Manos en el corazón',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 84 C 18 62 12 42 26 32 C 37 24 48 30 50 42 C 52 30 63 24 74 32 C 88 42 82 62 50 84 Z"/></svg>'
+    },
+    dedo: {
+      nombre: 'Un dedo firme al cielo',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 10 v 34"/><rect x="30" y="44" width="40" height="34" rx="14"/><path d="M30 56 q -12 -4 -12 8 q 0 12 12 8"/></svg>'
+    },
+    corona: {
+      nombre: 'Corona del rey',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 72 L24 30 L37 48 L50 24 L63 48 L76 30 L82 72 Z"/><path d="M18 80 h 64"/></svg>'
+    },
+    idolo: {
+      nombre: 'La estatua de oro',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="24" r="12"/><rect x="38" y="40" width="24" height="34" rx="7"/><rect x="26" y="78" width="48" height="12" rx="5"/></svg>'
+    },
+    abrir: {
+      nombre: 'Abre las manos: ¡libres!',
+      svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="48" width="30" height="26" rx="13"/><path d="M38 55 q 10 -7 10 5 q 0 12 -10 5"/><rect x="62" y="48" width="30" height="26" rx="13"/><path d="M62 55 q -10 -7 -10 5 q 0 12 10 5"/><path class="thin" d="M50 14 v 12 M30 20 l 7 9 M70 20 l -7 9"/></svg>'
+    }
+  };
+
+  // ══════════ Versículos del capítulo 41 ══════════
+  const VERSES = [
+    {
+      id: 'isa43',
+      ref: 'Isaías 43:2',
+      titulo: 'La promesa que recordaron frente al horno',
+      chunks: [
+        {t:'Cuando pasares por las aguas,', emoji:'🌊', g:'olas',    gesto:'mueve las manos como olas'},
+        {t:'yo seré contigo;',              emoji:'🤝', g:'manos',   gesto:'tómense las manos'},
+        {t:'y por los ríos,',               emoji:'🏞️', g:'rio',     gesto:'las manos avanzan como un río'},
+        {t:'no te anegarán.',               emoji:'🙅', g:'no',      gesto:'cruza los brazos y di ¡NO!'},
+        {t:'Cuando pasares por el fuego,',  emoji:'🔥', g:'fuego',   gesto:'mueve los dedos como llamas'},
+        {t:'no te quemarás,',               emoji:'💨', g:'soplo',   gesto:'sopla y sacude las manos'},
+        {t:'ni la llama',                   emoji:'🕯️', g:'llama',   gesto:'una manito arriba como llamita'},
+        {t:'arderá en ti.',                 emoji:'❤️', g:'corazon', gesto:'pon las manos en el corazón'}
+      ]
+    },
+    {
+      id: 'dan318',
+      ref: 'Daniel 3:18',
+      titulo: 'La respuesta valiente de los tres jóvenes',
+      chunks: [
+        {t:'y si no,',            emoji:'☝️', g:'dedo',   gesto:'un dedo firme al cielo'},
+        {t:'sepas, oh rey,',      emoji:'👑', g:'corona', gesto:'dibuja una corona sobre tu cabeza'},
+        {t:'que tu dios',         emoji:'🗿', g:'idolo',  gesto:'señala al frente, a la estatua'},
+        {t:'no adoraremos',       emoji:'🙅', g:'no',     gesto:'cruza los brazos, cabeza en alto'}
+      ]
+    },
+    {
+      id: 'dan329',
+      ref: 'Daniel 3:29',
+      titulo: 'Lo que el rey reconoció al final',
+      chunks: [
+        {t:'no hay dios',      emoji:'🙅', g:'no',    gesto:'cruza los brazos y di ¡NO!'},
+        {t:'que pueda librar', emoji:'🙌', g:'abrir', gesto:'abre las manos: ¡libres!'},
+        {t:'como éste',        emoji:'☝️', g:'dedo',  gesto:'señala al cielo con un dedo'}
+      ]
+    }
+  ];
+
+  // Palabras con su trozo de origen (para pintar gestos y para armar el versículo)
+  VERSES.forEach(v => {
+    v.words = [];
+    v.chunks.forEach((c, ci) => {
+      c.wordIdx = [];
+      c.t.split(/\s+/).forEach(w => {
+        c.wordIdx.push(v.words.length);
+        v.words.push({w, ci});
+      });
+    });
+    v.texto = v.chunks.map(c => c.t).join(' ');
+  });
+
+  // Patrones de borrado: cambian qué palabras se chamuscan primero.
+  const PATRONES = [
+    {id:'p1', offset:0}, {id:'p2', offset:1}, {id:'p3', offset:2},
+    {id:'p4', offset:3}, {id:'p5', offset:4}, {id:'p6', offset:5}
+  ];
+
+  // Pistas del entrenador (una por ronda de memoria)
+  const TIPS = [
+    {id:'t01', t:'Dilo bien fuerte, como si hablaras delante del rey.'},
+    {id:'t02', t:'Ahora en voz de secreto, bajito, como una oración.'},
+    {id:'t03', t:'Hazlo de pie y con los gestos bien grandes.'},
+    {id:'t04', t:'Dilo mientras marchas en el puesto: un paso por palabra.'},
+    {id:'t05', t:'Turnos: el adulto dice un trozo, el niño dice el siguiente.'},
+    {id:'t06', t:'Dilo con los ojos cerrados, solo con los gestos en el aire.'},
+    {id:'t07', t:'Dilo rapidito, sin equivocarte, como un trabalenguas.'},
+    {id:'t08', t:'Dilo cantando, con la melodía que se te ocurra.'},
+    {id:'t09', t:'Dilo señalando a alguien de la casa: es una promesa para él.'},
+    {id:'t10', t:'Dilo dando una palmada en cada gesto.'},
+    {id:'t11', t:'Dilo como si estuvieras dentro del horno: ¡valiente!'},
+    {id:'t12', t:'Dilo y al final grita: ¡Dios va conmigo!'}
+  ];
+
+  // Recortes para armar: tramos seguidos de palabras
+  function buildSpans(verse, len){
+    const out = [];
+    for(let i = 0; i + len <= verse.words.length; i++){
+      out.push({
+        key: `${verse.id}:${i}:${len}`,
+        words: verse.words.slice(i, i + len).map(o => o.w),
+        chunkIdx: verse.words[i].ci
+      });
+    }
+    return out;
+  }
+
+  // ══════════ Partida ══════════
+  const ACTIVITY = 'pr41-versiculo';
+  const MATCH_CARDS = 5;
+  const MATCH_QUIZ = 5;
+  const FRACS = [0, .3, .55, .8, 1];
+  const SPAN_MIX = [[3, 2], [4, 2], [5, 1]];
+
+  let match = null;
+
+  const gameCard = document.getElementById('gameCard');
+  const mainBtn = document.getElementById('mainBtn');
+  const roundLabel = document.getElementById('roundLabel');
+  const judge = document.getElementById('judge');
+  const judgeQ = document.getElementById('judgeQ');
+  const judgeYes = document.getElementById('judgeYes');
+  const judgeNo = document.getElementById('judgeNo');
+  const practiceNote = document.getElementById('practiceNote');
+  const medalList = document.getElementById('medalList');
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i = a.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function phase(){
+    if(!match) return 'idle';
+    if(match.step < MATCH_CARDS) return 'card';
+    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
+    return 'done';
+  }
+
+  // Orden en que se van chamuscando las palabras (progresivo y estable en la partida)
+  function burnOrder(verse, patron){
+    const n = verse.words.length;
+    return verse.words
+      .map((_, i) => i)
+      .sort((a, b) => {
+        const ka = (a * 7 + patron.offset * 11) % n;
+        const kb = (b * 7 + patron.offset * 11) % n;
+        return ka === kb ? a - b : ka - kb;
+      });
+  }
+
+  function hiddenSet(verse, order, frac){
+    const k = Math.round(frac * verse.words.length);
+    return new Set(order.slice(0, k));
+  }
+
+  function pickSpans(verse){
+    const picked = [];
+    SPAN_MIX.forEach(([len, n]) => {
+      const bag = buildSpans(verse, Math.min(len, verse.words.length));
+      if(!bag.length) return;
+      picked.push(...AvProfile.pick(`${ACTIVITY}:arma:${verse.id}:${len}`, bag, n, s => s.key));
+    });
+    // Red de seguridad: si algún grupo no alcanzó, se rellena con tramos de 3.
+    for(let guard = 0; picked.length < MATCH_QUIZ && guard < 5; guard++){
+      const bag = buildSpans(verse, Math.min(3, verse.words.length));
+      if(!bag.length) break;
+      picked.push(...AvProfile.pick(`${ACTIVITY}:arma:${verse.id}:3`, bag, MATCH_QUIZ - picked.length, s => s.key));
+    }
+    return picked.slice(0, MATCH_QUIZ);
+  }
+
+  function startMatch(){
+    practiceNote.hidden = true;
+    const verse = AvProfile.pick(`${ACTIVITY}:versiculo`, VERSES, 1, v => v.id)[0] || VERSES[0];
+    const patron = AvProfile.pick(`${ACTIVITY}:patron`, PATRONES, 1, p => p.id)[0] || PATRONES[0];
+    match = {
+      verse,
+      patron,
+      order: burnOrder(verse, patron),
+      tips: AvProfile.pick(`${ACTIVITY}:tip`, TIPS, MATCH_CARDS, t => t.id),
+      spans: pickSpans(verse),
+      step: 0,
+      revealed: false,
+      earned: 0,
+      quizOk: 0,
+      placed: 0,
+      errors: 0
+    };
+    showStep();
+  }
+
+  function verseHTML(verse, hidden, full){
+    const rows = verse.chunks.map(c => {
+      const words = c.wordIdx.map(i => {
+        const w = verse.words[i].w;
+        if(!full && hidden.has(i)){
+          return `<span class="w gone">${'▁'.repeat(Math.max(2, Math.min(6, w.length)))}</span>`;
+        }
+        return `<span class="w">${esc(w)}</span>`;
+      }).join('');
+      return `<div class="chunk">
+          <span class="gest" aria-hidden="true">${c.emoji}</span>
+          <span class="words">${words}<span class="gest-name">${esc(c.gesto)}</span></span>
+        </div>`;
+    }).join('');
+    return `<div class="verse-box${full ? ' full' : ''}">${rows}</div>`;
+  }
+
+  function showStep(){
+    judge.hidden = true;
+    match.revealed = false;
+    const ph = phase();
+    if(ph === 'card'){
+      const v = match.verse;
+      const frac = FRACS[match.step];
+      const hidden = hiddenSet(v, match.order, frac);
+      const tip = match.tips[match.step] || TIPS[0];
+      roundLabel.textContent = `Memoria ${match.step + 1} de ${MATCH_CARDS}`;
+      const cabeza = match.step === 0
+        ? '👀 Léanlo juntos en voz alta, haciendo los gestos.'
+        : (match.step === MATCH_CARDS - 1
+            ? '🔥 ¡Todo de memoria! Solo quedan los gestos.'
+            : '🔥 Se quemaron algunas palabras: dilo igual, completito.');
+      gameCard.innerHTML = `
+        <span class="verse-ref">${esc(v.ref)}</span>
+        ${verseHTML(v, hidden, false)}
+        <div class="coach-tip">${esc(cabeza)}</div>
+        <div class="hint">💡 ${esc(tip.t)}</div>`;
+      mainBtn.textContent = match.step === MATCH_CARDS - 1 ? '¡Lo dije completo! ▶' : 'Ya lo dijimos ▶';
+      mainBtn.hidden = false;
+    }else if(ph === 'quiz'){
+      startSpanRound();
+    }else{
+      finishMatch();
+    }
+  }
+
+  // ── Segunda mitad: armar el versículo tocando las palabras en orden ──
+  function startSpanRound(){
+    const idx = match.step - MATCH_CARDS;
+    const span = match.spans[idx];
+    match.placed = 0;
+    match.errors = 0;
+    roundLabel.textContent = `Armar ${idx + 1} de ${MATCH_QUIZ}`;
+    const chunk = match.verse.chunks[span.chunkIdx];
+    const pool = shuffle(span.words.map((w, i) => ({w, i})));
+    gameCard.innerHTML = `
+      <span class="verse-ref">${esc(match.verse.ref)}</span>
+      <div class="big-title">Arma el versículo</div>
+      <div class="hint">${esc(chunk.emoji)} Toca las palabras <strong>en orden</strong>. Pista: ${esc(chunk.gesto)}.</div>
+      <div class="arma-target" id="armaTarget">${
+        span.words.map(() => '<span class="slot empty">▁▁▁</span>').join('')
+      }</div>
+      <div class="arma-pool" id="armaPool">${
+        pool.map(o => `<button class="word-btn" type="button" data-i="${o.i}">${esc(o.w)}</button>`).join('')
+      }</div>
+      <div class="feedback" id="armaFeedback"></div>`;
+    mainBtn.hidden = true;
+    document.getElementById('armaPool').addEventListener('click', onWordTap);
+  }
+
+  function onWordTap(e){
+    const btn = e.target.closest('.word-btn');
+    if(!btn || btn.hidden) return;
+    const span = match.spans[match.step - MATCH_CARDS];
+    const expected = span.words[match.placed];
+    if(btn.textContent !== expected){
+      match.errors++;
+      btn.classList.remove('wrong');
+      void btn.offsetWidth;
+      btn.classList.add('wrong');
+      const fb = document.getElementById('armaFeedback');
+      fb.className = 'feedback bad';
+      fb.textContent = '🤔 Esa no va todavía… ¿cuál sigue?';
+      return;
+    }
+    const slots = document.getElementById('armaTarget').children;
+    const slot = slots[match.placed];
+    slot.textContent = expected;
+    slot.classList.remove('empty');
+    btn.hidden = true;
+    match.placed++;
+    const fb = document.getElementById('armaFeedback');
+    if(match.placed < span.words.length){
+      fb.className = 'feedback ok';
+      fb.textContent = '👍 ¡Así es!';
+      return;
+    }
+    finishSpanRound();
+  }
+
+  function finishSpanRound(){
+    const ok = match.errors === 0;
+    const fb = document.getElementById('armaFeedback');
+    const p = AvProfile.get();
+    match.revealed = true;
+    if(ok) match.quizOk++;
+    if(p && AvProfile.canScore('quiz')){
+      AvProfile.score(ok, 'quiz');
+      if(ok) match.earned++;
+      fb.className = ok ? 'feedback ok' : 'feedback bad';
+      fb.textContent = ok
+        ? '⭐ ¡Perfecto a la primera! +1 punto'
+        : '💪 Lo armaste completo, pero con ayuditas: esta vez no suma.';
+    }else{
+      fb.className = ok ? 'feedback ok' : 'feedback bad';
+      fb.textContent = (ok ? '🎉 ¡Perfecto! ' : '💪 ¡Completo! ') +
+        (p ? '(De práctica: los puntos de hoy ya están.)' : '(Sin perfil: no suma al tablero.)');
+    }
+    mainBtn.textContent = 'Siguiente ▶';
+    mainBtn.hidden = false;
+  }
+
+  // ── Primera mitad: el adulto confirma ──
+  function revealStep(){
+    match.revealed = true;
+    const v = match.verse;
+    gameCard.innerHTML = `
+      <span class="verse-ref">${esc(v.ref)}</span>
+      ${verseHTML(v, new Set(), true)}
+      <div class="coach-tip">✅ Así es el versículo completo. ¿Le salió?</div>`;
+    const p = AvProfile.get();
+    if(p && AvProfile.canScore('card')){
+      judgeQ.textContent = `¿${p.name} lo dijo con los gestos?`;
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      judgeQ.textContent = p
+        ? '🌙 Puntos completos: esta ronda es de práctica.'
+        : '👤 Sin perfil: esta ronda no suma al tablero.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Siguiente ▶';
+      mainBtn.hidden = false;
+      if(match.step === MATCH_CARDS - 1) marcarMemorizado(v.id);
+    }
+  }
+
+  function nextStep(){
+    match.step++;
+    showStep();
+  }
+
+  function finishMatch(){
+    const v = match.verse;
+    roundLabel.textContent = '¡Bien hecho, aventurero!';
+    const p = AvProfile.get();
+    const scored = p
+      ? `<div class="hint">⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.</div>`
+      : '';
+    const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
+      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
+    gameCard.innerHTML = `
+      <div class="emoji">🏁</div>
+      <div class="big-title">¡Partida completa!</div>
+      <span class="verse-ref">${esc(v.ref)}</span>
+      <div class="hint">Armaste ${match.quizOk} de ${MATCH_QUIZ} recortes sin ayuda.</div>
+      ${scored}${extra}
+      <div class="coach-tip">🔥 Recuerda: Dios no apagó el horno… ¡entró con ellos!</div>`;
+    mainBtn.textContent = '🔁 Otra partida';
+    mainBtn.hidden = false;
+    match = null;
+    updateIdleHint();
+  }
+
+  // ══════════ Álbum de versículos (localStorage) ══════════
+  function progressKey(){
+    const p = AvProfile.get();
+    return `${ACTIVITY}:progreso:${p ? p.id : 'anon'}`;
+  }
+  function readProgress(){
+    try{
+      const raw = JSON.parse(localStorage.getItem(progressKey()) || 'null');
+      return Array.isArray(raw && raw.verses) ? raw.verses : [];
+    }catch(e){ return [] }
+  }
+  function writeProgress(list){
+    try{ localStorage.setItem(progressKey(), JSON.stringify({verses: list})) }catch(e){}
+  }
+  function marcarMemorizado(id){
+    const list = readProgress();
+    if(!list.includes(id)) list.push(id);
+    if(list.length >= VERSES.length){
+      writeProgress([]);
+      renderMedals(true);
+      return;
+    }
+    writeProgress(list);
+    renderMedals(false);
+  }
+  function renderMedals(celebrar){
+    const list = readProgress();
+    medalList.innerHTML = VERSES.map(v => {
+      const done = list.includes(v.id);
+      return `<div class="medal${done ? ' done' : ''}">
+          <span class="mark" aria-hidden="true">${done ? '🏅' : '⬜'}</span>
+          <span>${esc(v.ref)} — ${esc(v.titulo)}</span>
+        </div>`;
+    }).join('') + (celebrar
+      ? '<div class="medal done"><span class="mark" aria-hidden="true">🎉</span><span>¡Los tres versículos de memoria! El álbum se limpió para volver a empezar.</span></div>'
+      : '');
+  }
+
+  document.getElementById('resetProgress').addEventListener('click', () => {
+    writeProgress([]);
+    renderMedals(false);
+  });
+
+  // ══════════ Estado sin partida ══════════
+  function updateIdleHint(){
+    renderMedals(false);
+    if(match) return;
+    const p = AvProfile.get();
+    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    if(!p){
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.hidden = false;
+    }else if(practice){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+      practiceNote.hidden = false;
+    }else{
+      practiceNote.hidden = true;
+    }
+    if(mainBtn.textContent.includes('Otra partida')){
+      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
+    }else if(mainBtn.textContent.includes('partida')){
+      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    }
+  }
+  AvProfile.onChange(updateIdleHint);
+
+  mainBtn.addEventListener('click', () => {
+    if(!match){ startMatch(); return; }
+    if(!match.revealed){ revealStep(); return; }
+    nextStep();
+  });
+
+  judgeYes.addEventListener('click', () => {
+    judge.hidden = true;
+    AvProfile.score(true, 'card');
+    match.earned++;
+    if(match.step === MATCH_CARDS - 1) marcarMemorizado(match.verse.id);
+    nextStep();
+  });
+  judgeNo.addEventListener('click', () => {
+    judge.hidden = true;
+    AvProfile.score(false, 'card');
+    nextStep();
+  });
+
+  // ══════════ Material imprimible ══════════
+  function renderPrintables(){
+    document.getElementById('stripSheets').innerHTML = VERSES.map(v => `
+      <div class="sheet-title"><span>📜</span> ${esc(v.ref)}</div>
+      <div class="strip-set">${v.chunks.map((c, i) => `
+        <div class="tira">
+          <span class="n">${i + 1}</span>
+          <span class="mini">${GESTOS[c.g].svg}</span>
+          <span class="txt">${esc(c.t)}<small>${esc(c.emoji)} ${esc(c.gesto)}</small></span>
+        </div>`).join('')}</div>`).join('');
+
+    const usados = [];
+    VERSES.forEach(v => v.chunks.forEach(c => { if(!usados.includes(c.g)) usados.push(c.g) }));
+    document.getElementById('gestSheet').innerHTML = usados.map(k => `
+      <div class="gest-card">
+        ${GESTOS[k].svg}
+        <span class="name">${esc(GESTOS[k].nombre)}</span>
+        <span class="what">${esc(gestoUso(k))}</span>
+      </div>`).join('');
+  }
+  function gestoUso(k){
+    const frases = [];
+    VERSES.forEach(v => v.chunks.forEach(c => {
+      if(c.g === k && !frases.includes(c.t)) frases.push(c.t);
+    }));
+    return '«' + frases.join('» · «') + '»';
+  }
+  renderPrintables();
+
+  // ══════════ Menú ══════════
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  function closeMenu(){
+    menuPanel.hidden = true;
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.menu-wrap')) closeMenu();
+  });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      closeMenu();
+    });
+  });
+
+  // ══════════ Perfil ══════════
+  document.getElementById('changePlayerBtn').addEventListener('click', () => {
+    closeMenu();
+    AvProfile.open();
+  });
+
+  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
+  updateIdleHint();
+</script>
+</body>
+</html>

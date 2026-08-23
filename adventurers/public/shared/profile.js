@@ -6,12 +6,20 @@
    Uso en una página:
      <link rel="stylesheet" href="/shared/profile.css">
      <script src="/shared/profile.js"></script>
-     AvProfile.init({ chip: document.getElementById('playerChip'), autoOpen: true });
+     AvProfile.init({ chip: document.getElementById('playerChip'), activity: 'pr41', autoOpen: true });
+
+   El tope diario es por actividad: cada juego tiene sus propias 5 tarjetas y
+   5 preguntas, así que `activity` debe ser el slug del juego (registrado en
+   ACTIVITIES del worker).
 
    API:
-     AvProfile.get()                 -> {id, name, points, today:{card,quiz}, limit:{card,quiz}, doc} | null
+     AvProfile.get()                 -> {id, name, points, today:{<actividad>:{card,quiz}}, limit:{card,quiz}, doc} | null
+     AvProfile.today()               -> {card, quiz} de hoy en la actividad actual
      AvProfile.canScore(kind?)       -> true si puede sumar puntos hoy ('card' | 'quiz')
      AvProfile.score(correct, kind)  -> +1 con tope diario por tipo; la incorrecta solo se registra
+     AvProfile.pick(bucket, items, n, keyFn)
+                                -> n elementos sin repetir hasta agotar la bolsa
+                                   (por niño y por semana; luego reinicia)
      AvProfile.open()           -> abre el formulario de ingreso/cambio
      AvProfile.onChange(fn)     -> callback cuando cambia el perfil
 */
@@ -21,7 +29,20 @@
   try{ player = JSON.parse(localStorage.getItem(PKEY) || 'null') }catch(e){ player = null }
 
   const LIMIT_FALLBACK = {card: 5, quiz: 5};
+  let ACTIVITY = null;
   const normToday = t => (t && typeof t === 'object') ? {card: t.card || 0, quiz: t.quiz || 0} : {card: 0, quiz: 0};
+  // today llega como {actividad: {card, quiz}}; las respuestas viejas traían {card, quiz} planos.
+  const normTodayMap = t => {
+    if(!t || typeof t !== 'object') return {};
+    if(typeof t.card === 'number' || typeof t.quiz === 'number') return {pr39: normToday(t)};
+    const out = {};
+    Object.keys(t).forEach(k => { out[k] = normToday(t[k]) });
+    return out;
+  };
+  const todayFor = activity => {
+    if(!player) return {card: 0, quiz: 0};
+    return normToday((player.today || {})[activity || ACTIVITY]);
+  };
 
   const listeners = [];
   const emit = () => listeners.forEach(fn => { try{ fn(player) }catch(e){} });
@@ -50,15 +71,15 @@
     player = {
       ...data.player,
       doc: String(doc).replace(/\D/g,''),
-      today: normToday(data.today),
+      today: normTodayMap(data.today),
       limit: data.limit || LIMIT_FALLBACK
     };
     save();
     emit();
   }
   function canScore(kind){
-    if(!player) return false;
-    const t = normToday(player.today);
+    if(!player || !ACTIVITY) return false;
+    const t = todayFor(ACTIVITY);
     const l = player.limit || LIMIT_FALLBACK;
     if(kind) return t[kind] < (l[kind] ?? 5);
     return t.card < (l.card ?? 5) || t.quiz < (l.quiz ?? 5);
@@ -78,24 +99,78 @@
     }
   }
 
-  let scoring = false;
-  async function score(correct, kind){
-    if(!player || scoring) return;
-    scoring = true;
+  // Los puntos se encolan: si llegan dos aciertos seguidos (juegos que se
+  // califican solos), el segundo espera su turno en vez de perderse.
+  let scoreChain = Promise.resolve();
+  function score(correct, kind){
+    scoreChain = scoreChain.then(() => sendScore(correct, kind), () => sendScore(correct, kind));
+    return scoreChain;
+  }
+  async function sendScore(correct, kind){
+    if(!player) return;
     try{
-      const data = await api('score', {doc: player.doc, correct, kind});
+      const data = await api('score', {doc: player.doc, correct, kind, activity: ACTIVITY});
       setFromResponse(data, player.doc);
     }catch(err){
-      if(err.status === 429 && player){
+      if(err.status === 429 && player && ACTIVITY){
         const l = player.limit || LIMIT_FALLBACK;
-        player.today = normToday(player.today);
-        player.today[kind === 'quiz' ? 'quiz' : 'card'] = l[kind === 'quiz' ? 'quiz' : 'card'] ?? 5;
+        const type = kind === 'quiz' ? 'quiz' : 'card';
+        player.today = normTodayMap(player.today);
+        player.today[ACTIVITY] = todayFor(ACTIVITY);
+        player.today[ACTIVITY][type] = l[type] ?? 5;
         save();
         emit();
       }
       alert(err.message);
     }
-    scoring = false;
+  }
+
+  // ── Bolsa de rotación: no repetir preguntas ni tarjetas ──
+  // Se guarda por niño (o 'anon') y por semana ISO de Bogotá: dentro de la
+  // semana nada se repite hasta agotar la bolsa, y al agotarse vuelve a
+  // empezar. Al cambiar de semana o de jugador, la bolsa arranca limpia.
+  const ROT_PREFIX = 'aventureros-bolsa:';
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i = a.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function weekKey(){
+    const [y, m, d] = new Intl.DateTimeFormat('en-CA', {timeZone: 'America/Bogota'})
+      .format(new Date()).split('-').map(Number);
+    const dt = new Date(Date.UTC(y, m - 1, d));
+    dt.setUTCDate(dt.getUTCDate() - ((dt.getUTCDay() + 6) % 7) + 3); // jueves de la semana ISO
+    const jan4 = new Date(Date.UTC(dt.getUTCFullYear(), 0, 4));
+    const week = 1 + Math.round(((dt - jan4) / 86400000 - 3 + ((jan4.getUTCDay() + 6) % 7)) / 7);
+    return `${dt.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
+  }
+
+  function pick(bucket, items, n, keyFn){
+    const kf = keyFn || (it => it.q || it.name || JSON.stringify(it));
+    const storeKey = `${ROT_PREFIX}${player ? 'p' + player.id : 'anon'}:${bucket}`;
+    let state = null;
+    try{ state = JSON.parse(localStorage.getItem(storeKey) || 'null') }catch(e){}
+    const week = weekKey();
+    if(!state || state.week !== week) state = {week, used: []};
+    const used = new Set(state.used);
+    const out = [];
+    for(let round = 0; out.length < n && round < 3; round++){
+      const taken = new Set(out.map(kf));
+      const pool = shuffle(items.filter(it => !used.has(kf(it)) && !taken.has(kf(it))));
+      if(!pool.length){ used.clear(); continue } // bolsa agotada: se reinicia
+      for(const it of pool){
+        if(out.length >= n) break;
+        out.push(it);
+      }
+    }
+    out.forEach(it => used.add(kf(it)));
+    try{ localStorage.setItem(storeKey, JSON.stringify({week, used: [...used]})) }catch(e){}
+    return out;
   }
 
   // ── Overlay de ingreso ──
@@ -128,7 +203,7 @@
       <div class="pf-card">
         <button class="pf-close" type="button" aria-label="Cerrar">✕</button>
         <h2>🧒 ¿Quién va a jugar?</h2>
-        <p class="pf-sub">Cada acierto suma ⭐ 1 punto al tablero del club: hasta 5 de comidas y 5 de preguntas por día.</p>
+        <p class="pf-sub">Cada acierto suma ⭐ 1 punto al tablero del club: en cada actividad se pueden ganar hasta 5 puntos de juego y 5 de preguntas por día.</p>
         <form class="pf-form">
           <label>Número de documento del niño o la niña
             <input class="pf-doc" type="text" inputmode="numeric" autocomplete="off" maxlength="15" placeholder="Solo números">
@@ -234,11 +309,18 @@
   function mountChip(el){
     if(!el) return;
     const render = () => {
-      const t = player ? normToday(player.today) : null;
-      const l = player ? (player.limit || LIMIT_FALLBACK) : null;
-      el.innerHTML = player
-        ? `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points} · ${t.card + t.quiz}/${(l.card ?? 5) + (l.quiz ?? 5)} hoy</button>`
-        : `<button type="button" class="pf-chip pf-chip-empty" title="Ingresar">👤 Ingresar</button>`;
+      if(!player){
+        el.innerHTML = `<button type="button" class="pf-chip pf-chip-empty" title="Ingresar">👤 Ingresar</button>`;
+      }else if(ACTIVITY){
+        const t = todayFor(ACTIVITY);
+        const l = player.limit || LIMIT_FALLBACK;
+        const max = (l.card ?? 5) + (l.quiz ?? 5);
+        el.innerHTML = `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points} · ${t.card + t.quiz}/${max} aquí hoy</button>`;
+      }else{
+        const map = player.today || {};
+        const hoy = Object.keys(map).reduce((sum, k) => sum + normToday(map[k]).card + normToday(map[k]).quiz, 0);
+        el.innerHTML = `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points} · +${hoy} hoy</button>`;
+      }
       el.querySelector('.pf-chip').addEventListener('click', open);
     };
     listeners.push(render);
@@ -246,6 +328,7 @@
   }
 
   function init(opts = {}){
+    if(opts.activity) ACTIVITY = opts.activity;
     injectOverlay();
     if(opts.chip) mountChip(opts.chip);
     if(opts.autoOpen && !player) open();
@@ -261,8 +344,10 @@
     init,
     get: () => player,
     onChange: fn => listeners.push(fn),
+    today: () => todayFor(ACTIVITY),
     canScore,
     score,
+    pick,
     open
   };
 })();

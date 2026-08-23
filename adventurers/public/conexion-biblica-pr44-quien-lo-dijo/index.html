@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2A1B4A">
+<title>¿Quién lo dijo?</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Sale una frase del foso de los leones y adivinas quién la dijo: el rey Darío, Daniel, los príncipes envidiosos o la Biblia. 5 frases + 5 preguntas por partida.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="¿Quién lo dijo? · En el foso de los leones">
+<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Sale una frase y adivinas quién la dijo: 👑 Darío, 🧔 Daniel, 😠 los príncipes o 📖 la Biblia. ¡Suma puntos para el tablero del club!">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr44-quien-lo-dijo/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    /* Paleta foso de los leones: noche persa, oro de melena, arena, ladrillo */
+    --night:#2A1B4A;
+    --night-deep:#1B1032;
+    --gold:#F0B429;
+    --gold-soft:#FFD97A;
+    --brick:#C2542B;
+    --cream:#FFF6E3;
+    --ink:#231A0F;
+    --dario:#8E5BC7;
+    --daniel:#2E9E5B;
+    --principes:#C0392B;
+    --biblia:#1F7A9E;
+    --ok:#2E9E5B;
+    --bad:#C0392B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--night);
+    background-image:
+      radial-gradient(circle at 20% 8%, rgba(255,217,122,.10), transparent 42%),
+      radial-gradient(circle at 85% 92%, rgba(240,180,41,.07), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  /* ── Cabecera ── */
+  header{text-align:center;padding:10px 16px 12px}
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-size:.74rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    line-height:1.4;
+  }
+  h1{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.6rem,7vw,2.4rem);
+    line-height:1.15;
+    margin-top:6px;
+  }
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+  @media (max-width:600px){
+    .subtitle{display:none}
+    header{padding-bottom:8px}
+  }
+
+  /* ── Barra superior + menú ── */
+  .topbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px 0;
+    max-width:1000px;
+    margin:0 auto;
+  }
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
+  .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
+  .player-chip + .menu-wrap{margin-left:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+    .back-link{padding:8px 10px}
+    .menu-btn{padding:8px 12px}
+  }
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    border:2px solid var(--gold);
+    background:transparent;
+    color:var(--gold-soft);
+    border-radius:999px;
+    padding:8px 16px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;
+    right:0;
+    top:calc(100% + 8px);
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+    min-width:240px;
+    background:var(--cream);
+    border:3px solid var(--gold);
+    border-radius:18px;
+    padding:8px;
+    box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    text-align:left;
+    background:transparent;
+    border:none;
+    color:var(--ink);
+    border-radius:12px;
+    padding:12px 14px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--night);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--night-deep)}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+
+  /* ── Reto de puntos ── */
+  .judge{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:16px;
+    background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);
+    border-radius:16px;
+    padding:12px 14px;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+  }
+  .judge span{flex-basis:100%;text-align:center}
+  .judge[hidden]{display:none}
+
+  .practice-note{
+    margin-top:16px;
+    text-align:center;
+    font-weight:700;
+    font-size:.95rem;
+    color:var(--gold-soft);
+    opacity:.9;
+  }
+  .practice-note[hidden]{display:none}
+
+  .legend{
+    text-align:center;
+    font-weight:700;
+    font-size:.95rem;
+    max-width:460px;
+    margin:0 auto 18px;
+    opacity:.9;
+  }
+  .legend[hidden]{display:none}
+
+  /* ══════════ MODO JUEGO ══════════ */
+  .stage{max-width:460px;margin:0 auto;text-align:center}
+  .round-label{
+    font-family:'Fredoka',sans-serif;
+    color:var(--gold-soft);
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    font-size:.8rem;
+    margin-bottom:12px;
+  }
+  .game-card{
+    background:var(--cream);
+    color:var(--ink);
+    border-radius:28px;
+    border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);
+    padding:26px 18px 24px;
+    min-height:250px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    overflow:hidden;
+    transition:border-color .25s ease;
+  }
+  .game-card .emoji{font-size:clamp(3.6rem,20vw,6rem);line-height:1}
+  .age-tag{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    background:var(--brick);
+    color:#fff;
+    border-radius:999px;
+    padding:4px 12px;
+  }
+  .phrase{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:clamp(1.05rem,4.6vw,1.45rem);
+    line-height:1.3;
+    overflow-wrap:break-word;
+  }
+  .game-card .hint{font-weight:700;font-size:.95rem;opacity:.7;line-height:1.4}
+  .who-line{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.2rem,5.4vw,1.7rem);
+    line-height:1.2;
+    animation:pop .35s cubic-bezier(.2,1.6,.4,1) both;
+  }
+  .who-face{font-size:clamp(3rem,16vw,4.4rem);line-height:1;animation:pop .35s cubic-bezier(.2,1.6,.4,1) both}
+  .verdict{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    border-radius:999px;
+    padding:6px 16px;
+    color:#fff;
+  }
+  .verdict.ok{background:var(--ok)}
+  .verdict.bad{background:var(--bad)}
+  .ctx{font-weight:700;font-size:.95rem;line-height:1.45;opacity:.85}
+  @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+  @media (prefers-reduced-motion:reduce){
+    .who-line,.who-face{animation:none}
+  }
+
+  /* Botones de caritas */
+  .choices{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    margin-top:16px;
+  }
+  .choices[hidden]{display:none}
+  .choice{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    line-height:1.2;
+    color:#fff;
+    border:3px solid rgba(0,0,0,.18);
+    border-radius:20px;
+    padding:12px 8px;
+    min-height:88px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    cursor:pointer;
+    box-shadow:0 5px 0 rgba(0,0,0,.3);
+    transition:transform .1s ease;
+  }
+  .choice .face{font-size:2rem;line-height:1}
+  .choice:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .choice:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .choice[disabled]{cursor:default;opacity:.45}
+  .choice.is-right{opacity:1;outline:4px solid var(--gold-soft);outline-offset:2px}
+  .c-dario{background:var(--dario)}
+  .c-daniel{background:var(--daniel)}
+  .c-principes{background:var(--principes)}
+  .c-biblia{background:var(--biblia)}
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+  .btn{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.1rem;
+    font-weight:600;
+    border:none;
+    border-radius:999px;
+    padding:14px 30px;
+    min-height:44px;
+    cursor:pointer;
+    box-shadow:0 5px 0 rgba(0,0,0,.3);
+    transition:transform .1s ease;
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn[hidden]{display:none}
+  .btn-gold{background:var(--gold);color:var(--night-deep)}
+  .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-outline:active{transform:translateY(2px)}
+  .btn-sm{font-size:.95rem;padding:9px 20px;min-height:44px}
+
+  /* Pregunta del capítulo */
+  .quiz-box{
+    margin-top:22px;
+    background:rgba(255,255,255,.07);
+    border:2px dashed var(--gold);
+    border-radius:20px;
+    padding:18px 16px;
+    display:none;
+  }
+  .quiz-box.show{display:block}
+  .quiz-q{font-size:1.1rem;font-weight:700;margin-top:10px}
+  .quiz-a{margin-top:10px;font-weight:800;color:var(--gold-soft);display:none}
+  .quiz-a.show{display:block}
+
+  /* ══════════ MATERIAL IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:600px;margin:0 auto 20px;line-height:1.5}
+  .group-title{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin:26px 0 12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .group-title .chip{font-size:1.4rem;background:var(--cream);border-radius:12px;padding:2px 10px}
+  .board-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
+  .board{
+    background:var(--cream);
+    color:var(--ink);
+    border-radius:18px;
+    border:5px dashed var(--gold);
+    padding:16px 10px;
+    text-align:center;
+    min-height:150px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+  }
+  .board .face{font-size:3rem;line-height:1}
+  .board .board-name{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;line-height:1.2}
+  .board .board-sub{font-size:.78rem;opacity:.7;line-height:1.3}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+  .mini-card{
+    background:var(--cream);
+    color:var(--ink);
+    border-radius:16px;
+    border:4px solid var(--gold);
+    padding:16px 12px 12px;
+    position:relative;
+    box-shadow:0 5px 0 rgba(0,0,0,.25);
+  }
+  .mini-card .mc-age{
+    font-family:'Fredoka',sans-serif;
+    font-size:.66rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brick);
+    font-weight:700;
+  }
+  .mini-card .mc-text{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.92rem;
+    line-height:1.3;
+    margin-top:6px;
+    overflow-wrap:break-word;
+  }
+  .key-dot{
+    position:absolute;
+    top:8px;
+    right:8px;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    border:2px solid rgba(0,0,0,.25);
+  }
+  .print-key{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 18px;
+    background:var(--cream);
+    color:var(--ink);
+    border:3px dashed var(--gold);
+    border-radius:14px;
+    padding:12px 14px;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+  }
+  .print-key .pk-item{display:flex;align-items:center;gap:7px}
+  .print-key .key-dot{position:static;top:auto;right:auto;flex:0 0 auto}
+  .k-dario{background:var(--dario)}
+  .k-daniel{background:var(--daniel)}
+  .k-principes{background:var(--principes)}
+  .k-biblia{background:var(--biblia)}
+
+  /* ── Volver al índice ── */
+  .back-link{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    color:var(--gold-soft);
+    text-decoration:none;
+    border:2px solid transparent;
+    border-radius:999px;
+    padding:8px 16px;
+    margin-bottom:8px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+  /* ══════════ PARA PADRES ══════════ */
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);
+    color:var(--ink);
+    border:4px solid var(--gold);
+    border-radius:22px;
+    padding:22px 20px;
+    margin-bottom:18px;
+    box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .verse{
+    border-left:5px solid var(--brick);
+    background:rgba(194,84,43,.08);
+    border-radius:0 12px 12px 0;
+    padding:12px 14px;
+    font-style:italic;
+    font-weight:700;
+  }
+  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
+
+  /* ── Impresión ── */
+  @media print{
+    body{background:#fff;color:#000}
+    header,.topbar,#juego,#padres,.print-note{display:none!important}
+    section{display:none!important}
+    #material{display:block!important;padding:0}
+    .board-grid{grid-template-columns:repeat(2,1fr);gap:8mm}
+    .board{box-shadow:none;border-color:#C89B22;break-inside:avoid;min-height:60mm}
+    .board .face{font-size:20mm}
+    .card-grid{grid-template-columns:repeat(2,1fr);gap:6mm}
+    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:6mm 5mm}
+    .group-title{color:#000;break-after:avoid}
+    .group-title .chip{border:1px solid #ccc}
+    .print-key{border-color:#C89B22;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
+      <button class="menu-item" data-tab="material">🖨️ Tarjetas y tableros</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 44 · En el foso de los leones</div>
+  <h1>¿Quién lo dijo?</h1>
+  <p class="subtitle">Sale una frase del foso de los leones… ¿de quién es esa voz?</p>
+</header>
+
+<!-- ══════════ MODO JUEGO ══════════ -->
+<section id="juego" class="active">
+  <p class="legend" id="legend">Aparece una frase y tú eliges la carita de quien la dijo:
+    👑 el rey Darío, 🧔 Daniel, 😠 los príncipes envidiosos o 📖 la Biblia.
+    <strong>5 frases + 5 preguntas</strong> por partida.</p>
+
+  <div class="stage">
+    <div class="round-label" id="roundLabel">¿Listos, detectives de voces?</div>
+
+    <div class="game-card" id="gameCard" aria-live="polite">
+      <div class="emoji">🦁</div>
+      <div class="phrase">¡Partida de detectives!</div>
+      <div class="hint">5 frases del capítulo 44 + 5 preguntas</div>
+    </div>
+
+    <div class="choices" id="choices" hidden>
+      <button class="choice c-dario" data-who="dario"><span class="face">👑</span> El rey Darío</button>
+      <button class="choice c-daniel" data-who="daniel"><span class="face">🧔</span> Daniel</button>
+      <button class="choice c-principes" data-who="principes"><span class="face">😠</span> Los príncipes envidiosos</button>
+      <button class="choice c-biblia" data-who="biblia"><span class="face">📖</span> La Biblia (el narrador)</button>
+    </div>
+
+    <div class="quiz-box" id="quizBox">
+      <span class="age-tag" id="quizTag">6–7 años</span>
+      <div class="quiz-q" id="quizQ"></div>
+      <div class="quiz-a" id="quizA"></div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
+    </div>
+
+    <div class="judge" id="judge" hidden>
+      <span id="judgeQ">¿Respondió bien?</span>
+      <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
+    </div>
+
+    <p class="practice-note" id="practiceNote" hidden>🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.</p>
+  </div>
+</section>
+
+<!-- ══════════ MATERIAL IMPRIMIBLE ══════════ -->
+<section id="material">
+  <p class="print-note">
+    Usa <strong>Ctrl/Cmd + P</strong> para imprimir. Recorten los <strong>4 tableros de caritas</strong>
+    y pónganlos en el piso o en la mesa; luego recorten las <strong>tarjetas de frases</strong>, revuélvanlas
+    boca abajo y que cada niño lea (o el adulto lea en voz alta) una frase y la ponga sobre el tablero
+    de quien cree que la dijo. El puntico de color en la esquina de cada tarjeta es la clave secreta del adulto:
+    la tabla de colores se imprime al final de la hoja, para que el adulto la recorte y la guarde.
+  </p>
+
+  <div class="group-title"><span class="chip">🎯</span> Los 4 tableros — pongan aquí cada tarjeta</div>
+  <div class="board-grid" id="boardGrid"></div>
+
+  <div class="group-title"><span class="chip">🗣️</span> Tarjetas de frases — para 4 a 5 años</div>
+  <div class="card-grid" id="grid45"></div>
+
+  <div class="group-title"><span class="chip">🗣️</span> Tarjetas de frases — para 6 a 7 años</div>
+  <div class="card-grid" id="grid67"></div>
+
+  <div class="group-title"><span class="chip">🗣️</span> Tarjetas de frases — para 8 a 9 años</div>
+  <div class="card-grid" id="grid89"></div>
+
+  <div class="group-title"><span class="chip">🔑</span> Clave del adulto — recorten esta tira y guárdenla</div>
+  <div class="print-key">
+    <span class="pk-item"><span class="key-dot k-dario"></span> morado = 👑 el rey Darío</span>
+    <span class="pk-item"><span class="key-dot k-daniel"></span> verde = 🧔 Daniel</span>
+    <span class="pk-item"><span class="key-dot k-principes"></span> rojo = 😠 los príncipes envidiosos</span>
+    <span class="pk-item"><span class="key-dot k-biblia"></span> azul = 📖 la Biblia (el narrador)</span>
+  </div>
+</section>
+
+<!-- ══════════ PARA PADRES ══════════ -->
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 La historia</h2>
+    <p>Esta dinámica está basada en <strong>Daniel 6</strong> (capítulo 44 de <em>Profetas y Reyes</em>, «En el foso de los leones»). Cuando Darío el Medo subió al trono, puso <strong>120 gobernadores</strong> y sobre ellos <strong>tres presidentes</strong>: Daniel era uno, y era superior a todos «porque había en él más abundancia de espíritu».</p>
+    <p>Los celos de los príncipes buscaron una falta en Daniel y no la hallaron, «porque él era fiel». Entonces lograron que el rey firmara un decreto: por <strong>treinta días</strong> nadie podía pedir nada a ningún dios ni hombre, solo al rey, y el castigo era el foso de los leones. Daniel siguió orando <strong>tres veces al día</strong>, con las ventanas abiertas hacia Jerusalén.</p>
+    <p>Darío, arrepentido, «hasta puestas del sol trabajó para librarle», pero la ley de Media y de Persia no se podía cambiar. A la mañana siguiente el rey corrió al foso y Daniel respondió: «El Dios mío envió su ángel, el cual cerró la boca de los leones». Daniel salió sin una sola lesión, y Darío proclamó a todos los pueblos que el Dios de Daniel es «el Dios viviente y permanente por todos los siglos».</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>💡 ¿Qué aprende su hijo?</h2>
+    <ul>
+      <li><strong>Escuchar con atención</strong>: distinguir quién habla en la historia y por qué habla así (el rey triste, los príncipes envidiosos, Daniel confiado).</li>
+      <li><strong>Fidelidad de todos los días</strong>: Daniel no cambió su costumbre de orar ni un solo detalle, aunque le costara la vida.</li>
+      <li><strong>Dios convierte la maldad en alabanza</strong>: la trampa de los enemigos terminó honrando el nombre de Dios en todo el reino.</li>
+      <li><strong>Ser el mismo en la prueba y en la prosperidad</strong>: en el foso Daniel fue el mismo que en el palacio.</li>
+    </ul>
+    <p class="verse">«Ciertamente la ira del hombre te acarreará alabanza» <span>Salmos 76:10</span></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🏠 Cómo jugar la dinámica</h2>
+    <ol>
+      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 frases</strong> del capítulo y después <strong>5 preguntas</strong>.</li>
+      <li>Lean la frase en voz alta (las de <strong>4–5 años</strong> vienen contadas con palabras de niño) y pregunten: <em>¿quién lo dijo?</em></li>
+      <li>Su hijo toca una de las cuatro caritas: 👑 el rey Darío, 🧔 Daniel, 😠 los príncipes envidiosos o 📖 la Biblia. <strong>El juego se califica solo</strong>: al revelar muestra quién lo dijo, cuándo lo dijo y, si la frase venía parafraseada, la cita textual del capítulo.</li>
+      <li>Después vienen las preguntas, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Ahí sí el adulto revela la respuesta y califica (⭐ +1 / 😅 esta vez no).</li>
+      <li>Las frases y las preguntas <strong>no se repiten</strong> hasta agotarse: la app recuerda por niño lo que ya salió esta semana.</li>
+      <li>Sin pantalla: impriman los <strong>4 tableros y las tarjetas</strong> desde la pestaña 🖨️ y jueguen en el piso poniendo cada tarjeta sobre la carita correcta.</li>
+    </ol>
+    <p>Las <strong>preguntas cubren todo el capítulo 44</strong>, así que también sirven de repaso para el examen didáctico de Conexión Bíblica 2026.</p>
+    <p>Lo importante no es memorizar frases, sino conversar: <em>¿por qué Daniel siguió orando? ¿qué hizo el rey cuando entendió la trampa? ¿en qué se nota que alguien es fiel?</em></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ El reto de la semana</h2>
+    <p>Jueguen <strong>una partida por día</strong>: 5 frases + 5 preguntas. Cada acierto suma <strong>⭐ 1 punto</strong> (las fallas no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de frases y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
+    <p>Reto extra en casa: durante la semana, cada vez que alguien de la familia ore, que diga en voz alta una frase de Daniel del capítulo. Y una noche, apaguen la luz y cuenten la historia del foso… con caritas y voces distintas.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+
+<script>
+  // ── Quién puede hablar ──
+  const SPEAKERS = {
+    dario:     {face:'👑', name:'El rey Darío',              said:'Lo dijo el rey Darío',            key:'k-dario',     sub:'el rey medo que firmó el decreto'},
+    daniel:    {face:'🧔', name:'Daniel',                    said:'Lo dijo Daniel',                  key:'k-daniel',    sub:'el profeta que oraba tres veces al día'},
+    principes: {face:'😠', name:'Los príncipes envidiosos',  said:'Lo dijeron los príncipes envidiosos', key:'k-principes', sub:'los que armaron la trampa'},
+    biblia:    {face:'📖', name:'La Biblia',                 said:'Lo dice la Biblia',               key:'k-biblia',    sub:'el narrador o el salmista'}
+  };
+
+  // ── Frases del capítulo 44 (Daniel 6) ──
+  // Las de 4–5 años vienen parafraseadas; la cita textual queda en el contexto.
+  // quote: id de la cita del capítulo. Las versiones de distintas edades comparten id
+  // para que no salgan las dos en la misma partida (ver pickMatchCards).
+  const PHRASES = [
+    // ── 4–5 años ──
+    {age:'4–5 años', who:'daniel', quote:'saludo', text:'¡Rey, que vivas para siempre!',
+      ctx:'Daniel contestó desde el foso, temprano en la mañana. En el capítulo dice: «Oh rey, para siempre vive».'},
+    {age:'4–5 años', who:'daniel', quote:'angel', text:'Mi Dios mandó su ángel y les cerró la boca a los leones.',
+      ctx:'Daniel se lo dijo al rey desde el fondo del foso: «El Dios mío envió su ángel, el cual cerró la boca de los leones».'},
+    {age:'4–5 años', who:'daniel', quote:'justicia', text:'Rey, yo no hice nada malo.',
+      ctx:'Daniel se lo dijo al rey desde el foso: «aun delante de ti, oh rey, yo no he hecho lo que no debiese».'},
+    {age:'4–5 años', who:'dario', quote:'te-libre', text:'Que tu Dios, al que siempre sirves, te salve.',
+      ctx:'El rey Darío se lo dijo con tristeza junto al foso, cuando mandó echar a Daniel: «El Dios tuyo, a quien tú continuamente sirves, él te libre».'},
+    {age:'4–5 años', who:'dario', quote:'llamado-foso', text:'¡Daniel! ¿Pudo tu Dios salvarte de los leones?',
+      ctx:'Temprano por la mañana el rey corrió al foso y llamó a voces con voz triste.'},
+    {age:'4–5 años', who:'principes', quote:'acusacion', text:'¡Rey, Daniel no te obedeció: ora tres veces al día!',
+      ctx:'Los príncipes envidiosos lo acusaron a la mañana siguiente: «antes tres veces al día hace su petición».'},
+    {age:'4–5 años', who:'principes', quote:'ley-de-su-dios', text:'Solo podemos acusar a Daniel por la ley de su Dios.',
+      ctx:'Los príncipes tuvieron que reconocerlo: «No hallaremos contra este Daniel ocasión alguna, si no la hallamos contra él en la ley de su Dios».'},
+    {age:'4–5 años', who:'biblia', quote:'sin-lesion', text:'Daniel salió del foso sin ni un rasguño.',
+      ctx:'Así lo cuenta el capítulo: «ninguna lesión se halló en él, porque creyó en su Dios».'},
+    {age:'4–5 años', who:'biblia', quote:'fiel', text:'Daniel era fiel y nadie le encontró nada malo.',
+      ctx:'El narrador lo dice así: «él era fiel, y ningún vicio ni falta fué en él hallado».'},
+    {age:'4–5 años', who:'dario', quote:'ordenanza', text:'¡Todos en mi reino deben honrar al Dios de Daniel!',
+      ctx:'El rey Darío lo escribió en una carta «a todos los pueblos, naciones, y lenguas», después de sacar a Daniel del foso.'},
+    {age:'4–5 años', who:'biblia', quote:'noche-sin-sueno', text:'Esa noche el rey no comió y no pudo dormir.',
+      ctx:'El narrador cuenta: «acostóse ayuno; ni instrumentos de música fueron traídos delante de él, y se le fué el sueño».'},
+
+    // ── 6–7 años ──
+    {age:'6–7 años', who:'dario', quote:'te-libre', text:'«El Dios tuyo, a quien tú continuamente sirves, él te libre»',
+      ctx:'Se lo dijo junto al foso, cuando ya no pudo evitar que echaran a Daniel.'},
+    {age:'6–7 años', who:'daniel', quote:'angel', text:'«El Dios mío envió su ángel, el cual cerró la boca de los leones»',
+      ctx:'Daniel lo respondió desde el foso, a la mañana siguiente, cuando el rey lo llamó a voces.'},
+    {age:'6–7 años', who:'daniel', quote:'justicia', text:'«aun delante de ti, oh rey, yo no he hecho lo que no debiese»',
+      ctx:'Daniel lo dijo desde el foso: no había faltado ni a Dios ni al rey.'},
+    {age:'6–7 años', who:'principes', quote:'ley-de-su-dios', text:'«No hallaremos contra este Daniel ocasión alguna, si no la hallamos contra él en la ley de su Dios»',
+      ctx:'Los príncipes se lo dijeron entre ellos al ver que su conducta era intachable.'},
+    {age:'6–7 años', who:'biblia', quote:'fiel', text:'«él era fiel, y ningún vicio ni falta fué en él hallado»',
+      ctx:'El narrador explica por qué los enemigos de Daniel no pudieron acusarlo de nada.'},
+    {age:'6–7 años', who:'dario', quote:'verdad-es', text:'«Verdad es, conforme a la ley de Media y de Persia, la cual no se abroga»',
+      ctx:'El rey lo contestó cuando los príncipes le recordaron el decreto que había firmado.'},
+    {age:'6–7 años', who:'daniel', quote:'saludo', text:'«Oh rey, para siempre vive»',
+      ctx:'Fue el saludo de Daniel desde el foso: ¡seguía vivo y saludaba con respeto!'},
+    {age:'6–7 años', who:'principes', quote:'acusacion', text:'«Daniel... no ha hecho cuenta de ti, oh rey, ni del edicto que confirmaste»',
+      ctx:'Los príncipes lo clamaron triunfantes, después de vigilar a Daniel todo un día.'},
+    {age:'6–7 años', who:'biblia', quote:'sin-lesion', text:'«ninguna lesión se halló en él, porque creyó en su Dios»',
+      ctx:'El narrador lo dice cuando el rey manda sacar a Daniel del foso.'},
+    {age:'6–7 años', who:'dario', quote:'paz-multiplicada', text:'«Paz os sea multiplicada»',
+      ctx:'Así saludaba la carta que Darío escribió a todos los pueblos, naciones y lenguas de la tierra.'},
+    {age:'6–7 años', who:'biblia', quote:'hasta-puestas-del-sol', text:'«hasta puestas del sol trabajó para librarle»',
+      ctx:'El narrador cuenta lo que hizo el rey todo el día, cuando entendió la trampa.'},
+
+    // ── 8–9 años ──
+    {age:'8–9 años', who:'principes', quote:'ley-inmutable', text:'«Sepas, oh rey, que es ley de Media y de Persia, que ningún decreto u ordenanza que el rey confirmare pueda mudarse»',
+      ctx:'Los príncipes se lo dijeron a Darío para impedir que salvara a Daniel.'},
+    {age:'8–9 años', who:'biblia', quote:'ira-alabanza', text:'«Ciertamente la ira del hombre te acarreará alabanza»',
+      ctx:'Lo había testificado el salmista, en Salmos 76:10, y el capítulo lo cita para explicar por qué Dios permitió el foso.'},
+    {age:'8–9 años', who:'dario', quote:'llamado-foso', text:'«Daniel, siervo del Dios viviente... ¿te ha podido librar de los leones?»',
+      ctx:'Temprano por la mañana el rey se dirigió apresuradamente al foso y «llamó a voces a Daniel con voz triste».'},
+    {age:'8–9 años', who:'daniel', quote:'justicia', text:'«porque delante de él se halló en mí justicia: y aun delante de ti, oh rey, yo no he hecho lo que no debiese»',
+      ctx:'Daniel lo dijo desde el foso, después de contar que el ángel cerró la boca de los leones.'},
+    {age:'8–9 años', who:'daniel', quote:'angel', text:'«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal»',
+      ctx:'Es la respuesta completa de Daniel desde el foso, cuando el rey le preguntó si su Dios lo había podido librar.'},
+    {age:'8–9 años', who:'principes', quote:'recordatorio-edicto', text:'«¿No has confirmado edicto que cualquiera que pidiere a cualquier dios u hombre en el espacio de treinta días, excepto a ti, oh rey, fuese echado en el foso de los leones?»',
+      ctx:'Los príncipes se lo recordaron al rey antes de acusar a Daniel.'},
+    {age:'8–9 años', who:'dario', quote:'ordenanza', text:'«De parte mía es puesta ordenanza, que en todo el señorío de mi reino todos teman y tiemblen de la presencia del Dios de Daniel»',
+      ctx:'Es parte de la proclamación que Darío escribió después del milagro.'},
+    {age:'8–9 años', who:'biblia', quote:'daniel-superior', text:'«el mismo Daniel era superior a estos gobernadores y presidentes, porque había en él más abundancia de espíritu»',
+      ctx:'El narrador lo dice al contar cómo Darío organizó el reino con 120 gobernadores y 3 presidentes.'},
+    {age:'8–9 años', who:'principes', quote:'acusacion', text:'«Daniel que es de los hijos de la cautividad de los Judíos, no ha hecho cuenta de ti, oh rey, ni del edicto que confirmaste; antes tres veces al día hace su petición»',
+      ctx:'Es la acusación completa que los príncipes clamaron ante Darío, después de vigilar a Daniel todo un día.'},
+    {age:'8–9 años', who:'dario', quote:'dios-viviente', text:'«porque él es el Dios viviente y permanente por todos los siglos, y su reino tal que no será deshecho»',
+      ctx:'Es lo que Darío escribió sobre el Dios de Daniel, en su carta a todo el imperio.'},
+    {age:'8–9 años', who:'biblia', quote:'daniel-prosperado', text:'«Daniel fué prosperado durante el reinado de Darío, y durante el reinado de Ciro, Persa»',
+      ctx:'Con esto el narrador cierra la historia del foso de los leones.'}
+  ];
+
+  // ── Preguntas del capítulo ──
+  const QUIZ = [
+    {tag:'4–5 años', q:'¿A dónde echaron a Daniel?', a:'🦁 Al foso de los leones'},
+    {tag:'4–5 años', q:'¿Cuántas veces al día oraba Daniel? ¡Cuenten con los dedos!', a:'3 veces al día'},
+    {tag:'4–5 años', q:'¿Quién les cerró la boca a los leones?', a:'El ángel que Dios envió'},
+    {tag:'4–5 años', q:'¿Le pasó algo malo a Daniel entre los leones?', a:'No: «ninguna lesión se halló en él»'},
+    {tag:'4–5 años', q:'¿Cómo se llamaba el rey de esta historia?', a:'El rey Darío'},
+    {tag:'4–5 años', q:'¡Muéstrenme la cara del rey cuando vio a Daniel vivo!', a:'😄 «Se alegró el rey en gran manera»'},
+    {tag:'6–7 años', q:'¿Por cuántos días prohibía el decreto pedir algo a Dios o a los hombres?', a:'30 días'},
+    {tag:'6–7 años', q:'¿Hacia dónde estaban abiertas las ventanas de Daniel cuando oraba?', a:'Hacia Jerusalén'},
+    {tag:'6–7 años', q:'¿Por qué los príncipes no pudieron acusar a Daniel de nada?', a:'Porque era fiel: «ningún vicio ni falta fué en él hallado»'},
+    {tag:'6–7 años', q:'¿Qué hizo el rey con la piedra de la entrada del foso?', a:'La selló con su anillo y con el anillo de sus príncipes'},
+    {tag:'6–7 años', q:'¿Qué hizo el rey esa noche en su palacio?', a:'Se acostó ayuno, sin música, y no pudo dormir'},
+    {tag:'6–7 años', q:'¿Qué le dijo el rey a Daniel antes de que lo echaran al foso?', a:'«El Dios tuyo, a quien tú continuamente sirves, él te libre»'},
+    {tag:'6–7 años', q:'¿Qué pasó con los hombres que habían acusado a Daniel?', a:'Fueron echados al foso y los leones se apoderaron de ellos'},
+    {tag:'6–7 años', q:'¿Cuántos presidentes puso Darío sobre los gobernadores?', a:'Tres, y Daniel era uno de ellos'},
+    {tag:'6–7 años', q:'¿Cambió Daniel su costumbre de orar por miedo al decreto?', a:'No: siguió orando tres veces al día, con las ventanas abiertas y sin esconderse'},
+    {tag:'8–9 años', q:'¿Cuántos gobernadores decidió poner Darío sobre el reino?', a:'Ciento veinte (120)'},
+    {tag:'8–9 años', q:'¿A qué apelaron los príncipes para que el rey firmara el decreto?', a:'A su vanidad: le dijeron que aumentaría su honor y su autoridad'},
+    {tag:'8–9 años', q:'¿Qué ley usaron los príncipes para que el decreto no se pudiera cambiar?', a:'La ley de Media y de Persia, que no se abroga'},
+    {tag:'8–9 años', q:'¿Qué hizo el rey desde que descubrió la trampa hasta la puesta del sol?', a:'Trabajó para librar a Daniel: «hasta puestas del sol trabajó para librarle»'},
+    {tag:'8–9 años', q:'Según el capítulo, ¿quién estaba detrás de la envidia de los príncipes?', a:'Satanás y los malos ángeles, que temían la influencia de Daniel'},
+    {tag:'8–9 años', q:'¿Qué proclamó Darío sobre el Dios de Daniel a todos los pueblos?', a:'Que es «el Dios viviente y permanente por todos los siglos», y su reino no será deshecho'},
+    {tag:'8–9 años', q:'¿Qué texto del salmista cita el capítulo para explicar por qué Dios permitió el foso?', a:'«Ciertamente la ira del hombre te acarreará alabanza» (Salmos 76:10)'},
+    {tag:'8–9 años', q:'¿Qué enseña el capítulo sobre cómo debe ser el hijo de Dios en la prueba?', a:'El mismo que en la prosperidad: en el foso Daniel fue el mismo que delante del rey'},
+    {tag:'8–9 años', q:'¿Durante los reinados de qué dos reyes fue prosperado Daniel?', a:'De Darío y de Ciro, el persa'},
+    {tag:'8–9 años', q:'¿Por qué Daniel no dejó de orar, aunque sabía el castigo?', a:'Porque ninguna potencia terrenal tiene derecho a interponerse entre el alma y Dios: antes renunciaría a la vida que a la ayuda de Dios'}
+  ];
+
+  // ── Partida: 5 frases + 5 preguntas ──
+  const ACTIVITY = 'pr44-quien-lo-dijo';
+  const MATCH_CARDS = 5;
+  const MATCH_QUIZ = 5;
+  const CARD_MIX = [['4–5 años', 2], ['6–7 años', 2], ['8–9 años', 1]];
+  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
+  let match = null; // {cards, quizzes, step, revealed, earned}
+
+  const gameCard = document.getElementById('gameCard');
+  const choices = document.getElementById('choices');
+  const choiceBtns = Array.from(choices.querySelectorAll('.choice'));
+  const quizBox = document.getElementById('quizBox');
+  const mainBtn = document.getElementById('mainBtn');
+  const roundLabel = document.getElementById('roundLabel');
+  const legend = document.getElementById('legend');
+  const judge = document.getElementById('judge');
+  const judgeQ = document.getElementById('judgeQ');
+  const judgeYes = document.getElementById('judgeYes');
+  const judgeNo = document.getElementById('judgeNo');
+  const practiceNote = document.getElementById('practiceNote');
+  const quizTag = document.getElementById('quizTag');
+  const quizQ = document.getElementById('quizQ');
+  const quizA = document.getElementById('quizA');
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function phase(){
+    if(!match) return 'idle';
+    if(match.step < MATCH_CARDS) return 'card';
+    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
+    return 'done';
+  }
+
+  // Dos edades pueden traer la misma cita (una parafraseada y una textual):
+  // en una partida solo entra una versión de cada cita.
+  function pickMatchCards(){
+    const picked = [];
+    const usedQuotes = new Set();
+    CARD_MIX.forEach(([age, n]) => {
+      const group = PHRASES.filter(p => p.age === age);
+      AvProfile.pick(`${ACTIVITY}:card:${age}`, group, n, p => p.text).forEach(p => {
+        let card = p;
+        if(usedQuotes.has(card.quote)){
+          const free = group.filter(g => !usedQuotes.has(g.quote));
+          const alt = free.length
+            ? AvProfile.pick(`${ACTIVITY}:card:${age}`, free, 1, x => x.text)
+            : [];
+          if(alt.length) card = alt[0];
+        }
+        usedQuotes.add(card.quote);
+        picked.push(card);
+      });
+    });
+    return shuffle(picked);
+  }
+
+  function pickMatchQuiz(){
+    const picked = [];
+    QUIZ_MIX.forEach(([tag, n]) => {
+      const group = QUIZ.filter(q => q.tag === tag);
+      picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.q));
+    });
+    return picked;
+  }
+
+  function startMatch(){
+    legend.hidden = true;
+    practiceNote.hidden = true;
+    match = {
+      cards: pickMatchCards(),
+      quizzes: pickMatchQuiz(),
+      step: 0,
+      revealed: false,
+      earned: 0
+    };
+    showStep();
+  }
+
+  function setChoicesEnabled(on){
+    choiceBtns.forEach(b => {
+      b.disabled = !on;
+      b.classList.remove('is-right');
+    });
+  }
+
+  function showStep(){
+    judge.hidden = true;
+    match.revealed = false;
+    const ph = phase();
+    if(ph === 'card'){
+      quizBox.classList.remove('show');
+      gameCard.style.display = '';
+      const p = match.cards[match.step];
+      roundLabel.textContent = `Frase ${match.step + 1} de ${MATCH_CARDS}`;
+      gameCard.innerHTML = `
+        <span class="age-tag">${esc(p.age)}</span>
+        <div class="phrase">${esc(p.text)}</div>
+        <div class="hint">¿Quién lo dijo? Toca una carita 👇</div>`;
+      choices.hidden = false;
+      setChoicesEnabled(true);
+      mainBtn.hidden = true;
+    }else if(ph === 'quiz'){
+      gameCard.style.display = 'none';
+      choices.hidden = true;
+      quizBox.classList.add('show');
+      const q = match.quizzes[match.step - MATCH_CARDS];
+      roundLabel.textContent = `Pregunta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
+      quizTag.textContent = q.tag;
+      quizQ.textContent = q.q;
+      quizA.textContent = q.a;
+      quizA.classList.remove('show');
+      mainBtn.textContent = 'Ver respuesta';
+      mainBtn.hidden = false;
+    }else{
+      finishMatch();
+    }
+  }
+
+  // ── Frases: el juego se califica solo ──
+  function answerCard(who){
+    if(!match || phase() !== 'card' || match.revealed) return;
+    match.revealed = true;
+    const p = match.cards[match.step];
+    const correct = who === p.who;
+    const sp = SPEAKERS[p.who];
+    setChoicesEnabled(false);
+    const right = choiceBtns.find(b => b.dataset.who === p.who);
+    if(right) right.classList.add('is-right');
+
+    gameCard.innerHTML = `
+      <div class="who-face">${sp.face}</div>
+      <div class="verdict ${correct ? 'ok' : 'bad'}">${correct ? '⭐ ¡Correcto!' : '😅 Casi'}</div>
+      <div class="who-line">${esc(sp.said)}</div>
+      <div class="ctx">${esc(p.ctx)}</div>`;
+
+    const player = AvProfile.get();
+    if(player && AvProfile.canScore('card')){
+      AvProfile.score(correct, 'card');
+      if(correct) match.earned++;
+      judgeQ.textContent = correct
+        ? `⭐ ¡Punto para ${player.name}!`
+        : '😅 Esta no salió, pero no resta. ¡Sigamos!';
+    }else{
+      judgeQ.textContent = player
+        ? '🌙 Puntos de frases completos: esta ronda es de práctica.'
+        : '👤 Sin perfil: este acierto no suma al tablero.';
+    }
+    judgeYes.hidden = true;
+    judgeNo.hidden = true;
+    judge.hidden = false;
+    mainBtn.textContent = 'Siguiente ▶';
+    mainBtn.hidden = false;
+  }
+
+  // ── Preguntas: las califica el adulto ──
+  function revealQuiz(){
+    match.revealed = true;
+    quizA.classList.add('show');
+    const player = AvProfile.get();
+    if(player && AvProfile.canScore('quiz')){
+      judgeQ.textContent = `¿${player.name} respondió bien?`;
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      judgeQ.textContent = player
+        ? '🌙 Puntos de preguntas completos: esta respuesta es de práctica.'
+        : '👤 Sin perfil: esta respuesta no suma al tablero.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Siguiente ▶';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function nextStep(){
+    match.step++;
+    showStep();
+  }
+
+  function finishMatch(){
+    legend.hidden = false;
+    choices.hidden = true;
+    quizBox.classList.remove('show');
+    gameCard.style.display = '';
+    roundLabel.textContent = '¡Bien hecho, detectives!';
+    const player = AvProfile.get();
+    const earned = match ? match.earned : 0;
+    const scored = player ? `<div class="hint">⭐ Sumaste ${earned} punto${earned === 1 ? '' : 's'} en esta partida.</div>` : '';
+    const extra = player && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
+      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
+    gameCard.innerHTML = `
+      <div class="emoji">🏁</div>
+      <div class="phrase">¡Partida completa!</div>
+      ${scored}${extra}`;
+    mainBtn.textContent = '🔁 Otra partida';
+    mainBtn.hidden = false;
+    judge.hidden = true;
+    match = null;
+    updateIdleHint();
+  }
+
+  function updateIdleHint(){
+    if(match) return;
+    const player = AvProfile.get();
+    const practice = !!player && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    if(!player){
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.hidden = false;
+    }else if(practice){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+      practiceNote.hidden = false;
+    }else{
+      practiceNote.hidden = true;
+    }
+    if(mainBtn.textContent.includes('Otra partida')){
+      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
+    }else if(mainBtn.textContent.includes('partida')){
+      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    }
+  }
+  AvProfile.onChange(updateIdleHint);
+
+  choiceBtns.forEach(b => {
+    b.addEventListener('click', () => answerCard(b.dataset.who));
+  });
+
+  mainBtn.addEventListener('click', () => {
+    if(!match){ startMatch(); return; }
+    const ph = phase();
+    if(ph === 'quiz' && !match.revealed){ revealQuiz(); return; }
+    nextStep();
+  });
+
+  judgeYes.addEventListener('click', () => {
+    judge.hidden = true;
+    AvProfile.score(true, 'quiz');
+    match.earned++;
+    nextStep();
+  });
+  judgeNo.addEventListener('click', () => {
+    judge.hidden = true;
+    AvProfile.score(false, 'quiz');
+    nextStep();
+  });
+
+  // ── Material imprimible ──
+  document.getElementById('boardGrid').innerHTML = Object.keys(SPEAKERS).map(k => {
+    const s = SPEAKERS[k];
+    return `
+      <div class="board">
+        <div class="face">${s.face}</div>
+        <div class="board-name">${esc(s.name)}</div>
+        <div class="board-sub">${esc(s.sub)}</div>
+      </div>`;
+  }).join('');
+
+  function renderCards(id, age){
+    document.getElementById(id).innerHTML = PHRASES.filter(p => p.age === age).map(p => `
+      <div class="mini-card">
+        <span class="key-dot ${SPEAKERS[p.who].key}" title="${esc(SPEAKERS[p.who].name)}"></span>
+        <div class="mc-age">${esc(p.age)}</div>
+        <div class="mc-text">${esc(p.text)}</div>
+      </div>`).join('');
+  }
+  renderCards('grid45','4–5 años');
+  renderCards('grid67','6–7 años');
+  renderCards('grid89','8–9 años');
+
+  // ── Menú ──
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  function closeMenu(){
+    menuPanel.hidden = true;
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => {
+    if(!e.target.closest('.menu-wrap')) closeMenu();
+  });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      closeMenu();
+    });
+  });
+
+  // ── Perfil y puntos (módulo compartido /shared/profile.js) ──
+  document.getElementById('changePlayerBtn').addEventListener('click', () => {
+    closeMenu();
+    AvProfile.open();
+  });
+
+  // Iniciar
+  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
+  updateIdleHint();
+</script>
+</body>
+</html>
