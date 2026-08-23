@@ -67,6 +67,10 @@ for (const dir of dirs.sort()) {
   if (!html.includes('src="/shared/profile.js"')) fail(dir, "no carga /shared/profile.js");
   if (!html.includes('href="/shared/profile.css"')) fail(dir, "no carga /shared/profile.css");
 
+  for (const tag of ['rel="manifest"', 'rel="apple-touch-icon"', "apple-mobile-web-app-title"]) {
+    if (!html.includes(tag)) fail(dir, `falta ${tag} en el <head>: no se instala como app`);
+  }
+
   for (const id of ["playerChip", "changePlayerBtn"]) {
     if (!html.includes(`id="${id}"`)) fail(dir, `falta el elemento #${id}`);
   }
@@ -122,6 +126,32 @@ for (const dir of dirs.sort()) {
 
 const missing = activities.filter((a) => !dirs.includes(`conexion-biblica-${a}`));
 for (const a of missing) failures.push(`ACTIVITIES: '${a}' está registrado pero no existe public/conexion-biblica-${a}/`);
+
+// El service worker precachea los juegos por nombre: si uno falta, no funciona offline.
+const sw = readFileSync(join(publicDir, "sw.js"), "utf8");
+const swGames = [
+  ...(sw.match(/const GAMES = \[([\s\S]*?)\];/)?.[1] ?? "").matchAll(/"([^"]+)"/g),
+].map((m) => m[1]);
+for (const dir of dirs) {
+  const slug = dir.replace("conexion-biblica-", "");
+  if (!swGames.includes(slug)) failures.push(`sw.js: '${slug}' no está en GAMES, no se cacheará para offline`);
+}
+for (const slug of swGames) {
+  if (!dirs.includes(`conexion-biblica-${slug}`)) failures.push(`sw.js: GAMES lista '${slug}', que no existe`);
+}
+
+const manifest = JSON.parse(readFileSync(join(publicDir, "manifest.webmanifest"), "utf8"));
+for (const key of ["name", "short_name", "start_url", "display", "theme_color", "icons"]) {
+  if (!manifest[key]) failures.push(`manifest.webmanifest: falta '${key}'`);
+}
+if (!(manifest.icons || []).some((i) => i.purpose === "maskable")) {
+  failures.push("manifest.webmanifest: falta un icono maskable (Android lo recorta en círculo)");
+}
+for (const icon of manifest.icons || []) {
+  if (!existsSync(join(publicDir, icon.src.replace(/^\//, "")))) {
+    failures.push(`manifest.webmanifest: el icono ${icon.src} no existe`);
+  }
+}
 
 const indexHtml = readFileSync(join(publicDir, "index.html"), "utf8");
 for (const dir of dirs) {

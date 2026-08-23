@@ -99,8 +99,63 @@
     }
   }
 
-  // Los puntos se encolan: si llegan dos aciertos seguidos (juegos que se
-  // califican solos), el segundo espera su turno en vez de perderse.
+  // ── Cola de puntos: sin señal no se pierde ningún acierto ──
+  // Se guarda el intento y se reenvía al volver la conexión o al abrir la app.
+  // El tope diario lo impone el servidor, así que reenviar nunca infla puntos.
+  const QKEY = 'aventureros-cola';
+  const loadQueue = () => {
+    try{ return JSON.parse(localStorage.getItem(QKEY) || '[]') }catch(e){ return [] }
+  };
+  const saveQueue = q => {
+    try{ localStorage.setItem(QKEY, JSON.stringify(q)) }catch(e){}
+  };
+  const pendingCount = () => loadQueue().filter(it => it.correct).length;
+
+  function enqueue(entry){
+    const q = loadQueue();
+    q.push(entry);
+    saveQueue(q);
+    emit();
+  }
+
+  let flushing = false;
+  async function flushQueue(){
+    if(flushing) return;
+    const q = loadQueue();
+    if(!q.length) return;
+    flushing = true;
+    let sent = 0;
+    while(true){
+      const queue = loadQueue();
+      if(!queue.length) break;
+      const entry = queue[0];
+      try{
+        const data = await api('score', entry);
+        if(entry.correct) sent++;
+        setFromResponse(data, entry.doc);
+      }catch(err){
+        // Sin red: se deja la cola intacta para el próximo intento.
+        if(err.status === undefined) break;
+        // 429 = ya llegó al tope del día; 4xx = intento inservible. Se descarta.
+        if(err.status === 429 && entry.activity){
+          const l = (player && player.limit) || LIMIT_FALLBACK;
+          const type = entry.kind === 'quiz' ? 'quiz' : 'card';
+          if(player){
+            player.today = normTodayMap(player.today);
+            player.today[entry.activity] = todayFor(entry.activity);
+            player.today[entry.activity][type] = l[type] ?? 5;
+            save();
+          }
+        }
+      }
+      saveQueue(loadQueue().slice(1));
+      emit();
+    }
+    flushing = false;
+    if(sent) toast(`✅ Se enviaron ${sent} punto${sent === 1 ? '' : 's'} que quedaron guardados sin señal.`);
+  }
+
+  // Los envíos se encolan en serie: dos aciertos seguidos no se pisan.
   let scoreChain = Promise.resolve();
   function score(correct, kind){
     scoreChain = scoreChain.then(() => sendScore(correct, kind), () => sendScore(correct, kind));
@@ -108,11 +163,23 @@
   }
   async function sendScore(correct, kind){
     if(!player) return;
+    const entry = {doc: player.doc, correct, kind, activity: ACTIVITY};
+    if(!navigator.onLine){
+      enqueue(entry);
+      if(correct) toast('📴 Sin señal: tu punto queda guardado y se enviará solo.');
+      return;
+    }
     try{
-      const data = await api('score', {doc: player.doc, correct, kind, activity: ACTIVITY});
+      const data = await api('score', entry);
       setFromResponse(data, player.doc);
     }catch(err){
-      if(err.status === 429 && player && ACTIVITY){
+      if(err.status === undefined){
+        // Falló la red, no el servidor: se guarda para después.
+        enqueue(entry);
+        if(correct) toast('📴 Sin señal: tu punto queda guardado y se enviará solo.');
+        return;
+      }
+      if(err.status === 429 && ACTIVITY){
         const l = player.limit || LIMIT_FALLBACK;
         const type = kind === 'quiz' ? 'quiz' : 'card';
         player.today = normTodayMap(player.today);
@@ -121,8 +188,23 @@
         save();
         emit();
       }
-      alert(err.message);
+      toast(err.message, true);
     }
+  }
+
+  // ── Avisos ──
+  let toastWrap = null;
+  function toast(message, bad){
+    if(!toastWrap){
+      toastWrap = document.createElement('div');
+      toastWrap.className = 'pf-toast-wrap';
+      document.body.appendChild(toastWrap);
+    }
+    const el = document.createElement('div');
+    el.className = 'pf-toast' + (bad ? ' bad' : '');
+    el.textContent = message;
+    toastWrap.appendChild(el);
+    setTimeout(() => el.remove(), 4200);
   }
 
   // ── Bolsa de rotación: no repetir preguntas ni tarjetas ──
@@ -309,17 +391,22 @@
   function mountChip(el){
     if(!el) return;
     const render = () => {
+      const pend = pendingCount();
+      const offline = !navigator.onLine
+        ? '<span class="pf-offline" title="Los puntos se guardan y se envían al volver la señal">📴 sin señal</span>'
+        : '';
+      const espera = pend ? ` · ⏳ ${pend}` : '';
       if(!player){
-        el.innerHTML = `<button type="button" class="pf-chip pf-chip-empty" title="Ingresar">👤 Ingresar</button>`;
+        el.innerHTML = offline + `<button type="button" class="pf-chip pf-chip-empty" title="Ingresar">👤 Ingresar</button>`;
       }else if(ACTIVITY){
         const t = todayFor(ACTIVITY);
         const l = player.limit || LIMIT_FALLBACK;
         const max = (l.card ?? 5) + (l.quiz ?? 5);
-        el.innerHTML = `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points} · ${t.card + t.quiz}/${max} aquí hoy</button>`;
+        el.innerHTML = offline + `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points}${espera} · ${t.card + t.quiz}/${max} aquí hoy</button>`;
       }else{
         const map = player.today || {};
         const hoy = Object.keys(map).reduce((sum, k) => sum + normToday(map[k]).card + normToday(map[k]).quiz, 0);
-        el.innerHTML = `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points} · +${hoy} hoy</button>`;
+        el.innerHTML = offline + `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points}${espera} · +${hoy} hoy</button>`;
       }
       el.querySelector('.pf-chip').addEventListener('click', open);
     };
@@ -327,12 +414,68 @@
     render();
   }
 
+  // ── App instalable ──
+  let installEvent = null;
+  const standalone = () =>
+    window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const isIOS = () =>
+    /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  function registerSW(){
+    if(!('serviceWorker' in navigator)) return;
+    if(location.protocol !== 'https:' && location.hostname !== 'localhost') return;
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    });
+  }
+
+  // Android/escritorio: botón real. iPhone: instrucciones, porque Safari no
+  // ofrece prompt de instalación.
+  function mountInstall(el){
+    if(!el) return;
+    const render = () => {
+      if(standalone()){ el.hidden = true; return }
+      if(installEvent){
+        el.hidden = false;
+        el.innerHTML = '<button type="button" class="pf-install">📲 Instalar la app</button>';
+        el.querySelector('button').addEventListener('click', async () => {
+          const ev = installEvent;
+          installEvent = null;
+          el.hidden = true;
+          try{ await ev.prompt() }catch(e){}
+        });
+      }else if(isIOS()){
+        el.hidden = false;
+        el.innerHTML = '<p class="pf-install-hint">📲 Para tenerla como app: toca <strong>Compartir</strong> y luego <strong>Añadir a pantalla de inicio</strong>.</p>';
+      }else{
+        el.hidden = true;
+      }
+    };
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      installEvent = e;
+      render();
+    });
+    window.addEventListener('appinstalled', () => {
+      installEvent = null;
+      el.hidden = true;
+      toast('🎉 ¡Listo! Ya puedes abrirla desde la pantalla de inicio.');
+    });
+    render();
+  }
+
   function init(opts = {}){
     if(opts.activity) ACTIVITY = opts.activity;
     injectOverlay();
     if(opts.chip) mountChip(opts.chip);
+    if(opts.install) mountInstall(opts.install);
     if(opts.autoOpen && !player) open();
+    registerSW();
     refresh();
+    flushQueue();
+    window.addEventListener('online', () => { emit(); flushQueue() });
+    window.addEventListener('offline', emit);
     window.addEventListener('storage', e => {
       if(e.key !== PKEY) return;
       try{ player = JSON.parse(e.newValue || 'null') }catch(err){ player = null }
@@ -345,6 +488,8 @@
     get: () => player,
     onChange: fn => listeners.push(fn),
     today: () => todayFor(ACTIVITY),
+    pending: pendingCount,
+    toast,
     canScore,
     score,
     pick,

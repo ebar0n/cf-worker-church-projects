@@ -1,0 +1,36 @@
+{
+  "name": "Club de Aventureros El Elohe Israel · Jordán Ibagué",
+  "short_name": "El Elohe Israel",
+  "description": "Juegos de Conexión Bíblica para los niños del Club de Aventureros: juega, repasa la lección y suma puntos en el tablero del club.",
+  "lang": "es-CO",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1B2F6E",
+  "theme_color": "#1B2F6E",
+  "categories": ["education", "games", "kids"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Cap. 39 · En la corte de Babilonia",
+      "short_name": "Cap. 39",
+      "url": "/conexion-biblica-pr39/"
+    },
+    {
+      "name": "Cap. 41 · El horno de fuego",
+      "short_name": "Cap. 41",
+      "url": "/conexion-biblica-pr41/"
+    },
+    {
+      "name": "Cap. 44 · En el foso de los leones",
+      "short_name": "Cap. 44",
+      "url": "/conexion-biblica-pr44/"
+    }
+  ]
+}
