@@ -140,11 +140,11 @@
     font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.12em;
     text-transform:uppercase;font-size:.78rem;margin-bottom:10px;
   }
-  .fase-pill{
+  .phase-pill{
     display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.78rem;
     border:2px solid var(--gold);border-radius:999px;padding:4px 12px;margin-bottom:12px;color:var(--gold-soft);
   }
-  .fase-pill[hidden]{display:none}
+  .phase-pill[hidden]{display:none}
   .game-card{
     background:var(--cream);color:var(--ink);border-radius:28px;border:6px solid var(--gold);
     box-shadow:0 12px 0 rgba(0,0,0,.28);padding:26px 18px;min-height:340px;
@@ -592,7 +592,7 @@
     .filter(f => f.nivel === 2 || f.nivel === 3)
     .map(f => `<li>
         <span class="ref">${esc(f.ref)}</span>
-        <span class="cita"><span class="voz-tag">${VOCES[f.who].cara} ${esc(VOCES[f.who].nombre)}</span>${esc(f.text)}</span>
+        <span class="cita"><span class="voz-tag">${VOCES[f.who].cara} ${esc(VOCES[f.who].name)}</span>${esc(f.text)}</span>
       </li>`).join('');
 
   // ── Hoja imprimible ──
@@ -600,10 +600,10 @@
     <div class="escena-print">
       <h3>Escena ${i + 1} · ${esc(e.titulo)}</h3>
       <p style="font-size:.88rem;opacity:.75;margin-bottom:6px">${esc(e.donde)}</p>
-      ${e.lineas.map(l => `<div class="lp"><b>${VOCES[l.who].cara} ${esc(VOCES[l.who].nombre)}:</b><span>«${esc(l.larga)}» <em>(${esc(l.ref)})</em></span></div>`).join('')}
+      ${e.lineas.map(l => `<div class="lp"><b>${VOCES[l.who].cara} ${esc(VOCES[l.who].name)}:</b><span>«${esc(l.larga)}» <em>(${esc(l.ref)})</em></span></div>`).join('')}
     </div>`).join('');
   document.getElementById('aquienPrint').innerHTML = AQUIEN
-    .map((a, i) => `<li><strong>${i + 1}.</strong> ${esc(a.text)} — <strong>${VOCES[a.who].cara} ${esc(VOCES[a.who].nombre)}</strong> · ¿a quién se lo dijo? ______________________</li>`).join('');
+    .map((a, i) => `<li><strong>${i + 1}.</strong> ${esc(a.text)} — <strong>${VOCES[a.who].cara} ${esc(VOCES[a.who].name)}</strong> · ¿a quién se lo dijo? ______________________</li>`).join('');
   document.getElementById('aquienResp').innerHTML = AQUIEN
     .map(a => `<li>${esc(a.ref)} → <strong>${esc(a.a)}</strong></li>`).join('');
 
@@ -638,7 +638,7 @@
       ? AvProfile.pick(`${ACTIVITY}:aquien`, AQUIEN, 1, x => x.text)[0]
       : null;
     match = {
-      fase: 'practica',
+      phase: 'practica',
       i: 0,
       escena,
       aquien,
@@ -673,7 +673,7 @@
       <div class="quote">${esc(f.text)}</div>
       <div class="opts">
         ${shuffle(Object.keys(VOCES)).map(k =>
-          `<button class="opt" data-who="${k}"><span class="cara">${VOCES[k].cara}</span><span>${esc(VOCES[k].nombre)}</span></button>`).join('')}
+          `<button class="opt" data-who="${k}"><span class="cara">${VOCES[k].cara}</span><span>${esc(VOCES[k].name)}</span></button>`).join('')}
       </div>`;
     gameCard.querySelectorAll('.opt').forEach(b =>
       b.addEventListener('click', () => responderPractica(b, f)));
@@ -693,7 +693,7 @@
     const pie = document.createElement('div');
     pie.className = 'feedback';
     pie.innerHTML = `<span class="${right ? 'ok' : 'no'}">${right ? '✅ ¡Eso es!' : '❌ No era esa.'}</span> `
-      + `Lo dijo <strong>${VOCES[f.who].cara} ${esc(VOCES[f.who].nombre)}</strong> · ${esc(f.ref)}<br>${esc(f.ctx)}`;
+      + `Lo dijo <strong>${VOCES[f.who].cara} ${esc(VOCES[f.who].name)}</strong> · ${esc(f.ref)}<br>${esc(f.ctx)}`;
     gameCard.appendChild(pie);
     mainBtn.textContent = match.i + 1 < match.practica.length ? 'Siguiente ▶' : '🎭 ¡A actuar! ▶';
     mainBtn.hidden = false;
@@ -713,9 +713,9 @@
     fasePill.textContent = '🎭 Actuar · cada voz vale 1 punto';
     roundLabel.textContent = `${e.titulo} · voz ${idx + 1} de 3`;
     gameCard.innerHTML = `
-      <div class="title">Te toca la voz de ${VOCES[linea.who].cara} ${esc(VOCES[linea.who].nombre)}</div>
+      <div class="title">Te toca la voz de ${VOCES[linea.who].cara} ${esc(VOCES[linea.who].name)}</div>
       <div class="hint">${tapada
-        ? `Dila de memoria, con esa voz. Es lo que ${esc(VOCES[linea.who].nombre)} dijo en ${esc(linea.ref)}. ${esc(e.donde)}`
+        ? `Dila de memoria, con esa voz. Es lo que ${esc(VOCES[linea.who].name)} dijo en ${esc(linea.ref)}. ${esc(e.donde)}`
         : `Dila en voz alta, con esa voz. ${esc(e.donde)}`}</div>
       <div class="guion">
         ${e.lineas.map((l, k) => {
@@ -727,7 +727,7 @@
           <div class="linea ${k < idx ? 'hecha' : (esTurno ? 'turno' : 'pendiente')}">
             <span class="cara">${VOCES[l.who].cara}</span>
             <span>
-              <span class="who">${esc(VOCES[l.who].nombre)}${esTurno ? ' · ¡tu turno!' : ''}</span>
+              <span class="who">${esc(VOCES[l.who].name)}${esTurno ? ' · ¡tu turno!' : ''}</span>
               ${cuerpo}
               <span class="ref">${esc(l.ref)}</span>
             </span>
@@ -752,7 +752,7 @@
     const revelada = !!match.revelada[match.i];
     const puede = !!p && AvProfile.canScore('card') && !revelada;
     if(puede){
-      judgeQ.innerHTML = `¿${esc(p.name)} dijo completa la línea de ${VOCES[linea.who].cara} <strong>${esc(VOCES[linea.who].nombre)}</strong>?`;
+      judgeQ.innerHTML = `¿${esc(p.name)} dijo completa la línea de ${VOCES[linea.who].cara} <strong>${esc(VOCES[linea.who].name)}</strong>?`;
       judgeYes.hidden = false;
       judgeNo.hidden = false;
       judge.hidden = false;
@@ -778,7 +778,7 @@
     fasePill.textContent = '🏅 Pregunta de clase mayor · 1 punto';
     roundLabel.textContent = '¿A quién se lo dijo?';
     gameCard.innerHTML = `
-      <div class="title">${VOCES[a.who].cara} ${esc(VOCES[a.who].nombre)} dijo:</div>
+      <div class="title">${VOCES[a.who].cara} ${esc(VOCES[a.who].name)} dijo:</div>
       <div class="quote">${esc(a.text)}</div>
       <div class="hint">¿A quién se lo dijo?</div>
       <div class="opts">
@@ -851,7 +851,7 @@
       `<strong>Cómo se ganan los puntos aquí:</strong> las ${RONDAS_PRACTICA} rondas de «¿quién lo dijo?» son <strong>práctica y no suman</strong> `
       + `(con cuatro caritas se acierta de suerte). Suman las <strong>3 voces</strong> de la escena actuada, que confirma el adulto`
       + (conQuiz ? `, más <strong>1 pregunta</strong> de «¿a quién se lo dijo?» por ser de ${esc(clubClass)}. Total: <strong>4</strong>.` : `. Total: <strong>3</strong>.`)
-      + (clubClass ? `` : ` <em>Ingresa tu perfil para que la app ajuste la dificultad a tu clubClass.</em>`);
+      + (clubClass ? `` : ` <em>Ingresa tu perfil para que la app ajuste la dificultad a tu clase.</em>`);
 
     if(match) return;
     const sinCupoCard = !!p && !AvProfile.canScore('card');

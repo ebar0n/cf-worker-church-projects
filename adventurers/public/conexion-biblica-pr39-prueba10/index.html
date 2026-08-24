@@ -509,7 +509,7 @@
       <span class="num"></span>
       <span>
         <span class="title">${p.emoji} ${esc(p.titulo)}</span>
-        <span class="text">${esc(p.texto)}</span>
+        <span class="text">${esc(p.text)}</span>
         <span class="cita">${esc(p.cita)}</span>
       </span>
     </li>`).join('');
@@ -519,7 +519,7 @@
     <div class="t">
       <span class="blank"></span>
       <strong>${p.emoji} ${esc(p.titulo)}</strong>
-      ${esc(p.texto)}
+      ${esc(p.text)}
     </div>`).join('');
   document.getElementById('clavePasos').innerHTML = CADENA.map(p =>
     `<li><strong>${esc(p.titulo)}</strong> — ${esc(p.ref)}</li>`).join('');
@@ -581,11 +581,11 @@
       trampas,
       slots: pasos.map((p, i) => i === 0 ? {paso: p, estado: 'fija'} : {paso: null, estado: 'pend'}),
       pos: 1,              // slot que se está resolviendo
-      ficha: 0,            // la ficha avanza solo con aciertos
+      tile: 0,            // la ficha avanza solo con aciertos
       pares: 0,            // pares adyacentes en orden correcto
       ganados: 0,
       respondida: false,
-      fase: 'linea',
+      phase: 'linea',
       cierre: [],
       cierreI: 0,
       cierreVisto: false
@@ -654,7 +654,7 @@
     // El paso correcto se coloca siempre, para que la línea quede completa y bien;
     // pero la ficha avanza solo si el niño lo colocó bien.
     match.slots[match.pos] = {paso: correcto, estado: acerto ? 'ok' : 'rev'};
-    if(acerto){ match.ficha++; match.pares++ }
+    if(acerto){ match.tile++; match.pares++ }
 
     if(AvProfile.get() && AvProfile.canScore('card')){
       AvProfile.score(acerto, 'card');
@@ -664,8 +664,8 @@
     const pie = document.createElement('div');
     pie.className = 'dato';
     pie.innerHTML = acerto
-      ? `✅ ¡Sí! Después de «${esc(match.slots[match.pos - 1].paso.titulo)}» viene <strong>${esc(correcto.titulo)}</strong>.<span class="cita">${esc(correcto.texto)} — ${esc(correcto.cita)}</span>`
-      : `❌ «${esc(elegido.titulo)}» va en otro lugar de la historia. Lo que sigue es <strong>${esc(correcto.titulo)}</strong>.<span class="cita">${esc(correcto.texto)} — ${esc(correcto.cita)}</span>`;
+      ? `✅ ¡Sí! Después de «${esc(match.slots[match.pos - 1].paso.titulo)}» viene <strong>${esc(correcto.titulo)}</strong>.<span class="cita">${esc(correcto.text)} — ${esc(correcto.cita)}</span>`
+      : `❌ «${esc(elegido.titulo)}» va en otro lugar de la historia. Lo que sigue es <strong>${esc(correcto.titulo)}</strong>.<span class="cita">${esc(correcto.text)} — ${esc(correcto.cita)}</span>`;
     gameCard.appendChild(pie);
 
     mainBtn.textContent = 'Siguiente ▶';

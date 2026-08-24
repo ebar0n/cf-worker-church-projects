@@ -770,7 +770,7 @@
       }).join('');
       return `<div class="chunk">
           <span class="gest" aria-hidden="true">${c.emoji}</span>
-          <span class="words">${words}<span class="gest-name">${esc(c.gesto)}</span></span>
+          <span class="words">${words}<span class="gest-name">${esc(c.gesture)}</span></span>
         </div>`;
     }).join('');
     return `<div class="verse-box${full ? ' full' : ''}">${rows}</div>`;
@@ -902,8 +902,8 @@
     gameCard.innerHTML = `
       <div class="emoji">📖</div>
       <div class="big-title">La cita es:</div>
-      <div class="cita-blanco">${esc(VERSICULO.libro)} ${esc(VERSICULO.cap)}:${esc(VERSICULO.ver)}</div>
-      <div class="coach-tip">✅ Libro <strong>${esc(VERSICULO.libro)}</strong>, capítulo <strong>${esc(VERSICULO.cap)}</strong>, versículo <strong>${esc(VERSICULO.ver)}</strong>.</div>`;
+      <div class="cita-blanco">${esc(VERSICULO.book)} ${esc(VERSICULO.cap)}:${esc(VERSICULO.ver)}</div>
+      <div class="coach-tip">✅ Libro <strong>${esc(VERSICULO.book)}</strong>, capítulo <strong>${esc(VERSICULO.cap)}</strong>, versículo <strong>${esc(VERSICULO.ver)}</strong>.</div>`;
     if(citaPaga()){
       abrirJuicio('quiz', 'cita', p ? `¿${esc(p.name)} dijo las tres partes de la cita?` : null);
     }else{
@@ -1124,11 +1124,11 @@
   document.getElementById('gestListLeer').innerHTML = VERSICULO.chunks.map((c, i) => `
     <li>
       <span class="em" aria-hidden="true">${c.emoji}</span>
-      <span class="tx">${i + 1}. ${esc(c.t)}<small>Gesto: ${esc(c.gesto)}</small></span>
+      <span class="tx">${i + 1}. ${esc(c.t)}<small>Gesto: ${esc(c.gesture)}</small></span>
     </li>`).join('');
 
   document.getElementById('proxLista').innerHTML = PROXIMOS.map(v => `
-    <p class="prox"><b>${esc(v.ref)} — ${esc(v.cuando)}</b>«${esc(v.texto)}» · ${esc(v.titulo)}</p>`).join('');
+    <p class="prox"><b>${esc(v.ref)} — ${esc(v.cuando)}</b>«${esc(v.text)}» · ${esc(v.titulo)}</p>`).join('');
 
   // ══════════ Material imprimible ══════════
   function tiras(v){
@@ -1136,7 +1136,7 @@
       <div class="tira">
         <span class="n">${i + 1}</span>
         <span class="mini">${GESTOS[c.g].svg}</span>
-        <span class="txt">${esc(c.t)}<small>${c.emoji} ${esc(c.gesto)}</small></span>
+        <span class="txt">${esc(c.t)}<small>${c.emoji} ${esc(c.gesture)}</small></span>
       </div>`).join('')}</div>`;
   }
   document.getElementById('stripSheets').innerHTML = tiras(VERSICULO);
@@ -1147,7 +1147,7 @@
   document.getElementById('gestSheet').innerHTML = VERSICULO.chunks.map(c => `
     <div class="gest-card">
       ${GESTOS[c.g].svg}
-      <span class="name">${esc(GESTOS[c.g].nombre)}</span>
+      <span class="name">${esc(GESTOS[c.g].name)}</span>
       <span class="what">«${esc(c.t)}»</span>
     </div>`).join('');
 

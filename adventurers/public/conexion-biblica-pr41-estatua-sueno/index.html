@@ -597,20 +597,20 @@
   // ── Leer + hoja imprimible ──
   document.getElementById('matLista').innerHTML = PARTES.map(p => {
     const doble = p.materiales.length > 1;
-    const nombres = p.materiales.map(id => MAT[id].nombre).join(' y ');
+    const nombres = p.materiales.map(id => MAT[id].name).join(' y ');
     const sw = doble
       ? '<span class="swatch doble"></span>'
       : `<span class="swatch" style="background:${MAT[p.materiales[0]].color}"></span>`;
     return `<li>${sw}<span>
       <span class="mnom">${esc(nombres)}</span><br>
-      <span class="mpar">«${esc(p.frase)}» · ${esc(p.ref)}</span>
+      <span class="mpar">«${esc(p.phrase)}» · ${esc(p.ref)}</span>
     </span></li>`;
   }).join('');
 
   document.getElementById('svgPrint').innerHTML = estatuaSVG(true);
   document.getElementById('leyendaPrint').innerHTML = MATERIALES.map(m =>
-    `<li><span class="box" style="background:${m.color}"></span><span><strong>${esc(m.nombre)}</strong> — ${
-      esc(PARTES.filter(p => p.materiales.includes(m.id)).map(p => p.nombre).join(' y '))
+    `<li><span class="box" style="background:${m.color}"></span><span><strong>${esc(m.name)}</strong> — ${
+      esc(PARTES.filter(p => p.materiales.includes(m.id)).map(p => p.name).join(' y '))
     }</span></li>`).join('');
 
   // ── Estado de la partida ──
@@ -665,7 +665,7 @@
     paletaEl.innerHTML = MATERIALES.map(m => `
       <button class="mat" data-mat="${m.id}" aria-pressed="false">
         <span class="bolita" style="background:${m.color}"></span>
-        <span>${esc(m.nombre)}</span>
+        <span>${esc(m.name)}</span>
       </button>`).join('');
     paletaEl.querySelectorAll('.mat').forEach(b => {
       b.addEventListener('click', () => elegirMaterial(b.dataset.mat));
@@ -689,7 +689,7 @@
   // ── Fase 1: vestir la estatua (5 puntos de tipo card, uno por parte) ──
   function start(){
     match = {
-      fase:'vestir', modo:modoClase(), sel:null,
+      phase:'vestir', modo:modoClase(), sel:null,
       pendientes:PARTES.map(p => p.id),
       objetivo:null, piesPuestos:[], ganados:0,
       retos:[], retoIdx:0, quizPaso:0
@@ -742,7 +742,7 @@
       ordenEl.innerHTML = `«${conHuecos}»`;
       return;
     }
-    ordenEl.innerHTML = `Le toca <strong>${esc(p.nombre)}</strong>. Toca su material y luego la parte que brilla.`;
+    ordenEl.innerHTML = `Le toca <strong>${esc(p.name)}</strong>. Toca su material y luego la parte que brilla.`;
   }
 
   function elegirMaterial(id){
@@ -750,7 +750,7 @@
     match.sel = (match.sel === id) ? null : id;
     marcarSeleccion();
     if(match.sel && match.objetivo){
-      decirFb(`Ahora toca <strong>${esc(PARTES.find(x => x.id === match.objetivo).nombre)}</strong> en la estatua.`, '');
+      decirFb(`Ahora toca <strong>${esc(PARTES.find(x => x.id === match.objetivo).name)}</strong> en la estatua.`, '');
     }else if(match.sel){
       decirFb('Ahora toca la parte de la estatua que lleva ese material.', '');
     }else{
@@ -768,7 +768,7 @@
     }
     const parte = PARTES.find(p => p.id === parteId);
     const elegido = match.sel;
-    const nombreMat = MAT[elegido].nombre;
+    const nombreMat = MAT[elegido].name;
 
     if(parteId === 'pies'){
       if(match.piesPuestos.includes(elegido)){
@@ -779,27 +779,27 @@
         match.piesPuestos.push(elegido);
         pintarZona('pies', [elegido]);
         if(match.piesPuestos.length === 2){
-          cerrarParte(parte, true, `✅ ¡Los pies completos! «${parte.frase}».`);
+          cerrarParte(parte, true, `✅ ¡Los pies completos! «${parte.phrase}».`);
         }else{
           const falta = parte.materiales.find(m => m !== elegido);
-          decirFb(`✅ Bien, media parte de <strong>${esc(nombreMat)}</strong>. Los pies llevan dos materiales: falta <strong>${esc(MAT[falta].nombre)}</strong>.`, 'bien', parte.ref);
+          decirFb(`✅ Bien, media parte de <strong>${esc(nombreMat)}</strong>. Los pies llevan dos materiales: falta <strong>${esc(MAT[falta].name)}</strong>.`, 'bien', parte.ref);
           match.sel = null;
           marcarSeleccion();
         }
         return;
       }
       pintarZona('pies', parte.materiales);
-      cerrarParte(parte, false, `❌ Los pies no eran de ${esc(nombreMat.toLowerCase())}. «${parte.frase}»: mitad hierro, mitad barro.`);
+      cerrarParte(parte, false, `❌ Los pies no eran de ${esc(nombreMat.toLowerCase())}. «${parte.phrase}»: mitad hierro, mitad barro.`);
       return;
     }
 
     const correcto = parte.materiales[0];
     if(elegido === correcto){
       pintarZona(parteId, [correcto]);
-      cerrarParte(parte, true, `✅ ¡Sí! «${parte.frase}».`);
+      cerrarParte(parte, true, `✅ ¡Sí! «${parte.phrase}».`);
     }else{
       pintarZona(parteId, [correcto]);
-      cerrarParte(parte, false, `❌ No era ${esc(nombreMat.toLowerCase())}. «${parte.frase}» — la pintamos de ${esc(MAT[correcto].nombre.toLowerCase())}.`);
+      cerrarParte(parte, false, `❌ No era ${esc(nombreMat.toLowerCase())}. «${parte.phrase}» — la pintamos de ${esc(MAT[correcto].name.toLowerCase())}.`);
     }
   }
 
@@ -876,7 +876,7 @@
     mainBtn.hidden = true;
     ordenEl.innerHTML = esc(q.q);
     optsEl.hidden = false;
-    optsEl.innerHTML = shuffle(q.opciones).map(o =>
+    optsEl.innerHTML = shuffle(q.options).map(o =>
       `<button class="opt" data-op="${esc(o)}">${esc(o)}</button>`).join('');
     optsEl.querySelectorAll('.opt').forEach(b => {
       b.addEventListener('click', () => responderReto(b, q));
@@ -886,14 +886,14 @@
   function responderReto(button, q){
     if(match.quizPaso !== 1) return;
     match.quizPaso = 2;
-    const acerto = button.dataset.op === q.correcta;
+    const acerto = button.dataset.op === q.correct;
     optsEl.querySelectorAll('.opt').forEach(b => {
       b.disabled = true;
-      if(b.dataset.op === q.correcta) b.classList.add('ok');
+      if(b.dataset.op === q.correct) b.classList.add('ok');
       else if(b === button) b.classList.add('bad');
     });
     const cola = sumaQuiz(acerto);
-    decirFb((acerto ? '✅ ¡Eso es! ' : `❌ La respuesta era <strong>${esc(q.correcta)}</strong>. `) +
+    decirFb((acerto ? '✅ ¡Eso es! ' : `❌ La respuesta era <strong>${esc(q.correct)}</strong>. `) +
       esc(q.explica) + cola, acerto ? 'bien' : 'mal', q.ref);
     const hayMas = match.retoIdx + 1 < match.retos.length;
     mainBtn.textContent = hayMas ? `Reto ${match.retoIdx + 2} ▶` : 'Ver la piedra ▶';
