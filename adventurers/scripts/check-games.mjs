@@ -12,7 +12,14 @@ const activities = [
     .matchAll(/"([^"]+)"/g),
 ].map((m) => m[1]);
 
-const dirs = readdirSync(publicDir).filter((d) => d.startsWith("conexion-biblica-"));
+// Una actividad es cualquier carpeta con un index.html que arranque AvProfile.
+const dirs = readdirSync(publicDir, { withFileTypes: true })
+  .filter((e) => e.isDirectory())
+  .map((e) => e.name)
+  .filter((d) => {
+    const f = join(publicDir, d, "index.html");
+    return existsSync(f) && readFileSync(f, "utf8").includes("AvProfile.init(");
+  });
 const failures = [];
 const warnings = [];
 
@@ -63,7 +70,12 @@ for (const dir of dirs.sort()) {
   if (!activityConst) fail(dir, "falta const ACTIVITY");
   else if (activityConst[1] !== slug) fail(dir, `ACTIVITY es '${activityConst[1]}' pero la carpeta dice '${slug}'`);
 
-  if (!html.includes("AvProfile.pick(")) fail(dir, "no usa AvProfile.pick: el contenido se repetiría");
+  // Una actividad cuyo contenido es un texto único no tiene nada que rotar, pero
+  // tiene que decirlo con "sin-rotacion:" y su razón, no callarse.
+  const noRotation = html.match(/sin-rotacion:\s*(.+)/);
+  if (!html.includes("AvProfile.pick(") && !noRotation) {
+    fail(dir, "no usa AvProfile.pick y no declara 'sin-rotacion: <razón>': el contenido se repetiría");
+  }
   if (!html.includes('src="/shared/profile.js"')) fail(dir, "no carga /shared/profile.js");
   if (!html.includes('href="/shared/profile.css"')) fail(dir, "no carga /shared/profile.css");
 
@@ -74,7 +86,12 @@ for (const dir of dirs.sort()) {
   for (const id of ["playerChip", "changePlayerBtn"]) {
     if (!html.includes(`id="${id}"`)) fail(dir, `falta el elemento #${id}`);
   }
-  if (!/<section id="juego"/.test(html)) fail(dir, "falta <section id=\"juego\">");
+  // La sección donde se practice puede llamarse como le calce a la actividad
+  // ("juego" en los de niños, "examen" en el de padres): lo que no puede faltar
+  // es que exista alguna, además de leer/material/padres.
+  const sections = [...html.matchAll(/<section id="([^"]+)"/g)].map((m) => m[1]);
+  const practice = sections.filter((x) => !["leer", "material", "padres"].includes(x));
+  if (!practice.length) fail(dir, "no tiene ninguna sección donde practicar");
   if (!/<section id="padres"/.test(html)) fail(dir, "falta la sección para padres");
   if (!/@media print/.test(html)) fail(dir, "no tiene estilos de impresión");
 
@@ -91,7 +108,12 @@ for (const dir of dirs.sort()) {
     fail(dir, "usa drag & drop, prohibido en móvil");
   }
 
-  for (const m of html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)) {
+  // Solo se restringen los recursos que la página CARGA. Un <a href> a la fuente
+  // de un texto es deseable: el club tiene que poder ir a leerla.
+  const loadedFromNet = html
+    .replace(/<a\b[^>]*>/g, "")
+    .matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g);
+  for (const m of loadedFromNet) {
     const host = new URL(m[1]).host;
     if (!["fonts.googleapis.com", "fonts.gstatic.com", "aventureros.iglesiajordanibague.org"].includes(host)) {
       fail(dir, `recurso externo no permitido: ${host}`);
@@ -124,20 +146,24 @@ for (const dir of dirs.sort()) {
   checkBalance(dir, html);
 }
 
-const missing = activities.filter((a) => !dirs.includes(`conexion-biblica-${a}`));
-for (const a of missing) failures.push(`ACTIVITIES: '${a}' está registrado pero no existe public/conexion-biblica-${a}/`);
+const slugs = dirs.map((d) => d.replace("conexion-biblica-", ""));
+for (const a of activities.filter((a) => !slugs.includes(a))) {
+  failures.push(`ACTIVITIES: '${a}' está registrado pero no existe su carpeta en public/`);
+}
 
 // El service worker precachea los juegos por nombre: si uno falta, no funciona offline.
 const sw = readFileSync(join(publicDir, "sw.js"), "utf8");
-const swGames = [
+const swSlugs = [
   ...(sw.match(/const GAMES = \[([\s\S]*?)\];/)?.[1] ?? "").matchAll(/"([^"]+)"/g),
 ].map((m) => m[1]);
+const swDirs = [
+  ...(sw.match(/const RUTAS = \[([\s\S]*?)\];/)?.[1] ?? "").matchAll(/"\/([^"]+)\/"/g),
+].map((m) => m[1]);
 for (const dir of dirs) {
-  const slug = dir.replace("conexion-biblica-", "");
-  if (!swGames.includes(slug)) failures.push(`sw.js: '${slug}' no está en GAMES, no se cacheará para offline`);
+  if (!swDirs.includes(dir)) failures.push(`sw.js: '${dir}' no está en RUTAS, no se cacheará para offline`);
 }
-for (const slug of swGames) {
-  if (!dirs.includes(`conexion-biblica-${slug}`)) failures.push(`sw.js: GAMES lista '${slug}', que no existe`);
+for (const d of swDirs) {
+  if (!dirs.includes(d)) failures.push(`sw.js: RUTAS lista '${d}', que no existe`);
 }
 
 const manifest = JSON.parse(readFileSync(join(publicDir, "manifest.webmanifest"), "utf8"));
@@ -156,6 +182,10 @@ for (const icon of manifest.icons || []) {
 const indexHtml = readFileSync(join(publicDir, "index.html"), "utf8");
 for (const dir of dirs) {
   if (!indexHtml.includes(`href="/${dir}/"`)) failures.push(`index.html: no enlaza ${dir}`);
+}
+// Y al revés: una tarjeta que apunte a una carpeta borrada es un enlace muerto.
+for (const m of indexHtml.matchAll(/class="activity-card" href="\/([^"]+)\/"/g)) {
+  if (!dirs.includes(m[1])) failures.push(`index.html: enlace muerto a /${m[1]}/`);
 }
 
 console.log(`Revisados ${dirs.length} juegos (${activities.length} actividades registradas).`);

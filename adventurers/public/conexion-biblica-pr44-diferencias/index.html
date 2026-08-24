@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1B2F6E">
-<title>Busca las diferencias en el foso</title>
-<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Una partida diaria: 5 diferencias en el foso de los leones + 5 rondas de «¿qué está pasando aquí?». ¡Suma puntos para el tablero del Club de Aventureros!">
+<title>¿Qué falta en el foso?</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Primero lees Daniel 6, después juegas: mira la escena del foso de los leones, se tapa, vuelve con algo menos y tú dices qué falta.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
-<meta property="og:title" content="Busca las diferencias en el foso">
-<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Dos dibujos del foso de los leones, 5 diferencias por encontrar y 5 rondas para descubrir qué está pasando en la escena.">
+<meta property="og:title" content="¿Qué falta en el foso?">
+<meta property="og:description" content="Un juego de memoria del capítulo 44: la piedra sellada, los leones de boca cerrada, el ángel, Daniel de rodillas, la ventana hacia Jerusalén, el rey Darío y el amanecer.">
 <meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr44-diferencias/">
 <meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
 <meta property="og:image:width" content="1200">
@@ -37,6 +37,7 @@
     --brick:#C2542B;
     --cream:#FFF6E3;
     --paper:#FFF9EC;
+    --stone:#EFE0BC;
     --ok:#2E9E5B;
     --ok-deep:#1E7040;
     --no:#D6453D;
@@ -58,41 +59,13 @@
   }
   button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
-  /* ── Cabecera ── */
   header{text-align:center;padding:10px 16px 12px}
-  .eyebrow{
-    font-family:'Fredoka',sans-serif;
-    font-size:.8rem;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    color:var(--gold-soft);
-  }
-  h1{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.4rem,5vw,2.2rem);
-    line-height:1.15;
-    margin-top:6px;
-  }
+  .eyebrow{font-family:'Fredoka',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft)}
+  h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.5rem,5vw,2.3rem);line-height:1.15;margin-top:6px}
   .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
-  @media (max-width:700px){
-    /* Con los dos dibujos apilados, la cabecera tiene que ceder espacio. */
-    .eyebrow{display:none}
-  }
-  @media (max-width:600px){
-    .subtitle{display:none}
-    header{padding-bottom:8px}
-  }
+  @media (max-width:600px){.subtitle{display:none}header{padding-bottom:8px}}
 
-  /* ── Barra superior + menú ── */
-  .topbar{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:10px 12px 0;
-    max-width:1000px;
-    margin:0 auto;
-  }
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 12px 0;max-width:1000px;margin:0 auto}
   .topbar .back-link{white-space:nowrap;flex-shrink:0}
   .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
   .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
@@ -103,384 +76,226 @@
     .back-link{padding:8px 10px}
     .menu-btn{padding:8px 12px}
   }
+  .back-link{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--gold-soft);text-decoration:none;border:2px solid transparent;border-radius:999px;padding:8px 16px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-btn{
-    font-family:'Fredoka',sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    border:2px solid var(--gold);
-    background:transparent;
-    color:var(--gold-soft);
-    border-radius:999px;
-    padding:8px 16px;
-    min-height:44px;
-    cursor:pointer;
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;border:2px solid var(--gold);
+    background:transparent;color:var(--gold-soft);border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer;
   }
   .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-panel{
-    position:absolute;
-    right:0;
-    top:calc(100% + 8px);
-    z-index:50;
-    display:flex;
-    flex-direction:column;
-    min-width:250px;
-    background:var(--cream);
-    border:3px solid var(--gold);
-    border-radius:18px;
-    padding:8px;
-    box-shadow:0 10px 0 rgba(0,0,0,.3);
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
   }
   .menu-panel[hidden]{display:none}
   .menu-item{
-    font-family:'Fredoka',sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    text-align:left;
-    background:transparent;
-    border:none;
-    color:var(--ink);
-    border-radius:12px;
-    padding:12px 14px;
-    min-height:44px;
-    cursor:pointer;
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;background:transparent;border:none;
+    color:var(--ink);border-radius:12px;padding:12px 14px;min-height:44px;cursor:pointer;
   }
   .menu-item:hover{background:rgba(240,180,41,.25)}
   .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
   .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
 
-  .back-link{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:.9rem;
-    color:var(--gold-soft);
-    text-decoration:none;
-    border:2px solid transparent;
-    border-radius:999px;
-    padding:8px 16px;
-  }
-  .back-link:hover{border-color:var(--gold)}
-  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
-
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
 
-  /* ── Escenario del juego ── */
-  .stage{max-width:940px;margin:0 auto;text-align:center}
-  .round-label{
-    font-family:'Fredoka',sans-serif;
-    color:var(--gold-soft);
-    letter-spacing:.15em;
-    text-transform:uppercase;
-    font-size:.8rem;
-    margin-bottom:10px;
+  /* ══════════ LEER ══════════ */
+  #leer{max-width:680px}
+  .read-card{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:22px 20px;margin-bottom:18px;box-shadow:0 8px 0 rgba(0,0,0,.28);
   }
-  .found-row{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    margin-bottom:12px;
+  .read-card h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px;
   }
-  .found-row[hidden]{display:none}
-  .dot{
-    width:26px;height:26px;
-    border-radius:50%;
-    border:3px solid var(--gold);
-    background:transparent;
-    display:flex;align-items:center;justify-content:center;
-    font-size:.9rem;
-    font-weight:800;
+  .read-card p{line-height:1.6;margin-bottom:10px}
+  .read-card p:last-child{margin-bottom:0}
+  .cita{
+    border-left:6px solid var(--gold);background:#fff;border-radius:0 14px 14px 0;
+    padding:12px 14px;margin:0 0 12px;font-weight:700;line-height:1.55;
   }
-  .dot.on{background:var(--ok);border-color:var(--ok-deep);color:#fff}
+  .cita span{display:block;margin-top:4px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.85rem;color:var(--brick)}
+  .source{font-size:.82rem;opacity:.75;margin-top:12px}
+  .source a{color:var(--brick);font-weight:700}
+  .elem-lista{list-style:none}
+  .elem-lista li{
+    display:flex;gap:12px;align-items:flex-start;padding:10px 4px;
+    border-bottom:2px dashed rgba(35,26,15,.15);
+  }
+  .elem-lista li:last-child{border-bottom:none}
+  .elem-lista .em{font-size:1.7rem;line-height:1;flex-shrink:0}
+  .elem-lista .nm{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.02rem}
+  .elem-lista .dt{font-size:.9rem;opacity:.85}
+  .read-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
 
-  .boards{display:grid;grid-template-columns:1fr;gap:14px}
-  .boards[hidden]{display:none}
-  @media (min-width:820px){.boards{grid-template-columns:1fr 1fr}}
-  /* En celular van uno debajo del otro y se acota el alto para que los dos
-     quepan en pantalla: lado a lado cada dibujo queda de ~190px y un niño de
-     5 años no distingue nada. */
-  @media (max-width:819px){
-    .boards{grid-template-columns:1fr;gap:8px}
-    .board{padding:6px 6px 2px;border-width:4px;border-radius:16px}
-    .board .scene{max-height:30vh}
-    .board-tag{font-size:.68rem;letter-spacing:.06em;padding:3px 9px;margin-bottom:2px}
-  }
-  @media (max-width:420px){
-    #juego{padding-left:8px;padding-right:8px}
-    .boards{gap:6px}
-    .board{padding:5px 5px 2px}
+  /* ══════════ JUEGO ══════════ */
+  .stage{max-width:540px;margin:0 auto;text-align:center}
+  .round-label{
+    font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.13em;
+    text-transform:uppercase;font-size:.78rem;margin-bottom:10px;
   }
   .board{
-    background:var(--cream);
-    border:5px solid var(--gold);
-    border-radius:24px;
-    box-shadow:0 8px 0 rgba(0,0,0,.28);
-    padding:8px 8px 4px;
-    position:relative;
+    position:relative;background:var(--paper);border:6px solid var(--gold);border-radius:26px;
+    box-shadow:0 12px 0 rgba(0,0,0,.28);padding:10px;overflow:hidden;
   }
-  .board-tag{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:.8rem;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    background:var(--lapis);
-    color:var(--gold-soft);
-    border-radius:999px;
-    padding:4px 14px;
-    margin-bottom:4px;
-  }
-
-  /* ── SVG de la escena ── */
-  .scene{width:100%;height:auto;display:block}
+  .board.hidden-board{display:none}
+  svg.scene{display:block;width:100%;height:auto;aspect-ratio:400/380;border-radius:18px;background:var(--paper)}
+  svg.scene.pickable{cursor:pointer}
   .scene .o{fill:var(--paper);stroke:var(--ink);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
   .scene .ln{fill:none;stroke:var(--ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
   .scene .thin{stroke-width:3}
   .scene .fill-ink{fill:var(--ink);stroke:none}
-  .scene .sun{fill:var(--gold)}
-  .scene .star{fill:var(--gold-soft)}
-  .scene .mane{fill:var(--gold)}
-  .scene .head,.scene .body{fill:var(--gold-soft)}
-  .scene .stone{fill:#D9CDB8}
+  .scene .sky{fill:#FFFDF6;stroke:none}
+  .scene .sun{fill:var(--gold-soft)}
+  .scene .pit{fill:var(--stone)}
+  .scene .stone-o{fill:var(--stone)}
   .scene .seal{fill:var(--gold)}
-  .scene .pit{fill:#EFE3C8;stroke-width:5}
-  .scene .win{fill:var(--lapis)}
-  .scene .mouth{fill:var(--brick)}
-  .scene .off{display:none}
-  .scene .hot{fill:#fff;fill-opacity:0;stroke:none;cursor:pointer}
-  .scene .mark{fill:none;stroke:var(--ok);stroke-width:6}
-  .scene .mark-num{fill:var(--ok-deep);stroke:none;font-family:'Fredoka',sans-serif;font-size:22px;font-weight:700}
-  .scene .pointer{fill:none;stroke:var(--brick);stroke-width:5;stroke-dasharray:11 9}
-  .scene .pointer-spin{animation:spin 8s linear infinite;transform-box:fill-box;transform-origin:center}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  @media (prefers-reduced-motion:reduce){
-    .scene .pointer-spin{animation:none}
+  .scene .win{fill:#fff}
+  .scene .body,.scene .mane{fill:var(--gold-soft)}
+  .scene .head{fill:var(--gold-soft)}
+  .scene .crown{fill:var(--gold)}
+  .scene .lbl{font-family:'Fredoka',sans-serif;font-size:13px;font-weight:600;fill:var(--ink);stroke:none}
+  .scene .gone{display:none}
+  .scene .mark{fill:none;stroke-width:6}
+  .scene .mark-ok{stroke:var(--ok-deep)}
+  .scene .mark-no{stroke:var(--no);stroke-dasharray:10 8}
+  .cover{
+    position:absolute;inset:10px;border-radius:18px;background:var(--lapis-deep);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    color:var(--gold-soft);font-family:'Fredoka',sans-serif;font-weight:600;
   }
-
+  .cover[hidden]{display:none}
+  .cover .big{font-size:clamp(3rem,16vw,5rem);line-height:1}
+  .cover .txt{font-size:1.05rem}
+  .timer{
+    font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.05rem;color:var(--lapis-deep);
+    background:var(--gold);border-radius:999px;padding:6px 16px;display:inline-block;margin-bottom:10px;
+  }
+  .timer[hidden]{display:none}
   .tap-msg{
-    min-height:26px;
-    margin-top:12px;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1rem;
-    color:var(--gold-soft);
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;line-height:1.35;
+    margin-top:14px;min-height:1.4em;
   }
-  .tap-msg.good{color:#9BE8B8}
-
-  /* ── Tarjeta de inicio / final ── */
-  .intro-card{
-    background:var(--cream);
-    color:var(--ink);
-    border-radius:28px;
-    border:6px solid var(--gold);
-    box-shadow:0 12px 0 rgba(0,0,0,.28);
-    padding:28px 20px;
-    max-width:460px;
-    margin:0 auto;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
+  .tap-msg[hidden]{display:none}
+  .feedback{
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:20px;
+    padding:14px 16px;margin-top:14px;text-align:left;line-height:1.5;
   }
-  .intro-card[hidden]{display:none}
-  .intro-card .emoji{font-size:clamp(4rem,20vw,6rem);line-height:1}
-  .intro-card .big-name{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.3rem,6vw,1.9rem);
-    line-height:1.15;
+  .feedback[hidden]{display:none}
+  .feedback .fh{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.08rem;margin-bottom:6px}
+  .feedback.ok .fh{color:var(--ok-deep)}
+  .feedback.bad .fh{color:var(--no)}
+  .feedback .dato{font-size:.95rem}
+  .ask{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:18px 16px;margin-top:14px;box-shadow:0 8px 0 rgba(0,0,0,.25);
   }
-  .intro-card .hint{font-weight:700;font-size:1rem;opacity:.7}
-
-  /* ── Ronda de "¿qué está pasando aquí?" ── */
-  .quiz-box{
-    margin:0 auto;
-    max-width:520px;
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:22px;
-    padding:16px 14px;
+  .ask[hidden]{display:none}
+  .ask .q{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.05rem,4.4vw,1.3rem);line-height:1.3;margin-bottom:12px}
+  .ask .tag{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;
+    background:var(--lapis);color:var(--gold-soft);border-radius:999px;padding:4px 12px;margin-bottom:10px;
   }
-  .quiz-box[hidden]{display:none}
-  .quiz-tag{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-size:.75rem;
-    font-weight:600;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    background:var(--brick);
-    color:#fff;
-    border-radius:999px;
-    padding:4px 12px;
-    margin-bottom:10px;
-  }
-  .quiz-scene{
-    background:var(--cream);
-    border:4px solid var(--gold);
-    border-radius:18px;
-    padding:6px;
-    max-width:320px;
-    margin:0 auto 12px;
-  }
-  .quiz-q{font-size:1.1rem;font-weight:800;line-height:1.35}
-  .opts{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+  .opts{display:grid;gap:10px}
   .opt{
-    font-family:'Nunito',sans-serif;
-    font-weight:800;
-    font-size:1rem;
-    line-height:1.3;
-    text-align:left;
-    background:var(--cream);
-    color:var(--ink);
-    border:3px solid var(--gold);
-    border-radius:16px;
-    padding:12px 14px;
-    min-height:52px;
-    cursor:pointer;
-    box-shadow:0 4px 0 rgba(0,0,0,.25);
+    font-family:'Fredoka',sans-serif;font-size:1.02rem;font-weight:600;text-align:left;
+    background:#fff;color:var(--ink);border:3px solid var(--lapis);border-radius:16px;
+    padding:13px 14px;min-height:52px;cursor:pointer;display:flex;align-items:center;gap:10px;
   }
-  .opt:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
-  .opt:focus-visible{outline:3px solid #fff;outline-offset:3px}
-  .opt[disabled]{cursor:default;opacity:.75}
-  .opt.pick-ok{background:var(--ok);border-color:var(--ok-deep);color:#fff;opacity:1}
-  .opt.pick-no{background:var(--no);border-color:#A32C26;color:#fff;opacity:1}
+  .opt .oe{font-size:1.5rem;line-height:1;flex-shrink:0}
+  .opt:active{transform:translateY(2px)}
+  .opt:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+  .opt.ok{background:var(--ok);border-color:var(--ok-deep);color:#fff}
+  .opt.bad{background:var(--no);border-color:#94302a;color:#fff}
+  .opt:disabled{cursor:default;opacity:.9}
+  .found-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+  .found-row[hidden]{display:none}
+  .chip{
+    font-family:'Fredoka',sans-serif;font-size:.85rem;font-weight:600;border-radius:999px;
+    padding:5px 11px;background:rgba(255,255,255,.1);border:2px solid var(--gold);color:var(--gold-soft);
+  }
+  .chip.ok{background:var(--ok);border-color:var(--ok-deep);color:#fff}
+  .chip.no{background:rgba(214,69,61,.25);border-color:var(--no);color:#fff}
 
-  /* ── Controles y juez ── */
-  .controls{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:18px;flex-wrap:wrap}
   .btn{
-    font-family:'Fredoka',sans-serif;
-    font-size:1.1rem;
-    font-weight:600;
-    border:none;
-    border-radius:999px;
-    padding:14px 28px;
-    min-height:48px;
-    cursor:pointer;
-    box-shadow:0 5px 0 rgba(0,0,0,.3);
-    transition:transform .1s ease;
+    font-family:'Fredoka',sans-serif;font-size:1.08rem;font-weight:600;border:none;border-radius:999px;
+    padding:14px 28px;min-height:48px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.3);
   }
-  .btn[hidden]{display:none}
   .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
   .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn[hidden]{display:none}
   .btn-gold{background:var(--gold);color:var(--lapis-deep)}
   .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
-  .btn-outline:active{transform:translateY(2px)}
   .btn-sm{font-size:.95rem;padding:10px 20px;min-height:44px}
-  .judge{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:16px;
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:16px;
-    padding:12px 14px;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-  }
-  .judge span{flex-basis:100%;text-align:center}
-  .judge[hidden]{display:none}
-  .practice-note{
-    margin-top:16px;
-    text-align:center;
-    font-weight:700;
-    font-size:.95rem;
-    color:var(--gold-soft);
-    opacity:.9;
-  }
+  .practice-note{margin-top:16px;text-align:center;font-weight:700;font-size:.95rem;color:var(--gold-soft);opacity:.9}
   .practice-note[hidden]{display:none}
+  .fin{
+    background:var(--cream);color:var(--ink);border:6px solid var(--gold);border-radius:26px;
+    padding:26px 20px;box-shadow:0 12px 0 rgba(0,0,0,.28);
+  }
+  .fin .big{font-size:clamp(3rem,14vw,4.5rem);line-height:1}
+  .fin .t{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.35rem;margin:8px 0}
+  .fin .verse{margin-top:10px;font-weight:700;line-height:1.5}
+  .fin .verse span{display:block;font-family:'Fredoka',sans-serif;font-size:.85rem;color:var(--brick);margin-top:4px}
 
-  /* ── Material imprimible ── */
-  .print-note{
-    text-align:center;
-    font-size:.95rem;
-    opacity:.85;
-    max-width:600px;
-    margin:0 auto 20px;
-  }
-  .print-grid{display:grid;grid-template-columns:1fr;gap:14px}
-  @media (min-width:820px){.print-grid{grid-template-columns:1fr 1fr}}
-  .print-card{
-    background:var(--cream);
-    border:4px solid var(--gold);
-    border-radius:20px;
-    padding:10px;
-  }
-  .print-card h3{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    color:var(--ink);
-    font-size:1rem;
-    margin-bottom:6px;
-    text-align:center;
-  }
-  .answers{
-    margin-top:18px;
-    background:var(--cream);
-    color:var(--ink);
-    border:4px solid var(--gold);
-    border-radius:20px;
-    padding:16px 18px;
-  }
-  .answers h3{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;margin-bottom:8px}
-  .answers ol{margin-left:22px;line-height:1.6}
-  .print-title{display:none}
+  /* ══════════ IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:600px;margin:0 auto 20px}
+  .sheet{background:#fff;color:#000;border-radius:18px;padding:24px 20px;max-width:720px;margin:0 auto}
+  .sheet h2{font-family:'Fredoka',sans-serif;font-size:1.3rem;margin-bottom:4px}
+  .sheet .sub{font-size:.9rem;opacity:.75;margin-bottom:14px}
+  .sheet h3{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin:16px 0 8px}
+  .sheet p{line-height:1.55;margin-bottom:8px}
+  .sheet ol{margin-left:20px;line-height:1.6}
+  .sheet .fichas{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:8px}
+  .sheet .tile{border:2px dashed #000;border-radius:12px;padding:10px;text-align:center}
+  .sheet .tile .fe{font-size:1.8rem;display:block}
+  .sheet .tile .fn{font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem}
+  .sheet .print-scene{max-width:460px;margin:0 auto}
 
-  /* ── Para padres ── */
+  /* ══════════ PADRES ══════════ */
   #padres{max-width:720px}
   .parent-box{
-    background:var(--cream);
-    color:var(--ink);
-    border:4px solid var(--gold);
-    border-radius:22px;
-    padding:22px 20px;
-    margin-bottom:18px;
-    box-shadow:0 6px 0 rgba(0,0,0,.25);
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:22px;
+    padding:22px 20px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
   }
   .parent-box h2{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1.2rem;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:8px;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.2rem;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
   }
   .parent-box p{margin-bottom:10px;line-height:1.55}
   .parent-box p:last-child{margin-bottom:0}
   .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
   .parent-box li{margin-bottom:6px}
-  .verse{
-    border-left:5px solid var(--brick);
-    background:rgba(194,84,43,.08);
-    border-radius:0 12px 12px 0;
-    padding:12px 14px;
-    font-style:italic;
-    font-weight:700;
+  .parent-box a{color:var(--brick);font-weight:700}
+  .parent-box .verse{
+    border-left:6px solid var(--gold);background:#fff;border-radius:0 14px 14px 0;
+    padding:12px 14px;font-weight:700;line-height:1.5;
   }
-  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
+  .parent-box .verse span{display:block;margin-top:4px;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.85rem;color:var(--brick)}
+  .tabla{width:100%;border-collapse:collapse;font-size:.92rem;margin-bottom:10px}
+  .tabla th,.tabla td{border:2px solid rgba(35,26,15,.2);padding:7px 9px;text-align:left}
+  .tabla th{font-family:'Fredoka',sans-serif;font-weight:600;background:rgba(240,180,41,.25)}
 
-  /* ── Impresión ── */
   @media print{
-    body{background:#fff;color:#000;background-image:none}
-    .topbar,header,#juego,#padres,.print-note{display:none!important}
+    body{background:#fff;color:#000}
+    header,.topbar,#leer,#juego,#padres,.print-note{display:none!important}
     section{display:block!important;padding:0}
     #material{display:block!important}
-    .print-title{display:block;text-align:center;font-family:'Fredoka',sans-serif;font-size:14pt;color:#000;margin-bottom:4mm}
-    .print-grid{display:block}
-    .print-card{border:1px solid #999;border-radius:4mm;margin:0 auto 4mm;width:100mm;padding:2mm;break-inside:avoid}
-    .print-card h3{color:#000;font-size:11pt}
-    .answers{border:1px solid #999;color:#000;break-inside:avoid;padding:4mm}
-    .scene .o,.scene .pit,.scene .win,.scene .head,.scene .body,
-    .scene .mane,.scene .sun,.scene .star,.scene .stone,.scene .seal,.scene .mouth{fill:#fff;stroke:#000}
-    .scene .ln{fill:none;stroke:#000}
-    .scene .fill-ink{fill:#000}
-    .scene .mark,.scene .pointer{stroke:#000}
+    .sheet{border:none;padding:0;max-width:none}
+    svg.scene{background:#fff}
+    .scene .o,.scene .sun,.scene .pit,.scene .stone-o,.scene .seal,.scene .win,
+    .scene .body,.scene .mane,.scene .head,.scene .crown{fill:#fff!important;stroke:#000!important}
+    .scene .ln{stroke:#000!important}
+    .scene .fill-ink,.scene .lbl{fill:#000!important}
+    .scene .sky{fill:#fff!important}
   }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -491,7 +306,8 @@
   <div class="menu-wrap">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
     <div class="menu-panel" id="menuPanel" hidden>
-      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="juego">🎮 Jugar</button>
       <button class="menu-item" data-tab="material">🖨️ Hoja para imprimir</button>
       <button class="menu-item" data-tab="padres">👪 Para padres</button>
       <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
@@ -501,447 +317,398 @@
 
 <header>
   <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 44 · En el foso de los leones</div>
-  <h1>Busca las diferencias en el foso</h1>
-  <p class="subtitle">Dos dibujos casi iguales: 5 diferencias + 5 rondas de «¿qué está pasando aquí?»</p>
+  <h1>¿Qué falta en el foso?</h1>
+  <p class="subtitle">Míralo bien. Se tapa. Vuelve con algo menos.</p>
 </header>
 
-<!-- ══════════ MODO JUEGO ══════════ -->
-<section id="juego" class="active">
+<!-- ══════════ LEER ══════════ -->
+<section id="leer" class="active">
+  <div class="read-card">
+    <h2>📖 Lo que pasó en el foso</h2>
+    <p>El rey <strong>Darío</strong> firmó un decreto: por <strong>treinta días</strong>, nadie podía pedirle algo a ningún dios ni a ningún hombre, solo al rey. El que lo hiciera iba al <strong>foso de los leones</strong>.</p>
+    <p>Daniel no cambió nada de su costumbre. <strong>Tres veces al día</strong> entraba en su cámara y, <strong>con las ventanas abiertas hacia Jerusalén</strong>, se arrodillaba a orar.</p>
+    <p>Lo echaron al foso. Pusieron una <strong>piedra</strong> en la entrada y el rey mismo la <strong>selló con su anillo y con el anillo de sus príncipes</strong>. Esa noche el rey se acostó sin comer, no le llevaron instrumentos de música y se le fue el sueño.</p>
+    <p><strong>Temprano por la mañana</strong> Darío corrió al foso y llamó a voces, con voz triste. Y Daniel le contestó desde abajo: Dios había enviado <strong>su ángel</strong>, que <strong>cerró la boca de los leones</strong>. No se halló <strong>ninguna lesión</strong> en él, porque creyó en su Dios.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>✍️ Los versículos</h2>
+    <p class="cita">«Tres veces al día se arrodillaba, y oraba, y daba gracias delante de su Dios.»<span>Daniel 6:10</span></p>
+    <p class="cita">«Y fue traída una piedra, y puesta sobre la puerta del foso, la cual selló el rey con su anillo y con el anillo de sus príncipes.»<span>Daniel 6:17</span></p>
+    <p class="cita">«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal: porque delante de él se halló en mí justicia.»<span>Daniel 6:22</span></p>
+    <p class="cita">«Y fue Daniel sacado del foso, y ninguna lesión se halló en él, porque creyó en su Dios.»<span>Daniel 6:23</span></p>
+    <p class="source">
+      Fuentes: <a href="https://www.biblegateway.com/passage/?search=Daniel%206&amp;version=RVR1960" target="_blank" rel="noopener">Daniel 6 completo (Reina-Valera)</a>
+      y <em>Profetas y Reyes</em>, capítulo 44 «En el foso de los leones», de Elena G. de White
+      (<a href="https://m.egwwritings.org/es" target="_blank" rel="noopener">EGW Writings</a>, biblioteca gratuita).
+    </p>
+  </div>
+
+  <div class="read-card">
+    <h2>👀 Las 7 cosas de la escena</h2>
+    <p>Estas son las siete cosas que vas a buscar en el dibujo. Míralas con su dibujito, porque en el juego una de ellas se va a esconder:</p>
+    <ul class="elem-lista" id="elemLista"></ul>
+  </div>
+
+  <div class="read-cta">
+    <button class="btn btn-gold" id="toGameBtn">Ya lo leí · ¡A jugar! ▶</button>
+  </div>
+</section>
+
+<!-- ══════════ JUEGO ══════════ -->
+<section id="juego">
   <div class="stage">
-    <div class="round-label" id="roundLabel">¿Listos, detectives del foso?</div>
-
+    <div class="round-label" id="roundLabel">¿Listo? Vas a mirar el foso con mucha atención</div>
     <div class="found-row" id="foundRow" hidden></div>
+    <div class="timer" id="timer" hidden></div>
 
-    <div class="intro-card" id="introCard">
-      <div class="emoji">🦁</div>
-      <div class="big-name">¡Partida de detectives!</div>
-      <div class="hint">5 diferencias por encontrar + 5 rondas para descubrir qué pasa en la escena.</div>
-    </div>
-
-    <div class="boards" id="boards" hidden>
-      <div class="board">
-        <span class="board-tag">Dibujo 1</span>
-        <div id="svgA"></div>
-      </div>
-      <div class="board">
-        <span class="board-tag">Dibujo 2</span>
-        <div id="svgB"></div>
+    <div class="board" id="board">
+      <div id="sceneWrap"></div>
+      <div class="cover" id="cover" hidden>
+        <div class="big">🙈</div>
+        <div class="txt" id="coverTxt">Tapando el foso…</div>
       </div>
     </div>
 
-    <p class="tap-msg" id="tapMsg"></p>
+    <p class="tap-msg" id="tapMsg" hidden></p>
 
-    <div class="quiz-box" id="quizBox" hidden>
-      <span class="quiz-tag" id="quizTag">6–7 años</span>
-      <div class="quiz-scene" id="quizScene"></div>
-      <div class="quiz-q" id="quizQ"></div>
-      <div class="opts" id="opts"></div>
+    <div class="feedback" id="feedback" hidden>
+      <div class="fh" id="fbHead"></div>
+      <div class="dato" id="fbDato"></div>
+    </div>
+
+    <div class="ask" id="ask" hidden>
+      <span class="tag" id="askTag"></span>
+      <div class="q" id="askQ"></div>
+      <div class="opts" id="askOpts"></div>
     </div>
 
     <div class="controls">
-      <button class="btn btn-outline btn-sm" id="hintBtn" hidden>💡 Dame una pista</button>
-      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
-    </div>
-
-    <div class="judge" id="judge" hidden>
-      <span id="judgeQ"></span>
-      <button class="btn btn-gold btn-sm" id="nextBtn">Siguiente ▶</button>
+      <button class="btn btn-gold" id="mainBtn">▶ Empezar</button>
     </div>
 
     <p class="practice-note" id="practiceNote" hidden></p>
   </div>
 </section>
 
-<!-- ══════════ HOJA PARA IMPRIMIR ══════════ -->
+<!-- ══════════ IMPRIMIBLE ══════════ -->
 <section id="material">
-  <p class="print-note">
-    Usa <strong>Ctrl/Cmd + P</strong> para imprimir esta hoja carta: los dos dibujos del foso
-    con <strong>5 diferencias</strong> para buscar con lápiz, y al final la lista de respuestas
-    para el adulto. Ideal para la clase de Aventureros o para el viaje en carro.
-  </p>
+  <p class="print-note">Usa <strong>Ctrl/Cmd + P</strong> para imprimir esta hoja: el dibujo del foso para colorear y las siete fichas para recortar y jugar sin pantalla.</p>
+  <div class="sheet">
+    <h2>¿Qué falta en el foso?</h2>
+    <p class="sub">Profetas y Reyes, cap. 44 · Daniel 6 · Club de Aventureros El Elohe Israel, Iglesia Adventista Jordán Ibagué</p>
 
-  <div class="print-title">Busca las 5 diferencias · El foso de los leones (Daniel 6)</div>
+    <h3>1) Colorea el foso de los leones</h3>
+    <div class="print-scene" id="printScene"></div>
 
-  <div class="print-grid">
-    <div class="print-card">
-      <h3>Dibujo 1</h3>
-      <div id="printA"></div>
-    </div>
-    <div class="print-card">
-      <h3>Dibujo 2</h3>
-      <div id="printB"></div>
-    </div>
-  </div>
+    <h3>2) Juega sin pantalla</h3>
+    <p>Recorta las siete fichas. Póngalas todas sobre la mesa y que el niño las mire <strong>contando hasta diez</strong>. Después el niño cierra los ojos, un adulto o un hermano <strong>esconde una ficha</strong>, y el niño dice cuál falta <strong>y qué hacía en la historia</strong>. Si lo dice, se gana la ficha.</p>
+    <div class="fichas" id="printFichas"></div>
 
-  <div class="answers">
-    <h3>🔑 Respuestas para el adulto</h3>
+    <h3>3) Las respuestas, para el adulto</h3>
     <ol id="printAnswers"></ol>
-    <p style="margin-top:10px">Mientras buscan, pregunten: <em>¿por qué los leones no le hicieron daño a Daniel?</em></p>
   </div>
 </section>
 
-<!-- ══════════ PARA PADRES ══════════ -->
+<!-- ══════════ PADRES ══════════ -->
 <section id="padres">
   <div class="parent-box">
     <h2>📖 La historia</h2>
-    <p>Esta dinámica está basada en <strong>Daniel 6</strong> (capítulo 44 de <em>Profetas y Reyes</em>, «En el foso de los leones»). Darío el Medo organizó su reino con ciento veinte gobernadores y tres presidentes, y Daniel era el primero entre ellos. Los demás príncipes, muertos de celos, buscaron una falta en Daniel y no la hallaron, <strong>«porque él era fiel»</strong>.</p>
-    <p>Entonces convencieron al rey de firmar un decreto: por treinta días nadie podía pedir nada a ningún dios ni hombre, solo al rey; el que lo hiciera iría al foso de los leones. Daniel siguió orando <strong>tres veces al día, con las ventanas abiertas hacia Jerusalén</strong>. Lo acusaron, y el rey —que no pudo cambiar la ley de Media y de Persia— trabajó hasta la puesta del sol para librarlo, pero tuvo que echarlo al foso. La piedra fue sellada con el anillo del rey, y esa noche Darío no comió ni durmió.</p>
-    <p>Muy temprano en la mañana el rey corrió al foso y llamó con voz triste. Daniel respondió: <strong>«El Dios mío envió su ángel, el cual cerró la boca de los leones»</strong>. No se halló ninguna lesión en él. Darío escribió entonces a todos los pueblos, naciones y lenguas, que temieran al Dios de Daniel, «el Dios viviente y permanente por todos los siglos».</p>
+    <p>Profetas y Reyes, capítulo 44 «En el foso de los leones», basado en <strong>Daniel 6</strong>. Darío el Medo reorganizó el reino con ciento veinte gobernadores y tres presidentes, y Daniel era el primero de ellos. Sus enemigos, que no le hallaron ninguna falta, consiguieron un decreto que prohibía orar por treinta días. Daniel siguió orando tres veces al día con las ventanas abiertas hacia Jerusalén. Lo echaron al foso, el rey selló la piedra con su anillo, y al amanecer encontró a Daniel vivo: Dios había enviado su ángel a cerrar la boca de los leones.</p>
   </div>
 
   <div class="parent-box">
     <h2>💡 ¿Qué aprende su hijo?</h2>
-    <ul>
-      <li><strong>Mirar con atención</strong>: buscar diferencias entrena los ojos y, al mismo tiempo, deja fija en la memoria la escena del foso, la piedra sellada y el ángel.</li>
-      <li><strong>Ser el mismo en todas partes</strong>: en el foso Daniel fue el mismo que en el palacio. Su fidelidad no cambió con las circunstancias.</li>
-      <li><strong>Orar aunque cueste</strong>: ninguna ley humana puede meterse entre el niño y Dios.</li>
-      <li><strong>Dios libra</strong>: el ángel cerró la boca de los leones, y hasta un rey pagano terminó honrando a Dios.</li>
-    </ul>
-    <p class="verse">«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal» <span>Daniel 6:22</span></p>
+    <p>Este juego no pregunta: <strong>hace recordar</strong>. Su hijo mira la escena unos segundos, la escena se tapa y vuelve con un elemento menos. Al buscarlo, tiene que fijarse en <em>qué</em> había allí y <em>por qué</em> estaba: la piedra que el rey selló con su anillo, los leones de boca cerrada, el ángel que Dios envió, Daniel de rodillas, la ventana hacia Jerusalén, el rey Darío asomado y el amanecer en que corrió al foso. Los siete elementos son del capítulo 44; no hay ninguno de adorno.</p>
+    <p class="verse">«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal.»<span>Daniel 6:22</span></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🧒 Este es el juego que puede jugar solo</h2>
+    <p>De todos los juegos del club, <strong>este está hecho para que un niño de 4 o 5 años lo juegue sin ayuda</strong>. Por eso aquí <strong>no hay ningún botón de adulto</strong>: no hay que confirmar nada ni tocar la estrella, la app se califica sola de principio a fin.</p>
+    <p>Cada opción tiene su <strong>dibujito</strong> al lado del nombre, así que un niño que todavía no lee también puede jugar. Eso sí: cuando llega el momento de nombrar, <strong>el foso se tapa</strong>, y el nombre tiene que salir de la memoria. Si su hijo ya lee, no le lea las opciones: déjelo.</p>
   </div>
 
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>. Aparecen <strong>dos dibujos del foso</strong> casi iguales, lado a lado, para poder compararlos de un vistazo.</li>
-      <li>Su hijo <strong>toca la diferencia</strong> en cualquiera de los dos dibujos. Si acierta, se marca con un círculo verde y suma <strong>⭐ 1 punto</strong> (hay 5 diferencias).</li>
-      <li>Si toca donde no hay nada, <strong>no pierde puntos</strong>: solo aparece un «sigue buscando». Si se atasca, está el botón <strong>💡 Dame una pista</strong>, que dice en qué parte del dibujo mirar; a la tercera pista aparece <strong>Saltar a las preguntas ▶</strong> para no quedarse trabado.</li>
-      <li>Después vienen <strong>5 rondas de «¿qué está pasando aquí?»</strong>: se señala una parte del dibujo con un círculo rojo y el niño elige entre 3 opciones qué dice el capítulo sobre eso. La app califica sola.</li>
-      <li>Las rondas vienen marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Lean las opciones en voz alta a los más pequeños.</li>
-      <li>Las diferencias y las preguntas <strong>no se repiten</strong> hasta agotarse: la app recuerda por niño lo que ya salió esta semana, así cada día el foso cambia en otras cosas.</li>
-      <li>Sin pantalla: impriman la <strong>🖨️ hoja para imprimir</strong> y busquen las diferencias con lápiz. La lista de respuestas va al final, para el adulto.</li>
+      <li>Lean juntos la pestaña <strong>📖 Leer primero</strong>. La lista de las siete cosas de la escena está ahí: el juego valida lo leído, no lo enseña desde cero.</li>
+      <li>Toquen <strong>▶ Empezar</strong>. Aparece el foso completo con una cuenta atrás. Cuando su hijo ya lo miró bien, puede tocar <strong>Ya lo vi 👀</strong> sin esperar.</li>
+      <li>El dibujo se tapa un momento y vuelve <strong>con una cosa menos</strong>. Su hijo <strong>toca en el dibujo el lugar donde faltaba</strong>.</li>
+      <li>El foso se vuelve a tapar y su hijo elige <strong>el nombre</strong> de lo que faltaba, ya sin poder mirar el dibujo. El punto se gana cuando acierta las dos cosas: dónde faltaba y cómo se llama.</li>
+      <li>Siempre aparece la respuesta correcta y el dato del capítulo, también cuando acierta.</li>
+      <li>Lo que se esconde <strong>no se repite</strong> hasta agotar los siete elementos: la app recuerda por niño lo que ya salió esta semana.</li>
     </ol>
-    <p>Las rondas <strong>cubren todo el capítulo 44</strong>, así que también sirven de repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ Los puntos</h2>
+    <p>Este juego <strong>no vale diez puntos</strong>, y está bien: vale lo que da su contenido. Cada elemento encontrado <em>y</em> nombrado suma <strong>⭐ 1 punto</strong>, y el número de rondas depende de la <strong>clase</strong> del niño en el club:</p>
+    <table class="tabla">
+      <tr><th>Clase</th><th>Rondas</th><th>Segundos para mirar</th><th>Preguntas</th></tr>
+      <tr><td>Principiantes · Corderitos</td><td>3</td><td>8</td><td>—</td></tr>
+      <tr><td>Aves Madrugadoras · Abejitas Industriosas · Rayitos de Sol</td><td>4</td><td>6 a 7</td><td>—</td></tr>
+      <tr><td>Constructores · Manos Ayudadoras</td><td>6</td><td>4 a 5</td><td>2</td></tr>
+    </table>
+    <p>Los mayores tienen además <strong>2 preguntas</strong> al final, y cada una sale de una bolsa distinta: la primera es del <em>corazón del capítulo</em> (quién cerró la boca de los leones y por qué), y la segunda es de los <em>datos de Daniel 6</em> (los 120 gobernadores, los tres presidentes, los treinta días del decreto, la piedra sellada con los dos anillos, la noche que el rey no comió ni durmió, «ninguna lesión se halló en él», la ley de Media y Persia). Así la segunda no se responde con la primera. Cada respuesta viene con <strong>su propio versículo</strong>, útil para el examen del campamento.</p>
+    <p>El tope del club es 5 puntos de juego y 5 de preguntas por actividad y por día. Con 6 rondas, la sexta suele caer ya en <strong>práctica</strong>: se juega igual, pero no suma. Sin perfil también se puede jugar todo, sin sumar.</p>
+    <p>Todo lo que se pregunta sale del capítulo 44 y de Daniel 6. <strong>No hay ninguna parte de aplicación a la vida de hoy</strong> en este juego: es repaso puro para el examen del campamento.</p>
   </div>
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 diferencias + 5 rondas de «¿qué está pasando aquí?». Cada acierto suma <strong>⭐ 1 punto</strong> (las fallas no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de juego y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
-    <p>El reto extra: que su hijo escoja <strong>una hora fija del día para orar</strong>, como Daniel, y la cumpla toda la semana aunque esté de visita o con amigos.</p>
-    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+    <p>Una partida por día. Y el reto de casa: que su hijo escoja <strong>una hora fija del día para orar</strong>, como Daniel, y la cumpla toda la semana aunque estén de visita. Que sepa decir <strong>cuántas veces al día oraba Daniel</strong> (tres) y <strong>hacia dónde miraban sus ventanas</strong> (Jerusalén).</p>
+    <p>El perfil se crea una sola vez con el nombre y el documento del niño. El documento es la llave para sumar puntos: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
   </div>
 </section>
 
 <script src="/shared/profile.js"></script>
 
 <script>
-  // ══════════ Dibujo de la escena (SVG inline, hecho a mano) ══════════
-  function star(cx, cy, r){
-    const a = r * .36;
-    return `<path class="o star" d="M${cx} ${cy-r} L${cx+a} ${cy-a} L${cx+r} ${cy} L${cx+a} ${cy+a} L${cx} ${cy+r} L${cx-a} ${cy+a} L${cx-r} ${cy} L${cx-a} ${cy-a} Z"/>`;
-  }
+  const ACTIVITY = 'pr44-diferencias';
 
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  // ══════════ Dibujo de la escena (SVG inline, hecho a mano) ══════════
   // Un león: cabeza al centro (0,0) en coordenadas locales.
-  function lion(n, cx, cy, s, flip){
-    const t = `translate(${cx} ${cy}) scale(${flip ? -s : s} ${s})`;
+  function lion(cx, cy, flip){
     return `
-      <g transform="${t}">
-        <path class="ln" data-p="lion${n}Tail" d="M30 20 q32 8 24 -26 q-3 -11 -13 -6"/>
+      <g transform="translate(${cx} ${cy}) scale(${flip ? -1 : 1} 1)">
+        <path class="ln" d="M30 20 q32 8 24 -26 q-3 -11 -13 -6"/>
         <ellipse class="o body" cx="26" cy="20" rx="34" ry="22"/>
         <circle class="o ear" cx="-22" cy="-26" r="9"/>
         <circle class="o ear" cx="22" cy="-26" r="9"/>
-        <circle class="o mane" data-p="lion${n}Mane" cx="0" cy="0" r="33"/>
+        <circle class="o mane" cx="0" cy="0" r="33"/>
         <circle class="o head" cx="0" cy="0" r="24"/>
         <circle class="fill-ink" cx="-9" cy="-5" r="3.2"/>
         <circle class="fill-ink" cx="9" cy="-5" r="3.2"/>
         <path class="fill-ink" d="M-6 4 h12 l-6 8 z"/>
-        <path class="ln thin" data-p="lion${n}MouthC" d="M-11 15 q11 8 22 0"/>
-        <g class="off" data-p="lion${n}MouthO">
-          <ellipse class="o mouth" cx="0" cy="18" rx="11" ry="9"/>
-          <path class="ln thin" d="M-6 10 l3 6 M6 10 l-3 6"/>
-        </g>
+        <path class="ln thin" d="M-11 15 q11 8 22 0"/>
       </g>`;
   }
 
-  // opts: {pointer:[x,y], hots:[{id,cx,cy,r}]}
-  function sceneSVG(opts){
-    opts = opts || {};
-    const hots = (opts.hots || []).map(h =>
-      `<circle class="hot" data-diff="${h.id}" cx="${h.cx}" cy="${h.cy}" r="${h.r}"/>`).join('');
-    const pointer = opts.pointer
-      ? `<circle class="pointer pointer-spin" cx="${opts.pointer[0]}" cy="${opts.pointer[1]}" r="34"/>`
-      : '';
+  // oculto = id del elemento que no se dibuja (null = escena completa)
+  function sceneSVG(oculto){
+    const g = id => `<g data-el="${id}"${oculto === id ? ' class="gone"' : ''}>`;
     return `
 <svg class="scene" viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" role="img"
-     aria-label="El foso de los leones: Daniel de rodillas, el ángel, tres leones, la piedra sellada y el rey Darío asomado">
-  <!-- cielo: el sol de la mañana y las últimas estrellas -->
-  <g class="ln" data-p="sunRays">
-    <path d="M48 8 v14 M48 70 v14 M10 46 h14 M72 46 h14 M21 19 l10 10 M75 73 l-10 -10 M75 19 l-10 10 M21 73 l10 -10"/>
-  </g>
-  <circle class="o sun" data-p="sun" cx="48" cy="46" r="22"/>
-  <g data-p="stars">
-    ${star(112, 30, 11)}
-    ${star(140, 48, 9)}
-    ${star(164, 22, 8)}
+     aria-label="El foso de los leones: Daniel de rodillas, el ángel, dos leones con la boca cerrada, la piedra sellada, la ventana hacia Jerusalén, el rey Darío asomado y el sol del amanecer">
+  <rect class="sky" x="0" y="0" width="400" height="122"/>
+
+  <!-- el amanecer: temprano por la mañana el rey corrió al foso -->
+  ${g('amanecer')}
+    <path class="ln" d="M52 8 v14 M52 70 v14 M14 46 h14 M76 46 h14 M25 19 l10 10 M79 73 l-10 -10 M79 19 l-10 10 M25 73 l10 -10"/>
+    <circle class="o sun" cx="52" cy="46" r="21"/>
   </g>
 
-  <!-- el palacio de Darío, con las ventanas -->
-  <g data-p="wall">
-    <path class="o" d="M232 30 h20 v16 h12 v-16 h20 v16 h12 v-16 h20 v16 h12 v-16 h20 v16 h12 v76 h-128 z"/>
-    <rect class="o win" data-p="win1" x="246" y="66" width="22" height="28" rx="8"/>
-    <rect class="o win" data-p="win2" x="290" y="66" width="22" height="28" rx="8"/>
-    <rect class="o win" data-p="win3" x="334" y="66" width="22" height="28" rx="8"/>
-  </g>
-  <g class="off" data-p="harp">
-    <path class="o" d="M394 118 V78 Q394 66 382 70 L366 118 Z"/>
-    <path class="ln thin" d="M374 113 v-18 M381 113 v-38 M388 113 v-40"/>
+  <!-- la cámara de Daniel -->
+  <path class="o" d="M244 46 L321 12 L398 46 Z"/>
+  <rect class="o" x="254" y="46" width="134" height="76"/>
+  ${g('ventana')}
+    <rect class="o win" x="292" y="58" width="48" height="46" rx="14"/>
+    <path class="ln thin" d="M316 58 v46 M292 81 h48"/>
+    <path class="ln" d="M350 78 h26 M368 71 l9 7 -9 7"/>
+    <text class="lbl" x="364" y="112" text-anchor="middle">Jerusalén</text>
   </g>
 
-  <!-- el suelo -->
+  <!-- el rey Darío asomado al foso -->
+  ${g('rey')}
+    <path class="ln" d="M212 104 q28 12 32 34"/>
+    <circle class="o" cx="246" cy="144" r="9"/>
+    <path class="o" d="M150 122 q6 -38 32 -38 q26 0 32 38 z"/>
+    <circle class="o" cx="182" cy="76" r="19"/>
+    <circle class="fill-ink" cx="176" cy="73" r="2.6"/>
+    <circle class="fill-ink" cx="188" cy="73" r="2.6"/>
+    <path class="ln thin" d="M176 85 q6 5 12 0"/>
+    <path class="o crown" d="M162 58 l3 -20 9 11 8 -15 8 15 9 -11 3 20 z"/>
+  </g>
+
   <path class="ln" d="M0 122 H400"/>
-
-  <!-- el foso -->
   <rect class="o pit" x="18" y="126" width="364" height="244" rx="28"/>
 
   <!-- el ángel que cerró la boca de los leones -->
-  <g data-p="angel">
-    <path class="o" data-p="angelWingL" d="M196 178 q-72 -58 -68 20 q22 26 68 8 z"/>
-    <path class="o" data-p="angelWingR" d="M204 178 q72 -58 68 20 q-22 26 -68 8 z"/>
-    <path class="o" d="M200 168 q-32 20 -36 62 h72 q-4 -42 -36 -62 z"/>
-    <circle class="o" cx="200" cy="164" r="17"/>
-    <ellipse class="ln thin" data-p="angelHalo" cx="200" cy="142" rx="21" ry="7"/>
+  ${g('angel')}
+    <path class="o" d="M196 176 q-72 -58 -68 20 q22 26 68 8 z"/>
+    <path class="o" d="M204 176 q72 -58 68 20 q-22 26 -68 8 z"/>
+    <path class="o" d="M200 166 q-32 20 -36 62 h72 q-4 -42 -36 -62 z"/>
+    <circle class="o" cx="200" cy="162" r="17"/>
+    <ellipse class="ln thin" cx="200" cy="140" rx="21" ry="7"/>
   </g>
 
-  <!-- Daniel de rodillas -->
-  <g data-p="daniel">
-    <path class="o" d="M196 250 q-36 12 -42 58 h86 q-8 -46 -44 -58 z"/>
-    <circle class="o" cx="196" cy="232" r="17"/>
-    <circle class="fill-ink" cx="190" cy="229" r="2.6"/>
-    <circle class="fill-ink" cx="202" cy="229" r="2.6"/>
-    <path class="o" data-p="danielBeard" d="M183 240 q13 22 26 0 q-13 11 -26 0 z"/>
-    <path class="o" data-p="danielHands" d="M187 268 q9 -22 18 0 q-9 9 -18 0 z"/>
-    <path class="o off" data-p="danielHandsDown" d="M205 284 q12 5 13 21 q-12 3 -13 -21 z"/>
+  <!-- Daniel de rodillas, con las manos juntas (a un lado del ángel) -->
+  ${g('daniel')}
+    <g transform="translate(-40 38)">
+      <path class="o" d="M196 252 q-36 12 -42 58 h86 q-8 -46 -44 -58 z"/>
+      <circle class="o" cx="196" cy="234" r="17"/>
+      <circle class="fill-ink" cx="190" cy="231" r="2.6"/>
+      <circle class="fill-ink" cx="202" cy="231" r="2.6"/>
+      <path class="o" d="M183 242 q13 22 26 0 q-13 11 -26 0 z"/>
+      <path class="o" d="M187 270 q9 -22 18 0 q-9 9 -18 0 z"/>
+    </g>
   </g>
 
   <!-- los leones, con la boca cerrada -->
-  ${lion(1, 72, 215, 1, false)}
-  ${lion(2, 330, 215, 1, true)}
-  ${lion(3, 278, 318, .8, false)}
-
-  <!-- el piso del foso -->
-  <path class="ln thin" d="M26 348 H374"/>
-  <g data-p="pebbles">
-    <ellipse class="o" cx="56" cy="356" rx="11" ry="7"/>
-    <ellipse class="o" cx="80" cy="360" rx="9" ry="6"/>
-    <ellipse class="o" data-p="pebble3" cx="104" cy="354" rx="12" ry="8"/>
+  ${g('leones')}
+    ${lion(74, 222, false)}
+    ${lion(322, 252, true)}
   </g>
-  <path class="ln thin" data-p="grass" d="M340 360 q4 -20 9 -3 M350 360 q1 -22 9 -7 M358 360 q5 -16 9 -4"/>
+
+  <path class="ln thin" d="M26 348 H374"/>
 
   <!-- la piedra de la entrada, sellada con el anillo del rey -->
-  <ellipse class="o stone" data-p="stone" cx="80" cy="116" rx="54" ry="30"/>
-  <g data-p="sealRing">
-    <circle class="o seal" cx="80" cy="114" r="14"/>
-    <circle class="ln thin" cx="80" cy="114" r="7" fill="none"/>
-  </g>
-  <path class="ln off" data-p="sealCrack" d="M60 98 l12 12 -9 8 13 10"/>
-
-  <!-- el rey Darío asomado al foso -->
-  <g data-p="king">
-    <g data-p="kingArm">
-      <path class="ln" d="M210 108 q30 10 34 32"/>
-      <circle class="o" cx="248" cy="146" r="9"/>
-    </g>
-    <path class="o" d="M148 122 q6 -36 32 -36 q26 0 32 36 z"/>
-    <circle class="o" cx="180" cy="78" r="19"/>
-    <circle class="fill-ink" cx="174" cy="75" r="2.6"/>
-    <circle class="fill-ink" cx="186" cy="75" r="2.6"/>
-    <path class="ln thin" d="M174 86 q6 5 12 0"/>
-    <path class="o" data-p="kingCrown" d="M160 60 l3 -20 9 11 8 -15 8 15 9 -11 3 20 z"/>
+  ${g('piedra')}
+    <ellipse class="o stone-o" cx="78" cy="118" rx="52" ry="28"/>
+    <circle class="o seal" cx="78" cy="116" r="13"/>
+    <circle class="ln thin" cx="78" cy="116" r="6.5"/>
   </g>
 
-  ${pointer}
-  <g data-layer="hot">${hots}</g>
+  <g data-layer="marcas"></g>
 </svg>`;
   }
 
-  // ══════════ Las 20 diferencias posibles (2 por zona, 10 zonas) ══════════
-  // slot = zona del dibujo; en una partida nunca salen dos de la misma zona.
-  const DIFFS = [
-    {id:'sol-sin-rayos', slot:'cielo', at:[48,46,32],
-     hint:'Mira bien arriba, en el cielo: al sol de la mañana le cambió algo.',
-     answer:'Al sol de la mañana le faltan los rayos.',
-     mut:[['hide','sunRays']]},
-    {id:'sin-estrellas', slot:'cielo', at:[136,36,30],
-     hint:'Mira arriba, en el cielo, al lado del sol.',
-     answer:'Se fueron las tres estrellitas del amanecer.',
-     mut:[['hide','stars']]},
+  // ══════════ Los 7 elementos, todos del capítulo 44 ══════════
+  // zonas = círculos tocables en coordenadas del viewBox (400 x 380)
+  const ELEMENTOS = [
+    {id:'piedra', emoji:'🪨', nombre:'La piedra sellada',
+     zonas:[[78,118,38],[40,118,20],[116,118,20]],
+     dato:'El rey mismo la selló «con su anillo, y con el anillo de sus príncipes», para que el acuerdo acerca de Daniel no se mudase.'},
+    {id:'leones', emoji:'🦁', nombre:'Los leones con la boca cerrada',
+     zonas:[[74,222,46],[116,236,28],[322,252,46],[280,266,28]],
+     dato:'Tenían hambre de verdad: los mismos leones se apoderaron después de los hombres que habían acusado a Daniel (Daniel 6:24).'},
+    {id:'angel', emoji:'👼', nombre:'El ángel',
+     zonas:[[200,172,42],[158,178,38],[242,178,38],[200,208,34]],
+     dato:'Dios envió su ángel al foso. Fue el ángel, y no la suerte, el que cerró la boca de los leones.'},
+    {id:'daniel', emoji:'🙏', nombre:'Daniel de rodillas',
+     zonas:[[156,272,24],[157,320,46]],
+     dato:'Tres veces al día se arrodillaba a orar, y no dejó de hacerlo ni cuando el decreto lo prohibió.'},
+    {id:'ventana', emoji:'🪟', nombre:'La ventana hacia Jerusalén',
+     zonas:[[319,82,40],[366,79,20],[364,107,26]],
+     dato:'Daniel oraba en su cámara «con las ventanas abiertas hacia Jerusalén, según su costumbre». No escondía su oración.'},
+    {id:'rey', emoji:'👑', nombre:'El rey Darío asomado',
+     zonas:[[184,80,42],[176,46,24],[246,144,18]],
+     dato:'Darío llegó apresuradamente al foso y «llamó a voces a Daniel con voz triste». Esa noche no había comido ni había podido dormir.'},
+    {id:'amanecer', emoji:'🌅', nombre:'El amanecer',
+     zonas:[[52,46,44]],
+     dato:'«Temprano por la mañana siguiente» el rey fue corriendo al foso. Ahí supo que Daniel estaba vivo.'}
+  ];
+  const PORID = {};
+  ELEMENTOS.forEach(e => { PORID[e.id] = e });
 
-    {id:'ventana-falta', slot:'muro', at:[345,80,30],
-     hint:'Cuenta las ventanas del palacio, arriba a la derecha.',
-     answer:'Falta una ventana del palacio (Daniel oraba con las ventanas abiertas).',
-     mut:[['hide','win3']]},
-    {id:'arpa-aparece', slot:'muro', at:[374,98,26],
-     hint:'Mira en el suelo, a la derecha del palacio: apareció algo que no estaba.',
-     answer:'Apareció un arpa; esa noche NO le llevaron instrumentos de música al rey.',
-     mut:[['show','harp']]},
-
-    {id:'corona-falta', slot:'rey', at:[180,52,30],
-     hint:'Mírale la cabeza al rey Darío, que está asomado al foso.',
-     answer:'Al rey Darío le falta la corona.',
-     mut:[['hide','kingCrown']]},
-    {id:'brazo-rey-falta', slot:'rey', at:[248,144,30],
-     hint:'Mira al rey Darío: ¿está estirando la mano hacia el foso?',
-     answer:'El rey ya no estira el brazo hacia el foso.',
-     mut:[['hide','kingArm']]},
-
-    {id:'sello-falta', slot:'piedra', at:[80,112,30],
-     hint:'Mira la piedra grande que tapa la entrada del foso.',
-     answer:'A la piedra le falta el sello del anillo del rey.',
-     mut:[['hide','sealRing']]},
-    {id:'sello-roto', slot:'piedra', at:[64,100,30],
-     hint:'Mira la piedra de la entrada, arriba a la izquierda.',
-     answer:'La piedra aparece rajada, como si el sello se hubiera roto.',
-     mut:[['show','sealCrack']]},
-
-    {id:'angel-falta', slot:'angel', at:[200,172,34],
-     hint:'Mira en el centro del foso, detrás de Daniel.',
-     answer:'¡Ya no está el ángel que Dios envió!',
-     mut:[['hide','angel']]},
-    {id:'ala-angel', slot:'angel', at:[150,186,30],
-     hint:'Mira las alas del ángel, en el centro del foso.',
-     answer:'Al ángel le falta un ala.',
-     mut:[['hide','angelWingL']]},
-
-    {id:'manos-abajo', slot:'daniel', at:[196,266,30],
-     hint:'Mírale las manos a Daniel, que está de rodillas.',
-     answer:'Daniel bajó las manos: ya no las tiene juntas para orar.',
-     mut:[['hide','danielHands'],['show','danielHandsDown']]},
-    {id:'barba-falta', slot:'daniel', at:[196,246,30],
-     hint:'Mírale la cara a Daniel, que está de rodillas.',
-     answer:'A Daniel le falta la barba.',
-     mut:[['hide','danielBeard']]},
-
-    {id:'boca-leon-izq', slot:'leon1', at:[72,233,30],
-     hint:'Mírale la boca al león de la izquierda.',
-     answer:'El león de la izquierda tiene la boca abierta (el ángel se la había cerrado).',
-     mut:[['hide','lion1MouthC'],['show','lion1MouthO']]},
-    {id:'cola-leon-izq', slot:'leon1', at:[108,220,30],
-     hint:'Mira detrás del león de la izquierda.',
-     answer:'Al león de la izquierda le falta la cola.',
-     mut:[['hide','lion1Tail']]},
-
-    {id:'boca-leon-der', slot:'leon2', at:[330,233,30],
-     hint:'Mírale la boca al león de la derecha.',
-     answer:'El león de la derecha tiene la boca abierta.',
-     mut:[['hide','lion2MouthC'],['show','lion2MouthO']]},
-    {id:'melena-leon-der', slot:'leon2', at:[330,186,30],
-     hint:'Mírale la melena al león de la derecha.',
-     answer:'Al león de la derecha le falta la melena.',
-     mut:[['hide','lion2Mane']]},
-
-    {id:'boca-leon-abajo', slot:'leon3', at:[278,334,30],
-     hint:'Mírale la boca al león de abajo, el que está en el piso del foso.',
-     answer:'El león de abajo tiene la boca abierta.',
-     mut:[['hide','lion3MouthC'],['show','lion3MouthO']]},
-    {id:'cola-leon-abajo', slot:'leon3', at:[322,312,30],
-     hint:'Mira detrás del león de abajo, el del piso del foso.',
-     answer:'Al león de abajo le falta la cola.',
-     mut:[['hide','lion3Tail']]},
-
-    {id:'piedrita-falta', slot:'suelo', at:[104,348,30],
-     hint:'Cuenta las piedritas del piso del foso, abajo a la izquierda.',
-     answer:'Falta una piedrita del piso del foso.',
-     mut:[['hide','pebble3']]},
-    {id:'hierba-falta', slot:'suelo', at:[356,350,30],
-     hint:'Mira el piso del foso, abajo a la derecha.',
-     answer:'Se fue la matica de hierba del piso del foso.',
-     mut:[['hide','grass']]}
+  // ══════════ Las 2 preguntas de los mayores ══════════
+  // Bolsa 1: el corazón del capítulo (quién cerró la boca de los leones y por qué).
+  // Cada pregunta lleva su propio versículo: el feedback nunca cita una cita ajena.
+  const Q_CLAVE = [
+    {tag:'¿Por qué?',
+     q:'¿Por qué los leones del foso tienen la boca cerrada?',
+     opts:['Porque un ángel se la cerró','Porque ya habían comido','Porque estaban dormidos','Porque Daniel les cantó','Porque el rey les puso un bozal'], ok:0,
+     dato:'Daniel 6:22 — «El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal».'},
+    {tag:'¿Para qué?',
+     q:'Daniel dijo que Dios envió su ángel, «el cual cerró la boca de los leones»… ¿para qué?',
+     opts:['«…para que no me hiciesen mal»','«…para que no rugieran de noche»','«…para que comieran hierba»','«…para que el rey no se enojara»','«…para que yo pudiera dormir»'], ok:0,
+     dato:'Daniel 6:22 — «…el cual cerró la boca de los leones, para que no me hiciesen mal».'},
+    {tag:'Completa',
+     q:'Daniel dijo: «porque delante de él se halló en mí…»',
+     opts:['justicia','riqueza','miedo','fuerza','sabiduría'], ok:0,
+     dato:'Daniel 6:22 — «…porque delante de él se halló en mí justicia; y aun delante de ti, oh rey, yo no he hecho nada malo».'},
+    {tag:'¿Por qué?',
+     q:'¿Por qué Daniel salió del foso sin ninguna lesión?',
+     opts:['Porque creyó en su Dios','Porque corrió muy rápido','Porque esos leones eran mansos','Porque el rey bajó con él','Porque solo estuvo un minuto adentro'], ok:0,
+     dato:'Daniel 6:23 — «…y ninguna lesión se halló en él, porque había confiado en su Dios».'},
+    {tag:'¿Quién?',
+     q:'¿Quién cerró la boca de los leones?',
+     opts:['El ángel que Dios envió','El rey Darío','Los príncipes del reino','Daniel','Los guardias del foso'], ok:0,
+     dato:'Daniel 6:22 — «El Dios mío envió su ángel, el cual cerró la boca de los leones».'},
+    {tag:'¿Quién?',
+     q:'¿Quién envió al ángel que cerró la boca de los leones?',
+     opts:['El Dios de Daniel','El rey Darío','Daniel','Los tres presidentes','Ciro el persa'], ok:0,
+     dato:'Daniel 6:22 — «El Dios mío envió su ángel…». El ángel no llegó por su cuenta: lo envió el Dios al que Daniel oraba.'},
+    {tag:'¿Quién?',
+     q:'¿Quién le contó al rey que un ángel había cerrado la boca de los leones?',
+     opts:['Daniel, desde dentro del foso','Un guardia del palacio','Los príncipes','La reina','Nadie: el rey lo vio solo'], ok:0,
+     dato:'Daniel 6:21-22 — Daniel respondió al rey desde el foso: «Oh rey, vive para siempre. El Dios mío envió su ángel…».'}
+  ];
+  // Bolsa 2: los datos del capítulo, ninguno respondido por la bolsa 1.
+  const Q_DATOS = [
+    {tag:'¿Cuántos?',
+     q:'¿Cuántos gobernadores puso Darío sobre todo el reino?',
+     opts:['120','12','30','70','3'], ok:0,
+     dato:'Daniel 6:1 — «Pareció bien a Darío constituir sobre el reino ciento veinte gobernadores».'},
+    {tag:'¿Cuántos?',
+     q:'Sobre esos gobernadores había unos presidentes. ¿Cuántos eran?',
+     opts:['Tres, y Daniel era uno de ellos','Doce','Uno solo','Ciento veinte','Siete'], ok:0,
+     dato:'Daniel 6:2 — «Y sobre ellos tres gobernadores, de los cuales Daniel era uno».'},
+    {tag:'El decreto',
+     q:'El decreto prohibía pedirle algo a Dios. ¿Por cuántos días?',
+     opts:['30 días','3 días','7 días','60 días','Para siempre'], ok:0,
+     dato:'Daniel 6:7 — «…cualquiera que en el término de treinta días demande petición de cualquier dios u hombre».'},
+    {tag:'La piedra',
+     q:'Cuando taparon el foso con la piedra, ¿con qué la sellaron?',
+     opts:['Con el anillo del rey y el de sus príncipes','Con cera de las lámparas','Con barro del río','Con cadenas de hierro','Con la firma de los guardias'], ok:0,
+     dato:'Daniel 6:17 — «…y el rey la selló con su anillo, y con el anillo de sus príncipes, para que el acuerdo acerca de Daniel no se mudase».'},
+    {tag:'Esa noche',
+     q:'¿Qué hizo el rey Darío la noche que Daniel pasó en el foso?',
+     opts:['No comió y no pudo dormir','Hizo una fiesta','Se fue de viaje','Bajó al foso con Daniel','Mandó matar a los leones'], ok:0,
+     dato:'Daniel 6:18 — «Fuese luego el rey a su palacio, y pasó la noche en ayuno; ni instrumentos de música fueron traídos delante de él, y perdió el sueño».'},
+    {tag:'A la mañana',
+     q:'Cuando sacaron a Daniel del foso, ¿qué se halló en él?',
+     opts:['Ninguna lesión','Una herida en el brazo','Sus ropas rotas','Un león dormido a su lado','Una carta del rey'], ok:0,
+     dato:'Daniel 6:23 — «…e hizo sacar a Daniel del foso; y ninguna lesión se halló en él».'},
+    {tag:'La ley',
+     q:'Los príncipes le recordaron al rey una ley que no se podía cambiar. ¿De qué reino era esa ley?',
+     opts:['De Media y Persia','De Babilonia','De Egipto','De Judá','De Asiria'], ok:0,
+     dato:'Daniel 6:15 — «…la ley de Media y de Persia es que ningún decreto u ordenanza que el rey confirme puede ser abrogado».'}
   ];
 
-  const SLOTS = ['cielo','muro','rey','piedra','angel','daniel','leon1','leon2','leon3','suelo'];
-
-  // ══════════ Rondas «¿qué está pasando aquí?» ══════════
-  // focus = la parte del dibujo que se señala con el círculo rojo.
-  const FOCUS = {
-    cielo:[48,46], muro:[312,80], rey:[180,74], piedra:[80,114],
-    angel:[200,172], daniel:[196,248], leones:[72,215], leonAbajo:[278,318], suelo:[90,354]
+  // ══════════ Dificultad por clase del club ══════════
+  const CFG = {
+    'Principiantes':          {rondas:3, seg:8, options:3, quiz:0},
+    'Corderitos':             {rondas:3, seg:8, options:3, quiz:0},
+    'Aves Madrugadoras':      {rondas:4, seg:7, options:4, quiz:0},
+    'Abejitas Industriosas':  {rondas:4, seg:6, options:4, quiz:0},
+    'Rayitos de Sol':         {rondas:4, seg:6, options:5, quiz:0},
+    'Constructores':          {rondas:6, seg:5, options:6, quiz:2},
+    'Manos Ayudadoras':       {rondas:6, seg:4, options:6, quiz:2}
   };
+  const CFG_DEFAULT = {rondas:4, seg:6, options:4, quiz:0};
+  function config(){
+    const c = AvProfile.clubClass();
+    return (c && CFG[c]) || CFG_DEFAULT;
+  }
 
-  const QUIZ = [
-    // ── 4–5 años ──
-    {tag:'4–5 años', focus:'piedra', q:'¿Qué le pusieron a la entrada del foso?',
-     opts:['Una piedra grande','Una puerta de madera','Una cortina de tela'], ok:0},
-    {tag:'4–5 años', focus:'angel', q:'¿A quién envió Dios para cuidar a Daniel?',
-     opts:['Un ángel','Un soldado','Un perro grande'], ok:0},
-    {tag:'4–5 años', focus:'leones', q:'¿Qué le hizo el ángel a la boca de los leones?',
-     opts:['La cerró','La abrió','La pintó de dorado'], ok:0},
-    {tag:'4–5 años', focus:'daniel', q:'¿Qué hacía Daniel tres veces al día?',
-     opts:['Oraba a Dios','Cantaba con arpa','Comía con el rey'], ok:0},
-    {tag:'4–5 años', focus:'rey', q:'¿Quién se asomó al foso llamando a Daniel?',
-     opts:['El rey Darío','Un león','El papá de Daniel'], ok:0},
-    {tag:'4–5 años', focus:'cielo', q:'¿Cuándo fue el rey corriendo al foso?',
-     opts:['Muy temprano en la mañana','A la medianoche','Al otro día por la tarde'], ok:0},
-
-    // ── 6–7 años ──
-    {tag:'6–7 años', focus:'piedra', q:'¿Con qué sellaron la piedra del foso?',
-     opts:['Con el anillo del rey y el de sus príncipes','Con cera de una vela','Con un nudo de cuerda'], ok:0},
-    {tag:'6–7 años', focus:'rey', q:'¿Qué le pasó al rey Darío esa noche?',
-     opts:['Se acostó sin comer y se le fue el sueño','Durmió muy tranquilo','Hizo una fiesta grande'], ok:0},
-    {tag:'6–7 años', focus:'muro', q:'Cuando Daniel oraba, ¿hacia dónde miraban sus ventanas abiertas?',
-     opts:['Hacia Jerusalén','Hacia el palacio del rey','Hacia el foso de los leones'], ok:0},
-    {tag:'6–7 años', focus:'daniel', q:'¿Cuántas veces al día oraba Daniel?',
-     opts:['Tres veces','Una vez','Diez veces'], ok:0},
-    {tag:'6–7 años', focus:'angel', q:'¿Qué le respondió Daniel al rey desde el foso?',
-     opts:['«El Dios mío envió su ángel, el cual cerró la boca de los leones»','«Los leones ya comieron y están dormidos»','«Sácame rápido, que tengo miedo»'], ok:0},
-    {tag:'6–7 años', focus:'leonAbajo', q:'¿Le pasó algo a Daniel dentro del foso?',
-     opts:['No: no se halló ninguna lesión en él','Se raspó un brazo','Perdió una sandalia'], ok:0},
-    {tag:'6–7 años', focus:'rey', q:'¿Por cuántos días prohibía el decreto pedirle algo a Dios?',
-     opts:['Treinta días','Siete días','Todo un año'], ok:0},
-    {tag:'6–7 años', focus:'leones', q:'¿Qué pasó con los hombres que acusaron a Daniel?',
-     opts:['Fueron echados al foso de los leones','El rey los perdonó','Se escaparon del reino'], ok:0},
-    {tag:'6–7 años', focus:'muro', q:'Esa noche triste, ¿qué NO le llevaron al rey delante de él?',
-     opts:['Instrumentos de música','Su corona','Su anillo de sellar'], ok:0},
-
-    // ── 8–9 años ──
-    {tag:'8–9 años', focus:'muro', q:'¿Cuántos gobernadores puso Darío sobre el reino?',
-     opts:['Ciento veinte','Doce','Setenta'], ok:0},
-    {tag:'8–9 años', focus:'rey', q:'¿Cuántos presidentes había sobre esos gobernadores?',
-     opts:['Tres, y Daniel era uno de ellos','Diez, y Daniel era uno de ellos','Uno solo, y era Daniel'], ok:0},
-    {tag:'8–9 años', focus:'daniel', q:'¿Por qué sus enemigos no hallaron ninguna falta en Daniel?',
-     opts:['Porque él era fiel y ningún vicio ni falta fue hallado en él','Porque nadie lo vigilaba','Porque escondía bien sus errores'], ok:0},
-    {tag:'8–9 años', focus:'daniel', q:'Sus enemigos dijeron: «no hallaremos ocasión contra este Daniel, si no la hallamos…»',
-     opts:['«…en la ley de su Dios»','«…en las cuentas del reino»','«…en su familia»'], ok:0},
-    {tag:'8–9 años', focus:'piedra', q:'¿Por qué el rey no pudo cambiar el decreto?',
-     opts:['Porque la ley de Media y de Persia no se abroga','Porque se le perdió el papel','Porque se le olvidó qué decía'], ok:0},
-    {tag:'8–9 años', focus:'cielo', q:'¿Qué hizo el rey hasta la puesta del sol?',
-     opts:['Trabajó para librar a Daniel','Durmió una siesta larga','Escribió otro decreto peor'], ok:0},
-    {tag:'8–9 años', focus:'muro', q:'¿Qué escribió Darío a todos los pueblos, naciones y lenguas?',
-     opts:['Que todos temieran al Dios de Daniel, el Dios viviente y permanente','Que nadie volviera a orar nunca','Que taparan el foso para siempre'], ok:0},
-    {tag:'8–9 años', focus:'rey', q:'¿Cómo llamó el rey a Daniel esa mañana?',
-     opts:['A voces y con voz triste','Con trompetas y tambores','Mandándole una carta'], ok:0},
-    {tag:'8–9 años', focus:'rey', q:'¿A qué le apelaron los príncipes para que el rey firmara el decreto?',
-     opts:['A su vanidad: le dijeron que aumentaría su honor y autoridad','A su miedo a los leones','A su cariño por Daniel'], ok:0},
-    {tag:'8–9 años', focus:'daniel', q:'¿Cómo le fue a Daniel después de todo esto?',
-     opts:['Fue prosperado en el reinado de Darío y en el de Ciro','Se fue lejos de Babilonia','Dejó de ser ministro del reino'], ok:0}
-  ];
+  // ══════════ Leer / imprimir ══════════
+  document.getElementById('elemLista').innerHTML = ELEMENTOS.map(e => `
+    <li>
+      <span class="em">${e.emoji}</span>
+      <span><span class="nm">${esc(e.name)}</span><br><span class="dt">${esc(e.dato)}</span></span>
+    </li>`).join('');
+  document.getElementById('printScene').innerHTML = sceneSVG(null);
+  document.getElementById('printFichas').innerHTML = ELEMENTOS.map(e =>
+    `<div class="tile"><span class="fe">${e.emoji}</span><span class="fn">${esc(e.name)}</span></div>`).join('');
+  document.getElementById('printAnswers').innerHTML = ELEMENTOS.map(e =>
+    `<li><strong>${esc(e.name)}</strong> — ${esc(e.dato)}</li>`).join('');
 
   // ══════════ Partida ══════════
-  const ACTIVITY = 'pr44-diferencias';
-  const MATCH_CARDS = 5;
-  const MATCH_QUIZ = 5;
-  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
   const SVG_NS = 'http://www.w3.org/2000/svg';
-
-  let match = null;
-
+  const sceneWrap = document.getElementById('sceneWrap');
+  const cover = document.getElementById('cover');
+  const coverTxt = document.getElementById('coverTxt');
+  const timerEl = document.getElementById('timer');
   const roundLabel = document.getElementById('roundLabel');
   const foundRow = document.getElementById('foundRow');
-  const introCard = document.getElementById('introCard');
-  const boards = document.getElementById('boards');
-  const svgAWrap = document.getElementById('svgA');
-  const svgBWrap = document.getElementById('svgB');
   const tapMsg = document.getElementById('tapMsg');
-  const quizBox = document.getElementById('quizBox');
-  const quizTag = document.getElementById('quizTag');
-  const quizScene = document.getElementById('quizScene');
-  const quizQ = document.getElementById('quizQ');
-  const opts = document.getElementById('opts');
-  const hintBtn = document.getElementById('hintBtn');
+  const feedback = document.getElementById('feedback');
+  const fbHead = document.getElementById('fbHead');
+  const fbDato = document.getElementById('fbDato');
+  const ask = document.getElementById('ask');
+  const askTag = document.getElementById('askTag');
+  const askQ = document.getElementById('askQ');
+  const askOpts = document.getElementById('askOpts');
+  const board = document.getElementById('board');
   const mainBtn = document.getElementById('mainBtn');
-  const judge = document.getElementById('judge');
-  const judgeQ = document.getElementById('judgeQ');
-  const nextBtn = document.getElementById('nextBtn');
   const practiceNote = document.getElementById('practiceNote');
+
+  let match = null;
+  let tick = null;
 
   function shuffle(arr){
     const a = arr.slice();
@@ -952,282 +719,336 @@
     return a;
   }
 
-  function applyDiff(svg, d){
-    d.mut.forEach(([op, key]) => {
-      const el = svg.querySelector('[data-p="' + key + '"]');
-      if(!el) return;
-      if(op === 'hide') el.classList.add('off');
-      else el.classList.remove('off');
-    });
-  }
-
-  // 5 diferencias de zonas distintas, rotadas con AvProfile.pick
-  function pickMatchDiffs(){
-    const slots = AvProfile.pick(ACTIVITY + ':card:zonas', SLOTS, MATCH_CARDS, s => s);
-    const picked = [];
-    slots.forEach(slot => {
-      const group = DIFFS.filter(d => d.slot === slot);
-      picked.push(...AvProfile.pick(ACTIVITY + ':card:' + slot, group, 1, d => d.id));
-    });
-    return picked.slice(0, MATCH_CARDS);
-  }
-
-  function pickMatchQuiz(){
-    const picked = [];
-    QUIZ_MIX.forEach(([tag, n]) => {
-      const group = QUIZ.filter(q => q.tag === tag);
-      picked.push(...AvProfile.pick(ACTIVITY + ':quiz:' + tag, group, n, q => q.q));
-    });
-    return picked;
-  }
-
-  function renderFoundRow(){
-    foundRow.innerHTML = '';
-    for(let i = 0; i < MATCH_CARDS; i++){
-      const d = document.createElement('div');
-      d.className = 'dot' + (match && i < match.found.length ? ' on' : '');
-      d.textContent = match && i < match.found.length ? '★' : (i + 1);
-      foundRow.appendChild(d);
+  function pintarEscena(oculto, tocable){
+    sceneWrap.innerHTML = sceneSVG(oculto);
+    const svg = sceneWrap.querySelector('svg');
+    if(tocable){
+      svg.classList.add('pickable');
+      svg.addEventListener('click', alTocar);
     }
+    return svg;
   }
 
-  function renderBoards(){
-    const hots = match.diffs.map(d => ({id: d.id, cx: d.at[0], cy: d.at[1], r: d.at[2]}));
-    svgAWrap.innerHTML = sceneSVG({hots: hots});
-    svgBWrap.innerHTML = sceneSVG({hots: hots});
-    const svgB = svgBWrap.querySelector('svg');
-    match.diffs.forEach(d => applyDiff(svgB, d));
-    [svgAWrap, svgBWrap].forEach(wrap => {
-      wrap.querySelector('svg').addEventListener('click', onSceneClick);
-    });
+  function marcar(zona, clubClass){
+    const svg = sceneWrap.querySelector('svg');
+    if(!svg) return;
+    const capa = svg.querySelector('[data-layer="marcas"]');
+    const c = document.createElementNS(SVG_NS, 'circle');
+    c.setAttribute('cx', zona[0]);
+    c.setAttribute('cy', zona[1]);
+    c.setAttribute('r', Math.max(22, zona[2] - 6));
+    c.setAttribute('class', 'mark ' + clubClass);
+    capa.appendChild(c);
   }
 
-  function markFound(diff, order){
-    [svgAWrap, svgBWrap].forEach(wrap => {
-      const svg = wrap.querySelector('svg');
-      if(!svg) return;
-      const c = document.createElementNS(SVG_NS, 'circle');
-      c.setAttribute('class', 'mark');
-      c.setAttribute('cx', diff.at[0]);
-      c.setAttribute('cy', diff.at[1]);
-      c.setAttribute('r', diff.at[2]);
-      svg.appendChild(c);
-      const t = document.createElementNS(SVG_NS, 'text');
-      t.setAttribute('class', 'mark-num');
-      t.setAttribute('x', diff.at[0] + diff.at[2] - 4);
-      t.setAttribute('y', diff.at[1] - diff.at[2] + 4);
-      t.setAttribute('text-anchor', 'middle');
-      t.textContent = String(order);
-      svg.appendChild(t);
-      const hot = svg.querySelector('.hot[data-diff="' + diff.id + '"]');
-      if(hot) hot.remove();
-    });
+  function puntoEnSvg(svg, ev){
+    const r = svg.getBoundingClientRect();
+    if(!r.width || !r.height) return [0, 0];
+    return [(ev.clientX - r.left) / r.width * 400, (ev.clientY - r.top) / r.height * 380];
   }
 
-  function onSceneClick(ev){
-    if(!match || match.stage !== 'card') return;
-    const hot = ev.target.closest ? ev.target.closest('.hot') : null;
-    if(!hot){
-      tapMsg.className = 'tap-msg';
-      tapMsg.textContent = '🔍 Ahí no hay nada… ¡sigue buscando! (no pierdes puntos)';
-      return;
-    }
-    const id = hot.getAttribute('data-diff');
-    if(match.found.indexOf(id) !== -1) return;
-    const diff = match.diffs.find(d => d.id === id);
-    if(!diff) return;
-    match.found.push(id);
-    markFound(diff, match.found.length);
-    renderFoundRow();
-    const scoring = !!AvProfile.get() && AvProfile.canScore('card');
-    if(scoring){
-      AvProfile.score(true, 'card');
-      match.earned++;
-    }
-    tapMsg.className = 'tap-msg good';
-    tapMsg.textContent = '⭐ ¡Diferencia ' + match.found.length + '! ' + diff.answer +
-      (scoring ? ' (+1 punto)' : '');
-    roundLabel.textContent = 'Diferencias: ' + match.found.length + ' de ' + MATCH_CARDS;
-    if(match.found.length >= MATCH_CARDS){
-      hintBtn.hidden = true;
-      mainBtn.hidden = false;
-      mainBtn.textContent = 'Seguir ▶';
-      roundLabel.textContent = '¡Las 5 diferencias, encontradas!';
-    }
+  function elementoTocado(pt){
+    let mejor = null, dist = Infinity;
+    ELEMENTOS.forEach(el => el.zonas.forEach(z => {
+      const d = Math.hypot(pt[0] - z[0], pt[1] - z[1]);
+      if(d <= z[2] && d < dist){ dist = d; mejor = {el, zona: z} }
+    }));
+    return mejor;
   }
 
-  function showHint(){
-    if(!match || match.stage !== 'card') return;
-    const pending = match.diffs.filter(d => match.found.indexOf(d.id) === -1);
-    if(!pending.length) return;
-    const d = pending[match.hintAt % pending.length];
-    match.hintAt++;
-    tapMsg.className = 'tap-msg';
-    tapMsg.textContent = '💡 ' + d.hint;
-    if(match.hintAt >= 3){
-      mainBtn.hidden = false;
-      mainBtn.textContent = 'Saltar a las preguntas ▶';
-      tapMsg.textContent += ' (o pasa a las preguntas con el botón de abajo)';
-    }
-  }
-
-  function startMatch(){
-    match = {
-      diffs: pickMatchDiffs(),
-      quizzes: pickMatchQuiz(),
-      found: [],
-      hintAt: 0,
-      qi: 0,
-      earned: 0,
-      stage: 'card'
-    };
-    introCard.hidden = true;
-    practiceNote.hidden = true;
-    quizBox.hidden = true;
-    judge.hidden = true;
-    boards.hidden = false;
+  function pintarChips(){
+    if(!match || !match.chips.length){ foundRow.hidden = true; return }
+    foundRow.innerHTML = match.chips.map(c =>
+      `<span class="chip ${c.ok ? 'ok' : 'no'}">${c.emoji} ${c.ok ? '⭐' : '✗'}</span>`).join('');
     foundRow.hidden = false;
-    hintBtn.hidden = false;
-    mainBtn.hidden = true;
-    roundLabel.textContent = 'Diferencias: 0 de ' + MATCH_CARDS;
-    tapMsg.className = 'tap-msg';
-    tapMsg.textContent = '👀 Toca la diferencia en cualquiera de los dos dibujos.';
-    renderFoundRow();
-    renderBoards();
   }
 
-  function showQuiz(){
-    match.stage = 'quiz';
-    boards.hidden = true;
+  function limpiarTimer(){
+    if(tick){ clearInterval(tick); tick = null }
+    timerEl.hidden = true;
+  }
+
+  function start(){
+    const cfg = config();
+    const elems = AvProfile.pick(ACTIVITY + ':card:elementos', ELEMENTOS, cfg.rondas, e => e.id);
+    const quizzes = [];
+    if(cfg.quiz >= 2){
+      quizzes.push(...AvProfile.pick(ACTIVITY + ':quiz:clave', Q_CLAVE, 1, q => q.q));
+      quizzes.push(...AvProfile.pick(ACTIVITY + ':quiz:datos', Q_DATOS, 1, q => q.q));
+    }
+    match = {cfg, elems, quizzes, roundLabel:0, quizIdx:0, earned:0, chips:[], fase:'mirar', bloqueado:false};
+    practiceNote.hidden = true;
     foundRow.hidden = true;
-    hintBtn.hidden = true;
+    pintarChips();
+    faseMirar();
+  }
+
+  function faseMirar(){
+    match.phase = 'mirar';
+    match.bloqueado = false;
+    feedback.hidden = true;
+    ask.hidden = true;
+    cover.hidden = true;
+    board.classList.remove('hidden-board');
+    pintarEscena(null, false);
+    roundLabel.textContent = `Ronda ${match.roundLabel + 1} de ${match.elems.length} · ¡Míralo todo!`;
+    tapMsg.textContent = 'Mira bien el foso y acuérdate de todo lo que hay.';
+    tapMsg.hidden = false;
+    mainBtn.textContent = 'Ya lo vi 👀';
+    mainBtn.hidden = false;
+
+    limpiarTimer();
+    let queda = match.cfg.seg;
+    timerEl.textContent = `⏳ ${queda}`;
+    timerEl.hidden = false;
+    tick = setInterval(() => {
+      queda--;
+      if(queda <= 0){ limpiarTimer(); tapar(); return }
+      timerEl.textContent = `⏳ ${queda}`;
+    }, 1000);
+  }
+
+  function tapar(){
+    limpiarTimer();
+    if(!match || match.phase !== 'mirar') return;
+    match.phase = 'tapado';
+    cover.hidden = false;
+    coverTxt.textContent = 'Tapando el foso…';
+    tapMsg.textContent = 'Se está escondiendo una cosa…';
     mainBtn.hidden = true;
-    judge.hidden = true;
-    tapMsg.className = 'tap-msg';
-    tapMsg.textContent = '';
-    quizBox.hidden = false;
-    const q = match.quizzes[match.qi];
-    roundLabel.textContent = '¿Qué está pasando aquí? ' + (match.qi + 1) + ' de ' + MATCH_QUIZ;
-    quizTag.textContent = q.tag;
-    quizScene.innerHTML = sceneSVG({pointer: FOCUS[q.focus] || FOCUS.daniel});
-    quizQ.textContent = q.q;
-    opts.innerHTML = '';
-    const order = shuffle(q.opts.map((text, i) => ({text: text, ok: i === q.ok})));
-    order.forEach(o => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'opt';
-      b.textContent = o.text;
-      b.addEventListener('click', () => answerQuiz(b, o.ok, order));
-      opts.appendChild(b);
+    setTimeout(() => {
+      if(!match || match.phase !== 'tapado') return;
+      faseBuscar();
+    }, 1300);
+  }
+
+  function faseBuscar(){
+    match.phase = 'buscar';
+    cover.hidden = true;
+    const el = match.elems[match.roundLabel];
+    pintarEscena(el.id, true);
+    roundLabel.textContent = `Ronda ${match.roundLabel + 1} de ${match.elems.length} · ¿Qué falta?`;
+    tapMsg.textContent = 'Toca en el dibujo el lugar donde faltaba algo.';
+    tapMsg.hidden = false;
+    mainBtn.hidden = true;
+  }
+
+  function alTocar(ev){
+    if(!match || match.phase !== 'buscar' || match.bloqueado) return;
+    match.bloqueado = true;
+    const svg = sceneWrap.querySelector('svg');
+    svg.classList.remove('pickable');
+    const el = match.elems[match.roundLabel];
+    const tocado = elementoTocado(puntoEnSvg(svg, ev));
+    match.acertoSitio = !!(tocado && tocado.el.id === el.id);
+
+    if(match.acertoSitio){
+      marcar(tocado.zona, 'mark-ok');
+      tapMsg.textContent = '¡Ahí era! Ahora dime cómo se llama.';
+      faseNombrar();
+    }else{
+      if(tocado) marcar(tocado.zona, 'mark-no');
+      el.zonas.forEach(z => marcar(z, 'mark-ok'));
+      tapMsg.textContent = 'Ahí no era. El círculo verde muestra dónde faltaba.';
+      cerrarRonda(false);
+    }
+  }
+
+  function faseNombrar(){
+    match.phase = 'nombrar';
+    const el = match.elems[match.roundLabel];
+    const n = Math.min(match.cfg.options, ELEMENTOS.length);
+    const otros = shuffle(ELEMENTOS.filter(e => e.id !== el.id)).slice(0, n - 1);
+    const options = shuffle([el].concat(otros));
+    cover.hidden = false;
+    coverTxt.textContent = 'Sin mirar… ¿qué era?';
+    askTag.textContent = 'Dime cómo se llama';
+    askQ.textContent = '¿Qué era lo que faltaba?';
+    askOpts.innerHTML = options.map(o =>
+      `<button class="opt" type="button" data-id="${o.id}"><span class="oe">${o.emoji}</span><span>${esc(o.name)}</span></button>`).join('');
+    askOpts.querySelectorAll('.opt').forEach(b =>
+      b.addEventListener('click', () => responderNombre(b, el)));
+    ask.hidden = false;
+    mainBtn.hidden = true;
+  }
+
+  function responderNombre(button, el){
+    if(match.phase !== 'nombrar') return;
+    match.phase = 'cerrando';
+    const acerto = button.dataset.id === el.id;
+    askOpts.querySelectorAll('.opt').forEach(b => {
+      b.disabled = true;
+      if(b.dataset.id === el.id) b.classList.add('ok');
+      else if(b === button) b.classList.add('bad');
     });
+    cerrarRonda(acerto);
   }
 
-  function answerQuiz(btn, correct, order){
-    const buttons = [...opts.querySelectorAll('.opt')];
-    if(buttons.some(b => b.disabled)) return;
-    buttons.forEach(b => { b.disabled = true });
-    btn.classList.add(correct ? 'pick-ok' : 'pick-no');
-    if(!correct){
-      const okText = order.filter(o => o.ok)[0].text;
-      buttons.forEach(b => { if(b.textContent === okText) b.classList.add('pick-ok') });
+  function cerrarRonda(acertoNombre){
+    cover.hidden = true;
+    const el = match.elems[match.roundLabel];
+    const gana = !!match.acertoSitio && !!acertoNombre;
+    feedback.className = 'feedback ' + (gana ? 'bien' : 'mal');
+    fbHead.textContent = gana
+      ? `${el.emoji} ¡Sí! Faltaba: ${el.name}.`
+      : `${el.emoji} Lo que faltaba era: ${el.name}.`;
+    fbDato.textContent = el.dato;
+    feedback.hidden = false;
+
+    let sumo = false;
+    if(AvProfile.get() && AvProfile.canScore('card')){
+      AvProfile.score(gana, 'card');
+      sumo = gana;
+      if(gana) match.earned++;
     }
-    const p = AvProfile.get();
-    const scoring = !!p && AvProfile.canScore('quiz');
-    if(scoring){
-      AvProfile.score(correct, 'quiz');
-      if(correct) match.earned++;
-    }
-    judgeQ.textContent = correct
-      ? (scoring ? '⭐ ¡Correcto! +1 punto' : '⭐ ¡Correcto! (esta ronda es de práctica)')
-      : '😅 Casi. Mira la respuesta marcada en verde.';
-    judge.hidden = false;
+    match.chips.push({emoji: el.emoji, ok: gana});
+    pintarChips();
+    if(gana && !sumo) fbDato.textContent = el.dato + ' (Esta roundLabel es de práctica: no suma al tablero.)';
+
+    match.phase = 'cerrada';
+    match.roundLabel++;
+    const quedan = match.roundLabel < match.elems.length;
+    mainBtn.textContent = quedan ? 'Siguiente roundLabel ▶'
+      : (match.quizzes.length ? 'Ahora 2 preguntas ▶' : 'Ver el resultado ▶');
+    mainBtn.hidden = false;
   }
 
-  function nextRound(){
-    judge.hidden = true;
-    match.qi++;
-    if(match.qi >= MATCH_QUIZ) finishMatch();
-    else showQuiz();
+  function faseQuiz(){
+    match.phase = 'quiz';
+    feedback.hidden = true;
+    board.classList.add('hidden-board');
+    tapMsg.hidden = true;
+    limpiarTimer();
+    const q = match.quizzes[match.quizIdx];
+    roundLabel.textContent = `Pregunta ${match.quizIdx + 1} de ${match.quizzes.length} · Para los mayores`;
+    askTag.textContent = q.tag;
+    askQ.textContent = q.q;
+    const orden = shuffle(q.opts.map((t, i) => ({t, i})));
+    askOpts.innerHTML = orden.map(o =>
+      `<button class="opt" type="button" data-i="${o.i}"><span>${esc(o.t)}</span></button>`).join('');
+    askOpts.querySelectorAll('.opt').forEach(b =>
+      b.addEventListener('click', () => responderQuiz(b, q)));
+    ask.hidden = false;
+    mainBtn.hidden = true;
+  }
+
+  function responderQuiz(button, q){
+    if(match.phase !== 'quiz') return;
+    match.phase = 'quizCerrada';
+    const acerto = Number(button.dataset.i) === q.ok;
+    askOpts.querySelectorAll('.opt').forEach(b => {
+      b.disabled = true;
+      if(Number(b.dataset.i) === q.ok) b.classList.add('ok');
+      else if(b === button) b.classList.add('bad');
+    });
+    feedback.className = 'feedback ' + (acerto ? 'bien' : 'mal');
+    fbHead.textContent = acerto ? '⭐ ¡Correcto!' : `📖 La respuesta es: ${q.opts[q.ok]}`;
+    fbDato.textContent = q.dato;
+    feedback.hidden = false;
+
+    let sumo = false;
+    if(AvProfile.get() && AvProfile.canScore('quiz')){
+      AvProfile.score(acerto, 'quiz');
+      sumo = acerto;
+      if(acerto) match.earned++;
+    }
+    if(acerto && !sumo) fbDato.textContent += ' (Práctica: esta no suma al tablero.)';
+
+    match.quizIdx++;
+    mainBtn.textContent = match.quizIdx < match.quizzes.length ? 'Siguiente pregunta ▶' : 'Ver el resultado ▶';
+    mainBtn.hidden = false;
   }
 
   function finishMatch(){
-    match.stage = 'done';
-    const earned = match.earned;
-    quizBox.hidden = true;
-    boards.hidden = true;
-    foundRow.hidden = true;
-    judge.hidden = true;
-    hintBtn.hidden = true;
-    tapMsg.className = 'tap-msg';
-    tapMsg.textContent = '';
-    roundLabel.textContent = '¡Bien hecho, detectives!';
+    limpiarTimer();
     const p = AvProfile.get();
-    const scored = p
-      ? '<div class="hint">⭐ Sumaste ' + earned + ' punto' + (earned === 1 ? '' : 's') + ' en esta partida.</div>'
-      : '';
-    const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
-      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>'
-      : '';
-    introCard.innerHTML =
-      '<div class="emoji">🏁</div>' +
-      '<div class="big-name">¡Partida completa!</div>' +
-      scored + extra +
-      '<div class="hint">«El Dios mío envió su ángel, el cual cerró la boca de los leones».</div>';
-    introCard.hidden = false;
-    mainBtn.hidden = false;
-    mainBtn.textContent = '🔁 Otra partida';
+    const earned = match.earned;
+    roundLabel.textContent = '¡Bien hecho, aventurero!';
+    tapMsg.hidden = true;
+    ask.hidden = true;
+    feedback.hidden = true;
+    board.classList.add('hidden-board');
+    const cont = document.createElement('div');
+    cont.className = 'fin';
+    cont.innerHTML = `
+      <div class="big">🦁</div>
+      <div class="t">¡Terminaste!</div>
+      ${p ? `<div>⭐ Sumaste <strong>${earned}</strong> punto${earned === 1 ? '' : 's'} en esta match.</div>` : ''}
+      <p class="verse">«El Dios mío envió su ángel, el cual cerró la boca de los leones.»<span>Daniel 6:22</span></p>`;
+    sceneWrap.innerHTML = '';
+    board.classList.remove('hidden-board');
+    board.style.border = 'none';
+    board.style.background = 'transparent';
+    board.style.boxShadow = 'none';
+    board.style.padding = '0';
+    sceneWrap.appendChild(cont);
     match = null;
+    mainBtn.dataset.mode = 'again';
+    mainBtn.textContent = '🔁 Otra match';
+    mainBtn.hidden = false;
     updateIdleHint();
   }
 
+  function resetBoard(){
+    board.style.border = '';
+    board.style.background = '';
+    board.style.boxShadow = '';
+    board.style.padding = '';
+  }
+
+  mainBtn.addEventListener('click', () => {
+    if(!match){
+      resetBoard();
+      foundRow.hidden = true;
+      start();
+      return;
+    }
+    if(match.phase === 'mirar'){ tapar(); return }
+    if(match.phase === 'cerrada'){
+      if(match.roundLabel < match.elems.length){ faseMirar(); return }
+      if(match.quizzes.length){ faseQuiz(); return }
+      finishMatch();
+      return;
+    }
+    if(match.phase === 'quizCerrada'){
+      if(match.quizIdx < match.quizzes.length){ faseQuiz(); return }
+      finishMatch();
+      return;
+    }
+  });
+
+  // ══════════ Aviso de práctica / sin perfil ══════════
   function updateIdleHint(){
     if(match) return;
     const p = AvProfile.get();
-    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    const cfg = config();
+    const practica = !!p && !AvProfile.canScore('card') && (!cfg.quiz || !AvProfile.canScore('quiz'));
     if(!p){
       practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
       practiceNote.hidden = false;
-    }else if(practice){
-      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+    }else if(practica){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy en este juego ya están completos: esto es <strong>práctica</strong>.';
       practiceNote.hidden = false;
     }else{
-      practiceNote.hidden = true;
+      const clubClass = AvProfile.clubClass();
+      practiceNote.innerHTML = clubClass
+        ? `🎒 Clase <strong>${esc(AvProfile.clubClass() || 'tu clase')}</strong>: ${cfg.rounds} roundLabel${cfg.rounds === 1 ? '' : 's'} de ${cfg.seg} segundos${cfg.quiz ? ' + 2 preguntas' : ''}.`
+        : '';
+      practiceNote.hidden = !clubClass;
     }
-    if(mainBtn.textContent.indexOf('Otra partida') !== -1){
-      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
-    }else if(mainBtn.textContent.indexOf('partida') !== -1){
-      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
-    }
+    mainBtn.textContent = mainBtn.dataset.mode === 'again'
+      ? (practica ? '🔁 Otra match (práctica)' : '🔁 Otra match')
+      : (practica ? '▶ Empezar (práctica)' : '▶ Empezar');
   }
   AvProfile.onChange(updateIdleHint);
 
-  mainBtn.addEventListener('click', () => {
-    if(!match){ startMatch(); return; }
-    if(match.stage === 'card'){ showQuiz(); return; }
-  });
-  hintBtn.addEventListener('click', showHint);
-  nextBtn.addEventListener('click', nextRound);
-
-  // ══════════ Hoja para imprimir ══════════
-  const PRINT_IDS = ['sello-falta','corona-falta','ventana-falta','ala-angel','boca-leon-izq'];
-  function renderPrint(){
-    const set = PRINT_IDS.map(id => DIFFS.filter(d => d.id === id)[0]).filter(Boolean);
-    document.getElementById('printA').innerHTML = sceneSVG({});
-    document.getElementById('printB').innerHTML = sceneSVG({});
-    const svgB = document.getElementById('printB').querySelector('svg');
-    set.forEach(d => applyDiff(svgB, d));
-    const ol = document.getElementById('printAnswers');
-    ol.innerHTML = '';
-    set.forEach(d => {
-      const li = document.createElement('li');
-      li.textContent = d.answer;
-      ol.appendChild(li);
-    });
+  // ══════════ Navegación ══════════
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
   }
-  renderPrint();
+  document.getElementById('toGameBtn').addEventListener('click', () => goTo('juego'));
 
-  // ══════════ Menú ══════════
   const menuBtn = document.getElementById('menuBtn');
   const menuPanel = document.getElementById('menuPanel');
   function closeMenu(){
@@ -1238,26 +1059,18 @@
     menuPanel.hidden = !menuPanel.hidden;
     menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
   });
-  document.addEventListener('click', e => {
-    if(!e.target.closest('.menu-wrap')) closeMenu();
-  });
+  document.addEventListener('click', e => { if(!e.target.closest('.menu-wrap')) closeMenu() });
   document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-      closeMenu();
-    });
+    btn.addEventListener('click', () => { goTo(btn.dataset.tab); closeMenu() });
   });
+  document.getElementById('changePlayerBtn').addEventListener('click', () => { closeMenu(); AvProfile.open() });
 
-  document.getElementById('changePlayerBtn').addEventListener('click', () => {
-    closeMenu();
-    AvProfile.open();
+  pintarEscena(null, false);
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 5, quiz: 2},   // lo que vale esta actividad; el techo del backend es 5+5
   });
-
-  // Iniciar
-  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
   updateIdleHint();
 </script>
 </body>

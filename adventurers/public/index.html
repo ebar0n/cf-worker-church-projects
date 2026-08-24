@@ -57,19 +57,20 @@
 
   .index-top{
     display:flex;
-    justify-content:flex-end;
+    align-items:center;
+    justify-content:space-between;
     max-width:1000px;
     margin:0 auto;
     padding:12px 16px 0;
   }
-  .index-top .player-chip{max-width:75vw;min-width:0}
+  .index-top .player-chip{max-width:75vw;min-width:0;margin-left:auto}
   header{
     text-align:center;
     padding:12px 16px 10px;
   }
   .eyebrow{
     font-family:'Fredoka',sans-serif;
-    font-size:.8rem;
+    font-size:.85rem;
     letter-spacing:.22em;
     text-transform:uppercase;
     color:var(--gold-soft);
@@ -109,17 +110,29 @@
   .activity-card:hover{transform:translateY(-4px);box-shadow:0 12px 0 rgba(0,0,0,.28)}
   .activity-card:focus-visible{outline:3px solid #fff;outline-offset:4px}
   .activity-card .emoji{font-size:3rem;line-height:1}
-  .activity-card .tag{
+  .activity-card .recommended{
     align-self:flex-start;
     font-family:'Fredoka',sans-serif;
-    font-size:.72rem;
-    font-weight:600;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    background:var(--brick);
-    color:#fff;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.04em;
+    background:var(--gold);
+    color:var(--lapis-deep);
     border-radius:999px;
     padding:4px 12px;
+  }
+  .activity-card .source{
+    align-self:flex-start;
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background:rgba(27,47,110,.09);
+    color:var(--lapis);
+    border:1px solid rgba(27,47,110,.2);
+    border-radius:999px;
+    padding:3px 10px;
   }
   .activity-card h2{
     font-family:'Fredoka',sans-serif;
@@ -133,7 +146,7 @@
     flex-wrap:wrap;
     gap:6px;
     font-family:'Fredoka',sans-serif;
-    font-size:.72rem;
+    font-size:.8rem;
     font-weight:600;
   }
   .activity-card .meta span{
@@ -149,35 +162,92 @@
     color:var(--brick);
   }
 
-  /* ── Capítulos ── */
-  .chapter{margin-top:34px}
-  .chapter:first-of-type{margin-top:6px}
-  .chapter-head{
+  /* ── Pestañas ── */
+  .tabs{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(18,32,77,.94);
+    border-bottom:1px solid rgba(240,180,41,.28);
+  }
+  .tabs-row{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:10px 16px;
+    max-width:1000px;
+    margin:0 auto;
+    scrollbar-width:none;
+  }
+  .tabs-row::-webkit-scrollbar{display:none}
+  /* Con espacio de sobra las pestañas se centran; en pantalla angosta van al
+     inicio para que el scroll horizontal no corte la primera. */
+  @media (min-width:720px){
+    .tabs-row{justify-content:center}
+  }
+  .tab{
+    font-family:'Fredoka',sans-serif;
+    font-size:.92rem;
+    font-weight:600;
+    white-space:nowrap;
+    flex-shrink:0;
+    background:transparent;
+    color:var(--gold-soft);
+    border:2px solid rgba(240,180,41,.45);
+    border-radius:999px;
+    padding:8px 16px;
+    min-height:44px;
+    cursor:pointer;
+  }
+  .tab[aria-selected="true"]{background:var(--gold);color:var(--lapis-deep);border-color:var(--gold)}
+  .tab:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+
+  /* Grupos por materia */
+  .group{margin-top:8px}
+  .group[hidden]{display:none}
+  .group-head{
     display:flex;
     align-items:baseline;
     flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:14px;
+    gap:6px 12px;
+    margin-bottom:16px;
     padding-bottom:10px;
-    border-bottom:2px dashed rgba(240,180,41,.4);
+    border-bottom:2px solid rgba(240,180,41,.35);
   }
-  .chapter-head h2{
+  .group-head h2{
     font-family:'Fredoka',sans-serif;
     font-weight:700;
-    font-size:clamp(1.2rem,4.5vw,1.6rem);
+    font-size:clamp(1.15rem,4.5vw,1.5rem);
+    line-height:1.15;
   }
-  .chapter-head .cap{
-    font-family:'Fredoka',sans-serif;
-    font-size:.72rem;
-    font-weight:600;
-    letter-spacing:.12em;
+  .group-head .count{
+    margin-left:auto;
+    font-size:.84rem;
+    letter-spacing:.06em;
     text-transform:uppercase;
-    background:var(--gold);
-    color:var(--lapis-deep);
-    border-radius:999px;
-    padding:4px 12px;
+    opacity:.6;
   }
-  .chapter-head .count{margin-left:auto;font-size:.85rem;opacity:.7}
+  .group-head .about{
+    flex-basis:100%;
+    font-size:.92rem;
+    opacity:.75;
+  }
+
+  /* Tarjeta pendiente: informa sin ser un enlace muerto */
+  .coming{
+    border-style:dashed;
+    background:rgba(255,246,227,.07);
+    color:var(--cream);
+    border-color:rgba(240,180,41,.45);
+    box-shadow:none;
+    min-height:150px;
+    justify-content:center;
+    text-align:center;
+  }
+  .coming .emoji{font-size:2.2rem}
+  .coming h2{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem}
+  .coming p{opacity:.75}
 
   .soon{
     border-style:dashed;
@@ -294,153 +364,203 @@
   <img class="crest" src="/icons/emblema.png" alt="Emblema del Club de Aventureros" width="416" height="386">
   <div class="eyebrow">Club de Aventureros · Iglesia Adventista Jordán Ibagué</div>
   <h1>El Elohe Israel</h1>
-  <p class="subtitle">15 juegos de Conexión Bíblica para nuestros agentes del Reino</p>
+  <p class="subtitle">Todo lo que estudiamos para el campamento</p>
 </header>
 
+<nav class="tabs" aria-label="Qué estudiamos">
+  <div class="tabs-row" id="tabs" role="tablist">
+    <button class="tab" role="tab" data-g="g-books" aria-selected="true">📚 Biblia</button>
+    <button class="tab" role="tab" data-g="g-connection" aria-selected="false">📖 Conexión</button>
+    <button class="tab" role="tab" data-g="g-ideals" aria-selected="false">🤝 Ideales</button>
+    <button class="tab" role="tab" data-g="g-parents" aria-selected="false">👪 Padres</button>
+  </div>
+</nav>
+
 <main>
-  <section class="chapter">
-    <div class="chapter-head">
-      <span class="cap">Cap. 39</span>
-      <h2>🏛️ En la corte de Babilonia</h2>
-      <span class="count">5 juegos</span>
+  <section class="group" id="g-books">
+    <div class="group-head">
+      <h2>📚 Los libros de la Biblia</h2>
+      <span class="count">3 actividades</span>
+      <p class="about">Los 39 libros del Antiguo Testamento, por familia y en orden. En el campamento se califica el tiempo.</p>
     </div>
     <div class="card-grid">
-      <a class="activity-card" href="/conexion-biblica-pr39/">
+      <a class="activity-card" data-from="0" data-to="6" href="/biblia-colores/">
+        <span class="source">5 familias · 39 libros</span>
+        <span class="emoji">🎨</span>
+        <h2>Los cinco colores</h2>
+        <p>Qué color lleva cada familia. Sin esto se pintan mal las 39 fichas.</p>
+        <div class="meta"><span>🎨 Empareja</span><span>Todo el club</span></div>
+        <span class="go">Estudiar ▶</span>
+      </a>
+      <a class="activity-card" data-from="1" data-to="6" href="/biblia-orden/">
+        <span class="source">Antiguo Testamento</span>
+        <span class="emoji">🔢</span>
+        <h2>Antes o después</h2>
+        <p>Qué libro va antes y cuál después, y ordenar una familia completa.</p>
+        <div class="meta"><span>🔢 Ordena</span><span>Corderitos a Manos Ayudadoras</span></div>
+        <span class="go">Estudiar ▶</span>
+      </a>
+      <a class="activity-card" data-from="0" data-to="6" href="/organiza-la-biblia/">
+        <span class="source">39 libros · Antiguo Testamento</span>
+        <span class="emoji">📚</span>
+        <h2>Organiza la Biblia</h2>
+        <p>Clasificar los libros por familia y ordenarlos contra reloj, que es como califican.</p>
+        <div class="meta"><span>⏱️ Contra reloj</span><span>Todo el club</span></div>
+        <span class="go">Estudiar ▶</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="group" id="g-connection">
+    <div class="group-head">
+      <h2>📖 Conexión Bíblica</h2>
+      <span class="count">10 actividades</span>
+      <p class="about">El examen del campamento sale de aquí: Daniel, en Reina-Valera 1995, con los capítulos 39, 41 y 44 de Profetas y Reyes.</p>
+    </div>
+        <div class="card-grid">
+      <a class="activity-card" data-from="1" data-to="3" data-chapter="39" href="/conexion-biblica-pr39/">
+        <span class="source">Cap. 39 · Daniel 1</span>
         <span class="emoji">🍖🥦</span>
-        <h2>La mesa del rey vs. la mesa de Daniel</h2>
-        <p>Sale una comida y todos reaccionan: ¿te tapas la boca o haces músculo?</p>
-        <div class="meta"><span>🏃 Se mueve</span><span>4–9 años</span></div>
-        <span class="go">Jugar ▶</span>
+        <h2>La mesa del rey y la mesa de Daniel</h2>
+        <p>Reconocer de un golpe qué está del lado del rey y qué del lado de Daniel.</p>
+        <div class="meta"><span>🏃 Se mueve</span><span>Corderitos a Abejitas</span></div>
+        <span class="go">Estudiar ▶</span>
       </a>
-      <a class="activity-card" href="/conexion-biblica-pr39-prueba10/">
+      <a class="activity-card" data-from="1" data-to="6" data-chapter="39" href="/conexion-biblica-pr39-prueba10/">
+        <span class="source">Cap. 39 · Daniel 1</span>
         <span class="emoji">📅</span>
-        <h2>La prueba de los 10 días</h2>
-        <p>Un tablero de 10 casillas: avanza un día por ronda y llega al palacio.</p>
-        <div class="meta"><span>🎲 Tablero</span><span>5–9 años</span></div>
-        <span class="go">Jugar ▶</span>
+        <h2>La línea de los 10 días</h2>
+        <p>Poner en orden lo que pasó, del cautiverio hasta «diez veces mejores».</p>
+        <div class="meta"><span>🔢 Ordena</span><span>Corderitos a Manos Ayudadoras</span></div>
+        <span class="go">Estudiar ▶</span>
       </a>
-      <a class="activity-card" href="/conexion-biblica-pr39-nombres/">
+      <a class="activity-card" data-from="3" data-to="6" data-chapter="39" href="/conexion-biblica-pr39-nombres/">
+        <span class="source">Cap. 39 · Daniel 1</span>
         <span class="emoji">🔤</span>
-        <h2>El cambia-nombres de Babilonia</h2>
-        <p>Babilonia les cambió el nombre… ¿puedes emparejarlos de nuevo?</p>
-        <div class="meta"><span>🧠 Piensa</span><span>6–9 años</span></div>
-        <span class="go">Jugar ▶</span>
+        <h2>Los cuatro nombres</h2>
+        <p>Los nombres hebreos y los que les pusieron en Babilonia.</p>
+        <div class="meta"><span>🧠 Memoria</span><span>Abejitas a Manos Ayudadoras</span></div>
+        <span class="go">Estudiar ▶</span>
       </a>
-      <a class="activity-card" href="/conexion-biblica-pr39-rompecabezas/">
-        <span class="emoji">🧩</span>
-        <h2>Arma la mesa de Daniel</h2>
-        <p>Diez piezas para armar la escena, y cada pieza esconde un detalle.</p>
-        <div class="meta"><span>🧩 Rompecabezas</span><span>4–9 años</span></div>
-        <span class="go">Jugar ▶</span>
-      </a>
-      <a class="activity-card" href="/conexion-biblica-pr39-colorear/">
+      <a class="activity-card" data-from="0" data-to="4" data-chapter="39" href="/conexion-biblica-pr39-colorear/">
+        <span class="source">Cap. 39 · Daniel 1</span>
         <span class="emoji">🎨</span>
         <h2>Colorea la corte de Babilonia</h2>
-        <p>Cuatro escenas para pintar con el dedo y retos de color.</p>
-        <div class="meta"><span>🎨 Crea</span><span>4–7 años</span></div>
-        <span class="go">Jugar ▶</span>
+        <p>Encontrar en la escena lo que nombra el capítulo, y contarlo.</p>
+        <div class="meta"><span>🎨 Crea</span><span>Principiantes a Rayitos de Sol</span></div>
+        <span class="go">Estudiar ▶</span>
       </a>
-    </div>
-  </section>
-
-
-  <section class="chapter">
-    <div class="chapter-head">
-      <span class="cap">Cap. 41</span>
-      <h2>🔥 El horno de fuego</h2>
-      <span class="count">5 juegos</span>
-    </div>
-    <div class="card-grid">
-      <a class="activity-card" href="/conexion-biblica-pr41/">
-        <span class="emoji">🙇🧍</span>
-        <h2>¡Firmes o inclinados!</h2>
-        <p>¿Eso lo hizo la multitud de Dura o los tres amigos? ¡Reacciona con el cuerpo!</p>
-        <div class="meta"><span>🏃 Se mueve</span><span>4–9 años</span></div>
-        <span class="go">Jugar ▶</span>
-      </a>
-      <a class="activity-card" href="/conexion-biblica-pr41-estatua/">
+      <a class="activity-card" data-from="0" data-to="6" data-chapter="41" href="/conexion-biblica-pr41-estatua-sueno/">
+        <span class="source">Cap. 41 · Daniel 2</span>
         <span class="emoji">🗿</span>
-        <h2>La estatua de oro: ¿obedezco o no?</h2>
-        <p>Un Simón dice con discernimiento: no toda orden se obedece.</p>
-        <div class="meta"><span>🏃 Se mueve</span><span>5–9 años</span></div>
-        <span class="go">Jugar ▶</span>
+        <h2>La estatua del sueño</h2>
+        <p>Qué material va en cada parte, y por qué el rey hizo la suya toda de oro.</p>
+        <div class="meta"><span>🎨 Empareja</span><span>Todo el club</span></div>
+        <span class="go">Estudiar ▶</span>
       </a>
-      <a class="activity-card" href="/conexion-biblica-pr41-horno/">
+      <a class="activity-card" data-from="4" data-to="6" data-chapter="41" href="/conexion-biblica-pr41-secuencia/">
+        <span class="source">Cap. 41 · Daniel 3</span>
         <span class="emoji">🔥</span>
-        <h2>El Cuarto en el fuego</h2>
-        <p>Verdadero o falso con el termómetro del horno subiendo a siete.</p>
-        <div class="meta"><span>🧠 Piensa</span><span>4–9 años</span></div>
-        <span class="go">Jugar ▶</span>
-      </a>
-      <a class="activity-card" href="/conexion-biblica-pr41-secuencia/">
-        <span class="emoji">🔢</span>
         <h2>Ordena la historia del horno</h2>
-        <p>¿Qué pasó primero? Seis escenas en desorden para acomodar.</p>
-        <div class="meta"><span>🧠 Piensa</span><span>5–9 años</span></div>
-        <span class="go">Jugar ▶</span>
+        <p>Por qué pasó cada cosa, y contar la historia completa.</p>
+        <div class="meta"><span>🗣️ Cuenta</span><span>Rayitos de Sol a Manos Ayudadoras</span></div>
+        <span class="go">Estudiar ▶</span>
       </a>
-      <a class="activity-card" href="/conexion-biblica-pr41-versiculo/">
+      <a class="activity-card" data-from="4" data-to="6" data-chapter="41" href="/conexion-biblica-pr41-versiculo/">
+        <span class="source">Cap. 41 · Isaías 43:2</span>
         <span class="emoji">📖</span>
         <h2>El versículo que no se quema</h2>
-        <p>Isaías 43:2 con gestos, y las palabras se van borrando.</p>
-        <div class="meta"><span>💭 Memoriza</span><span>5–9 años</span></div>
-        <span class="go">Jugar ▶</span>
+        <p>Isaías 43:2 de memoria, con su cita.</p>
+        <div class="meta"><span>💭 Memoriza</span><span>Rayitos de Sol a Manos Ayudadoras</span></div>
+        <span class="go">Estudiar ▶</span>
+      </a>
+      <a class="activity-card" data-from="0" data-to="3" data-chapter="44" href="/conexion-biblica-pr44-diferencias/">
+        <span class="source">Cap. 44 · Daniel 6</span>
+        <span class="emoji">🔍</span>
+        <h2>¿Qué falta en el foso?</h2>
+        <p>Recordar qué hay en la escena del foso de los leones.</p>
+        <div class="meta"><span>🔍 Observa</span><span>Principiantes a Abejitas</span></div>
+        <span class="go">Estudiar ▶</span>
+      </a>
+      <a class="activity-card" data-from="5" data-to="6" data-chapter="44" href="/conexion-biblica-pr44-quien-lo-dijo/">
+        <span class="source">Cap. 44 · Daniel 6</span>
+        <span class="emoji">💬</span>
+        <h2>Reparte las voces</h2>
+        <p>Quién dijo cada frase, y actuarla con su voz.</p>
+        <div class="meta"><span>🎭 Actúa</span><span>Constructores y Manos Ayudadoras</span></div>
+        <span class="go">Estudiar ▶</span>
+      </a>
+      <a class="activity-card" data-from="0" data-to="6" data-chapter="44" href="/conexion-biblica-pr44-reloj/">
+        <span class="source">Cap. 44 · Daniel 6</span>
+        <span class="emoji">🕐</span>
+        <h2>Tres veces al día</h2>
+        <p>Sostener el hábito de orar, como Daniel.</p>
+        <div class="meta"><span>📆 Constancia</span><span>Todo el club</span></div>
+        <span class="go">Estudiar ▶</span>
       </a>
     </div>
   </section>
 
-
-  <section class="chapter">
-    <div class="chapter-head">
-      <span class="cap">Cap. 44</span>
-      <h2>🦁 En el foso de los leones</h2>
-      <span class="count">5 juegos</span>
+  <section class="group" id="g-ideals">
+    <div class="group-head">
+      <h2>🤝 Los ideales del club</h2>
+      <span class="count">3 actividades</span>
+      <p class="about">El Voto, la Ley y el Himno, cada uno por separado. Los aprende todo el club, del más pequeño al más grande.</p>
     </div>
     <div class="card-grid">
-      <a class="activity-card" href="/conexion-biblica-pr44/">
-        <span class="emoji">🪟🦁</span>
-        <h2>¿Ventana abierta o trampa del foso?</h2>
-        <p>¿Es cosa de Daniel o trampa de los príncipes? ¡Ora o ruge!</p>
-        <div class="meta"><span>🏃 Se mueve</span><span>4–9 años</span></div>
-        <span class="go">Jugar ▶</span>
+      <a class="activity-card" data-from="0" data-to="6" href="/ideales-voto/">
+        <span class="source">Ideales del club</span>
+        <span class="emoji">🤝</span>
+        <h2>El Voto</h2>
+        <p>«Porque Jesús me ama, siempre haré lo mejor», de memoria.</p>
+        <div class="meta"><span>💭 Memoriza</span><span>Todo el club</span></div>
+        <span class="go">Estudiar ▶</span>
       </a>
-      <a class="activity-card" href="/conexion-biblica-pr44-reloj/">
-        <span class="emoji">🕐</span>
-        <h2>El reloj de oración de Daniel</h2>
-        <p>Gira la ruleta, cae en un momento del día y recibe tu reto.</p>
-        <div class="meta"><span>🎲 Tablero</span><span>4–9 años</span></div>
-        <span class="go">Jugar ▶</span>
+      <a class="activity-card" data-from="0" data-to="6" href="/ideales-ley/">
+        <span class="source">Ideales del club</span>
+        <span class="emoji">📜</span>
+        <h2>La Ley</h2>
+        <p>Los diez puntos y su orden: obediente, puro, leal…</p>
+        <div class="meta"><span>🔢 Ordena</span><span>Todo el club</span></div>
+        <span class="go">Estudiar ▶</span>
       </a>
-      <a class="activity-card" href="/conexion-biblica-pr44-quien-lo-dijo/">
-        <span class="emoji">💬</span>
-        <h2>¿Quién lo dijo?</h2>
-        <p>¿Fue Darío, Daniel o los envidiosos? Adivina de quién es la frase.</p>
-        <div class="meta"><span>🧠 Piensa</span><span>6–9 años</span></div>
-        <span class="go">Jugar ▶</span>
-      </a>
-      <a class="activity-card" href="/conexion-biblica-pr44-laberinto/">
-        <span class="emoji">🌀</span>
-        <h2>El laberinto de Daniel</h2>
-        <p>Llévalo de su casa hasta la ventana que mira a Jerusalén.</p>
-        <div class="meta"><span>🧩 Rompecabezas</span><span>4–9 años</span></div>
-        <span class="go">Jugar ▶</span>
-      </a>
-      <a class="activity-card" href="/conexion-biblica-pr44-diferencias/">
-        <span class="emoji">🔍</span>
-        <h2>Busca las diferencias en el foso</h2>
-        <p>Dos dibujos casi iguales y cinco diferencias escondidas.</p>
-        <div class="meta"><span>🔍 Observa</span><span>5–9 años</span></div>
-        <span class="go">Jugar ▶</span>
+      <a class="activity-card" data-from="0" data-to="6" href="/ideales-himno/">
+        <span class="source">Ideales del club</span>
+        <span class="emoji">🎵</span>
+        <h2>El Himno</h2>
+        <p>Las dos estrofas, verso a verso: sale uno y cantas el siguiente.</p>
+        <div class="meta"><span>🎤 Canta</span><span>Todo el club</span></div>
+        <span class="go">Estudiar ▶</span>
       </a>
     </div>
   </section>
 
-  <h2 class="board-title">🏆 Tablero de puntos</h2>
-  <p class="board-sub">El reto: cada acierto suma ⭐ 1 punto, y cada juego tiene su propio cupo diario.</p>
-  <div class="board-card">
-    <ol class="board-list" id="boardList"></ol>
-    <p class="board-empty" id="boardEmpty" hidden>Aún no hay puntos registrados… ¡sé el primero!</p>
-  </div>
+  <section class="group" id="g-parents">
+    <div class="group-head">
+      <h2>👪 Para padres</h2>
+      <span class="count">2 actividades</span>
+      <p class="about">Sacerdotes comprometidos: los dos capítulos de <em>Conducción del niño</em> que pide el boletín, con examen escrito en el campamento.</p>
+    </div>
+    <div class="card-grid">
+      <a class="activity-card" href="/padres-cap17/">
+        <span class="source">Conducción del niño · cap. 17</span>
+        <span class="emoji">🧼</span>
+        <h2>La limpieza</h2>
+        <p>Lo que Elena de White escribe sobre los hábitos de limpieza en el hogar, y por qué es una lección espiritual.</p>
+        <div class="meta"><span>📖 Lectura</span><span>Para adultos</span></div>
+        <span class="go">Leer ▶</span>
+      </a>
+      <a class="activity-card" href="/padres-cap18/">
+        <span class="source">Conducción del niño · cap. 18</span>
+        <span class="emoji">🧹</span>
+        <h2>Pulcritud, orden y regularidad</h2>
+        <p>El capítulo que la asociación no eligió al azar: el campamento evalúa inspección de carpas y de uniforme.</p>
+        <div class="meta"><span>📖 Lectura</span><span>Para adultos</span></div>
+        <span class="go">Leer ▶</span>
+      </a>
+    </div>
+  </section>
+
 </main>
 
 <div class="install-slot" id="installSlot" hidden></div>
@@ -449,31 +569,77 @@
 
 <script src="/shared/profile.js"></script>
 <script>
+  // Las secciones se ocultan desde aquí, no en el HTML: si este script falla,
+  // la portada sigue mostrando todo y solo se pierde la navegación por pestañas.
+  const tabs = [...document.querySelectorAll('#tabs .tab')];
+  const grupos = tabs.map(t => document.getElementById(t.dataset.g));
+  function showSection(id){
+    tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.g === id)));
+    grupos.forEach(g => { g.hidden = g.id !== id });
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }
+  tabs.forEach(t => t.addEventListener('click', () => showSection(t.dataset.g)));
+  document.getElementById('tabs').addEventListener('keydown', e => {
+    const i = tabs.indexOf(document.activeElement);
+    if(i < 0) return;
+    const delta = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if(!delta) return;
+    e.preventDefault();
+    const next = tabs[(i + delta + tabs.length) % tabs.length];
+    next.focus();
+    showSection(next.dataset.g);
+  });
+  showSection('g-books');
+
+
+  // Las recomendadas para la clase del niño van primero. Todas siguen visibles:
+  // ordenar es una sugerencia, no un filtro.
+  const CLASES = ['Principiantes','Corderitos','Aves Madrugadoras','Abejitas Industriosas',
+                  'Rayitos de Sol','Constructores','Manos Ayudadoras'];
+  function sortByClass(){
+    const clubClass = AvProfile.clubClass();
+    const meIndex = clubClass ? CLASES.indexOf(clubClass) : -1;
+    document.querySelectorAll('.card-grid').forEach(grid => {
+      const cards = [...grid.querySelectorAll('.activity-card')];
+      cards.forEach(t => {
+        const badge = t.querySelector('.recomendada');
+        if(badge) badge.remove();
+        t.style.order = '';
+      });
+      if(meIndex < 0) return;
+      let recommended = 0;
+      cards.forEach(t => {
+        const from = Number(t.dataset.from);
+        const to = Number(t.dataset.to);
+        if(!Number.isFinite(from) || !Number.isFinite(to)) return;
+        const fits = meIndex >= from && meIndex <= to;
+        t.style.order = fits ? '0' : '1';
+        if(fits){
+          recommended++;
+          const badge = document.createElement('span');
+          badge.className = 'recomendada';
+          badge.textContent = '⭐ Para ' + clubClass;
+          t.insertBefore(badge, t.firstElementChild);
+        }
+      });
+      const head = grid.previousElementSibling;
+      const note = head && head.querySelector('.de-que');
+      if(note && recommended && !note.dataset.original){
+        note.dataset.original = note.textContent;
+        note.textContent = note.dataset.original + ` Primero las ${recommended} recomendadas para ${clubClass}.`;
+      }else if(note && !recommended && note.dataset.original){
+        note.textContent = note.dataset.original;
+      }
+    });
+  }
+  AvProfile.onChange(sortByClass);
+
   AvProfile.init({
     chip: document.getElementById('playerChip'),
     install: document.getElementById('installSlot')
   });
+  sortByClass();
 
-  (async () => {
-    const empty = document.getElementById('boardEmpty');
-    try{
-      const res = await fetch('/api/leaderboard');
-      const data = await res.json();
-      const players = data.players || [];
-      if(!players.length){ empty.hidden = false; return }
-      const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-      const medals = ['🥇','🥈','🥉'];
-      document.getElementById('boardList').innerHTML = players.map((p, i) => `
-        <li>
-          <span class="rank">${medals[i] || i + 1}</span>
-          <span class="pname">${esc(p.name)}</span>
-          <span class="pts">⭐ ${p.points}</span>
-        </li>`).join('');
-    }catch(e){
-      empty.textContent = 'No pudimos cargar el tablero. Intenta de nuevo más tarde.';
-      empty.hidden = false;
-    }
-  })();
 </script>
 
 </body>

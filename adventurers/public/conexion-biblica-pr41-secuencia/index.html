@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1E1140">
-<title>Ordena la historia del horno</title>
-<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Una partida diaria: 5 escenas para poner en orden + 5 rondas de «¿qué pasó justo después?». ¡Suma puntos para el tablero del Club de Aventureros!">
+<title>La cadena del horno</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Primero lees Daniel 3 y el capítulo; después armas la cadena de causas del horno de fuego y la cuentas en voz alta con las tiras en la mano.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
-<meta property="og:title" content="Ordena la historia del horno">
-<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Una partida diaria: 5 escenas para poner en orden + 5 rondas de «¿qué pasó justo después?». ¡Suma puntos para el tablero del club!">
+<meta property="og:title" content="La cadena del horno">
+<meta property="og:description" content="¿Por qué se levantó la estatua y por qué se encendió el horno? Arma la cadena de causas del capítulo 41 y cuéntala en voz alta.">
 <meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr41-secuencia/">
 <meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
 <meta property="og:image:width" content="1200">
@@ -59,46 +59,16 @@
   }
   button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
-  /* ── Cabecera ── */
   header{text-align:center;padding:10px 16px 12px}
   .eyebrow{
-    font-family:'Fredoka',sans-serif;
-    font-size:.72rem;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    color:var(--gold-soft);
-    line-height:1.5;
+    font-family:'Fredoka',sans-serif;font-size:.72rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--gold-soft);line-height:1.5;
   }
-  h1{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.5rem,5.4vw,2.3rem);
-    line-height:1.15;
-    margin-top:6px;
-  }
-  h1 .fire{
-    display:inline-block;
-    background:var(--flame);
-    color:#fff;
-    border-radius:999px;
-    font-size:.8em;
-    padding:.05em .5em;
-  }
+  h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.45rem,5.4vw,2.3rem);line-height:1.15;margin-top:6px}
   .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
-  @media (max-width:600px){
-    .subtitle{display:none}
-    header{padding-bottom:8px}
-  }
+  @media (max-width:600px){.subtitle{display:none}header{padding-bottom:8px}}
 
-  /* ── Barra superior + menú ── */
-  .topbar{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:10px 12px 0;
-    max-width:1000px;
-    margin:0 auto;
-  }
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 12px 0;max-width:1000px;margin:0 auto}
   .topbar .back-link{white-space:nowrap;flex-shrink:0}
   .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
   .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
@@ -109,46 +79,25 @@
     .back-link{padding:8px 10px}
     .menu-btn{padding:8px 12px}
   }
+  .back-link{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--gold-soft);text-decoration:none;border:2px solid transparent;border-radius:999px;padding:8px 16px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-btn{
-    font-family:'Fredoka',sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    border:2px solid var(--gold);
-    background:transparent;
-    color:var(--gold-soft);
-    border-radius:999px;
-    padding:8px 16px;
-    min-height:44px;
-    cursor:pointer;
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;border:2px solid var(--gold);
+    background:transparent;color:var(--gold-soft);border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer;
   }
   .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-panel{
-    position:absolute;
-    right:0;
-    top:calc(100% + 8px);
-    z-index:50;
-    display:flex;
-    flex-direction:column;
-    min-width:244px;
-    background:var(--cream);
-    border:3px solid var(--gold);
-    border-radius:18px;
-    padding:8px;
-    box-shadow:0 10px 0 rgba(0,0,0,.3);
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
   }
   .menu-panel[hidden]{display:none}
   .menu-item{
-    font-family:'Fredoka',sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    text-align:left;
-    background:transparent;
-    border:none;
-    color:var(--ink);
-    border-radius:12px;
-    padding:12px 14px;
-    min-height:44px;
-    cursor:pointer;
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;background:transparent;border:none;
+    color:var(--ink);border-radius:12px;padding:12px 14px;min-height:44px;cursor:pointer;
   }
   .menu-item:hover{background:rgba(246,196,69,.28)}
   .menu-item:focus-visible{outline:3px solid var(--night);outline-offset:2px}
@@ -157,359 +106,178 @@
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
 
-  .back-link{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:.9rem;
-    color:var(--gold-soft);
-    text-decoration:none;
-    border:2px solid transparent;
-    border-radius:999px;
-    padding:8px 16px;
-    margin-bottom:8px;
+  /* ══════════ LEER ══════════ */
+  #leer{max-width:700px}
+  .read-card{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:22px 18px;margin-bottom:18px;box-shadow:0 8px 0 rgba(0,0,0,.28);
   }
-  .back-link:hover{border-color:var(--gold)}
-  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .read-card h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.12rem;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .read-card p{line-height:1.6;margin-bottom:10px}
+  .read-card p:last-child{margin-bottom:0}
+  .cadena-leer{list-style:none;counter-reset:esl}
+  .cadena-leer li{
+    counter-increment:esl;display:flex;gap:12px;align-items:flex-start;
+    padding:12px 2px;border-bottom:2px dashed rgba(42,27,14,.16);
+  }
+  .cadena-leer li:last-child{border-bottom:none}
+  .cadena-leer .num{
+    font-family:'Fredoka',sans-serif;font-weight:700;background:var(--gold);color:var(--night-deep);
+    border-radius:50%;width:1.9em;height:1.9em;display:grid;place-items:center;flex-shrink:0;
+  }
+  .cadena-leer .num::before{content:counter(esl)}
+  .cadena-leer .icono{font-size:1.5rem;flex-shrink:0}
+  .cadena-leer .title{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem}
+  .cadena-leer .porque{font-size:.94rem;line-height:1.5;opacity:.9}
+  .cadena-leer .ref{font-size:.78rem;opacity:.7;font-weight:700}
+  .cita{
+    border-left:6px solid var(--flame);padding:6px 0 6px 12px;margin-bottom:14px;
+  }
+  .cita:last-child{margin-bottom:0}
+  .cita .texto{font-weight:700;line-height:1.5}
+  .cita .ref{font-size:.82rem;opacity:.75}
+  .source{font-size:.82rem;opacity:.75;margin-top:14px;line-height:1.6}
+  .source a{color:var(--flame-deep);font-weight:700}
+  .read-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:6px 0 10px}
 
-  /* ── Dibujos SVG ── */
-  svg.art{display:block;width:100%;height:auto}
-  .art .pf{fill:var(--cream);stroke:var(--ink);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
-  .art .pg{fill:var(--gold);stroke:var(--ink);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
-  .art .pr{fill:var(--flame);stroke:var(--ink);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
-  .art .pd{fill:var(--ink);stroke:var(--ink);stroke-width:4;stroke-linejoin:round}
-  .art .pl{fill:none;stroke:var(--ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
-
-  /* ══════════ MODO JUEGO ══════════ */
-  .stage{max-width:620px;margin:0 auto}
+  /* ══════════ JUEGO ══════════ */
+  .stage{max-width:560px;margin:0 auto;text-align:center}
   .round-label{
-    font-family:'Fredoka',sans-serif;
-    color:var(--gold-soft);
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    font-size:.78rem;
-    text-align:center;
-    margin-bottom:10px;
+    font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.14em;
+    text-transform:uppercase;font-size:.78rem;margin-bottom:12px;line-height:1.5;
   }
-  .prompt{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:clamp(1.15rem,4.6vw,1.5rem);
-    text-align:center;
-    line-height:1.25;
-    margin-bottom:14px;
+  .board{
+    background:var(--cream);color:var(--ink);border-radius:26px;border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);padding:20px 14px;min-height:320px;
+    display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;
   }
+  .board .emoji{font-size:clamp(2.8rem,13vw,4.2rem);line-height:1}
+  .board .title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.1rem,4.6vw,1.5rem);line-height:1.25}
+  .board .hint{font-weight:700;font-size:.95rem;opacity:.75;line-height:1.5}
+  .board .instr{font-weight:700;font-size:.95rem;line-height:1.5}
 
-  /* Línea de tiempo de 6 huecos */
-  .timeline{
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:6px;
-    margin-bottom:18px;
-  }
+  .cadena{display:flex;flex-direction:column;gap:0;width:100%}
   .slot{
-    background:rgba(255,255,255,.07);
-    border:2px dashed rgba(246,196,69,.55);
-    border-radius:14px;
-    min-height:64px;
-    padding:4px 3px 3px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-    gap:2px;
+    width:100%;display:flex;gap:10px;align-items:center;text-align:left;
+    font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:700;color:var(--ink);
+    background:#fff;border:3px dashed rgba(42,27,14,.35);border-radius:16px;
+    padding:10px 12px;min-height:56px;cursor:pointer;
   }
-  .slot .n{
-    font-family:'Fredoka',sans-serif;
-    font-size:.72rem;
-    font-weight:700;
-    color:var(--gold-soft);
-    line-height:1;
+  .slot .rank{
+    font-family:'Fredoka',sans-serif;font-weight:700;background:var(--night);color:var(--gold-soft);
+    border-radius:50%;width:1.8em;height:1.8em;display:grid;place-items:center;flex-shrink:0;font-size:.95rem;
   }
-  .slot .mini{width:100%;max-width:36px}
-  .slot .badge{font-size:.9rem;line-height:1}
-  .slot.filled{background:var(--cream);border:2px solid var(--gold);border-style:solid}
-  .slot.filled .n{color:var(--ink);opacity:.6}
-  .slot.next{border-color:var(--flame);background:rgba(244,98,47,.18)}
-  .slot.next .q{font-family:'Fredoka',sans-serif;font-size:1.4rem;color:var(--flame);line-height:1}
-  @media (max-width:360px){
-    .slot{min-height:56px}
-    .slot .mini{max-width:28px}
+  .slot .ic{font-size:1.35rem;flex-shrink:0}
+  .slot .txt{flex:1;min-width:0}
+  .slot .t1{font-family:'Fredoka',sans-serif;font-weight:600;display:block}
+  .slot .t2{display:block;font-size:.85rem;font-weight:600;opacity:.8;line-height:1.35}
+  .slot.lleno{border-style:solid;border-color:var(--night)}
+  .slot.libre .txt{opacity:.55}
+  .slot.destino{border-color:var(--flame);background:#FFF1E4}
+  .slot:focus-visible{outline:3px solid var(--flame);outline-offset:2px}
+  .slot:disabled{cursor:default}
+  .eslabon{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    font-family:'Fredoka',sans-serif;font-size:.78rem;font-weight:600;
+    color:rgba(42,27,14,.6);min-height:26px;line-height:1;
   }
-
-  /* Escenas para escoger */
-  .options{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
-    gap:12px;
+  .eslabon.ok{color:var(--ok-deep)}
+  .eslabon.bad{color:var(--no)}
+  .bolsa{display:flex;flex-wrap:wrap;gap:8px;width:100%;justify-content:center}
+  .tira{
+    display:flex;gap:8px;align-items:center;text-align:left;width:100%;
+    font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:700;color:var(--ink);
+    background:#FFFBF0;border:3px solid rgba(42,27,14,.45);border-radius:16px;
+    padding:10px 12px;min-height:52px;cursor:pointer;
   }
-  .options[hidden]{display:none}
-  .scene-btn{
-    font-family:'Nunito',sans-serif;
-    background:var(--cream);
-    color:var(--ink);
-    border:4px solid var(--gold);
-    border-radius:20px;
-    box-shadow:0 6px 0 rgba(0,0,0,.28);
-    padding:10px 10px 12px;
-    min-height:44px;
-    cursor:pointer;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:6px;
-    position:relative;
-    transition:transform .1s ease;
+  .tira .ic{font-size:1.3rem;flex-shrink:0}
+  .tira.sel{background:var(--gold);border-color:var(--flame);box-shadow:0 0 0 3px rgba(244,98,47,.35)}
+  .tira:focus-visible{outline:3px solid var(--flame);outline-offset:2px}
+  .sub{font-size:.85rem;font-weight:700;opacity:.7;width:100%;text-align:center}
+  .solucion{
+    width:100%;text-align:left;background:#FFF1E4;border:3px solid var(--flame);
+    border-radius:16px;padding:12px 14px;
   }
-  .scene-btn:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.28)}
-  .scene-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
-  .scene-btn .art{max-width:82px}
-  .scene-btn .t{font-weight:800;font-size:.9rem;line-height:1.25}
-  .scene-btn .badge{
-    position:absolute;
-    top:6px;
-    right:8px;
-    font-size:1.1rem;
-    line-height:1;
+  .solucion h3{font-family:'Fredoka',sans-serif;font-size:1rem;margin-bottom:8px}
+  .solucion ol{margin-left:20px;line-height:1.5;font-size:.9rem}
+  .solucion li{margin-bottom:6px}
+  .solucion li:last-child{margin-bottom:0}
+  .puntaje{
+    font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.15rem;
+    background:var(--night);color:var(--gold-soft);border-radius:16px;padding:10px 16px;
   }
-
-  /* Ronda de "¿qué pasó justo después?" */
-  .quiz-wrap{display:none}
-  .quiz-wrap.show{display:block}
-  .before-card{
-    background:var(--cream);
-    color:var(--ink);
-    border:5px solid var(--flame);
-    border-radius:24px;
-    box-shadow:0 8px 0 rgba(0,0,0,.28);
-    padding:16px 14px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    text-align:left;
-  }
-  .before-card .art{max-width:96px;flex-shrink:0}
-  .before-card .t{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;line-height:1.3}
-  .quiz-tag{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-size:.72rem;
-    font-weight:600;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    background:var(--flame);
-    color:#fff;
-    border-radius:999px;
-    padding:4px 12px;
-    margin-bottom:10px;
-  }
-  .opt-list{display:flex;flex-direction:column;gap:10px;margin-top:16px}
-  .opt-btn{
-    font-family:'Nunito',sans-serif;
-    font-weight:800;
-    font-size:1rem;
-    line-height:1.3;
-    text-align:left;
-    background:var(--cream);
-    color:var(--ink);
-    border:3px solid var(--gold);
-    border-radius:16px;
-    box-shadow:0 5px 0 rgba(0,0,0,.26);
-    padding:13px 14px;
-    min-height:44px;
-    cursor:pointer;
-    transition:transform .1s ease;
-  }
-  .opt-btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.26)}
-  .opt-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
-  .opt-btn.pickedOk{background:var(--ok);border-color:var(--ok-deep);color:#fff}
-  .opt-btn.pickedNo{background:var(--no);border-color:#A32C26;color:#fff}
-  .opt-btn.showOk{background:var(--ok);border-color:var(--ok-deep);color:#fff}
-  .opt-btn:disabled{cursor:default;opacity:1}
-
-  /* Cartel final / inicio */
-  .big-card{
-    background:var(--cream);
-    color:var(--ink);
-    border-radius:28px;
-    border:6px solid var(--gold);
-    box-shadow:0 12px 0 rgba(0,0,0,.28);
-    padding:28px 20px;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
-  }
-  .big-card[hidden]{display:none}
-  .big-card .art{max-width:150px}
-  .big-card .h{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.3rem,5.6vw,1.9rem);line-height:1.2}
-  .big-card .hint{font-weight:700;font-size:1rem;opacity:.7;line-height:1.4}
 
   .controls{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
   .btn{
-    font-family:'Fredoka',sans-serif;
-    font-size:1.1rem;
-    font-weight:600;
-    border:none;
-    border-radius:999px;
-    padding:14px 30px;
-    min-height:48px;
-    cursor:pointer;
-    box-shadow:0 5px 0 rgba(0,0,0,.3);
-    transition:transform .1s ease;
+    font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;border:none;border-radius:999px;
+    padding:14px 26px;min-height:48px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.3);
   }
   .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
   .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .btn-gold{background:var(--gold);color:var(--night-deep)}
+  .btn-flame{background:var(--flame);color:#fff}
   .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
-  .btn-outline:active{transform:translateY(2px)}
   .btn-sm{font-size:.95rem;padding:10px 20px;min-height:44px}
+  .btn[hidden]{display:none}
 
-  /* Bloque de veredicto (se califica solo) */
   .judge{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:16px;
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:16px;
-    padding:12px 14px;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    line-height:1.4;
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;
+    background:rgba(255,255,255,.07);border:2px dashed var(--gold);border-radius:16px;padding:12px 14px;
+    font-family:'Fredoka',sans-serif;font-weight:600;
   }
-  .judge span{flex-basis:100%;text-align:center}
+  .judge span{flex-basis:100%;text-align:center;line-height:1.5}
   .judge[hidden]{display:none}
-  .judge.good{border-color:var(--ok);background:rgba(46,158,91,.16)}
-  .judge.bad{border-color:var(--flame);background:rgba(244,98,47,.14)}
-
-  .practice-note{
-    margin-top:16px;
-    text-align:center;
-    font-weight:700;
-    font-size:.95rem;
-    color:var(--gold-soft);
-    opacity:.9;
-    line-height:1.45;
-  }
+  .practice-note{margin-top:16px;text-align:center;font-weight:700;font-size:.95rem;color:var(--gold-soft);opacity:.9;line-height:1.5}
   .practice-note[hidden]{display:none}
 
-  /* ══════════ TIRAS IMPRIMIBLES ══════════ */
-  .print-note{
-    text-align:center;
-    font-size:.95rem;
-    opacity:.88;
-    max-width:600px;
-    margin:0 auto 20px;
-    line-height:1.5;
+  /* ══════════ IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:580px;margin:0 auto 20px}
+  .sheet{background:#fff;color:#000;border-radius:18px;padding:26px 22px;max-width:720px;margin:0 auto}
+  .sheet h2{font-family:'Fredoka',sans-serif;font-size:1.3rem;margin-bottom:4px}
+  .sheet .sub-h{font-size:.9rem;opacity:.75;margin-bottom:16px;text-align:left}
+  .sheet .tira-print{
+    border:3px solid #000;border-radius:12px;padding:10px 12px;margin-bottom:10px;
+    display:flex;gap:10px;align-items:flex-start;page-break-inside:avoid;
   }
-  .group-title{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1.15rem;
-    margin:26px 0 12px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    line-height:1.3;
-  }
-  .group-title .chip{
-    font-size:1.3rem;
-    background:var(--cream);
-    border-radius:12px;
-    padding:2px 10px;
-    flex-shrink:0;
-  }
-  .strips{display:flex;flex-direction:column;gap:10px}
-  .strip{
-    background:var(--cream);
-    color:var(--ink);
-    border:3px dashed var(--ink);
-    border-radius:14px;
-    padding:10px 12px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-  }
-  .strip .art{max-width:60px;flex-shrink:0}
-  .strip .t{font-weight:800;font-size:.95rem;line-height:1.3}
-  .strip .badge{font-size:1.3rem;flex-shrink:0}
-  .guide{
-    background:var(--cream);
-    color:var(--ink);
-    border:3px solid var(--ink);
-    border-radius:14px;
-    padding:14px 16px;
-    margin-bottom:12px;
-  }
-  .guide h3{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin-bottom:8px}
-  .guide ol{margin:0 0 0 22px;line-height:1.5}
-  .guide li{margin-bottom:4px;font-weight:700;font-size:.92rem}
+  .sheet .tira-print .ic{font-size:1.4rem}
+  .sheet .tira-print .t1{font-family:'Fredoka',sans-serif;font-weight:700;display:block}
+  .sheet .tira-print .t2{font-size:.9rem;line-height:1.4}
+  .sheet .clave{border:2px dashed #000;border-radius:12px;padding:12px;margin-top:14px;page-break-inside:avoid}
+  .sheet .clave h3{font-family:'Fredoka',sans-serif;font-size:1rem;margin-bottom:6px}
+  .sheet .clave ol{margin-left:20px;line-height:1.5;font-size:.9rem}
 
-  /* ══════════ PARA PADRES ══════════ */
-  #padres{max-width:720px}
+  /* ══════════ PADRES ══════════ */
+  #padres{max-width:740px}
   .parent-box{
-    background:var(--cream);
-    color:var(--ink);
-    border:4px solid var(--gold);
-    border-radius:22px;
-    padding:22px 20px;
-    margin-bottom:18px;
-    box-shadow:0 6px 0 rgba(0,0,0,.25);
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:22px;
+    padding:22px 18px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
   }
   .parent-box h2{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1.2rem;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:8px;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.18rem;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
   }
   .parent-box p{margin-bottom:10px;line-height:1.55}
   .parent-box p:last-child{margin-bottom:0}
   .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
   .parent-box li{margin-bottom:6px}
+  .parent-box a{color:var(--flame-deep);font-weight:700}
   .verse{
-    border-left:5px solid var(--flame);
-    background:rgba(244,98,47,.10);
-    border-radius:0 12px 12px 0;
-    padding:12px 14px;
-    font-style:italic;
-    font-weight:700;
+    background:#fff;border-left:6px solid var(--flame);border-radius:10px;
+    padding:12px 14px;font-weight:700;line-height:1.5;margin-bottom:10px;
   }
-  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--flame-deep)}
+  .verse .ref{display:block;font-weight:700;font-size:.82rem;opacity:.7;margin-top:6px}
 
-  @media (prefers-reduced-motion:reduce){
-    .btn,.scene-btn,.opt-btn{transition:none}
-    .pop{animation:none!important}
-  }
-  .pop{animation:pop .3s cubic-bezier(.2,1.6,.4,1) both}
-  @keyframes pop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
-
-  /* ── Impresión ── */
   @media print{
-    body{background:#fff;color:#000;background-image:none}
-    header,.topbar,#juego,#padres,.print-note{display:none!important}
-    section{display:none!important}
-    #tiras{display:block!important;padding:0}
-    .group-title{color:#000;font-size:12pt;margin:6mm 0 3mm}
-    .group-title .chip{background:#fff;border:1px solid #999}
-    .strips{gap:3mm}
-    .strip{background:#fff;border:1.5pt dashed #000;break-inside:avoid;padding:3mm 4mm}
-    .strip .art{max-width:18mm}
-    .strip .t{font-size:11pt}
-    .guide{background:#fff;border:1.5pt solid #000;break-inside:avoid}
-    .guide-page{break-before:page}
-    .art .pf,.art .pg,.art .pr{fill:#fff!important;stroke:#000!important}
-    .art .pd{fill:#000!important;stroke:#000!important}
-    .art .pl{stroke:#000!important}
+    body{background:#fff;color:#000}
+    header,.topbar,#leer,#juego,#padres,.print-note{display:none!important}
+    section{display:block!important;padding:0}
+    #material{display:block!important}
+    .sheet{border:none;padding:0}
   }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -520,8 +288,9 @@
   <div class="menu-wrap">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
     <div class="menu-panel" id="menuPanel" hidden>
-      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
-      <button class="menu-item" data-tab="tiras">🖨️ Tiras para recortar</button>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="juego">🎮 Jugar</button>
+      <button class="menu-item" data-tab="material">🖨️ Tiras para recortar</button>
       <button class="menu-item" data-tab="padres">👪 Para padres</button>
       <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
     </div>
@@ -530,653 +299,574 @@
 
 <header>
   <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 41 · El horno de fuego</div>
-  <h1>Ordena la historia del <span class="fire">horno</span></h1>
-  <p class="subtitle">¿Qué pasó primero? Toca las escenas en orden.</p>
+  <h1>La cadena del horno</h1>
+  <p class="subtitle">Aquí no se ordena qué pasó primero: se ordena <strong>por qué</strong> pasó.</p>
 </header>
 
-<!-- ══════════ MODO JUEGO ══════════ -->
-<section id="juego" class="active">
+<!-- ══════════ LEER ══════════ -->
+<section id="leer" class="active">
+  <div class="read-card">
+    <h2>📖 Antes de jugar: la cadena de causas</h2>
+    <p>En el capítulo 41, nada pasa por casualidad. Cada cosa pasa <strong>porque</strong> pasó la anterior. Lee la cadena completa en voz alta con tu papá o tu mamá; después el juego te va a pedir que la armes tú.</p>
+    <ol class="cadena-leer" id="cadenaLeer"></ol>
+    <p class="source">Fuente: Elena G. de White, <em>Profetas y Reyes</em>, capítulo 41 «El horno de fuego», basado en Daniel 3. El capítulo se puede leer en <a href="https://www.egwwritings.org/" target="_blank" rel="noopener">egwwritings.org</a>.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>📜 Daniel 3 · los versículos que cita el capítulo</h2>
+    <div id="citasLeer"></div>
+    <p class="source">Puedes leer el capítulo entero aquí: <a href="https://www.biblegateway.com/passage/?search=Daniel%203&amp;version=RVR1960" target="_blank" rel="noopener">Daniel 3 (Reina-Valera 1960) · BibleGateway</a>. Las palabras citadas arriba son las que aparecen en el capítulo 41 de <em>Profetas y Reyes</em>.</p>
+  </div>
+
+  <div class="read-cta">
+    <button class="btn btn-gold" id="toGameBtn">Ya lo leí · ¡A jugar! ▶</button>
+  </div>
+</section>
+
+<!-- ══════════ JUEGO ══════════ -->
+<section id="juego">
   <div class="stage">
-    <div class="round-label" id="roundLabel">¿Listos, aventureros?</div>
+    <div class="round-label" id="roundLabel">¿Listo para armar la cadena?</div>
 
-    <div class="big-card" id="startCard">
-      <div id="startArt"></div>
-      <div class="h">¡Partida del horno!</div>
-      <div class="hint">5 escenas para poner en orden + 5 rondas de «¿qué pasó justo después?»</div>
+    <div class="board" id="board" aria-live="polite">
+      <div class="emoji">⛓️🔥</div>
+      <div class="title">La cadena del horno</div>
+      <div class="hint">Primero armas la cadena de causas. Después la cuentas en voz alta con las tiras en la mano.</div>
     </div>
 
-    <div id="cardPhase" hidden>
-      <div class="prompt" id="prompt"></div>
-      <div class="timeline" id="timeline"></div>
-      <div class="options" id="options"></div>
-    </div>
-
-    <div class="quiz-wrap" id="quizPhase">
-      <span class="quiz-tag" id="quizTag">6–7 años</span>
-      <div class="before-card">
-        <div id="beforeArt"></div>
-        <div class="t" id="beforeText"></div>
-      </div>
-      <div class="prompt" style="margin-top:16px">¿Qué pasó justo después?</div>
-      <div class="opt-list" id="optList"></div>
-    </div>
-
-    <div class="controls" id="controls">
-      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
+    <div class="controls">
+      <button class="btn btn-gold" id="mainBtn">▶ Empezar</button>
+      <button class="btn btn-outline" id="altBtn" hidden></button>
     </div>
 
     <div class="judge" id="judge" hidden>
-      <span id="judgeText"></span>
-      <button class="btn btn-gold btn-sm" id="nextBtn">Siguiente ▶</button>
+      <span id="judgeQ"></span>
+      <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
     </div>
 
     <p class="practice-note" id="practiceNote" hidden></p>
   </div>
 </section>
 
-<!-- ══════════ TIRAS IMPRIMIBLES ══════════ -->
-<section id="tiras">
-  <p class="print-note">
-    Usa <strong>Ctrl/Cmd + P</strong> para imprimir. Recorta las tiras por la línea punteada,
-    revuélvelas y pide a los niños que las <strong>ordenen en el suelo</strong>.
-    Las tiras salen <strong>desordenadas a propósito</strong>: el orden correcto está en la
-    <strong>última página</strong> — imprímela al reverso o guárdala tú, es la clave del adulto.
-  </p>
-
-  <div id="stripsHost"></div>
-
-  <div class="guide-page">
-    <div class="group-title"><span class="chip">🔑</span> Tira guía para el adulto — orden correcto</div>
-    <div id="guideHost"></div>
+<!-- ══════════ IMPRIMIBLE ══════════ -->
+<section id="material">
+  <p class="print-note">Usa <strong>Ctrl/Cmd + P</strong> para imprimir esta hoja, recorta las nueve tiras y que el niño arme la cadena sobre la mesa. Al final, la clave para el adulto.</p>
+  <div class="sheet">
+    <h2>La cadena del horno · tiras para recortar</h2>
+    <p class="sub-h">Profetas y Reyes, cap. 41 · Daniel 3 · Club de Aventureros El Elohe Israel, Iglesia Adventista Jordán Ibagué</p>
+    <div id="tirasPrint"></div>
+    <div class="clave">
+      <h3>Clave para el adulto (orden correcto)</h3>
+      <ol id="clavePrint"></ol>
+      <p style="margin-top:8px;font-size:.9rem">Pregunte siempre <strong>«¿por qué?»</strong> entre una tira y la siguiente. La respuesta buena es la que dice el motivo, no la que repite lo que pasó.</p>
+    </div>
   </div>
 </section>
 
-<!-- ══════════ PARA PADRES ══════════ -->
+<!-- ══════════ PADRES ══════════ -->
 <section id="padres">
   <div class="parent-box">
     <h2>📖 La historia</h2>
-    <p>Esta dinámica está basada en <strong>Daniel 3</strong> (capítulo 41 de <em>Profetas y Reyes</em>, «El horno de fuego»). Después de que Daniel le interpretó el sueño de la gran imagen, Nabucodonosor reconoció que el Dios de los hebreos era «Dios de dioses». Pero la prosperidad lo llenó de orgullo: sus sabios le propusieron levantar una imagen como la del sueño y él la hizo <strong>toda de oro</strong>, para que Babilonia pareciera un reino eterno.</p>
-    <p>La estatua se levantó en la <strong>llanura de Dura</strong>, y se decretó que al sonar la música todos se postraran. Toda la multitud se postró… menos <strong>Sadrac, Mesac y Abed-nego</strong>. Acusados por sabios celosos, respondieron con calma: «Nuestro Dios puede librarnos; y si no, tu dios no adoraremos». El rey, lleno de ira, mandó calentar el horno <strong>siete veces más</strong>.</p>
-    <p>Dentro del fuego el rey vio <strong>cuatro</strong> varones sueltos, y el cuarto era «semejante a hijo de los dioses». Bajó del trono, los llamó a la boca del horno y salieron ilesos: ni un cabello quemado, ni olor de fuego. Solo se quemaron sus ligaduras. El rey promulgó entonces un decreto, «por cuanto no hay dios que pueda librar como éste».</p>
+    <p>Nabucodonosor ya había oído de boca de Daniel que su reino era «la cabeza de oro» y que solo el reino de Dios permanece para siempre. Pero «la prosperidad que acompañaba su reinado le llenaba de orgullo», y sus sabios, aprovechando eso, le sugirieron levantar una imagen como la del sueño. Él fue más lejos: la hizo <strong>toda</strong> de oro, para decir que Babilonia duraría para siempre.</p>
+    <p>De ahí sale todo lo demás: la música y el decreto en la llanura de Dura, los tres hebreos que no se postran, los sabios celosos que los acusan, el horno siete veces más caliente, el Cuarto que camina en el fuego y el decreto final del rey humillado.</p>
   </div>
 
   <div class="parent-box">
     <h2>💡 ¿Qué aprende su hijo?</h2>
-    <ul>
-      <li><strong>Que la historia tiene un orden</strong>: primero el orgullo, después la estatua, después la prueba, y al final Dios glorificado. Ordenar las escenas le ayuda a contarla con sus palabras.</li>
-      <li><strong>Fidelidad aunque todos hagan lo contrario</strong>: los tres quedaron de pie cuando toda la multitud se postró.</li>
-      <li><strong>«Y si no»</strong>: confiaron en Dios sin condiciones, incluso si no los libraba.</li>
-      <li><strong>Dios acompaña en la prueba</strong>: el Cuarto caminó con ellos <em>dentro</em> del fuego, no los sacó antes.</li>
-    </ul>
-    <p class="verse">«Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti» <span>Isaías 43:2</span></p>
+    <p>Que la historia del horno es una <strong>cadena de causas</strong>, no una lista de escenas. Este juego no pregunta «¿qué pasó primero?» (eso lo trabaja otra actividad del club); pregunta <strong>por qué</strong> pasó cada cosa: el orgullo lleva a la estatua, la estatua al decreto, el decreto a la firmeza de los tres, la firmeza a los celos, los celos al horno.</p>
+    <div class="verse">«He aquí nuestro Dios a quien honramos, puede librarnos del horno de fuego ardiendo; y de tu mano, oh rey, nos librará. Y si no, sepas, oh rey, que tu dios no adoraremos.»
+      <span class="ref">Daniel 3:17-18, citado en Profetas y Reyes, cap. 41</span></div>
+    <p>El objetivo declarado de la actividad es que el niño <strong>cuente la cadena en voz alta</strong>. Por eso el último punto lo confirma usted: armarla es la mitad, explicarla es la otra.</p>
   </div>
 
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>. Aparecen <strong>6 escenas revueltas</strong> de un tramo del capítulo y una fila con 6 huecos.</li>
-      <li>Su hijo toca la escena que cree que <strong>va primero</strong>, luego la que sigue, y así. Cada escena bien puesta suma <strong>⭐ 1 punto</strong> (máximo 5 por partida: la sexta se acomoda sola).</li>
-      <li>Si se equivoca, la app le muestra <strong>en qué lugar iba</strong> esa escena y acomoda la correcta para que la historia siga completa. No se pierde nada: las fallas no restan.</li>
-      <li>Después vienen <strong>5 rondas de «¿qué pasó justo después?»</strong>: se muestra una escena y su hijo elige entre 3 opciones. Se califica solo, y viene marcada por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>.</li>
-      <li>Hay <strong>cuatro tramos distintos</strong> de la historia (el sueño y el orgullo, el decreto y la música, la ira del rey y el horno, y el Cuarto en el fuego). La app rota los tramos y las rondas: <strong>no se repiten</strong> hasta que se agoten.</li>
-      <li>Sin pantalla: impriman las <strong>tiras</strong> desde la pestaña 🖨️, recórtenlas, revuélvanlas y ordénenlas en el suelo. La última página trae el orden correcto para el adulto.</li>
-      <li>Mientras ordenan, conversen: <em>¿por qué el rey se enojó tanto? ¿qué habrías hecho tú cuando sonó la música?</em></li>
+      <li><strong>Lean juntos</strong> la pestaña 📖. El juego no enseña la cadena desde cero: la comprueba.</li>
+      <li>El niño <strong>toca una tira</strong> y luego <strong>toca el lugar</strong> donde va. Puede colocarlas en cualquier orden y mover las que quiera; no hay que arrastrar nada.</li>
+      <li>Cuando estén todas puestas, toca <strong>Revisar la cadena</strong>. La app marca con ✅ cada par que quedó bien encadenado y muestra la cadena correcta completa, acierte o no.</li>
+      <li>Si no quedó perfecta, tiene <strong>un segundo intento de práctica</strong>: el tablero se vacía y arma otra vez. Los puntos ya quedaron fijados en el primer intento, porque la respuesta correcta se mostró al revisar.</li>
+      <li>Al final, con las tiras en la pantalla (o las de la hoja impresa en la mano), el niño <strong>cuenta la cadena en voz alta</strong>, uniendo cada eslabón con un «y entonces, porque...». Usted marca ⭐ si la contó completa.</li>
     </ol>
-    <p>Las rondas <strong>cubren todo el capítulo 41</strong>, así que también sirven de repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
+    <p>La cantidad de tiras depende de la <strong>clase</strong> del niño: cinco para Principiantes, Corderitos y Aves Madrugadoras; siete para Abejitas Industriosas y Rayitos de Sol; las nueve para Constructores y Manos Ayudadoras. En las clases pequeñas, los eslabones del medio rotan de un día a otro.</p>
   </div>
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 escenas por ordenar + 5 rondas de «¿qué pasó después?». Cada acierto suma <strong>⭐ 1 punto</strong> (los errores no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de escenas y 5 de rondas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
-    <p>Reto extra para la semana: que su hijo <strong>cuente la historia completa</strong> usando las tiras impresas, de la primera a la última, sin ayuda.</p>
-    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+    <p>Imprima la hoja de tiras y péguela en la nevera desordenada. Cada día, antes de la cena, el niño la ordena y cuenta la cadena en menos de un minuto. El viernes, que la cuente en el culto familiar sin mirar las tiras.</p>
+    <p><strong>Puntos.</strong> Esta actividad da hasta <strong>6 puntos al día</strong>: hasta 5 por la cadena armada (uno por cada tramo de pares bien encadenados, con puntuación parcial) y 1 por contar la cadena en voz alta. No llega a 10 a propósito: el juego tiene una sola mecánica y no le pegamos preguntas de relleno al final.</p>
+    <p><strong>De dónde sale todo.</strong> Los nueve eslabones y los motivos son del capítulo 41 de <em>Profetas y Reyes</em>; las citas son de Daniel 3, tal como el capítulo las cita. No hay nada inventado ni aplicación de hoy en las rondas que suman.</p>
   </div>
 </section>
 
 <script src="/shared/profile.js"></script>
-
 <script>
-  // ══════════ Dibujos: SVG inline hecho a mano ══════════
-  const fig = (x, y, s, cls) => `<g class="${cls || 'pf'}" transform="translate(${x},${y}) scale(${s})">`
-    + `<path d="M-14 14 L-10 -10 q10 -7 20 0 L14 14 z"/>`
-    + `<circle cx="0" cy="-22" r="9"/></g>`;
-
-  const crown = (x, y, s, cls) => `<g class="${cls || 'pg'}" transform="translate(${x},${y}) scale(${s})">`
-    + `<path d="M-13 0 l3 -13 l5 6 l5 -10 l5 10 l5 -6 l3 13 z"/></g>`;
-
-  const king = (x, y, s) => fig(x, y, s, 'pf') + crown(x, y - 31 * s, s * 0.95, 'pg');
-
-  const bow = (x, y, s) => `<g class="pf" transform="translate(${x},${y}) scale(${s})">`
-    + `<path d="M-18 14 L-16 0 q2 -14 16 -14 h6 q8 0 8 10 l2 18 z"/>`
-    + `<circle cx="16" cy="-6" r="8"/></g>`;
-
-  const flame = (x, y, s) => `<g class="pr" transform="translate(${x},${y}) scale(${s})">`
-    + `<path d="M-11 0 q-5 -18 4 -27 q-1 9 4 11 q-4 -17 5 -24 q0 15 8 23 q6 8 1 17 z"/></g>`;
-
-  const star = (x, y, s) => `<g class="pg" transform="translate(${x},${y}) scale(${s})">`
-    + `<path d="M0 -10 l3 7 l8 1 l-6 5 l2 8 l-7 -4 l-7 4 l2 -8 l-6 -5 l8 -1 z"/></g>`;
-
-  const scroll = (top) => `<path class="pf" d="M22 ${top + 6} h56 v54 h-56 z"/>`
-    + `<rect class="pf" x="17" y="${top}" width="66" height="11" rx="5.5"/>`
-    + `<rect class="pf" x="17" y="${top + 55}" width="66" height="11" rx="5.5"/>`
-    + `<path class="pl" d="M32 ${top + 22} h36 M32 ${top + 34} h36 M32 ${top + 46} h22"/>`;
-
-  const statue = (dx, dy, s) => `<g transform="translate(${dx},${dy}) scale(${s})">`
-    + `<rect class="pg" x="30" y="76" width="40" height="9" rx="3"/>`
-    + `<path class="pg" d="M42 76 L44 32 h12 l2 44 z"/>`
-    + `<circle class="pg" cx="50" cy="24" r="10"/>`
-    + `<path class="pl" d="M44 44 L32 53 M56 44 L68 53"/></g>`;
-
-  const furnace = (dx, dy, s) => `<g transform="translate(${dx},${dy}) scale(${s})">`
-    + `<path class="pf" d="M20 86 L27 40 h46 l7 46 z"/>`
-    + `<path class="pd" d="M38 86 v-17 q12 -10 24 0 v17 z"/></g>`;
-
-  const ground = `<path class="pl" d="M6 86 h88"/>`;
-
-  const ART = {
-    sueno: `<path class="pf" d="M24 66 q-14 0 -14 -12 q0 -10 10 -11 q1 -16 17 -16 q10 0 15 8 q5 -5 12 -5 q13 0 14 14 q11 1 11 11 q0 11 -14 11 z"/>`
-      + `<rect class="pg" x="45" y="42" width="10" height="18" rx="2"/><circle class="pg" cx="50" cy="35" r="6"/>`
-      + `<path class="pl" d="M74 16 h11 l-11 11 h11"/>`,
-    reyReconoce: king(38, 76, 1.1) + `<path class="pl" d="M48 54 L64 34"/>` + star(74, 26, 1.5) + ground,
-    orgullo: crown(50, 42, 2.1, 'pg') + `<path class="pl" d="M50 82 v-26 M40 66 l10 -10 l10 10"/>`
-      + star(16, 24, 0.9) + star(84, 24, 0.9),
-    sabios: fig(22, 76, 0.9) + fig(44, 76, 0.9) + king(78, 76, 1)
-      + `<path class="pl" d="M56 52 q7 -7 13 -3"/>` + ground,
-    estatuaOro: statue(0, 0, 1) + star(16, 24, 0.9) + star(84, 24, 0.9),
-    estatuaDura: statue(0, 8, 0.82) + fig(14, 84, 0.38) + fig(88, 84, 0.38) + ground,
-    multitud: fig(20, 54, 0.72) + fig(50, 52, 0.72) + fig(80, 54, 0.72)
-      + fig(34, 84, 0.88) + fig(66, 84, 0.88) + ground,
-    decreto: scroll(16) + crown(50, 90, 0.7, 'pg'),
-    musica: `<path class="pg" d="M22 56 h32 l18 -16 v38 l-18 -16 h-32 z"/>`
-      + `<circle class="pd" cx="24" cy="26" r="7"/><path class="pl" d="M31 26 v-16 h14"/>`,
-    postrados: statue(30, 8, 0.55) + bow(24, 78, 1) + bow(52, 78, 1) + ground,
-    tresDePie: fig(24, 74, 1.05) + fig(50, 74, 1.05) + fig(76, 74, 1.05) + ground,
-    acusan: fig(16, 82, 0.55) + fig(30, 82, 0.55) + fig(44, 82, 0.55)
-      + fig(28, 60, 0.85) + `<path class="pl" d="M38 50 h22"/>` + king(78, 76, 1) + ground,
-    traidos: fig(14, 78, 0.62) + fig(30, 78, 0.62) + fig(46, 78, 0.62)
-      + `<path class="pl" d="M54 50 h18 l-6 -6 M72 50 l-6 6"/>` + king(84, 78, 0.85) + ground,
-    reyPregunta: king(34, 78, 1.15)
-      + `<path class="pl" d="M60 32 q0 -13 11 -13 q11 0 11 11 q0 9 -11 13 v5"/>`
-      + `<circle class="pd" cx="71" cy="60" r="4.5"/>` + ground,
-    manoHorno: furnace(30, 0, 0.86) + flame(64, 40, 0.7) + king(22, 78, 1)
-      + `<path class="pl" d="M32 58 h22"/>` + ground,
-    tresResponden: fig(20, 84, 0.9) + fig(44, 84, 0.9) + fig(68, 84, 0.9)
-      + `<path class="pf" d="M46 12 h40 q5 0 5 5 v20 q0 5 -5 5 h-22 l-9 9 v-9 h-9 q-5 0 -5 -5 v-20 q0 -5 5 -5 z"/>`
-      + star(66, 27, 0.9) + ground,
-    iraRey: crown(50, 33, 1.7, 'pg') + `<circle class="pf" cx="50" cy="60" r="24"/>`
-      + `<path class="pl" d="M37 51 l11 7 M63 51 l-11 7"/>`
-      + `<circle class="pd" cx="42" cy="61" r="3"/><circle class="pd" cx="58" cy="61" r="3"/>`
-      + `<path class="pl" d="M40 74 q10 -9 20 0"/>`,
-    hornoSiete: furnace(0, 0, 1) + flame(36, 41, 0.8) + flame(50, 38, 0.9) + flame(64, 41, 0.8),
-    echados: furnace(28, 2, 0.88)
-      + `<g transform="rotate(38 24 44)">` + fig(24, 44, 0.75) + `</g>`
-      + `<g transform="rotate(38 42 30)">` + fig(42, 30, 0.75) + `</g>`
-      + `<path class="pl" d="M58 24 q16 8 16 24 l-6 -8 M74 48 l6 -7"/>` + ground,
-    reyTrono: `<path class="pf" d="M30 86 v-54 q0 -7 7 -7 h26 q7 0 7 7 v54 z"/>`
-      + `<circle class="pf" cx="50" cy="46" r="10"/>` + crown(50, 32, 0.9, 'pg')
-      + `<path class="pf" d="M38 82 v-20 q12 -7 24 0 v20 z"/>`,
-    reyPalido: `<path class="pf" d="M10 86 v-40 q0 -5 5 -5 h16 q5 0 5 5 v40 z"/>`
-      + king(64, 82, 1.15) + `<path class="pl" d="M74 58 q11 -5 9 -16"/>`
-      + `<path class="pl" d="M46 22 l-6 -8 M56 16 v-9 M70 18 l6 -8"/>` + ground,
-    cuatroFuego: flame(22, 88, 1.5) + flame(50, 90, 1.8) + flame(78, 88, 1.5)
-      + fig(20, 82, 0.72) + fig(40, 82, 0.72) + fig(60, 82, 0.72)
-      + fig(80, 82, 0.72, 'pg') + star(80, 44, 0.85),
-    bocaHorno: furnace(30, 0, 0.86) + flame(64, 40, 0.7) + king(20, 80, 1.05)
-      + `<path class="pl" d="M30 58 h20"/>` + ground,
-    salenIlesos: fig(26, 80, 1.05) + fig(50, 80, 1.05) + fig(74, 80, 1.05)
-      + star(14, 22, 1) + star(50, 16, 1.1) + star(86, 22, 1)
-      + `<path class="pl" d="M16 84 q6 -7 12 -1 M84 84 q-6 -7 -12 -1"/>` + ground,
-    noblesMiran: fig(16, 58, 0.6) + fig(34, 56, 0.6) + fig(50, 56, 0.6) + fig(66, 56, 0.6) + fig(84, 58, 0.6)
-      + fig(30, 86, 0.85) + fig(50, 86, 0.85) + fig(70, 86, 0.85),
-    decretoFinal: scroll(24) + crown(50, 20, 1, 'pg'),
-    meta: `<circle class="pg" cx="50" cy="50" r="30"/>` + star(50, 50, 2.2)
-  };
-
-  function art(key, cls){
-    return `<svg class="art ${cls || ''}" viewBox="0 0 100 100" role="img" aria-hidden="true">${ART[key] || ''}</svg>`;
-  }
-
-  // ══════════ Contenido bíblico (Profetas y Reyes, cap. 41 — Daniel 3) ══════════
-  // Cuatro secuencias de 6 escenas, en ORDEN CORRECTO.
-  const SEQUENCES = [
-    {
-      id: 'A',
-      title: 'El sueño y el orgullo del rey',
-      chip: '👑',
-      scenes: [
-        {e:'☁️', a:'sueno',        t:'Daniel le explica el sueño: el Dios del cielo levantará un reino que nunca se acabará.'},
-        {e:'⭐', a:'reyReconoce',  t:'El rey reconoce: «Ciertamente vuestro Dios es Dios de dioses».'},
-        {e:'😤', a:'orgullo',      t:'Con el tiempo el orgullo lo llena, deja de honrar a Dios y vuelve a los ídolos.'},
-        {e:'🗣️', a:'sabios',       t:'Los sabios le proponen hacer una imagen como la que vio en el sueño.'},
-        {e:'🥇', a:'estatuaOro',   t:'Le agrada la idea y la manda hacer TODA de oro, no solo la cabeza.'},
-        {e:'🏜️', a:'estatuaDura',  t:'Levantan la estatua de sesenta codos en la llanura de Dura.'}
-      ]
-    },
-    {
-      id: 'B',
-      title: 'El decreto, la música y los tres que no se postran',
-      chip: '🎵',
-      scenes: [
-        {e:'📜', a:'decreto',    t:'Se decreta que en el día de la dedicación todos se postren ante la estatua de oro.'},
-        {e:'👥', a:'multitud',   t:'Llegó el día señalado y se congregó gente de todos los pueblos, naciones y lenguas en la llanura de Dura.'},
-        {e:'🎺', a:'musica',     t:'¡Suena la música!'},
-        {e:'🙇', a:'postrados',  t:'Toda la multitud se postra y adora la estatua de oro.'},
-        {e:'🧍', a:'tresDePie',  t:'Tres hombres quedan de pie: no deshonrarán al Dios del cielo.'},
-        {e:'👉', a:'acusan',     t:'Unos sabios celosos van y los acusan delante del rey.'}
-      ]
-    },
-    {
-      id: 'C',
-      title: 'La ira del rey y el horno siete veces',
-      chip: '🔥',
-      scenes: [
-        {e:'🚶', a:'traidos',       t:'El rey manda que traigan a Sadrac, Mesac y Abed-nego delante de él.'},
-        {e:'☝️', a:'manoHorno',     t:'Les da otra oportunidad, señala el horno y desafía: «¿Qué dios será aquel que os libre de mis manos?».'},
-        {e:'💬', a:'tresResponden', t:'Ellos responden con calma: «Nuestro Dios puede librarnos; y si no, tu dios no adoraremos».'},
-        {e:'😡', a:'iraRey',        t:'La ira del rey no conoce límites: se le demuda la figura del rostro.'},
-        {e:'7️⃣', a:'hornoSiete',    t:'Manda calentar el horno siete veces más de lo acostumbrado.'},
-        {e:'⛓️', a:'echados',       t:'Hombres fuertes los atan y los echan al horno; la llama mata a los que los alzaron.'}
-      ]
-    },
-    {
-      id: 'D',
-      title: 'El Cuarto en el fuego y el decreto final',
-      chip: '✨',
-      scenes: [
-        {e:'🪑', a:'reyTrono',     t:'Desde su trono el rey mira, esperando verlos destruidos.'},
-        {e:'😳', a:'reyPalido',    t:'Su rostro palidece: se levanta y mira fijamente las llamas.'},
-        {e:'4️⃣', a:'cuatroFuego',  t:'«¡Yo veo cuatro varones sueltos! Y el cuarto es semejante a hijo de los dioses».'},
-        {e:'📣', a:'bocaHorno',    t:'Baja del trono, va a la boca del horno y clama: «¡Siervos del alto Dios, salid y venid!».'},
-        {e:'✨', a:'salenIlesos',  t:'Salen ilesos: ni un cabello quemado, ni olor de fuego. Solo se quemaron sus ligaduras.'},
-        {e:'📜', a:'decretoFinal', t:'El rey promulga un decreto: «Por cuanto no hay dios que pueda librar como éste».'}
-      ]
-    }
-  ];
-
-  // «¿Qué pasó justo después?» — se califica solo. (6 de 4–5, 8 de 6–7, 8 de 8–9)
-  const AFTER = [
-    {tag:'4–5 años', a:'musica',      b:'Suena la música en la llanura de Dura…',
-      ok:'Toda la multitud se postra ante la estatua de oro.',
-      no:['Todos se van a dormir.','La estatua de oro se cae al suelo.']},
-    {tag:'4–5 años', a:'tresDePie',   b:'Los tres amigos se quedan de pie y no se postran…',
-      ok:'Unos sabios los acusan delante del rey.',
-      no:['El rey les da un premio de oro.','La música no vuelve a sonar nunca.']},
-    {tag:'4–5 años', a:'iraRey',      b:'El rey se llena de ira contra los tres hebreos…',
-      ok:'Manda calentar el horno mucho más.',
-      no:['Manda apagar el horno con agua.','Se va a dormir a su cuarto.']},
-    {tag:'4–5 años', a:'echados',     b:'Echan a los tres amigos dentro del horno de fuego…',
-      ok:'Dios los cuida y el fuego no los quema.',
-      no:['Se vuelven cenizas.','Salen corriendo para su casa.']},
-    {tag:'4–5 años', a:'reyPalido',   b:'El rey se levanta y mira dentro del horno…',
-      ok:'Ve cuatro hombres caminando en el fuego.',
-      no:['Ve tres estatuas de oro.','No ve nada de nada.']},
-    {tag:'4–5 años', a:'bocaHorno',   b:'El rey llama: «¡Salid y venid!»…',
-      ok:'Los tres salen del horno sanos y salvos.',
-      no:['El horno se apaga solito.','Nadie sale del horno.']},
-
-    {tag:'6–7 años', a:'sueno',       b:'Daniel le explicó al rey el sueño de la gran imagen…',
-      ok:'El rey dijo: «Ciertamente vuestro Dios es Dios de dioses».',
-      no:['El rey mandó matar a Daniel.','El rey rompió la gran imagen del sueño.']},
-    {tag:'6–7 años', a:'orgullo',     b:'La prosperidad de su reinado llenó de orgullo al rey…',
-      ok:'Dejó de honrar a Dios y volvió a adorar los ídolos con más fanatismo.',
-      no:['Le pidió a Daniel que orara con él cada día.','Repartió su reino entre los hebreos.']},
-    {tag:'6–7 años', a:'sabios',      b:'Los sabios le propusieron hacer una imagen como la del sueño…',
-      ok:'Al rey le agradó la idea y decidió hacerla toda de oro.',
-      no:['El rey dijo que no y los echó del palacio.','El rey mandó hacer la imagen de barro.']},
-    {tag:'6–7 años', a:'estatuaOro',  b:'Terminaron la gran imagen de oro…',
-      ok:'La levantaron en la llanura de Dura.',
-      no:['La guardaron dentro del palacio del rey.','La echaron al río Éufrates.']},
-    {tag:'6–7 años', a:'decreto',     b:'Se decretó que todos adoraran la estatua el día de la dedicación…',
-      ok:'Se congregó gente de todos los pueblos, naciones y lenguas.',
-      no:['Nadie llegó ese día a la llanura.','Solo llegaron los tres hebreos.']},
-    {tag:'6–7 años', a:'acusan',      b:'Los sabios acusaron a Sadrac, Mesac y Abed-nego…',
-      ok:'El rey ordenó que esos hombres fueran traídos delante de él.',
-      no:['El rey los perdonó sin verlos.','El rey se fue de viaje y olvidó todo.']},
-    {tag:'6–7 años', a:'reyPregunta', b:'El rey les dio otra oportunidad y les señaló el horno…',
-      ok:'Preguntó desafiante: «¿Qué dios será aquel que os libre de mis manos?».',
-      no:['Les regaló ropa nueva y turbantes.','Los dejó ir tranquilos a su casa.']},
-    {tag:'6–7 años', a:'tresResponden', b:'Los tres dijeron: «Y si no, tu dios no adoraremos»…',
-      ok:'El rey se llenó de ira y se le demudó la figura del rostro.',
-      no:['El rey lloró de alegría y los abrazó.','El rey adoró a Dios en ese mismo momento.']},
-
-    {tag:'8–9 años', a:'hornoSiete',  b:'El rey ordenó calentar el horno siete veces más que de costumbre…',
-      ok:'Mandó a hombres fuertes de su ejército que los ataran.',
-      no:['Mandó llamar a Daniel para que decidiera.','Mandó callar la música de la dedicación.']},
-    {tag:'8–9 años', a:'echados',     b:'Los hombres fuertes alzaron a los tres hebreos hasta el horno…',
-      ok:'La llama del fuego mató a aquellos que los habían alzado.',
-      no:['El horno se enfrió de golpe.','Los hombres fuertes se arrepintieron y huyeron.']},
-    {tag:'8–9 años', a:'cuatroFuego', b:'Los tres cayeron atados dentro del horno de fuego ardiendo…',
-      ok:'El Salvador se les reveló en persona y anduvieron juntos en medio del fuego.',
-      no:['Se quedaron dormidos entre las llamas.','El fuego los fue quemando poco a poco.']},
-    {tag:'8–9 años', a:'reyPalido',   b:'El rey vio al cuarto varón, «semejante a hijo de los dioses»…',
-      ok:'Olvidó su grandeza, bajó del trono y fue a la boca del horno.',
-      no:['Mandó cerrar el horno para siempre.','Mandó echar más hebreos al horno.']},
-    {tag:'8–9 años', a:'noblesMiran', b:'Los tres salieron ilesos delante de la vasta muchedumbre…',
-      ok:'Los grandes y gobernadores se juntaron a mirar que ni su cabello se había quemado.',
-      no:['Todos se fueron sin mirarlos.','Volvió a sonar la música para adorar la estatua.']},
-    {tag:'8–9 años', a:'salenIlesos', b:'Vieron que el fuego no se enseñoreó de sus cuerpos ni pasó olor de fuego por ellos…',
-      ok:'El rey humillado dijo: «Bendito el Dios de ellos, que envió su ángel».',
-      no:['El rey mandó levantar otra estatua más alta.','El rey guardó silencio y no dijo nada.']},
-    {tag:'8–9 años', a:'decretoFinal', b:'El rey reconoció al Dios de Sadrac, Mesac y Abed-nego…',
-      ok:'Promulgó un decreto contra quien dijera blasfemia contra ese Dios.',
-      no:['Nombró a los tres hebreos reyes de Babilonia.','Prohibió adorar a cualquier dios en su reino.']},
-    {tag:'8–9 años', a:'decreto',     b:'El rey explicó la razón por la cual dictaba aquel decreto…',
-      ok:'«Por cuanto no hay dios que pueda librar como éste».',
-      no:['«Porque yo soy el dios de Babilonia».','«Porque el horno de fuego ya no sirve».']}
-  ];
-
-  // ══════════ Partida: 5 escenas por ordenar + 5 rondas de «¿qué pasó después?» ══════════
   const ACTIVITY = 'pr41-secuencia';
-  const MATCH_CARDS = 5;
-  const MATCH_QUIZ = 5;
-  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
+  const MAX_CARD = 5;
 
-  let match = null;
+  // Los nueve eslabones de la cadena de causas del capítulo 41. El texto de
+  // "porque" es el motivo, no la acción: esto no es una línea de tiempo.
+  const CADENA = [
+    {id:1, icono:'👑', titulo:'El orgullo del rey',
+     porque:'La prosperidad de su reinado lo llenó de orgullo: quería ensalzarse a sí mismo y dejó de honrar a Dios.',
+     ref:'Cap. 41'},
+    {id:2, icono:'🗣️', titulo:'La sugestión de los sabios',
+     porque:'Para halagarlo, sus sabios le propusieron levantar una imagen como la del sueño, donde todos vieran la cabeza de oro.',
+     ref:'Cap. 41'},
+    {id:3, icono:'🟨', titulo:'La estatua toda de oro',
+     porque:'No quiso copiar el sueño: quiso superarlo. Toda de oro, para decir que Babilonia era un reino eterno e indestructible.',
+     ref:'Daniel 3:1 · Cap. 41'},
+    {id:4, icono:'🎺', titulo:'La música y el decreto',
+     porque:'Al sonar la música, todos debían postrarse: así juraban lealtad suprema al poder de Babilonia.',
+     ref:'Daniel 3:4-7'},
+    {id:5, icono:'🧍', titulo:'Los tres que no se postran',
+     porque:'Postrarse era adorar, y ellos solo podían adorar al Rey de reyes y Señor de señores.',
+     ref:'Cap. 41'},
+    {id:6, icono:'😠', titulo:'La acusación de los celosos',
+     porque:'Unos sabios, celosos de los honores dados a los compañeros de Daniel, corrieron a acusarlos ante el rey.',
+     ref:'Daniel 3:8-12'},
+    {id:7, icono:'🔥', titulo:'El horno siete veces más caliente',
+     porque:'La ira del rey no conoció límites: mandó calentar el horno siete veces más que de costumbre.',
+     ref:'Daniel 3:19'},
+    {id:8, icono:'✨', titulo:'El Cuarto en el fuego',
+     porque:'El rey esperaba verlos destruidos y vio cuatro varones sueltos: el cuarto, semejante a hijo de los dioses.',
+     ref:'Daniel 3:24-25'},
+    {id:9, icono:'📜', titulo:'El decreto final',
+     porque:'El rey humillado prohibió hablar mal del Dios de ellos, «por cuanto no hay dios que pueda librar como éste».',
+     ref:'Daniel 3:28-29'}
+  ];
 
-  const el = id => document.getElementById(id);
-  const roundLabel = el('roundLabel');
-  const startCard = el('startCard');
-  const cardPhase = el('cardPhase');
-  const quizPhase = el('quizPhase');
-  const timeline = el('timeline');
-  const options = el('options');
-  const promptEl = el('prompt');
-  const optList = el('optList');
-  const judge = el('judge');
-  const judgeText = el('judgeText');
-  const nextBtn = el('nextBtn');
-  const mainBtn = el('mainBtn');
-  const practiceNote = el('practiceNote');
+  const CITAS = [
+    {text:'«No adoran tus dioses, no adoran la estatua de oro que tú levantaste.»', ref:'Daniel 3:12 — la acusación de los celosos'},
+    {text:'«¿Qué dios será aquel que os libre de mis manos?»', ref:'Daniel 3:15 — el desafío del rey'},
+    {text:'«He aquí nuestro Dios a quien honramos, puede librarnos del horno de fuego ardiendo; y de tu mano, oh rey, nos librará. Y si no, sepas, oh rey, que tu dios no adoraremos.»', ref:'Daniel 3:17-18 — la respuesta de los tres'},
+    {text:'«Ordenando que se calentase el horno siete veces más que de costumbre...»', ref:'Daniel 3:19 — la ira del rey'},
+    {text:'«He aquí que yo veo cuatro varones sueltos, que se pasean en medio del fuego, y ningún daño hay en ellos: y el parecer del cuarto es semejante a hijo de los dioses.»', ref:'Daniel 3:25 — el Cuarto en el fuego'},
+    {text:'«Bendito el Dios de ellos, de Sadrach, Mesach, y Abed-nego, que envió su ángel, y libró sus siervos que esperaron en él.»', ref:'Daniel 3:28 — el rey humillado'},
+    {text:'«Por cuanto no hay dios que pueda librar como éste.»', ref:'Daniel 3:29 — la razón del decreto final'}
+  ];
 
   const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-  function shuffle(arr){
+  // ── Leer ──
+  document.getElementById('cadenaLeer').innerHTML = CADENA.map(e => `
+    <li>
+      <span class="num"></span>
+      <span class="icono">${e.icono}</span>
+      <span>
+        <span class="title">${esc(e.titulo)}</span>
+        <span class="porque">${esc(e.porque)}</span>
+        <span class="ref">${esc(e.ref)}</span>
+      </span>
+    </li>`).join('');
+
+  document.getElementById('citasLeer').innerHTML = CITAS.map(c => `
+    <div class="cita">
+      <div class="text">${esc(c.texto)}</div>
+      <div class="ref">${esc(c.ref)}</div>
+    </div>`).join('');
+
+  document.getElementById('tirasPrint').innerHTML = CADENA.map(e => `
+    <div class="tira-print">
+      <span class="ic">${e.icono}</span>
+      <span>
+        <span class="t1">${esc(e.titulo)}</span>
+        <span class="t2">Porque… ${esc(e.porque)}</span>
+      </span>
+    </div>`).join('');
+
+  document.getElementById('clavePrint').innerHTML =
+    CADENA.map(e => `<li>${esc(e.titulo)}</li>`).join('');
+
+  // ── Dificultad por clase del club ──
+  const TIRAS_POR_CLASE = {
+    'Principiantes': 5,
+    'Corderitos': 5,
+    'Aves Madrugadoras': 5,
+    'Abejitas Industriosas': 7,
+    'Rayitos de Sol': 7,
+    'Constructores': 9,
+    'Manos Ayudadoras': 9
+  };
+  function cuantasTiras(){
+    const clubClass = AvProfile.clubClass();
+    return (clubClass && TIRAS_POR_CLASE[clubClass]) || 7;
+  }
+
+  // El primero y el último eslabón siempre están (el orgullo abre y el decreto
+  // cierra); los del medio rotan por niño y por semana.
+  function armarSubconjunto(n){
+    if(n >= CADENA.length) return CADENA.slice();
+    const medios = CADENA.slice(1, CADENA.length - 1);
+    const elegidos = AvProfile.pick(`${ACTIVITY}:eslabones:${n}`, medios, n - 2, e => String(e.id));
+    const ids = new Set(elegidos.map(e => e.id));
+    ids.add(CADENA[0].id);
+    ids.add(CADENA[CADENA.length - 1].id);
+    return CADENA.filter(e => ids.has(e.id));
+  }
+
+  const shuffle = arr => {
     const a = arr.slice();
-    for(let i = a.length - 1; i > 0; i--){
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
+    for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]] }
     return a;
-  }
+  };
 
-  function canScore(kind){
-    const p = AvProfile.get();
-    return !!p && AvProfile.canScore(kind);
-  }
+  // ── Estado de la partida ──
+  let match = null;
 
-  function phase(){
-    if(!match) return 'idle';
-    if(match.step < MATCH_CARDS) return 'card';
-    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
-    return 'done';
-  }
+  const board = document.getElementById('board');
+  const mainBtn = document.getElementById('mainBtn');
+  const altBtn = document.getElementById('altBtn');
+  const roundLabel = document.getElementById('roundLabel');
+  const judge = document.getElementById('judge');
+  const judgeQ = document.getElementById('judgeQ');
+  const judgeYes = document.getElementById('judgeYes');
+  const judgeNo = document.getElementById('judgeNo');
+  const practiceNote = document.getElementById('practiceNote');
 
-  function pickSequence(){
-    const got = AvProfile.pick(`${ACTIVITY}:secuencia`, SEQUENCES, 1, s => s.id);
-    return got[0] || SEQUENCES[0];
-  }
-
-  function pickAfterRounds(){
-    const picked = [];
-    QUIZ_MIX.forEach(([tag, n]) => {
-      const group = AFTER.filter(q => q.tag === tag);
-      picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.b + '|' + q.ok));
-    });
-    return picked.map(q => ({...q, opts: shuffle([q.ok, ...q.no])}));
-  }
-
-  function startMatch(){
-    const seq = pickSequence();
+  function start(){
+    const n = cuantasTiras();
+    const tiras = armarSubconjunto(n).map((e, i) => ({...e, idx: i}));
     match = {
-      seq,
-      pool: shuffle(seq.scenes),
-      placed: [],
-      quizzes: pickAfterRounds(),
-      step: 0,
-      hits: 0,
-      earned: 0,
-      locked: false
+      tiras,
+      total: tiras.length,
+      pares: tiras.length - 1,
+      slots: new Array(tiras.length).fill(null),
+      bolsa: shuffle(tiras.map(t => t.idx)),
+      sel: null,
+      intento: 1,
+      mejor: 0,
+      fase: 'armar',
+      cardGanados: 0,
+      quizGanados: 0,
+      otorgado: false
     };
-    startCard.hidden = true;
+    judge.hidden = true;
     practiceNote.hidden = true;
-    mainBtn.hidden = true;
-    judge.hidden = true;
-    showStep();
+    render();
   }
 
-  function showStep(){
-    judge.hidden = true;
-    judge.classList.remove('good', 'bad');
-    const ph = phase();
-    if(ph === 'card'){
-      quizPhase.classList.remove('show');
-      cardPhase.hidden = false;
-      renderCards();
-    }else if(ph === 'quiz'){
-      cardPhase.hidden = true;
-      quizPhase.classList.add('show');
-      renderQuiz();
-    }else{
-      finishMatch();
+  function paresBuenos(){
+    let c = 0;
+    for(let i = 0; i < match.total - 1; i++){
+      const a = match.slots[i], b = match.slots[i + 1];
+      if(a !== null && b !== null && a + 1 === b) c++;
     }
+    return c;
   }
 
-  function renderCards(){
-    const seq = match.seq;
-    const nPlaced = match.placed.length;
-    roundLabel.textContent = `Escena ${Math.min(match.step + 1, MATCH_CARDS)} de ${MATCH_CARDS} · ${seq.title}`;
-    promptEl.textContent = nPlaced >= seq.scenes.length
-      ? '¡La historia quedó completa!'
-      : `¿Cuál escena va en el lugar ${nPlaced + 1}?`;
+  function puntosDe(c){
+    if(c <= 0) return 0;
+    if(c >= match.pares) return MAX_CARD;
+    return Math.max(1, Math.floor(c / match.pares * MAX_CARD));
+  }
 
-    timeline.innerHTML = seq.scenes.map((_, i) => {
-      if(i < nPlaced){
-        const s = match.placed[i];
-        return `<div class="slot filled"><span class="n">${i + 1}</span>${art(s.a, 'mini')}<span class="badge">${s.e}</span></div>`;
+  function tiraDe(idx){ return match.tiras[idx] }
+
+  function slotHTML(i, marcar){
+    const idx = match.slots[i];
+    const sel = match.sel !== null;
+    if(idx === null){
+      return `<button class="slot libre${sel ? ' destino' : ''}" data-slot="${i}"${marcar ? ' disabled' : ''}>
+        <span class="rank">${i + 1}</span>
+        <span class="txt"><span class="t2">${sel ? 'Toca aquí para ponerla' : 'Vacío'}</span></span>
+      </button>`;
+    }
+    const t = tiraDe(idx);
+    return `<button class="slot lleno" data-slot="${i}"${marcar ? ' disabled' : ''}>
+      <span class="rank">${i + 1}</span>
+      <span class="ic">${t.icono}</span>
+      <span class="txt"><span class="t1">${esc(t.titulo)}</span><span class="t2">Porque… ${esc(t.porque)}</span></span>
+    </button>`;
+  }
+
+  function cadenaHTML(marcar){
+    let html = '<div class="cadena">';
+    for(let i = 0; i < match.total; i++){
+      html += slotHTML(i, marcar);
+      if(i < match.total - 1){
+        const a = match.slots[i], b = match.slots[i + 1];
+        if(marcar){
+          const bien = a !== null && b !== null && a + 1 === b;
+          html += `<div class="eslabon ${ok ? 'bien' : 'bad'}">${bien ? '✅ y por eso…' : '❌ y por eso…'}</div>`;
+        }else{
+          html += '<div class="eslabon">↓ y por eso…</div>';
+        }
       }
-      if(i === nPlaced) return `<div class="slot next"><span class="n">${i + 1}</span><span class="q">?</span></div>`;
-      return `<div class="slot"><span class="n">${i + 1}</span></div>`;
-    }).join('');
-
-    const rest = match.pool.filter(s => match.placed.indexOf(s) === -1);
-    if(!rest.length || match.step >= MATCH_CARDS){
-      options.hidden = true;
-      options.innerHTML = '';
-      return;
     }
-    options.hidden = false;
-    options.innerHTML = rest.map(s => {
-      const i = seq.scenes.indexOf(s);
-      return `<button type="button" class="scene-btn" data-i="${i}">`
-        + `<span class="badge">${s.e}</span>${art(s.a)}<span class="t">${esc(s.t)}</span></button>`;
-    }).join('');
-    options.querySelectorAll('.scene-btn').forEach(btn => {
-      btn.addEventListener('click', () => onSceneTap(seq.scenes[Number(btn.dataset.i)]));
-    });
+    return html + '</div>';
   }
 
-  function onSceneTap(scene){
-    if(match.locked) return;
-    match.locked = true;
-    const seq = match.seq;
-    const idx = match.placed.length;
-    const right = seq.scenes[idx];
-    const ok = scene === right;
-
-    const scored = canScore('card');
-    if(scored){
-      AvProfile.score(ok, 'card');
-      if(ok) match.earned++;
-    }
-    if(ok) match.hits++;
-
-    match.placed.push(right);
-    match.step++;
-
-    let msg = ok
-      ? `⭐ ¡Sí! Esa escena va en el lugar ${idx + 1}.`
-      : `😅 Casi. Esa escena va en el lugar ${seq.scenes.indexOf(scene) + 1}; en el lugar ${idx + 1} va: «${right.t}»`;
-
-    if(match.step === MATCH_CARDS){
-      const last = seq.scenes[seq.scenes.length - 1];
-      match.placed.push(last);
-      msg += ` Y la última se acomoda sola: «${last.t}»`;
-    }
-
-    renderCards();
-    showJudge(ok, msg, scored);
+  function solucionHTML(){
+    return `<div class="solucion">
+      <h3>🔗 La cadena correcta</h3>
+      <ol>${match.tiras.map(t => `<li><strong>${esc(t.titulo)}</strong> — ${esc(t.porque)}</li>`).join('')}</ol>
+    </div>`;
   }
 
-  function renderQuiz(){
-    const q = match.quizzes[match.step - MATCH_CARDS];
-    roundLabel.textContent = `¿Qué pasó después? ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
-    el('quizTag').textContent = q.tag;
-    el('beforeArt').innerHTML = art(q.a);
-    el('beforeText').textContent = q.b;
-    optList.innerHTML = q.opts.map((o, i) =>
-      `<button type="button" class="opt-btn" data-i="${i}">${esc(o)}</button>`).join('');
-    optList.querySelectorAll('.opt-btn').forEach(btn => {
-      btn.addEventListener('click', () => onOptionTap(q, q.opts[Number(btn.dataset.i)], btn));
-    });
+  // Solo los títulos, sin el 'porque': el «y por eso…» lo tiene que decir el niño.
+  function titulosHTML(){
+    return `<div class="solucion">
+      <h3>🔗 Los eslabones</h3>
+      <ol>${match.tiras.map(t => `<li><strong>${esc(t.titulo)}</strong></li>`).join('')}</ol>
+    </div>`;
   }
 
-  function onOptionTap(q, choice, btn){
-    if(match.locked) return;
-    match.locked = true;
-    const ok = choice === q.ok;
-
-    const scored = canScore('quiz');
-    if(scored){
-      AvProfile.score(ok, 'quiz');
-      if(ok) match.earned++;
-    }
-    if(ok) match.hits++;
-
-    optList.querySelectorAll('.opt-btn').forEach(b => {
-      b.disabled = true;
-      if(q.opts[Number(b.dataset.i)] === q.ok) b.classList.add('showOk');
-    });
-    btn.classList.add(ok ? 'pickedOk' : 'pickedNo');
-
-    match.step++;
-    showJudge(ok, ok ? '⭐ ¡Correcto! Eso pasó justo después.' : '😅 Esta vez no. Lo correcto está en verde.', scored);
+  function render(){
+    if(match.phase === 'armar') return renderArmar();
+    if(match.phase === 'revisado') return renderRevisado();
+    if(match.phase === 'contar') return renderContar();
+    renderFin();
   }
 
-  function showJudge(ok, msg, scored){
-    let extra = '';
-    const p = AvProfile.get();
-    if(!p) extra = ' 👤 Sin perfil: este acierto no suma al tablero.';
-    else if(!scored) extra = ' 🌙 Cupo de hoy completo: esta ronda es de práctica.';
-    judgeText.textContent = msg + extra;
-    judge.classList.remove('good', 'bad');
-    judge.classList.add(ok ? 'good' : 'bad');
-    nextBtn.textContent = phase() === 'done' ? '🏁 Ver resultado' : 'Siguiente ▶';
-    judge.hidden = false;
-  }
-
-  nextBtn.addEventListener('click', () => {
-    if(!match) return;
-    match.locked = false;
-    showStep();
-  });
-
-  function finishMatch(){
-    cardPhase.hidden = true;
-    quizPhase.classList.remove('show');
+  function renderArmar(){
     judge.hidden = true;
-    roundLabel.textContent = '¡Bien hecho, aventureros!';
-    const p = AvProfile.get();
-    const total = MATCH_CARDS + MATCH_QUIZ;
-    const scored = p
-      ? `<div class="hint">⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.</div>`
-      : '<div class="hint">👤 Sin perfil: esta partida fue de práctica.</div>';
-    const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
-      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
-    startCard.innerHTML = `${art('meta', 'pop')}
-      <div class="h">¡Partida completa!</div>
-      <div class="hint">Acertaste ${match.hits} de ${total}.</div>
-      ${scored}${extra}
-      <div class="hint">Cuenta la historia otra vez, ahora con tus palabras. 🗣️</div>`;
-    startCard.hidden = false;
-    mainBtn.textContent = '🔁 Otra partida';
+    roundLabel.textContent = `Armar la cadena · intento ${match.intento} de 2 · ${match.total} tiras`;
+    const puestas = match.slots.filter(s => s !== null).length;
+    board.innerHTML = `
+      <div class="instr">Toca una causa y luego el lugar donde va. Si te equivocas, toca la tira puesta y vuelve a la bolsa.</div>
+      ${cadenaHTML(false)}
+      ${match.bolsa.length ? `<div class="sub">Causas por colocar (${match.bolsa.length})</div>
+      <div class="bolsa">${match.bolsa.map(idx => {
+        const t = tiraDe(idx);
+        return `<button class="tira${match.sel === idx ? ' sel' : ''}" data-tira="${idx}">
+          <span class="ic">${t.icono}</span>
+          <span><span class="t1" style="font-family:'Fredoka',sans-serif;font-weight:600">${esc(t.titulo)}</span>
+          <span style="display:block;font-size:.85rem;opacity:.8">Porque… ${esc(t.porque)}</span></span>
+        </button>`;
+      }).join('')}</div>` : '<div class="sub">¡Todas puestas! Revisa la cadena.</div>'}`;
+
+    board.querySelectorAll('[data-tira]').forEach(b => b.addEventListener('click', () => {
+      const idx = Number(b.dataset.tira);
+      match.sel = match.sel === idx ? null : idx;
+      renderArmar();
+    }));
+    board.querySelectorAll('[data-slot]').forEach(b => b.addEventListener('click', () => {
+      tocarSlot(Number(b.dataset.slot));
+    }));
+
+    mainBtn.textContent = 'Revisar la cadena ✔';
+    mainBtn.hidden = puestas < match.total;
+    mainBtn.dataset.act = 'revisar';
+    altBtn.hidden = true;
+  }
+
+  function tocarSlot(i){
+    const ocupa = match.slots[i];
+    if(match.sel !== null){
+      if(ocupa !== null) match.bolsa.push(ocupa);
+      match.slots[i] = match.sel;
+      match.bolsa = match.bolsa.filter(x => x !== match.sel);
+      match.sel = null;
+    }else if(ocupa !== null){
+      match.slots[i] = null;
+      match.bolsa.push(ocupa);
+    }
+    renderArmar();
+  }
+
+  // Solo puntúa el primer intento: la cadena correcta se muestra al revisar, así
+  // que un segundo intento con la respuesta ya leída sería regalar los puntos.
+  function revisar(){
+    const c = paresBuenos();
+    match.ultimo = c;
+    if(match.intento === 1) match.mejor = c;
+    match.phase = 'revisado';
+    render();
+  }
+
+  function renderRevisado(){
+    const c = match.ultimo;
+    const perfecta = c >= match.pares;
+    const pts = puntosDe(match.mejor);
+    roundLabel.textContent = perfecta ? '¡Cadena completa!' : `Pares bien encadenados: ${c} de ${match.pares}`;
+    board.innerHTML = `
+      <div class="title">${perfecta ? '⛓️ ¡Toda la cadena en su lugar!' : `⛓️ Encadenaste bien ${c} de ${match.pares} pares`}</div>
+      ${cadenaHTML(true)}
+      ${solucionHTML()}
+      <div class="puntaje">⭐ ${pts} de ${MAX_CARD}</div>
+      ${match.intento === 2 ? '<div class="hint">Los puntos salieron del primer intento: este fue práctica.</div>' : ''}`;
+
+    if(!perfecta && match.intento === 1){
+      mainBtn.textContent = '🔁 Armarla otra vez (práctica)';
+      mainBtn.dataset.act = 'reintentar';
+      mainBtn.hidden = false;
+      altBtn.textContent = 'Así la dejo · a contarla ▶';
+      altBtn.dataset.act = 'contar';
+      altBtn.hidden = false;
+    }else{
+      mainBtn.textContent = 'Ahora cuéntala ▶';
+      mainBtn.dataset.act = 'contar';
+      mainBtn.hidden = false;
+      altBtn.hidden = true;
+    }
+  }
+
+  function reintentar(){
+    match.intento = 2;
+    match.slots = new Array(match.total).fill(null);
+    match.bolsa = shuffle(match.tiras.map(t => t.idx));
+    match.sel = null;
+    match.phase = 'armar';
+    render();
+  }
+
+  // Los puntos de tipo card salen de los pares bien encadenados del primer
+  // intento. Se registran los 5 tiros disponibles: los que sobran quedan como
+  // fallados y no consumen cupo. El cupo se calcula una sola vez porque
+  // AvProfile.score es asíncrono y canScore leería el mismo valor viejo en cada
+  // vuelta del bucle.
+  function otorgarCard(){
+    if(match.otorgado) return;
+    match.otorgado = true;
+    if(!AvProfile.get()) return;
+    const restante = Math.max(0, MAX_CARD - AvProfile.today().card);
+    const aciertos = Math.min(puntosDe(match.mejor), restante);
+    for(let i = 0; i < MAX_CARD; i++){
+      const acierto = i < aciertos;
+      AvProfile.score(acierto, 'card');
+      if(acierto) match.cardGanados++;
+    }
+  }
+
+  function irAContar(){
+    otorgarCard();
+    match.phase = 'contar';
+    render();
+  }
+
+  function renderContar(){
+    roundLabel.textContent = 'Contar la cadena en voz alta';
+    board.innerHTML = `
+      <div class="emoji">🗣️⛓️</div>
+      <div class="title">Cuenta la cadena completa, del primer eslabón al último</div>
+      <div class="instr">Une cada tira con la siguiente diciendo <strong>«y por eso…»</strong>. No te salgas de la cadena y no te salte ningún eslabón.</div>
+      ${titulosHTML()}
+      <div class="hint">Nadie te está grabando: quien escucha y confirma es el adulto que está contigo.</div>`;
+    mainBtn.textContent = 'Ya la conté ▶';
+    mainBtn.dataset.act = 'juzgar';
     mainBtn.hidden = false;
+    altBtn.hidden = true;
+  }
+
+  function askJudge(){
+    const p = AvProfile.get();
+    if(p && AvProfile.canScore('quiz')){
+      judgeQ.innerHTML = `¿${esc(p.name)} contó la cadena completa, uniendo los eslabones con «y por eso…»?`;
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      judgeQ.textContent = p
+        ? '🌙 Los puntos de contar ya están completos hoy: esto fue práctica.'
+        : '👤 Sin perfil: contarla no suma al tablero, pero cuéntala igual.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Terminar ▶';
+      mainBtn.dataset.act = 'fin';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function renderFin(){
+    const p = AvProfile.get();
+    const total = match.cardGanados + match.quizGanados;
+    roundLabel.textContent = '¡Bien hecho, aventurero!';
+    board.innerHTML = `
+      <div class="emoji">🏅</div>
+      <div class="title">Ya sabes por qué se encendió el horno</div>
+      ${p ? `<div class="puntaje">⭐ ${total} punto${total === 1 ? '' : 's'} en esta partida</div>` : ''}
+      <div class="hint">Todo empezó con el orgullo de un rey y terminó con ese mismo rey bendiciendo al Dios de Sadrac, Mesac y Abed-nego.</div>`;
+    mainBtn.textContent = '🔁 Otra match';
+    mainBtn.dataset.act = 'empezar';
+    mainBtn.hidden = false;
+    altBtn.hidden = true;
     match = null;
     updateIdleHint();
   }
 
+  mainBtn.addEventListener('click', () => {
+    const act = match ? mainBtn.dataset.act : 'empezar';
+    if(act === 'empezar'){ start(); return }
+    if(act === 'revisar'){ revisar(); return }
+    if(act === 'reintentar'){ reintentar(); return }
+    if(act === 'contar'){ irAContar(); return }
+    if(act === 'juzgar'){ askJudge(); return }
+    if(act === 'fin'){ judge.hidden = true; match.phase = 'fin'; render() }
+  });
+
+  altBtn.addEventListener('click', () => {
+    if(!match) return;
+    if(altBtn.dataset.act === 'contar') irAContar();
+  });
+
+  judgeYes.addEventListener('click', () => {
+    judge.hidden = true;
+    if(AvProfile.canScore('quiz')){
+      AvProfile.score(true, 'quiz');
+      match.quizGanados++;
+    }
+    match.phase = 'fin';
+    render();
+  });
+  judgeNo.addEventListener('click', () => {
+    judge.hidden = true;
+    if(AvProfile.get()) AvProfile.score(false, 'quiz');
+    match.phase = 'fin';
+    render();
+  });
+
   function updateIdleHint(){
     if(match) return;
     const p = AvProfile.get();
-    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    const sinCupo = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
     if(!p){
-      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: la cadena no suma al tablero. Toca el botón 👤 de arriba para ingresar.';
       practiceNote.hidden = false;
-    }else if(practice){
-      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+    }else if(sinCupo){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy en esta actividad ya están completos: esto es <strong>práctica</strong>.';
       practiceNote.hidden = false;
     }else{
       practiceNote.hidden = true;
     }
-    if(mainBtn.textContent.indexOf('Otra partida') !== -1){
-      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
-    }else if(mainBtn.textContent.indexOf('partida') !== -1){
-      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
-    }
+    mainBtn.textContent = sinCupo ? '▶ Empezar (práctica)' : '▶ Empezar';
+    mainBtn.dataset.act = 'empezar';
+    altBtn.hidden = true;
   }
   AvProfile.onChange(updateIdleHint);
 
-  mainBtn.addEventListener('click', () => { if(!match) startMatch(); });
+  // ── Navegación ──
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
+    window.scrollTo({top:0, behavior:'auto'});
+  }
+  document.getElementById('toGameBtn').addEventListener('click', () => goTo('juego'));
 
-  el('startArt').innerHTML = art('hornoSiete');
-
-  // ══════════ Tiras imprimibles ══════════
-  const PRINT_ORDER = [2, 5, 0, 3, 1, 4];
-  el('stripsHost').innerHTML = SEQUENCES.map(seq => `
-    <div class="group-title"><span class="chip">${seq.chip}</span> Tramo ${seq.id} — ${esc(seq.title)}</div>
-    <div class="strips">
-      ${PRINT_ORDER.map(i => {
-        const s = seq.scenes[i];
-        return `<div class="strip"><span class="badge">${s.e}</span>${art(s.a)}<span class="t">${esc(s.t)}</span></div>`;
-      }).join('')}
-    </div>`).join('');
-
-  el('guideHost').innerHTML = SEQUENCES.map(seq => `
-    <div class="guide">
-      <h3>${seq.chip} Tramo ${seq.id} — ${esc(seq.title)}</h3>
-      <ol>${seq.scenes.map(s => `<li>${s.e} ${esc(s.t)}</li>`).join('')}</ol>
-    </div>`).join('');
-
-  // ══════════ Menú ══════════
-  const menuBtn = el('menuBtn');
-  const menuPanel = el('menuPanel');
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
   function closeMenu(){
     menuPanel.hidden = true;
-    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.setAttribute('aria-expanded','false');
   }
   menuBtn.addEventListener('click', () => {
     menuPanel.hidden = !menuPanel.hidden;
     menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
   });
-  document.addEventListener('click', e => {
-    if(!e.target.closest('.menu-wrap')) closeMenu();
-  });
+  document.addEventListener('click', e => { if(!e.target.closest('.menu-wrap')) closeMenu() });
   document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      btn.classList.add('active');
-      el(btn.dataset.tab).classList.add('active');
-      closeMenu();
-    });
+    btn.addEventListener('click', () => { goTo(btn.dataset.tab); closeMenu() });
   });
+  document.getElementById('changePlayerBtn').addEventListener('click', () => { closeMenu(); AvProfile.open() });
 
-  el('changePlayerBtn').addEventListener('click', () => {
-    closeMenu();
-    AvProfile.open();
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 5, quiz: 1},   // lo que vale esta actividad; el techo del backend es 5+5
   });
-
-  // Iniciar
-  AvProfile.init({ chip: el('playerChip'), activity: ACTIVITY, autoOpen: true });
   updateIdleHint();
 </script>
 </body>

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1B2F6E">
+<title>Organiza la Biblia · Los 39 libros del Antiguo Testamento</title>
+<meta name="description" content="Clasifica los 39 libros del Antiguo Testamento por familia y ordénalos contra reloj. Preparación para el evento del camporee Guardianes del Santuario.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="Organiza la Biblia · Los 39 libros del Antiguo Testamento">
+<meta property="og:description" content="Cinco familias, cinco colores, 39 libros. Primero se lee, después se juega: clasificar por familia y ordenar contra reloj, como en el panel del camporee.">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/organiza-la-biblia/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="El Elohe Israel">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    --lapis:#1B2F6E;
+    --lapis-deep:#12204D;
+    --gold:#F0B429;
+    --gold-soft:#FFD97A;
+    --brick:#C2542B;
+    --cream:#FFF6E3;
+    --verde:#2E9E5B;
+    --verde-deep:#1E7040;
+    --ink:#231A0F;
+    /* Colores de familia del boletín del camporee */
+    --fam-pentateuco:#E8710A;
+    --fam-historicos:#7B4FA8;
+    --fam-poeticos:#2E9E5B;
+    --fam-mayores:#2563C9;
+    --fam-menores:#E8B60A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--lapis);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,217,122,.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(240,180,41,.07), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  header{text-align:center;padding:10px 16px 12px}
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);
+  }
+  h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.5rem,5vw,2.3rem);line-height:1.15;margin-top:6px}
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+  @media (max-width:600px){.subtitle{display:none}header{padding-bottom:8px}}
+
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 12px 0;max-width:1000px;margin:0 auto}
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
+  .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
+  .player-chip + .menu-wrap{margin-left:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+    .back-link{padding:8px 10px}
+    .menu-btn{padding:8px 12px}
+  }
+  .back-link{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--gold-soft);text-decoration:none;border:2px solid transparent;border-radius:999px;padding:8px 16px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;border:2px solid var(--gold);
+    background:transparent;color:var(--gold-soft);border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;background:transparent;border:none;
+    color:var(--ink);border-radius:12px;padding:12px 14px;min-height:44px;cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+
+  /* ══════════ LEER ══════════ */
+  #leer{max-width:700px}
+  .read-card{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:22px 18px;margin-bottom:18px;box-shadow:0 8px 0 rgba(0,0,0,.28);
+  }
+  .read-card h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .read-card p{line-height:1.55}
+  .source{font-size:.82rem;opacity:.75;margin-top:12px}
+  .source a{color:var(--brick);font-weight:700}
+  .conteo{
+    font-family:'Fredoka',sans-serif;font-weight:700;text-align:center;font-size:1.05rem;
+    background:rgba(46,158,91,.16);border:3px solid var(--verde-deep);border-radius:14px;padding:10px;margin-top:14px;
+  }
+  .conteo.bad{background:rgba(194,84,43,.18);border-color:var(--brick)}
+
+  .fam-card{
+    border:4px solid var(--fc);border-radius:20px;padding:14px 14px 12px;margin-bottom:14px;
+    background:#fff;color:var(--ink);
+  }
+  .fam-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+  .fam-dot{width:26px;height:26px;border-radius:50%;background:var(--fc);border:3px solid rgba(0,0,0,.35);flex-shrink:0}
+  .fam-name{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem}
+  .fam-meta{font-size:.85rem;opacity:.75;font-weight:700}
+  .fam-books{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}
+  .fam-books li{
+    font-weight:700;font-size:.95rem;padding:7px 10px;border-radius:10px;
+    background:rgba(0,0,0,.05);display:flex;gap:8px;align-items:baseline;
+  }
+  .fam-books .n{font-family:'Fredoka',sans-serif;color:var(--fc);font-weight:700;min-width:1.3em}
+  .read-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+
+  /* ══════════ JUEGO ══════════ */
+  .stage{max-width:560px;margin:0 auto;text-align:center}
+  .round-label{
+    font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.15em;
+    text-transform:uppercase;font-size:.8rem;margin-bottom:12px;min-height:1.2em;
+  }
+  .game-card{
+    background:var(--cream);color:var(--ink);border-radius:28px;border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);padding:22px 16px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;
+  }
+  .game-card.min{min-height:320px}
+  .game-card .emoji{font-size:clamp(2.6rem,12vw,4rem);line-height:1}
+  .game-card .title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.15rem,5vw,1.55rem);line-height:1.2}
+  .game-card .hint{font-weight:700;font-size:.95rem;opacity:.75;line-height:1.45}
+  .libro-grande{
+    font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.6rem,8vw,2.4rem);line-height:1.15;
+    color:var(--lapis);
+  }
+  .opts{display:grid;gap:10px;width:100%}
+  .opt-fam{
+    font-family:'Fredoka',sans-serif;font-size:1.02rem;font-weight:600;text-align:left;
+    background:#fff;color:var(--ink);border:4px solid var(--fc);border-radius:16px;
+    padding:12px 14px;min-height:52px;cursor:pointer;display:flex;align-items:center;gap:10px;
+  }
+  .opt-fam .dot{width:22px;height:22px;border-radius:50%;background:var(--fc);border:2px solid rgba(0,0,0,.3);flex-shrink:0}
+  .opt-fam .color-name{margin-left:auto;font-size:.8rem;opacity:.7;text-transform:uppercase;letter-spacing:.06em}
+  .opt-fam:active{transform:translateY(2px)}
+  .opt-fam:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .opt-fam.ok{background:var(--fc);color:#fff;box-shadow:inset 0 0 0 3px #fff}
+  .opt-fam.ok .color-name,.opt-fam.bad .color-name{opacity:.9}
+  .opt-fam.bad{background:#5b5b5b;border-color:#3d3d3d;color:#fff}
+  .opt-fam:disabled{cursor:default}
+  .feedback{
+    font-weight:800;font-size:1rem;line-height:1.45;border-radius:14px;padding:10px 12px;width:100%;
+    background:rgba(46,158,91,.16);border:3px solid var(--verde-deep);
+  }
+  .feedback.bad{background:rgba(194,84,43,.14);border-color:var(--brick)}
+  .pistas{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+  .hint{width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,.15);border:2px solid rgba(0,0,0,.3)}
+  .hint.ok{background:var(--verde)}
+  .hint.no{background:var(--brick)}
+
+  /* Cronómetro y tablero de orden */
+  .crono{
+    font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.8rem,9vw,2.6rem);
+    color:var(--lapis);letter-spacing:.04em;font-variant-numeric:tabular-nums;
+  }
+  .crono-row{display:flex;align-items:baseline;gap:12px;justify-content:center;flex-wrap:wrap}
+  .record{font-weight:800;font-size:.9rem;opacity:.75}
+  .panel{display:grid;gap:6px;width:100%}
+  .slot{
+    display:flex;align-items:center;gap:10px;border:3px dashed rgba(35,26,15,.28);border-radius:12px;
+    padding:8px 10px;min-height:44px;font-weight:700;text-align:left;
+  }
+  .slot .n{
+    font-family:'Fredoka',sans-serif;font-weight:700;background:rgba(0,0,0,.12);color:var(--ink);
+    border-radius:50%;width:1.8em;height:1.8em;display:grid;place-items:center;flex-shrink:0;font-size:.9rem;
+  }
+  .slot.lleno{border-style:solid;border-color:var(--fc);background:rgba(0,0,0,.04)}
+  .slot.lleno .n{background:var(--fc);color:#fff}
+  .slot.fallo{border-color:var(--brick)}
+  .slot .vacio{opacity:.4}
+  .banco{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px;width:100%}
+  .ficha-btn{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;
+    background:#fff;color:var(--ink);border:4px solid var(--fc);border-radius:14px;
+    padding:10px 8px;min-height:48px;cursor:pointer;
+  }
+  .ficha-btn:active{transform:translateY(2px)}
+  .ficha-btn:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .ficha-btn.usada{visibility:hidden}
+  .ficha-btn.bad{background:var(--brick);color:#fff;border-color:#8f3a1c}
+
+  .fam-pick{display:grid;gap:10px;width:100%}
+  .fam-pick-btn{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.02rem;text-align:left;
+    background:#fff;color:var(--ink);border:4px solid var(--fc);border-radius:16px;
+    padding:12px 14px;min-height:56px;cursor:pointer;display:flex;align-items:center;gap:10px;
+  }
+  .fam-pick-btn .dot{width:22px;height:22px;border-radius:50%;background:var(--fc);border:2px solid rgba(0,0,0,.3);flex-shrink:0}
+  .fam-pick-btn .sub{display:block;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;opacity:.7}
+  .fam-pick-btn.hecha{opacity:.75}
+  .fam-pick-btn:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+
+  .modo-btns{display:grid;gap:12px;width:100%}
+  .modo-btn{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;text-align:left;
+    background:#fff;color:var(--ink);border:4px solid var(--lapis);border-radius:18px;
+    padding:16px;min-height:64px;cursor:pointer;
+  }
+  .modo-btn .sub{display:block;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;opacity:.72;margin-top:4px}
+  .modo-btn:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+  .clase-note{
+    font-weight:800;font-size:.9rem;background:rgba(27,47,110,.08);border:3px dashed var(--lapis);
+    border-radius:14px;padding:10px;width:100%;line-height:1.45;
+  }
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+  .btn{
+    font-family:'Fredoka',sans-serif;font-size:1.08rem;font-weight:600;border:none;border-radius:999px;
+    padding:14px 28px;min-height:48px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.3);
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-gold{background:var(--gold);color:var(--lapis-deep)}
+  .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-sm{font-size:.95rem;padding:10px 20px;min-height:44px}
+  .btn[hidden]{display:none}
+
+  .judge{
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;
+    background:rgba(255,255,255,.07);border:2px dashed var(--gold);border-radius:16px;padding:12px 14px;
+    font-family:'Fredoka',sans-serif;font-weight:600;
+  }
+  .judge span{flex-basis:100%;text-align:center}
+  .judge[hidden]{display:none}
+  .practice-note{margin-top:16px;text-align:center;font-weight:700;font-size:.95rem;color:var(--gold-soft);opacity:.9}
+  .practice-note[hidden]{display:none}
+
+  /* ══════════ IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:620px;margin:0 auto 20px}
+  .sheet{background:#fff;color:#000;border-radius:18px;padding:24px 20px;max-width:760px;margin:0 auto}
+  .sheet h2{font-family:'Fredoka',sans-serif;font-size:1.3rem;margin-bottom:4px}
+  .sheet h3{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin:18px 0 8px}
+  .sheet .sub{font-size:.9rem;opacity:.75;margin-bottom:14px}
+  .fichas{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .tile{
+    border:2px dashed #000;border-radius:8px;padding:6px 5px;text-align:center;
+    display:flex;flex-direction:column;align-items:center;gap:3px;min-height:76px;justify-content:center;
+    break-inside:avoid;
+  }
+  .tile .nombre{font-family:'Fredoka',sans-serif;font-weight:700;font-size:.82rem;line-height:1.1}
+  .tile .punto{width:20px;height:20px;border-radius:50%;border:2px solid #000;background:#fff}
+  @media (max-width:520px){.fichas{grid-template-columns:repeat(3,1fr)}}
+  .panel-ref{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+  .panel-ref .col{border:2px solid #000;border-radius:10px;padding:8px;break-inside:avoid}
+  .panel-ref .col h4{font-family:'Fredoka',sans-serif;font-size:.85rem;margin-bottom:4px}
+  .panel-ref .col ol{margin-left:18px;font-size:.78rem;line-height:1.4}
+
+  /* ══════════ PADRES ══════════ */
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:22px;
+    padding:22px 20px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.2rem;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .parent-box a{color:var(--brick);font-weight:700}
+  .verse{
+    font-family:'Fredoka',sans-serif;font-weight:600;background:rgba(27,47,110,.08);
+    border-left:6px solid var(--lapis);border-radius:10px;padding:12px 14px;margin:12px 0;line-height:1.5;
+  }
+
+  @media print{
+    body{background:#fff;color:#000}
+    header,.topbar,#leer,#juego,#padres,.print-note{display:none!important}
+    section{display:block!important;padding:0}
+    #material{display:block!important}
+    .sheet{border:none;padding:0;max-width:none}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="juego">🎮 Jugar</button>
+      <button class="menu-item" data-tab="material">🖨️ Fichas para recortar</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Camporee Guardianes del Santuario · Evento del panel</div>
+  <h1>Organiza la Biblia</h1>
+  <p class="subtitle">Los 39 libros del Antiguo Testamento: cinco familias, cinco colores, un orden.</p>
+</header>
+
+<!-- ══════════ LEER ══════════ -->
+<section id="leer" class="active">
+  <div class="read-card">
+    <h2>🏕️ Qué se evalúa en el campamento</h2>
+    <p>El boletín del camporee pide que <strong>todos los aventureros pinten 39 fichas</strong>, una por cada libro del Antiguo Testamento, con <strong>un color por familia</strong>. En el campamento, <strong>dos aventureros de cada club</strong> arman el panel del Antiguo Testamento: los libros van <strong>en orden y agrupados por familia</strong>. Se califican dos cosas: el <strong>tiempo</strong> y el <strong>orden correcto</strong>.</p>
+    <p style="margin-top:10px">Por eso aquí hay dos juegos: uno para aprender <strong>a qué familia pertenece cada libro</strong> y otro para <strong>ordenarlos contra reloj</strong>.</p>
+    <p class="source">Fuentes: boletín del <strong>Camporee Guardianes del Santuario</strong>, Asociación Sur Colombiana, 9 al 12 de octubre de 2026 (documento entregado al club; no tiene versión en línea). Los nombres, el orden y la división en familias son los de la Biblia <a href="https://www.biblegateway.com/versions/Reina-Valera-1960-RVR1960-Biblia/" target="_blank" rel="noopener">Reina-Valera 1960</a>.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>🎨 Las cinco familias y sus colores</h2>
+    <div id="famsLeer"></div>
+    <p class="conteo" id="conteoLeer"></p>
+    <p class="source">Los colores son los que manda el boletín: Pentateuco naranja, Históricos morado, Poéticos verde, Profetas Mayores azul, Profetas Menores amarillo.</p>
+  </div>
+
+  <div class="read-cta">
+    <button class="btn btn-gold" id="toGameBtn">Ya lo leí · ¡A jugar! ▶</button>
+  </div>
+</section>
+
+<!-- ══════════ JUEGO ══════════ -->
+<section id="juego">
+  <div class="stage">
+    <div class="round-label" id="roundLabel">¿Listo, aventurero?</div>
+    <div class="game-card min" id="gameCard" aria-live="polite"></div>
+
+    <div class="controls">
+      <button class="btn btn-gold" id="mainBtn" hidden>▶ Empezar</button>
+      <button class="btn btn-outline" id="menuJuegoBtn" hidden>⟲ Cambiar de juego</button>
+    </div>
+
+    <div class="judge" id="judge" hidden>
+      <span id="judgeQ"></span>
+    </div>
+
+    <p class="practice-note" id="practiceNote" hidden></p>
+  </div>
+</section>
+
+<!-- ══════════ IMPRIMIBLE ══════════ -->
+<section id="material">
+  <p class="print-note">Esto es literalmente la tarea del boletín: imprime con <strong>Ctrl/Cmd + P</strong>, recorta las 39 fichas y pinta el círculo de cada una con el color de su familia. La última hoja es el <strong>panel de referencia</strong> con el orden correcto.</p>
+  <div class="sheet">
+    <h2>Las 39 fichas del Antiguo Testamento</h2>
+    <p class="sub">Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué · Camporee Guardianes del Santuario</p>
+    <p style="font-size:.85rem;margin-bottom:10px"><strong>Instrucciones:</strong> recorta por la línea punteada. Las fichas salen en blanco a propósito: el niño debe descubrir la familia y el orden. Usa el panel de referencia para pintar el círculo de cada una. Pentateuco = naranja · Históricos = morado · Poéticos = verde · Profetas Mayores = azul · Profetas Menores = amarillo.</p>
+    <div class="fichas" id="fichasPrint"></div>
+    <h3>Panel de referencia · el orden correcto</h3>
+    <div class="panel-ref" id="panelPrint"></div>
+    <p style="font-size:.8rem;margin-top:12px">5 + 12 + 5 + 5 + 12 = <strong>39 libros</strong> del Antiguo Testamento.</p>
+  </div>
+</section>
+
+<!-- ══════════ PADRES ══════════ -->
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 De dónde sale esta actividad</h2>
+    <p>Es un <strong>evento real del camporee</strong> Guardianes del Santuario (Asociación Sur Colombiana, 9 al 12 de octubre de 2026). El boletín pide dos cosas: que todos los aventureros preparen <strong>39 fichas pintadas</strong> con los libros del Antiguo Testamento, un color por familia, y que en el campamento <strong>dos aventureros por club</strong> armen el panel en orden y por familia. Se califica el <strong>tiempo</strong> y el <strong>orden</strong>.</p>
+    <p>Todo lo que hay en esta página es repaso de ese contenido: nombres, familias y orden de los 39 libros según la Reina-Valera 1960. <strong>No hay aplicación libre ni nada inventado</strong>: cada respuesta es un dato verificable en el índice de la Biblia.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>💡 ¿Qué aprende su hijo?</h2>
+    <p>Que la Biblia no es un montón de páginas sueltas: está ordenada. Aprende a <strong>ubicar un libro</strong> sin buscar en el índice, que es la destreza que después le sirve toda la vida para encontrar un versículo en el culto.</p>
+    <div class="verse">«Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia.» — 2 Timoteo 3:16</div>
+  </div>
+
+  <div class="parent-box">
+    <h2>🏠 Cómo jugar la dinámica</h2>
+    <ol>
+      <li><strong>Lean juntos la pestaña 📖</strong>. Ahí están las cinco familias con su color y sus libros en orden. El juego revisa lo leído, no lo enseña desde cero.</li>
+      <li><strong>Imprima las fichas</strong> (pestaña 🖨️) y que las pinte él mismo. Pintarlas ya es estudiar: es la tarea que pide el boletín.</li>
+      <li><strong>Juego 1 · Clasificar.</strong> Sale un libro y toca la familia. Se juega en bloques de 5 libros; el bloque sin ningún error vale 1 punto. La app lo califica sola.</li>
+      <li><strong>Juego 2 · Ordenar contra reloj.</strong> Elige una familia, los libros salen revueltos y los va poniendo en orden con el cronómetro corriendo. El mejor tiempo de cada familia se guarda en este teléfono, para que vea si mejora.</li>
+      <li>Con las fichas de papel repitan el juego 2 <strong>sobre la mesa</strong>, con el cronómetro del celular. Es exactamente lo que van a hacer en el campamento.</li>
+    </ol>
+  </div>
+
+  <div class="parent-box">
+    <h2>🧒 Por clase del club</h2>
+    <p>La app usa la clase del niño para no pedirle 39 libros a alguien de 4 años:</p>
+    <ul>
+      <li><strong>Principiantes, Corderitos, Aves Madrugadoras y Abejitas Industriosas:</strong> Pentateuco y Poéticos (los dos grupos de 5).</li>
+      <li><strong>Rayitos de Sol:</strong> además Profetas Mayores.</li>
+      <li><strong>Constructores y Manos Ayudadoras:</strong> los 39 libros completos.</li>
+    </ul>
+    <p>En el juego de clasificar, <strong>las cinco familias aparecen siempre como opción</strong>, aunque los libros que le salgan sean solo de las suyas: así acertar significa algo y no es cuestión de suerte.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ El reto de la semana</h2>
+    <p>Que arme <strong>el Pentateuco en menos de 20 segundos</strong> y los <strong>Profetas Menores en menos de un minuto</strong>, con las fichas de papel y usted tomando el tiempo.</p>
+    <p>Los puntos de esta actividad: hasta <strong>5 puntos de juego</strong> (uno por cada bloque de 5 libros clasificados sin error) y hasta <strong>5 de preguntas</strong> (uno por cada familia ordenada bien, y solo una vez al día por familia). Los niños de las clases pequeñas trabajan con dos familias, así que su techo real del día es menor: <strong>está bien</strong>, la actividad no está hecha para que todos saquen 10.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+<script>
+  const ACTIVITY = 'organiza-la-biblia';
+
+  /* Los 39 libros del Antiguo Testamento (Reina-Valera 1960), en orden y por
+     familia, con el color que manda el boletín del camporee. */
+  const FAMILIES = [
+    {id:'pentateuco', name:'Pentateuco',       color:'naranja',  cssVar:'--fam-pentateuco', esperados:5,
+     books:['Génesis','Éxodo','Levítico','Números','Deuteronomio']},
+    {id:'historicos', name:'Históricos',       color:'morado',   cssVar:'--fam-historicos', esperados:12,
+     books:['Josué','Jueces','Rut','1 Samuel','2 Samuel','1 Reyes','2 Reyes','1 Crónicas','2 Crónicas','Esdras','Nehemías','Ester']},
+    {id:'poeticos',   name:'Poéticos',         color:'verde',    cssVar:'--fam-poeticos',   esperados:5,
+     books:['Job','Salmos','Proverbios','Eclesiastés','Cantares']},
+    {id:'mayores',    name:'Profetas Mayores', color:'azul',     cssVar:'--fam-mayores',    esperados:5,
+     books:['Isaías','Jeremías','Lamentaciones','Ezequiel','Daniel']},
+    {id:'menores',    name:'Profetas Menores', color:'amarillo', cssVar:'--fam-menores',    esperados:12,
+     books:['Oseas','Joel','Amós','Obadías','Jonás','Miqueas','Nahúm','Habacuc','Sofonías','Hageo','Zacarías','Malaquías']}
+  ];
+
+  // Aserción de la suma: 5 + 12 + 5 + 5 + 12 = 39. Se muestra en pantalla.
+  const CUENTAS = FAMILIES.map(f => f.books.length);
+  const TOTAL = CUENTAS.reduce((a,b) => a+b, 0);
+  const CUADRAN = TOTAL === 39 && FAMILIES.every(f => f.books.length === f.esperados);
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const famDe = id => FAMILIES.find(f => f.id === id);
+  const styleFam = f => `--fc:var(${f.cssVar})`;
+
+  const TODOS = [];
+  FAMILIES.forEach(f => f.books.forEach((name, i) => {
+    TODOS.push({name, fam:f.id, pos:i});
+  }));
+
+  /* ── Clases del club: qué familias trabaja cada una ── */
+  const FAMS_POR_CLASE = {
+    'Principiantes':          ['pentateuco','poeticos'],
+    'Corderitos':             ['pentateuco','poeticos'],
+    'Aves Madrugadoras':      ['pentateuco','poeticos'],
+    'Abejitas Industriosas':  ['pentateuco','poeticos'],
+    'Rayitos de Sol':         ['pentateuco','poeticos','mayores'],
+    'Constructores':          ['pentateuco','historicos','poeticos','mayores','menores'],
+    'Manos Ayudadoras':       ['pentateuco','historicos','poeticos','mayores','menores']
+  };
+  const TODAS_LAS_FAMS = FAMILIES.map(f => f.id);
+
+  /* Tropiezos permitidos: [familias de hasta 6 books, familias grandes] por clubClass.
+     Los más pequeños necesitan margen; los mayores ordenan las familias cortas sin errores. */
+  const TOLERANCIA = {
+    'Principiantes':          [2, 3],
+    'Corderitos':             [2, 3],
+    'Aves Madrugadoras':      [2, 3],
+    'Abejitas Industriosas':  [1, 3],
+    'Rayitos de Sol':         [1, 2],
+    'Constructores':          [0, 2],
+    'Manos Ayudadoras':       [0, 2]
+  };
+  const TOLERANCIA_DEFECTO = [1, 2];
+  function permitidosPara(f){
+    const t = TOLERANCIA[AvProfile.clubClass()] || TOLERANCIA_DEFECTO;
+    return f.books.length > 6 ? t[1] : t[0];
+  }
+  function famsPermitidas(){
+    const clubClass = AvProfile.clubClass();
+    return (clubClass && FAMS_POR_CLASE[clubClass]) || TODAS_LAS_FAMS;
+  }
+  function famsDelNino(){ return FAMILIES.filter(f => famsPermitidas().indexOf(f.id) !== -1) }
+
+  /* ── Mejores tiempos y familias ya puntuadas hoy (localStorage) ── */
+  const pid = () => { const p = AvProfile.get(); return p ? 'p' + p.id : 'anon' };
+  const hoyBogota = () => new Intl.DateTimeFormat('en-CA', {timeZone:'America/Bogota'}).format(new Date());
+  const leerJSON = (k, def) => { try{ return JSON.parse(localStorage.getItem(k) || 'null') || def }catch(e){ return def } };
+  const guardarJSON = (k, v) => { try{ localStorage.setItem(k, JSON.stringify(v)) }catch(e){} };
+
+  const claveRecords = () => `${ACTIVITY}:records:${pid()}`;
+  const records = () => leerJSON(claveRecords(), {});
+  function guardarRecord(famId, ms){
+    const r = records();
+    if(!r[famId] || ms < r[famId]){ r[famId] = ms; guardarJSON(claveRecords(), r); return true }
+    return false;
+  }
+  const claveFamsHoy = () => `${ACTIVITY}:progreso:${pid()}`;
+  function famsPuntuadasHoy(){
+    const d = leerJSON(claveFamsHoy(), null);
+    if(!d || d.fecha !== hoyBogota()) return [];
+    return d.fams || [];
+  }
+  function marcarFamPuntuada(famId){
+    const lista = famsPuntuadasHoy();
+    if(lista.indexOf(famId) === -1) lista.push(famId);
+    guardarJSON(claveFamsHoy(), {fecha: hoyBogota(), fams: lista});
+  }
+
+  const fmt = ms => {
+    const t = Math.max(0, ms);
+    const m = Math.floor(t / 60000);
+    const s = Math.floor((t % 60000) / 1000);
+    const d = Math.floor((t % 1000) / 100);
+    return m > 0 ? `${m}:${String(s).padStart(2,'0')}.${d}` : `${s}.${d} s`;
+  };
+
+  /* ── Elementos ── */
+  const gameCard = document.getElementById('gameCard');
+  const roundLabel = document.getElementById('roundLabel');
+  const mainBtn = document.getElementById('mainBtn');
+  const menuJuegoBtn = document.getElementById('menuJuegoBtn');
+  const judge = document.getElementById('judge');
+  const judgeQ = document.getElementById('judgeQ');
+  const practiceNote = document.getElementById('practiceNote');
+
+  const BLOQUE = 5; // books por bloque en el juego de clasificar
+  let modo = null;      // null | 'clasificar' | 'ordenar'
+  let cla = null;       // estado del juego de clasificar
+  let ord = null;       // estado del juego de ordenar
+  let tick = null;
+
+  const shuffle = arr => {
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]] }
+    return a;
+  };
+
+  /* ══════════ LEER + IMPRIMIBLE ══════════ */
+  document.getElementById('famsLeer').innerHTML = FAMILIES.map(f => `
+    <div class="family-card" style="${styleFam(f)}">
+      <div class="family-head">
+        <span class="family-dot"></span>
+        <span class="family-name">${esc(f.name)}</span>
+        <span class="family-meta">${f.books.length} books · color ${esc(f.color)}</span>
+      </div>
+      <ol class="family-books">
+        ${f.books.map((l, i) => `<li><span class="n">${i+1}</span>${esc(l)}</li>`).join('')}
+      </ol>
+    </div>`).join('');
+
+  const conteo = document.getElementById('conteoLeer');
+  conteo.textContent = CUADRAN
+    ? `${CUENTAS.join(' + ')} = ${TOTAL} books ✔ la cuenta cuadra`
+    : `⚠️ ¡Ojo! La cuenta no cuadra: ${CUENTAS.join(' + ')} = ${TOTAL} y deben ser 39. Avísale al director del club.`;
+  if(!CUADRAN) conteo.classList.add('bad');
+
+  document.getElementById('fichasPrint').innerHTML = TODOS.map(b =>
+    `<div class="tile">
+      <span class="name">${esc(b.name)}</span>
+      <span class="point"></span>
+    </div>`).join('');
+
+  document.getElementById('panelPrint').innerHTML = FAMILIES.map(f => `
+    <div class="col">
+      <h4>${esc(f.name)} · ${esc(f.color)}</h4>
+      <ol>${f.books.map(l => `<li>${esc(l)}</li>`).join('')}</ol>
+    </div>`).join('');
+
+  /* ══════════ PANTALLA DE MODOS ══════════ */
+  function pantallaModos(){
+    modo = null; cla = null; ord = null;
+    pararCrono();
+    judge.hidden = true;
+    mainBtn.dataset.accion = '';
+    mainBtn.hidden = true;
+    menuJuegoBtn.hidden = true;
+    roundLabel.textContent = 'Elige tu juego';
+    const mias = famsDelNino();
+    const clubClass = AvProfile.clubClass();
+    const nombres = mias.map(f => f.name).join(', ');
+    const books = mias.reduce((n, f) => n + f.books.length, 0);
+    gameCard.innerHTML = `
+      <div class="emoji">📚</div>
+      <div class="title">¿Qué vas a practicar?</div>
+      <div class="modo-btns">
+        <button class="modo-btn" data-modo="clasificar">🎨 Clasificar por familia
+          <span class="sub">Sale un libro y tocas su familia. Bloques de 5 books: el bloque sin errores vale ⭐ 1.</span></button>
+        <button class="modo-btn" data-modo="ordenar">⏱️ Ordenar contra reloj
+          <span class="sub">Una familia revuelta y tú la pones en orden. Se guarda tu mejor tiempo.</span></button>
+      </div>
+      <div class="clubClass-note">${clubClass
+        ? `Tu clubClass es <strong>${esc(clubClass)}</strong>: trabajas con ${esc(nombres)} (${books} books).`
+        : `Sin perfil trabajas con <strong>los 39 books</strong>. Si ingresas, la app ajusta los libros a tu clase del club.`}</div>`;
+    gameCard.querySelectorAll('.modo-btn').forEach(b => b.addEventListener('click', () => {
+      if(b.dataset.modo === 'clasificar') empezarBloque();
+      else pantallaFamilias();
+    }));
+    updateIdleHint();
+  }
+
+  /* ══════════ JUEGO 1 · CLASIFICAR ══════════ */
+  function librosDelNino(){
+    const permitidas = famsPermitidas();
+    return TODOS.filter(b => permitidas.indexOf(b.fam) !== -1);
+  }
+
+  function empezarBloque(){
+    modo = 'clasificar';
+    const bolsa = `${ACTIVITY}:clasificar:${famsPermitidas().join('-')}`;
+    const books = AvProfile.pick(bolsa, librosDelNino(), BLOQUE, b => b.name);
+    cla = {books, i:0, fallos:0, respondida:false, resultados:[]};
+    mainBtn.dataset.accion = '';
+    menuJuegoBtn.hidden = false;
+    judge.hidden = true;
+    mostrarLibro();
+  }
+
+  function mostrarLibro(){
+    cla.respondida = false;
+    mainBtn.hidden = true;
+    const b = cla.books[cla.i];
+    roundLabel.textContent = `Clasificar · libro ${cla.i + 1} de ${cla.books.length}`;
+    gameCard.innerHTML = `
+      <div class="pistas">${cla.books.map((_, i) => {
+        const r = cla.resultados[i];
+        return `<span class="hint ${r === true ? 'ok' : r === false ? 'no' : ''}"></span>`;
+      }).join('')}</div>
+      <div class="hint">¿De qué familia es este libro?</div>
+      <div class="book-grande">${esc(b.name)}</div>
+      <div class="opts">
+        ${FAMILIES.map(f => `
+          <button class="opt-family" data-family="${f.id}" style="${styleFam(f)}">
+            <span class="dot"></span>${esc(f.name)}
+            <span class="color-name">${esc(f.color)}</span>
+          </button>`).join('')}
+      </div>`;
+    gameCard.querySelectorAll('.opt-fam').forEach(btn =>
+      btn.addEventListener('click', () => responderFamilia(btn, b))
+    );
+  }
+
+  function responderFamilia(btn, libro){
+    if(cla.respondida) return;
+    cla.respondida = true;
+    const acerto = btn.dataset.fam === libro.fam;
+    const f = famDe(libro.fam);
+    gameCard.querySelectorAll('.opt-fam').forEach(b => {
+      b.disabled = true;
+      if(b.dataset.fam === libro.fam) b.classList.add('ok');
+      else if(b === btn) b.classList.add('bad');
+    });
+    cla.resultados[cla.i] = acerto;
+    if(!acerto) cla.fallos++;
+    const fb = document.createElement('div');
+    fb.className = 'feedback' + (acerto ? '' : ' mal');
+    fb.innerHTML = acerto
+      ? `✅ ¡Sí! <strong>${esc(libro.name)}</strong> es de <strong>${esc(f.name)}</strong> (${esc(f.color)}) y va en el puesto ${libro.rank + 1} de esa familia.`
+      : `❌ No. <strong>${esc(libro.name)}</strong> es de <strong>${esc(f.name)}</strong> (${esc(f.color)}), puesto ${libro.rank + 1} de esa familia.`;
+    gameCard.appendChild(fb);
+    mainBtn.textContent = cla.i + 1 < cla.books.length ? 'Siguiente libro ▶' : 'Ver el bloque ▶';
+    mainBtn.hidden = false;
+  }
+
+  function cerrarBloque(){
+    const limpio = cla.fallos === 0;
+    let sumo = false;
+    if(AvProfile.get() && AvProfile.canScore('card')){
+      AvProfile.score(limpio, 'card');
+      sumo = limpio;
+    }
+    roundLabel.textContent = 'Bloque terminado';
+    gameCard.innerHTML = `
+      <div class="emoji">${limpio ? '🏅' : '💪'}</div>
+      <div class="title">${limpio ? '¡Bloque perfecto!' : `Fallaste ${cla.fallos} de ${cla.books.length}`}</div>
+      <div class="feedback${limpio ? '' : ' bad'}">${limpio
+        ? (sumo ? '⭐ +1 punto: cinco books seguidos sin un solo error.' : 'Cinco books seguidos sin un solo error. ¡Así se hace!')
+        : 'El punto se gana solo con el bloque completo sin errores. Repite y lo logras.'}</div>
+      <div class="opts">${cla.books.map((b, i) => {
+        const f = famDe(b.fam);
+        return `<div class="slot lleno" style="${styleFam(f)}">
+          <span class="n">${cla.resultados[i] ? '✓' : '✗'}</span>
+          <span><strong>${esc(b.name)}</strong> — ${esc(f.name)}</span></div>`;
+      }).join('')}</div>`;
+    cla = null;
+    mainBtn.textContent = '🔁 Otro bloque';
+    mainBtn.hidden = false;
+    menuJuegoBtn.hidden = false;
+    updateIdleHint();
+  }
+
+  /* ══════════ JUEGO 2 · ORDENAR CONTRA RELOJ ══════════ */
+  function pantallaFamilias(){
+    modo = 'ordenar';
+    ord = null;
+    pararCrono();
+    judge.hidden = true;
+    mainBtn.dataset.accion = '';
+    mainBtn.hidden = true;
+    menuJuegoBtn.hidden = false;
+    roundLabel.textContent = 'Ordenar · elige una familia';
+    const r = records();
+    const hechas = famsPuntuadasHoy();
+    gameCard.innerHTML = `
+      <div class="title">¿Qué familia vas a ordenar?</div>
+      <div class="family-pick">
+        ${famsDelNino().map(f => {
+          const mejor = r[f.id] ? `Mejor tiempo: ${fmt(r[f.id])}` : 'Sin tiempo todavía';
+          const ya = hechas.indexOf(f.id) !== -1 ? ' · ⭐ ya sumada hoy' : '';
+          return `<button class="family-pick-btn${hechas.indexOf(f.id) !== -1 ? ' hecha' : ''}" data-family="${f.id}" style="${styleFam(f)}">
+            <span class="dot"></span>
+            <span>${esc(f.name)} · ${f.books.length} books
+              <span class="sub">${esc(mejor)}${ya}</span></span>
+          </button>`;
+        }).join('')}
+      </div>
+      <div class="hint">Cada familia bien ordenada vale ⭐ 1 punto, una vez al día.</div>`;
+    gameCard.querySelectorAll('.fam-pick-btn').forEach(b =>
+      b.addEventListener('click', () => pantallaListo(b.dataset.fam))
+    );
+    updateIdleHint();
+  }
+
+  function pantallaListo(famId){
+    const f = famDe(famId);
+    const permitidos = permitidosPara(f);
+    roundLabel.textContent = `${f.name} · ${f.books.length} books`;
+    gameCard.innerHTML = `
+      <div class="emoji">⏱️</div>
+      <div class="title">${esc(f.name)}</div>
+      <div class="hint">Vas a tocar los ${f.books.length} books <strong>en orden</strong>, del primero al último.
+        El reloj arranca cuando toques el botón. ${permitidos
+          ? `Con ${permitidos} tropiezos o menos ganas el punto.`
+          : 'Sin ningún error ganas el punto.'}</div>
+      <div class="clubClass-note">Consejo: en el campamento el panel se arma <strong>por familias y en orden</strong>. Practica hasta que te salga sin pensar.</div>`;
+    mainBtn.textContent = '▶ ¡Ya! Arranca el reloj';
+    mainBtn.hidden = false;
+    mainBtn.dataset.accion = 'arrancar';
+    mainBtn.dataset.fam = famId;
+    menuJuegoBtn.hidden = false;
+  }
+
+  function arrancar(famId){
+    const f = famDe(famId);
+    ord = {
+      famId,
+      i:0,
+      fallos:0,
+      permitidos: permitidosPara(f),
+      inicio: Date.now(),
+      banco: shuffle(f.books.map((l, i) => ({name:l, pos:i})))
+    };
+    mainBtn.hidden = true;
+    dibujarTablero();
+    tick = setInterval(pintarCrono, 100);
+  }
+
+  function pararCrono(){
+    if(tick){ clearInterval(tick); tick = null }
+  }
+
+  function pintarCrono(){
+    const el = document.getElementById('cronoOut');
+    if(el && ord) el.textContent = fmt(Date.now() - ord.inicio);
+  }
+
+  function dibujarTablero(){
+    const f = famDe(ord.famId);
+    roundLabel.textContent = `${f.name} · ${ord.i} de ${f.books.length} puestos`;
+    gameCard.innerHTML = `
+      <div class="crono-row">
+        <span class="crono" id="cronoOut">0.0 s</span>
+        <span class="record">${records()[ord.famId] ? 'Tu récord: ' + fmt(records()[ord.famId]) : 'Sin récord aún'}</span>
+      </div>
+      <div class="panel" style="${styleFam(f)}">
+        ${f.books.map((l, i) => `
+          <div class="slot${i < ord.i ? ' lleno' : ''}">
+            <span class="n">${i+1}</span>
+            <span>${i < ord.i ? '<strong>' + esc(l) + '</strong>' : '<span class="vacio">¿cuál va aquí?</span>'}</span>
+          </div>`).join('')}
+      </div>
+      <div class="hint">Toca el libro que sigue</div>
+      <div class="banco" style="${styleFam(f)}" id="banco">
+        ${ord.banco.map(b => `<button class="tile-btn${b.rank < ord.i ? ' usada' : ''}" data-pos="${b.pos}">${esc(b.name)}</button>`).join('')}
+      </div>
+      <div class="feedback${ord.fallos ? ' bad' : ''}" id="ordFb">${ord.fallos
+        ? `Tropiezos: ${ord.fallos} (te ${ord.permitidos - ord.fallos >= 0 ? 'quedan ' + (ord.permitidos - ord.fallos) : 'pasaste del límite'})`
+        : 'Sin errores hasta ahora. ¡Vamos!'}</div>`;
+    gameCard.querySelectorAll('.ficha-btn').forEach(btn => {
+      if(btn.classList.contains('usada')) return;
+      btn.addEventListener('click', () => tocarLibro(btn, Number(btn.dataset.pos)));
+    });
+    pintarCrono();
+  }
+
+  function tocarLibro(btn, pos){
+    if(!ord) return;
+    const f = famDe(ord.famId);
+    const esperado = ord.i;
+    const fb = document.getElementById('ordFb');
+    if(pos === esperado){
+      ord.i++;
+      if(ord.i >= f.books.length){ terminarOrden(); return }
+      dibujarTablero();
+      const fb2 = document.getElementById('ordFb');
+      if(fb2){
+        fb2.className = 'feedback';
+        fb2.innerHTML = `✅ <strong>${esc(f.books[esperado])}</strong> va en el puesto ${esperado + 1}. Sigue.`;
+      }
+      return;
+    }
+    ord.fallos++;
+    ord.i++;
+    btn.classList.add('bad');
+    if(fb){
+      fb.className = 'feedback mal';
+      fb.innerHTML = `❌ En el puesto ${esperado + 1} va <strong>${esc(f.books[esperado])}</strong>, no ${esc(f.books[pos])}. Se coloca solo y seguimos.`;
+    }
+    if(ord.i >= f.books.length){ terminarOrden(); return }
+    const seguir = document.createElement('button');
+    seguir.className = 'btn btn-gold btn-sm';
+    seguir.textContent = 'Seguir ▶';
+    seguir.addEventListener('click', () => {
+      const fallosPrevios = ord.fallos;
+      dibujarTablero();
+      const fb3 = document.getElementById('ordFb');
+      if(fb3 && fallosPrevios) fb3.className = 'feedback mal';
+    });
+    gameCard.appendChild(seguir);
+    gameCard.querySelectorAll('.ficha-btn').forEach(b => { b.disabled = true });
+  }
+
+  function terminarOrden(){
+    pararCrono();
+    const ms = Date.now() - ord.inicio;
+    const f = famDe(ord.famId);
+    const bien = ord.fallos <= ord.permitidos;
+    const nuevoRecord = bien ? guardarRecord(ord.famId, ms) : false;
+    const yaSumada = famsPuntuadasHoy().indexOf(ord.famId) !== -1;
+    let sumo = false;
+    if(AvProfile.get() && AvProfile.canScore('quiz') && !yaSumada){
+      AvProfile.score(bien, 'quiz');
+      if(bien){ marcarFamPuntuada(ord.famId); sumo = true }
+    }
+    roundLabel.textContent = `${f.name} · terminado`;
+    gameCard.innerHTML = `
+      <div class="emoji">${bien ? '🏁' : '💪'}</div>
+      <div class="title">${fmt(ms)}</div>
+      <div class="feedback${ok ? '' : ' bad'}">
+        ${bien ? `✅ ${esc(f.name)} en orden` : `Te faltó orden: ${ord.fallos} tropiezo${ord.fallos === 1 ? '' : 's'} y se permitían ${ord.permitidos}.`}
+        ${sumo ? ' · ⭐ +1 punto' : yaSumada && bien ? ' · esta familia ya sumó hoy' : ''}
+        ${nuevoRecord
+          ? '<br>🥇 ¡Nuevo mejor tiempo!'
+          : !bien
+            ? `<br>Este tiempo no cuenta como récord: hubo ${ord.fallos} tropiezo${ord.fallos === 1 ? '' : 's'}.`
+            : records()[ord.famId] ? '<br>Tu mejor tiempo sigue siendo ' + fmt(records()[ord.famId]) : ''}
+      </div>
+      <div class="panel" style="${styleFam(f)}">
+        ${f.books.map((l, i) => `<div class="slot lleno"><span class="n">${i+1}</span><span><strong>${esc(l)}</strong></span></div>`).join('')}
+      </div>`;
+    ord = null;
+    mainBtn.textContent = '🔁 Otra familia';
+    mainBtn.dataset.accion = 'familias';
+    mainBtn.hidden = false;
+    menuJuegoBtn.hidden = false;
+    updateIdleHint();
+  }
+
+  /* ══════════ Botones principales ══════════ */
+  mainBtn.addEventListener('click', () => {
+    const accion = mainBtn.dataset.accion;
+    if(accion === 'arrancar'){ mainBtn.dataset.accion = ''; arrancar(mainBtn.dataset.fam); return }
+    if(accion === 'familias'){ mainBtn.dataset.accion = ''; pantallaFamilias(); return }
+    if(modo === 'clasificar'){
+      if(!cla){ empezarBloque(); return }
+      if(cla.respondida){
+        if(cla.i + 1 < cla.books.length){ cla.i++; mostrarLibro() }
+        else cerrarBloque();
+      }
+      return;
+    }
+    if(modo === 'ordenar'){ pantallaFamilias(); return }
+    pantallaModos();
+  });
+  menuJuegoBtn.addEventListener('click', pantallaModos);
+
+  /* ══════════ Aviso de práctica ══════════ */
+  function updateIdleHint(){
+    const p = AvProfile.get();
+    const sinCupo = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    if(!p){
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero y salen los 39 books. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.hidden = false;
+    }else if(sinCupo){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy en esta actividad ya están completos: esto es <strong>práctica</strong>, y practicar el tiempo sí cuenta para el campamento.';
+      practiceNote.hidden = false;
+    }else{
+      const t = AvProfile.today();
+      practiceNote.innerHTML = `⭐ Hoy aquí: ${t.card}/5 de clasificar · ${t.quiz}/5 de ordenar.`;
+      practiceNote.hidden = false;
+    }
+    judge.hidden = true;
+    if(p && !AvProfile.canScore('quiz') && modo === 'ordenar'){
+      judgeQ.textContent = '🌙 Los puntos de ordenar ya están completos hoy: juega por el tiempo.';
+      judge.hidden = false;
+    }
+  }
+  // score() emite cambios: solo se re-dibuja la pantalla de modos, nunca un
+  // resultado recién mostrado.
+  AvProfile.onChange(() => { if(modo === null) pantallaModos(); else updateIdleHint() });
+
+  /* ══════════ Navegación ══════════ */
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
+  }
+  document.getElementById('toGameBtn').addEventListener('click', () => goTo('juego'));
+
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  function closeMenu(){
+    menuPanel.hidden = true;
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => { if(!e.target.closest('.menu-wrap')) closeMenu() });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => { goTo(btn.dataset.tab); closeMenu() });
+  });
+  document.getElementById('changePlayerBtn').addEventListener('click', () => { closeMenu(); AvProfile.open() });
+
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 5, quiz: 5},   // lo que vale esta actividad; el techo del backend es 5+5
+  });
+  pantallaModos();
+</script>
+</body>
+</html>

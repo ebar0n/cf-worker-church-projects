@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1B2F6E">
+<title>El Himno del Aventurero</title>
+<meta name="description" content="Aprende el Himno del Aventurero verso a verso: primero se lee, después se canta.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="El Himno del Aventurero">
+<meta property="og:description" content="Aprende el Himno del Aventurero verso a verso: primero se lee, después se canta.">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/ideales-himno/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="El Elohe Israel">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    --lapis:#1B2F6E; --lapis-deep:#12204D; --gold:#F0B429; --gold-soft:#FFD97A;
+    --brick:#C2542B; --cream:#FFF6E3; --verde:#2E9E5B; --verde-deep:#1E7040; --ink:#231A0F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--lapis);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,217,122,.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(240,180,41,.07), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  header{text-align:center;padding:10px 16px 12px}
+  .eyebrow{font-family:'Fredoka',sans-serif;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft)}
+  h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.5rem,5vw,2.3rem);line-height:1.15;margin-top:6px}
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+  @media (max-width:600px){.subtitle{display:none}header{padding-bottom:8px}}
+
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 12px 0;max-width:1000px;margin:0 auto}
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
+  .menu-wrap{position:relative;flex-shrink:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+  }
+  .back-link{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;color:var(--gold-soft);
+    text-decoration:none;border:2px solid transparent;border-radius:999px;padding:8px 16px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;border:2px solid var(--gold);
+    background:transparent;color:var(--gold-soft);border-radius:999px;padding:8px 16px;cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;background:transparent;
+    border:none;color:var(--ink);border-radius:12px;padding:12px 14px;min-height:44px;cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+  #leer,#practicar{max-width:680px}
+
+  .box{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:24px 20px;margin-bottom:18px;box-shadow:0 8px 0 rgba(0,0,0,.28);
+  }
+  .box h2{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .box p{margin-bottom:10px;line-height:1.6}
+  .box p:last-child{margin-bottom:0}
+  .source{font-size:.8rem;opacity:.72;margin-top:14px}
+  .source a{color:var(--brick);font-weight:700}
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+
+  .stage{max-width:560px;margin:0 auto;text-align:center}
+  .ronda{font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.14em;text-transform:uppercase;font-size:.82rem;margin-bottom:12px}
+  .tarjeta{
+    background:var(--cream);color:var(--ink);border-radius:28px;border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);padding:30px 20px;min-height:320px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;
+  }
+  .tarjeta .emoji{font-size:clamp(2.6rem,12vw,4rem);line-height:1}
+  .tarjeta .title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.15rem,4.6vw,1.5rem);line-height:1.25}
+  .tarjeta .hint{font-weight:700;font-size:.98rem;opacity:.72}
+  .phrase{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.2rem,5vw,1.7rem);line-height:1.5}
+  .blank{display:inline-block;min-width:2.4em;border-bottom:4px solid var(--brick);color:transparent;user-select:none}
+  .gestures{display:block;font-size:1.7rem;margin-top:10px;letter-spacing:.22em}
+  .options{display:grid;gap:10px;width:100%}
+  .option{
+    font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;background:#fff;color:var(--ink);
+    border:3px solid var(--lapis);border-radius:16px;padding:14px 16px;min-height:52px;cursor:pointer;
+  }
+  .option:active{transform:translateY(2px)}
+  .option:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+  .option.ok{background:var(--verde);border-color:var(--verde-deep);color:#fff}
+  .option.bad{background:var(--brick);border-color:#8f3a1c;color:#fff}
+  .option:disabled{cursor:default;opacity:.9}
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+  .btn{
+    font-family:'Fredoka',sans-serif;font-size:1.06rem;font-weight:600;border:none;border-radius:999px;
+    padding:14px 28px;min-height:48px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.3);
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-oro{background:var(--gold);color:var(--lapis-deep)}
+  .btn-linea{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-sm{font-size:.95rem;padding:11px 20px;min-height:44px}
+
+  .judge{
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;
+    background:rgba(255,255,255,.07);border:2px dashed var(--gold);border-radius:16px;padding:12px 14px;
+    font-family:'Fredoka',sans-serif;font-weight:600;
+  }
+  .judge span{flex-basis:100%;text-align:center}
+  .judge[hidden]{display:none}
+  .aviso{margin-top:16px;text-align:center;font-weight:700;font-size:.95rem;color:var(--gold-soft);opacity:.9}
+  .idleNote[hidden]{display:none}
+
+  .sheet{background:#fff;color:#000;border-radius:18px;padding:26px 22px;max-width:700px;margin:0 auto}
+  .sheet h2{font-family:'Fredoka',sans-serif;font-size:1.3rem;margin-bottom:4px}
+  .sheet .sub{font-size:.9rem;opacity:.75;margin-bottom:16px}
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:560px;margin:0 auto 20px}
+
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:22px;
+    padding:22px 20px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.2rem;margin-bottom:10px}
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .parent-box a{color:var(--brick);font-weight:700}
+
+  @media print{
+    body{background:#fff;color:#000}
+    header,.topbar,#leer,#practicar,#padres,.print-note{display:none!important}
+    section{display:block!important;padding:0}
+    #material{display:block!important}
+    .sheet{padding:0}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  .hymn{font-weight:700;line-height:1.95;font-size:1.05rem}
+  .hymn .verse{margin-bottom:14px}
+  .hymn .verse:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="practicar">🎯 Practicar</button>
+      <button class="menu-item" data-tab="material">🖨️ Hoja para imprimir</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Ideales del club · Lo aprende todo el club</div>
+  <h1>El Himno</h1>
+  <p class="subtitle">Dos estrofas, verso a verso.</p>
+</header>
+
+<section id="leer" class="active">
+  <div class="box">
+    <h2>🎵 El Himno del Aventurero</h2>
+    <div class="hymn">
+      <div class="verse">Somos Aventureros alegres,<br>que confían en Cristo Jesús.<br>Aprendemos que siempre debemos<br>reflejar para el mundo su luz.</div>
+      <div class="verse">Descubrimos en todo belleza<br>y el amor de un Dios creador,<br>y amando a Cristo haremos<br>maravillas mostrando su amor.</div>
+    </div>
+    <p class="source">Letra aportada por la dirección del club.</p>
+  </div>
+  <div class="box">
+    <h2>💡 Cómo se aprende un himno</h2>
+    <p>No de corrido: <strong>verso por verso</strong>. En la práctica sale un verso y hay que cantar el que sigue,
+    que es justo lo que cuesta cuando uno se queda en blanco a mitad de la canción.</p>
+    <p>Los versos que salen van rotando, así que en varios días se cubren los ocho.</p>
+  </div>
+  <div class="cta">
+    <button class="btn btn-oro" id="toPracticeBtn">Ya lo leí · Practicar ▶</button>
+  </div>
+</section>
+
+<section id="practicar">
+  <div class="stage">
+    <div class="ronda" id="roundLabel">¿Listo?</div>
+    <div class="tarjeta" id="card" aria-live="polite">
+      <div class="emoji">🎵</div>
+      <div class="title">El Himno</div>
+      <div class="hint">3 rondas: sale un verso y cantas el que sigue.</div>
+    </div>
+    <div class="controls">
+      <button class="btn btn-oro" id="mainBtn">▶ Empezar</button>
+    </div>
+    <div class="judge" id="judge" hidden>
+      <span id="juezQ">¿Lo dijo completo?</span>
+      <button class="btn btn-oro btn-sm" id="juezSi">⭐ ¡Sí! +1</button>
+      <button class="btn btn-linea btn-sm" id="juezNo">😅 Casi</button>
+    </div>
+    <p class="aviso" id="idleNote" hidden></p>
+  </div>
+</section>
+
+<section id="material">
+  <p class="print-note">Usa <strong>Ctrl/Cmd + P</strong> para imprimir esta hoja y pegarla en la cartelera del club o en la nevera de la casa.</p>
+  <div class="sheet">
+    <h2>El Himno del Aventurero</h2>
+    <p class="sub">Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué</p>
+    <p style="line-height:1.9;margin-bottom:14px">Somos Aventureros alegres,<br>que confían en Cristo Jesús.<br>Aprendemos que siempre debemos<br>reflejar para el mundo su luz.</p>
+    <p style="line-height:1.9;margin-bottom:14px">Descubrimos en todo belleza<br>y el amor de un Dios creador,<br>y amando a Cristo haremos<br>maravillas mostrando su amor.</p>
+    <p style="margin-top:16px;font-size:.9rem;opacity:.75">Para recortar por versos y ordenarlos: doble la hoja por las líneas.</p>
+  </div>
+</section>
+
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 Qué es</h2>
+    <p>El <strong>Himno</strong> se canta en las reuniones del club y en el campamento. La letra la aportó la dirección
+    del club, así que es la que ustedes usan.</p>
+  </div>
+  <div class="parent-box">
+    <h2>🏠 Cómo acompañarlo</h2>
+    <ol>
+      <li><strong>Lean y canten juntos</strong> las dos estrofas completas, en la pestaña 📖.</li>
+      <li>En la práctica sale <strong>un verso</strong> y su hijo canta <strong>el que sigue</strong>. Usted confirma
+      si le salió.</li>
+      <li>Son <strong>3 rondas al día</strong>, y los versos rotan: en tres o cuatro días habrá practicado los ocho.</li>
+    </ol>
+    <p>Vale <strong>3 puntos al día</strong>. Cantar no da para más rondas seguidas sin que se vuelva pesado.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+<script>
+  const ACTIVITY = 'ideales-himno';
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  const VERSES = [
+    ['Somos Aventureros alegres,', 'que confían en Cristo Jesús.', 'Aprendemos que siempre debemos', 'reflejar para el mundo su luz.'],
+    ['Descubrimos en todo belleza', 'y el amor de un Dios creador,', 'y amando a Cristo haremos', 'maravillas mostrando su amor.']
+  ];
+  const ROUNDS = 3;
+
+  const card = document.getElementById('card');
+  const mainBtn = document.getElementById('mainBtn');
+  const roundLabel = document.getElementById('roundLabel');
+  const judge = document.getElementById('judge');
+  const judgeQ = document.getElementById('juezQ');
+  const judgeYes = document.getElementById('juezSi');
+  const judgeNo = document.getElementById('juezNo');
+  const idleNote = document.getElementById('idleNote');
+  let match = null;
+
+  // Cada verso es una ronda posible: sale el anterior y hay que cantar este.
+  function versesForToday(){
+    const todos = [];
+    VERSES.forEach((estrofa, e) => estrofa.forEach((texto, i) => todos.push({verse: e, i, texto})));
+    return AvProfile.pick(`${ACTIVITY}:versos`, todos, ROUNDS, v => v.texto);
+  }
+
+  function showStep(){
+    judge.hidden = true;
+    match.dicho = false;
+    if(match.paso >= ROUNDS){ finishMatch(); return }
+    const v = match.versos[match.paso];
+    const estrofa = VERSES[v.verse];
+    const anterior = v.i > 0 ? estrofa[v.i - 1] : null;
+    roundLabel.textContent = `Verso ${match.paso + 1} de ${ROUNDS}`;
+    card.innerHTML = `
+      <div class="emoji">🎵</div>
+      <div class="title">${anterior ? 'Canta el verso que sigue' : 'Canta el verso que abre la estrofa'}</div>
+      <div class="phrase">${anterior ? '«' + esc(anterior) + '»' : 'Estrofa ' + (v.verse + 1)}</div>
+      <div class="hint">${anterior ? '¿Qué viene después?' : '¿Cómo empieza?'}</div>`;
+    mainBtn.textContent = 'Ya lo canté ▶';
+    mainBtn.hidden = false;
+  }
+
+  function finishMatch(){
+    roundLabel.textContent = '¡Bien cantado!';
+    const p = AvProfile.get();
+    card.innerHTML = `
+      <div class="emoji">🏅</div>
+      <div class="title">¡Tres versos practicados!</div>
+      ${p ? `<div class="hint">⭐ Sumaste ${match.ganados} punto${match.ganados === 1 ? '' : 's'}.</div>` : ''}
+      <div class="hint">Mañana salen otros: así se cubren los ocho.</div>`;
+    mainBtn.dataset.modo = 'otra';
+    mainBtn.textContent = '🔁 Otra vez';
+    mainBtn.hidden = false;
+    match = null;
+    updateIdleHint();
+  }
+
+  mainBtn.addEventListener('click', () => {
+    if(!match){
+      match = {paso: 0, ganados: 0, dicho: false, versos: versesForToday()};
+      idleNote.hidden = true;
+      showStep();
+      return;
+    }
+    if(!match.dicho){
+      match.dicho = true;
+      askJudge('¿Cantó bien el verso?', 'card');
+      return;
+    }
+    match.paso++;
+    showStep();
+  });
+
+  judgeYes.addEventListener('click', () => {
+    judge.hidden = true;
+    AvProfile.score(true, 'card');
+    match.ganados++;
+    match.paso++;
+    showStep();
+  });
+  judgeNo.addEventListener('click', () => {
+    judge.hidden = true;
+    AvProfile.score(false, 'card');
+    match.paso++;
+    showStep();
+  });
+
+  function askJudge(pregunta, kind){
+    const p = AvProfile.get();
+    if(p && AvProfile.canScore(kind)){
+      judgeQ.textContent = pregunta;
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      judgeQ.textContent = p
+        ? '🌙 Ya sumaste los puntos de hoy: esta ronda es de práctica.'
+        : '👤 Sin perfil: esta ronda no suma al tablero.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Siguiente ▶';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function updateIdleHint(){
+    if(match) return;
+    const p = AvProfile.get();
+    const practica = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    if(!p){
+      idleNote.innerHTML = '👤 Estás practicando <strong>sin perfil</strong>: no suma al tablero. Toca el botón 👤 de arriba para ingresar.';
+      idleNote.hidden = false;
+    }else if(practica){
+      idleNote.innerHTML = '🌙 Los puntos de hoy ya están completos: esto es <strong>práctica</strong>.';
+      idleNote.hidden = false;
+    }else{
+      idleNote.hidden = true;
+    }
+    mainBtn.textContent = mainBtn.dataset.modo === 'otra'
+      ? (practica ? '🔁 Otra vez (práctica)' : '🔁 Otra vez')
+      : (practica ? '▶ Empezar (práctica)' : '▶ Empezar');
+  }
+  AvProfile.onChange(updateIdleHint);
+
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
+  }
+  document.getElementById('toPracticeBtn').addEventListener('click', () => goTo('practicar'));
+
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  const closeMenu = () => { menuPanel.hidden = true; menuBtn.setAttribute('aria-expanded','false') };
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => { if(!e.target.closest('.menu-wrap')) closeMenu() });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(b =>
+    b.addEventListener('click', () => { goTo(b.dataset.tab); closeMenu() }));
+  document.getElementById('changePlayerBtn').addEventListener('click', () => { closeMenu(); AvProfile.open() });
+
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 3, quiz: 0}
+  });
+  updateIdleHint();
+</script>
+</body>
+</html>

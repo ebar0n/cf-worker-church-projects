@@ -11,26 +11,31 @@
    Al cambiar VERSION se borran las cachés viejas y se toma el control de las
    pestañas abiertas.
 */
-const VERSION = "v1";
+// Subir la versión purga las cachés viejas. Obligatorio cuando se borra una
+// actividad: si no, la copia cacheada sigue abriendo un juego que ya no existe.
+const VERSION = "v2";
 const SHELL = `aventureros-shell-${VERSION}`;
 const RUNTIME = `aventureros-runtime-${VERSION}`;
 
-const GAMES = [
-  "pr39",
-  "pr39-prueba10",
-  "pr39-nombres",
-  "pr39-rompecabezas",
-  "pr39-colorear",
-  "pr41",
-  "pr41-estatua",
-  "pr41-horno",
-  "pr41-secuencia",
-  "pr41-versiculo",
-  "pr44",
-  "pr44-reloj",
-  "pr44-quien-lo-dijo",
-  "pr44-laberinto",
-  "pr44-diferencias",
+const RUTAS = [
+  "/conexion-biblica-pr39/",
+  "/conexion-biblica-pr39-prueba10/",
+  "/conexion-biblica-pr39-nombres/",
+  "/conexion-biblica-pr39-colorear/",
+  "/conexion-biblica-pr41-secuencia/",
+  "/conexion-biblica-pr41-versiculo/",
+  "/conexion-biblica-pr44-reloj/",
+  "/conexion-biblica-pr44-quien-lo-dijo/",
+  "/conexion-biblica-pr44-diferencias/",
+  "/conexion-biblica-pr41-estatua-sueno/",
+  "/organiza-la-biblia/",
+  "/biblia-colores/",
+  "/biblia-orden/",
+  "/padres-cap17/",
+  "/padres-cap18/",
+  "/ideales-voto/",
+  "/ideales-ley/",
+  "/ideales-himno/",
 ];
 
 const SHELL_URLS = [
@@ -42,7 +47,7 @@ const SHELL_URLS = [
   "/icons/icon-512.png",
   "/icons/maskable-512.png",
   "/icons/apple-touch-icon.png",
-  ...GAMES.map((g) => `/conexion-biblica-${g}/`),
+  ...RUTAS,
 ];
 
 self.addEventListener("install", (event) => {

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1B2F6E">
+<title>Antes o después</title>
+<meta name="description" content="El orden de los libros del Antiguo Testamento: qué va antes y qué va después, por familia.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="Antes o después">
+<meta property="og:description" content="El orden de los libros del Antiguo Testamento: qué va antes y qué va después, por familia.">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/biblia-orden/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="El Elohe Israel">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    --lapis:#1B2F6E; --lapis-deep:#12204D; --gold:#F0B429; --gold-soft:#FFD97A;
+    --brick:#C2542B; --cream:#FFF6E3; --verde:#2E9E5B; --verde-deep:#1E7040; --ink:#231A0F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--lapis);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,217,122,.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(240,180,41,.07), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  header{text-align:center;padding:10px 16px 12px}
+  .eyebrow{font-family:'Fredoka',sans-serif;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft)}
+  h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.5rem,5vw,2.3rem);line-height:1.15;margin-top:6px}
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+  @media (max-width:600px){.subtitle{display:none}header{padding-bottom:8px}}
+
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 12px 0;max-width:1000px;margin:0 auto}
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
+  .menu-wrap{position:relative;flex-shrink:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+  }
+  .back-link{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;color:var(--gold-soft);
+    text-decoration:none;border:2px solid transparent;border-radius:999px;padding:8px 16px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;border:2px solid var(--gold);
+    background:transparent;color:var(--gold-soft);border-radius:999px;padding:8px 16px;cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;background:transparent;
+    border:none;color:var(--ink);border-radius:12px;padding:12px 14px;min-height:44px;cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+  #leer,#practicar{max-width:680px}
+
+  .box{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:24px 20px;margin-bottom:18px;box-shadow:0 8px 0 rgba(0,0,0,.28);
+  }
+  .box h2{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .box p{margin-bottom:10px;line-height:1.6}
+  .box p:last-child{margin-bottom:0}
+  .source{font-size:.8rem;opacity:.72;margin-top:14px}
+  .source a{color:var(--brick);font-weight:700}
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+
+  .stage{max-width:560px;margin:0 auto;text-align:center}
+  .ronda{font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.14em;text-transform:uppercase;font-size:.82rem;margin-bottom:12px}
+  .tarjeta{
+    background:var(--cream);color:var(--ink);border-radius:28px;border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);padding:30px 20px;min-height:320px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;
+  }
+  .tarjeta .emoji{font-size:clamp(2.6rem,12vw,4rem);line-height:1}
+  .tarjeta .title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.15rem,4.6vw,1.5rem);line-height:1.25}
+  .tarjeta .hint{font-weight:700;font-size:.98rem;opacity:.72}
+  .phrase{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.2rem,5vw,1.7rem);line-height:1.5}
+  .blank{display:inline-block;min-width:2.4em;border-bottom:4px solid var(--brick);color:transparent;user-select:none}
+  .gestures{display:block;font-size:1.7rem;margin-top:10px;letter-spacing:.22em}
+  .options{display:grid;gap:10px;width:100%}
+  .option{
+    font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;background:#fff;color:var(--ink);
+    border:3px solid var(--lapis);border-radius:16px;padding:14px 16px;min-height:52px;cursor:pointer;
+  }
+  .option:active{transform:translateY(2px)}
+  .option:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+  .option.ok{background:var(--verde);border-color:var(--verde-deep);color:#fff}
+  .option.bad{background:var(--brick);border-color:#8f3a1c;color:#fff}
+  .option:disabled{cursor:default;opacity:.9}
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+  .btn{
+    font-family:'Fredoka',sans-serif;font-size:1.06rem;font-weight:600;border:none;border-radius:999px;
+    padding:14px 28px;min-height:48px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.3);
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-oro{background:var(--gold);color:var(--lapis-deep)}
+  .btn-linea{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-sm{font-size:.95rem;padding:11px 20px;min-height:44px}
+
+  .judge{
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;
+    background:rgba(255,255,255,.07);border:2px dashed var(--gold);border-radius:16px;padding:12px 14px;
+    font-family:'Fredoka',sans-serif;font-weight:600;
+  }
+  .judge span{flex-basis:100%;text-align:center}
+  .judge[hidden]{display:none}
+  .aviso{margin-top:16px;text-align:center;font-weight:700;font-size:.95rem;color:var(--gold-soft);opacity:.9}
+  .idleNote[hidden]{display:none}
+
+  .sheet{background:#fff;color:#000;border-radius:18px;padding:26px 22px;max-width:700px;margin:0 auto}
+  .sheet h2{font-family:'Fredoka',sans-serif;font-size:1.3rem;margin-bottom:4px}
+  .sheet .sub{font-size:.9rem;opacity:.75;margin-bottom:16px}
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:560px;margin:0 auto 20px}
+
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:22px;
+    padding:22px 20px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.2rem;margin-bottom:10px}
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .parent-box a{color:var(--brick);font-weight:700}
+
+  @media print{
+    body{background:#fff;color:#000}
+    header,.topbar,#leer,#practicar,#padres,.print-note{display:none!important}
+    section{display:block!important;padding:0}
+    #material{display:block!important}
+    .sheet{padding:0}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  .family{padding:12px 0;border-bottom:2px dashed rgba(35,26,15,.15)}
+  .family:last-child{border-bottom:none}
+  .family-head{display:flex;align-items:center;gap:10px;font-family:'Fredoka',sans-serif;font-size:1.02rem}
+  .swatch{width:22px;height:22px;border-radius:6px;border:2px solid rgba(0,0,0,.25);flex-shrink:0}
+  .family-books{font-size:.92rem;opacity:.82;margin-top:4px;line-height:1.5}
+  .colors{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:10px;width:100%}
+  .color-btn{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;color:#fff;
+    border:3px solid rgba(0,0,0,.28);border-radius:16px;padding:14px 8px;min-height:64px;cursor:pointer;
+    text-shadow:0 1px 2px rgba(0,0,0,.45);
+  }
+  .color-btn:active{transform:translateY(2px)}
+  .color-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .color-btn.ok{box-shadow:0 0 0 4px var(--verde)}
+  .color-btn.bad{box-shadow:0 0 0 4px var(--brick)}
+  .color-btn:disabled{cursor:default}
+
+  .order-row{display:grid;gap:8px;width:100%}
+  .tile{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;background:#fff;color:var(--ink);
+    border:3px solid var(--lapis);border-radius:14px;padding:13px 14px;min-height:50px;cursor:pointer;text-align:left;
+  }
+  .tile:active{transform:translateY(2px)}
+  .tile:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+  .tile.placed{background:var(--verde);border-color:var(--verde-deep);color:#fff;cursor:default}
+  .tile.wrong{background:var(--brick);border-color:#8f3a1c;color:#fff}
+  .tile .n{display:inline-block;min-width:1.7em;opacity:.75}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="practicar">🎯 Practicar</button>
+      <button class="menu-item" data-tab="material">🖨️ Hoja para imprimir</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Los libros de la Biblia · El orden del Antiguo Testamento</div>
+  <h1>Antes o después</h1>
+  <p class="subtitle">El orden, sin recitar los 39.</p>
+</header>
+
+<section id="leer" class="active">
+  <div class="box">
+    <h2>🔢 Los 39 libros, en orden</h2>
+    <p>En el campamento califican <strong>el orden y el tiempo</strong>. Pero nadie llega ahí de golpe: primero hay que
+    saber qué va antes y qué va después dentro de cada familia.</p>
+      <div class="family">
+        <div class="family-head"><span class="swatch" style="background:#E07B2E"></span>
+          <strong>Pentateuco</strong> · naranja · 5 libros</div>
+        <p class="family-books">Génesis · Éxodo · Levítico · Números · Deuteronomio</p>
+      </div>
+      <div class="family">
+        <div class="family-head"><span class="swatch" style="background:#7B4EA8"></span>
+          <strong>Históricos</strong> · morado · 12 libros</div>
+        <p class="family-books">Josué · Jueces · Rut · 1 Samuel · 2 Samuel · 1 Reyes · 2 Reyes · 1 Crónicas · 2 Crónicas · Esdras · Nehemías · Ester</p>
+      </div>
+      <div class="family">
+        <div class="family-head"><span class="swatch" style="background:#2E9E5B"></span>
+          <strong>Poéticos</strong> · verde · 5 libros</div>
+        <p class="family-books">Job · Salmos · Proverbios · Eclesiastés · Cantares</p>
+      </div>
+      <div class="family">
+        <div class="family-head"><span class="swatch" style="background:#2B62C4"></span>
+          <strong>Profetas Mayores</strong> · azul · 5 libros</div>
+        <p class="family-books">Isaías · Jeremías · Lamentaciones · Ezequiel · Daniel</p>
+      </div>
+      <div class="family">
+        <div class="family-head"><span class="swatch" style="background:#E8C020"></span>
+          <strong>Profetas Menores</strong> · amarillo · 12 libros</div>
+        <p class="family-books">Oseas · Joel · Amós · Obadías · Jonás · Miqueas · Nahúm · Habacuc · Sofonías · Hageo · Zacarías · Malaquías</p>
+      </div>
+    <p class="source">Antiguo Testamento, 39 libros: 5 + 12 + 5 + 5 + 12.</p>
+  </div>
+  <div class="cta">
+    <button class="btn btn-oro" id="toPracticeBtn">Ya lo leí · Practicar ▶</button>
+  </div>
+</section>
+
+<section id="practicar">
+  <div class="stage">
+    <div class="ronda" id="roundLabel">¿Listo?</div>
+    <div class="tarjeta" id="card" aria-live="polite">
+      <div class="emoji">🔢</div>
+      <div class="title">Antes o después</div>
+      <div class="hint">3 rondas de qué va antes + 2 de ordenar una familia.</div>
+    </div>
+    <div class="controls">
+      <button class="btn btn-oro" id="mainBtn">▶ Empezar</button>
+    </div>
+    <div class="judge" id="judge" hidden>
+      <span id="juezQ">¿Lo dijo completo?</span>
+      <button class="btn btn-oro btn-sm" id="juezSi">⭐ ¡Sí! +1</button>
+      <button class="btn btn-linea btn-sm" id="juezNo">😅 Casi</button>
+    </div>
+    <p class="aviso" id="idleNote" hidden></p>
+  </div>
+</section>
+
+<section id="material">
+  <p class="print-note">Usa <strong>Ctrl/Cmd + P</strong> para imprimir esta hoja y pegarla en la cartelera del club o en la nevera de la casa.</p>
+  <div class="sheet">
+    <h2>Los 39 libros del Antiguo Testamento</h2>
+    <p class="sub">Para estudiar el orden · Club de Aventureros El Elohe Israel</p>
+    <p style="margin-bottom:12px"><strong>Pentateuco</strong> (naranja, 5):<br>1. Génesis · 2. Éxodo · 3. Levítico · 4. Números · 5. Deuteronomio</p>
+    <p style="margin-bottom:12px"><strong>Históricos</strong> (morado, 12):<br>1. Josué · 2. Jueces · 3. Rut · 4. 1 Samuel · 5. 2 Samuel · 6. 1 Reyes · 7. 2 Reyes · 8. 1 Crónicas · 9. 2 Crónicas · 10. Esdras · 11. Nehemías · 12. Ester</p>
+    <p style="margin-bottom:12px"><strong>Poéticos</strong> (verde, 5):<br>1. Job · 2. Salmos · 3. Proverbios · 4. Eclesiastés · 5. Cantares</p>
+    <p style="margin-bottom:12px"><strong>Profetas Mayores</strong> (azul, 5):<br>1. Isaías · 2. Jeremías · 3. Lamentaciones · 4. Ezequiel · 5. Daniel</p>
+    <p style="margin-bottom:12px"><strong>Profetas Menores</strong> (amarillo, 12):<br>1. Oseas · 2. Joel · 3. Amós · 4. Obadías · 5. Jonás · 6. Miqueas · 7. Nahúm · 8. Habacuc · 9. Sofonías · 10. Hageo · 11. Zacarías · 12. Malaquías</p>
+    <p style="margin-top:18px;border-top:2px solid #000;padding-top:12px"><strong>Para completar a lápiz:</strong></p>
+    <p style="margin-bottom:10px"><strong>Pentateuco:</strong> 1. ______ · 2. ______ · 3. ______ · 4. ______ · 5. ______</p>
+    <p style="margin-bottom:10px"><strong>Históricos:</strong> 1. ______ · 2. ______ · 3. ______ · 4. ______ · 5. ______ · 6. ______ · 7. ______ · 8. ______ · 9. ______ · 10. ______ · 11. ______ · 12. ______</p>
+    <p style="margin-bottom:10px"><strong>Poéticos:</strong> 1. ______ · 2. ______ · 3. ______ · 4. ______ · 5. ______</p>
+    <p style="margin-bottom:10px"><strong>Profetas Mayores:</strong> 1. ______ · 2. ______ · 3. ______ · 4. ______ · 5. ______</p>
+    <p style="margin-bottom:10px"><strong>Profetas Menores:</strong> 1. ______ · 2. ______ · 3. ______ · 4. ______ · 5. ______ · 6. ______ · 7. ______ · 8. ______ · 9. ______ · 10. ______ · 11. ______ · 12. ______</p>
+  </div>
+</section>
+
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 Para qué sirve</h2>
+    <p>En el camporee, dos aventureros por club organizan los libros del Antiguo Testamento en un panel, en orden y por
+    familia, y <strong>se califica el tiempo</strong>. Esta actividad entrena lo que hace falta antes: saber qué va
+    antes y qué va después.</p>
+  </div>
+  <div class="parent-box">
+    <h2>🏠 Cómo acompañarlo</h2>
+    <ol>
+      <li><strong>Lean la pestaña 📖</strong> con los 39 libros agrupados por familia.</li>
+      <li><strong>3 rondas</strong> de «cuál va antes» o «cuál sigue», con cuatro opciones.</li>
+      <li><strong>2 rondas</strong> de ordenar una familia completa, tocando los libros en orden.</li>
+    </ol>
+    <p>La dificultad se ajusta a la clase de su hijo: los más pequeños trabajan solo con Pentateuco y Poéticos, que
+    son cinco libros cada uno; de Constructores en adelante, con los 39.</p>
+    <p>Vale <strong>5 puntos al día</strong>: 3 de antes-o-después y 2 de ordenar.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+<script>
+  const ACTIVITY = 'biblia-orden';
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  const FAMILIES = [
+    {nombre:'Pentateuco', color:'naranja', hex:'#E07B2E', libros:['Génesis', 'Éxodo', 'Levítico', 'Números', 'Deuteronomio']},
+    {nombre:'Históricos', color:'morado', hex:'#7B4EA8', libros:['Josué', 'Jueces', 'Rut', '1 Samuel', '2 Samuel', '1 Reyes', '2 Reyes', '1 Crónicas', '2 Crónicas', 'Esdras', 'Nehemías', 'Ester']},
+    {nombre:'Poéticos', color:'verde', hex:'#2E9E5B', libros:['Job', 'Salmos', 'Proverbios', 'Eclesiastés', 'Cantares']},
+    {nombre:'Profetas Mayores', color:'azul', hex:'#2B62C4', libros:['Isaías', 'Jeremías', 'Lamentaciones', 'Ezequiel', 'Daniel']},
+    {nombre:'Profetas Menores', color:'amarillo', hex:'#E8C020', libros:['Oseas', 'Joel', 'Amós', 'Obadías', 'Jonás', 'Miqueas', 'Nahúm', 'Habacuc', 'Sofonías', 'Hageo', 'Zacarías', 'Malaquías']}
+  ];
+  const WHICH_NEXT_ROUNDS = 3;
+  const SORT_ROUNDS = 2;
+  // Los más pequeños trabajan con las familias cortas; los grandes con todas.
+  const BY_CLASS = {
+    'Principiantes':          ['Pentateuco', 'Poéticos'],
+    'Corderitos':             ['Pentateuco', 'Poéticos'],
+    'Aves Madrugadoras':      ['Pentateuco', 'Poéticos'],
+    'Abejitas Industriosas':  ['Pentateuco', 'Poéticos', 'Profetas Mayores'],
+    'Rayitos de Sol':         ['Pentateuco', 'Poéticos', 'Profetas Mayores'],
+  };
+
+  const card = document.getElementById('card');
+  const mainBtn = document.getElementById('mainBtn');
+  const roundLabel = document.getElementById('roundLabel');
+  const judge = document.getElementById('judge');
+  const judgeQ = document.getElementById('juezQ');
+  const judgeYes = document.getElementById('juezSi');
+  const judgeNo = document.getElementById('juezNo');
+  const idleNote = document.getElementById('idleNote');
+  let match = null;
+
+  const shuffle = a => { const b=a.slice(); for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]} return b };
+
+  function familiesForClass(){
+    const permitidas = BY_CLASS[AvProfile.clubClass()];
+    return permitidas ? FAMILIES.filter(f => permitidas.indexOf(f.nombre) !== -1) : FAMILIES;
+  }
+
+  // Todos los libros con su posición dentro de su familia, para poder preguntar.
+  function catalog(){
+    const out = [];
+    familiesForClass().forEach(f => f.libros.forEach((libro, i) =>
+      out.push({libro, familia: f.nombre, i, ultimo: i === f.libros.length - 1})));
+    return out;
+  }
+
+  function phase(){
+    if(!match) return 'nada';
+    if(match.paso < WHICH_NEXT_ROUNDS) return 'antes';
+    if(match.paso < WHICH_NEXT_ROUNDS + SORT_ROUNDS) return 'ordenar';
+    return 'fin';
+  }
+
+  function showStep(){
+    judge.hidden = true;
+    match.respondida = false;
+    const f = phase();
+
+    if(f === 'antes'){
+      const r = match.antes[match.paso];
+      const fam = FAMILIES.find(x => x.nombre === r.familia);
+      const correcta = fam.libros[r.i + 1];
+      const otros = shuffle(catalog().filter(c => c.libro !== correcta && c.libro !== r.libro))
+        .slice(0, 3).map(c => c.libro);
+      roundLabel.textContent = `¿Cuál sigue? · ${match.paso + 1} de ${WHICH_NEXT_ROUNDS}`;
+      card.innerHTML = `
+        <div class="title">¿Qué libro va <strong>después</strong> de «${esc(r.libro)}»?</div>
+        <div class="hint">${esc(r.familia)}</div>
+        <div class="options">
+          ${shuffle([correcta, ...otros]).map(o =>
+            `<button class="option" data-op="${esc(o)}">${esc(o)}</button>`).join('')}
+        </div>`;
+      card.querySelectorAll('.opcion').forEach(b =>
+        b.addEventListener('click', () => answerWhichNext(b, correcta, r.familia)));
+      mainBtn.hidden = true;
+      return;
+    }
+
+    if(f === 'ordenar'){
+      const fam = match.familias[match.paso - WHICH_NEXT_ROUNDS];
+      match.orden = {familia: fam, puestos: 0};
+      roundLabel.textContent = `Ordena · ${match.paso - WHICH_NEXT_ROUNDS + 1} de ${SORT_ROUNDS}`;
+      card.innerHTML = `
+        <div class="title">Toca los <strong>${esc(fam.nombre)}</strong> en orden</div>
+        <div class="hint">Del primero al último. ${fam.libros.length} libros.</div>
+        <div class="order-row">
+          ${shuffle(fam.libros).map(l =>
+            `<button class="tile" data-book="${esc(l)}">${esc(l)}</button>`).join('')}
+        </div>`;
+      card.querySelectorAll('.ficha').forEach(b =>
+        b.addEventListener('click', () => tapTile(b, fam)));
+      mainBtn.hidden = true;
+      return;
+    }
+
+    finishMatch();
+  }
+
+  function answerWhichNext(button, correcta, familia){
+    if(match.respondida) return;
+    match.respondida = true;
+    const acerto = button.dataset.op === correcta;
+    card.querySelectorAll('.opcion').forEach(b => {
+      b.disabled = true;
+      if(b.dataset.op === correcta) b.classList.add('ok');
+      else if(b === button) b.classList.add('bad');
+    });
+    const fam = FAMILIES.find(x => x.nombre === familia);
+    const pie = document.createElement('div');
+    pie.className = 'pista';
+    pie.innerHTML = (acerto ? '✅ ¡Eso es! ' : `Era <strong>${esc(correcta)}</strong>. `)
+      + esc(familia) + ': ' + fam.libros.map(esc).join(' · ');
+    card.appendChild(pie);
+    if(AvProfile.get() && AvProfile.canScore('card')){
+      AvProfile.score(acerto, 'card');
+      if(acerto) match.ganados++;
+    }
+    mainBtn.textContent = 'Siguiente ▶';
+    mainBtn.hidden = false;
+  }
+
+  function tapTile(button, fam){
+    if(button.classList.contains('placed')) return;
+    const esperado = fam.libros[match.orden.puestos];
+    if(button.dataset.libro === esperado){
+      button.classList.add('placed');
+      button.innerHTML = `<span class="n">${match.orden.puestos + 1}.</span> ${esc(button.dataset.libro)}`;
+      match.orden.puestos++;
+      if(match.orden.puestos === fam.libros.length){
+        card.querySelectorAll('.ficha').forEach(b => b.disabled = true);
+        const pie = document.createElement('div');
+        pie.className = 'pista';
+        pie.innerHTML = `✅ ¡Los ${fam.libros.length} ${esc(fam.nombre)} en orden!`;
+        card.appendChild(pie);
+        if(AvProfile.get() && AvProfile.canScore('quiz')){
+          AvProfile.score(true, 'quiz');
+          match.ganados++;
+        }
+        mainBtn.textContent = 'Siguiente ▶';
+        mainBtn.hidden = false;
+      }
+    }else{
+      // Se marca el error y se muestra cuál tocaba, sin cortar la roundLabel.
+      button.classList.add('wrong');
+      setTimeout(() => button.classList.remove('wrong'), 600);
+      const pista = card.querySelector('.pista');
+      if(pista) pista.innerHTML = `Ahora va <strong>${esc(esperado)}</strong>.`;
+      if(!match.falloContado){
+        match.falloContado = true;
+        if(AvProfile.get() && AvProfile.canScore('quiz')) AvProfile.score(false, 'quiz');
+      }
+    }
+  }
+
+  function finishMatch(){
+    roundLabel.textContent = '¡Listo!';
+    const p = AvProfile.get();
+    card.innerHTML = `
+      <div class="emoji">🔢</div>
+      <div class="title">¡Orden practicado!</div>
+      ${p ? `<div class="hint">⭐ Sumaste ${match.ganados} punto${match.ganados === 1 ? '' : 's'}.</div>` : ''}
+      <div class="hint">En el campamento califican el orden y el tiempo.</div>`;
+    mainBtn.dataset.modo = 'otra';
+    mainBtn.textContent = '🔁 Otra vez';
+    mainBtn.hidden = false;
+    match = null;
+    updateIdleHint();
+  }
+
+  mainBtn.addEventListener('click', () => {
+    if(!match){
+      const cat = catalog().filter(c => !c.ultimo);
+      match = {
+        paso: 0, ganados: 0, respondida: false, falloContado: false,
+        antes: AvProfile.pick(`${ACTIVITY}:antes`, cat, WHICH_NEXT_ROUNDS, c => c.libro),
+        familias: AvProfile.pick(`${ACTIVITY}:familias`, familiesForClass(), SORT_ROUNDS, f => f.nombre)
+      };
+      idleNote.hidden = true;
+      showStep();
+      return;
+    }
+    match.falloContado = false;
+    match.paso++;
+    showStep();
+  });
+
+  judgeYes.addEventListener('click', () => { judge.hidden = true; match.paso++; showStep() });
+  judgeNo.addEventListener('click', () => { judge.hidden = true; match.paso++; showStep() });
+
+  function askJudge(pregunta, kind){
+    const p = AvProfile.get();
+    if(p && AvProfile.canScore(kind)){
+      judgeQ.textContent = pregunta;
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+      mainBtn.hidden = true;
+    }else{
+      judgeQ.textContent = p
+        ? '🌙 Ya sumaste los puntos de hoy: esta ronda es de práctica.'
+        : '👤 Sin perfil: esta ronda no suma al tablero.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Siguiente ▶';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function updateIdleHint(){
+    if(match) return;
+    const p = AvProfile.get();
+    const practica = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    if(!p){
+      idleNote.innerHTML = '👤 Estás practicando <strong>sin perfil</strong>: no suma al tablero. Toca el botón 👤 de arriba para ingresar.';
+      idleNote.hidden = false;
+    }else if(practica){
+      idleNote.innerHTML = '🌙 Los puntos de hoy ya están completos: esto es <strong>práctica</strong>.';
+      idleNote.hidden = false;
+    }else{
+      idleNote.hidden = true;
+    }
+    mainBtn.textContent = mainBtn.dataset.modo === 'otra'
+      ? (practica ? '🔁 Otra vez (práctica)' : '🔁 Otra vez')
+      : (practica ? '▶ Empezar (práctica)' : '▶ Empezar');
+  }
+  AvProfile.onChange(updateIdleHint);
+
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
+  }
+  document.getElementById('toPracticeBtn').addEventListener('click', () => goTo('practicar'));
+
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  const closeMenu = () => { menuPanel.hidden = true; menuBtn.setAttribute('aria-expanded','false') };
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => { if(!e.target.closest('.menu-wrap')) closeMenu() });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(b =>
+    b.addEventListener('click', () => { goTo(b.dataset.tab); closeMenu() }));
+  document.getElementById('changePlayerBtn').addEventListener('click', () => { closeMenu(); AvProfile.open() });
+
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 3, quiz: 2}
+  });
+  updateIdleHint();
+</script>
+</body>
+</html>

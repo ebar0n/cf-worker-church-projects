@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#141C3A">
-<title>El reloj de oración de Daniel</title>
-<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Gira el reloj de oración de Daniel: 5 retos con dato del capítulo + 5 preguntas. ¡Suma puntos para el tablero del Club de Aventureros!">
+<title>Tres veces al día</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Registro familiar de oración: el niño marca los tres momentos del día, dice un dato del capítulo en cada uno y el adulto confirma.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
-<meta property="og:title" content="El reloj de oración de Daniel">
-<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 44. Gira el reloj, cae en un momento del día y responde con un dato del capítulo. 5 giros + 5 preguntas por partida.">
+<meta property="og:title" content="Tres veces al día">
+<meta property="og:description" content="Daniel oraba tres veces al día. Registra tus tres momentos, di en cada uno un dato del capítulo 44, que el adulto lo confirme y conversen la tarjeta del día.">
 <meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr44-reloj/">
 <meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
 <meta property="og:image:width" content="1200">
@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/shared/profile.css">
 <style>
   :root{
-    /* Paleta noche del foso: azul medo-persa, oro de anillo real, arena, melena de león */
+    /* Paleta noche del foso: azul medo-persa, oro de anillo real, arena */
     --lapis:#141C3A;
     --lapis-deep:#0C1228;
     --gold:#F0B429;
@@ -38,12 +38,8 @@
     --brick:#B4552F;
     --cream:#FFF6E3;
     --ink:#231A0F;
-    --s1:#F2A73B; /* 🌅 mañana */
-    --s2:#F6D24B; /* ☀️ mediodía */
-    --s3:#5A6FC0; /* 🌙 noche */
-    --s4:#3FA6A0; /* 🪟 ventana */
-    --s5:#B4552F; /* 👑 rey */
-    --s6:#C98A2E; /* 🦁 foso */
+    --verde:#2E9E5B;
+    --verde-deep:#1E7040;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{height:100%}
@@ -66,34 +62,15 @@
   header{text-align:center;padding:10px 16px 12px}
   .eyebrow{
     font-family:'Fredoka',sans-serif;
-    font-size:.72rem;
-    letter-spacing:.16em;
-    text-transform:uppercase;
-    color:var(--gold-soft);
-    line-height:1.4;
+    font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gold-soft);line-height:1.4;
   }
-  h1{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.45rem,5.6vw,2.3rem);
-    line-height:1.15;
-    margin-top:6px;
-  }
+  h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.45rem,5.6vw,2.3rem);line-height:1.15;margin-top:6px}
   .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
-  @media (max-width:600px){
-    .subtitle{display:none}
-    header{padding-bottom:8px}
-  }
+  @media (max-width:600px){.subtitle{display:none}header{padding-bottom:8px}}
 
   /* ── Barra superior + menú ── */
-  .topbar{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:10px 12px 0;
-    max-width:1000px;
-    margin:0 auto;
-  }
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 12px 0;max-width:1000px;margin:0 auto}
   .topbar .back-link{white-space:nowrap;flex-shrink:0}
   .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
   .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
@@ -104,439 +81,236 @@
     .back-link{padding:8px 10px}
     .menu-btn{padding:8px 12px}
   }
+  .back-link{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--gold-soft);text-decoration:none;border:2px solid transparent;border-radius:999px;padding:8px 16px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-btn{
-    font-family:'Fredoka',sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    border:2px solid var(--gold);
-    background:transparent;
-    color:var(--gold-soft);
-    border-radius:999px;
-    padding:8px 16px;
-    min-height:44px;
-    cursor:pointer;
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;border:2px solid var(--gold);
+    background:transparent;color:var(--gold-soft);border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer;
   }
   .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-panel{
-    position:absolute;
-    right:0;
-    top:calc(100% + 8px);
-    z-index:50;
-    display:flex;
-    flex-direction:column;
-    min-width:240px;
-    background:var(--cream);
-    border:3px solid var(--gold);
-    border-radius:18px;
-    padding:8px;
-    box-shadow:0 10px 0 rgba(0,0,0,.3);
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
   }
   .menu-panel[hidden]{display:none}
   .menu-item{
-    font-family:'Fredoka',sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    text-align:left;
-    background:transparent;
-    border:none;
-    color:var(--ink);
-    border-radius:12px;
-    padding:12px 14px;
-    min-height:44px;
-    cursor:pointer;
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;background:transparent;border:none;
+    color:var(--ink);border-radius:12px;padding:12px 14px;min-height:44px;cursor:pointer;
   }
   .menu-item:hover{background:rgba(240,180,41,.25)}
   .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
   .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
 
-  .back-link{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:.9rem;
-    color:var(--gold-soft);
-    text-decoration:none;
-    border:2px solid transparent;
-    border-radius:999px;
-    padding:8px 16px;
-    margin-bottom:8px;
-  }
-  .back-link:hover{border-color:var(--gold)}
-  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
-
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
 
-  /* ── Reto de puntos ── */
-  .judge{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:16px;
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:16px;
-    padding:12px 14px;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
+  /* ══════════ LEER ══════════ */
+  #leer{max-width:680px}
+  .read-card{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:22px 20px;margin-bottom:18px;box-shadow:0 8px 0 rgba(0,0,0,.28);
   }
-  .judge span{flex-basis:100%;text-align:center}
-  .judge[hidden]{display:none}
-  .practice-note{
-    margin-top:16px;
-    text-align:center;
-    font-weight:700;
-    font-size:.95rem;
-    color:var(--gold-soft);
-    opacity:.9;
+  .read-card h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.12rem;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px;
   }
-  .practice-note[hidden]{display:none}
+  .read-card p{margin-bottom:10px;line-height:1.6}
+  .read-card p:last-child{margin-bottom:0}
+  .read-card ul{margin:0 0 10px 20px;line-height:1.6}
+  .read-card li{margin-bottom:6px}
+  .cita{
+    font-family:'Fredoka',sans-serif;font-weight:600;color:var(--lapis);
+    border-left:6px solid var(--gold);background:rgba(240,180,41,.18);
+    border-radius:0 14px 14px 0;padding:12px 14px;margin:12px 0;line-height:1.5;
+  }
+  .cita span{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;opacity:.7;margin-top:6px}
+  .ojo{
+    border:3px dashed var(--brick);border-radius:16px;padding:12px 14px;margin-top:12px;
+    background:rgba(180,85,47,.08);line-height:1.55;
+  }
+  .ojo strong{color:var(--brick)}
+  .source{font-size:.82rem;opacity:.75;margin-top:14px}
+  .source a{color:var(--brick);font-weight:700}
+  .read-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
 
-  /* ══════════ MODO JUEGO ══════════ */
-  .stage{max-width:460px;margin:0 auto;text-align:center}
+  /* ══════════ REGISTRO ══════════ */
+  .stage{max-width:560px;margin:0 auto}
   .round-label{
-    font-family:'Fredoka',sans-serif;
-    color:var(--gold-soft);
-    letter-spacing:.15em;
-    text-transform:uppercase;
-    font-size:.8rem;
-    margin-bottom:12px;
+    font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.14em;
+    text-transform:uppercase;font-size:.78rem;margin-bottom:12px;text-align:center;
   }
 
-  /* ── La ruleta-reloj (CSS puro) ── */
-  .wheel-wrap{
-    position:relative;
-    width:min(78vw,320px);
-    aspect-ratio:1;
-    margin:0 auto 6px;
+  .racha{
+    background:rgba(255,255,255,.07);border:2px solid rgba(240,180,41,.55);border-radius:20px;
+    padding:14px;margin-bottom:16px;text-align:center;
   }
-  .wheel-wrap[hidden]{display:none}
-  .wheel{
-    position:absolute;
-    inset:0;
-    border-radius:50%;
-    border:8px solid var(--gold);
-    box-shadow:0 10px 0 rgba(0,0,0,.3), inset 0 0 0 4px rgba(0,0,0,.15);
-    background:conic-gradient(from 0deg,
-      var(--s1) 0deg 60deg,
-      var(--s2) 60deg 120deg,
-      var(--s3) 120deg 180deg,
-      var(--s4) 180deg 240deg,
-      var(--s5) 240deg 300deg,
-      var(--s6) 300deg 360deg);
-    overflow:hidden;
+  .racha .num{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.5rem,7vw,2.1rem);line-height:1.1}
+  .racha .lbl{font-size:.9rem;opacity:.85;margin-top:2px}
+  .semana{display:flex;justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap}
+  .dia{width:38px;text-align:center;font-size:.72rem;font-weight:700;opacity:.85}
+  .dia .bola{
+    display:block;width:34px;height:34px;margin:0 auto 4px;border-radius:50%;
+    border:3px solid rgba(255,246,227,.45);display:grid;place-items:center;font-size:.85rem;
   }
-  .slot{
-    position:absolute;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    transform:rotate(var(--a));
-    pointer-events:none;
-  }
-  .slot-inner{
-    margin-top:5%;
-    transform:rotate(calc(-1 * var(--a)));
-    text-align:center;
-    color:#1A1206;
-    text-shadow:0 1px 0 rgba(255,255,255,.35);
-  }
-  .slot-inner .ic{font-size:clamp(1.5rem,7vw,2rem);line-height:1;display:block}
-  .slot-inner .nm{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:clamp(.6rem,2.6vw,.78rem);
-    display:block;
-    margin-top:2px;
-    max-width:9ch;
-    line-height:1.05;
-  }
-  .needle{
-    position:absolute;
-    left:50%;
-    bottom:50%;
-    width:10px;
-    height:44%;
-    margin-left:-5px;
-    background:linear-gradient(180deg,#FFF7E0,#F0B429);
-    border-radius:6px 6px 2px 2px;
-    transform-origin:50% 100%;
-    transform:rotate(0deg);
-    transition:transform 2.4s cubic-bezier(.15,.9,.12,1);
-    box-shadow:0 0 0 2px rgba(0,0,0,.35);
-    z-index:3;
-  }
-  .needle::before{
-    content:'';
-    position:absolute;
-    top:-16px;
-    left:50%;
-    margin-left:-11px;
-    border-left:11px solid transparent;
-    border-right:11px solid transparent;
-    border-bottom:18px solid #FFF7E0;
-  }
-  .hub{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:34px;
-    height:34px;
-    margin:-17px 0 0 -17px;
-    border-radius:50%;
-    background:var(--lapis-deep);
-    border:4px solid var(--gold);
-    z-index:4;
-  }
-  @media (prefers-reduced-motion:reduce){
-    .needle{transition:none}
+  .dia .bola.p1{border-color:var(--gold-soft)}
+  .dia .bola.p2{border-color:var(--gold);background:rgba(240,180,41,.35)}
+  .dia .bola.full{border-color:var(--verde);background:var(--verde);color:#fff}
+  .dia.hoy{opacity:1}
+  .dia.hoy .bola{box-shadow:0 0 0 3px rgba(255,217,122,.45)}
+
+  .aviso-horas{
+    font-size:.88rem;line-height:1.5;background:rgba(180,85,47,.18);
+    border:2px dashed var(--brick);border-radius:16px;padding:12px 14px;margin-bottom:16px;
   }
 
-  /* ── Tarjeta de reto / pregunta ── */
-  .result-card{
-    background:var(--cream);
-    color:var(--ink);
-    border-radius:26px;
-    border:6px solid var(--gold);
-    box-shadow:0 12px 0 rgba(0,0,0,.28);
-    padding:22px 18px;
-    margin-top:14px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
+  .momento{
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:22px;
+    padding:16px;margin-bottom:14px;box-shadow:0 7px 0 rgba(0,0,0,.26);
   }
-  .result-card[hidden]{display:none}
-  .result-card .slot-name{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.15rem,5.4vw,1.5rem);
-    line-height:1.15;
+  .momento.listo{border-color:var(--verde);box-shadow:0 7px 0 rgba(0,0,0,.26)}
+  .m-top{display:flex;align-items:center;gap:12px}
+  .m-ic{font-size:2rem;line-height:1;flex-shrink:0}
+  .m-nom{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem}
+  .m-est{font-size:.85rem;font-weight:700;opacity:.7}
+  .momento.listo .m-est{color:var(--verde-deep);opacity:1}
+  .m-hora{margin-top:12px}
+  .m-hora label{display:block;font-size:.8rem;font-weight:700;opacity:.75;margin-bottom:4px}
+  .m-hora input{
+    font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;color:var(--ink);
+    width:100%;min-height:44px;padding:10px 12px;border:3px solid rgba(35,26,15,.25);
+    border-radius:14px;background:#fff;
   }
-  .result-card .big-ic{
-    font-size:clamp(2.8rem,15vw,4.2rem);
-    line-height:1;
-    animation:pop .35s cubic-bezier(.2,1.6,.4,1) both;
-  }
-  .result-card .reto{
-    font-weight:800;
-    font-size:clamp(1rem,4.4vw,1.15rem);
-    line-height:1.4;
-  }
-  .result-card .hint{font-weight:700;font-size:.9rem;opacity:.6}
-  @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
-  @media (prefers-reduced-motion:reduce){
-    .result-card .big-ic{animation:none}
-  }
+  .m-hora input:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+  .m-acc{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
 
-  .intro-card{
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:20px;
-    padding:18px 16px;
-    margin-top:6px;
-    font-weight:700;
-    line-height:1.45;
+  .tarjeta{
+    background:var(--cream);color:var(--ink);border:5px solid var(--brick);border-radius:24px;
+    padding:18px 16px;margin-top:22px;box-shadow:0 8px 0 rgba(0,0,0,.28);
   }
-  .intro-card[hidden]{display:none}
-  .intro-card .big{font-size:2.6rem;line-height:1;display:block;margin-bottom:8px}
+  .tarjeta h3{
+    font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:8px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .tarjeta .tag{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-size:.72rem;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;background:var(--brick);color:#fff;
+    border-radius:999px;padding:4px 12px;margin-bottom:10px;
+  }
+  .tarjeta .cuerpo{font-size:1.05rem;line-height:1.55;font-weight:700}
+  .paso{border-top:2px dashed rgba(35,26,15,.2);margin-top:14px;padding-top:14px}
+  .paso .p-tit{font-family:'Fredoka',sans-serif;font-weight:600;font-size:.98rem;margin-bottom:6px}
+  .paso .p-txt{line-height:1.55}
+  .respuesta{
+    margin-top:10px;background:rgba(46,158,91,.18);border:3px solid var(--verde);
+    border-radius:14px;padding:12px;line-height:1.5;font-weight:700;
+  }
+  .respuesta[hidden]{display:none}
+  .respuesta .et{display:block;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--verde-deep);margin-bottom:4px}
+  .hint{margin-top:8px;font-size:.9rem;opacity:.8;font-style:italic}
+  .hecho{
+    margin-top:10px;font-family:'Fredoka',sans-serif;font-weight:600;color:var(--verde-deep);
+  }
 
   .controls{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
   .btn{
-    font-family:'Fredoka',sans-serif;
-    font-size:1.1rem;
-    font-weight:600;
-    border:none;
-    border-radius:999px;
-    padding:14px 30px;
-    min-height:48px;
-    cursor:pointer;
-    box-shadow:0 5px 0 rgba(0,0,0,.3);
-    transition:transform .1s ease;
+    font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;border:none;border-radius:999px;
+    padding:13px 24px;min-height:48px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.3);
   }
   .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
   .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
-  .btn:disabled{opacity:.6;cursor:default}
   .btn-gold{background:var(--gold);color:var(--lapis-deep)}
-  .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
-  .btn-outline:active{transform:translateY(2px)}
-  .btn-sm{font-size:.95rem;padding:10px 20px;min-height:44px}
-  .btn[hidden]{display:none}
+  .btn-verde{background:var(--verde);color:#fff}
+  .btn-outline{background:transparent;color:var(--brick);border:3px solid var(--brick);box-shadow:none}
+  .btn-ghost{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-sm{font-size:.95rem;padding:10px 18px;min-height:44px}
+  .btn[disabled]{opacity:.55;cursor:default}
 
-  /* Pregunta del capítulo */
-  .quiz-box{
-    margin-top:12px;
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:20px;
-    padding:18px 16px;
+  .judge{
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px;
+    background:rgba(20,28,58,.08);border:3px dashed var(--brick);border-radius:16px;padding:12px;
+    font-family:'Fredoka',sans-serif;font-weight:600;color:var(--ink);
   }
-  .quiz-box[hidden]{display:none}
-  .quiz-tag{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-size:.75rem;
-    font-weight:600;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    background:var(--brick);
-    color:#fff;
-    border-radius:999px;
-    padding:4px 12px;
-    margin-bottom:10px;
+  .judge span{flex-basis:100%;text-align:center;line-height:1.4}
+  .judge .dato-p{font-size:.98rem}
+  .judge .dato-r{
+    font-family:'Nunito',sans-serif;font-weight:700;font-size:.92rem;
+    background:rgba(46,158,91,.16);border-left:5px solid var(--verde);border-radius:10px;
+    padding:8px 10px;text-align:left !important;
   }
-  .quiz-q{font-size:1.1rem;font-weight:700;line-height:1.4}
-  .quiz-a{margin-top:10px;font-weight:800;color:var(--gold-soft);line-height:1.4}
-  .quiz-a[hidden]{display:none}
+  .judge .dato-pista{font-family:'Nunito',sans-serif;font-weight:600;font-size:.86rem;font-style:italic;opacity:.8}
+  .judge[hidden]{display:none}
+  .practice-note{margin-top:18px;text-align:center;font-weight:700;font-size:.95rem;color:var(--gold-soft);opacity:.92;line-height:1.5}
+  .practice-note[hidden]{display:none}
+  .fin{
+    margin-top:20px;text-align:center;background:rgba(46,158,91,.2);border:3px solid var(--verde);
+    border-radius:20px;padding:18px 14px;
+  }
+  .fin[hidden]{display:none}
+  .fin .big{font-size:2.6rem;display:block;line-height:1}
+  .fin .t{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.2rem;margin-top:6px}
+  .fin .s{font-size:.95rem;margin-top:6px;opacity:.9;line-height:1.5}
+  .reset-wrap{text-align:center;margin-top:22px}
 
-  /* ══════════ MATERIAL IMPRIMIBLE ══════════ */
-  .print-note{
-    text-align:center;
-    font-size:.95rem;
-    opacity:.88;
-    max-width:600px;
-    margin:0 auto 18px;
-    line-height:1.5;
-  }
-  .print-steps{
-    max-width:600px;
-    margin:0 auto 24px;
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:18px;
-    padding:16px 18px 16px 34px;
-    line-height:1.55;
-  }
-  .print-steps li{margin-bottom:6px}
-  .group-title{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1.2rem;
-    margin:26px 0 12px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-  .group-title .chip{font-size:1.4rem;background:var(--cream);border-radius:12px;padding:2px 10px}
+  /* ══════════ IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:580px;margin:0 auto 20px;line-height:1.55}
+  .sheet{background:#fff;color:#000;border-radius:18px;padding:26px 22px;max-width:760px;margin:0 auto}
+  .sheet h2{font-family:'Fredoka',sans-serif;font-size:1.3rem;margin-bottom:4px}
+  .sheet .sub{font-size:.88rem;opacity:.75;margin-bottom:14px}
+  .sheet h3{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin:18px 0 8px}
+  .sheet p{line-height:1.55;margin-bottom:8px}
+  .lineas{display:grid;gap:8px;margin-bottom:10px}
+  .linea{display:flex;align-items:flex-end;gap:8px;font-weight:700}
+  .linea .raya{flex:1;border-bottom:2px solid #000;height:1.5em}
+  table.reg{width:100%;border-collapse:collapse;margin-top:6px}
+  table.reg th,table.reg td{border:2px solid #000;padding:8px 4px;text-align:center;font-size:.9rem}
+  table.reg th{font-family:'Fredoka',sans-serif;font-size:.85rem}
+  table.reg td.dia-col{text-align:left;font-weight:700;padding-left:8px}
+  .circulo{display:inline-block;width:22px;height:22px;border:2px solid #000;border-radius:50%}
+  .ventana-svg{display:block;width:100%;max-width:280px;margin:8px auto}
+  .ventana-svg .relleno{fill:#FFF6E3;stroke:#231A0F;stroke-width:5;stroke-linejoin:round}
+  .ventana-svg .linea2{fill:none;stroke:#231A0F;stroke-width:5;stroke-linecap:round}
+  .ventana-svg .cielo{fill:#FFD97A;stroke:#231A0F;stroke-width:5}
+  .cortar{border:3px dashed #000;border-radius:12px;padding:12px;margin-bottom:10px}
+  .cortar .tt{font-family:'Fredoka',sans-serif;font-weight:700;margin-bottom:4px}
+  .cortar .an{font-size:.88rem;margin-top:6px}
 
-  .paper-wheel-wrap{display:flex;justify-content:center;margin:0 auto 10px}
-  .paper-wheel{
-    position:relative;
-    width:min(100%,150mm);
-    aspect-ratio:1;
-    border:3px solid var(--ink);
-    border-radius:50%;
-    background:var(--cream);
-    color:var(--ink);
-  }
-  .paper-wheel .pw-line{
-    position:absolute;
-    top:50%;
-    left:0;
-    width:100%;
-    height:0;
-    border-top:2px solid var(--ink);
-    transform:rotate(var(--a));
-  }
-  .paper-wheel .slot-inner{color:var(--ink);text-shadow:none}
-  .paper-wheel .slot-inner .ic{font-size:clamp(1.4rem,6vw,2.1rem)}
-  .paper-wheel .slot-inner .nm{font-size:clamp(.6rem,2.4vw,.85rem)}
-  .paper-wheel .pw-hub{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:26px;
-    height:26px;
-    margin:-13px 0 0 -13px;
-    border-radius:50%;
-    border:2px solid var(--ink);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:.9rem;
-    background:#fff;
-  }
-
-  .card-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-    gap:14px;
-  }
-  .mini-card{
-    background:var(--cream);
-    color:var(--ink);
-    border-radius:18px;
-    border:4px solid var(--gold);
-    padding:14px 12px;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:6px;
-    box-shadow:0 5px 0 rgba(0,0,0,.25);
-  }
-  .mini-card .emoji{font-size:2.2rem;line-height:1}
-  .mini-card .mc-slot{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:.8rem;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    opacity:.7;
-  }
-  .mini-card .mc-reto{font-weight:700;font-size:.95rem;line-height:1.35}
-  .mini-card .mc-ans{font-weight:700;font-size:.78rem;line-height:1.3;opacity:.72}
-
-  /* ══════════ PARA PADRES ══════════ */
+  /* ══════════ PADRES ══════════ */
   #padres{max-width:720px}
   .parent-box{
-    background:var(--cream);
-    color:var(--ink);
-    border:4px solid var(--gold);
-    border-radius:22px;
-    padding:22px 20px;
-    margin-bottom:18px;
-    box-shadow:0 6px 0 rgba(0,0,0,.25);
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:22px;
+    padding:22px 20px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
   }
   .parent-box h2{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1.2rem;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:8px;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.18rem;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
   }
   .parent-box p{margin-bottom:10px;line-height:1.55}
   .parent-box p:last-child{margin-bottom:0}
   .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
   .parent-box li{margin-bottom:6px}
+  .parent-box a{color:var(--brick);font-weight:700}
   .verse{
-    border-left:5px solid var(--brick);
-    background:rgba(180,85,47,.08);
-    border-radius:0 12px 12px 0;
-    padding:12px 14px;
-    font-style:italic;
-    font-weight:700;
+    font-family:'Fredoka',sans-serif;font-weight:600;color:var(--lapis);
+    border-left:6px solid var(--gold);background:rgba(240,180,41,.18);
+    border-radius:0 14px 14px 0;padding:12px 14px;line-height:1.5;
   }
-  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
+  .verse span{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;opacity:.7;margin-top:6px}
 
-  /* ── Impresión ── */
   @media print{
     body{background:#fff;color:#000}
-    header,.topbar,#juego,#padres,.print-note,.print-steps{display:none!important}
+    header,.topbar,#leer,#juego,#padres,.print-note{display:none!important}
     section{display:block!important;padding:0}
     #material{display:block!important}
-    .paper-wheel{border-color:#000;background:#fff;break-inside:avoid;page-break-inside:avoid}
-    .paper-wheel .pw-line{border-top-color:#000}
-    .card-grid{grid-template-columns:repeat(3,1fr);gap:6mm}
-    .mini-card{box-shadow:none;border-color:#999;break-inside:avoid;page-break-inside:avoid;padding:6mm 3mm}
-    .group-title{color:#000}
-    .group-title .chip{border:1px solid #ccc;background:#fff}
+    .sheet{border:none;padding:0;max-width:none}
+    .cortar{page-break-inside:avoid}
+    .ventana-svg .relleno,.ventana-svg .cielo{fill:#fff;stroke:#000}
+    .ventana-svg .linea2{stroke:#000}
   }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -547,8 +321,9 @@
   <div class="menu-wrap">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
     <div class="menu-panel" id="menuPanel" hidden>
-      <button class="menu-item active" data-tab="juego">🎡 Modo juego</button>
-      <button class="menu-item" data-tab="material">🖨️ Reloj para imprimir</button>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="juego">🙏 Mi registro de hoy</button>
+      <button class="menu-item" data-tab="material">🖨️ Hoja para imprimir</button>
       <button class="menu-item" data-tab="padres">👪 Para padres</button>
       <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
     </div>
@@ -557,568 +332,957 @@
 
 <header>
   <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 44 · En el foso de los leones</div>
-  <h1>El reloj de oración de Daniel</h1>
-  <p class="subtitle">Gira el reloj, cae en un momento del día… ¡y recibe tu reto de fe!</p>
+  <h1>Tres veces al día</h1>
+  <p class="subtitle">Un registro de constancia, no un exam.</p>
 </header>
 
-<!-- ══════════ MODO JUEGO ══════════ -->
-<section id="juego" class="active">
-  <div class="stage">
-    <div class="round-label" id="roundLabel">¿Listos para girar?</div>
+<!-- ══════════ LEER ══════════ -->
+<section id="leer" class="active">
+  <div class="read-card">
+    <h2>📖 Qué pasó (Daniel 6)</h2>
+    <p>Cuando <strong>Darío el Medo</strong> subió al trono, organizó su reino con <strong>ciento veinte gobernadores</strong> y <strong>tres presidentes</strong>. Daniel era uno de esos tres, y era superior a todos ellos «porque había en él más abundancia de espíritu». El rey pensaba ponerlo sobre todo el reino.</p>
+    <p>Eso despertó celos. Los príncipes buscaron una falta en Daniel y no encontraron ninguna: <em>«él era fiel, y ningún vicio ni falta fué en él hallado»</em>. Entonces dijeron que solo podrían acusarlo «en la ley de su Dios», y le hicieron firmar al rey un decreto: por <strong>treinta días</strong> nadie podía pedir nada a Dios ni a los hombres, sino solo al rey Darío. El que lo hiciera sería echado al <strong>foso de los leones</strong>.</p>
+    <p>Daniel no cambió su conducta en un solo detalle. «¿Por qué dejaría de orar ahora, cuando más necesitaba hacerlo?» Entraba en su cámara y, <strong>con las ventanas abiertas hacia Jerusalén</strong>, ofrecía su petición al Dios del cielo, <em>«según su costumbre»</em>. No procuraba ocultar su acto.</p>
+    <p>Los príncipes lo vigilaron <strong>durante todo un día</strong>: <strong>tres veces</strong> lo vieron ir a su cámara y <strong>tres veces</strong> oyeron su voz orando. Al día siguiente lo acusaron ante el rey: «tres veces al día hace su petición». El rey, muy pesaroso, trabajó <strong>hasta la puesta del sol</strong> para librarlo, pero la ley de Media y de Persia no se abroga.</p>
+    <p>Daniel fue echado al foso. Pusieron una piedra en la entrada, sellada con el anillo del rey y de sus príncipes, y el rey se acostó ayuno, sin música, y se le fue el sueño. Temprano por la mañana llamó a Daniel con voz triste, y Daniel respondió: <em>«El Dios mío envió su ángel, el cual cerró la boca de los leones»</em>. Ninguna lesión se halló en él, <strong>«porque creyó en su Dios»</strong>. Después Darío escribió a todos los pueblos, naciones y lenguas para que temieran al Dios de Daniel, «el Dios viviente y permanente por todos los siglos».</p>
+    <p class="cita">«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal»<span>Daniel 6:22</span></p>
+    <p class="source">Fuentes: <a href="https://www.biblegateway.com/passage/?search=Daniel+6&amp;version=RVR1995" target="_blank" rel="noopener">Daniel 6 (Reina Valera 1995 · BibleGateway)</a> y <em>Profetas y Reyes</em>, cap. 44, «En el foso de los leones», de Ellen G. White — <a href="https://egwwritings.org/" target="_blank" rel="noopener">egwwritings.org</a>.</p>
+  </div>
 
-    <div class="wheel-wrap" id="wheelWrap">
-      <div class="wheel" id="wheel" role="img" aria-label="Reloj de oración con seis casillas"></div>
-      <div class="needle" id="needle" aria-hidden="true"></div>
-      <div class="hub" aria-hidden="true"></div>
-    </div>
+  <div class="read-card">
+    <h2>🕒 Lo que el capítulo sí dice… y lo que no</h2>
+    <p><strong>Sí dice:</strong></p>
+    <ul>
+      <li>Que Daniel oraba <strong>tres veces al día</strong>.</li>
+      <li>Que oraba <strong>en su cámara</strong>, con las <strong>ventanas abiertas hacia Jerusalén</strong>.</li>
+      <li>Que lo hacía <strong>«según su costumbre»</strong>: ya lo hacía antes del decreto y siguió igual durante los treinta días.</li>
+      <li>Que <strong>no lo escondía</strong>: «no procuraba ocultar su acto».</li>
+    </ul>
+    <p class="ojo">👀 <strong>Ojo:</strong> el capítulo <strong>no dice a qué horas</strong> oraba Daniel. No dice mañana, tarde ni noche. Por eso en esta actividad los tres momentos se llaman <strong>Momento 1, 2 y 3</strong>, y <strong>cada familia escribe sus propias horas</strong>. Lo del capítulo es el número tres y la costumbre; las horas son de ustedes.</p>
+  </div>
 
-    <div class="intro-card" id="introCard">
-      <span class="big">🕒</span>
-      <strong>5 giros del reloj + 5 preguntas del capítulo.</strong><br>
-      Daniel oraba <strong>tres veces al día</strong> con las ventanas abiertas. ¡Hoy nos toca a nosotros!
-    </div>
+  <div class="read-card">
+    <h2>🙏 Y esto qué tiene que ver conmigo</h2>
+    <p>Esta actividad mide si oras <strong>tres veces al día, todos los días</strong>, como Daniel. El hábito de la oración se pide en todas las clases del club: Principiantes, Corderitos, Aves Madrugadoras, Abejitas Industriosas, Rayitos de Sol, Constructores y Manos Ayudadoras.</p>
+    <p>Así funciona: cada vez que oras marcas ese momento y <strong>dices en voz alta un dato del capítulo 44</strong> (la respuesta sale ahí mismo, para repasar). Un adulto confirma las dos cosas. Al final conversan en familia <strong>la tarjeta del día</strong>. Vuelve mañana y pasado mañana: eso es la constancia, y de paso te vas aprendiendo el capítulo para el campamento.</p>
+  </div>
 
-    <div class="result-card" id="resultCard" aria-live="polite" hidden>
-      <div class="big-ic" id="resultIcon">🌅</div>
-      <div class="slot-name" id="resultSlot">Mañana</div>
-      <div class="reto" id="resultReto"></div>
-      <div class="hint" id="resultHint">¡Hazlo ahora!</div>
-    </div>
-
-    <div class="quiz-box" id="quizBox" hidden>
-      <span class="quiz-tag" id="quizTag">6–7 años</span>
-      <div class="quiz-q" id="quizQ"></div>
-      <div class="quiz-a" id="quizA" hidden></div>
-    </div>
-
-    <div class="controls">
-      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
-    </div>
-
-    <div class="judge" id="judge" hidden>
-      <span id="judgeQ">¿Lo hizo?</span>
-      <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
-      <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
-    </div>
-
-    <p class="practice-note" id="practiceNote" hidden></p>
+  <div class="read-cta">
+    <button class="btn btn-gold" id="toGameBtn">Ya lo leí · A registrar ▶</button>
   </div>
 </section>
 
-<!-- ══════════ MATERIAL IMPRIMIBLE ══════════ -->
-<section id="material">
-  <p class="print-note">
-    Usa <strong>Ctrl/Cmd + P</strong> para imprimir el <strong>reloj de oración</strong> y las
-    <strong>tarjetas de retos</strong>. Así pueden jugar sin pantalla, en el culto familiar o en la reunión del club.
-  </p>
+<!-- ══════════ REGISTRO ══════════ -->
+<section id="juego">
+  <div class="stage">
+    <div class="round-label" id="roundLabel">Mi registro de hoy</div>
 
-  <ol class="print-steps">
-    <li>Imprime la hoja y pega el reloj sobre una cartulina (o una tapa de caja).</li>
-    <li>Pon un <strong>clip</strong> abierto en el centro del reloj y atraviésalo con la punta de un <strong>lápiz</strong>.</li>
-    <li>Dale un golpecito al clip: ¡gira como una ruleta! Donde se detenga la punta, esa es la casilla.</li>
-    <li>Busca la casilla en las <strong>tarjetas de retos</strong>, saca una sin mirar y cúmplela. La respuesta esperada va impresa al pie de cada tarjeta (✅), para que el adulto la revise.</li>
-    <li>Cinco giros por turno. El adulto dice si el reto se cumplió y luego hacen las preguntas del capítulo.</li>
-  </ol>
+    <div class="racha" id="rachaBox" aria-live="polite">
+      <div class="num" id="rachaNum">🔥 0 días</div>
+      <div class="lbl" id="rachaLbl">seguidos orando tres veces</div>
+      <div class="semana" id="semana"></div>
+    </div>
 
-  <div class="group-title"><span class="chip">🕒</span> El reloj de oración — para armar con clip y lápiz</div>
-  <div class="paper-wheel-wrap">
-    <div class="paper-wheel" id="paperWheel">
-      <div class="pw-line" style="--a:30deg"></div>
-      <div class="pw-line" style="--a:90deg"></div>
-      <div class="pw-line" style="--a:150deg"></div>
-      <div class="pw-hub">🕒</div>
+    <p class="aviso-horas">
+      🕒 El capítulo 44 dice que Daniel oraba <strong>tres veces al día</strong>, pero
+      <strong>no dice a qué horas</strong>. Escriban ustedes las horas de su familia
+      (o déjenlas en blanco y oren cuando puedan). Lo que se registra es que sean <strong>tres</strong>.
+    </p>
+
+    <div id="momentos"></div>
+
+    <div class="tarjeta" id="tarjetaBox">
+      <span class="tag" id="tarjetaTag">Tarjeta del día</span>
+      <h3 id="tarjetaTitulo">…</h3>
+      <div class="cuerpo" id="tarjetaCuerpo"></div>
+
+      <div class="paso" id="pasoAncla">
+        <div class="p-tit">1️⃣ Del capítulo: dilo en voz alta</div>
+        <div class="p-txt" id="anclaP"></div>
+        <div class="hint" id="anclaPista" hidden></div>
+        <div class="controls" style="margin-top:12px;justify-content:flex-start">
+          <button class="btn btn-outline btn-sm" id="anclaVerBtn">👀 Ver la respuesta</button>
+        </div>
+        <div class="respuesta" id="anclaR" hidden><span class="et">Respuesta del capítulo</span><span id="anclaRTxt"></span></div>
+        <div class="judge" id="anclaJudge" hidden>
+          <span id="anclaJudgeQ">¿Lo dijo?</span>
+          <button class="btn btn-verde btn-sm" id="anclaSi">⭐ ¡Sí! +1</button>
+          <button class="btn btn-outline btn-sm" id="anclaNo">😅 Esta vez no</button>
+        </div>
+        <div class="hecho" id="anclaHecho" hidden>✅ Listo</div>
+      </div>
+
+      <div class="paso" id="pasoCharla">
+        <div class="p-tit">2️⃣ Para conversar en familia</div>
+        <div class="p-txt" id="charlaP"></div>
+        <div class="judge" id="charlaJudge" hidden>
+          <span id="charlaJudgeQ">¿Conversaron la tarjeta en familia?</span>
+          <button class="btn btn-verde btn-sm" id="charlaSi">⭐ Sí, conversamos +1</button>
+          <button class="btn btn-outline btn-sm" id="charlaNo">⏳ Todavía no</button>
+        </div>
+        <div class="hecho" id="charlaHecho" hidden>✅ Conversado en familia</div>
+      </div>
+    </div>
+
+    <div class="fin" id="finBox" hidden>
+      <span class="big">🏅</span>
+      <div class="t" id="finT">¡Día completo!</div>
+      <div class="s" id="finS"></div>
+    </div>
+
+    <p class="practice-note" id="practiceNote" hidden></p>
+
+    <div class="reset-wrap">
+      <button class="btn btn-ghost btn-sm" id="resetBtn">↺ Borrar mi registro de hoy</button>
     </div>
   </div>
+</section>
 
-  <div class="group-title"><span class="chip">✂️</span> Tarjetas de retos — recorta y guarda por casilla</div>
-  <div id="retoCards"></div>
+<!-- ══════════ IMPRIMIBLE ══════════ -->
+<section id="material">
+  <p class="print-note">
+    Usa <strong>Ctrl/Cmd + P</strong> para imprimir el <strong>registro de oración de la semana</strong>
+    y las <strong>tarjetas para conversar</strong>. Péguenlo en la nevera o en la pared del cuarto:
+    así se sostiene el hábito aunque no haya pantalla ni datos.
+  </p>
+
+  <div class="sheet">
+    <h2>Tres veces al día · Registro de oración</h2>
+    <p class="sub">Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué · Profetas y Reyes cap. 44 (Daniel 6)</p>
+
+    <p><strong>Daniel oraba tres veces al día, con las ventanas abiertas hacia Jerusalén, «según su costumbre».</strong>
+    El capítulo no dice a qué horas lo hacía. Escriban aquí las horas de su familia:</p>
+
+    <div class="lineas">
+      <div class="linea">Nombre: <span class="raya"></span></div>
+      <div class="linea">Momento 1: <span class="raya"></span></div>
+      <div class="linea">Momento 2: <span class="raya"></span></div>
+      <div class="linea">Momento 3: <span class="raya"></span></div>
+    </div>
+
+    <h3>Semana del ______ al ______</h3>
+    <p>Colorea un círculo cada vez que oras. Al final del día, el adulto firma en la última columna.</p>
+    <table class="reg">
+      <thead>
+        <tr><th>Día</th><th>Momento 1</th><th>Momento 2</th><th>Momento 3</th><th>Firma del adulto</th></tr>
+      </thead>
+      <tbody id="regBody"></tbody>
+    </table>
+
+    <h3>La ventana de Daniel — para colorear</h3>
+    <p>Daniel abría las ventanas hacia Jerusalén y oraba sin esconderse. Colorea la ventana y escribe dentro el nombre de alguien por quien vas a orar esta semana.</p>
+    <svg class="ventana-svg" viewBox="0 0 260 220" role="img" aria-label="Ventana abierta con el sol al fondo, para colorear">
+      <rect class="relleno" x="30" y="20" width="200" height="170" rx="14"/>
+      <path class="cielo" d="M40 30 h180 v70 h-180 z"/>
+      <circle class="relleno" cx="130" cy="72" r="24"/>
+      <path class="linea2" d="M130 30 v160 M40 105 h180"/>
+      <path class="linea2" d="M20 190 h220"/>
+      <path class="linea2" d="M62 150 q18 -22 36 0 M162 150 q18 -22 36 0"/>
+    </svg>
+
+    <h3>Datos del capítulo 44 — uno para cada momento de oración</h3>
+    <p>En la app, cada momento de oración pide uno de estos datos en voz alta. En papel funciona igual: el adulto lee la pregunta, el niño responde y la respuesta está al pie ✅.</p>
+    <div id="printDatos"></div>
+
+    <h3>Tarjetas para conversar — recorta y guarda una por día</h3>
+    <p>Cada tarjeta trae algo para hacer, un dato del capítulo 44 (con su respuesta al pie ✅) y una pregunta para conversar en familia.</p>
+    <div id="printCards"></div>
+  </div>
 </section>
 
 <!-- ══════════ PARA PADRES ══════════ -->
 <section id="padres">
   <div class="parent-box">
     <h2>📖 La historia</h2>
-    <p>Esta dinámica está basada en <strong>Daniel 6</strong> (capítulo 44 de <em>Profetas y Reyes</em>, «En el foso de los leones»). Cuando <strong>Darío el Medo</strong> subió al trono, organizó su reino con ciento veinte gobernadores y tres presidentes, y Daniel era el primero entre ellos. Los príncipes, llenos de celos, buscaron una falta en él y no la encontraron: <em>«él era fiel, y ningún vicio ni falta fue en él hallado»</em>. Entonces dijeron que solo podrían acusarlo «en la ley de su Dios».</p>
-    <p>Le hicieron firmar al rey un decreto: por <strong>treinta días</strong> nadie podía pedir nada a Dios ni a los hombres, sino solo al rey; quien lo hiciera sería echado al foso de los leones. Daniel no cambió su costumbre en un solo detalle: <strong>tres veces al día</strong> entraba a su cámara y, con <strong>las ventanas abiertas hacia Jerusalén</strong>, oraba a Dios. «¿Por qué dejaría de orar ahora, cuando más necesitaba hacerlo?»</p>
-    <p>El rey, triste, trabajó hasta la puesta del sol para librarlo, pero la ley de Media y de Persia no se podía cambiar. Daniel fue echado al foso, la piedra fue sellada con el anillo del rey, y esa noche el rey no comió ni durmió. En la mañana Daniel respondió desde el foso: <em>«El Dios mío envió su ángel, el cual cerró la boca de los leones»</em>. No se halló lesión en él, <strong>porque creyó en su Dios</strong>. Darío escribió entonces a todos los pueblos, naciones y lenguas para que temieran al Dios de Daniel, «el Dios viviente y permanente por todos los siglos».</p>
+    <p>Basado en <strong>Daniel 6</strong> y en el capítulo 44 de <em>Profetas y Reyes</em>, «En el foso de los leones». <strong>Darío el Medo</strong> organizó su reino con ciento veinte gobernadores y tres presidentes; Daniel era el primero entre ellos. Los celos de los príncipes no encontraron falta alguna en él —<em>«porque él era fiel, y ningún vicio ni falta fué en él hallado»</em>— así que lo atacaron por «la ley de su Dios»: un decreto de <strong>treinta días</strong> en que nadie podía pedir nada a Dios ni a los hombres, sino solo al rey.</p>
+    <p>Daniel no cambió su conducta en un solo detalle: entraba en su cámara y, con <strong>las ventanas abiertas hacia Jerusalén</strong>, oraba <em>«según su costumbre»</em>. Los príncipes lo vigilaron todo un día y <strong>tres veces</strong> lo vieron y lo oyeron orar. El rey trabajó hasta la puesta del sol por librarlo, pero la ley de Media y de Persia no se abroga. Daniel fue echado al foso; Dios envió su ángel y cerró la boca de los leones, y no se halló lesión en él, <em>«porque creyó en su Dios»</em>.</p>
+    <p><strong>Un detalle importante para el examen del campamento:</strong> el capítulo dice <em>tres veces al día</em>, pero <strong>no dice a qué horas</strong>. Por eso esta actividad no rotula los momentos como mañana, tarde y noche: los llama Momento 1, 2 y 3, y deja que cada familia escriba sus horas. Lo del capítulo es el número y la costumbre.</p>
   </div>
 
   <div class="parent-box">
     <h2>💡 ¿Qué aprende su hijo?</h2>
+    <p>Esta es la única actividad del catálogo que <strong>mide constancia además de conocimiento</strong>: las demás solo preguntan qué sabe; esta pregunta si lo hace, día tras día, y le cuelga un dato del capítulo a cada momento de oración para que el repaso venga con el hábito. El <strong>hábito de la oración diaria</strong> es requisito de todas las clases del club, de Principiantes a Manos Ayudadoras.</p>
     <ul>
-      <li><strong>Orar es una costumbre, no una emergencia</strong>: Daniel oraba tres veces al día antes del decreto, durante el decreto y después del foso.</li>
-      <li><strong>No hay que esconder la fe</strong>: las ventanas quedaron abiertas. Ninguna autoridad de la tierra puede meterse entre el alma y Dios.</li>
-      <li><strong>Ser el mismo en la prueba y en la prosperidad</strong>: «en el foso de los leones Daniel fue el mismo que cuando actuaba delante del rey».</li>
-      <li><strong>Dios cuida</strong>: no siempre evita el foso, pero cierra la boca de los leones.</li>
+      <li><strong>Orar es una costumbre, no una emergencia.</strong> Daniel ya oraba tres veces al día antes del decreto; por eso el decreto no le cambió nada.</li>
+      <li><strong>No se esconde la fe.</strong> Las ventanas quedaron abiertas: «no procuraba ocultar su acto».</li>
+      <li><strong>Ser el mismo en la prueba y en la calma.</strong> «En el foso de los leones Daniel fué el mismo que cuando actuaba delante del rey.»</li>
+      <li><strong>Dios responde.</strong> No siempre evita el foso, pero cierra la boca de los leones.</li>
     </ul>
-    <p class="verse">«El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal» <span>Daniel 6:22</span></p>
+    <p class="verse">«Antes tres veces al día hace su petición»<span>Daniel 6:13 · citado en Profetas y Reyes, cap. 44</span></p>
   </div>
 
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>: son <strong>5 giros del reloj</strong> y después <strong>5 preguntas del capítulo</strong>.</li>
-      <li>Toquen <strong>🎡 ¡Girar el reloj!</strong> La aguja cae en una de las seis casillas: 🌅 mañana, ☀️ mediodía, 🌙 noche, 🪟 ventana abierta, 👑 delante del rey o 🦁 en el foso.</li>
-      <li>Aparece un <strong>reto de esa casilla</strong>: el niño se mueve <em>de verdad</em> (salta, se arrodilla, ruge, señala la ventana) y <strong>dice un dato del capítulo</strong>. Debajo del reto aparece la <strong>respuesta esperada</strong>, para que el adulto sepa al instante si acertó.</li>
-      <li>El adulto califica: <strong>⭐ ¡Sí! +1</strong> si hizo el movimiento y dijo bien el dato, o <strong>😅 Esta vez no</strong> (los fallos no restan).</li>
-      <li>Después vienen las preguntas, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Revelen la respuesta y califiquen igual.</li>
-      <li>Los retos y las preguntas <strong>no se repiten</strong> hasta que se agote la bolsa: la app recuerda por niño lo que ya salió esta semana.</li>
-      <li>Sin pantalla: impriman el reloj desde la pestaña <strong>🖨️</strong>, ármenlo con un clip y un lápiz, y usen las tarjetas de retos recortadas.</li>
+      <li><strong>Lean juntos la pestaña 📖</strong> una vez. Explica qué dice el capítulo y qué no dice.</li>
+      <li><strong>Elijan sus tres horas</strong> y escríbanlas en los tres campos de <em>Momento 1, 2 y 3</em>. Quedan guardadas en este dispositivo; se pueden cambiar cuando quieran.</li>
+      <li><strong>Cada vez que su hijo ora, toca «🙏 Ya oré»</strong> en ese momento. Aparece un cuadro con un <strong>dato del capítulo 44</strong> y su respuesta: el niño lo dice en voz alta y <strong>usted confirma las dos cosas</strong> (que oró y que dijo el dato). Si solo oró, toque <em>🙏 Oró, pero no dijo el dato</em>: el momento queda marcado y el punto queda pendiente para más tarde con el botón <em>📖 Decir el dato del capítulo</em>. Si todavía no oró, toque <em>⏳ Todavía no</em>: no se gasta nada.</li>
+      <li><strong>La tarjeta del día</strong> tiene dos pasos: primero el niño dice en voz alta un <strong>dato del capítulo 44</strong> (la respuesta aparece en la misma pantalla, acierte o no), y después <strong>conversan en familia</strong> la pregunta de aplicación. Usted confirma los dos.</li>
+      <li><strong>Vuelvan mañana.</strong> La racha de días seguidos y los últimos siete días se ven arriba. Si un día se rompe, se empieza otra vez sin drama.</li>
+      <li>Sin pantalla: impriman la hoja de la pestaña <strong>🖨️</strong> y marquen los círculos a lápiz.</li>
     </ol>
-    <p><strong>Qué es repaso y qué es aplicación:</strong> de los 5 giros, <strong>4 tienen como respuesta un dato del capítulo 44</strong> (nombres, números, frases textuales) y <strong>1 es una aplicación a la vida de hoy</strong> (orar por alguien, contarle a la familia por qué ora), que no tiene respuesta correcta. Las <strong>5 preguntas cubren todo el capítulo 44</strong>. Todo sale de <em>Profetas y Reyes</em> cap. 44 y de Daniel 6; el único texto de otro libro es <em>Salmos 76:10</em>, que el capítulo mismo cita. Sirve de repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
-    <p>La meta es doble: que el niño se lleve los datos del capítulo <em>y</em> que ore de verdad mientras juega. Buenas preguntas para la mesa: <em>¿por qué Daniel no cerró la ventana? ¿Qué es lo más valiente que podemos hacer esta semana?</em></p>
+    <p><strong>Qué es repaso y qué es aplicación:</strong> de los cinco puntos del día, <strong>cuatro se pagan con una respuesta verificable del capítulo 44</strong> (un número, un nombre, una frase textual): los tres momentos de oración —cada uno con su dato— y el paso 1️⃣ de la tarjeta. <strong>Solo uno</strong>, el paso 2️⃣ de conversar en familia, es aplicación a la vida de hoy y no tiene respuesta correcta. Los datos de los momentos y las tarjetas salen de <strong>dos bolsas distintas</strong>, así que no se repiten entre sí durante la semana. El único texto de otro libro que aparece es <em>Salmos 76:10</em>, que el capítulo mismo cita. La versión de referencia es Reina Valera 1995.</p>
+    <p><strong>Dificultad por clase:</strong> la pregunta para conversar se ajusta a la clase del club de su hijo. A los más pequeños (Principiantes, Corderitos, Aves Madrugadoras, Abejitas Industriosas) les toca una versión corta y concreta, y además una pista para el dato del capítulo. A Rayitos de Sol, Constructores y Manos Ayudadoras les toca la versión que exige pensar más.</p>
   </div>
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 giros + 5 preguntas. Cada acierto suma <strong>⭐ 1 punto</strong> (los fallos no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de retos y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
-    <p>Y el reto grande de la semana: <strong>orar tres veces al día, como Daniel</strong> — al levantarse, al mediodía y antes de dormir. Marquen en un papel cada vez que lo logren.</p>
-    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+    <p>Esta actividad da <strong>5 puntos al día</strong> y ni uno más: <strong>3 puntos</strong>, uno por cada momento de oración —se paga cuando el niño oró <em>y</em> dijo el dato del capítulo, confirmado por un adulto— y <strong>2 puntos</strong> por la tarjeta del día (uno por el dato del paso 1️⃣ y uno por conversarla en familia). Cada punto tiene su propia casilla: <strong>desmarcar un momento o borrar el registro del día no devuelve el punto</strong>, así que no se puede cobrar dos veces. No hay rondas de relleno para llegar a diez: este juego vale cinco y ya.</p>
+    <p><strong>Los fallos no restan y «todavía no» no gasta nada.</strong> Si el día se acaba con dos momentos, quedan dos puntos: mañana hay tres otra vez.</p>
+    <p><strong>El reto grande:</strong> siete días seguidos con los tres momentos completos, antes del campamento del 9 al 12 de octubre. Ese es el hábito que Daniel ya tenía cuando le llegó la prueba.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos: <strong>nunca aparece en el tablero</strong>, solo el nombre. El registro de los días se guarda en este dispositivo.</p>
   </div>
 </section>
 
 <script src="/shared/profile.js"></script>
 
 <script>
-  // ── Datos: las seis casillas del reloj y su bolsa de retos ──
-  const SLOTS = [
-    {
-      id:'manana', icon:'🌅', name:'Mañana', short:'Mañana',
-      retos:[
-        {era:'capitulo', t:'Estírate como cuando te despiertas y saluda como Daniel saludó al rey desde el foso.', a:'«Oh rey, para siempre vive»'},
-        {era:'capitulo', t:'Corre en tu sitio como el rey Darío hacia el foso y di a qué hora fue allá.', a:'Temprano por la mañana siguiente'},
-        {era:'capitulo', t:'Haz bocina con las manos y grita como el rey: «Daniel, siervo del ______».', a:'«Daniel, siervo del Dios viviente»'},
-        {era:'capitulo', t:'Pon cara triste y di con qué clase de voz llamó el rey a Daniel.', a:'Con voz triste'},
-        {era:'capitulo', t:'Da un salto y di qué hicieron los príncipes a la mañana siguiente de vigilar a Daniel.', a:'Presentaron su queja al rey'},
-        {era:'capitulo', t:'Cuenta con los dedos los presidentes del reino y di quién era uno de ellos.', a:'Eran 3 presidentes; Daniel era uno de ellos'},
-        {era:'capitulo', t:'Ponte bien derechito y di cuántos gobernadores puso Darío sobre el reino.', a:'Ciento veinte (120) gobernadores'},
-        {era:'capitulo', t:'Bosteza como el rey que no durmió y di cómo pasó él esa noche.', a:'Se acostó ayuno, sin música, y se le fue el sueño'},
-        {era:'capitulo', t:'Haz una corona con los brazos y di el nombre completo del rey de esta historia.', a:'Darío el Medo'},
-        {era:'hoy', t:'Ora en voz alta por el día que empieza y pídele a Dios ser fiel hoy, como Daniel.', a:''}
-      ]
-    },
-    {
-      id:'mediodia', icon:'☀️', name:'Mediodía', short:'Mediodía',
-      retos:[
-        {era:'capitulo', t:'Levanta los brazos como el sol del mediodía y di cuántas veces al día hacía Daniel su petición.', a:'Tres veces al día'},
-        {era:'capitulo', t:'Haz como que trabajas muy rápido y di hasta qué hora trabajó el rey para librar a Daniel.', a:'Hasta la puesta del sol'},
-        {era:'capitulo', t:'Junta las manos y di qué le dijo el rey a Daniel después de echarlo al foso.', a:'«El Dios tuyo, a quien tú continuamente sirves, él te libre»'},
-        {era:'capitulo', t:'Mueve la cabeza diciendo NO y di si Daniel cambió su costumbre de orar por causa del decreto.', a:'No: no cambió su conducta en un solo detalle'},
-        {era:'capitulo', t:'Camina como un vigilante y di cuánto tiempo vigilaron los príncipes a Daniel.', a:'Durante todo un día'},
-        {era:'capitulo', t:'Tápate los oídos y destápalos: di qué oyeron los príncipes tres veces ese día.', a:'La voz de Daniel orando en ferviente intercesión'},
-        {era:'capitulo', t:'Muestra diez dedos tres veces y di cuántos días duraba el decreto.', a:'Treinta días'},
-        {era:'capitulo', t:'Haz una reverencia de rey y di a quién único se le podía pedir algo según el decreto.', a:'Solo al rey Darío'},
-        {era:'capitulo', t:'Di con voz fuerte cuál era el castigo para quien orara a Dios en esos días.', a:'Ser echado en el foso de los leones'},
-        {era:'hoy', t:'Da gracias en voz alta por tu comida y ora una frase por alguien que hoy no tiene qué comer.', a:''}
-      ]
-    },
-    {
-      id:'noche', icon:'🌙', name:'Noche', short:'Noche',
-      retos:[
-        {era:'capitulo', t:'Haz como que te acuestas y di cómo se acostó el rey Darío esa noche.', a:'Ayuno, sin instrumentos de música, y se le fue el sueño'},
-        {era:'capitulo', t:'Haz como que ruedas una piedra grande y di con qué sellaron la piedra del foso.', a:'Con el anillo del rey y con el anillo de sus príncipes'},
-        {era:'capitulo', t:'Tápate los oídos y di qué NO trajeron delante del rey esa noche.', a:'Instrumentos de música'},
-        {era:'capitulo', t:'Susurra a dónde se fue el rey después de sellar la piedra del foso.', a:'Se fue luego a su palacio'},
-        {era:'capitulo', t:'Cuenta hasta diez despacito y di quién cuidó a Daniel toda la noche.', a:'El ángel que Dios envió, que cerró la boca de los leones'},
-        {era:'capitulo', t:'Haz alas con los brazos y di quién envió al ángel, según respondió Daniel.', a:'Dios: «El Dios mío envió su ángel»'},
-        {era:'capitulo', t:'Cierra los ojos y di por qué no se halló ninguna lesión en Daniel.', a:'«Porque creyó en su Dios»'},
-        {era:'capitulo', t:'Mueve la cabeza diciendo NO y di por qué el rey no pudo cambiar el decreto firmado.', a:'Porque la ley de Media y de Persia no se abroga'},
-        {era:'capitulo', t:'Sella con tu dedo como con un anillo y di para qué sellaron la piedra del foso.', a:'Para que el acuerdo acerca de Daniel no se mudase'},
-        {era:'hoy', t:'Antes de dormir, ora una frase por alguien de tu casa que está enfermo o triste.', a:''}
-      ]
-    },
-    {
-      id:'ventana', icon:'🪟', name:'Ventana abierta', short:'Ventana',
-      retos:[
-        {era:'capitulo', t:'Ve a una ventana, señálala y di hacia dónde miraban las ventanas de Daniel.', a:'Hacia Jerusalén'},
-        {era:'capitulo', t:'Arrodíllate como Daniel y luego levántate: di qué seguía cumpliendo con calma mientras el decreto estaba firmado.', a:'Sus deberes como presidente de los príncipes'},
-        {era:'capitulo', t:'Abre los brazos como ventanas abiertas y di si Daniel escondía su oración.', a:'No: no procuraba ocultar su acto; oraba con las ventanas abiertas'},
-        {era:'capitulo', t:'Da tres palmadas y en la tercera completa: Daniel oraba «según su ______».', a:'«según su costumbre»'},
-        {era:'capitulo', t:'Haz como que abres una ventana grandota y di en qué lugar de la casa oraba Daniel.', a:'En su cámara'},
-        {era:'capitulo', t:'Señala el cielo y di a quién ofrecía Daniel su petición.', a:'Al Dios del cielo'},
-        {era:'capitulo', t:'Cruza los brazos y di qué declaró Daniel que ninguna potencia terrenal puede hacer.', a:'Interponerse entre el alma y Dios'},
-        {era:'capitulo', t:'Marcha en tu sitio y completa la frase de los enemigos: solo podrían acusarlo «en la ______ de su Dios».', a:'«en la ley de su Dios»'},
-        {era:'capitulo', t:'Pon la mano en el corazón y di si Daniel obedecía al rey en las demás cosas.', a:'Sí, en todo lo que el rey tenía derecho a ordenar; pero nada lo desviaba de su lealtad al Rey de reyes'},
-        {era:'hoy', t:'Ora en voz alta donde todos te puedan oír, sin esconderte, y cuenta cómo te sentiste.', a:''}
-      ]
-    },
-    {
-      id:'rey', icon:'👑', name:'Delante del rey', short:'Ante el rey',
-      retos:[
-        {era:'capitulo', t:'Ponte una corona imaginaria y di cuántos presidentes y cuántos gobernadores organizó Darío.', a:'3 presidentes y 120 gobernadores'},
-        {era:'capitulo', t:'Párate derechito y di la frase por la cual no hallaron falta en Daniel.', a:'«Porque él era fiel, y ningún vicio ni falta fué en él hallado»'},
-        {era:'capitulo', t:'Haz como que firmas un papel y di qué prohibía el decreto que firmó Darío.', a:'Pedir algo a Dios o a los hombres por treinta días, excepto al rey'},
-        {era:'capitulo', t:'Infla el pecho como alguien orgulloso y di a qué le apelaron los príncipes para que el rey firmara.', a:'A su vanidad: le dijeron que aumentaría su honor y autoridad'},
-        {era:'capitulo', t:'Señala hacia arriba y di por qué Daniel era superior a los gobernadores y presidentes.', a:'Porque había en él más abundancia de espíritu'},
-        {era:'capitulo', t:'Levanta un solo dedo y di qué pensaba hacer el rey con Daniel.', a:'Ponerlo sobre todo el reino'},
-        {era:'capitulo', t:'Haz cara de enojo y di qué sentían los principales del reino contra Daniel.', a:'Celos y envidia por los honores que él recibía'},
-        {era:'capitulo', t:'Di con voz de rey cuál era la ley que no se podía cambiar.', a:'«La ley de Media y de Persia, la cual no se abroga»'},
-        {era:'capitulo', t:'Haz como que escribes una carta grandísima y di a quiénes escribió Darío al final.', a:'A todos los pueblos, naciones y lenguas que habitan en toda la tierra'},
-        {era:'hoy', t:'Cuéntale a alguien de la casa por qué oras, aunque te dé un poquito de vergüenza.', a:''}
-      ]
-    },
-    {
-      id:'foso', icon:'🦁', name:'En el foso', short:'En el foso',
-      retos:[
-        {era:'capitulo', t:'Ruge como un león y luego di qué le pasó a la boca de los leones.', a:'El ángel de Dios la cerró'},
-        {era:'capitulo', t:'Da una vuelta y completa: «ninguna lesión se halló en él, porque ______».', a:'«porque creyó en su Dios»'},
-        {era:'capitulo', t:'Siéntate en el piso como en el foso y di quién mandó echar a Daniel allí.', a:'El rey Darío mandó, obligado por su propio decreto'},
-        {era:'capitulo', t:'Grita fuerte lo que respondió Daniel desde el foso.', a:'«El Dios mío envió su ángel, el cual cerró la boca de los leones»'},
-        {era:'capitulo', t:'Aplaude como el rey alegre y di qué mandó hacer al oír la voz de Daniel.', a:'Mandó sacar a Daniel del foso'},
-        {era:'capitulo', t:'Señala el foso imaginario y di quiénes fueron echados allí después.', a:'Los hombres que habían acusado a Daniel, con sus hijos y sus mujeres'},
-        {era:'capitulo', t:'Abre los brazos y di qué dijo Darío del Dios de Daniel en su proclamación.', a:'Que es «el Dios viviente y permanente por todos los siglos», y su reino no será deshecho'},
-        {era:'capitulo', t:'Marcha como un profeta victorioso y di en los reinados de qué dos reyes fue prosperado Daniel.', a:'De Darío y de Ciro el Persa'},
-        {era:'capitulo', t:'Completa el texto que cita el capítulo: «Ciertamente la ira del hombre te ______».', a:'«te acarreará alabanza» (Salmos 76:10)'},
-        {era:'hoy', t:'Ora una frase por alguien que hoy está pasando algo difícil o tiene miedo.', a:''}
-      ]
-    }
-  ];
-
-  const QUIZ = [
-    // 4–5 años (6)
-    {tag:'4–5 años', q:'¿Qué animales había en el foso donde echaron a Daniel?', a:'🦁 Leones'},
-    {tag:'4–5 años', q:'¿Cuántas veces al día oraba Daniel? Cuenta con los dedos.', a:'3 veces al día'},
-    {tag:'4–5 años', q:'¿Quién cerró la boca de los leones?', a:'El ángel que Dios envió'},
-    {tag:'4–5 años', q:'¿Cerraba Daniel la ventana para que no lo vieran orar?', a:'No: oraba con las ventanas abiertas, sin esconderse'},
-    {tag:'4–5 años', q:'¿Le pasó algo malo a Daniel dentro del foso?', a:'No: «ninguna lesión se halló en él»'},
-    {tag:'4–5 años', q:'¿Cómo se llama el amigo de Dios de esta historia?', a:'Daniel'},
-    // 6–7 años (10)
-    {tag:'6–7 años', q:'¿Cómo se llamaba el rey de esta historia?', a:'Darío el Medo'},
-    {tag:'6–7 años', q:'¿Cuántos días duraba el decreto que prohibía orar?', a:'30 días'},
-    {tag:'6–7 años', q:'¿Hacia dónde miraban las ventanas cuando Daniel oraba?', a:'Hacia Jerusalén'},
-    {tag:'6–7 años', q:'¿Qué castigo tenía el que orara a Dios?', a:'Ser echado en el foso de los leones'},
-    {tag:'6–7 años', q:'Según el decreto, ¿a quién se le podía pedir algo?', a:'Solo al rey Darío'},
-    {tag:'6–7 años', q:'¿Dejó Daniel de orar por causa del decreto?', a:'No: siguió orando tres veces al día, como siempre'},
-    {tag:'6–7 años', q:'¿Cómo pasó el rey esa noche?', a:'Se acostó ayuno, sin música, y se le fue el sueño'},
-    {tag:'6–7 años', q:'¿Qué pusieron en la entrada del foso?', a:'Una piedra sellada con el anillo del rey y de sus príncipes'},
-    {tag:'6–7 años', q:'¿Qué le dijo el rey a Daniel después de echarlo al foso?', a:'«El Dios tuyo, a quien tú continuamente sirves, él te libre»'},
-    {tag:'6–7 años', q:'¿Quiénes fueron castigados al final de la historia?', a:'Los hombres que habían acusado a Daniel'},
-    // 8–9 años (11)
-    {tag:'8–9 años', q:'¿Cuántos gobernadores y cuántos presidentes puso Darío sobre el reino?', a:'120 gobernadores y 3 presidentes; Daniel era uno de los presidentes'},
-    {tag:'8–9 años', q:'¿Por qué los príncipes no pudieron encontrar una falta en Daniel?', a:'«Porque él era fiel, y ningún vicio ni falta fue en él hallado»'},
-    {tag:'8–9 años', q:'¿En qué dijeron los enemigos que podrían acusar a Daniel?', a:'«En la ley de su Dios»'},
-    {tag:'8–9 años', q:'¿Por qué el rey no pudo cambiar el decreto que había firmado?', a:'Porque la ley de Media y de Persia no se abroga'},
-    {tag:'8–9 años', q:'¿Qué hizo el rey hasta la puesta del sol?', a:'Trabajó para librar a Daniel'},
-    {tag:'8–9 años', q:'¿Qué respondió Daniel desde el foso cuando el rey lo llamó?', a:'«El Dios mío envió su ángel, el cual cerró la boca de los leones»'},
-    {tag:'8–9 años', q:'Según el texto, ¿por qué no se halló lesión en Daniel?', a:'«Porque creyó en su Dios»'},
-    {tag:'8–9 años', q:'¿Qué escribió Darío a todos los pueblos, naciones y lenguas?', a:'Que todos temieran al Dios de Daniel, «el Dios viviente y permanente por todos los siglos»'},
-    {tag:'8–9 años', q:'¿En los reinados de qué dos reyes fue prosperado Daniel?', a:'De Darío y de Ciro el Persa'},
-    {tag:'8–9 años', q:'Según el capítulo, ¿qué demostró Daniel dentro del foso?', a:'Que en la prueba fue el mismo que cuando estaba delante del rey y todo iba bien'},
-    {tag:'8–9 años', q:'El capítulo cita Salmos 76:10. ¿Qué dice ese texto?', a:'«Ciertamente la ira del hombre te acarreará alabanza»'}
-  ];
-
-  // ── Partida: 5 giros + 5 preguntas ──
   const ACTIVITY = 'pr44-reloj';
-  const MATCH_CARDS = 5;
-  const MATCH_QUIZ = 5;
-  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
-  const SPIN_MS = 2400;
-  let match = null; // {rounds, quizzes, step, revealed, earned}
-  let spinning = false;
-  let rotation = 0;
 
-  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Los tres momentos van rotulados de forma NEUTRA a propósito: el capítulo 44
+  // dice "tres veces al día" pero nunca dice a qué horas. La familia pone sus horas.
+  const MOMENTOS = [
+    {i:0, ic:'🕐', nom:'Momento 1', ph:'Escriban su hora (opcional)'},
+    {i:1, ic:'🕑', nom:'Momento 2', ph:'Escriban su hora (opcional)'},
+    {i:2, ic:'🕒', nom:'Momento 3', ph:'Escriban su hora (opcional)'}
+  ];
 
-  const wheel = document.getElementById('wheel');
-  const wheelWrap = document.getElementById('wheelWrap');
-  const needle = document.getElementById('needle');
-  const introCard = document.getElementById('introCard');
-  const resultCard = document.getElementById('resultCard');
-  const resultIcon = document.getElementById('resultIcon');
-  const resultSlot = document.getElementById('resultSlot');
-  const resultReto = document.getElementById('resultReto');
-  const resultHint = document.getElementById('resultHint');
-  const quizBox = document.getElementById('quizBox');
-  const quizTag = document.getElementById('quizTag');
-  const quizQ = document.getElementById('quizQ');
-  const quizA = document.getElementById('quizA');
-  const mainBtn = document.getElementById('mainBtn');
+  // Datos del capítulo 44 / Daniel 6 que se cobran junto con cada momento de
+  // oración: era 'capitulo' (respuesta verificable), bolsa propia y separada de
+  // la de las tarjetas. Se reparten tres por día, uno por momento.
+  const DATOS = [
+    {
+      id:'tres-veces', era:'capitulo',
+      q:'¿Cuántas veces al día oraba Daniel?',
+      r:'Tres veces al día: «antes tres veces al día hace su petición».',
+      pista:'Son las mismas veces que marcas en esta app.'
+    },
+    {
+      id:'ventanas-jerusalen', era:'capitulo',
+      q:'¿Hacia dónde miraban las ventanas cuando Daniel oraba?',
+      r:'Hacia Jerusalén: oraba «con las ventanas abiertas hacia Jerusalén».',
+      pista:'Es la ciudad de su pueblo, la que estaba lejos.'
+    },
+    {
+      id:'en-su-camara', era:'capitulo',
+      q:'¿En qué lugar de su casa entraba Daniel a orar?',
+      r:'En su cámara, es decir su cuarto: «a la hora de la oración entraba en su cámara».',
+      pista:'Es un cuarto de su propia casa, con ventanas.'
+    },
+    {
+      id:'treinta-dias', era:'capitulo',
+      q:'¿Por cuántos días prohibía el decreto pedirle algo a Dios?',
+      r:'Treinta días. Y Daniel siguió orando tres veces al día todo ese tiempo.',
+      pista:'Es casi un mes entero.'
+    },
+    {
+      id:'angel-leones', era:'capitulo',
+      q:'¿Qué hizo el ángel que Dios envió al foso?',
+      r:'Cerró la boca de los leones: «el cual cerró la boca de los leones, para que no me hiciesen mal».',
+      pista:'Los leones tenían hambre, pero no pudieron abrir la boca.'
+    },
+    {
+      id:'rey-ayuno', era:'capitulo',
+      q:'¿Cómo pasó la noche el rey Darío mientras Daniel estaba en el foso?',
+      r:'Se acostó ayuno, no llevaron instrumentos de música delante de él y se le fue el sueño.',
+      pista:'No comió, no hubo música y no pudo dormir.'
+    },
+    {
+      id:'ciento-veinte', era:'capitulo',
+      q:'¿Cuántos gobernadores puso Darío para organizar su reino?',
+      r:'Ciento veinte gobernadores, repartidos por todo el reino.',
+      pista:'Es un número de tres cifras: ciento veinte.'
+    },
+    {
+      id:'tres-presidentes', era:'capitulo',
+      q:'¿Cuántos presidentes había sobre los gobernadores, y qué puesto tenía Daniel?',
+      r:'Tres presidentes, y Daniel era el primero de los tres.',
+      pista:'Son tres, igual que las veces que oraba.'
+    },
+    {
+      id:'piedra-sellada', era:'capitulo',
+      q:'¿Qué hicieron con la piedra que pusieron en la entrada del foso?',
+      r:'La sellaron con el anillo del rey y con el de sus príncipes, para que nadie la moviera.',
+      pista:'La marcaron con el anillo del rey.'
+    },
+    {
+      id:'ley-media-persia', era:'capitulo',
+      q:'El rey trabajó hasta la puesta del sol por salvar a Daniel. ¿Por qué no pudo?',
+      r:'Porque la ley de Media y de Persia no se abroga: ni el mismo rey podía deshacer su decreto.',
+      pista:'Ni el rey podía cambiar la ley que él mismo firmó.'
+    },
+    {
+      id:'segun-su-costumbre', era:'capitulo',
+      q:'¿Con qué frase dice el capítulo que Daniel ya oraba así desde antes?',
+      r:'«Según su costumbre»: ya lo hacía siempre, mucho antes del decreto.',
+      pista:'Es algo que uno hace todos los días sin que se le recuerde.'
+    },
+    {
+      id:'ninguna-falta', era:'capitulo',
+      q:'Sus enemigos revisaron su trabajo y no hallaron ninguna falta. ¿Con qué frase lo dice el capítulo?',
+      r:'«Porque él era fiel, y ningún vicio ni falta fué en él hallado.»',
+      pista:'Empieza así: «porque él era fiel…».'
+    }
+  ];
+
+  // Tarjetas de aplicación a la vida de hoy: era 'hoy'. Cada una lleva un ANCLA
+  // con dato verificable del capítulo 44 (era 'capitulo'), y la pregunta para
+  // conversar viene en dos versiones: 'chica' (clases menores) y 'grande'
+  // (clases mayores). La conversación es la única roundLabel sin respuesta correcta.
+  const TARJETAS = [
+    {
+      id:'dia-que-empieza', ic:'🌄', era:'hoy', anclaEra:'capitulo', tit:'Estrena el día orando',
+      cuerpo:'Ora en voz alta por el día que empieza y pídele a Dios ser fiel hoy, como Daniel.',
+      anclaP:'¿Cuántas veces al día hacía Daniel su petición a Dios?',
+      anclaR:'Tres veces al día. Los príncipes lo acusaron diciendo: «antes tres veces al día hace su petición».',
+      pista:'Cuenta con los dedos: son las mismas veces que marcas en esta app.',
+      chica:'¿Cuál de los tres momentos de hoy se te olvida más? Dilo y que alguien te lo recuerde.',
+      grande:'Daniel oraba antes de que el día se pusiera difícil. ¿Qué parte del día de hoy quieren poner en manos de Dios antes de que llegue?'
+    },
+    {
+      id:'gracias-comida', ic:'🍞', era:'hoy', anclaEra:'capitulo', tit:'Gracias por la comida',
+      cuerpo:'Da gracias en voz alta por tu comida y ora una frase por alguien que hoy no tiene qué comer.',
+      anclaP:'Esa noche el rey Darío se acostó de una manera muy especial. ¿Cómo se acostó?',
+      anclaR:'Se acostó ayuno (sin comer), no trajeron instrumentos de música delante de él y se le fue el sueño.',
+      pista:'No comió nada y tampoco pudo dormir.',
+      chica:'¿Quién cocinó hoy en tu casa? Dale gracias a esa persona en voz alta.',
+      grande:'El rey dejó de comer por la angustia de un amigo. ¿Por quién estarían ustedes dispuestos a dejar de comer para orar?'
+    },
+    {
+      id:'antes-de-dormir', ic:'🌙', era:'hoy', anclaEra:'capitulo', tit:'Antes de dormir',
+      cuerpo:'Antes de dormir, ora una frase por alguien de tu casa que está enfermo o triste.',
+      anclaP:'¿Qué le pasó al sueño del rey Darío la noche que Daniel estuvo en el foso?',
+      anclaR:'Se le fue el sueño: «acostóse ayuno; ni instrumentos de música fueron traídos delante de él, y se le fué el sueño».',
+      pista:'No pudo dormir en toda la noche.',
+      chica:'Di el nombre de una persona de tu casa y una cosa buena que Dios le puede dar.',
+      grande:'El rey no durmió pensando en Daniel. ¿Hay alguien por quien ustedes hayan orado hasta quedarse dormidos?'
+    },
+    {
+      id:'sin-esconderse', ic:'🪟', era:'hoy', anclaEra:'capitulo', tit:'Sin esconderte',
+      cuerpo:'Ora en voz alta donde todos te puedan oír, sin esconderte, y cuenta cómo te sentiste.',
+      anclaP:'¿Trataba Daniel de esconder que estaba orando?',
+      anclaR:'No. Oraba con las ventanas abiertas y «no procuraba ocultar su acto».',
+      pista:'Piensa en las ventanas de su cámara: ¿abiertas o cerradas?',
+      chica:'¿Te da pena orar delante de otros? Cuéntalo y oren juntos una frase bien cortita.',
+      grande:'¿Dónde les costaría más orar en voz alta: en el colegio, en la calle, delante de la familia? ¿Por qué?'
+    },
+    {
+      id:'contar-por-que-oro', ic:'💬', era:'hoy', anclaEra:'capitulo', tit:'Cuenta por qué oras',
+      cuerpo:'Cuéntale a alguien de la casa por qué oras, aunque te dé un poquito de vergüenza.',
+      anclaP:'¿Hacia dónde miraban las ventanas de la cámara donde oraba Daniel?',
+      anclaR:'Hacia Jerusalén: oraba «con las ventanas abiertas hacia Jerusalén».',
+      pista:'Es la ciudad de su pueblo, la que estaba lejos porque él vivía en el destierro.',
+      chica:'Señala hacia dónde miras tú cuando oras. ¿Por qué ahí?',
+      grande:'Daniel miraba a Jerusalén, que estaba lejísimos y en ruinas. ¿Qué cosa que todavía no se ve están esperando ustedes de Dios?'
+    },
+    {
+      id:'por-alguien-con-miedo', ic:'🫂', era:'hoy', anclaEra:'capitulo', tit:'Por alguien que tiene miedo',
+      cuerpo:'Ora una frase por alguien que hoy está pasando algo difícil o tiene miedo.',
+      anclaP:'¿Qué hizo el ángel que Dios envió al foso de los leones?',
+      anclaR:'Cerró la boca de los leones: «El Dios mío envió su ángel, el cual cerró la boca de los leones, para que no me hiciesen mal».',
+      pista:'Los leones tenían hambre, pero no pudieron abrir la boca.',
+      chica:'Di el nombre de alguien que hoy tiene miedo y ora por esa persona en una frase.',
+      grande:'Dios no sacó a Daniel del foso: lo cuidó dentro del foso. ¿En qué «foso» necesitan que Dios los cuide esta semana?'
+    },
+    {
+      id:'el-momento-que-se-olvida', ic:'⏰', era:'hoy', anclaEra:'capitulo', tit:'El momento que se te olvida',
+      cuerpo:'Hoy ora también en el momento que más se te olvida. Pon una alarma o un papel donde lo veas.',
+      anclaP:'¿Por cuántos días prohibía el decreto pedir algo a Dios?',
+      anclaR:'Treinta días. Y Daniel siguió orando tres veces al día durante todo ese tiempo.',
+      pista:'Es casi un mes entero.',
+      chica:'¿Dónde vas a pegar el papel para no olvidarte mañana? Ve y pégalo ahora.',
+      grande:'Daniel aguantó treinta días de decreto porque ya tenía el hábito antes. ¿Qué les hace falta para no fallar mañana?'
+    },
+    {
+      id:'perdon-y-orar', ic:'🤝', era:'hoy', anclaEra:'capitulo', tit:'Pide perdón y oren juntos',
+      cuerpo:'Pide perdón a alguien de tu casa por algo de hoy y luego oren juntos por eso mismo.',
+      anclaP:'Los enemigos de Daniel no hallaron ninguna falta en él. ¿Con qué frase lo dice el capítulo?',
+      anclaR:'«Porque él era fiel, y ningún vicio ni falta fué en él hallado.»',
+      pista:'Empieza así: «porque él era fiel…».',
+      chica:'Di «perdóname» mirando a los ojos y después den gracias por esa persona.',
+      grande:'A Daniel lo revisaron con lupa y salió limpio. Si alguien revisara su semana con lupa, ¿qué arreglarían primero?'
+    },
+    {
+      id:'orar-por-quien-manda', ic:'👑', era:'hoy', anclaEra:'capitulo', tit:'Ora por los que mandan',
+      cuerpo:'Ora por las personas que mandan en tu casa, en tu colegio o en tu ciudad, aunque no siempre te gusten sus decisiones.',
+      anclaP:'¿Obedecía Daniel al rey Darío en las demás cosas del reino?',
+      anclaR:'Sí. «En todos los casos en los cuales el rey tuviese derecho a ordenar, Daniel le obedecería», pero ni el rey ni su decreto podían desviarlo de su lealtad al Rey de reyes.',
+      pista:'Obedecía en todo… menos en dejar de orar.',
+      chica:'Di el nombre de la persona que manda en tu casa y ora una frase por ella.',
+      grande:'¿Dónde está el límite entre obedecer a los que mandan y obedecer a Dios? Busquen un ejemplo de esta semana.'
+    },
+    {
+      id:'orar-por-quien-cae-mal', ic:'😤', era:'hoy', anclaEra:'capitulo', tit:'Ora por quien te cae mal',
+      cuerpo:'Ora por alguien que te cae mal o que te hizo algo hoy. Di su nombre en voz alta.',
+      anclaP:'¿Qué sentían los principales del reino contra Daniel, y por qué?',
+      anclaR:'Celos y envidia, por los honores que él recibía del rey: «los honores otorgados a Daniel despertaron los celos de los principales del reino».',
+      pista:'Es lo que se siente cuando a otro le va mejor que a uno.',
+      chica:'Di el nombre de alguien con quien te peleaste y ora una frase buena por esa persona.',
+      grande:'Daniel siguió cumpliendo sus deberes con calma mientras sus compañeros lo perseguían. ¿Cómo se hace eso hoy, en el colegio o en el trabajo?'
+    },
+    {
+      id:'de-rodillas-ventana', ic:'🙇', era:'hoy', anclaEra:'capitulo', tit:'De rodillas, junto a la ventana',
+      cuerpo:'Ora de rodillas junto a una ventana de tu casa, como hacía Daniel en su cámara.',
+      anclaP:'¿En qué lugar de su casa entraba Daniel a orar?',
+      anclaR:'En su cámara (su cuarto): «a la hora de la oración entraba en su cámara».',
+      pista:'Era un cuarto de su propia casa, con ventanas.',
+      chica:'Escoge tu lugar de orar en la casa y muéstraselo a tu familia.',
+      grande:'Daniel tenía un lugar y una hora fijos. ¿Cuál va a ser el lugar fijo de cada uno en esta casa?'
+    },
+    {
+      id:'cuando-algo-sale-mal', ic:'⛈️', era:'hoy', anclaEra:'capitulo', tit:'También cuando algo sale mal',
+      cuerpo:'La próxima vez que algo salga mal hoy, ora ahí mismo en voz alta, no solo cuando todo esté bien.',
+      anclaP:'Según el capítulo, dentro del foso Daniel fue el mismo que cuando… ¿qué?',
+      anclaR:'El mismo que cuando actuaba delante del rey como presidente de los ministros y profeta del Altísimo: en la prueba fue igual que en la prosperidad.',
+      pista:'Igual en lo malo que en lo bueno.',
+      chica:'Cuenta algo que te salió mal hoy y ora por eso en una frase.',
+      grande:'¿Se les nota la fe más cuando todo va bien o cuando todo va mal? Digan la verdad y oren por eso.'
+    },
+    {
+      id:'gracias-por-hoy', ic:'🎁', era:'hoy', anclaEra:'capitulo', tit:'Una cosa buena de hoy',
+      cuerpo:'Cuéntale a tu familia una cosa buena que Dios te dio hoy y dale gracias en voz alta.',
+      anclaP:'¿Qué escribió el rey Darío a todos los pueblos, naciones y lenguas acerca del Dios de Daniel?',
+      anclaR:'Que todos temieran y temblaran delante de Él, «porque él es el Dios viviente y permanente por todos los siglos», y su reino no será deshecho.',
+      pista:'Que es un Dios que está vivo y que no se acaba nunca.',
+      chica:'Di tres cosas buenas de hoy, una por cada dedo.',
+      grande:'Un rey pagano acabó alabando a Dios por lo que vio en un solo hombre fiel. ¿Quién está mirando la fe de ustedes?'
+    },
+    {
+      id:'costumbre-no-casualidad', ic:'📌', era:'hoy', anclaEra:'capitulo', tit:'Costumbre, no casualidad',
+      cuerpo:'Escribe en un papel tus tres momentos y pégalo donde lo veas todos los días.',
+      anclaP:'El capítulo dice que Daniel oraba de una manera especial: no por casualidad, sino «según su…» ¿qué?',
+      anclaR:'«Según su costumbre». Ya lo hacía siempre, mucho antes del decreto.',
+      pista:'Es algo que uno hace todos los días sin que se le tenga que recordar.',
+      chica:'¿Ya pegaste el papel? Ve y pégalo, y muéstraselo a tu familia.',
+      grande:'¿Qué costumbre buena de esta casa se les está perdiendo? Decidan cómo la recuperan esta semana.'
+    },
+    {
+      id:'por-un-amigo-del-club', ic:'🧑‍🤝‍🧑', era:'hoy', anclaEra:'capitulo', tit:'Por un amigo del club',
+      cuerpo:'Ora por un amigo o amiga del club, para que hoy también ore tres veces.',
+      anclaP:'¿Cuántas veces vieron los príncipes a Daniel entrar en su cámara ese día que lo vigilaron?',
+      anclaR:'Tres veces. «Tres veces le vieron ir a su cámara, y tres veces oyeron su voz elevarse en ferviente intercesión para con Dios.»',
+      pista:'Las mismas veces que oyeron su voz.',
+      chica:'Di el nombre de un amigo del club y ora una frase por él o ella.',
+      grande:'Los enemigos lo vigilaban para acusarlo; nosotros nos cuidamos para animarnos. ¿A quién van a llamar hoy para preguntarle si oró?'
+    }
+  ];
+
+  const CLASES_CHICAS = ['Principiantes','Corderitos','Aves Madrugadoras','Abejitas Industriosas'];
+  const DIAS_LETRA = ['D','L','M','X','J','V','S'];
+  const DIAS_NOMBRE = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  // ── Fechas en hora de Bogotá ──
+  const bogotaFmt = new Intl.DateTimeFormat('en-CA', {timeZone:'America/Bogota'});
+  function hoyKey(){
+    return bogotaFmt.format(new Date());
+  }
+  function keyMenos(dias){
+    const [y, m, d] = hoyKey().split('-').map(Number);
+    const dt = new Date(Date.UTC(y, m - 1, d) - dias * 86400000);
+    return dt.toISOString().slice(0, 10);
+  }
+  function diaSemana(key){
+    const [y, m, d] = key.split('-').map(Number);
+    return new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+  }
+
+  // ── Progreso guardado ──
+  function storeKey(){
+    const p = AvProfile.get();
+    return `${ACTIVITY}:progreso:${p ? p.id : 'anon'}`;
+  }
+  // `pagado` va aparte de la marca: desmarcar un momento o borrar el registro
+  // del día limpia la marca pero NUNCA el pago, así el tope real del juego
+  // queda en 3 + 2 aunque el servidor permita 5 + 5.
+  const pagoVacio = () => ({m:[false, false, false], ancla:false, charla:false});
+  const diaVacio = () => ({m:[false, false, false], tarjeta:null, datos:null, ancla:false, charla:false, pagado:pagoVacio()});
+  let estado = null;
+
+  function normDia(d){
+    if(!d || typeof d !== 'object' || !Array.isArray(d.m) || d.m.length !== 3) return diaVacio();
+    const pg = d.pagado;
+    if(!pg || typeof pg !== 'object' || !Array.isArray(pg.m) || pg.m.length !== 3){
+      d.pagado = pagoVacio();
+    }else{
+      d.pagado = {m:[!!pg.m[0], !!pg.m[1], !!pg.m[2]], ancla:!!pg.ancla, charla:!!pg.charla};
+    }
+    if(!Array.isArray(d.datos) || d.datos.length !== 3) d.datos = null;
+    return d;
+  }
+
+  function cargar(){
+    let raw = null;
+    try{ raw = JSON.parse(localStorage.getItem(storeKey()) || 'null') }catch(e){}
+    estado = (raw && typeof raw === 'object') ? raw : {};
+    if(!Array.isArray(estado.horas) || estado.horas.length !== 3) estado.horas = ['', '', ''];
+    if(!estado.dias || typeof estado.dias !== 'object') estado.dias = {};
+    const k = hoyKey();
+    estado.dias[k] = normDia(estado.dias[k]);
+  }
+  function guardar(){
+    try{ localStorage.setItem(storeKey(), JSON.stringify(estado)) }catch(e){}
+  }
+  // Si la página queda abierta y cambia el día, se crea el registro del día nuevo.
+  function hoy(){
+    const k = hoyKey();
+    estado.dias[k] = normDia(estado.dias[k]);
+    return estado.dias[k];
+  }
+
+  function marcados(d){
+    return d.m.filter(Boolean).length;
+  }
+  function completo(d){
+    return !!d && Array.isArray(d.m) && d.m.every(Boolean);
+  }
+  // Racha: días seguidos con los tres momentos. Si hoy todavía no está completo,
+  // la racha no se pierde: se cuenta desde ayer.
+  function racha(){
+    let inicio = completo(estado.dias[hoyKey()]) ? 0 : 1;
+    let n = 0;
+    for(let i = inicio; i < 400; i++){
+      if(completo(estado.dias[keyMenos(i)])) n++;
+      else break;
+    }
+    return n;
+  }
+
+  const esChica = () => CLASES_CHICAS.indexOf(AvProfile.clubClass()) !== -1;
+
+  // ── Tarjeta del día: se escoge una vez y se queda ──
+  function tarjetaDeHoy(){
+    const d = hoy();
+    let t = d.card ? TARJETAS.find(x => x.id === d.card) : null;
+    if(!t){
+      // Bolsa de era 'hoy', separada de la bolsa `${ACTIVITY}:capitulo`.
+      t = AvProfile.pick(`${ACTIVITY}:hoy`, TARJETAS, 1, x => x.id)[0] || TARJETAS[0];
+      d.card = t.id;
+      guardar();
+    }
+    return t;
+  }
+
+  // ── Los tres datos del capítulo del día: uno por momento ──
+  function datosDeHoy(){
+    const d = hoy();
+    let ids = Array.isArray(d.datos) ? d.datos : null;
+    let elegidos = ids ? ids.map(id => DATOS.find(x => x.id === id)).filter(Boolean) : [];
+    if(elegidos.length !== 3){
+      elegidos = AvProfile.pick(`${ACTIVITY}:capitulo`, DATOS, 3, x => x.id);
+      while(elegidos.length < 3) elegidos.push(DATOS[elegidos.length]);
+      d.datos = elegidos.map(x => x.id);
+      guardar();
+    }
+    return elegidos;
+  }
+
+  // ── Nodos ──
+  const momentosBox = document.getElementById('momentos');
+  const rachaNum = document.getElementById('rachaNum');
+  const rachaLbl = document.getElementById('rachaLbl');
+  const semanaBox = document.getElementById('semana');
   const roundLabel = document.getElementById('roundLabel');
-  const judge = document.getElementById('judge');
-  const judgeQ = document.getElementById('judgeQ');
-  const judgeYes = document.getElementById('judgeYes');
-  const judgeNo = document.getElementById('judgeNo');
   const practiceNote = document.getElementById('practiceNote');
+  const finBox = document.getElementById('finBox');
+  const finT = document.getElementById('finT');
+  const finS = document.getElementById('finS');
+  const tarjetaTitulo = document.getElementById('tarjetaTitulo');
+  const tarjetaCuerpo = document.getElementById('tarjetaCuerpo');
+  const anclaPEl = document.getElementById('anclaP');
+  const anclaPista = document.getElementById('anclaPista');
+  const anclaVerBtn = document.getElementById('anclaVerBtn');
+  const anclaR = document.getElementById('anclaR');
+  const anclaRTxt = document.getElementById('anclaRTxt');
+  const anclaJudge = document.getElementById('anclaJudge');
+  const anclaJudgeQ = document.getElementById('anclaJudgeQ');
+  const anclaSi = document.getElementById('anclaSi');
+  const anclaNo = document.getElementById('anclaNo');
+  const anclaHecho = document.getElementById('anclaHecho');
+  const charlaPEl = document.getElementById('charlaP');
+  const charlaJudge = document.getElementById('charlaJudge');
+  const charlaJudgeQ = document.getElementById('charlaJudgeQ');
+  const charlaSi = document.getElementById('charlaSi');
+  const charlaNo = document.getElementById('charlaNo');
+  const charlaHecho = document.getElementById('charlaHecho');
 
-  // ── Dibujar las etiquetas del reloj (la ruleta es CSS puro) ──
-  function slotLabels(){
-    return SLOTS.map((s, i) => `
-      <div class="slot" style="--a:${i * 60 + 30}deg">
-        <div class="slot-inner">
-          <span class="ic">${s.icon}</span>
-          <span class="nm">${esc(s.short)}</span>
-        </div>
-      </div>`).join('');
-  }
-  wheel.innerHTML = slotLabels();
-  document.getElementById('paperWheel').insertAdjacentHTML('beforeend', slotLabels());
-
-  function phase(){
-    if(!match) return 'idle';
-    if(match.step < MATCH_CARDS) return 'card';
-    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
-    return 'done';
-  }
-
-  function pickMatchQuiz(){
-    const picked = [];
-    QUIZ_MIX.forEach(([tag, n]) => {
-      const group = QUIZ.filter(q => q.tag === tag);
-      picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.q));
-    });
-    return picked;
-  }
-
-  // 5 casillas distintas por partida (de las 6): 4 retos con dato del capítulo + 1 de aplicación de hoy.
-  // Bolsas separadas por era, para que la mezcla no dependa del azar.
-  const retosDe = (s, era) => s.retos.filter(r => r.era === era);
-
-  function pickMatchRounds(){
-    const hoyBag = SLOTS.flatMap(s => retosDe(s, 'hoy').map(r => ({slot: s, reto: r})));
-    const hoyRound = AvProfile.pick(`${ACTIVITY}:card:hoy`, hoyBag, 1, x => x.reto.t)[0];
-    const rest = SLOTS.filter(s => !hoyRound || s.id !== hoyRound.slot.id);
-    const slots = AvProfile.pick(`${ACTIVITY}:casilla`, rest, MATCH_CARDS - (hoyRound ? 1 : 0), s => s.id);
-    const rounds = slots.map(s => ({
-      slot: s,
-      reto: AvProfile.pick(`${ACTIVITY}:card:capitulo:${s.id}`, retosDe(s, 'capitulo'), 1, r => r.t)[0]
-    }));
-    if(hoyRound) rounds.splice(Math.floor(Math.random() * (rounds.length + 1)), 0, hoyRound);
-    return rounds;
-  }
-
-  function startMatch(){
-    practiceNote.hidden = true;
-    introCard.hidden = true;
-    match = {
-      rounds: pickMatchRounds(),
-      quizzes: pickMatchQuiz(),
-      step: 0,
-      revealed: false,
-      earned: 0
-    };
-    showStep();
-  }
-
-  function showStep(){
-    judge.hidden = true;
-    match.revealed = false;
-    const ph = phase();
-    if(ph === 'card'){
-      quizBox.hidden = true;
-      resultCard.hidden = true;
-      wheelWrap.hidden = false;
-      roundLabel.textContent = `Giro ${match.step + 1} de ${MATCH_CARDS}`;
-      mainBtn.textContent = '🎡 ¡Girar el reloj!';
-      mainBtn.disabled = false;
-      mainBtn.hidden = false;
-    }else if(ph === 'quiz'){
-      wheelWrap.hidden = true;
-      resultCard.hidden = true;
-      quizBox.hidden = false;
-      const q = match.quizzes[match.step - MATCH_CARDS];
-      roundLabel.textContent = `Pregunta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
-      quizTag.textContent = q.tag;
-      quizQ.textContent = q.q;
-      quizA.textContent = q.a;
-      quizA.hidden = true;
-      mainBtn.textContent = 'Ver respuesta';
-      mainBtn.disabled = false;
-      mainBtn.hidden = false;
-    }else{
-      finishMatch();
-    }
-  }
-
-  function showRoundResult(){
-    const r = match.rounds[match.step];
-    resultIcon.textContent = r.slot.icon;
-    resultSlot.textContent = `${r.slot.icon} ${r.slot.name}`;
-    resultReto.textContent = r.reto.t;
-    resultHint.textContent = r.reto.a
-      ? `✅ Respuesta esperada: ${r.reto.a}`
-      : '¡Hazlo ahora, en voz alta!';
-    resultCard.hidden = false;
-    match.revealed = true;
-    askJudge('card');
-  }
-
-  function spin(){
-    if(spinning) return;
-    const r = match.rounds[match.step];
-    const idx = SLOTS.findIndex(s => s.id === r.slot.id);
-    const target = idx * 60 + 30;
-    mainBtn.disabled = true;
-
-    if(reduced()){
-      rotation = target;
-      needle.style.transform = `rotate(${rotation}deg)`;
-      showRoundResult();
-      return;
-    }
-
-    spinning = true;
-    const delta = ((target - (rotation % 360)) + 360) % 360;
-    rotation += 360 * 4 + delta;
-    needle.style.transform = `rotate(${rotation}deg)`;
-    setTimeout(() => {
-      spinning = false;
-      if(!match || phase() !== 'card') return;
-      showRoundResult();
-    }, SPIN_MS + 120);
-  }
-
-  function askJudge(kind){
+  // ── Puntos ──
+  const nombre = () => {
     const p = AvProfile.get();
-    if(p && AvProfile.canScore(kind)){
-      judgeQ.textContent = kind === 'card'
-        ? `¿${p.name} cumplió el reto?`
-        : '¿Respondió bien?';
-      judgeYes.hidden = false;
-      judgeNo.hidden = false;
-      judge.hidden = false;
-      mainBtn.hidden = true;
-    }else{
-      judgeQ.textContent = p
-        ? '🌙 Puntos completos: este reto es de práctica.'
-        : '👤 Sin perfil: esto no suma al tablero.';
-      judgeYes.hidden = true;
-      judgeNo.hidden = true;
-      judge.hidden = false;
-      mainBtn.textContent = 'Siguiente ▶';
-      mainBtn.disabled = false;
-      mainBtn.hidden = false;
-    }
+    return p ? p.name : 'el aventurero';
+  };
+  // Cada roundLabel tiene su propia casilla de pago: 'm0','m1','m2','ancla','charla'.
+  function yaPagado(slot){
+    const pg = hoy().pagado;
+    return slot[0] === 'm' ? !!pg.m[Number(slot[1])] : !!pg[slot];
   }
-
-  function revealQuiz(){
-    match.revealed = true;
-    quizA.hidden = false;
-    askJudge('quiz');
+  function marcarPagado(slot){
+    const pg = hoy().pagado;
+    if(slot[0] === 'm') pg.m[Number(slot[1])] = true;
+    else pg[slot] = true;
+    guardar();
   }
-
-  function nextStep(){
-    match.step++;
-    showStep();
+  function puedeSumar(kind, slot){
+    return !!AvProfile.get() && !yaPagado(slot) && AvProfile.canScore(kind);
   }
-
-  function finishMatch(){
-    wheelWrap.hidden = false;
-    quizBox.hidden = true;
-    resultCard.hidden = false;
-    roundLabel.textContent = '¡Bien hecho, valiente!';
-    const p = AvProfile.get();
-    resultIcon.textContent = '🏁';
-    resultSlot.textContent = '¡Partida completa!';
-    resultReto.textContent = p
-      ? `⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.`
-      : 'Jugaste en modo práctica: nada de esto se pierde, ¡lo hiciste de verdad!';
-    const noMore = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
-    resultHint.textContent = noMore
-      ? '🌙 Puntos de hoy completos: las próximas partidas son de práctica.'
-      : 'Ora tres veces hoy, como Daniel.';
-    mainBtn.textContent = '🔁 Otra partida';
-    mainBtn.disabled = false;
-    mainBtn.hidden = false;
-    match = null;
-    updateIdleHint();
-  }
-
-  function updateIdleHint(){
-    if(match) return;
-    const p = AvProfile.get();
-    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
-    if(!p){
-      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los retos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
-      practiceNote.hidden = false;
-    }else if(practice){
-      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
-      practiceNote.hidden = false;
-    }else{
-      practiceNote.hidden = true;
-    }
-    if(mainBtn.textContent.includes('Otra partida')){
-      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
-    }else if(mainBtn.textContent.includes('partida')){
-      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
-    }
-  }
-  AvProfile.onChange(updateIdleHint);
-
-  mainBtn.addEventListener('click', () => {
-    if(spinning) return;
-    if(!match){ startMatch(); return; }
-    if(!match.revealed){
-      if(phase() === 'card') spin();
-      else revealQuiz();
-      return;
-    }
-    nextStep();
-  });
-
-  judgeYes.addEventListener('click', () => {
-    if(!match) return;
-    judge.hidden = true;
-    const kind = phase() === 'quiz' ? 'quiz' : 'card';
+  function sumar(kind, slot){
+    if(!puedeSumar(kind, slot)) return;
     AvProfile.score(true, kind);
-    match.earned++;
-    nextStep();
+    marcarPagado(slot);
+  }
+  const momentosPagados = () => hoy().pagado.m.filter(Boolean).length;
+  const tarjetaPagados = () => (hoy().pagado.ancla ? 1 : 0) + (hoy().pagado.charla ? 1 : 0);
+
+  // ── Pintar los tres momentos ──
+  function pintarMomentos(){
+    const d = hoy();
+    momentosBox.innerHTML = MOMENTOS.map(m => {
+      const ok = d.m[m.i];
+      const hora = estado.horas[m.i] || '';
+      return `
+        <div class="momento${ok ? ' listo' : ''}" data-m="${m.i}">
+          <div class="m-top">
+            <span class="m-ic">${m.ic}</span>
+            <span>
+              <span class="m-nom">${esc(m.nom)}</span><br>
+              <span class="m-est">${ok
+                ? (yaPagado('m' + m.i) ? '✅ Oró y dijo el dato del capítulo' : '✅ Oró · falta decir el dato del capítulo')
+                : '⏳ Sin marcar'}</span>
+            </span>
+          </div>
+          <div class="m-hora">
+            <label for="hora${m.i}">Nuestra hora (la elige la familia)</label>
+            <input id="hora${m.i}" type="text" inputmode="text" maxlength="24"
+                   placeholder="${esc(m.ph)}" value="${esc(hora)}" data-hora="${m.i}">
+          </div>
+          <div class="m-acc">
+            ${ok ? '' : `<button class="btn btn-gold btn-sm" data-orar="${m.i}">🙏 Ya oré</button>`}
+            ${ok && !yaPagado('m' + m.i) ? `<button class="btn btn-gold btn-sm" data-orar="${m.i}">📖 Decir el dato del capítulo</button>` : ''}
+            ${ok ? `<button class="btn btn-ghost btn-sm" data-desmarcar="${m.i}" style="color:var(--brick);border-color:var(--brick)">↺ Desmarcar</button>` : ''}
+          </div>
+          <div class="judge" data-judge="${m.i}" hidden></div>
+        </div>`;
+    }).join('');
+
+    momentosBox.querySelectorAll('[data-hora]').forEach(inp => {
+      inp.addEventListener('change', () => {
+        estado.horas[Number(inp.dataset.hora)] = inp.value.slice(0, 24);
+        guardar();
+      });
+    });
+    momentosBox.querySelectorAll('[data-orar]').forEach(b => {
+      b.addEventListener('click', () => pedirConfirmacion(Number(b.dataset.orar)));
+    });
+    momentosBox.querySelectorAll('[data-desmarcar]').forEach(b => {
+      b.addEventListener('click', () => {
+        const i = Number(b.dataset.desmarcar);
+        hoy().m[i] = false;
+        guardar();
+        paint();
+      });
+    });
+  }
+
+  // El punto del momento se paga por dos cosas juntas: oró Y dijo el dato del
+  // capítulo, que va impreso aquí mismo para que el adulto lo pueda calificar.
+  function pedirConfirmacion(i){
+    const box = momentosBox.querySelector(`[data-judge="${i}"]`);
+    if(!box) return;
+    const d = hoy();
+    const dato = datosDeHoy()[i];
+    const yaMarcado = !!d.m[i];
+    const suma = puedeSumar('card', 'm' + i);
+    const p = AvProfile.get();
+    const idleNote = suma
+      ? (yaMarcado
+          ? `Falta el dato del capítulo del ${esc(MOMENTOS[i].nom.toLowerCase())}. ¿Un adulto confirma que ${esc(nombre())} lo dijo en voz alta?`
+          : `¿Un adulto confirma que ${esc(nombre())} oró en el ${esc(MOMENTOS[i].nom.toLowerCase())} <strong>y dijo el dato del capítulo</strong>?`)
+      : (p
+          ? '🌙 Este momento ya está pago (o los puntos de hoy están completos). Se registra igual, pero no suma.'
+          : '👤 Sin perfil: se registra el momento en este dispositivo, pero no suma al tablero.');
+    box.innerHTML = `
+      <span>${idleNote}</span>
+      <span class="dato-p">📖 ${esc(dato.q)}</span>
+      ${esChica() && dato.hint ? `<span class="dato-hint">💡 Pista: ${esc(dato.pista)}</span>` : ''}
+      <span class="dato-r">✅ Respuesta del capítulo 44: ${esc(dato.r)}</span>
+      <button class="btn btn-verde btn-sm" data-si="${i}">${yaMarcado ? `⭐ Sí, dijo el dato${suma ? ' +1' : ''}` : `⭐ Oró y lo dijo${suma ? ' +1' : ''}`}</button>
+      ${yaMarcado ? '' : `<button class="btn btn-outline btn-sm" data-solo="${i}">🙏 Oró, pero no dijo el dato</button>`}
+      <button class="btn btn-outline btn-sm" data-no="${i}">⏳ Todavía no</button>`;
+    box.hidden = false;
+    box.querySelector(`[data-si="${i}"]`).addEventListener('click', () => {
+      hoy().m[i] = true;
+      guardar();
+      sumar('card', 'm' + i);
+      paint();
+    });
+    const solo = box.querySelector(`[data-solo="${i}"]`);
+    // Marca el momento (la racha no se pierde) pero no paga: el dato se puede
+    // decir más tarde con el botón «📖 Decir el dato del capítulo».
+    if(solo) solo.addEventListener('click', () => {
+      hoy().m[i] = true;
+      guardar();
+      paint();
+    });
+    box.querySelector(`[data-no="${i}"]`).addEventListener('click', () => {
+      box.hidden = true;
+      box.innerHTML = '';
+    });
+  }
+
+  // ── Pintar la tarjeta del día ──
+  // Estado de pantalla, no de progreso: si dijeron «todavía no», el paso 2 se
+  // repinta con otro texto en vez de desaparecer.
+  let charlaPospuesta = false;
+  function pintarTarjeta(){
+    const t = tarjetaDeHoy();
+    const d = hoy();
+    const chica = esChica();
+
+    tarjetaTitulo.innerHTML = `${t.ic} ${esc(t.tit)}`;
+    tarjetaCuerpo.textContent = t.cuerpo;
+    anclaPEl.textContent = t.anclaP;
+    anclaRTxt.textContent = t.anclaR;
+    charlaPEl.textContent = chica ? t.chica : t.grande;
+
+    if(chica && t.pista){
+      anclaPista.textContent = '💡 Pista: ' + t.pista;
+      anclaPista.hidden = false;
+    }else{
+      anclaPista.hidden = true;
+    }
+
+    // Paso 1: dato del capítulo. La respuesta se muestra siempre, acierte o no.
+    if(d.ancla){
+      anclaVerBtn.hidden = true;
+      anclaR.hidden = false;
+      anclaJudge.hidden = true;
+      anclaHecho.hidden = false;
+    }else{
+      anclaHecho.hidden = true;
+      anclaVerBtn.hidden = false;
+      anclaR.hidden = true;
+      anclaJudge.hidden = true;
+    }
+
+    // Paso 2: la conversación en familia. Es la única roundLabel de aplicación del
+    // juego (1 de 5) y su bloque nunca se esconde sin salida: si dicen «todavía
+    // no», sigue en pantalla con otro texto para volver a intentar.
+    if(d.charla){
+      charlaJudge.hidden = true;
+      charlaHecho.hidden = false;
+    }else{
+      charlaHecho.hidden = true;
+      const suma = puedeSumar('quiz', 'charla');
+      const p = AvProfile.get();
+      charlaJudgeQ.innerHTML = charlaPospuesta
+        ? '⏳ Lo dejaron para más tarde. Cuando conversen la tarjeta, vuelvan aquí.'
+        : (suma
+            ? '¿Conversaron esta tarjeta en familia?'
+            : (p ? '🌙 Este paso ya está pago hoy (o los puntos de tarjeta están completos): conversen igual, sin punto.'
+                 : '👤 Sin perfil: conversen igual, pero no suma al tablero.'));
+      charlaSi.textContent = charlaPospuesta
+        ? (suma ? '💬 Ya conversamos +1' : '💬 Ya conversamos')
+        : (suma ? '⭐ Sí, conversamos +1' : '✅ Sí, conversamos');
+      charlaJudge.hidden = false;
+    }
+  }
+
+  anclaVerBtn.addEventListener('click', () => {
+    anclaR.hidden = false;
+    anclaVerBtn.hidden = true;
+    const suma = puedeSumar('quiz', 'ancla');
+    const p = AvProfile.get();
+    anclaJudgeQ.textContent = suma
+      ? `¿${nombre()} dijo el dato del capítulo?`
+      : (p ? '🌙 Este paso ya está pago hoy (o los puntos de tarjeta están completos): esto es práctica.'
+           : '👤 Sin perfil: esto no suma al tablero.');
+    anclaSi.textContent = suma ? '⭐ ¡Sí! +1' : '✅ Ya lo dijo';
+    anclaJudge.hidden = false;
   });
-  judgeNo.addEventListener('click', () => {
-    if(!match) return;
-    judge.hidden = true;
-    const kind = phase() === 'quiz' ? 'quiz' : 'card';
-    AvProfile.score(false, kind);
-    nextStep();
+  anclaSi.addEventListener('click', () => {
+    hoy().ancla = true;
+    guardar();
+    sumar('quiz', 'ancla');
+    paint();
+  });
+  // El fallo no resta, pero sí gasta el intento del día: la casilla queda pagada
+  // para que borrar el registro no permita cobrarlo otra vez.
+  anclaNo.addEventListener('click', () => {
+    const d = hoy();
+    d.ancla = true;
+    if(puedeSumar('quiz', 'ancla')){
+      AvProfile.score(false, 'quiz');
+      marcarPagado('ancla');
+    }
+    guardar();
+    paint();
+  });
+  charlaSi.addEventListener('click', () => {
+    hoy().charla = true;
+    charlaPospuesta = false;
+    guardar();
+    sumar('quiz', 'charla');
+    paint();
+  });
+  // No se esconde el bloque: se repinta con otro texto y el botón sigue ahí.
+  charlaNo.addEventListener('click', () => {
+    charlaPospuesta = true;
+    pintarTarjeta();
   });
 
-  // ── Tarjetas de retos imprimibles ──
-  const retoCards = document.getElementById('retoCards');
-  retoCards.innerHTML = SLOTS.map(s => `
-    <div class="group-title"><span class="chip">${s.icon}</span> ${esc(s.name)}</div>
-    <div class="card-grid">
-      ${s.retos.map(r => `
-        <div class="mini-card">
-          <div class="emoji">${s.icon}</div>
-          <div class="mc-slot">${esc(s.short)}${r.era === 'hoy' ? ' · hoy' : ''}</div>
-          <div class="mc-reto">${esc(r.t)}</div>
-          ${r.a ? `<div class="mc-ans">✅ ${esc(r.a)}</div>` : ''}
-        </div>`).join('')}
+  // ── Racha y semana ──
+  function pintarRacha(){
+    const n = racha();
+    const d = hoy();
+    rachaNum.textContent = n > 0 ? `🔥 ${n} día${n === 1 ? '' : 's'}` : '🌱 Empezando';
+    rachaLbl.textContent = n > 0
+      ? `seguidos con los tres momentos · hoy vas ${marcados(d)} de 3`
+      : `hoy vas ${marcados(d)} de 3. Complétalos y arranca la racha.`;
+
+    const k = hoyKey();
+    semanaBox.innerHTML = Array.from({length:7}, (_, idx) => {
+      const key = keyMenos(6 - idx);
+      const dd = estado.dias[key];
+      const n2 = dd && Array.isArray(dd.m) ? dd.m.filter(Boolean).length : 0;
+      const cls = n2 >= 3 ? 'full' : (n2 === 2 ? 'p2' : (n2 === 1 ? 'p1' : ''));
+      const w = diaSemana(key);
+      return `<div class="dia${key === k ? ' hoy' : ''}">
+        <span class="bola ${cls}" role="img" aria-label="${esc(DIAS_NOMBRE[w])}: ${n2} de 3">${n2 >= 3 ? '✓' : (n2 || '')}</span>
+        ${esc(DIAS_LETRA[w])}
+      </div>`;
+    }).join('');
+  }
+
+  // ── Cierre del día ──
+  function pintarFin(){
+    const d = hoy();
+    const todo = completo(d) && d.ancla && d.charla;
+    if(!todo){ finBox.hidden = true; return }
+    const n = racha();
+    finT.textContent = '¡Día completo!';
+    finS.innerHTML = `Tres momentos de oración y la tarjeta conversada en familia. ` +
+      `Racha: <strong>${n} día${n === 1 ? '' : 's'}</strong>. ` +
+      `Daniel oraba así <em>«según su costumbre»</em>: vuelve mañana.`;
+    finBox.hidden = false;
+  }
+
+  function pintarAviso(){
+    const p = AvProfile.get();
+    if(!p){
+      practiceNote.innerHTML = '👤 Estás registrando <strong>sin perfil</strong>: se guarda en este dispositivo, pero no suma al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.hidden = false;
+      return;
+    }
+    const clubClass = AvProfile.clubClass();
+    // Lo que queda se cuenta con las casillas de pago del día, no con el tope
+    // del servidor: este juego vale 3 + 2 y nunca más.
+    const faltanM = AvProfile.canScore('card') ? 3 - momentosPagados() : 0;
+    const faltanT = AvProfile.canScore('quiz') ? 2 - tarjetaPagados() : 0;
+    if(faltanM <= 0 && faltanT <= 0){
+      practiceNote.innerHTML = '🌙 Los cinco puntos de hoy ya están completos. El registro sigue funcionando: <strong>lo que importa es no romper la racha</strong>.';
+      practiceNote.hidden = false;
+      return;
+    }
+    practiceNote.innerHTML = `⭐ Hoy puedes sumar <strong>${Math.max(0, faltanM)} de 3</strong> por los momentos de oración (orar y decir el dato del capítulo) y ` +
+      `<strong>${Math.max(0, faltanT)} de 2</strong> por la tarjeta del día.` +
+      (clubClass ? ` La tarjeta viene ajustada para <strong>${esc(clubClass)}</strong>.` : '');
+    practiceNote.hidden = false;
+  }
+
+  function paint(){
+    roundLabel.textContent = `Mi registro de hoy · ${hoyKey()}`;
+    pintarMomentos();
+    pintarTarjeta();
+    pintarRacha();
+    pintarFin();
+    pintarAviso();
+  }
+
+  // Borra las marcas del día, nunca los pagos: el tope de 3 + 2 se respeta
+  // aunque el registro se reinicie. La tarjeta y los datos del día tampoco
+  // cambian, para que no se puedan volver a sortear.
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    const d = hoy();
+    const nuevo = diaVacio();
+    nuevo.pagado = d.pagado;
+    nuevo.card = d.card;
+    nuevo.datos = d.datos;
+    estado.dias[hoyKey()] = nuevo;
+    charlaPospuesta = false;
+    guardar();
+    paint();
+  });
+
+  // ── Hoja imprimible ──
+  document.getElementById('regBody').innerHTML = DIAS_NOMBRE.map(dn => `
+    <tr>
+      <td class="dia-col">${esc(dn)}</td>
+      <td><span class="circulo"></span></td>
+      <td><span class="circulo"></span></td>
+      <td><span class="circulo"></span></td>
+      <td></td>
+    </tr>`).join('');
+
+  document.getElementById('printDatos').innerHTML = DATOS.map(x => `
+    <div class="cortar">
+      <div class="tt">📖 ${esc(x.q)}</div>
+      <div class="an">✅ ${esc(x.r)}</div>
+      <div class="an"><strong>Pista (clases menores):</strong> ${esc(x.pista)}</div>
     </div>`).join('');
 
-  // ── Menú ──
+  document.getElementById('printCards').innerHTML = TARJETAS.map(t => `
+    <div class="cortar">
+      <div class="tt">${t.ic} ${esc(t.tit)}</div>
+      <div>${esc(t.cuerpo)}</div>
+      <div class="an"><strong>Del capítulo:</strong> ${esc(t.anclaP)}<br>✅ ${esc(t.anclaR)}</div>
+      <div class="an"><strong>Para conversar (clases menores):</strong> ${esc(t.chica)}</div>
+      <div class="an"><strong>Para conversar (clases mayores):</strong> ${esc(t.grande)}</div>
+    </div>`).join('');
+
+  // ── Navegación ──
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
+    window.scrollTo(0, 0);
+  }
+  document.getElementById('toGameBtn').addEventListener('click', () => goTo('juego'));
+
   const menuBtn = document.getElementById('menuBtn');
   const menuPanel = document.getElementById('menuPanel');
   function closeMenu(){
     menuPanel.hidden = true;
-    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.setAttribute('aria-expanded', 'false');
   }
   menuBtn.addEventListener('click', () => {
     menuPanel.hidden = !menuPanel.hidden;
     menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
   });
-  document.addEventListener('click', e => {
-    if(!e.target.closest('.menu-wrap')) closeMenu();
-  });
+  document.addEventListener('click', e => { if(!e.target.closest('.menu-wrap')) closeMenu() });
   document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-      closeMenu();
-    });
+    btn.addEventListener('click', () => { goTo(btn.dataset.tab); closeMenu() });
   });
+  document.getElementById('changePlayerBtn').addEventListener('click', () => { closeMenu(); AvProfile.open() });
 
-  // ── Perfil y puntos (módulo compartido /shared/profile.js) ──
-  document.getElementById('changePlayerBtn').addEventListener('click', () => {
-    closeMenu();
-    AvProfile.open();
+  // ── Arranque ──
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 3, quiz: 2},   // lo que vale esta actividad; el techo del backend es 5+5
   });
-
-  // Iniciar
-  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
-  updateIdleHint();
+  cargar();
+  paint();
+  // Al cambiar de jugador el registro es otro: se recarga desde su propia clave.
+  let idActual = (AvProfile.get() || {}).id || null;
+  AvProfile.onChange(() => {
+    const nuevo = (AvProfile.get() || {}).id || null;
+    if(nuevo !== idActual){
+      idActual = nuevo;
+      charlaPospuesta = false;
+      cargar();
+    }
+    paint();
+  });
 </script>
 </body>
 </html>

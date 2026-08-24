@@ -6,16 +6,23 @@
    Uso en una página:
      <link rel="stylesheet" href="/shared/profile.css">
      <script src="/shared/profile.js"></script>
-     AvProfile.init({ chip: document.getElementById('playerChip'), activity: 'pr41', autoOpen: true });
+     AvProfile.init({
+       chip: document.getElementById('playerChip'),
+       activity: 'pr41',
+       caps: {card: 5, quiz: 2},   // lo que vale ESTA actividad; el techo del backend es 5+5
+       autoOpen: true
+     });
 
    El tope diario es por actividad: cada juego tiene sus propias 5 tarjetas y
    5 preguntas, así que `activity` debe ser el slug del juego (registrado en
    ACTIVITIES del worker).
 
    API:
-     AvProfile.get()                 -> {id, name, points, today:{<actividad>:{card,quiz}}, limit:{card,quiz}, doc} | null
+     AvProfile.get()                 -> {id, name, points, age, today:{<actividad>:{card,quiz}}, limit:{card,quiz}, doc} | null
+     AvProfile.clubClass()               -> 'Abejitas Industriosas' | null  (según la edad)
      AvProfile.today()               -> {card, quiz} de hoy en la actividad actual
      AvProfile.canScore(kind?)       -> true si puede sumar puntos hoy ('card' | 'quiz')
+     AvProfile.cap(kind)             -> tope real de hoy: el menor entre servidor y actividad
      AvProfile.score(correct, kind)  -> +1 con tope diario por tipo; la incorrecta solo se registra
      AvProfile.pick(bucket, items, n, keyFn)
                                 -> n elementos sin repetir hasta agotar la bolsa
@@ -28,8 +35,35 @@
   let player = null;
   try{ player = JSON.parse(localStorage.getItem(PKEY) || 'null') }catch(e){ player = null }
 
+  // Clases del Club de Aventureros. Para cambiar un nombre, se cambia aquí y
+  // queda cambiado en todo el sitio. La de 5 años está por confirmar.
+  const CLASSES = [
+    {upTo: 3,  name: 'Principiantes'},
+    {age: 4,   name: 'Corderitos'},
+    {age: 5,   name: 'Aves Madrugadoras'},
+    {age: 6,   name: 'Abejitas Industriosas'},
+    {age: 7,   name: 'Rayitos de Sol'},
+    {age: 8,   name: 'Constructores'},
+    {from: 9,  name: 'Manos Ayudadoras'}
+  ];
+  const AGES = [2, 3, 4, 5, 6, 7, 8, 9];
+  function classForAge(edad){
+    if(edad === null || edad === undefined) return null;
+    const n = Number(edad);
+    for(const c of CLASSES){
+      if(c.age !== undefined && n === c.age) return c.name;
+      if(c.upTo !== undefined && n <= c.upTo) return c.name;
+      if(c.from !== undefined && n >= c.from) return c.name;
+    }
+    return null;
+  }
+
   const LIMIT_FALLBACK = {card: 5, quiz: 5};
   let ACTIVITY = null;
+  // Tope propio de la actividad, declarado en init({caps}). El backend topa en
+  // 5+5, pero cada juego vale distinto: sin esto, cada página tendría que
+  // auto-limitarse por su cuenta y doce implementaciones fallan doce veces.
+  let CAPS = null;
   const normToday = t => (t && typeof t === 'object') ? {card: t.card || 0, quiz: t.quiz || 0} : {card: 0, quiz: 0};
   // today llega como {actividad: {card, quiz}}; las respuestas viejas traían {card, quiz} planos.
   const normTodayMap = t => {
@@ -77,12 +111,18 @@
     save();
     emit();
   }
+  // El tope real es el menor entre el del servidor y el que declaró la actividad.
+  function capFor(kind){
+    const l = (player && player.limit) || LIMIT_FALLBACK;
+    const servidor = l[kind] ?? 5;
+    const propio = CAPS && Number.isFinite(CAPS[kind]) ? CAPS[kind] : servidor;
+    return Math.min(servidor, Math.max(0, propio));
+  }
   function canScore(kind){
     if(!player || !ACTIVITY) return false;
     const t = todayFor(ACTIVITY);
-    const l = player.limit || LIMIT_FALLBACK;
-    if(kind) return t[kind] < (l[kind] ?? 5);
-    return t.card < (l.card ?? 5) || t.quiz < (l.quiz ?? 5);
+    if(kind) return t[kind] < capFor(kind);
+    return t.card < capFor('card') || t.quiz < capFor('quiz');
   }
 
   async function refresh(){
@@ -163,6 +203,10 @@
   }
   async function sendScore(correct, kind){
     if(!player) return;
+    const tipo = kind === 'quiz' ? 'quiz' : 'card';
+    // Un acierto por encima del tope de la actividad no se envía: se ignora en
+    // silencio. Así ningún juego puede pasarse aunque su lógica interna falle.
+    if(correct && todayFor(ACTIVITY)[tipo] >= capFor(tipo)) return;
     const entry = {doc: player.doc, correct, kind, activity: ACTIVITY};
     if(!navigator.onLine){
       enqueue(entry);
@@ -257,16 +301,22 @@
 
   // ── Overlay de ingreso ──
   let overlay, pfForm, pfDoc, pfName, pfNameWrap, pfStatus, pfError, pfSubmit;
+  let pfAgeWrap, pfAges, pfAgeClass;
+  let pickedAge = null;
   let lookup = null;
   let lookupTimer = null;
 
   function resetForm(){
     lookup = null;
+    pickedAge = null;
     pfDoc.value = '';
     pfName.value = '';
     pfError.textContent = '';
     pfStatus.hidden = true;
     pfNameWrap.hidden = false;
+    pfAgeWrap.hidden = false;
+    pfAgeClass.hidden = true;
+    pfAges.querySelectorAll('.pf-age').forEach(x => x.classList.remove('on'));
   }
 
   function open(){
@@ -284,7 +334,7 @@
     overlay.innerHTML = `
       <div class="pf-card">
         <button class="pf-close" type="button" aria-label="Cerrar">✕</button>
-        <h2>🧒 ¿Quién va a jugar?</h2>
+        <h2>🧒 ¿Quién va a aprender?</h2>
         <p class="pf-sub">Cada acierto suma ⭐ 1 punto al tablero del club: en cada actividad se pueden ganar hasta 5 puntos de juego y 5 de preguntas por día.</p>
         <form class="pf-form">
           <label>Número de documento del niño o la niña
@@ -294,6 +344,11 @@
           <label class="pf-name-wrap">Nombre del niño o la niña
             <input class="pf-name" type="text" maxlength="40" autocomplete="off" placeholder="Ej: Sara">
           </label>
+          <div class="pf-age-wrap">
+            <span class="pf-age-label">¿Cuántos años tiene?</span>
+            <div class="pf-ages"></div>
+            <p class="pf-age-class" hidden></p>
+          </div>
           <p class="pf-note">🔒 En el tablero solo aparece el nombre: el documento no se muestra a nadie ni se guarda en claro.</p>
           <div class="pf-error"></div>
           <div class="pf-actions">
@@ -309,6 +364,21 @@
     pfName = overlay.querySelector('.pf-name');
     pfNameWrap = overlay.querySelector('.pf-name-wrap');
     pfStatus = overlay.querySelector('.pf-status');
+    pfAgeWrap = overlay.querySelector('.pf-age-wrap');
+    pfAges = overlay.querySelector('.pf-ages');
+    pfAgeClass = overlay.querySelector('.pf-age-class');
+
+    pfAges.innerHTML = AGES.map(e =>
+      `<button type="button" class="pf-age" data-edad="${e}">${e}</button>`
+    ).join('');
+    pfAges.addEventListener('click', ev => {
+      const b = ev.target.closest('.pf-age');
+      if(!b) return;
+      pickedAge = Number(b.dataset.edad);
+      pfAges.querySelectorAll('.pf-age').forEach(x => x.classList.toggle('on', x === b));
+      pfAgeClass.textContent = `Clase: ${classForAge(pickedAge)}`;
+      pfAgeClass.hidden = false;
+    });
     pfError = overlay.querySelector('.pf-error');
     pfSubmit = overlay.querySelector('.pf-submit');
 
@@ -340,7 +410,11 @@
           const data = await api('login', {doc});
           lookup = {doc, data};
           pfNameWrap.hidden = true;
-          pfStatus.textContent = `✔ ¡Hola, ${data.player.name}! Toca ¡A jugar!`;
+          const yaTieneEdad = data.player.age !== null && data.player.age !== undefined;
+          pfAgeWrap.hidden = yaTieneEdad;
+          pfStatus.textContent = yaTieneEdad
+            ? `✔ ¡Hola, ${data.player.name}! (${classForAge(data.player.age)}) Toca ¡A jugar!`
+            : `✔ ¡Hola, ${data.player.name}! Falta decir cuántos años tiene 👇`;
           pfStatus.className = 'pf-status ok';
           pfStatus.hidden = false;
         }catch(err){
@@ -375,8 +449,17 @@
             if(!pfName.value.trim()){
               throw new Error('Escribe el nombre para crear el perfil.');
             }
-            data = await api('register', {name: pfName.value, doc});
+            if(pickedAge === null){
+              throw new Error('Toca la edad del niño o la niña.');
+            }
+            data = await api('register', {name: pfName.value, doc, age: pickedAge});
           }
+        }
+        // Perfil viejo sin edad: se completa aquí.
+        const sinEdad = data.player.age === null || data.player.age === undefined;
+        if(sinEdad){
+          if(pickedAge === null) throw new Error('Toca la edad del niño o la niña.');
+          data = await api('edad', {doc, age: pickedAge});
         }
         setFromResponse(data, doc);
         close();
@@ -388,8 +471,26 @@
     });
   }
 
+  // El trofeo vive en el extremo izquierdo de la barra y el chip en el derecho:
+  // son los dos lados del header, no un par de botones juntos.
+  function mountTrophy(el){
+    const barra = el && el.parentElement;
+    if(!barra || barra.querySelector('.pf-trophy')) return;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'pf-trophy';
+    btn.title = 'Tablero de puntos';
+    btn.setAttribute('aria-label', 'Tablero de puntos');
+    btn.textContent = '🏆';
+    btn.addEventListener('click', openBoard);
+    const volver = barra.querySelector('.back-link');
+    if(volver) volver.insertAdjacentElement('afterend', btn);
+    else barra.prepend(btn);
+  }
+
   function mountChip(el){
     if(!el) return;
+    mountTrophy(el);
     const render = () => {
       const pend = pendingCount();
       const offline = !navigator.onLine
@@ -402,16 +503,75 @@
         const t = todayFor(ACTIVITY);
         const l = player.limit || LIMIT_FALLBACK;
         const max = (l.card ?? 5) + (l.quiz ?? 5);
-        el.innerHTML = offline + `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points}${espera} · ${t.card + t.quiz}/${max} aquí hoy</button>`;
+        const clase = classForAge(player.age);
+        el.innerHTML = offline + `<button type="button" class="pf-chip" title="${clase ? esc(clase) + ' · ' : ''}Cambiar jugador">🧒 ${esc(player.name)}${clase ? `<span class="c-clase"> · ${esc(clase)}</span>` : ''} · ⭐ ${player.points}${espera}<span class="c-hoy"> · ${t.card + t.quiz}/${max} aquí hoy</span></button>`;
       }else{
         const map = player.today || {};
         const hoy = Object.keys(map).reduce((sum, k) => sum + normToday(map[k]).card + normToday(map[k]).quiz, 0);
-        el.innerHTML = offline + `<button type="button" class="pf-chip" title="Cambiar jugador">🧒 ${esc(player.name)} · ⭐ ${player.points}${espera} · +${hoy} hoy</button>`;
+        const clase2 = classForAge(player.age);
+        el.innerHTML = offline + `<button type="button" class="pf-chip" title="${clase2 ? esc(clase2) + ' · ' : ''}Cambiar jugador">🧒 ${esc(player.name)}${clase2 ? `<span class="c-clase"> · ${esc(clase2)}</span>` : ''} · ⭐ ${player.points}${espera}<span class="c-hoy"> · +${hoy} hoy</span></button>`;
       }
       el.querySelector('.pf-chip').addEventListener('click', open);
     };
     listeners.push(render);
     render();
+  }
+
+  // ── Tablero de puntos ──
+  // Vive aquí y no en la portada para que el trofeo esté en todas las páginas.
+  let boardEl = null;
+  function injectBoard(){
+    if(boardEl) return;
+    boardEl = document.createElement('div');
+    boardEl.className = 'pf-overlay pf-tablero';
+    boardEl.hidden = true;
+    boardEl.innerHTML = `
+      <div class="pf-card">
+        <button class="pf-close" type="button" aria-label="Cerrar">✕</button>
+        <h2>🏆 Tablero de puntos</h2>
+        <p class="pf-sub">Cada acierto suma ⭐ 1 punto. Cada actividad tiene su propio cupo diario, y no todas valen lo mismo.</p>
+        <ol class="pf-board"></ol>
+        <p class="pf-board-empty" hidden></p>
+      </div>`;
+    document.body.appendChild(boardEl);
+    boardEl.querySelector('.pf-close').addEventListener('click', () => { boardEl.hidden = true });
+    boardEl.addEventListener('click', e => { if(e.target === boardEl) boardEl.hidden = true });
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && !boardEl.hidden) boardEl.hidden = true;
+    });
+  }
+
+  async function openBoard(){
+    injectBoard();
+    const lista = boardEl.querySelector('.pf-board');
+    const vacia = boardEl.querySelector('.pf-board-empty');
+    boardEl.hidden = false;
+    lista.innerHTML = '';
+    vacia.textContent = 'Cargando…';
+    vacia.hidden = false;
+    try{
+      const res = await fetch('/api/leaderboard');
+      const data = await res.json();
+      const jugadores = data.players || [];
+      if(!jugadores.length){
+        vacia.textContent = 'Aún no hay puntos registrados… ¡sé el primero!';
+        return;
+      }
+      const medallas = ['🥇','🥈','🥉'];
+      lista.innerHTML = jugadores.map((j, i) => {
+        const isMe = player && j.name === player.name;
+        return `<li${isMe ? ' class="me"' : ''}>
+          <span class="rank">${medallas[i] || i + 1}</span>
+          <span class="who">${esc(j.name)}</span>
+          <span class="pts">⭐ ${j.points}</span>
+        </li>`;
+      }).join('');
+      vacia.hidden = true;
+    }catch(err){
+      vacia.textContent = navigator.onLine
+        ? 'No pudimos cargar el tablero. Intenta de nuevo más tarde.'
+        : '📴 Sin señal: el tablero necesita conexión.';
+    }
   }
 
   // ── App instalable ──
@@ -467,6 +627,7 @@
 
   function init(opts = {}){
     if(opts.activity) ACTIVITY = opts.activity;
+    if(opts.caps) CAPS = opts.caps;
     injectOverlay();
     if(opts.chip) mountChip(opts.chip);
     if(opts.install) mountInstall(opts.install);
@@ -488,11 +649,15 @@
     get: () => player,
     onChange: fn => listeners.push(fn),
     today: () => todayFor(ACTIVITY),
+    cap: capFor,
     pending: pendingCount,
+    clubClass: () => classForAge(player && player.age),
+    clubClasses: () => CLASSES.map(c => c.name),
     toast,
     canScore,
     score,
     pick,
-    open
+    open,
+    board: openBoard
   };
 })();

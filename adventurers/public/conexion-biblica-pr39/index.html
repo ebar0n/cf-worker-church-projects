@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1B2F6E">
 <title>La mesa del rey vs. la mesa de Daniel</title>
-<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Una partida diaria: 5 tarjetas sorpresa + 5 preguntas relámpago. ¡Suma puntos para el tablero del Club de Aventureros!">
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Primero se lee Daniel 1, después se juega: una ráfaga de 20 tarjetas para clasificar sin leer, por el dibujo y el color.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
 <meta property="og:title" content="La mesa del rey vs. la mesa de Daniel">
-<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Una partida diaria: 5 tarjetas sorpresa + 5 preguntas relámpago. ¡Suma puntos para el tablero del club!">
+<meta property="og:description" content="Ráfaga de 20 tarjetas: ¿mesa del rey o mesa de Daniel? Se gana un punto por cada 4 seguidas bien clasificadas. Para Corderitos y Abejitas, sin leer.">
 <meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr39/">
-<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/mesa-del-rey.png">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_CO">
@@ -60,59 +60,26 @@
   button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
   /* ── Cabecera ── */
-  header{
-    text-align:center;
-    padding:10px 16px 12px;
-  }
-  @media (max-width:600px){
-    .subtitle{display:none}
-    header{padding-bottom:8px}
-    .legend{gap:8px;margin-bottom:14px}
-    .legend-item{padding:8px 12px;font-size:.82rem}
-    .legend-item .big{font-size:1.3rem}
-  }
+  header{text-align:center;padding:10px 16px 12px}
   .eyebrow{
     font-family:'Fredoka',sans-serif;
-    font-size:.8rem;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    color:var(--gold-soft);
+    font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);
   }
   h1{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.5rem,5vw,2.3rem);
-    line-height:1.15;
-    margin-top:6px;
+    font-family:'Fredoka',sans-serif;font-weight:700;
+    font-size:clamp(1.4rem,5vw,2.3rem);line-height:1.15;margin-top:6px;
   }
   h1 .vs{
-    display:inline-block;
-    background:var(--gold);
-    color:var(--lapis-deep);
-    border-radius:999px;
-    font-size:.55em;
-    padding:.15em .7em;
-    margin:0 .25em;
-    vertical-align:middle;
+    display:inline-block;background:var(--gold);color:var(--lapis-deep);
+    border-radius:999px;font-size:.55em;padding:.15em .7em;margin:0 .25em;vertical-align:middle;
   }
   .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+  @media (max-width:600px){.subtitle{display:none}header{padding-bottom:8px}}
 
   /* ── Barra superior + menú ── */
-  .topbar{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:10px 12px 0;
-    max-width:1000px;
-    margin:0 auto;
-  }
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 12px 0;max-width:1000px;margin:0 auto}
   .topbar .back-link{white-space:nowrap;flex-shrink:0}
-  .player-chip{
-    margin-left:auto;
-    min-width:0;
-    display:flex;
-    justify-content:flex-end;
-  }
+  .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
   .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
   .player-chip + .menu-wrap{margin-left:0}
   @media (max-width:480px){
@@ -121,359 +88,216 @@
     .back-link{padding:8px 10px}
     .menu-btn{padding:8px 12px}
   }
+  .back-link{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--gold-soft);text-decoration:none;border:2px solid transparent;border-radius:999px;padding:8px 16px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-btn{
-    font-family:'Fredoka',sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    border:2px solid var(--gold);
-    background:transparent;
-    color:var(--gold-soft);
-    border-radius:999px;
-    padding:8px 16px;
-    min-height:44px;
-    cursor:pointer;
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;border:2px solid var(--gold);
+    background:transparent;color:var(--gold-soft);border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer;
   }
   .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-panel{
-    position:absolute;
-    right:0;
-    top:calc(100% + 8px);
-    z-index:50;
-    display:flex;
-    flex-direction:column;
-    min-width:240px;
-    background:var(--cream);
-    border:3px solid var(--gold);
-    border-radius:18px;
-    padding:8px;
-    box-shadow:0 10px 0 rgba(0,0,0,.3);
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
   }
   .menu-panel[hidden]{display:none}
   .menu-item{
-    font-family:'Fredoka',sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    text-align:left;
-    background:transparent;
-    border:none;
-    color:var(--ink);
-    border-radius:12px;
-    padding:12px 14px;
-    min-height:44px;
-    cursor:pointer;
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;background:transparent;border:none;
+    color:var(--ink);border-radius:12px;padding:12px 14px;min-height:44px;cursor:pointer;
   }
   .menu-item:hover{background:rgba(240,180,41,.25)}
   .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
   .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
 
-  /* ── Reto de puntos ── */
-  .judge{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:16px;
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:16px;
-    padding:12px 14px;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-  }
-  .judge span{flex-basis:100%;text-align:center}
-  .judge[hidden]{display:none}
-
-
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
 
-  /* ── Leyenda de acciones ── */
+  /* ══════════ LEER ══════════ */
+  #leer{max-width:680px}
+  .read-card{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:22px 20px;margin-bottom:18px;box-shadow:0 8px 0 rgba(0,0,0,.28);
+  }
+  .read-card h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.12rem;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .read-card p{line-height:1.55;margin-bottom:10px}
+  .read-card p:last-child{margin-bottom:0}
+  .cita{
+    border-left:5px solid var(--brick);background:rgba(194,84,43,.09);border-radius:0 12px 12px 0;
+    padding:12px 14px;margin-bottom:12px;font-weight:700;line-height:1.5;
+  }
+  .cita b{display:block;font-size:.82rem;margin-top:6px;color:var(--brick);font-weight:800}
+  .source{font-size:.82rem;opacity:.72;margin-top:12px}
+  .source a{color:var(--brick);font-weight:700}
+  .read-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+  .regla{
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0 4px;
+  }
+  .regla-lado{
+    border-radius:18px;padding:14px 10px;text-align:center;color:#fff;
+    font-family:'Fredoka',sans-serif;font-weight:600;line-height:1.25;
+  }
+  .regla-rey{background:var(--rey)}
+  .regla-daniel{background:var(--daniel)}
+  .regla-lado .big{display:block;font-size:2.4rem;line-height:1.1}
+  .regla-lado .mini{display:block;font-size:.86rem;font-weight:700;opacity:.95;margin-top:6px}
+
+  /* ══════════ JUEGO ══════════ */
   .legend{
-    display:flex;
-    justify-content:center;
-    gap:14px;
-    flex-wrap:wrap;
-    margin-bottom:22px;
+    display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0 auto 18px;max-width:620px;
   }
   .legend-item{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    border-radius:16px;
-    padding:10px 18px;
-    font-weight:800;
-    font-size:.95rem;
+    background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:16px;
+    padding:10px 14px;font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:8px;
   }
-  .legend-item .big{font-size:1.7rem}
-  .legend-rey{background:var(--rey);color:#fff}
-  .legend-daniel{background:var(--daniel);color:#fff}
+  .legend-item .big{font-size:1.5rem}
   .legend[hidden]{display:none}
-  .practice-note{
-    margin-top:16px;
-    text-align:center;
-    font-weight:700;
-    font-size:.95rem;
-    color:var(--gold-soft);
-    opacity:.9;
+  @media (max-width:600px){
+    .legend{gap:8px;margin-bottom:14px}
+    .legend-item{padding:8px 12px;font-size:.82rem}
+    .legend-item .big{font-size:1.3rem}
   }
-  .practice-note[hidden]{display:none}
 
-  /* ══════════ MODO JUEGO ══════════ */
-  .stage{
-    max-width:460px;
-    margin:0 auto;
-    text-align:center;
-  }
+  .stage{max-width:520px;margin:0 auto;text-align:center}
   .round-label{
-    font-family:'Fredoka',sans-serif;
-    color:var(--gold-soft);
-    letter-spacing:.15em;
-    text-transform:uppercase;
-    font-size:.8rem;
-    margin-bottom:12px;
+    font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.15em;
+    text-transform:uppercase;font-size:.8rem;margin-bottom:10px;
   }
-  .game-card{
-    background:var(--cream);
-    color:var(--ink);
-    border-radius:28px;
-    border:6px solid var(--gold);
-    box-shadow:0 12px 0 rgba(0,0,0,.28);
-    padding:34px 20px 30px;
-    min-height:360px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:14px;
-    position:relative;
-    overflow:hidden;
-    transition:background .25s ease, border-color .25s ease, color .25s ease;
+  .tracker{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .tracker[hidden]{display:none}
+  .pips{display:flex;gap:7px}
+  .pip{
+    width:18px;height:18px;border-radius:50%;
+    border:3px solid var(--gold);background:transparent;
   }
-  .game-card .emoji{
-    font-size:clamp(5rem,26vw,8rem);
-    line-height:1;
-    filter:drop-shadow(0 6px 0 rgba(0,0,0,.12));
+  .pip.on{background:var(--gold)}
+  .track-info{font-family:'Fredoka',sans-serif;font-weight:600;font-size:.95rem;color:var(--gold-soft)}
+  .timer{
+    font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;color:var(--gold-soft);
+    border:2px solid var(--gold);border-radius:999px;padding:3px 12px;
   }
-  .game-card .food-name{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.4rem,6vw,2rem);
-    line-height:1.15;
-  }
-  .game-card .hint{
-    font-weight:700;
-    font-size:1rem;
-    opacity:.65;
-  }
-  /* Estado revelado */
-  .game-card.revealed-rey{background:var(--rey);border-color:var(--rey-deep);color:#fff}
-  .game-card.revealed-daniel{background:var(--daniel);border-color:var(--daniel-deep);color:#fff}
-  .game-card.revealed-rey .hint,
-  .game-card.revealed-daniel .hint{opacity:.9}
-  .action-emoji{
-    font-size:clamp(3.4rem,18vw,5rem);
-    line-height:1;
-    animation:pop .35s cubic-bezier(.2,1.6,.4,1) both;
-  }
-  .action-name{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.5rem,7vw,2.2rem);
-    animation:pop .35s .06s cubic-bezier(.2,1.6,.4,1) both;
-  }
-  @keyframes pop{
-    from{transform:scale(.3);opacity:0}
-    to{transform:scale(1);opacity:1}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .action-emoji,.action-name{animation:none}
-  }
+  .timer[hidden]{display:none}
 
-  .controls{
-    display:flex;
-    gap:12px;
-    justify-content:center;
-    margin-top:22px;
-    flex-wrap:wrap;
+  .game-card{
+    background:var(--cream);color:var(--ink);border-radius:28px;border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);padding:26px 18px;min-height:300px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;
   }
+  .game-card .emoji{font-size:clamp(4rem,22vw,6.5rem);line-height:1}
+  .game-card .food-name{
+    font-family:'Fredoka',sans-serif;font-weight:700;
+    font-size:clamp(1.2rem,5.5vw,1.7rem);line-height:1.18;
+  }
+  .game-card .hint{font-weight:700;font-size:.98rem;opacity:.85;line-height:1.4}
+  .game-card.ok{background:var(--daniel);color:#fff;border-color:var(--daniel-deep)}
+  .game-card.bad{background:var(--rey);color:#fff;border-color:var(--rey-deep)}
+  .mark{font-size:clamp(3rem,16vw,4.6rem);line-height:1;animation:pop .3s cubic-bezier(.2,1.6,.4,1) both}
+  .verdict{
+    font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.25rem,6vw,1.8rem);line-height:1.2;
+  }
+  @keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+
+  .choices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+  .choices[hidden]{display:none}
+  .choice{
+    font-family:'Fredoka',sans-serif;font-weight:600;color:#fff;border:4px solid rgba(255,255,255,.45);
+    border-radius:22px;padding:14px 8px;min-height:104px;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    box-shadow:0 6px 0 rgba(0,0,0,.3);
+  }
+  .choice:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.3)}
+  .choice:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
+  .choice[disabled]{opacity:.55;cursor:default}
+  .choice .big{font-size:2.6rem;line-height:1}
+  .choice .lbl{font-size:1rem;line-height:1.15}
+  .choice .act{font-size:1.5rem;line-height:1.1}
+  .choice-rey{background:var(--rey)}
+  .choice-daniel{background:var(--daniel)}
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+  .controls[hidden]{display:none}
   .btn{
-    font-family:'Fredoka',sans-serif;
-    font-size:1.1rem;
-    font-weight:600;
-    border:none;
-    border-radius:999px;
-    padding:14px 30px;
-    cursor:pointer;
-    box-shadow:0 5px 0 rgba(0,0,0,.3);
-    transition:transform .1s ease;
+    font-family:'Fredoka',sans-serif;font-size:1.08rem;font-weight:600;border:none;border-radius:999px;
+    padding:14px 28px;min-height:48px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.3);
   }
   .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
   .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .btn-gold{background:var(--gold);color:var(--lapis-deep)}
   .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
-  .btn-outline:active{transform:translateY(2px)}
+  .btn-sm{font-size:.95rem;padding:10px 20px;min-height:44px}
 
-  /* Pregunta relámpago */
-  .quiz-box{
-    margin-top:26px;
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:20px;
-    padding:18px 16px;
-    display:none;
+  .judge{
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px;
+    background:rgba(255,255,255,.07);border:2px dashed var(--gold);border-radius:16px;padding:12px 14px;
+    font-family:'Fredoka',sans-serif;font-weight:600;
   }
-  .quiz-box.show{display:block}
-  .quiz-tag{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-size:.75rem;
-    font-weight:600;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    background:var(--brick);
-    color:#fff;
-    border-radius:999px;
-    padding:4px 12px;
-    margin-bottom:10px;
-  }
-  .quiz-q{font-size:1.1rem;font-weight:700}
-  .quiz-a{
-    margin-top:10px;
-    font-weight:800;
-    color:var(--gold-soft);
-    display:none;
-  }
-  .quiz-a.show{display:block}
-  .quiz-actions{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .btn-sm{font-size:.95rem;padding:9px 20px;min-height:44px}
+  .judge span{flex-basis:100%;text-align:center}
+  .judge[hidden]{display:none}
+  .practice-note{margin-top:16px;text-align:center;font-weight:700;font-size:.95rem;color:var(--gold-soft);opacity:.9}
+  .practice-note[hidden]{display:none}
 
-  /* ══════════ TARJETAS IMPRIMIBLES ══════════ */
-  .print-note{
-    text-align:center;
-    font-size:.95rem;
-    opacity:.85;
-    max-width:560px;
-    margin:0 auto 20px;
-  }
-  .card-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-    gap:14px;
-  }
+  /* ══════════ MATERIAL IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:600px;margin:0 auto 20px}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
   .mini-card{
-    background:var(--cream);
-    color:var(--ink);
-    border-radius:18px;
-    border:4px solid var(--gold);
-    padding:18px 10px 12px;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:8px;
-    position:relative;
-    box-shadow:0 5px 0 rgba(0,0,0,.25);
+    background:var(--cream);color:var(--ink);border-radius:18px;border:4px solid var(--gold);
+    padding:18px 10px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;
+    position:relative;box-shadow:0 5px 0 rgba(0,0,0,.25);
   }
   .mini-card .emoji{font-size:3.2rem;line-height:1}
-  .mini-card .food-name{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1rem;
-    line-height:1.2;
-  }
+  .mini-card .food-name{font-family:'Fredoka',sans-serif;font-weight:600;font-size:.98rem;line-height:1.2}
+  .mini-card .mini-src{font-size:.68rem;font-weight:800;color:var(--brick);line-height:1.25}
   .key-dot{
-    position:absolute;
-    top:8px;
-    right:8px;
-    width:18px;
-    height:18px;
-    border-radius:50%;
+    position:absolute;top:8px;right:8px;width:18px;height:18px;border-radius:50%;
     border:2px solid rgba(0,0,0,.25);
   }
   .key-rey{background:var(--rey)}
   .key-daniel{background:var(--daniel)}
   .group-title{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1.2rem;
-    margin:26px 0 12px;
-    display:flex;
-    align-items:center;
-    gap:10px;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;margin:26px 0 12px;
+    display:flex;align-items:center;gap:10px;
   }
-  .group-title .chip{
-    font-size:1.4rem;
-    background:var(--cream);
-    border-radius:12px;
-    padding:2px 10px;
-  }
-
-  /* ── Volver al índice ── */
-  .back-link{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:.9rem;
-    color:var(--gold-soft);
-    text-decoration:none;
-    border:2px solid transparent;
-    border-radius:999px;
-    padding:8px 16px;
-    margin-bottom:8px;
-  }
-  .back-link:hover{border-color:var(--gold)}
-  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .group-title .chip{font-size:1.4rem;background:var(--cream);border-radius:12px;padding:2px 10px}
 
   /* ══════════ PARA PADRES ══════════ */
   #padres{max-width:720px}
   .parent-box{
-    background:var(--cream);
-    color:var(--ink);
-    border:4px solid var(--gold);
-    border-radius:22px;
-    padding:22px 20px;
-    margin-bottom:18px;
-    box-shadow:0 6px 0 rgba(0,0,0,.25);
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:22px;
+    padding:22px 20px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
   }
   .parent-box h2{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1.2rem;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:8px;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.2rem;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
   }
   .parent-box p{margin-bottom:10px;line-height:1.55}
   .parent-box p:last-child{margin-bottom:0}
   .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
   .parent-box li{margin-bottom:6px}
+  .parent-box a{color:var(--brick);font-weight:700}
   .verse{
-    border-left:5px solid var(--brick);
-    background:rgba(194,84,43,.08);
-    border-radius:0 12px 12px 0;
-    padding:12px 14px;
-    font-style:italic;
-    font-weight:700;
+    border-left:5px solid var(--brick);background:rgba(194,84,43,.08);border-radius:0 12px 12px 0;
+    padding:12px 14px;font-style:italic;font-weight:700;
   }
   .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
-
-  .mini-ask{font-size:.72rem;font-weight:700;line-height:1.3;margin-top:6px;opacity:.85}
-  .mini-key{font-size:.66rem;font-weight:800;line-height:1.3;margin-top:4px;color:var(--brick)}
 
   /* ── Impresión ── */
   @media print{
     body{background:#fff;color:#000}
-    header,.topbar,#juego,#padres,.print-note,.legend{display:none!important}
+    header,.topbar,#leer,#juego,#padres,.print-note{display:none!important}
     section{display:block!important;padding:0}
-    #tarjetas{display:block!important}
-    .card-grid{grid-template-columns:repeat(3,1fr);gap:10mm}
-    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:14mm 4mm 10mm}
-    .mini-card .emoji{font-size:22mm}
+    #material{display:block!important}
+    .card-grid{grid-template-columns:repeat(3,1fr);gap:8mm}
+    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:12mm 4mm 8mm}
+    .mini-card .emoji{font-size:20mm}
     .group-title{color:#000}
     .group-title .chip{border:1px solid #ccc}
   }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -484,8 +308,9 @@
   <div class="menu-wrap">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
     <div class="menu-panel" id="menuPanel" hidden>
-      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
-      <button class="menu-item" data-tab="tarjetas">🖨️ Tarjetas para imprimir</button>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="juego">🎮 Jugar</button>
+      <button class="menu-item" data-tab="material">🖨️ Tarjetas para imprimir</button>
       <button class="menu-item" data-tab="padres">👪 Para padres</button>
       <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
     </div>
@@ -495,57 +320,113 @@
 <header>
   <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 39 · En la corte de Babilonia</div>
   <h1>La mesa del rey <span class="vs">VS</span> la mesa de Daniel</h1>
-  <p class="subtitle">Sale una tarjeta… ¡y todos reaccionan!</p>
+  <p class="subtitle">Primero se lee. Después, ráfaga de 20 tarjetas.</p>
 </header>
 
-<!-- ══════════ MODO JUEGO ══════════ -->
-<section id="juego" class="active">
+<!-- ══════════ LEER ══════════ -->
+<section id="leer" class="active">
+  <div class="read-card">
+    <h2>📖 Lo que pasó en el palacio</h2>
+    <p>A Daniel y a sus amigos les sirvieron de la mesa del rey de Babilonia. Escuchen lo que dice la Biblia:</p>
+    <p class="cita">«Y el rey les señaló la ración de cada día, de la comida del rey y del vino que él bebía.»<b>Daniel 1:5</b></p>
+    <p class="cita">«Y Daniel propuso en su corazón no contaminarse en la ración de la comida del rey, ni en el vino de su beber.»<b>Daniel 1:8</b></p>
+    <p class="cita">«Te ruego que hagas la prueba con tus siervos por diez días, y que nos den legumbres a comer y agua a beber.»<b>Daniel 1:12</b></p>
+    <p class="cita">«Pareció el rostro de ellos mejor y más nutrido de carne, que los otros muchachos que comían de la ración de la comida del rey.»<b>Daniel 1:15</b></p>
+    <p class="source">Puede leer el capítulo completo en <a href="https://www.biblegateway.com/passage/?search=Daniel%201&amp;version=RVR1995" target="_blank" rel="noopener">Daniel 1 · Reina-Valera 1995 (Bible Gateway)</a>.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>👑 Por qué Daniel dijo «no»</h2>
+    <p>El capítulo 39 de <em>Profetas y Reyes</em> lo explica así:</p>
+    <p class="cita">«Se había provisto que comiesen del alimento y bebiesen del vino que provenían de la mesa real… el alimento proveniente de la mesa del rey estaba consagrado a la idolatría, y compartirlo sería considerado como tributo de homenaje a los dioses de Babilonia.»<b>Profetas y Reyes, cap. 39, «En la corte de Babilonia»</b></p>
+    <p>Daniel pidió <strong>alimento sencillo</strong>: legumbres y agua. A los diez días estaba más sano y más fuerte que los que comían del rey.</p>
+    <p class="source">El capítulo se puede leer en <a href="https://m.egwwritings.org/es" target="_blank" rel="noopener">egwwritings.org · Escritos de Elena G. de White</a> (libro <em>Profetas y Reyes</em>, capítulo 39).</p>
+  </div>
+
+  <div class="read-card">
+    <h2>🎯 La regla del juego (una sola)</h2>
+    <p>Van a salir tarjetas, una tras otra. En cada una hay que decidir <strong>de qué mesa es</strong>:</p>
+    <div class="regla">
+      <div class="regla-lado regla-rey">
+        <span class="big">👑</span>
+        Mesa del rey
+        <span class="mini">🙊 Carne, copas de vino y golosinas del palacio</span>
+      </div>
+      <div class="regla-lado regla-daniel">
+        <span class="big">🌿</span>
+        Mesa de Daniel
+        <span class="mini">💪 Lo que da la tierra: legumbres, frutas, granos y agua</span>
+      </div>
+    </div>
+    <p>Se gana <strong>⭐ 1 punto por cada 4 tarjetas seguidas</strong> bien clasificadas. Si una sale mal, el bloque vuelve a start. Y al final hay <strong>⭐ 1 punto</strong> más por decir las dos cosas que Daniel decidió no tomar.</p>
+  </div>
+
+  <div class="read-cta">
+    <button class="btn btn-gold" id="toGameBtn">Ya lo leí · ¡A jugar! ▶</button>
+  </div>
+</section>
+
+<!-- ══════════ JUEGO ══════════ -->
+<section id="juego">
   <div class="legend" id="legend">
-    <div class="legend-item legend-rey"><span class="big">🙊</span> Mesa del rey → ¡tápate la boca!</div>
-    <div class="legend-item legend-daniel"><span class="big">💪</span> Mesa de Daniel → ¡haz músculo!</div>
+    <div class="legend-item"><span class="big">👑</span> Mesa del rey → ¡tápate la boca! 🙊</div>
+    <div class="legend-item"><span class="big">🌿</span> Mesa de Daniel → ¡haz músculo! 💪</div>
   </div>
 
   <div class="stage">
-    <div class="round-label" id="roundLabel">¿Listos, agentes?</div>
+    <div class="round-label" id="roundLabel">¿Listo, agente?</div>
+
+    <div class="tracker" id="tracker" hidden>
+      <div class="pips" id="pips" aria-label="Tarjetas seguidas bien clasificadas"></div>
+      <div class="track-info" id="trackInfo"></div>
+      <div class="timer" id="timer" hidden>⏱ 5</div>
+    </div>
 
     <div class="game-card" id="gameCard" aria-live="polite">
       <div class="emoji">🎲</div>
-      <div class="food-name">¡Partida de agentes!</div>
-      <div class="hint">5 tarjetas sorpresa + 5 preguntas relámpago</div>
+      <div class="food-name">Ráfaga de tarjetas</div>
+      <div class="hint" id="startHint">¿De qué mesa es cada una?</div>
     </div>
 
-    <div class="quiz-box" id="quizBox">
-      <span class="quiz-tag" id="quizTag">6–7 años</span>
-      <div class="quiz-q" id="quizQ"></div>
-      <div class="quiz-a" id="quizA"></div>
+    <div class="choices" id="choices" hidden>
+      <button class="choice choice-rey" id="btnRey" data-side="rey">
+        <span class="big">👑</span>
+        <span class="lbl">Mesa del rey</span>
+        <span class="act">🙊</span>
+      </button>
+      <button class="choice choice-daniel" id="btnDaniel" data-side="daniel">
+        <span class="big">🌿</span>
+        <span class="lbl">Mesa de Daniel</span>
+        <span class="act">💪</span>
+      </button>
     </div>
 
-    <div class="controls">
-      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
+    <div class="controls" id="controls">
+      <button class="btn btn-gold" id="mainBtn">▶ Empezar la ráfaga</button>
     </div>
 
     <div class="judge" id="judge" hidden>
-      <span id="judgeQ">¿Acertó?</span>
+      <span id="judgeQ">¿Dijo las dos cosas?</span>
       <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
       <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
     </div>
 
-    <p class="practice-note" id="practiceNote" hidden>🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.</p>
+    <p class="practice-note" id="practiceNote" hidden></p>
   </div>
 </section>
 
-<!-- ══════════ TARJETAS IMPRIMIBLES ══════════ -->
-<section id="tarjetas">
+<!-- ══════════ MATERIAL IMPRIMIBLE ══════════ -->
+<section id="material">
   <p class="print-note">
-    Usa <strong>Ctrl/Cmd + P</strong> para imprimirlas. El puntico de color en la esquina
-    es tu clave secreta de maestro: <span style="color:#FF9B94">rojo = mesa del rey (🙊)</span>,
-    <span style="color:#8FE3AE">verde = mesa de Daniel (💪)</span>. Los niños no saben el código… ¡tú sí!
+    Usa <strong>Ctrl/Cmd + P</strong> para imprimir las tarjetas, recortarlas y jugar la misma ráfaga
+    sin pantalla. El puntico de color de la esquina es la clave del adulto:
+    <span style="color:#FF9B94">rojo = mesa del rey (🙊)</span>,
+    <span style="color:#8FE3AE">verde = mesa de Daniel (💪)</span>.
+    El niño no ve el código: reconoce la tarjeta por el dibujo.
   </p>
   <p class="print-note">
-    En cada grupo van primero las tarjetas de <strong>repaso del capítulo 39</strong> (escenas y decisiones
-    del relato) y al final las de <strong>aplicación de hoy</strong> (comidas y decisiones de salud).
-    Cada tarjeta de repaso trae abajo el <strong>dato que el niño debe decir</strong> y, en rojo con 🔑,
-    la respuesta para el adulto.
+    Las tarjetas con la nota en rojo son las que <strong>el texto nombra</strong> (Daniel 1 o el capítulo 39).
+    Las demás son ejemplos de la misma familia, para que la regla se pueda practicar en ráfaga.
   </p>
 
   <div class="group-title"><span class="chip">👑</span> Mesa del rey — 🙊 ¡tápate la boca!</div>
@@ -559,197 +440,168 @@
 <section id="padres">
   <div class="parent-box">
     <h2>📖 La historia</h2>
-    <p>Esta dinámica está basada en <strong>Daniel 1</strong> (capítulo 39 de <em>Profetas y Reyes</em>, «En la corte de Babilonia»). Daniel y sus tres amigos fueron llevados cautivos al palacio del rey Nabucodonosor, donde les ofrecieron la comida y el vino de la mesa real: alimentos que deshonraban a Dios.</p>
-    <p>Daniel <strong>propuso en su corazón no contaminarse</strong> y pidió una prueba de 10 días comiendo <strong>alimento sencillo</strong> (la frase «legumbres y agua» es de Daniel 1:12, no del capítulo 39). Al final, él y sus amigos estaban más sanos y fuertes, y Dios les dio sabiduría: el rey los halló <strong>diez veces mejores</strong> que todos sus sabios.</p>
+    <p>Daniel y sus tres amigos fueron llevados cautivos al palacio de Nabucodonosor, en Babilonia. Allí les sirvieron de la mesa del rey: <strong>«la ración de la comida del rey»</strong> y <strong>«el vino de su beber»</strong> (Daniel 1:8). Esa comida estaba consagrada a los ídolos, así que comerla era rendir homenaje a los dioses de Babilonia.</p>
+    <p>Daniel <strong>propuso en su corazón no contaminarse</strong> y pidió una prueba de diez días con <strong>legumbres y agua</strong> (Daniel 1:12); el capítulo 39 lo llama <em>«alimento sencillo»</em>. A los diez días su rostro se veía «mejor y más nutrido de carne» (Daniel 1:15).</p>
   </div>
 
   <div class="parent-box">
     <h2>💡 ¿Qué aprende su hijo?</h2>
-    <ul>
-      <li><strong>Decidir de antemano</strong>: como Daniel, elegir honrar a Dios antes de que llegue la tentación.</li>
-      <li><strong>Cuidar el cuerpo</strong>: es el templo de Dios, y lo cuidamos con lo que comemos y bebemos.</li>
-      <li><strong>Valentía para decir no</strong>, aunque todos los demás digan que sí.</li>
-    </ul>
-    <p class="verse">«Yo honraré a los que me honran» <span>1 Samuel 2:30</span></p>
+    <p>Esta actividad tiene <strong>un solo objetivo</strong>: que el niño distinga, rápido y sin dudar, <strong>qué venía de la mesa del rey y qué de la mesa de Daniel</strong>. Es la puerta de entrada al capítulo, pensada para <strong>Corderitos</strong> (4 años) y <strong>Abejitas Industriosas</strong> (6 años): no hay que leer, no hay que recordar nombres y no hay preguntas.</p>
+    <p>Las preguntas del capítulo 39 (Melsar, Aspenaz, los tres años, los diez veces mejores) <strong>no están aquí</strong>: viven en otra actividad del club, para no repetir lo mismo dos veces.</p>
+    <p class="verse">«Y Daniel propuso en su corazón no contaminarse en la ración de la comida del rey, ni en el vino de su beber.» <span>Daniel 1:8</span></p>
   </div>
 
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 tarjetas sorpresa</strong> (4 del capítulo 39 y 1 de aplicación de hoy) y después <strong>5 preguntas relámpago</strong>. <strong>Las 10 rondas suman puntos</strong> y las 10 son contenido evaluable.</li>
-      <li>En cada tarjeta, su hijo reacciona antes de revelar: si cree que es de la <strong>mesa del rey</strong>, se tapa la boca (🙊); si es de la <strong>mesa de Daniel</strong>, hace músculo (💪). <strong>Y además dice el dato que pide la tarjeta</strong> (un nombre, un número, un orden o una frase del capítulo): ese dato es lo que se califica.</li>
-      <li>Toquen <strong>¡Revelar!</strong>: la app muestra la mesa y la respuesta correcta del dato. Díganle si su hijo lo dijo bien (⭐ +1) o no.</li>
-      <li>Luego vienen las preguntas, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. Revelen la respuesta y califiquen igual.</li>
-      <li>Las tarjetas y preguntas <strong>no se repiten</strong> hasta que se agoten todas: la app recuerda por niño lo que ya salió esta semana.</li>
-      <li>También pueden imprimir las tarjetas físicas desde la pestaña <strong>🖨️</strong> y jugar sin pantalla: el puntico de color en la esquina es la clave del adulto.</li>
+      <li><strong>Primero lean juntos</strong> la pestaña 📖. Ahí están los cuatro versículos de Daniel 1 que usa el juego y la frase del capítulo 39 sobre la mesa del rey. El juego <em>comprueba</em> lo leído; no lo enseña desde cero.</li>
+      <li>Toquen <strong>▶ Empezar la ráfaga</strong>. Salen <strong>20 tarjetas</strong>, una tras otra. En cada una el niño toca 👑 <strong>Mesa del rey</strong> o 🌿 <strong>Mesa de Daniel</strong>. Si además hace el gesto (🙊 taparse la boca / 💪 hacer músculo), mejor.</li>
+      <li>Los <strong>cuatro puntos</strong> de la esquina muestran el bloque en curso: <strong>se gana ⭐ 1 punto por cada 4 tarjetas seguidas bien clasificadas</strong>, y el bloque solo paga si trajo <strong>al menos dos tarjetas del capítulo</strong> (las marcadas 📖). Una equivocada devuelve el bloque a cero. Con 20 tarjetas hay margen para fallar y recuperarse.</li>
+      <li>Cuando se equivoca, la app <strong>se detiene</strong>, muestra la mesa correcta y por qué, y espera que toquen <em>Siguiente</em>. Ese es el momento de explicar. Cuando acierta, también muestra la respuesta y sigue sola.</li>
+      <li>Al final hay <strong>una ronda de voz</strong>: el niño dice <strong>las dos cosas que Daniel decidió no tomar</strong>. La respuesta aparece en pantalla y usted confirma con ⭐ o 😅. <strong>No se graba nada</strong>: usted es el juez.</li>
+      <li>Pueden imprimir las tarjetas desde la pestaña 🖨️ y jugar la ráfaga en el suelo, con dos cajas.</li>
     </ol>
-    <p>Las <strong>preguntas relámpago cubren todo el capítulo 39</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026 (versión Reina Valera 1995).</p>
-    <p><strong>Cuántas rondas suman puntos:</strong> una partida son <strong>10 rondas con punto</strong>
-      —5 tarjetas (máximo ⭐ 5 al día) y 5 preguntas (máximo ⭐ 5 al día)—. De esas 10, <strong>9 son repaso del
-      capítulo 39</strong> y <strong>1 es aplicación de hoy</strong> (la tarjeta de comida actual).</p>
-    <p><strong>Qué es repaso y qué es aplicación (para preparar el examen):</strong> las <strong>29 tarjetas de repaso</strong>
-      (13 de la mesa del rey y 16 de la mesa de Daniel) son escenas y decisiones que el capítulo 39 sí menciona
-      —«la ración de la comida del rey», «el vino de su beber», «propuso en su corazón no contaminarse», la prueba
-      de diez días, «el alimento sencillo», Melsar y el príncipe de los eunucos, Nadab y Abihú, «la fidelidad en
-      las cosas pequeñas»— y cada una <strong>pide un dato del capítulo</strong>. Las <strong>23 tarjetas de
-      aplicación de hoy</strong> (tocino, camarones, langosta, golosinas, gaseosa, frutas, avena…) <em>no</em> están en
-      el capítulo: unas vienen de las leyes de alimentación de Levítico 11 y otras son decisiones de salud de hoy;
-      ahí también va «legumbres y agua», que es de Daniel 1:12 y no del capítulo 39, y así aparece anotada.
-      Cada partida saca <strong>4 tarjetas del capítulo y solo 1 de aplicación</strong>.</p>
-    <p><strong>Nota para el examen:</strong> el capítulo 39 dice que Daniel pidió «alimento sencillo» y que se le
-      permitió seguir «su régimen sencillo»; «legumbres y agua» es la cita de Daniel 1:12. Los nombres caldeos
-      (Beltsasar, Sadrac, Mesac, Abed-nego) <em>sí</em> fueron cambiados y Daniel los aceptó: lo único que rechazó
-      fue la comida y el vino del rey.</p>
-    <p>La idea no es memorizar una lista de comidas, sino conversar: <em>¿por qué Daniel decidió así? ¿Qué decisiones podemos tomar nosotros para honrar a Dios?</em></p>
+    <p><strong>La dificultad se ajusta a la clase del club.</strong> Corderitos, Principiantes y Aves Madrugadoras reciben solo tarjetas muy evidentes y sin reloj. Abejitas Industriosas y Rayitos de Sol reciben algunas más difíciles. Constructores y Manos Ayudadoras juegan con <strong>reloj de 5 segundos</strong> por tarjeta.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ Los puntos y de dónde salen</h2>
+    <p>Esta actividad da hasta <strong>5 puntos al día</strong>, todos del tipo «tarjeta»: <strong>4 por los bloques</strong> de cuatro tarjetas seguidas y <strong>1 por la ronda de voz</strong> del final. No tiene puntos de tipo «pregunta», porque no tiene preguntas. Cada actividad del club vale distinto: el reparto sale del contenido, no de una plantilla.</p>
+    <p>Acertar una tarjeta sola no paga: entre dos mesas, una sola tarjeta se adivina la mitad de las veces, pero <strong>cuatro seguidas ya no</strong>. Por eso el punto es del bloque, no de la tarjeta. Las tarjetas falladas no restan.</p>
+    <p><strong>Qué es del texto y qué es familia.</strong> Ocho tarjetas —la ración de cada día, el vino de su beber, los manjares del banquete, la mesa servida, las legumbres, el agua, el alimento sencillo y el régimen sencillo— salen de Daniel 1 y del capítulo 39, y aparecen en <em>todas</em> las ráfagas. Las otras doce son <strong>ejemplos de la misma familia</strong> (carne, copas y golosinas de un lado; legumbres, frutas y granos del otro) y <em>no</em> están en el capítulo: están para que la regla se pueda practicar en ráfaga. En la hoja imprimible las del texto están marcadas.</p>
+    <p><strong>Ningún punto se paga sin el capítulo.</strong> La baraja se reparte de modo que cada bloque que puede pagar lleve <strong>dos tarjetas del texto</strong>, y el punto solo se da si esas dos entraron: no se pueden ganar los cuatro puntos clasificando únicamente comida de la familia.</p>
+    <p><strong>Todas las tarjetas se ven iguales antes de responder</strong>: mismo fondo crema y ninguna pista en el rótulo. El color solo aparece <em>después</em> —verde cuando acierta, rojo cuando falla— y la cita del versículo se muestra también al final, no antes.</p>
+    <p>Si no hay perfil, o si los 5 puntos del día ya están, la ráfaga sigue jugable en <strong>modo práctica</strong> y se avisa en pantalla. El perfil se crea una sola vez con el nombre y el documento del niño; el documento <strong>nunca aparece</strong> en el tablero, solo el nombre.</p>
   </div>
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 tarjetas sorpresa + 5 preguntas relámpago. Cada respuesta correcta suma <strong>⭐ 1 punto</strong> (las incorrectas no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de tarjetas y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
-    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+    <p>Una ráfaga por día. La meta no es solo ganar los puntos: es que el niño llegue al campamento pudiendo responder sin pensarlo <em>«¿qué decidió Daniel no comer ni beber?»</em>. Cuando ya le salga fácil, pásenle la pregunta al revés: <strong>usted</strong> nombra la comida y él hace el gesto.</p>
   </div>
 </section>
 
 <script src="/shared/profile.js"></script>
 
 <script>
-  // ── Datos ──
-  const FOODS = [
-    // ── Mesa del rey · repaso del capítulo 39 (cada tarjeta pide un dato del capítulo) ──
-    {emoji:'🍖', name:'La ración de la comida del rey', side:'rey', era:'capitulo',
-      ask:'…y completa la frase: «Propuso en su ______ de no contaminarse en la ración de la comida del rey»', ans:'Corazón'},
-    {emoji:'🍷', name:'El vino de su beber', side:'rey', era:'capitulo',
-      ask:'…y di qué les quedaría perjudicado por tomar vino', ans:'Sus facultades físicas y mentales'},
-    {emoji:'🗿', name:'Comer lo que se ofrecía a los ídolos', side:'rey', era:'capitulo',
-      ask:'…y di a los dioses de qué ciudad sería rendir homenaje', ans:'A los dioses de Babilonia'},
-    {emoji:'🙇', name:'Rendir homenaje a los dioses de Babilonia', side:'rey', era:'capitulo',
-      ask:'…y di el nombre del único Dios al que ellos adoraban', ans:'Jehová, el Dios viviente'},
-    {emoji:'🏛️', name:'Adorar como los caldeos', side:'rey', era:'capitulo',
-      ask:'…y di qué sí aprendieron de los caldeos', ans:'«Las letras y la lengua de los Caldeos»'},
-    {emoji:'🍽️', name:'Los manjares del rey que comían los otros muchachos', side:'rey', era:'capitulo',
-      ask:'…y di cuántos días duró la prueba que los comparó', ans:'10 días'},
-    {emoji:'🍶', name:'La intemperancia que describían los pergaminos del Pentateuco', side:'rey', era:'capitulo',
-      ask:'…y di los nombres de esos dos hombres', ans:'Nadab y Abihú'},
-    {emoji:'🎭', name:'Hacer como que comía del alimento del rey', side:'rey', era:'capitulo',
-      ask:'…y di qué habría sido eso, según el capítulo', ans:'Negar su fe'},
-    {emoji:'🎉', name:'El lujo y la disipación de la corte', side:'rey', era:'capitulo',
-      ask:'…y di sobre qué tres desarrollos tenían efecto', ans:'El físico, el mental y el espiritual'},
-    {emoji:'🤝', name:'Transigir con los idólatras', side:'rey', era:'capitulo',
-      ask:'…y di qué debían considerar como alto honor', ans:'La fe que sostenían y el nombre de adoradores del Dios viviente'},
-    {emoji:'😵', name:'Debilitar las facultades con el vino', side:'rey', era:'capitulo',
-      ask:'…y di quién los tendría por responsables de sus facultades', ans:'Dios'},
-    {emoji:'🚪', name:'El primer paso en la dirección errónea', side:'rey', era:'capitulo',
-      ask:'…y di quiénes les habían inculcado hábitos de estricta templanza', ans:'Sus padres'},
-    {emoji:'📜', name:'Una excusa plausible para dejar los hábitos temperantes', side:'rey', era:'capitulo',
-      ask:'…y di qué apreciaba Daniel más que el favor del rey', ans:'La aprobación de Dios'},
-    // ── Mesa del rey · aplicación de hoy (salud y decisiones) ──
-    {emoji:'🥓', name:'Tocino de cerdo', side:'rey', era:'hoy'},
-    {emoji:'🍖', name:'Costillas de cerdo', side:'rey', era:'hoy'},
-    {emoji:'🦐', name:'Camarones', side:'rey', era:'hoy'},
-    {emoji:'🦞', name:'Langosta', side:'rey', era:'hoy'},
-    {emoji:'🦀', name:'Cangrejo', side:'rey', era:'hoy'},
-    {emoji:'🍺', name:'Cerveza', side:'rey', era:'hoy'},
-    {emoji:'🍬', name:'Golosinas', side:'rey', era:'hoy'},
-    {emoji:'🍭', name:'Chupetas', side:'rey', era:'hoy'},
-    {emoji:'🥤', name:'Gaseosa', side:'rey', era:'hoy'},
-    {emoji:'🍟', name:'Papitas fritas', side:'rey', era:'hoy'},
-    {emoji:'🍩', name:'Donas azucaradas', side:'rey', era:'hoy'},
-    // ── Mesa de Daniel · repaso del capítulo 39 (cada tarjeta pide un dato del capítulo) ──
-    {emoji:'🥗', name:'El alimento sencillo', side:'daniel', era:'capitulo',
-      ask:'…y di cuántos días duró la prueba', ans:'10 días'},
-    {emoji:'🍲', name:'Su régimen sencillo durante todo el curso de su educación', side:'daniel', era:'capitulo',
-      ask:'…y di cuántos años duró esa educación', ans:'3 años'},
-    {emoji:'❤️', name:'Proponer en su corazón no contaminarse', side:'daniel', era:'capitulo',
-      ask:'…y di las dos cosas en que no quiso contaminarse', ans:'En la ración de la comida del rey y en el vino de su beber'},
-    {emoji:'🔟', name:'Pedir la prueba de diez días', side:'daniel', era:'capitulo',
-      ask:'…y di el nombre del oficial que consintió en la prueba', ans:'Melsar'},
-    {emoji:'🙏', name:'Apelar primero al príncipe de los eunucos y después a Melsar', side:'daniel', era:'capitulo',
-      ask:'…y di el orden: ¿a quién apeló primero y a quién después?', ans:'Primero al príncipe de los eunucos, después a Melsar'},
-    {emoji:'📚', name:'Aprender la lengua de los caldeos sin dejar a Dios', side:'daniel', era:'capitulo',
-      ask:'…y di qué estudiaron durante tres años', ans:'«Las letras y la lengua de los Caldeos»'},
-    {emoji:'🤏', name:'La fidelidad en las cosas pequeñas', side:'daniel', era:'capitulo',
-      ask:'…y di qué fue lo que dió carácter a toda su vida', ans:'La fidelidad en las cosas pequeñas'},
-    {emoji:'🛡️', name:'No renunciar a la fe para hacerse idólatra', side:'daniel', era:'capitulo',
-      ask:'…y di cómo esperaba el rey lograr que renunciaran', ans:'Gradualmente'},
-    {emoji:'⚖️', name:'Hábitos de estricta templanza', side:'daniel', era:'capitulo',
-      ask:'…y di quiénes se los habían inculcado', ans:'Sus padres'},
-    {emoji:'🧎', name:'Orar por sabiduría y vivir según sus oraciones', side:'daniel', era:'capitulo',
-      ask:'…y di qué don especial recibió Daniel', ans:'Entendimiento en toda visión y sueños'},
-    {emoji:'🎯', name:'Un propósito ferviente, diligencia y constancia', side:'daniel', era:'capitulo',
-      ask:'…y di cuántas veces mejores los halló el rey', ans:'Diez veces mejores'},
-    {emoji:'😊', name:'El rostro «mejor y más nutrido de carne»', side:'daniel', era:'capitulo',
-      ask:'…y completa: «pareció el rostro de ellos ______ y más nutrido de carne»', ans:'Mejor'},
-    {emoji:'🏅', name:'Ser hallados diez veces mejores', side:'daniel', era:'capitulo',
-      ask:'…y di mejores que quiénes', ans:'Que todos los magos y astrólogos del reino'},
-    {emoji:'🕊️', name:'Honrar a Dios en la prosperidad y en la adversidad', side:'daniel', era:'capitulo',
-      ask:'…y di la promesa que se cumplió en ellos (1 Samuel 2:30)', ans:'«Yo honraré a los que me honran»'},
-    {emoji:'🚶', name:'Andar con Dios como lo hizo aquel patriarca', side:'daniel', era:'capitulo',
-      ask:'…y di el nombre de ese patriarca', ans:'Enoc'},
-    {emoji:'🧠', name:'Los cuatro muchachos «en quienes no hubiese tacha alguna»', side:'daniel', era:'capitulo',
-      ask:'…y di los nombres de los cuatro', ans:'Daniel, Ananías, Misael y Azarías'},
-    // ── Mesa de Daniel · aplicación de hoy (salud y decisiones) ──
-    {emoji:'💧', name:'Legumbres y agua (Daniel 1:12, no el capítulo 39)', side:'daniel', era:'hoy'},
-    {emoji:'🥦', name:'Brócoli', side:'daniel', era:'hoy'},
-    {emoji:'🫘', name:'Frijoles', side:'daniel', era:'hoy'},
-    {emoji:'🥕', name:'Zanahorias', side:'daniel', era:'hoy'},
-    {emoji:'🍎', name:'Manzanas', side:'daniel', era:'hoy'},
-    {emoji:'🍇', name:'Uvas', side:'daniel', era:'hoy'},
-    {emoji:'🌽', name:'Maíz', side:'daniel', era:'hoy'},
-    {emoji:'🥒', name:'Pepinos', side:'daniel', era:'hoy'},
-    {emoji:'🍌', name:'Banano', side:'daniel', era:'hoy'},
-    {emoji:'🥜', name:'Maní y nueces', side:'daniel', era:'hoy'},
-    {emoji:'🥣', name:'Avena', side:'daniel', era:'hoy'},
-    {emoji:'🍊', name:'Naranjas', side:'daniel', era:'hoy'}
-  ];
-
-  const QUIZ = [
-    {tag:'4–5 años', q:'🙊 ¡Tápate la boca y di qué NO quiso comer ni beber Daniel!', a:'La comida del rey y el vino de su beber'},
-    {tag:'4–5 años', q:'💪 ¡Haz músculo y di cuántos días duró la prueba de la comida!', a:'10 días'},
-    {tag:'4–5 años', q:'¿Cuántos muchachos hebreos eran? Cuenten con los dedos.', a:'4: Daniel, Ananías, Misael y Azarías'},
-    {tag:'4–5 años', q:'¿Qué pidió Daniel que les dieran de comer durante la prueba?', a:'Alimento sencillo (la frase «legumbres y agua» es de Daniel 1:12)'},
-    {tag:'4–5 años', q:'¿A qué ciudad se llevaron cautivos a Daniel y sus amigos?', a:'A Babilonia'},
-    {tag:'4–5 años', q:'💪 ¡Haz músculo y completa: «pareció el rostro de ellos ______ y más nutrido de carne»!', a:'Mejor'},
-    {tag:'6–7 años', q:'¿Cuántos días duró la prueba de la comida?', a:'10 días'},
-    {tag:'6–7 años', q:'¿Cuántos años estudiaron en Babilonia?', a:'3 años'},
-    {tag:'6–7 años', q:'¿Qué nombre nuevo le pusieron a Daniel?', a:'Beltsasar'},
-    {tag:'6–7 años', q:'¿Qué nombres nuevos les pusieron a Ananías, Misael y Azarías?', a:'Sadrac, Mesac y Abed-nego'},
-    {tag:'6–7 años', q:'¿Cómo se llamaban los tres compañeros de Daniel?', a:'Ananías, Misael y Azarías'},
-    {tag:'6–7 años', q:'¿Cómo se llamaba el rey de Babilonia?', a:'Nabucodonosor'},
-    {tag:'6–7 años', q:'Según el capítulo, ¿de los hijos de quién eran Daniel y sus amigos, y a dónde fueron llevados?', a:'De los hijos de Judá, llevados a Babilonia'},
-    {tag:'6–7 años', q:'¿Qué estudiaron en la escuela de Babilonia?', a:'Las letras y la lengua de los caldeos'},
-    {tag:'6–7 años', q:'¿Cómo se llamaba el príncipe de los eunucos a quien el rey dio la orden?', a:'Aspenaz'},
-    {tag:'8–9 años', q:'¿Cómo se llamaba el oficial a quien Daniel pidió la prueba de los 10 días?', a:'Melsar'},
-    {tag:'8–9 años', q:'¿En qué orden apeló Daniel: a quién primero y a quién después?', a:'Primero al príncipe de los eunucos (Aspenaz) y después a Melsar'},
-    {tag:'8–9 años', q:'¿Cuántas veces mejores los halló el rey que a sus magos y astrólogos?', a:'Diez veces mejores'},
-    {tag:'8–9 años', q:'¿Por qué comer la comida del rey era deshonrar a Dios?', a:'Porque estaba ofrecida a los ídolos: comerla era rendir homenaje a los dioses de Babilonia'},
-    {tag:'8–9 años', q:'Completa: "Daniel propuso en su ________ no contaminarse".', a:'Corazón'},
-    {tag:'8–9 años', q:'¿Qué promesa se cumplió en ellos? (1 Samuel 2:30)', a:'"Yo honraré a los que me honran"'},
-    {tag:'8–9 años', q:'¿Cuántos años duraría el cautiverio de Israel en Babilonia?', a:'70 años'},
-    {tag:'8–9 años', q:'¿Por qué tenía miedo el príncipe de los eunucos de cambiarles la comida?', a:'Temía que el rey los viera más tristes y desmejorados y lo condenara a él: "condenaréis para con el rey mi cabeza"'},
-    {tag:'8–9 años', q:'Además de conocimiento, ¿qué don especial le dio Dios a Daniel?', a:'Entendimiento en toda visión y sueños'},
-    {tag:'8–9 años', q:'Según el capítulo, ¿qué dio carácter a toda la vida de Daniel y sus amigos?', a:'La fidelidad en las cosas pequeñas'},
-    {tag:'8–9 años', q:'¿Qué muchachos pidió el rey que le trajeran? Di tres requisitos.', a:'«En quienes no hubiese tacha alguna, y de buen parecer, y enseñados en toda sabiduría»'},
-    {tag:'8–9 años', q:'¿Qué dos hombres del Pentateuco conocían como ejemplo de intemperancia?', a:'Nadab y Abihú'},
-    {tag:'8–9 años', q:'El capítulo dice que anduvieron con Dios como lo hizo… ¿quién?', a:'Enoc'},
-    {tag:'8–9 años', q:'¿Qué obraba Dios en ellos, según Filipenses 2:13?', a:'«El querer como el hacer, por su buena voluntad»'}
-  ];
-
-  // ── Partida: 5 comidas + 5 preguntas ──
   const ACTIVITY = 'pr39';
-  const MATCH_CARDS = 5;
-  const MATCH_QUIZ = 5;
-  // Cuántas preguntas de cada edad entran en una partida (suman MATCH_QUIZ).
-  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
-  let match = null; // {cards, quizzes, step, revealed, earned}
+
+  // ── Baraja ──
+  // 'texto': la nombra Daniel 1 o el capítulo 39; entra en TODAS las ráfagas.
+  // 'familia': ejemplo de la misma familia, para poder practicar la regla en ráfaga.
+  // Todas las tarjetas se ven con el mismo fondo crema: el color aparece solo en el
+  // feedback (acierto/fallo), nunca antes de responder, para no delatar la mesa.
+  // El rótulo tampoco nombra la mesa: la cita textual va en `por`, que se muestra
+  // DESPUÉS de responder.
+  const TEXTO = [
+    {emoji:'🍖', name:'La ración de cada día', side:'rey',
+      src:'Daniel 1:8', por:'Es «la ración de la comida del rey»: estaba consagrada a los ídolos.'},
+    {emoji:'🍷', name:'El vino de su beber', side:'rey',
+      src:'Daniel 1:8', por:'Daniel tampoco quiso «el vino de su beber».'},
+    {emoji:'🍽️', name:'Los manjares del banquete', side:'rey',
+      src:'Cap. 39', por:'Los otros muchachos «comerían los manjares del rey».'},
+    {emoji:'🥘', name:'La mesa servida', side:'rey',
+      src:'Cap. 39', por:'El alimento «que provenía de la mesa real» era del rey.'},
+    {emoji:'🥗', name:'Legumbres', side:'daniel',
+      src:'Daniel 1:12', por:'«Que nos den legumbres a comer y agua a beber.»'},
+    {emoji:'💧', name:'Agua', side:'daniel',
+      src:'Daniel 1:12', por:'«Y agua a beber»: eso pidió Daniel para los diez días.'},
+    {emoji:'🥬', name:'El alimento sencillo', side:'daniel',
+      src:'Cap. 39', por:'El capítulo lo llama «alimento sencillo».'},
+    {emoji:'🍲', name:'El régimen sencillo de los diez días', side:'daniel',
+      src:'Cap. 39', por:'Les permitieron seguir «su régimen sencillo».'}
+  ];
+
+  // Familia: comida de la misma clubClass que la del capítulo, sin anacronismos y sin
+  // pares que se contradigan (nada frito ni de repostería frente a la papa o el
+  // trigo). Cada tarjeta lleva su propio `por` con el criterio, para que al fallar
+  // el niño lea la razón de esa comida y no una regla genérica.
+  const FAMILIA = [
+    // Mesa del rey · nivel 1 (muy evidentes)
+    {emoji:'🥩', name:'Carne asada', side:'rey', nivel:1,
+      por:'Carne servida en el palacio: eso era la porción del rey. 🙊'},
+    {emoji:'🍗', name:'Ave asada del palacio', side:'rey', nivel:1,
+      por:'Carne servida en el palacio: eso era la porción del rey. 🙊'},
+    {emoji:'🥓', name:'Carne curada del palacio', side:'rey', nivel:1,
+      por:'Carne servida en el palacio: eso era la porción del rey. 🙊'},
+    {emoji:'🥂', name:'Copa del banquete', side:'rey', nivel:1,
+      por:'Bebida servida en la copa del rey, como «el vino de su beber». 🙊'},
+    {emoji:'🍬', name:'Dulces', side:'rey', nivel:1,
+      por:'Golosina de la mesa del rey: ni legumbre ni fruta. 🙊'},
+    {emoji:'🍭', name:'Golosinas del palacio', side:'rey', nivel:1,
+      por:'Golosina de la mesa del rey: ni legumbre ni fruta. 🙊'},
+    {emoji:'🍢', name:'Asado en brochetas', side:'rey', nivel:1,
+      por:'Carne servida en el palacio: eso era la porción del rey. 🙊'},
+    // Mesa del rey · nivel 2 (hay que pensarlo)
+    {emoji:'🍮', name:'Postre del palacio', side:'rey', nivel:2,
+      por:'Postre de la mesa del rey: ni legumbre ni fruta. 🙊'},
+    {emoji:'🦀', name:'Cangrejo', side:'rey', nivel:2,
+      por:'Sale del mar y llega a la mesa del rey, no de la huerta. 🙊'},
+    {emoji:'🐟', name:'Pescado del palacio', side:'rey', nivel:2,
+      por:'Es carne servida en el palacio, no fruto de la tierra. 🙊'},
+    {emoji:'🍶', name:'Bebida del banquete', side:'rey', nivel:2,
+      por:'Bebida del banquete: Daniel solo pidió agua. 🙊'},
+    // Mesa de Daniel · nivel 1 (muy evidentes)
+    {emoji:'🥦', name:'Brócoli', side:'daniel', nivel:1,
+      por:'Verdura de la tierra, de la familia de las legumbres que pidió Daniel. 💪'},
+    {emoji:'🥕', name:'Zanahoria', side:'daniel', nivel:1,
+      por:'Verdura de la tierra, de la familia de las legumbres que pidió Daniel. 💪'},
+    {emoji:'🍎', name:'Manzana', side:'daniel', nivel:1,
+      por:'Fruta del árbol: alimento sencillo. 💪'},
+    {emoji:'🍇', name:'Uvas', side:'daniel', nivel:1,
+      por:'Fruta de la viña, sin pasar por la copa del rey. 💪'},
+    {emoji:'🫛', name:'Arvejas', side:'daniel', nivel:1,
+      por:'Legumbre de la tierra: justo lo que pidió Daniel. 💪'},
+    {emoji:'🫘', name:'Lentejas', side:'daniel', nivel:1,
+      por:'Legumbre de la tierra: justo lo que pidió Daniel. 💪'},
+    {emoji:'🥒', name:'Pepino', side:'daniel', nivel:1,
+      por:'Verdura de la tierra: alimento sencillo. 💪'},
+    {emoji:'🧅', name:'Cebolla', side:'daniel', nivel:1,
+      por:'Verdura de la tierra: alimento sencillo. 💪'},
+    // Mesa de Daniel · nivel 2 (hay que pensarlo)
+    {emoji:'🌾', name:'Trigo', side:'daniel', nivel:2,
+      por:'Grano de la tierra: alimento sencillo, no de la mesa del rey. 💪'},
+    {emoji:'🍞', name:'Pan de grano', side:'daniel', nivel:2,
+      por:'Grano de la tierra molido: sigue siendo alimento sencillo. 💪'},
+    {emoji:'🥣', name:'Potaje de legumbres', side:'daniel', nivel:2,
+      por:'Legumbres cocidas: el mismo plato sencillo de los diez días. 💪'},
+    {emoji:'🌰', name:'Nueces', side:'daniel', nivel:2,
+      por:'Fruto seco de la tierra: alimento sencillo. 💪'}
+  ];
+
+  const POR_LADO = {
+    rey: 'Del palacio: carne, copa o golosina. Eso es mesa del rey. 🙊',
+    daniel: 'De la tierra: legumbre, fruta, grano o agua. Eso es mesa de Daniel. 💪'
+  };
+
+  const BLOQUE = 4;        // tarjetas seguidas que valen 1 punto
+  const BLOQUES_MAX = 4;   // 4 puntos de bloque + 1 de la ronda de voz = 5 de tipo card
+  const SRC_MIN = 2;       // tarjetas del capítulo que debe traer un bloque para pagar
+  const RESPUESTA_FINAL = 'La ración de la comida del rey y el vino de su beber (Daniel 1:8)';
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
   const gameCard = document.getElementById('gameCard');
-  const quizBox = document.getElementById('quizBox');
+  const choices = document.getElementById('choices');
+  const btnRey = document.getElementById('btnRey');
+  const btnDaniel = document.getElementById('btnDaniel');
+  const controls = document.getElementById('controls');
   const mainBtn = document.getElementById('mainBtn');
   const roundLabel = document.getElementById('roundLabel');
+  const tracker = document.getElementById('tracker');
+  const pips = document.getElementById('pips');
+  const trackInfo = document.getElementById('trackInfo');
+  const timerEl = document.getElementById('timer');
   const judge = document.getElementById('judge');
   const judgeQ = document.getElementById('judgeQ');
   const judgeYes = document.getElementById('judgeYes');
   const judgeNo = document.getElementById('judgeNo');
+  const practiceNote = document.getElementById('practiceNote');
+  const legend = document.getElementById('legend');
+  const startHint = document.getElementById('startHint');
+
+  let match = null;
+  let avanzar = null;   // timeout del auto-avance
+  let reloj = null;     // interval del reloj
 
   function shuffle(arr){
     const a = arr.slice();
@@ -760,206 +612,329 @@
     return a;
   }
 
-  function phase(){
-    if(!match) return 'idle';
-    if(match.step < MATCH_CARDS) return 'card';
-    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
-    return 'done';
+  // La clubClass del club decide qué tarjetas entran y si hay reloj.
+  function configClase(){
+    const clubClass = AvProfile.clubClass();
+    if(clubClass === 'Principiantes' || clubClass === 'Corderitos' || clubClass === 'Aves Madrugadoras')
+      return {clubClass, n1:6, n2:0, segundos:0};
+    if(clubClass === 'Constructores' || clubClass === 'Manos Ayudadoras')
+      return {clubClass, n1:3, n2:3, segundos:5};
+    return {clubClass, n1:4, n2:2, segundos:0}; // Abejitas, Rayitos y sin perfil
   }
 
-  function pickMatchQuiz(){
-    const picked = [];
-    QUIZ_MIX.forEach(([tag, n]) => {
-      const group = QUIZ.filter(q => q.tag === tag);
-      picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.q));
-    });
-    return picked;
-  }
-
-  // 4 tarjetas de repaso del capítulo (2 por lado) + 1 de aplicación de hoy.
-  function pickMatchCards(){
-    const capitulo = side => FOODS.filter(f => f.era === 'capitulo' && f.side === side);
-    const picked = [
-      ...AvProfile.pick(`${ACTIVITY}:card:capitulo:rey`, capitulo('rey'), 2, f => f.name),
-      ...AvProfile.pick(`${ACTIVITY}:card:capitulo:daniel`, capitulo('daniel'), 2, f => f.name),
-      ...AvProfile.pick(`${ACTIVITY}:card:hoy`, FOODS.filter(f => f.era === 'hoy'), 1, f => f.name)
+  function armarBaraja(cfg){
+    const lado = (side, nivel, n) => n <= 0 ? [] : AvProfile.pick(
+      `${ACTIVITY}:familia:${side}:n${nivel}`,
+      FAMILIA.filter(f => f.side === side && f.nivel === nivel),
+      n, f => f.name
+    );
+    const familia = [
+      ...lado('rey', 1, cfg.n1), ...lado('rey', 2, cfg.n2),
+      ...lado('daniel', 1, cfg.n1), ...lado('daniel', 2, cfg.n2)
     ];
-    return shuffle(picked);
+    // La baraja se reparte en bloques de BLOQUE tarjetas y cada bloque -salvo uno-
+    // lleva SRC_MIN tarjetas del capítulo, para que los BLOQUES_MAX puntos siempre
+    // se puedan ganar y ninguno se pague sin haber leído.
+    const texto = shuffle(TEXTO);
+    const relleno = shuffle(familia);
+    const bloques = [], sobrante = [];
+    for(let i = 0; i < BLOQUES_MAX; i++){
+      bloques.push(shuffle(texto.splice(0, SRC_MIN).concat(relleno.splice(0, BLOQUE - SRC_MIN))));
+    }
+    const resto = shuffle(texto.concat(relleno));
+    for(let i = 0; i < resto.length; i += BLOQUE){
+      const chunk = resto.slice(i, i + BLOQUE);
+      if(chunk.length === BLOQUE) bloques.push(chunk); else sobrante.push(...chunk);
+    }
+    return shuffle(bloques).flat().concat(sobrante);
   }
 
-  function startMatch(){
-    document.getElementById('legend').hidden = true;
-    document.getElementById('practiceNote').hidden = true;
+  function pintarTracker(){
+    const dentro = match.racha % BLOQUE;
+    let html = '';
+    for(let i=0;i<BLOQUE;i++) html += `<span class="pip${i < dentro ? ' on' : ''}"></span>`;
+    pips.innerHTML = html;
+    trackInfo.textContent = `⭐ ${match.bloques}/${BLOQUES_MAX} · tarjeta ${Math.min(match.paso + 1, match.baraja.length)}/${match.baraja.length}`;
+  }
+
+  function pararReloj(){
+    if(reloj){ clearInterval(reloj); reloj = null }
+    timerEl.hidden = true;
+  }
+
+  function limpiarTiempos(){
+    if(avanzar){ clearTimeout(avanzar); avanzar = null }
+    pararReloj();
+  }
+
+  function start(){
+    limpiarTiempos();
+    const cfg = configClase();
     match = {
-      cards: pickMatchCards(),
-      quizzes: pickMatchQuiz(),
-      step: 0,
-      revealed: false,
-      earned: 0
+      cfg,
+      baraja: armarBaraja(cfg),
+      paso: 0,
+      racha: 0,
+      delTexto: 0,
+      bloques: 0,
+      aciertos: 0,
+      ganados: 0,
+      fase: 'rafaga',
+      respondida: false
     };
-    showStep();
+    legend.hidden = true;
+    practiceNote.hidden = true;
+    tracker.hidden = false;
+    mostrarTarjeta();
   }
 
-  function showStep(){
+  function mostrarTarjeta(){
     judge.hidden = true;
-    match.revealed = false;
-    const ph = phase();
-    if(ph === 'card'){
-      quizBox.classList.remove('show');
-      gameCard.style.display = '';
-      const f = match.cards[match.step];
-      roundLabel.textContent = `Tarjeta ${match.step + 1} de ${MATCH_CARDS}`;
-      gameCard.classList.remove('revealed-rey','revealed-daniel');
-      gameCard.innerHTML = `
-        <div class="emoji">${f.emoji}</div>
-        <div class="food-name">${f.name}</div>
-        <div class="hint">${f.ask
-          ? '🙊 o 💪 <strong>' + f.ask + '</strong>'
-          : '¿Qué hacemos, agentes? (tarjeta de aplicación de hoy)'}</div>`;
-      mainBtn.textContent = '¡Revelar!';
-      mainBtn.hidden = false;
-    }else if(ph === 'quiz'){
-      gameCard.style.display = 'none';
-      quizBox.classList.add('show');
-      const q = match.quizzes[match.step - MATCH_CARDS];
-      roundLabel.textContent = `Pregunta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
-      document.getElementById('quizTag').textContent = q.tag;
-      document.getElementById('quizQ').textContent = q.q;
-      const quizA = document.getElementById('quizA');
-      quizA.textContent = q.a;
-      quizA.classList.remove('show');
-      mainBtn.textContent = 'Ver respuesta';
-      mainBtn.hidden = false;
-    }else{
-      finishMatch();
+    match.respondida = false;
+    const f = match.baraja[match.paso];
+    roundLabel.textContent = `Ráfaga · tarjeta ${match.paso + 1} de ${match.baraja.length}`;
+    gameCard.className = 'game-card';
+    gameCard.innerHTML = `
+      <div class="emoji">${f.emoji}</div>
+      <div class="food-name">${esc(f.name)}</div>
+      <div class="hint">¿De qué mesa es?</div>`;
+    pintarTracker();
+    choices.hidden = false;
+    btnRey.disabled = false;
+    btnDaniel.disabled = false;
+    controls.hidden = true;
+
+    if(match.cfg.segundos > 0){
+      let queda = match.cfg.segundos;
+      timerEl.hidden = false;
+      timerEl.textContent = `⏱ ${queda}`;
+      reloj = setInterval(() => {
+        queda--;
+        timerEl.textContent = `⏱ ${Math.max(queda, 0)}`;
+        if(queda <= 0) answer(null);
+      }, 1000);
     }
   }
 
-  function revealStep(){
-    match.revealed = true;
-    const ph = phase();
-    if(ph === 'card'){
-      const f = match.cards[match.step];
-      const isRey = f.side === 'rey';
-      gameCard.classList.add(isRey ? 'revealed-rey' : 'revealed-daniel');
-      gameCard.innerHTML = `
-        <div class="emoji">${f.emoji}</div>
-        <div class="action-emoji">${isRey ? '🙊' : '💪'}</div>
-        <div class="action-name">${isRey ? '¡Mesa del rey!' : '¡Mesa de Daniel!'}</div>
-        <div class="hint">${isRey ? 'Tápate la boca — ¡eso no, como Daniel!' : 'Haz músculo — ¡más fuertes!'}</div>
-        ${f.ans ? `<div class="hint">✅ El dato: <strong>${f.ans}</strong></div>` : ''}`;
+  function answer(elegido){
+    if(!match || match.phase !== 'rafaga' || match.respondida) return;
+    match.respondida = true;
+    pararReloj();
+    btnRey.disabled = true;
+    btnDaniel.disabled = true;
+
+    const f = match.baraja[match.paso];
+    const bien = elegido === f.side;
+    const mesa = f.side === 'rey' ? '👑 ¡Mesa del rey!' : '🌿 ¡Mesa de Daniel!';
+    const gesto = f.side === 'rey' ? '🙊 Tápate la boca.' : '💪 Haz músculo.';
+    const razon = f.por || POR_LADO[f.side];
+
+    if(bien){
+      match.aciertos++;
+      match.racha++;
+      if(f.src) match.delTexto++;
     }else{
-      document.getElementById('quizA').classList.add('show');
+      match.racha = 0;
+      match.delTexto = 0;
     }
 
-    const kind = ph === 'quiz' ? 'quiz' : 'card';
+    // El punto es del BLOQUE de 4 seguidas, no de la tarjeta: una tarjeta suelta
+    // se adivina la mitad de las veces, cuatro seguidas no. Y el bloque solo paga
+    // si trajo al menos SRC_MIN tarjetas que el capítulo nombra: así no se pueden
+    // ganar los puntos clasificando solo comida de la familia.
+    let bloqueNuevo = false, bloqueSinTexto = false;
+    if(bien && match.racha > 0 && match.racha % BLOQUE === 0){
+      if(match.delTexto >= SRC_MIN){
+        if(match.bloques < BLOQUES_MAX){
+          match.bloques++;
+          bloqueNuevo = true;
+          if(AvProfile.get() && AvProfile.canScore('card')){
+            AvProfile.score(true, 'card');
+            match.ganados++;
+          }
+        }
+      }else{
+        bloqueSinTexto = true;
+      }
+      match.delTexto = 0;
+    }
+
+    gameCard.className = 'game-card ' + (bien ? 'ok' : 'bad');
+    gameCard.innerHTML = `
+      <div class="mark">${bien ? '✅' : '❌'}</div>
+      <div class="verdict">${mesa}</div>
+      <div class="hint">${f.emoji} ${esc(f.name)}<br>${esc(razon)}</div>
+      <div class="hint">${bien ? gesto : (elegido === null ? '⏱ Se acabó el tiempo. El bloque vuelve a cero.' : 'El bloque vuelve a cero. ¡Tranquilo, siguen tarjetas!')}</div>
+      ${bloqueNuevo ? '<div class="hint">🎉 <strong>¡Cuatro seguidas! ⭐ +1</strong></div>' : ''}
+      ${bloqueSinTexto ? `<div class="hint">📖 Cuatro seguidas, pero este bloque no traía ${SRC_MIN} tarjetas del capítulo: todavía no paga ⭐. ¡Sigan!</div>` : ''}`;
+    pintarTracker();
+
+    // Cuando acierta, la ráfaga sigue sola. Cuando falla (o se le acaba el
+    // tiempo), se detiene para que el adulto pueda explicar.
+    if(bien && !bloqueNuevo && !bloqueSinTexto){
+      choices.hidden = true;
+      controls.hidden = true;
+      avanzar = setTimeout(siguiente, 1000);
+    }else{
+      choices.hidden = true;
+      controls.hidden = false;
+      mainBtn.dataset.mode = 'next';
+      mainBtn.textContent = 'Siguiente ▶';
+    }
+  }
+
+  function siguiente(){
+    limpiarTiempos();
+    if(!match) return;
+    match.paso++;
+    if(match.paso < match.baraja.length){ mostrarTarjeta(); return }
+    rondaDeVoz();
+  }
+
+  // Última roundLabel: el niño lo DICE y el adulto confirma. No se graba nada.
+  function rondaDeVoz(){
+    match.phase = 'voz';
+    match.respondida = false;
+    choices.hidden = true;
+    tracker.hidden = true;
+    judge.hidden = true;
+    roundLabel.textContent = 'Última roundLabel · a decirlo en voz alta';
+    gameCard.className = 'game-card';
+    gameCard.innerHTML = `
+      <div class="emoji">🗣️</div>
+      <div class="food-name">Di las <strong>dos cosas</strong> que Daniel decidió no tomar de la mesa del rey</div>
+      <div class="hint">Pista: una se come y la otra se bebe.</div>`;
+    controls.hidden = false;
+    mainBtn.dataset.mode = 'said';
+    mainBtn.textContent = 'Ya lo dije ▶';
+  }
+
+  function revelarVoz(){
+    match.respondida = true;
+    gameCard.className = 'game-card ok';
+    gameCard.innerHTML = `
+      <div class="mark">✅</div>
+      <div class="verdict">La respuesta</div>
+      <div class="hint">🍖 <strong>La ración de la comida del rey</strong><br>🍷 <strong>El vino de su beber</strong></div>
+      <div class="hint">«Y Daniel propuso en su corazón no contaminarse en la ración de la comida del rey, ni en el vino de su beber.» — Daniel 1:8</div>`;
+
     const p = AvProfile.get();
-    if(p && AvProfile.canScore(kind)){
-      const card = ph === 'card' ? match.cards[match.step] : null;
-      judgeQ.textContent = ph === 'card'
-        ? (card.ask ? `¿${p.name} dijo bien el dato?` : `¿${p.name} acertó la mesa?`)
-        : '¿Respondió bien?';
+    if(p && AvProfile.canScore('card')){
+      judgeQ.textContent = `¿${p.name} dijo las dos cosas?`;
       judgeYes.hidden = false;
       judgeNo.hidden = false;
       judge.hidden = false;
-      mainBtn.hidden = true;
+      controls.hidden = true;
     }else{
       judgeQ.textContent = p
-        ? '🌙 Puntos completos: esta respuesta es de práctica.'
-        : '👤 Sin perfil: este acierto no suma al tablero.';
+        ? '🌙 Puntos de hoy completos: esta ronda es de práctica.'
+        : '👤 Sin perfil: esta ronda no suma al tablero.';
       judgeYes.hidden = true;
       judgeNo.hidden = true;
       judge.hidden = false;
-      mainBtn.textContent = 'Siguiente ▶';
-      mainBtn.hidden = false;
+      controls.hidden = false;
+      mainBtn.dataset.mode = 'end';
+      mainBtn.textContent = 'Ver el resultado ▶';
     }
   }
 
-  function nextStep(){
-    match.step++;
-    showStep();
-  }
-
   function finishMatch(){
-    document.getElementById('legend').hidden = false;
-    quizBox.classList.remove('show');
-    gameCard.style.display = '';
-    gameCard.classList.remove('revealed-rey','revealed-daniel');
-    roundLabel.textContent = '¡Bien hecho, agentes!';
+    limpiarTiempos();
+    judge.hidden = true;
+    choices.hidden = true;
+    tracker.hidden = true;
+    legend.hidden = false;
+    roundLabel.textContent = '¡Bien hecho, agente!';
     const p = AvProfile.get();
-    const scored = p ? `<div class="hint">⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.</div>` : '';
-    const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
-      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
+    const total = match.baraja.length;
+    gameCard.className = 'game-card';
     gameCard.innerHTML = `
       <div class="emoji">🏁</div>
-      <div class="food-name">¡Partida completa!</div>
-      ${scored}${extra}`;
-    mainBtn.dataset.mode = 'again';
-    mainBtn.textContent = '🔁 Otra partida';
-    mainBtn.hidden = false;
+      <div class="food-name">¡Ráfaga completa!</div>
+      <div class="hint">Clasificaste bien <strong>${match.aciertos}</strong> de ${total} tarjetas.<br>Bloques de cuatro seguidas: <strong>${match.bloques}</strong> de ${BLOQUES_MAX}.</div>
+      ${p ? `<div class="hint">⭐ Sumaste ${match.ganados} punto${match.ganados === 1 ? '' : 's'} en esta ráfaga.</div>` : ''}
+      <div class="hint">Daniel no quiso la comida del rey ni el vino de su beber.</div>`;
     match = null;
+    controls.hidden = false;
+    mainBtn.dataset.mode = 'again';
     updateIdleHint();
   }
 
   function updateIdleHint(){
     if(match) return;
     const p = AvProfile.get();
-    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
-    const note = document.getElementById('practiceNote');
+    const practica = !!p && !AvProfile.canScore('card');
     if(!p){
-      note.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
-      note.hidden = false;
-    }else if(practice){
-      note.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
-      note.hidden = false;
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.hidden = false;
+    }else if(practica){
+      practiceNote.innerHTML = '🌙 Los 5 puntos de hoy ya están completos: esta ráfaga es <strong>de práctica</strong>.';
+      practiceNote.hidden = false;
     }else{
-      note.hidden = true;
+      practiceNote.hidden = true;
     }
-    if(mainBtn.dataset.mode === 'again'){
-      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
-    }else{
-      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    const cfg = configClase();
+    if(startHint && startHint.isConnected){
+      startHint.innerHTML = cfg.clubClass
+        ? `Clase ${esc(cfg.clubClass)} · 20 tarjetas${cfg.segundos ? ' con reloj de ' + cfg.segundos + ' s' : ''}`
+        : '20 tarjetas · ⭐ 1 punto por cada 4 seguidas bien';
     }
+    mainBtn.textContent = mainBtn.dataset.mode === 'again'
+      ? (practica ? '🔁 Otra ráfaga (práctica)' : '🔁 Otra ráfaga')
+      : (practica ? '▶ Ráfaga de práctica' : '▶ Empezar la ráfaga');
   }
   AvProfile.onChange(updateIdleHint);
 
+  btnRey.addEventListener('click', () => answer('rey'));
+  btnDaniel.addEventListener('click', () => answer('daniel'));
+
   mainBtn.addEventListener('click', () => {
-    if(!match){ startMatch(); return; }
-    if(!match.revealed){ revealStep(); return; }
-    nextStep();
+    if(!match){ start(); return }
+    if(match.phase === 'voz'){
+      if(!match.respondida) revelarVoz();
+      else finishMatch();
+      return;
+    }
+    siguiente();
   });
 
   judgeYes.addEventListener('click', () => {
     judge.hidden = true;
-    const kind = phase() === 'quiz' ? 'quiz' : 'card';
-    AvProfile.score(true, kind);
-    match.earned++;
-    nextStep();
+    if(!match) return;
+    AvProfile.score(true, 'card');
+    match.ganados++;
+    finishMatch();
   });
   judgeNo.addEventListener('click', () => {
     judge.hidden = true;
-    const kind = phase() === 'quiz' ? 'quiz' : 'card';
-    AvProfile.score(false, kind);
-    nextStep();
+    if(!match) return;
+    AvProfile.score(false, 'card');
+    finishMatch();
   });
 
   // ── Tarjetas imprimibles ──
   function renderGrid(id, side){
     const grid = document.getElementById(id);
-    const cards = FOODS.filter(f => f.side === side);
-    const ordered = [...cards.filter(f => f.era === 'capitulo'), ...cards.filter(f => f.era === 'hoy')];
-    grid.innerHTML = ordered.map(f => `
+    const delTexto = TEXTO.filter(f => f.side === side);
+    const deFamilia = FAMILIA.filter(f => f.side === side).sort((a, b) => a.nivel - b.nivel);
+    grid.innerHTML = delTexto.concat(deFamilia).map(f => `
       <div class="mini-card">
         <span class="key-dot ${side === 'rey' ? 'key-rey' : 'key-daniel'}" title="${side === 'rey' ? 'Mesa del rey' : 'Mesa de Daniel'}"></span>
         <div class="emoji">${f.emoji}</div>
-        <div class="food-name">${f.name}</div>
-        ${f.ask ? `<div class="mini-ask">${f.ask}</div><div class="mini-key">🔑 ${f.ans}</div>` : ''}
+        <div class="food-name">${esc(f.name)}</div>
+        ${f.src ? `<div class="mini-src">📖 ${esc(f.src)}</div>` : ''}
       </div>`).join('');
   }
-  renderGrid('gridRey','rey');
-  renderGrid('gridDaniel','daniel');
+  renderGrid('gridRey', 'rey');
+  renderGrid('gridDaniel', 'daniel');
 
-  // ── Menú ──
+  // ── Navegación ──
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
+  }
+  document.getElementById('toGameBtn').addEventListener('click', () => goTo('juego'));
+
   const menuBtn = document.getElementById('menuBtn');
   const menuPanel = document.getElementById('menuPanel');
   function closeMenu(){
@@ -970,27 +945,18 @@
     menuPanel.hidden = !menuPanel.hidden;
     menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
   });
-  document.addEventListener('click', e => {
-    if(!e.target.closest('.menu-wrap')) closeMenu();
-  });
+  document.addEventListener('click', e => { if(!e.target.closest('.menu-wrap')) closeMenu() });
   document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-      closeMenu();
-    });
+    btn.addEventListener('click', () => { goTo(btn.dataset.tab); closeMenu() });
   });
+  document.getElementById('changePlayerBtn').addEventListener('click', () => { closeMenu(); AvProfile.open() });
 
-  // ── Perfil y puntos (módulo compartido /shared/profile.js) ──
-  document.getElementById('changePlayerBtn').addEventListener('click', () => {
-    closeMenu();
-    AvProfile.open();
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 5, quiz: 0},   // lo que vale esta actividad; el techo del backend es 5+5
+    autoOpen: true
   });
-
-  // Iniciar
-  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
   updateIdleHint();
 </script>
 </body>
