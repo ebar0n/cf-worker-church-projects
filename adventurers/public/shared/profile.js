@@ -634,9 +634,9 @@
   function stampVersion(){
     const foot = document.querySelector('footer');
     if(!foot || foot.querySelector('.pf-version')) return;
-    const tag = document.createElement('span');
+    const tag = document.createElement('div');
     tag.className = 'pf-version';
-    tag.textContent = ' · v' + APP_VERSION;
+    tag.textContent = 'v' + APP_VERSION;
     foot.appendChild(tag);
   }
 

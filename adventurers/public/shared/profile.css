@@ -371,4 +371,4 @@ body .back-link,body .menu-btn{
 }
 
 /* El sello de versión del pie: tiene que leerse, no llamar la atención. */
-body .pf-version{opacity:.6;font-variant-numeric:tabular-nums;white-space:nowrap}
+body .pf-version{display:block;margin-top:6px;opacity:.55;font-variant-numeric:tabular-nums}
