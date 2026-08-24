@@ -11,9 +11,11 @@
    Al cambiar VERSION se borran las cachés viejas y se toma el control de las
    pestañas abiertas.
 */
-// Subir la versión purga las cachés viejas. Obligatorio cuando se borra una
-// actividad: si no, la copia cacheada sigue abriendo un juego que ya no existe.
-const VERSION = "v5";
+// La versión de la app, la misma que package.json y la que sale en el pie.
+// Subirla purga las cachés viejas, así que basta un solo número: obligatorio
+// cuando se borra una actividad, porque si no la copia cacheada sigue
+// abriendo un juego que ya no existe. check-games.mjs exige que coincidan.
+const VERSION = "1.0.0";
 const SHELL = `aventureros-shell-${VERSION}`;
 const RUNTIME = `aventureros-runtime-${VERSION}`;
 

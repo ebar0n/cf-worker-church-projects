@@ -174,6 +174,10 @@ const shownVersion = (sharedJs.match(/const APP_VERSION = '([^']+)'/) || [])[1];
 if (shownVersion !== pkg.version) {
   failures.push(`profile.js muestra la versión ${shownVersion} y package.json dice ${pkg.version}`);
 }
+const swVersion = (sw.match(/const VERSION = "([^"]+)"/) || [])[1];
+if (swVersion !== pkg.version) {
+  failures.push(`sw.js cachea como '${swVersion}' y package.json dice ${pkg.version}: una sola versión para todo`);
+}
 
 const manifest = JSON.parse(readFileSync(join(publicDir, "manifest.webmanifest"), "utf8"));
 for (const key of ["name", "short_name", "start_url", "display", "theme_color", "icons"]) {
