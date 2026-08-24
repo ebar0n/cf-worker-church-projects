@@ -13,7 +13,7 @@
 */
 // Subir la versión purga las cachés viejas. Obligatorio cuando se borra una
 // actividad: si no, la copia cacheada sigue abriendo un juego que ya no existe.
-const VERSION = "v3";
+const VERSION = "v4";
 const SHELL = `aventureros-shell-${VERSION}`;
 const RUNTIME = `aventureros-runtime-${VERSION}`;
 

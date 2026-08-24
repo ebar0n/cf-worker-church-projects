@@ -652,7 +652,7 @@
   document.getElementById('tablaPrint').innerHTML = NOMBRES.map(p =>
     `<tr><td>${esc(p.a)}</td><td>${esc(p.b)}</td></tr>`).join('');
   document.getElementById('quienesLeer').innerHTML = PERSONAJES.map(p =>
-    `<li><strong>${esc(p.a)}</strong> — ${esc(p.b)}. ${esc(p.nota)}</li>`).join('');
+    `<li><strong>${esc(p.a)}</strong> — ${esc(p.b)}. ${esc(p.note)}</li>`).join('');
   document.getElementById('quienesPrint').textContent =
     PERSONAJES.map(p => `${p.a} (${p.b.toLowerCase()})`).join(' · ');
   document.getElementById('fichasPrint').innerHTML = TODAS.map(p => {
@@ -712,7 +712,7 @@
       modo,
       tableros,
       idx: 0,
-      fase: 'tablero',
+      phase: 'tablero',
       volteos: 0,
       ganados: 0,
       despejados: 0,
@@ -785,7 +785,7 @@
       button.classList.remove('up');   button.classList.add('done');
       a.button.disabled = true; button.disabled = true;
       fb.className = 'feedback bien';
-      fb.innerHTML = `✅ <span>${esc(p.a)} = ${esc(p.b)}. ${esc(p.nota)}</span>`;
+      fb.innerHTML = `✅ <span>${esc(p.a)} = ${esc(p.b)}. ${esc(p.note)}</span>`;
       match.resueltas.push(p);
       if(gameCard.querySelectorAll('.tile.done').length === match.fichas.length){
         bloqueado = true;
@@ -842,7 +842,7 @@
         ? `🎯 ${tope} volteos o menos: este tablero sí da punto.`
         : `Esta vez fueron más de ${tope} volteos, así que este tablero no da punto. El repaso cuenta igual.`}</div>
       <ul class="repaso">
-        ${pares.map(p => `<li><b>${esc(p.a)}</b> = ${esc(p.b)}. ${esc(p.nota)}</li>`).join('')}
+        ${pares.map(p => `<li><b>${esc(p.a)}</b> = ${esc(p.b)}. ${esc(p.note)}</li>`).join('')}
       </ul>
       <div class="hint" id="puntosTablero">${puntos > 0
         ? (AvProfile.get() && AvProfile.canScore('card') ? '⭐ Guardando tus puntos…' : 'Este tablero no sumó puntos (mira el aviso de abajo).')

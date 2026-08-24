@@ -335,7 +335,7 @@
       <div class="pf-card">
         <button class="pf-close" type="button" aria-label="Cerrar">✕</button>
         <h2>🧒 ¿Quién va a aprender?</h2>
-        <p class="pf-sub">Cada acierto suma ⭐ 1 punto al tablero del club: en cada actividad se pueden ganar hasta 5 puntos de juego y 5 de preguntas por día.</p>
+        <p class="pf-sub">Cada acierto suma ⭐ 1 punto al tablero del club. Cada actividad tiene su propio puntaje del día, y lo que ganen en todas se va sumando.</p>
         <form class="pf-form">
           <label>Número de documento del niño o la niña
             <input class="pf-doc" type="text" inputmode="numeric" autocomplete="off" maxlength="15" placeholder="Solo números">
@@ -349,7 +349,7 @@
             <div class="pf-ages"></div>
             <p class="pf-age-class" hidden></p>
           </div>
-          <p class="pf-note">🔒 En el tablero solo aparece el nombre: el documento no se muestra a nadie ni se guarda en claro.</p>
+          <p class="pf-note">🔒 En el tablero solo aparece el nombre. El documento no se le muestra a nadie.</p>
           <div class="pf-error"></div>
           <div class="pf-actions">
             <button class="pf-btn pf-submit" type="submit">¡A jugar!</button>

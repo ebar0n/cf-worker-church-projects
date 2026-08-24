@@ -170,6 +170,15 @@ const manifest = JSON.parse(readFileSync(join(publicDir, "manifest.webmanifest")
 for (const key of ["name", "short_name", "start_url", "display", "theme_color", "icons"]) {
   if (!manifest[key]) failures.push(`manifest.webmanifest: falta '${key}'`);
 }
+// Un acceso rápido a una actividad borrada no falla en ningún lado: solo
+// aparece muerto al mantener pulsado el icono de la app instalada.
+for (const sc of manifest.shortcuts || []) {
+  const dir = String(sc.url || "").replace(/^\/|\/$/g, "");
+  if (!dir || !existsSync(join(publicDir, dir, "index.html"))) {
+    failures.push(`manifest.webmanifest: el acceso rápido '${sc.short_name || sc.name}' apunta a ${sc.url}, que no existe`);
+  }
+}
+
 if (!(manifest.icons || []).some((i) => i.purpose === "maskable")) {
   failures.push("manifest.webmanifest: falta un icono maskable (Android lo recorta en círculo)");
 }

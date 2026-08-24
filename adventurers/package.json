@@ -6,12 +6,13 @@
     "node": ">=24"
   },
   "scripts": {
-    "verify": "node scripts/check-games.mjs",
+    "verify": "node scripts/check-games.mjs && node scripts/check-text.mjs",
     "migrate": "CI=true wrangler d1 migrations apply church-jordan-projects",
     "dev": "yarn migrate --local && wrangler dev",
     "deploy": "yarn migrate --remote && wrangler deploy"
   },
   "devDependencies": {
+    "jsdom": "^29.1.1",
     "wrangler": "^4.112.0"
   },
   "dependencies": {

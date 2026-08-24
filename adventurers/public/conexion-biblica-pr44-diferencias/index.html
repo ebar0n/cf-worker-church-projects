@@ -569,25 +569,25 @@
   // ══════════ Los 7 elementos, todos del capítulo 44 ══════════
   // zonas = círculos tocables en coordenadas del viewBox (400 x 380)
   const ELEMENTOS = [
-    {id:'piedra', emoji:'🪨', nombre:'La piedra sellada',
+    {id:'piedra', emoji:'🪨', name:'La piedra sellada',
      zonas:[[78,118,38],[40,118,20],[116,118,20]],
      dato:'El rey mismo la selló «con su anillo, y con el anillo de sus príncipes», para que el acuerdo acerca de Daniel no se mudase.'},
-    {id:'leones', emoji:'🦁', nombre:'Los leones con la boca cerrada',
+    {id:'leones', emoji:'🦁', name:'Los leones con la boca cerrada',
      zonas:[[74,222,46],[116,236,28],[322,252,46],[280,266,28]],
      dato:'Tenían hambre de verdad: los mismos leones se apoderaron después de los hombres que habían acusado a Daniel (Daniel 6:24).'},
-    {id:'angel', emoji:'👼', nombre:'El ángel',
+    {id:'angel', emoji:'👼', name:'El ángel',
      zonas:[[200,172,42],[158,178,38],[242,178,38],[200,208,34]],
      dato:'Dios envió su ángel al foso. Fue el ángel, y no la suerte, el que cerró la boca de los leones.'},
-    {id:'daniel', emoji:'🙏', nombre:'Daniel de rodillas',
+    {id:'daniel', emoji:'🙏', name:'Daniel de rodillas',
      zonas:[[156,272,24],[157,320,46]],
      dato:'Tres veces al día se arrodillaba a orar, y no dejó de hacerlo ni cuando el decreto lo prohibió.'},
-    {id:'ventana', emoji:'🪟', nombre:'La ventana hacia Jerusalén',
+    {id:'ventana', emoji:'🪟', name:'La ventana hacia Jerusalén',
      zonas:[[319,82,40],[366,79,20],[364,107,26]],
      dato:'Daniel oraba en su cámara «con las ventanas abiertas hacia Jerusalén, según su costumbre». No escondía su oración.'},
-    {id:'rey', emoji:'👑', nombre:'El rey Darío asomado',
+    {id:'rey', emoji:'👑', name:'El rey Darío asomado',
      zonas:[[184,80,42],[176,46,24],[246,144,18]],
      dato:'Darío llegó apresuradamente al foso y «llamó a voces a Daniel con voz triste». Esa noche no había comido ni había podido dormir.'},
-    {id:'amanecer', emoji:'🌅', nombre:'El amanecer',
+    {id:'amanecer', emoji:'🌅', name:'El amanecer',
      zonas:[[52,46,44]],
      dato:'«Temprano por la mañana siguiente» el rey fue corriendo al foso. Ahí supo que Daniel estaba vivo.'}
   ];
@@ -661,15 +661,15 @@
 
   // ══════════ Dificultad por clase del club ══════════
   const CFG = {
-    'Principiantes':          {rondas:3, seg:8, options:3, quiz:0},
-    'Corderitos':             {rondas:3, seg:8, options:3, quiz:0},
-    'Aves Madrugadoras':      {rondas:4, seg:7, options:4, quiz:0},
-    'Abejitas Industriosas':  {rondas:4, seg:6, options:4, quiz:0},
-    'Rayitos de Sol':         {rondas:4, seg:6, options:5, quiz:0},
-    'Constructores':          {rondas:6, seg:5, options:6, quiz:2},
-    'Manos Ayudadoras':       {rondas:6, seg:4, options:6, quiz:2}
+    'Principiantes':          {rounds:3, seg:8, options:3, quiz:0},
+    'Corderitos':             {rounds:3, seg:8, options:3, quiz:0},
+    'Aves Madrugadoras':      {rounds:4, seg:7, options:4, quiz:0},
+    'Abejitas Industriosas':  {rounds:4, seg:6, options:4, quiz:0},
+    'Rayitos de Sol':         {rounds:4, seg:6, options:5, quiz:0},
+    'Constructores':          {rounds:6, seg:5, options:6, quiz:2},
+    'Manos Ayudadoras':       {rounds:6, seg:4, options:6, quiz:2}
   };
-  const CFG_DEFAULT = {rondas:4, seg:6, options:4, quiz:0};
+  const CFG_DEFAULT = {rounds:4, seg:6, options:4, quiz:0};
   function config(){
     const c = AvProfile.clubClass();
     return (c && CFG[c]) || CFG_DEFAULT;
@@ -770,13 +770,13 @@
 
   function start(){
     const cfg = config();
-    const elems = AvProfile.pick(ACTIVITY + ':card:elementos', ELEMENTOS, cfg.rondas, e => e.id);
+    const elems = AvProfile.pick(ACTIVITY + ':card:elementos', ELEMENTOS, cfg.rounds, e => e.id);
     const quizzes = [];
     if(cfg.quiz >= 2){
       quizzes.push(...AvProfile.pick(ACTIVITY + ':quiz:clave', Q_CLAVE, 1, q => q.q));
       quizzes.push(...AvProfile.pick(ACTIVITY + ':quiz:datos', Q_DATOS, 1, q => q.q));
     }
-    match = {cfg, elems, quizzes, roundLabel:0, quizIdx:0, earned:0, chips:[], fase:'mirar', bloqueado:false};
+    match = {cfg, elems, quizzes, roundLabel:0, quizIdx:0, earned:0, chips:[], phase:'mirar', bloqueado:false};
     practiceNote.hidden = true;
     foundRow.hidden = true;
     pintarChips();
@@ -1032,7 +1032,7 @@
     }else{
       const clubClass = AvProfile.clubClass();
       practiceNote.innerHTML = clubClass
-        ? `🎒 Clase <strong>${esc(AvProfile.clubClass() || 'tu clase')}</strong>: ${cfg.rounds} roundLabel${cfg.rounds === 1 ? '' : 's'} de ${cfg.seg} segundos${cfg.quiz ? ' + 2 preguntas' : ''}.`
+        ? `🎒 Clase <strong>${esc(AvProfile.clubClass() || 'tu clase')}</strong>: ${cfg.rounds} ronda${cfg.rounds === 1 ? '' : 's'} de ${cfg.seg} segundos${cfg.quiz ? ' + 2 preguntas' : ''}.`
         : '';
       practiceNote.hidden = !clubClass;
     }

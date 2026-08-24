@@ -132,12 +132,12 @@
   .cadena-leer .icono{font-size:1.5rem;flex-shrink:0}
   .cadena-leer .title{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem}
   .cadena-leer .porque{font-size:.94rem;line-height:1.5;opacity:.9}
-  .cadena-leer .ref{font-size:.78rem;opacity:.7;font-weight:700}
+  .cadena-leer .ref{font-size:.8rem;opacity:.7;font-weight:700}
   .cita{
     border-left:6px solid var(--flame);padding:6px 0 6px 12px;margin-bottom:14px;
   }
   .cita:last-child{margin-bottom:0}
-  .cita .texto{font-weight:700;line-height:1.5}
+  .cita .text{font-weight:700;line-height:1.5}
   .cita .ref{font-size:.82rem;opacity:.75}
   .source{font-size:.82rem;opacity:.75;margin-top:14px;line-height:1.6}
   .source a{color:var(--flame-deep);font-weight:700}
@@ -463,7 +463,7 @@
 
   document.getElementById('citasLeer').innerHTML = CITAS.map(c => `
     <div class="cita">
-      <div class="text">${esc(c.texto)}</div>
+      <div class="text">${esc(c.text)}</div>
       <div class="ref">${esc(c.ref)}</div>
     </div>`).join('');
 
@@ -537,7 +537,7 @@
       sel: null,
       intento: 1,
       mejor: 0,
-      fase: 'armar',
+      phase: 'armar',
       cardGanados: 0,
       quizGanados: 0,
       otorgado: false
