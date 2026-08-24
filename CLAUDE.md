@@ -164,9 +164,8 @@ renders unstyled. Nothing fails; it just looks broken.
 
 ## Conventions
 
-**Code in English, content in Spanish.** Identifiers, object keys, CSS classes, element
-ids, branch names and commit messages are English. Everything a child or a parent reads
-is Spanish, and so are the comments explaining *why*.
+**Code in English, content in Spanish** — including branch names and commit messages in
+English. The exception is comments, which are Spanish.
 
 Every biblical fact has to be traceable to the chapter or passage the activity cites; if
 it comes from elsewhere, the page says so.
