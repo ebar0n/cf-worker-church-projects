@@ -280,7 +280,7 @@ body .topbar,body .index-top{
 /* Ninguna etiqueta baja de 12.8px: por debajo no se lee en un teléfono.
    Con `body` delante para ganarle al <style> de cada página. */
 body .eyebrow,body .tag,body .quiz-tag,body .fuente,body .board-tag,
-body .mini-src,body .swatch{font-size:.8rem}
+body .mini-src,body .swatch,body .ref,body .source small,body .round-label{font-size:.8rem}
 /* El .tag de una tarjeta pequeña también, cuando la página lo achica */
 body .mini-card .tag,body .pill{font-size:.8rem}
 
