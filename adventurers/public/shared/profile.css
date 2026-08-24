@@ -369,3 +369,6 @@ body .back-link,body .menu-btn{
 @media print{
   .pf-overlay,.pf-chip,.pf-trophy,.pf-toast-wrap,.pf-offline,.pf-install{display:none!important}
 }
+
+/* El sello de versión del pie: tiene que leerse, no llamar la atención. */
+body .pf-version{opacity:.6;font-variant-numeric:tabular-nums;white-space:nowrap}

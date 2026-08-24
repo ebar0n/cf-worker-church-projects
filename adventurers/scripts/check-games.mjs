@@ -166,6 +166,15 @@ for (const d of swDirs) {
   if (!dirs.includes(d)) failures.push(`sw.js: RUTAS lista '${d}', que no existe`);
 }
 
+// Si la versión del pie se desfasa de package.json deja de servir para saber
+// si el teléfono se actualizó, y el desfase no se nota mirando la app.
+const pkg = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+const sharedJs = readFileSync(join(publicDir, "shared/profile.js"), "utf8");
+const shownVersion = (sharedJs.match(/const APP_VERSION = '([^']+)'/) || [])[1];
+if (shownVersion !== pkg.version) {
+  failures.push(`profile.js muestra la versión ${shownVersion} y package.json dice ${pkg.version}`);
+}
+
 const manifest = JSON.parse(readFileSync(join(publicDir, "manifest.webmanifest"), "utf8"));
 for (const key of ["name", "short_name", "start_url", "display", "theme_color", "icons"]) {
   if (!manifest[key]) failures.push(`manifest.webmanifest: falta '${key}'`);

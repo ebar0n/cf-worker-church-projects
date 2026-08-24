@@ -31,6 +31,10 @@
      AvProfile.onChange(fn)     -> callback cuando cambia el perfil
 */
 (function(){
+  // Debe coincidir con la versión de package.json; check-games.mjs lo exige.
+  // Va embebida, no en un endpoint, para que se lea también sin señal: así se
+  // sabe si el teléfono ya se actualizó incluso en el wifi del campamento.
+  const APP_VERSION = '1.0.0';
   const PKEY = 'aventureros-player';
   let player = null;
   try{ player = JSON.parse(localStorage.getItem(PKEY) || 'null') }catch(e){ player = null }
@@ -625,6 +629,17 @@
     render();
   }
 
+  // Sella la versión al final de la página. Sirve para saber, mirando el
+  // teléfono, si la app instalada ya tomó el último despliegue.
+  function stampVersion(){
+    const foot = document.querySelector('footer');
+    if(!foot || foot.querySelector('.pf-version')) return;
+    const tag = document.createElement('span');
+    tag.className = 'pf-version';
+    tag.textContent = ' · v' + APP_VERSION;
+    foot.appendChild(tag);
+  }
+
   function init(opts = {}){
     if(opts.activity) ACTIVITY = opts.activity;
     if(opts.caps) CAPS = opts.caps;
@@ -633,6 +648,7 @@
     if(opts.install) mountInstall(opts.install);
     if(opts.autoOpen && !player) open();
     registerSW();
+    stampVersion();
     refresh();
     flushQueue();
     window.addEventListener('online', () => { emit(); flushQueue() });
