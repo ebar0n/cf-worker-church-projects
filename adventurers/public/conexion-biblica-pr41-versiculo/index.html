@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#2A1147">
 <title>El versículo que no se quema</title>
-<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Memoriza Isaías 43:2 con gestos: 5 rondas de palabras que se borran + 5 rondas para armar el versículo. ¡Suma puntos para el tablero del Club de Aventureros!">
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Primero se lee Isaías 43:2 y el párrafo donde aparece; después se dice de memoria, con su cita, sin mirar la pantalla.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
 <meta property="og:title" content="El versículo que no se quema">
-<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 41. Memoriza Isaías 43:2 con gestos: 5 rondas de palabras que se borran + 5 rondas para armar el versículo.">
+<meta property="og:description" content="El versículo de esta semana es Isaías 43:2, la promesa que los tres hebreos recordaron frente al horno. Se lee, se practica con gestos y se dice de memoria con su cita.">
 <meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr41-versiculo/">
 <meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
 <meta property="og:image:width" content="1200">
@@ -65,17 +65,11 @@
   }
   .eyebrow{
     font-family:'Fredoka',sans-serif;
-    font-size:.8rem;
-    letter-spacing:.2em;
-    text-transform:uppercase;
-    color:var(--gold-soft);
+    font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);
   }
   h1{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.5rem,5vw,2.3rem);
-    line-height:1.15;
-    margin-top:6px;
+    font-family:'Fredoka',sans-serif;font-weight:700;
+    font-size:clamp(1.5rem,5vw,2.3rem);line-height:1.15;margin-top:6px;
   }
   .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
 
@@ -119,13 +113,66 @@
   .back-link{
     display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
     color:var(--gold-soft);text-decoration:none;border:2px solid transparent;
-    border-radius:999px;padding:8px 16px;margin-bottom:8px;
+    border-radius:999px;padding:8px 16px;
   }
   .back-link:hover{border-color:var(--gold)}
   .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
 
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
+
+  /* ══════════ LEER PRIMERO ══════════ */
+  #leer{max-width:700px}
+  .read-card{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:22px 18px;margin-bottom:18px;box-shadow:0 8px 0 rgba(0,0,0,.28);
+  }
+  .read-card h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .read-card p{line-height:1.55;margin-bottom:10px}
+  .read-card p:last-child{margin-bottom:0}
+  .cita-grande{
+    font-family:'Fredoka',sans-serif;font-weight:700;
+    font-size:clamp(1.15rem,5vw,1.5rem);line-height:1.4;color:var(--night);
+    text-align:center;padding:6px 0 2px;
+  }
+  .cita-ref{
+    display:block;font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;
+    color:var(--ember-deep);margin-top:10px;letter-spacing:.04em;
+  }
+  .source{font-size:.82rem;opacity:.72;margin-top:14px}
+  .source a{color:var(--ember-deep);font-weight:800}
+  .parrafo-cap{
+    border-left:5px solid var(--ember);background:rgba(226,82,31,.08);
+    border-radius:0 12px 12px 0;padding:12px 14px;line-height:1.6;
+  }
+  .parrafo-cap strong{background:rgba(245,179,36,.45);border-radius:5px;padding:0 3px}
+  .gest-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .gest-list li{
+    display:flex;align-items:flex-start;gap:10px;
+    background:rgba(245,179,36,.16);border-radius:14px;padding:9px 11px;
+  }
+  .gest-list .em{font-size:1.7rem;line-height:1.1;flex-shrink:0}
+  .gest-list .tx{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.02rem;line-height:1.35}
+  .gest-list .tx small{
+    display:block;font-family:'Nunito',sans-serif;font-weight:700;
+    font-size:.78rem;opacity:.66;margin-top:2px;
+  }
+  .read-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:6px 0 22px}
+  .luego{
+    background:rgba(255,255,255,.06);border:2px dashed rgba(245,179,36,.55);
+    border-radius:20px;padding:18px 16px;color:var(--cream);
+  }
+  .luego h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;
+    color:var(--gold-soft);margin-bottom:6px;display:flex;align-items:center;gap:8px;
+  }
+  .luego .aviso{font-weight:800;font-size:.85rem;color:var(--ember);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px}
+  .luego .prox{margin-bottom:12px;line-height:1.5}
+  .luego .prox:last-child{margin-bottom:0}
+  .luego .prox b{display:block;font-family:'Fredoka',sans-serif;font-size:1rem;color:var(--gold-soft)}
 
   /* ── Reto de puntos ── */
   .judge{
@@ -146,15 +193,16 @@
   .stage{max-width:520px;margin:0 auto;text-align:center}
   .round-label{
     font-family:'Fredoka',sans-serif;color:var(--gold-soft);
-    letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;margin-bottom:12px;
+    letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;margin-bottom:6px;
   }
+  .clase-line{font-weight:700;font-size:.8rem;opacity:.75;margin-bottom:12px}
   .game-card{
     background:var(--cream);color:var(--ink);border-radius:28px;
     border:6px solid var(--gold);box-shadow:0 12px 0 rgba(0,0,0,.28);
     padding:24px 16px 22px;min-height:340px;
     display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;
   }
-  .game-card .emoji{font-size:clamp(4rem,20vw,6.4rem);line-height:1}
+  .game-card .emoji{font-size:clamp(3.4rem,16vw,5.4rem);line-height:1}
   .game-card .big-title{
     font-family:'Fredoka',sans-serif;font-weight:700;
     font-size:clamp(1.3rem,5.5vw,1.9rem);line-height:1.15;
@@ -164,7 +212,13 @@
     font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
     background:var(--ember);color:#fff;border-radius:999px;padding:4px 14px;
   }
-  .verse-box{display:flex;flex-direction:column;gap:12px;width:100%}
+  .tag{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.78rem;
+    border-radius:999px;padding:4px 12px;letter-spacing:.06em;text-transform:uppercase;
+  }
+  .tag-practica{background:rgba(42,17,71,.12);color:var(--night)}
+  .tag-punto{background:var(--ok);color:#fff}
+  .verse-box{display:flex;flex-direction:column;gap:10px;width:100%}
   .chunk{
     display:flex;align-items:flex-start;gap:10px;text-align:left;
     background:rgba(245,179,36,.14);border-radius:14px;padding:8px 10px;
@@ -185,37 +239,16 @@
     font-weight:700;font-size:.95rem;background:rgba(42,17,71,.08);
     border-radius:12px;padding:8px 12px;
   }
-
-  /* Armar el versículo */
-  .arma-target{
-    display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
-    min-height:60px;width:100%;
-    background:rgba(46,158,91,.14);border:3px dashed var(--ok-deep);
-    border-radius:16px;padding:10px;
+  /* Pantalla vacía: solo los gestos */
+  .gest-row{
+    font-size:clamp(1.7rem,8vw,2.6rem);line-height:1.7;letter-spacing:.12em;
+    background:rgba(42,17,71,.06);border:3px dashed rgba(42,17,71,.25);
+    border-radius:18px;padding:14px 10px;width:100%;
   }
-  .slot{
-    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;
-    background:var(--ok);color:#fff;border-radius:12px;padding:8px 12px;min-height:44px;
-    display:flex;align-items:center;
+  .cita-blanco{
+    font-family:'Fredoka',sans-serif;font-weight:700;
+    font-size:clamp(1.4rem,7vw,2rem);letter-spacing:.1em;color:var(--ember-deep);
   }
-  .slot.empty{background:transparent;color:var(--ink);opacity:.45;border:2px dashed rgba(42,27,16,.35)}
-  .arma-pool{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:100%}
-  .word-btn{
-    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.1rem;
-    background:var(--night);color:var(--cream);border:3px solid var(--gold);
-    border-radius:14px;padding:10px 16px;min-height:48px;cursor:pointer;
-  }
-  .word-btn:focus-visible{outline:3px solid var(--ember);outline-offset:3px}
-  .word-btn[hidden]{display:none}
-  .word-btn.wrong{animation:shake .3s}
-  @keyframes shake{
-    0%,100%{transform:translateX(0)}
-    25%{transform:translateX(-7px)}
-    75%{transform:translateX(7px)}
-  }
-  .feedback{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem}
-  .feedback.ok{color:var(--ok-deep)}
-  .feedback.bad{color:var(--ember-deep)}
 
   .controls{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap}
   .btn{
@@ -231,22 +264,35 @@
   .btn-sm{font-size:.95rem;padding:9px 20px;min-height:44px}
   .btn[hidden]{display:none}
 
-  /* Medallas del versículo */
-  .medals{
+  /* Escalera de la partida */
+  .ladder{
+    display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:12px;
+  }
+  .rung{
+    width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.22);
+  }
+  .rung.on{background:var(--gold)}
+  .rung.pay{width:16px;height:16px;border:2px solid var(--gold-soft);background:transparent}
+  .rung.pay.on{background:var(--ok)}
+
+  /* Semana */
+  .week{
     margin-top:22px;background:rgba(255,255,255,.07);border:2px solid rgba(245,179,36,.5);
     border-radius:16px;padding:14px;
   }
-  .medals h3{
+  .week h3{
     font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;
     color:var(--gold-soft);margin-bottom:10px;
   }
-  .medal-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
-  .medal{
-    display:flex;align-items:center;gap:10px;text-align:left;
-    font-weight:700;font-size:.9rem;line-height:1.3;
+  .week-track{display:flex;gap:8px;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
+  .day{
+    width:40px;min-height:52px;border-radius:12px;background:rgba(255,255,255,.07);
+    border:2px solid rgba(245,179,36,.35);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;font-weight:800;font-size:.8rem;gap:2px;
   }
-  .medal .mark{font-size:1.3rem;flex-shrink:0}
-  .medal.done{color:var(--gold-soft)}
+  .day .mk{font-size:1.1rem}
+  .day.done{background:rgba(46,158,91,.3);border-color:var(--ok)}
+  .day.hoy{border-color:var(--gold);border-width:3px}
 
   /* ══════════ MATERIAL IMPRIMIBLE ══════════ */
   .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:620px;margin:0 auto 20px}
@@ -254,6 +300,12 @@
     font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.2rem;
     margin:26px 0 12px;display:flex;align-items:center;gap:10px;
   }
+  .pocket{
+    background:var(--cream);color:var(--ink);border:4px solid var(--ember-deep);
+    border-radius:16px;padding:16px;max-width:520px;margin:0 auto 10px;text-align:center;
+  }
+  .pocket .tx{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.1rem;line-height:1.4}
+  .pocket .rf{font-weight:800;margin-top:8px;color:var(--ember-deep)}
   .strip-set{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
   .tira{
     display:flex;align-items:center;gap:12px;
@@ -265,7 +317,7 @@
     background:var(--gold);color:var(--night-deep);border-radius:999px;
     width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
   }
-  .tira .txt{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;line-height:1.25}
+  .tira .txt{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.05rem;line-height:1.25;text-align:left}
   .tira .txt small{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.78rem;opacity:.65}
   .tira .mini{width:44px;height:44px;flex-shrink:0}
   .gest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
@@ -294,6 +346,12 @@
   .parent-box p:last-child{margin-bottom:0}
   .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
   .parent-box li{margin-bottom:6px}
+  .parent-box a{color:var(--ember-deep);font-weight:800}
+  .tabla-puntos{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:.92rem}
+  .tabla-puntos th,.tabla-puntos td{
+    border:2px solid rgba(42,27,16,.2);padding:7px 8px;text-align:left;line-height:1.35;
+  }
+  .tabla-puntos th{background:rgba(245,179,36,.3);font-family:'Fredoka',sans-serif;font-weight:600}
   .verse{
     border-left:5px solid var(--ember);background:rgba(226,82,31,.08);
     border-radius:0 12px 12px 0;padding:12px 14px;font-style:italic;font-weight:700;
@@ -301,17 +359,18 @@
   .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--ember-deep)}
 
   @media (prefers-reduced-motion:reduce){
-    .word-btn.wrong{animation:none}
+    *{animation:none!important}
     .btn{transition:none}
   }
 
   /* ── Impresión ── */
   @media print{
     body{background:#fff;color:#000;background-image:none}
-    header,.topbar,#juego,#padres,.print-note{display:none!important}
+    header,.topbar,#leer,#juego,#padres,.print-note{display:none!important}
     section{display:none!important}
     #material{display:block!important;padding:0}
     .sheet-title{color:#000}
+    .pocket{border:2px solid #000;background:#fff;break-inside:avoid}
     .tira{border:2px dashed #000;background:#fff;break-inside:avoid;padding:6mm 4mm}
     .tira .n{background:#fff;border:1px solid #000;color:#000}
     .tira .txt{font-size:14pt}
@@ -330,8 +389,9 @@
   <div class="menu-wrap">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
     <div class="menu-panel" id="menuPanel" hidden>
-      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
-      <button class="menu-item" data-tab="material">🖨️ Tiras y gestos para imprimir</button>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="juego">🎮 Jugar</button>
+      <button class="menu-item" data-tab="material">🖨️ Para imprimir</button>
       <button class="menu-item" data-tab="padres">👪 Para padres</button>
       <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
     </div>
@@ -341,22 +401,59 @@
 <header>
   <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 41 · El horno de fuego</div>
   <h1>El versículo que no se quema</h1>
-  <p class="subtitle">Las palabras se van borrando… ¡pero los gestos te ayudan a recordarlas!</p>
+  <p class="subtitle">Un solo texto por semana: Isaías 43:2, con su cita, de memoria.</p>
 </header>
 
+<!-- ══════════ LEER PRIMERO ══════════ -->
+<section id="leer" class="active">
+  <div class="read-card">
+    <h2>📖 El versículo de esta semana</h2>
+    <p class="cita-grande">«Cuando pasares por las aguas, yo seré contigo; y por los ríos, no te anegarán. Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti.»
+      <span class="cita-ref">Isaías 43:2</span></p>
+    <p class="source">Fuente del texto: Biblia <strong>Reina Valera</strong>, tal como se cita en el capítulo 41 de <em>Profetas y Reyes</em>. Puedes leerlo en línea en <a href="https://www.biblegateway.com/passage/?search=Isa%C3%ADas+43%3A2&amp;version=RVR1909" target="_blank" rel="noopener">BibleGateway · Isaías 43:2 (RVR 1909)</a>.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>🔥 Dónde aparece en el capítulo 41</h2>
+    <p>Este es el párrafo del capítulo, casi al final, después de que los tres jóvenes salieron del horno:</p>
+    <p class="parrafo-cap">«Los tres hebreos declararon a toda la nación de Babilonia su fe en Aquel a quien adoraban. Confiaron en Dios. En la hora de su prueba <strong>recordaron la promesa</strong>: “Cuando pasares por las aguas, yo seré contigo; y por los ríos, no te anegarán. Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti.” Isaías 43:2. Y de una manera maravillosa su fe en la Palabra viviente fué honrada a la vista de todos.»</p>
+    <p><strong>Fíjate en esto:</strong> el versículo no lo aprendieron frente al horno. Ya se lo sabían. Por eso lo pudieron <em>recordar</em> justo cuando más lo necesitaban.</p>
+    <p class="source">Fuente: Elena G. de White, <em>Profetas y Reyes</em>, cap. 41 «El horno de fuego» (basado en Daniel 3). El capítulo completo se puede leer en la biblioteca en línea <a href="https://egwwritings.org/" target="_blank" rel="noopener">egwwritings.org</a>.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>🙌 Los ocho gestos, en orden</h2>
+    <p>Lean el versículo en voz alta haciendo cada gesto. Los gestos <strong>no son parte de la Biblia</strong>: son la ayuda del club para no perder el orden de las palabras.</p>
+    <ul class="gest-list" id="gestListLeer"></ul>
+  </div>
+
+  <div class="read-cta">
+    <button class="btn btn-gold" id="toGameBtn">Ya lo leí · ¡A jugar! ▶</button>
+  </div>
+
+  <div class="luego">
+    <h2>📅 Para las próximas semanas</h2>
+    <p class="aviso">Estos dos NO se juegan hoy</p>
+    <p class="prox">El capítulo 41 tiene otras dos frases para memorizar. Cada una tendrá <strong>su propia semana</strong>: mezclarlas hoy con Isaías 43:2 solo confunde. Se dejan aquí para que la familia y la clase las vean venir.</p>
+    <div id="proxLista"></div>
+  </div>
+</section>
+
 <!-- ══════════ MODO JUEGO ══════════ -->
-<section id="juego" class="active">
+<section id="juego">
   <div class="stage">
     <div class="round-label" id="roundLabel">¿Listos para memorizar?</div>
+    <div class="clase-line" id="claseLine"></div>
+    <div class="ladder" id="ladder"></div>
 
     <div class="game-card" id="gameCard" aria-live="polite">
       <div class="emoji">🔥</div>
-      <div class="big-title">¡Partida del versículo!</div>
-      <div class="hint">5 rondas de palabras que se borran + 5 rondas para armar el versículo</div>
+      <div class="big-title">Isaías 43:2, de memoria</div>
+      <div class="hint">Primero se practica con las palabras borrándose (eso no da puntos). El punto se gana al final, con la pantalla vacía.</div>
     </div>
 
     <div class="controls">
-      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
+      <button class="btn btn-gold" id="mainBtn">▶ Empezar</button>
     </div>
 
     <div class="judge" id="judge" hidden>
@@ -365,12 +462,12 @@
       <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
     </div>
 
-    <p class="practice-note" id="practiceNote" hidden>🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.</p>
+    <p class="practice-note" id="practiceNote" hidden></p>
 
-    <div class="medals">
-      <h3>🏅 Versículos que ya dijiste de memoria</h3>
-      <div class="medal-list" id="medalList"></div>
-      <button class="btn btn-outline btn-sm" id="resetProgress">🧹 Empezar el álbum de nuevo</button>
+    <div class="week">
+      <h3>📆 Días de esta semana en que lo dijiste completo</h3>
+      <div class="week-track" id="weekTrack"></div>
+      <button class="btn btn-outline btn-sm" id="resetProgress">🧹 Borrar la semana</button>
     </div>
   </div>
 </section>
@@ -378,158 +475,190 @@
 <!-- ══════════ MATERIAL IMPRIMIBLE ══════════ -->
 <section id="material">
   <p class="print-note">
-    Usa <strong>Ctrl/Cmd + P</strong> para imprimir. Primero salen las <strong>tiras del versículo</strong>
-    (se recortan por la línea punteada, se revuelven y el niño las ordena en el piso o en la mesa) y después
-    la <strong>hoja de gestos</strong> para pegar en la pared del club.
+    Usa <strong>Ctrl/Cmd + P</strong> para imprimir. Sale la <strong>tarjeta de bolsillo</strong> con el versículo,
+    las <strong>tiras para recortar y ordenar</strong> y la <strong>hoja de gestos</strong> para la pared del club.
+    Al final quedan las tiras de los dos textos de las semanas siguientes.
   </p>
 
-  <div class="sheet-title"><span>✂️</span> Tiras para recortar y ordenar</div>
+  <div class="sheet-title"><span>🎒</span> Tarjeta de bolsillo</div>
+  <div class="pocket">
+    <div class="tx">«Cuando pasares por las aguas, yo seré contigo; y por los ríos, no te anegarán. Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti.»</div>
+    <div class="rf">Isaías 43:2 · Profetas y Reyes, cap. 41</div>
+  </div>
+
+  <div class="sheet-title"><span>✂️</span> Tiras de Isaías 43:2 para recortar y ordenar</div>
   <div id="stripSheets"></div>
 
   <div class="sheet-title page-break"><span>🙌</span> Hoja de gestos para la pared</div>
   <div class="gest-grid" id="gestSheet"></div>
+
+  <div class="sheet-title page-break"><span>📅</span> Semanas siguientes (todavía no se juegan)</div>
+  <div id="stripProx"></div>
 </section>
 
 <!-- ══════════ PARA PADRES ══════════ -->
 <section id="padres">
   <div class="parent-box">
     <h2>📖 La historia</h2>
-    <p>Esta dinámica está basada en <strong>Daniel 3</strong> (capítulo 41 de <em>Profetas y Reyes</em>, «El horno de fuego»). Nabucodonosor levantó en la llanura de Dura una imagen de oro de <strong>sesenta codos de altura y seis de anchura</strong>, y decretó que al sonar la música todos se postraran ante ella.</p>
-    <p>Tres jóvenes hebreos —<strong>Sadrac, Mesac y Abed-nego</strong>— no doblaron la rodilla. Le respondieron al rey: «He aquí nuestro Dios a quien honramos, puede librarnos del horno de fuego ardiendo… <strong>y si no, sepas, oh rey, que tu dios no adoraremos</strong>». El horno se calentó siete veces más de lo acostumbrado, pero dentro del fuego el rey vio <strong>cuatro varones</strong>: el Salvador mismo caminaba con ellos. Salieron ilesos: ni un cabello quemado, ni olor de fuego en sus ropas.</p>
-    <p>El capítulo dice que, en la hora de su prueba, ellos <strong>recordaron una promesa</strong>. Esa promesa es el versículo de este juego.</p>
+    <p>El capítulo 41 de <em>Profetas y Reyes</em>, «El horno de fuego», está basado en <strong>Daniel 3</strong>. Nabucodonosor levantó en la llanura de Dura una imagen de oro de <strong>sesenta codos de altura y seis de anchura</strong> y decretó que, al sonar la música, todos se postraran ante ella.</p>
+    <p>Tres jóvenes hebreos —<strong>Sadrac, Mesac y Abed-nego</strong>— no doblaron la rodilla. El horno se calentó <strong>siete veces más</strong> de lo acostumbrado, pero el rey vio dentro <strong>cuatro varones</strong> sueltos y sin daño. Salieron ilesos: ni un cabello quemado, ni olor de fuego en sus ropas.</p>
+    <p>Y el capítulo dice de dónde les salió esa calma: «En la hora de su prueba <strong>recordaron la promesa</strong>… <em>Isaías 43:2</em>». Ese versículo es todo el contenido de esta actividad.</p>
   </div>
 
   <div class="parent-box">
     <h2>💡 ¿Qué aprende su hijo?</h2>
+    <p>Esta actividad tiene <strong>un solo objetivo</strong>, y es medible: <strong>decir Isaías 43:2 palabra por palabra y decir su cita</strong>. No enseña la secuencia de la historia (eso lo hace otra actividad del club) ni hace preguntas de comprensión. Aquí se memoriza texto literal.</p>
     <ul>
-      <li><strong>Guardar la Palabra en el corazón</strong>: lo que se memoriza hoy es lo que se recuerda en el día difícil, como les pasó a los tres jóvenes.</li>
-      <li><strong>Aprender con el cuerpo</strong>: los gestos anclan las palabras. Un niño de 4 años que no lee todavía puede decir el versículo completo si tiene el gesto.</li>
-      <li><strong>Fidelidad sin condiciones</strong>: «y si no» — obedecer a Dios aunque no sepamos cómo termina la historia.</li>
-      <li><strong>Dios acompaña</strong>: no siempre apaga el horno; entra en él con nosotros.</li>
+      <li><strong>Texto literal.</strong> Se practica hasta que sale completo, sin cambiar palabras.</li>
+      <li><strong>La cita también es contenido.</strong> Un versículo sin su dirección no se puede volver a buscar. En el campamento se pregunta.</li>
+      <li><strong>Aprender con el cuerpo.</strong> Los ocho gestos permiten que un niño de 4 años, que todavía no lee, diga el versículo completo.</li>
     </ul>
-    <p class="verse">«Cuando pasares por las aguas, yo seré contigo; y por los ríos, no te anegarán. Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti.» <span>Isaías 43:2</span></p>
+    <p class="verse">«Cuando pasares por las aguas, yo seré contigo; y por los ríos, no te anegarán. Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti.» <span>Isaías 43:2 (Reina Valera), citado en Profetas y Reyes, cap. 41</span></p>
   </div>
 
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>. La app elige el versículo de la semana: Isaías 43:2 o una de las dos frases cortas del capítulo.</li>
-      <li><strong>Rondas 1 a 5 (palabras que se borran).</strong> En la ronda 1 el versículo está completo: léanlo juntos en voz alta <em>haciendo los gestos</em> que aparecen al lado de cada trozo. En cada ronda desaparecen más palabras (quedan chamuscadas 🔥) hasta que en la ronda 5 no queda ninguna: su hijo lo dice completo de memoria, solo con los gestos como pista.</li>
-      <li>Después de cada ronda, ustedes confirman en el bloque punteado: <strong>⭐ ¡Sí! +1</strong> si lo dijo, o <strong>😅 Esta vez no</strong>. El adulto es el juez: aquí no se califica solo, porque lo que importa es la voz y el gesto.</li>
-      <li><strong>Rondas 6 a 10 (armar el versículo).</strong> Salen unas palabras revueltas en botones grandes y su hijo las toca <em>en orden</em>. Esta mitad la califica la app sola: si toca todo en orden a la primera, suma ⭐. Si se equivoca, el botón se sacude y puede seguir intentando hasta completarlo.</li>
-      <li>Cada partida usa un <strong>recorte distinto</strong> del versículo y unas palabras borradas distintas: la app recuerda por niño y por semana lo que ya salió, así que no se repite hasta agotar la bolsa.</li>
-      <li>Cuando su hijo dice un versículo completo de memoria en la ronda 5, se le pega una 🏅 en el <strong>álbum</strong> de la parte de abajo. Al completar los tres, el álbum celebra y se limpia para volver a empezar.</li>
-      <li>Sin pantalla: impriman las <strong>tiras</strong> desde la pestaña 🖨️, recórtenlas, revuélvanlas y que las ordene en el piso. La <strong>hoja de gestos</strong> se pega en la pared del club.</li>
+      <li><strong>Primero la pestaña 📖 Leer.</strong> Lean juntos el versículo, el párrafo del capítulo donde aparece y los ocho gestos. El juego no enseña el versículo: lo comprueba.</li>
+      <li><strong>Toquen «Ya lo leí · ¡A jugar!».</strong> Empieza la <em>escalera de práctica</em>: en cada pantalla desaparecen más palabras (quedan chamuscadas 🔥) y su hijo dice el versículo completo igual. <strong>Estas pantallas no dan puntos</strong> y la app lo dice en cada una. Son el ensayo.</li>
+      <li>Cuántas pantallas de práctica hay depende de la <strong>clase del club</strong> de su hijo: los más pequeños tienen más escalones y ven la primera letra de cada palabra borrada; los mayores tienen menos escalones y no ven ninguna letra.</li>
+      <li><strong>El escalón final sí paga.</strong> La pantalla se queda vacía: solo los ocho gestos. Su hijo dice el versículo completo de memoria y usted confirma en el bloque punteado: <strong>⭐ ¡Sí! +1</strong> o <strong>😅 Esta vez no</strong>. Antes de que usted decida, la app muestra el versículo completo para que puedan comparar.</li>
+      <li><strong>Constructores y Manos Ayudadoras</strong> (8 y 9 años) tienen un escalón más: decir la <strong>cita</strong> —libro, capítulo y versículo— sin verla. Ese acierto vale el segundo punto. Las clases menores también hacen ese escalón, pero como práctica y sin punto: la cita se les pide de memoria a partir de Constructores.</li>
+      <li>Aquí <strong>no se graba audio ni video</strong>. El único que oye al niño es el adulto que está al lado, y es él quien confirma.</li>
+      <li>Sin pantalla: impriman las <strong>tiras</strong> desde la pestaña 🖨️, recórtenlas, revuélvanlas y que su hijo las ordene en el piso. La <strong>tarjeta de bolsillo</strong> va en la maleta del colegio.</li>
     </ol>
-    <p>Los tres versículos salen del capítulo 41 de <em>Profetas y Reyes</em> (versión Reina Valera), así que también sirven de repaso para el examen didáctico de Conexión Bíblica 2026.</p>
-    <p>Y lo más importante: conversen. <em>¿Por qué crees que ellos recordaron ese versículo justo frente al horno? ¿Qué “fuego” te da miedo a ti? ¿Quién camina contigo ahí?</em></p>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ Por qué este juego vale 2 puntos y no 10</h2>
+    <p>Esta actividad da <strong>máximo 2 puntos al día</strong>, a propósito. Antes daba 10 y estaba mal: el tope del sistema (5 de un tipo + 5 de otro) es un <em>techo</em>, no una cuota que haya que llenar. Rellenar con rondas inventadas para llegar a 10 le enseñaba al niño que el punto se gana por tocar la pantalla, no por saberse el versículo.</p>
+    <table class="tabla-puntos">
+      <tr><th>Lo que se hace</th><th>¿Suma?</th></tr>
+      <tr><td>Escalones de práctica (las palabras se van borrando)</td><td>No. Es ensayo.</td></tr>
+      <tr><td>Decir el versículo completo con la pantalla vacía, confirmado por el adulto</td><td><strong>⭐ 1 punto</strong></td></tr>
+      <tr><td>Decir la cita «Isaías 43:2» sin verla <em>(solo Constructores y Manos Ayudadoras)</em></td><td><strong>⭐ 1 punto</strong></td></tr>
+    </table>
+    <p><strong>Total: 2 puntos al día.</strong> Uno por el texto y uno por la cita, porque eso es exactamente lo que se evalúa. <strong>Repetir la vuelta el mismo día no suma más:</strong> cuando esos dos puntos ya están, el juego sigue igual pero en modo práctica y la app lo dice en pantalla. Los niños de las clases menores llegan a 1 punto en esta actividad, y está bien: a los 4 años se pide el texto, no la referencia.</p>
+    <p>Cada actividad del club tiene su propio cupo diario, así que jugar esta no le quita puntos a las demás. Cuando el cupo del día ya está usado, el juego sigue funcionando <strong>en modo práctica</strong> y la app lo avisa. Los fallos no restan.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño. El documento es la llave para sumar puntos: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🔎 Qué es del capítulo y qué es del club</h2>
+    <p>Del capítulo 41 sale <strong>todo el contenido evaluable</strong>: el versículo Isaías 43:2 palabra por palabra, su cita y el párrafo donde el capítulo lo introduce. Las dos frases de las semanas siguientes (Daniel 3:18 y Daniel 3:29) también están citadas en el mismo capítulo.</p>
+    <p>Del club, y no de la Biblia, son: <strong>los ocho gestos</strong>, las pistas del entrenador («dilo marchando», «dilo bajito») y el orden en que se van borrando las palabras. Son técnicas de memorización, no contenido para el exam.</p>
   </div>
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 rondas de memoria + 5 rondas de armar. Cada acierto suma <strong>⭐ 1 punto</strong> (los fallos no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de memoria y 5 de armar</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
-    <p>Reto extra para el sábado: que su hijo diga <strong>Isaías 43:2 completo con gestos</strong> delante de la clase, y que enseñe los gestos a otro niño. Enseñar es la mejor manera de no olvidar.</p>
-    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+    <p>Una vuelta por día, de lunes a sábado. Abajo del juego hay un marcador de la semana: se pinta el día en que su hijo dijo el versículo completo. La meta es <strong>seis días seguidos</strong>.</p>
+    <p>El sábado, en la clase: que lo diga <strong>con la cita</strong> delante de sus compañeros y le enseñe los gestos a otro niño. Enseñar es la mejor manera de no olvidar.</p>
   </div>
 </section>
 
 <script src="/shared/profile.js"></script>
 
 <script>
+  const ACTIVITY = 'pr41-versiculo';
+
   // ══════════ Gestos (SVG inline, contorno gordo) ══════════
   const GESTOS = {
     olas: {
-      nombre: 'Olas',
+      name: 'Olas',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M12 34 q 9.5 -14 19 0 t 19 0 t 19 0 t 19 0"/><path d="M12 54 q 9.5 -14 19 0 t 19 0 t 19 0 t 19 0"/><path d="M12 74 q 9.5 -14 19 0 t 19 0 t 19 0 t 19 0"/></svg>'
     },
     manos: {
-      nombre: 'Manos juntas',
+      name: 'Manos juntas',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M14 88 L14 72 C6 70 6 58 14 56 L14 46 A4.5 4.5 0 0 1 23 46 L24.5 56 L26 38 A4.5 4.5 0 0 1 35 38 L38 50 L41 34 A4.5 4.5 0 0 1 50 34 L50 88 Z"/><path d="M86 88 L86 72 C94 70 94 58 86 56 L86 46 A4.5 4.5 0 0 0 77 46 L75.5 56 L74 38 A4.5 4.5 0 0 0 65 38 L62 50 L59 34 A4.5 4.5 0 0 0 50 34 L50 88 Z"/></svg>'
     },
     rio: {
-      nombre: 'Río',
+      name: 'Río',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M20 10 q 16 30 4 80"/><path d="M80 10 q -16 30 -4 80"/><path class="thin" d="M38 34 q 12 -10 24 0"/><path class="thin" d="M38 54 q 12 -10 24 0"/><path class="thin" d="M38 74 q 12 -10 24 0"/></svg>'
     },
     no: {
-      nombre: 'Brazos cruzados: ¡NO!',
+      name: 'Brazos cruzados: ¡NO!',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34"/><path d="M30 30 L70 70"/><path d="M70 30 L30 70"/></svg>'
     },
     fuego: {
-      nombre: 'Dedos como llamas',
+      name: 'Dedos como llamas',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 12 C 64 30 74 40 74 58 C 74 76 63 88 50 88 C 37 88 26 76 26 58 C 26 42 38 38 44 24 C 44 42 54 46 54 56 C 61 48 58 28 50 12 Z"/></svg>'
     },
     soplo: {
-      nombre: 'Sopla y sacude las manos',
+      name: 'Sopla y sacude las manos',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M42 22 A24 24 0 0 1 63 36 L70 42 L64 52 A24 24 0 0 1 48 69 A24 24 0 0 1 18 46 A24 24 0 0 1 42 22 Z"/><circle cx="36" cy="36" r="2.5"/><circle cx="52" cy="58" r="5"/><path class="thin" d="M68 52 q 9 -4 16 -2"/><path class="thin" d="M69 60 q 9 1 16 4"/><path class="thin" d="M66 68 q 8 5 14 9"/></svg>'
     },
     llama: {
-      nombre: 'Una llamita en la mano',
+      name: 'Una llamita en la mano',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 16 C 58 28 64 34 64 44 C 64 54 58 60 50 60 C 42 60 36 54 36 44 C 36 36 43 33 46 24 C 46 36 52 38 52 44 C 56 40 55 26 50 16 Z"/><rect x="26" y="66" width="48" height="22" rx="11"/></svg>'
     },
     corazon: {
-      nombre: 'Manos en el corazón',
+      name: 'Manos en el corazón',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 84 C 18 62 12 42 26 32 C 37 24 48 30 50 42 C 52 30 63 24 74 32 C 88 42 82 62 50 84 Z"/></svg>'
     },
     dedo: {
-      nombre: 'Un dedo firme al cielo',
+      name: 'Un dedo firme al cielo',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M38 22 A7 7 0 0 1 52 22 L52 46 L66 46 A8 8 0 0 1 74 54 L74 78 A8 8 0 0 1 66 86 L36 86 A8 8 0 0 1 28 78 L28 54 A8 8 0 0 1 36 46 L38 46 Z"/><path class="thin" d="M28 60 C18 58 16 74 28 74"/></svg>'
     },
     corona: {
-      nombre: 'Corona del rey',
+      name: 'Corona del rey',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 72 L24 30 L37 48 L50 24 L63 48 L76 30 L82 72 Z"/><path d="M18 80 h 64"/></svg>'
     },
     idolo: {
-      nombre: 'La estatua de oro',
+      name: 'La estatua de oro',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="24" r="12"/><rect x="38" y="40" width="24" height="34" rx="7"/><rect x="26" y="78" width="48" height="12" rx="5"/></svg>'
     },
     abrir: {
-      nombre: 'Abre las manos: ¡libres!',
+      name: 'Abre las manos: ¡libres!',
       svg: '<svg class="g-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 86 L24 70 C10 68 8 52 22 52 L22 46 A5.5 5.5 0 0 1 33 46 L35 54 L37 36 A5.5 5.5 0 0 1 48 36 L50 46 L52 34 A5.5 5.5 0 0 1 63 34 L65 46 L67 42 A5.5 5.5 0 0 1 78 42 L78 86 Z"/><path class="thin" d="M50 20 v -8 M32 24 l -4 -7 M68 24 l 4 -7"/></svg>'
     }
   };
 
-  // ══════════ Versículos del capítulo 41 ══════════
-  const VERSES = [
+  // ══════════ El texto de ESTA semana ══════════
+  // Reina Valera, tal como el capítulo 41 de Profetas y Reyes lo cita.
+  const VERSICULO = {
+    ref: 'Isaías 43:2',
+    book: 'Isaías',
+    cap: '43',
+    ver: '2',
+    chunks: [
+      {t:'Cuando pasares por las aguas,', emoji:'🌊', g:'olas',    gesture:'mueve las manos como olas'},
+      {t:'yo seré contigo;',              emoji:'🤝', g:'manos',   gesture:'tómense las manos'},
+      {t:'y por los ríos,',               emoji:'🏞️', g:'rio',     gesture:'las manos avanzan como un río'},
+      {t:'no te anegarán.',               emoji:'🙅', g:'no',      gesture:'cruza los brazos y di ¡NO!'},
+      {t:'Cuando pasares por el fuego,',  emoji:'🔥', g:'fuego',   gesture:'mueve los dedos como llamas'},
+      {t:'no te quemarás,',               emoji:'💨', g:'soplo',   gesture:'sopla y sacude las manos'},
+      {t:'ni la llama',                   emoji:'🕯️', g:'llama',   gesture:'una manito arriba como llamita'},
+      {t:'arderá en ti.',                 emoji:'❤️', g:'corazon', gesture:'pon las manos en el corazón'}
+    ]
+  };
+
+  // Material de semanas siguientes. NO entran a la partida de hoy.
+  const PROXIMOS = [
     {
-      id: 'isa43',
-      ref: 'Isaías 43:2',
-      titulo: 'La promesa que recordaron frente al horno',
-      chunks: [
-        {t:'Cuando pasares por las aguas,', emoji:'🌊', g:'olas',    gesto:'mueve las manos como olas'},
-        {t:'yo seré contigo;',              emoji:'🤝', g:'manos',   gesto:'tómense las manos'},
-        {t:'y por los ríos,',               emoji:'🏞️', g:'rio',     gesto:'las manos avanzan como un río'},
-        {t:'no te anegarán.',               emoji:'🙅', g:'no',      gesto:'cruza los brazos y di ¡NO!'},
-        {t:'Cuando pasares por el fuego,',  emoji:'🔥', g:'fuego',   gesto:'mueve los dedos como llamas'},
-        {t:'no te quemarás,',               emoji:'💨', g:'soplo',   gesto:'sopla y sacude las manos'},
-        {t:'ni la llama',                   emoji:'🕯️', g:'llama',   gesto:'una manito arriba como llamita'},
-        {t:'arderá en ti.',                 emoji:'❤️', g:'corazon', gesto:'pon las manos en el corazón'}
-      ]
-    },
-    {
-      id: 'dan318',
       ref: 'Daniel 3:18',
       titulo: 'La respuesta valiente de los tres jóvenes',
+      cuando: 'Semana siguiente',
       chunks: [
-        {t:'y si no,',            emoji:'☝️', g:'dedo',   gesto:'un dedo firme al cielo'},
-        {t:'sepas, oh rey,',      emoji:'👑', g:'corona', gesto:'dibuja una corona sobre tu cabeza'},
-        {t:'que tu dios',         emoji:'🗿', g:'idolo',  gesto:'señala al frente, a la estatua'},
-        {t:'no adoraremos',       emoji:'🙅', g:'no',     gesto:'cruza los brazos, cabeza en alto'}
+        {t:'y si no,',       emoji:'☝️', g:'dedo',   gesture:'un dedo firme al cielo'},
+        {t:'sepas, oh rey,', emoji:'👑', g:'corona', gesture:'dibuja una corona sobre tu cabeza'},
+        {t:'que tu dios',    emoji:'🗿', g:'idolo',  gesture:'señala al frente, a la estatua'},
+        {t:'no adoraremos',  emoji:'🙅', g:'no',     gesture:'cruza los brazos, cabeza en alto'}
       ]
     },
     {
-      id: 'dan329',
       ref: 'Daniel 3:29',
       titulo: 'Lo que el rey reconoció al final',
+      cuando: 'Dos semanas después',
       chunks: [
-        {t:'no hay dios',      emoji:'🙅', g:'no',    gesto:'cruza los brazos y di ¡NO!'},
-        {t:'que pueda librar', emoji:'🙌', g:'abrir', gesto:'abre las manos: ¡libres!'},
-        {t:'como éste',        emoji:'☝️', g:'dedo',  gesto:'señala al cielo con un dedo'}
+        {t:'no hay dios',      emoji:'🙅', g:'no',    gesture:'cruza los brazos y di ¡NO!'},
+        {t:'que pueda librar', emoji:'🙌', g:'abrir', gesture:'abre las manos: ¡libres!'},
+        {t:'como éste',        emoji:'☝️', g:'dedo',  gesture:'señala al cielo con un dedo'}
       ]
     }
   ];
 
-  // Palabras con su trozo de origen (para pintar gestos y para armar el versículo)
-  VERSES.forEach(v => {
+  // Palabras con su trozo de origen
+  function indexar(v){
     v.words = [];
     v.chunks.forEach((c, ci) => {
       c.wordIdx = [];
@@ -538,16 +667,45 @@
         v.words.push({w, ci});
       });
     });
-    v.texto = v.chunks.map(c => c.t).join(' ');
-  });
+    v.text = v.chunks.map(c => c.t).join(' ');
+    return v;
+  }
+  indexar(VERSICULO);
+  PROXIMOS.forEach(indexar);
 
-  // Patrones de borrado: cambian qué palabras se chamuscan primero.
+  // ══════════ Dificultad por CLASE del club ══════════
+  // fracs = escalones de práctica (fracción de palabras borradas).
+  // El último escalón (pantalla vacía) va aparte y es el único que paga.
+  // pista 'inicial' deja ver la primera letra de la palabra borrada.
+  const NIVELES = {
+    'Principiantes':         {fracs:[0, .2, .4, .6, .8], pista:'inicial'},
+    'Corderitos':            {fracs:[0, .2, .4, .6, .8], pista:'inicial'},
+    'Aves Madrugadoras':     {fracs:[0, .25, .5, .75],   pista:'inicial'},
+    'Abejitas Industriosas': {fracs:[0, .35, .7],        pista:'inicial'},
+    'Rayitos de Sol':        {fracs:[0, .35, .7],        pista:'total'},
+    'Constructores':         {fracs:[0, .5],             pista:'total'},
+    'Manos Ayudadoras':      {fracs:[0, .6],             pista:'total'}
+  };
+  const NIVEL_DEFECTO = {fracs:[0, .3, .6], pista:'inicial'};
+  // La cita de memoria se pide (y paga) a partir de Constructores.
+  const CITA_PAGA = ['Constructores', 'Manos Ayudadoras'];
+
+  function nivel(){
+    const c = AvProfile.clubClass();
+    return (c && NIVELES[c]) || NIVEL_DEFECTO;
+  }
+  function citaPaga(){
+    const c = AvProfile.clubClass();
+    return !!c && CITA_PAGA.indexOf(c) !== -1;
+  }
+
+  // Cómo se van chamuscando las palabras: cambia de una vuelta a otra.
   const PATRONES = [
     {id:'p1', offset:0}, {id:'p2', offset:1}, {id:'p3', offset:2},
     {id:'p4', offset:3}, {id:'p5', offset:4}, {id:'p6', offset:5}
   ];
 
-  // Pistas del entrenador (una por ronda de memoria)
+  // Pistas del entrenador (técnica del club, no contenido bíblico)
   const TIPS = [
     {id:'t01', t:'Dilo bien fuerte, como si hablaras delante del rey.'},
     {id:'t02', t:'Ahora en voz de secreto, bajito, como una oración.'},
@@ -563,74 +721,25 @@
     {id:'t12', t:'Dilo y al final grita: ¡Dios va conmigo!'}
   ];
 
-  // Recortes para armar: frases completas (uno o varios trozos seguidos del
-  // versículo), nunca ventanas que corten un trozo por la mitad.
-  const SPAN_MIN_WORDS = 2;
-  const SPAN_MAX_WORDS = 8;
-  const SPAN_MAX_CHUNKS = 3;
-
-  function buildSpans(verse){
-    const out = [];
-    for(let i = 0; i < verse.chunks.length; i++){
-      let words = [];
-      for(let j = i; j < verse.chunks.length && j - i < SPAN_MAX_CHUNKS; j++){
-        words = words.concat(verse.chunks[j].wordIdx.map(k => verse.words[k].w));
-        if(words.length > SPAN_MAX_WORDS) break;
-        if(words.length < SPAN_MIN_WORDS) continue;
-        out.push({key: `${verse.id}:${i}-${j}`, words: words.slice(), from: i, to: j});
-      }
-    }
-    if(!out.length){
-      out.push({key: `${verse.id}:todo`, words: verse.words.map(o => o.w), from: 0, to: verse.chunks.length - 1});
-    }
-    return out;
-  }
-
-  // ¿uno de los dos recortes está contenido en el otro?
-  function spanContains(a, b){
-    return (a.from <= b.from && b.to <= a.to) || (b.from <= a.from && a.to <= b.to);
-  }
-
-  // ══════════ Partida ══════════
-  const ACTIVITY = 'pr41-versiculo';
-  const MATCH_CARDS = 5;
-  const MATCH_QUIZ = 5;
-  const FRACS = [0, .3, .55, .8, 1];
-
+  // ══════════ Estado ══════════
   let match = null;
-  let celebrando = false;
 
   const gameCard = document.getElementById('gameCard');
   const mainBtn = document.getElementById('mainBtn');
   const roundLabel = document.getElementById('roundLabel');
+  const claseLine = document.getElementById('claseLine');
+  const ladderEl = document.getElementById('ladder');
   const judge = document.getElementById('judge');
   const judgeQ = document.getElementById('judgeQ');
   const judgeYes = document.getElementById('judgeYes');
   const judgeNo = document.getElementById('judgeNo');
   const practiceNote = document.getElementById('practiceNote');
-  const medalList = document.getElementById('medalList');
+  const weekTrack = document.getElementById('weekTrack');
 
   function esc(s){
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
-  function shuffle(arr){
-    const a = arr.slice();
-    for(let i = a.length - 1; i > 0; i--){
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
-
-  function phase(){
-    if(!match) return 'idle';
-    if(match.step < MATCH_CARDS) return 'card';
-    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
-    return 'done';
-  }
-
-  // Orden en que se van chamuscando las palabras (progresivo y estable en la partida)
   function burnOrder(verse, patron){
     const n = verse.words.length;
     return verse.words
@@ -647,48 +756,15 @@
     return new Set(order.slice(0, k));
   }
 
-  function pickSpans(verse){
-    const bag = buildSpans(verse);
-    const orden = AvProfile.pick(`${ACTIVITY}:arma:${verse.id}`, bag, bag.length, s => s.key);
-    const picked = [];
-    const resto = [];
-    // Dentro de una misma partida, que ningún recorte contenga a otro.
-    orden.forEach(s => {
-      if(picked.length < MATCH_QUIZ && !picked.some(q => spanContains(q, s))) picked.push(s);
-      else resto.push(s);
-    });
-    while(picked.length < MATCH_QUIZ && resto.length) picked.push(resto.shift());
-    return picked.slice(0, MATCH_QUIZ).sort((a, b) => a.words.length - b.words.length);
-  }
-
-  function startMatch(){
-    practiceNote.hidden = true;
-    celebrando = false;
-    renderMedals();
-    const verse = AvProfile.pick(`${ACTIVITY}:versiculo`, VERSES, 1, v => v.id)[0] || VERSES[0];
-    const patron = AvProfile.pick(`${ACTIVITY}:patron`, PATRONES, 1, p => p.id)[0] || PATRONES[0];
-    match = {
-      verse,
-      patron,
-      order: burnOrder(verse, patron),
-      tips: AvProfile.pick(`${ACTIVITY}:tip`, TIPS, MATCH_CARDS, t => t.id),
-      spans: pickSpans(verse),
-      step: 0,
-      revealed: false,
-      earned: 0,
-      quizOk: 0,
-      placed: 0,
-      errors: 0
-    };
-    showStep();
-  }
-
-  function verseHTML(verse, hidden, full){
+  function verseHTML(verse, hidden, pista){
+    const full = hidden.size === 0;
     const rows = verse.chunks.map(c => {
       const words = c.wordIdx.map(i => {
         const w = verse.words[i].w;
-        if(!full && hidden.has(i)){
-          return `<span class="w gone">${'▁'.repeat(Math.max(2, Math.min(6, w.length)))}</span>`;
+        if(hidden.has(i)){
+          const rayas = '▁'.repeat(Math.max(2, Math.min(6, w.length)));
+          const cabeza = (pista === 'inicial' && w.length > 1) ? esc(w.charAt(0)) : '';
+          return `<span class="w gone">${cabeza}${rayas}</span>`;
         }
         return `<span class="w">${esc(w)}</span>`;
       }).join('');
@@ -700,288 +776,388 @@
     return `<div class="verse-box${full ? ' full' : ''}">${rows}</div>`;
   }
 
+  // ══════════ Pasos de la vuelta ══════════
+  // 'practica' → sin puntos. 'texto' → 1 card. 'cita' → 1 quiz (solo clases mayores).
+  function buildSteps(){
+    const n = nivel();
+    const pasos = n.fracs.map(f => ({tipo:'practica', frac:f, pista:n.pista}));
+    pasos.push({tipo:'texto'});
+    pasos.push({tipo:'cita'});
+    return pasos;
+  }
+
+  function renderLadder(){
+    if(!match){ ladderEl.innerHTML = ''; return }
+    ladderEl.innerHTML = match.steps.map((s, i) => {
+      const paga = s.tipo !== 'practica';
+      return `<span class="rung${paga ? ' pay' : ''}${i <= match.i ? ' on' : ''}"></span>`;
+    }).join('');
+  }
+
+  function startMatch(){
+    const patron = AvProfile.pick(`${ACTIVITY}:patron`, PATRONES, 1, p => p.id)[0] || PATRONES[0];
+    const steps = buildSteps();
+    match = {
+      steps,
+      i: 0,
+      patron,
+      order: burnOrder(VERSICULO, patron),
+      tips: AvProfile.pick(`${ACTIVITY}:tip`, TIPS, steps.length, t => t.id),
+      earned: 0,
+      pending: null,
+      revealed: false
+    };
+    practiceNote.hidden = true;
+    showStep();
+  }
+
   function showStep(){
     judge.hidden = true;
     match.revealed = false;
-    const ph = phase();
-    if(ph === 'card'){
-      const v = match.verse;
-      const frac = FRACS[match.step];
-      const hidden = hiddenSet(v, match.order, frac);
-      const tip = match.tips[match.step] || TIPS[0];
-      roundLabel.textContent = `Memoria ${match.step + 1} de ${MATCH_CARDS}`;
-      const cabeza = match.step === 0
+    match.pending = null;
+    renderLadder();
+    const step = match.steps[match.i];
+    if(!step){ finishMatch(); return }
+
+    if(step.tipo === 'practica'){
+      const total = match.steps.filter(s => s.tipo === 'practica').length;
+      const hidden = hiddenSet(VERSICULO, match.order, step.frac);
+      const tip = match.tips[match.i] || TIPS[0];
+      roundLabel.textContent = `Práctica ${match.i + 1} de ${total}`;
+      const cabeza = match.i === 0
         ? '👀 Léanlo juntos en voz alta, haciendo los gestos.'
-        : (match.step === MATCH_CARDS - 1
-            ? '🔥 ¡Todo de memoria! Solo quedan los gestos.'
-            : '🔥 Se quemaron algunas palabras: dilo igual, completito.');
+        : '🔥 Se quemaron unas palabras: dilo igual, completito.';
       gameCard.innerHTML = `
-        <span class="verse-ref">${esc(v.ref)}</span>
-        ${verseHTML(v, hidden, false)}
+        <span class="tag tag-practica">Práctica · no suma puntos</span>
+        <span class="verse-ref">${esc(VERSICULO.ref)}</span>
+        ${verseHTML(VERSICULO, hidden, step.pista)}
         <div class="coach-tip">${esc(cabeza)}</div>
         <div class="hint">💡 ${esc(tip.t)}</div>`;
-      mainBtn.textContent = match.step === MATCH_CARDS - 1 ? '¡Lo dije completo! ▶' : 'Ya lo dijimos ▶';
+      mainBtn.textContent = 'Ya lo dijimos ▶';
       mainBtn.hidden = false;
-    }else if(ph === 'quiz'){
-      startSpanRound();
-    }else{
-      finishMatch();
+      return;
     }
-  }
 
-  // ── Segunda mitad: armar el versículo tocando las palabras en orden ──
-  function startSpanRound(){
-    const idx = match.step - MATCH_CARDS;
-    const span = match.spans[idx];
-    match.placed = 0;
-    match.errors = 0;
-    roundLabel.textContent = `Armar ${idx + 1} de ${MATCH_QUIZ}`;
-    const trozos = match.verse.chunks.slice(span.from, span.to + 1);
-    const emojis = trozos.map(c => c.emoji).join(' ');
-    const gestos = trozos.map(c => c.gesto).join(', luego ');
-    const pool = shuffle(span.words.map((w, i) => ({w, i})));
+    if(step.tipo === 'texto'){
+      const pagaTexto = pagaHoy('texto');
+      roundLabel.textContent = pagaTexto ? 'El escalón que sí paga' : 'El versículo completo (ya cobrado hoy)';
+      const gestos = VERSICULO.chunks.map(c => c.emoji).join(' ');
+      gameCard.innerHTML = `
+        <span class="tag ${pagaTexto ? 'tag-punto' : 'tag-practica'}">${pagaTexto ? '⭐ 1 punto' : 'Práctica · no suma puntos'}</span>
+        <div class="big-title">Dilo completo, de memoria</div>
+        <div class="hint">La pantalla está vacía. Solo te quedan los gestos.</div>
+        <div class="gest-row" aria-hidden="true">${gestos}</div>
+        <div class="coach-tip">🙌 Haz los ocho gestos mientras lo dices. Cuando termines, toca el botón.</div>`;
+      mainBtn.textContent = '¡Ya lo dije! ▶';
+      mainBtn.hidden = false;
+      return;
+    }
+
+    // step.tipo === 'cita'
+    const paga = pagaHoy('cita');
+    const consejo = paga
+      ? '✍️ Tienen que salir las tres partes, y en orden. Si falta una, todavía no cuenta.'
+      : (citaPaga()
+        ? '✅ El punto de la cita ya está hoy: este escalón es de práctica.'
+        : '🌱 En tu clase la cita se practica; se empieza a pedir de memoria en Constructores.');
+    roundLabel.textContent = paga ? 'La cita: el segundo punto' : 'La cita (todavía sin punto)';
     gameCard.innerHTML = `
-      <span class="verse-ref">${esc(match.verse.ref)}</span>
-      <div class="big-title">Arma el versículo</div>
-      <div class="hint">${esc(emojis)} Toca las palabras <strong>en orden</strong>. Pista: ${esc(gestos)}.</div>
-      <div class="arma-target" id="armaTarget">${
-        span.words.map(() => '<span class="slot empty">▁▁▁</span>').join('')
-      }</div>
-      <div class="arma-pool" id="armaPool">${
-        pool.map(o => `<button class="word-btn" type="button" data-i="${o.i}">${esc(o.w)}</button>`).join('')
-      }</div>
-      <div class="feedback" id="armaFeedback"></div>`;
-    mainBtn.hidden = true;
-    document.getElementById('armaPool').addEventListener('click', onWordTap);
-  }
-
-  function onWordTap(e){
-    const btn = e.target.closest('.word-btn');
-    if(!btn || btn.hidden) return;
-    const span = match.spans[match.step - MATCH_CARDS];
-    const expected = span.words[match.placed];
-    if(btn.textContent !== expected){
-      match.errors++;
-      btn.classList.remove('wrong');
-      void btn.offsetWidth;
-      btn.classList.add('wrong');
-      const fb = document.getElementById('armaFeedback');
-      fb.className = 'feedback bad';
-      fb.textContent = '🤔 Esa no va todavía… ¿cuál sigue?';
-      return;
-    }
-    const slots = document.getElementById('armaTarget').children;
-    const slot = slots[match.placed];
-    slot.textContent = expected;
-    slot.classList.remove('empty');
-    btn.hidden = true;
-    match.placed++;
-    const fb = document.getElementById('armaFeedback');
-    if(match.placed < span.words.length){
-      fb.className = 'feedback ok';
-      fb.textContent = '👍 ¡Así es!';
-      return;
-    }
-    finishSpanRound();
-  }
-
-  function finishSpanRound(){
-    const ok = match.errors === 0;
-    const fb = document.getElementById('armaFeedback');
-    const p = AvProfile.get();
-    match.revealed = true;
-    if(ok) match.quizOk++;
-    if(p && AvProfile.canScore('quiz')){
-      AvProfile.score(ok, 'quiz');
-      if(ok) match.earned++;
-      fb.className = ok ? 'feedback ok' : 'feedback bad';
-      fb.textContent = ok
-        ? '⭐ ¡Perfecto a la primera! +1 punto'
-        : '💪 Lo armaste completo, pero con ayuditas: esta vez no suma.';
-    }else{
-      fb.className = ok ? 'feedback ok' : 'feedback bad';
-      fb.textContent = (ok ? '🎉 ¡Perfecto! ' : '💪 ¡Completo! ') +
-        (p ? '(De práctica: los puntos de hoy ya están.)' : '(Sin perfil: no suma al tablero.)');
-    }
-    mainBtn.textContent = 'Siguiente ▶';
+      <span class="tag ${paga ? 'tag-punto' : 'tag-practica'}">${paga ? '⭐ 1 punto' : 'Práctica · no suma puntos'}</span>
+      <div class="emoji">📖</div>
+      <div class="big-title">¿Dónde está escrito?</div>
+      <div class="hint">Di el <strong>libro</strong>, el <strong>capítulo</strong> y el <strong>versículo</strong>, sin mirar.</div>
+      <div class="coach-tip">${consejo}</div>`;
+    mainBtn.textContent = 'Ya la dije ▶';
     mainBtn.hidden = false;
   }
 
-  // ── Primera mitad: el adulto confirma ──
-  function revealStep(){
+  // ── Mostrar la respuesta correcta y pasar al juicio del adulto ──
+  function reveal(){
     match.revealed = true;
-    const v = match.verse;
-    gameCard.innerHTML = `
-      <span class="verse-ref">${esc(v.ref)}</span>
-      ${verseHTML(v, new Set(), true)}
-      <div class="coach-tip">✅ Así es el versículo completo. ¿Le salió?</div>`;
+    const step = match.steps[match.i];
     const p = AvProfile.get();
-    if(p && AvProfile.canScore('card')){
-      judgeQ.textContent = `¿${p.name} lo dijo con los gestos?`;
+
+    if(step.tipo === 'practica'){
+      // La práctica no se juzga: se muestra completo y se sigue.
+      gameCard.innerHTML = `
+        <span class="tag tag-practica">Práctica · no suma puntos</span>
+        <span class="verse-ref">${esc(VERSICULO.ref)}</span>
+        ${verseHTML(VERSICULO, new Set(), step.pista)}
+        <div class="coach-tip">✅ Así es completo. Compárenlo con lo que dijo y sigan.</div>`;
+      mainBtn.textContent = 'Siguiente ▶';
+      mainBtn.hidden = false;
+      return;
+    }
+
+    if(step.tipo === 'texto'){
+      // Sin el badge de la cita: el siguiente paso la pide de memoria.
+      gameCard.innerHTML = `
+        ${verseHTML(VERSICULO, new Set(), 'total')}
+        <div class="coach-tip">✅ Este es el versículo completo. ¿Lo dijo así?</div>`;
+      abrirJuicio('card', 'texto', p ? `¿${esc(p.name)} lo dijo completo, con los gestos?` : null);
+      return;
+    }
+
+    // cita
+    gameCard.innerHTML = `
+      <div class="emoji">📖</div>
+      <div class="big-title">La cita es:</div>
+      <div class="cita-blanco">${esc(VERSICULO.libro)} ${esc(VERSICULO.cap)}:${esc(VERSICULO.ver)}</div>
+      <div class="coach-tip">✅ Libro <strong>${esc(VERSICULO.libro)}</strong>, capítulo <strong>${esc(VERSICULO.cap)}</strong>, versículo <strong>${esc(VERSICULO.ver)}</strong>.</div>`;
+    if(citaPaga()){
+      abrirJuicio('quiz', 'cita', p ? `¿${esc(p.name)} dijo las tres partes de la cita?` : null);
+    }else{
+      judgeQ.innerHTML = '🌱 En tu clase la cita es práctica: no suma punto.';
+      judgeYes.hidden = true;
+      judgeNo.hidden = true;
+      judge.hidden = false;
+      mainBtn.textContent = 'Terminar ▶';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function abrirJuicio(kind, paso, pregunta){
+    const p = AvProfile.get();
+    if(pagaHoy(paso)){
+      match.pending = {kind, paso};
+      judgeQ.innerHTML = pregunta;
       judgeYes.hidden = false;
       judgeNo.hidden = false;
       judge.hidden = false;
       mainBtn.hidden = true;
-    }else{
-      judgeQ.textContent = p
-        ? '🌙 Puntos completos: esta ronda es de práctica.'
-        : '👤 Sin perfil: esta ronda no suma al tablero.';
-      judgeYes.hidden = true;
-      judgeNo.hidden = true;
-      judge.hidden = false;
-      mainBtn.textContent = 'Siguiente ▶';
-      mainBtn.hidden = false;
-      if(match.step === MATCH_CARDS - 1) marcarMemorizado(v.id);
+      return;
     }
+    match.pending = null;
+    judgeQ.textContent = !p
+      ? '👤 Sin perfil: este escalón no suma al tablero.'
+      : (yaCobrado(paso)
+        ? '✅ Este punto ya se jugó hoy: esta vuelta es de práctica.'
+        : '🌙 El punto de hoy ya está usado: este escalón es de práctica.');
+    judgeYes.hidden = true;
+    judgeNo.hidden = true;
+    judge.hidden = false;
+    mainBtn.textContent = match.i >= match.steps.length - 1 ? 'Terminar ▶' : 'Siguiente ▶';
+    mainBtn.hidden = false;
   }
 
   function nextStep(){
-    match.step++;
+    match.i++;
+    if(match.i >= match.steps.length){ finishMatch(); return }
     showStep();
   }
 
   function finishMatch(){
-    const v = match.verse;
     roundLabel.textContent = '¡Bien hecho, aventurero!';
+    claseLine.textContent = claseTexto();
     const p = AvProfile.get();
+    const tope = citaPaga() ? 2 : 1;
+    const hoyPts = puntosHoy();
     const scored = p
-      ? `<div class="hint">⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.</div>`
-      : '';
-    const extra = p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')
-      ? '<div class="hint">🌙 Puntos de hoy completos: las próximas partidas son de práctica.</div>' : '';
-    const album = celebrando
-      ? `<div class="coach-tip">🎉 ¡Completaste el álbum! Te sabes los <strong>${VERSES.length} versículos</strong> del capítulo. El álbum se limpió solo para volver a empezar.</div>`
+      ? `<div class="hint">⭐ Hoy llevas <strong>${hoyPts} de ${tope}</strong> punto${tope === 1 ? '' : 's'} posible${tope === 1 ? '' : 's'} en esta actividad.${hoyPts >= tope ? ' Ya está completa: las vueltas que siguen son práctica.' : ''}</div>`
       : '';
     gameCard.innerHTML = `
-      <div class="emoji">${celebrando ? '🎉' : '🏁'}</div>
-      <div class="big-title">${celebrando ? '¡Álbum completo!' : '¡Partida completa!'}</div>
-      <span class="verse-ref">${esc(v.ref)}</span>
-      <div class="hint">Armaste ${match.quizOk} de ${MATCH_QUIZ} recortes sin ayuda.</div>
-      ${album}${scored}${extra}
-      <div class="coach-tip">🔥 Recuerda: Dios no apagó el horno… ¡entró con ellos!</div>`;
-    mainBtn.textContent = '🔁 Otra partida';
+      <div class="emoji">🏁</div>
+      <div class="big-title">¡Vuelta completa!</div>
+      <span class="verse-ref">${esc(VERSICULO.ref)}</span>
+      ${scored}
+      <div class="coach-tip">🔥 Como los tres hebreos: no aprendieron el versículo frente al horno. Ya se lo sabían.</div>`;
+    mainBtn.textContent = '🔁 Otra vuelta';
     mainBtn.hidden = false;
     match = null;
+    ladderEl.innerHTML = '';
     updateIdleHint();
   }
 
-  // ══════════ Álbum de versículos (localStorage) ══════════
+  // ══════════ Marcador de la semana (localStorage) ══════════
+  const DIAS = ['L','M','M','J','V','S','D'];
+  function hoyBogota(){
+    return new Intl.DateTimeFormat('en-CA', {timeZone:'America/Bogota'}).format(new Date());
+  }
+  function diasDeLaSemana(){
+    const partes = hoyBogota().split('-').map(Number);
+    const dt = new Date(Date.UTC(partes[0], partes[1] - 1, partes[2]));
+    dt.setUTCDate(dt.getUTCDate() - ((dt.getUTCDay() + 6) % 7));
+    const out = [];
+    for(let i = 0; i < 7; i++){
+      const x = new Date(dt.getTime());
+      x.setUTCDate(dt.getUTCDate() + i);
+      out.push(x.toISOString().slice(0, 10));
+    }
+    return out;
+  }
   function progressKey(){
     const p = AvProfile.get();
     return `${ACTIVITY}:progreso:${p ? p.id : 'anon'}`;
   }
-  function readProgress(){
+  function readStore(){
     try{
-      const raw = JSON.parse(localStorage.getItem(progressKey()) || 'null');
-      return Array.isArray(raw && raw.verses) ? raw.verses : [];
-    }catch(e){ return [] }
+      const raw = JSON.parse(localStorage.getItem(progressKey()) || 'null') || {};
+      return {
+        dias: Array.isArray(raw.dias) ? raw.dias : [],
+        cobrado: (raw.cobrado && typeof raw.cobrado === 'object') ? raw.cobrado : {}
+      };
+    }catch(e){ return {dias: [], cobrado: {}} }
   }
+  function writeStore(st){
+    const cobrado = {};
+    Object.keys(st.cobrado).sort().slice(-40).forEach(d => { cobrado[d] = st.cobrado[d] });
+    try{ localStorage.setItem(progressKey(), JSON.stringify({dias: st.dias.slice(-40), cobrado})) }catch(e){}
+  }
+  function readProgress(){ return readStore().dias }
   function writeProgress(list){
-    try{ localStorage.setItem(progressKey(), JSON.stringify({verses: list})) }catch(e){}
+    const st = readStore();
+    st.dias = list;
+    writeStore(st);
   }
-  function marcarMemorizado(id){
+  // El tope declarado (1 punto por el texto + 1 por la cita) tiene que sobrevivir a
+  // repetir vueltas: el techo del backend es 5+5, así que el límite real se lleva aquí.
+  function cobradoHoy(){
+    return readStore().cobrado[hoyBogota()] || {};
+  }
+  function yaCobrado(paso){
+    return cobradoHoy()[paso] !== undefined;
+  }
+  function marcarCobrado(paso, puntos){
+    const st = readStore();
+    const hoy = hoyBogota();
+    st.cobrado[hoy] = Object.assign({}, st.cobrado[hoy]);
+    st.cobrado[hoy][paso] = puntos;
+    writeStore(st);
+  }
+  function puntosHoy(){
+    const c = cobradoHoy();
+    return Object.keys(c).reduce((a, k) => a + (c[k] || 0), 0);
+  }
+  // Un paso paga si la clase lo evalúa, si el backend tiene cupo y si hoy no se cobró ya.
+  function pagaHoy(paso){
+    if(!AvProfile.get()) return false;
+    if(paso === 'cita' && !citaPaga()) return false;
+    return AvProfile.canScore(paso === 'cita' ? 'quiz' : 'card') && !yaCobrado(paso);
+  }
+  function marcarDia(){
+    const hoy = hoyBogota();
     const list = readProgress();
-    if(!list.includes(id)) list.push(id);
-    if(list.length >= VERSES.length){
-      writeProgress([]);
-      celebrando = true;
-      renderMedals();
-      return;
-    }
+    if(list.indexOf(hoy) === -1) list.push(hoy);
     writeProgress(list);
-    renderMedals();
+    renderWeek();
   }
-  function renderMedals(){
-    const list = readProgress();
-    medalList.innerHTML = VERSES.map(v => {
-      const done = list.includes(v.id);
-      return `<div class="medal${done ? ' done' : ''}">
-          <span class="mark" aria-hidden="true">${done ? '🏅' : '⬜'}</span>
-          <span>${esc(v.ref)} — ${esc(v.titulo)}</span>
+  function renderWeek(){
+    const hechos = readProgress();
+    const hoy = hoyBogota();
+    weekTrack.innerHTML = diasDeLaSemana().map((fecha, i) => {
+      const done = hechos.indexOf(fecha) !== -1;
+      return `<div class="day${done ? ' done' : ''}${fecha === hoy ? ' hoy' : ''}">
+          <span class="mk" aria-hidden="true">${done ? '⭐' : '·'}</span>
+          <span>${DIAS[i]}</span>
         </div>`;
-    }).join('') + (celebrando
-      ? '<div class="medal done"><span class="mark" aria-hidden="true">🎉</span><span>¡Los tres versículos de memoria! El álbum se limpió para volver a empezar.</span></div>'
-      : '');
+    }).join('');
   }
-
   document.getElementById('resetProgress').addEventListener('click', () => {
     writeProgress([]);
-    celebrando = false;
-    renderMedals();
+    renderWeek();
   });
 
   // ══════════ Estado sin partida ══════════
+  function claseTexto(){
+    const c = AvProfile.clubClass();
+    if(!c) return 'Ingresa tu perfil para ajustar la dificultad a tu clase.';
+    const n = nivel();
+    const paga = citaPaga();
+    return `Clase ${c} · ${n.fracs.length} escalón${n.fracs.length === 1 ? '' : 'es'} de práctica · ${paga ? 'versículo + cita = 2 puntos' : 'versículo = 1 punto'}`;
+  }
+
   function updateIdleHint(){
-    renderMedals();
+    renderWeek();
+    claseLine.textContent = claseTexto();
     if(match) return;
     const p = AvProfile.get();
-    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    const sinCupo = !!p && !pagaHoy('texto') && !pagaHoy('cita');
     if(!p){
-      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: no suma al tablero. Toca el botón 👤 de arriba para ingresar.';
       practiceNote.hidden = false;
-    }else if(practice){
-      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+    }else if(sinCupo){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy en esta actividad ya están: las vueltas que siguen son <strong>práctica</strong>.';
+      practiceNote.hidden = false;
+    }else if(citaPaga()){
+      practiceNote.innerHTML = '⭐ Esta actividad da <strong>máximo 2 puntos al día</strong>: uno por el versículo y uno por la cita. Repetir la vuelta no suma más. Los escalones de práctica no suman, y está bien así.';
       practiceNote.hidden = false;
     }else{
-      practiceNote.hidden = true;
+      practiceNote.innerHTML = '⭐ Esta actividad da <strong>máximo 1 punto al día</strong>: el versículo completo. Repetir la vuelta no suma más, y está bien así.';
+      practiceNote.hidden = false;
     }
-    if(mainBtn.textContent.includes('Otra partida')){
-      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
-    }else if(mainBtn.textContent.includes('partida')){
-      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    if(mainBtn.textContent.indexOf('Otra vuelta') !== -1){
+      mainBtn.textContent = sinCupo ? '🔁 Otra vuelta (práctica)' : '🔁 Otra vuelta';
+    }else{
+      mainBtn.textContent = sinCupo ? '▶ Empezar (práctica)' : '▶ Empezar';
     }
   }
   AvProfile.onChange(updateIdleHint);
 
   mainBtn.addEventListener('click', () => {
-    if(!match){ startMatch(); return; }
-    if(!match.revealed){ revealStep(); return; }
+    if(!match){ startMatch(); return }
+    if(!match.revealed){ reveal(); return }
     nextStep();
   });
 
   judgeYes.addEventListener('click', () => {
     judge.hidden = true;
-    AvProfile.score(true, 'card');
-    match.earned++;
-    if(match.step === MATCH_CARDS - 1) marcarMemorizado(match.verse.id);
+    const pend = match.pending;
+    match.pending = null;
+    if(pend){
+      AvProfile.score(true, pend.kind);
+      marcarCobrado(pend.paso, 1);
+      match.earned++;
+    }
+    if(match.steps[match.i].tipo === 'texto') marcarDia();
     nextStep();
   });
   judgeNo.addEventListener('click', () => {
     judge.hidden = true;
-    AvProfile.score(false, 'card');
+    const pend = match.pending;
+    match.pending = null;
+    // Un fallo no cierra el paso: se puede volver a intentar hoy, pero el punto sigue siendo uno.
+    if(pend) AvProfile.score(false, pend.kind);
     nextStep();
   });
 
+  // ══════════ Pestaña Leer ══════════
+  document.getElementById('gestListLeer').innerHTML = VERSICULO.chunks.map((c, i) => `
+    <li>
+      <span class="em" aria-hidden="true">${c.emoji}</span>
+      <span class="tx">${i + 1}. ${esc(c.t)}<small>Gesto: ${esc(c.gesto)}</small></span>
+    </li>`).join('');
+
+  document.getElementById('proxLista').innerHTML = PROXIMOS.map(v => `
+    <p class="prox"><b>${esc(v.ref)} — ${esc(v.cuando)}</b>«${esc(v.texto)}» · ${esc(v.titulo)}</p>`).join('');
+
   // ══════════ Material imprimible ══════════
-  function renderPrintables(){
-    document.getElementById('stripSheets').innerHTML = VERSES.map(v => `
-      <div class="sheet-title"><span>📜</span> ${esc(v.ref)}</div>
-      <div class="strip-set">${v.chunks.map((c, i) => `
-        <div class="tira">
-          <span class="n">${i + 1}</span>
-          <span class="mini">${GESTOS[c.g].svg}</span>
-          <span class="txt">${esc(c.t)}<small>${esc(c.emoji)} ${esc(c.gesto)}</small></span>
-        </div>`).join('')}</div>`).join('');
-
-    const usados = [];
-    VERSES.forEach(v => v.chunks.forEach(c => { if(!usados.includes(c.g)) usados.push(c.g) }));
-    document.getElementById('gestSheet').innerHTML = usados.map(k => `
-      <div class="gest-card">
-        ${GESTOS[k].svg}
-        <span class="name">${esc(GESTOS[k].nombre)}</span>
-        <span class="what">${esc(gestoUso(k))}</span>
-      </div>`).join('');
+  function tiras(v){
+    return `<div class="strip-set">${v.chunks.map((c, i) => `
+      <div class="tira">
+        <span class="n">${i + 1}</span>
+        <span class="mini">${GESTOS[c.g].svg}</span>
+        <span class="txt">${esc(c.t)}<small>${c.emoji} ${esc(c.gesto)}</small></span>
+      </div>`).join('')}</div>`;
   }
-  function gestoUso(k){
-    const frases = [];
-    VERSES.forEach(v => v.chunks.forEach(c => {
-      if(c.g === k && !frases.includes(c.t)) frases.push(c.t);
-    }));
-    return '«' + frases.join('» · «') + '»';
-  }
-  renderPrintables();
+  document.getElementById('stripSheets').innerHTML = tiras(VERSICULO);
+  document.getElementById('stripProx').innerHTML = PROXIMOS.map(v => `
+    <div class="sheet-title"><span>📜</span> ${esc(v.ref)} · ${esc(v.cuando)}</div>
+    ${tiras(v)}`).join('');
 
-  // ══════════ Menú ══════════
+  document.getElementById('gestSheet').innerHTML = VERSICULO.chunks.map(c => `
+    <div class="gest-card">
+      ${GESTOS[c.g].svg}
+      <span class="name">${esc(GESTOS[c.g].nombre)}</span>
+      <span class="what">«${esc(c.t)}»</span>
+    </div>`).join('');
+
+  // ══════════ Navegación ══════════
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
+  }
+  document.getElementById('toGameBtn').addEventListener('click', () => goTo('juego'));
+
   const menuBtn = document.getElementById('menuBtn');
   const menuPanel = document.getElementById('menuPanel');
   function closeMenu(){
@@ -996,13 +1172,10 @@
     if(!e.target.closest('.menu-wrap')) closeMenu();
   });
   document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-      closeMenu();
-    });
+    btn.addEventListener('click', () => { goTo(btn.dataset.tab); closeMenu() });
+  });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeMenu();
   });
 
   // ══════════ Perfil ══════════
@@ -1011,7 +1184,11 @@
     AvProfile.open();
   });
 
-  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 1, quiz: 1},   // lo que vale esta actividad; el techo del backend es 5+5
+  });
   updateIdleHint();
 </script>
 </body>

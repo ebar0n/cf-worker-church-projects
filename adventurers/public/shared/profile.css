@@ -21,18 +21,22 @@
   border:2px solid var(--pf-gold);
   color:var(--pf-gold-soft);
   border-radius:999px;
-  padding:7px 14px;
+  padding:8px 14px;
+  line-height:26px;
   min-height:44px;
   cursor:pointer;
-  display:inline-flex;
-  align-items:center;
+  display:inline-block;
   max-width:100%;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+@media (max-width:440px){
+  /* En pantalla angosta el chip suelta lo secundario antes que recortar el nombre. */
+  .pf-chip .c-clase,.pf-chip .c-hoy{display:none}
+}
 @media (max-width:400px){
-  .pf-chip{font-size:.78rem;padding:6px 10px}
+  .pf-chip{font-size:.78rem;padding:8px 10px;line-height:24px}
 }
 .pf-chip:focus-visible{outline:3px solid #fff;outline-offset:3px}
 
@@ -114,6 +118,100 @@
 }
 .pf-status.ok{color:var(--pf-ok);font-size:1.05rem}
 .pf-status[hidden]{display:none}
+/* ── Trofeo y tablero ── */
+.pf-trophy{
+  font-size:1.15rem;
+  line-height:1;
+  background:transparent;
+  border:2px solid var(--pf-gold);
+  color:var(--pf-gold-soft);
+  border-radius:999px;
+  width:44px;
+  height:44px;
+  min-width:44px;
+  flex-shrink:0;
+  cursor:pointer;
+  display:inline-grid;
+  place-items:center;
+}
+.pf-trophy:active{transform:translateY(2px)}
+.pf-trophy:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+.pf-tablero .pf-card{max-width:460px}
+.pf-board{list-style:none;margin:14px 0 0;padding:0}
+.pf-board li{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:11px 6px;
+  border-bottom:2px dashed rgba(35,26,15,.15);
+}
+.pf-board li:last-child{border-bottom:none}
+.pf-board li.me{
+  background:rgba(240,180,41,.16);
+  border-radius:12px;
+  padding-left:10px;
+  padding-right:10px;
+}
+.pf-board .rank{
+  font-family:'Fredoka',sans-serif;
+  font-weight:700;
+  font-size:1.1rem;
+  min-width:2em;
+  text-align:center;
+}
+.pf-board .who{
+  font-weight:800;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.pf-board .pts{
+  margin-left:auto;
+  font-family:'Fredoka',sans-serif;
+  font-weight:700;
+  background:var(--pf-gold);
+  color:var(--pf-lapis-deep);
+  border-radius:999px;
+  padding:4px 14px;
+  white-space:nowrap;
+}
+.pf-board-empty{
+  text-align:center;
+  padding:16px 8px;
+  font-weight:700;
+  opacity:.75;
+}
+.pf-board-empty[hidden]{display:none}
+
+/* ── Selector de edad ── */
+.pf-age-wrap{display:flex;flex-direction:column;gap:8px}
+.pf-age-wrap[hidden]{display:none}
+.pf-age-label{font-weight:700;font-size:.95rem;color:var(--pf-ink)}
+.pf-ages{display:flex;flex-wrap:wrap;gap:8px}
+.pf-age{
+  font-family:'Fredoka',sans-serif;
+  font-size:1rem;
+  font-weight:600;
+  min-width:48px;
+  min-height:48px;
+  padding:0 14px;
+  border-radius:14px;
+  border:2px solid var(--pf-lapis);
+  background:#fff;
+  color:var(--pf-ink);
+  cursor:pointer;
+}
+.pf-age.on{background:var(--pf-gold);border-color:var(--pf-gold-deep,#B8820F);color:var(--pf-lapis-deep)}
+.pf-age:focus-visible{outline:3px solid var(--pf-brick);outline-offset:2px}
+.pf-age-class{
+  font-family:'Fredoka',sans-serif;
+  font-weight:600;
+  font-size:.92rem;
+  color:var(--pf-brick);
+}
+.pf-age-class[hidden]{display:none}
+
 .pf-note{font-size:.82rem;opacity:.7;margin-bottom:12px}
 .pf-error{
   color:var(--pf-error);
@@ -177,6 +275,25 @@ body .topbar,body .index-top{
   position:relative;
   z-index:60;
   --pf-safe-area:applied;
+}
+
+/* Ninguna etiqueta baja de 12.8px: por debajo no se lee en un teléfono.
+   Con `body` delante para ganarle al <style> de cada página. */
+body .eyebrow,body .tag,body .quiz-tag,body .fuente,body .board-tag,
+body .mini-src,body .swatch{font-size:.8rem}
+/* El .tag de una tarjeta pequeña también, cuando la página lo achica */
+body .mini-card .tag,body .pill{font-size:.8rem}
+
+/* Las zonas táctiles de la barra superior, para todas las páginas de una vez.
+   Va con `body` delante por la misma razón que el relleno de zona segura: este
+   archivo se carga antes del <style> de cada página. */
+body .back-link,body .menu-btn{
+  min-height:44px;
+  min-width:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
 }
 
 /* ── Avisos que no bloquean (reemplazan a alert) ── */
@@ -250,5 +367,5 @@ body .topbar,body .index-top{
 }
 
 @media print{
-  .pf-overlay,.pf-chip,.pf-toast-wrap,.pf-offline,.pf-install{display:none!important}
+  .pf-overlay,.pf-chip,.pf-trophy,.pf-toast-wrap,.pf-offline,.pf-install{display:none!important}
 }

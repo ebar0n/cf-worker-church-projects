@@ -9,20 +9,49 @@ const ACTIVITIES = [
   "pr39",
   "pr39-prueba10",
   "pr39-nombres",
-  "pr39-rompecabezas",
   "pr39-colorear",
-  "pr41",
-  "pr41-estatua",
-  "pr41-horno",
   "pr41-secuencia",
   "pr41-versiculo",
-  "pr44",
   "pr44-reloj",
   "pr44-quien-lo-dijo",
-  "pr44-laberinto",
   "pr44-diferencias",
+  "pr41-estatua-sueno",
+  "organiza-la-biblia",
+  "biblia-colores",
+  "biblia-orden",
+  "padres-cap17",
+  "padres-cap18",
+  "ideales-voto",
+  "ideales-ley",
+  "ideales-himno",
 ];
 const DAILY_LIMIT = { card: 5, quiz: 5 };
+
+// Cada actividad vale lo que su contenido justifica, no el techo. La página lo
+// declara en AvProfile.init({caps}) para la interfaz, pero la autoridad es esta:
+// sin ella, una petición directa se llevaría los 5 de todas formas.
+const ACTIVITY_CAPS = {
+  pr39: { card: 5, quiz: 0 },
+  "pr39-prueba10": { card: 5, quiz: 0 },
+  "pr39-nombres": { card: 4, quiz: 2 },
+  "pr39-colorear": { card: 4, quiz: 1 },
+  "pr41-estatua-sueno": { card: 5, quiz: 2 },
+  "pr41-secuencia": { card: 5, quiz: 1 },
+  "pr41-versiculo": { card: 1, quiz: 1 },
+  "pr44-diferencias": { card: 5, quiz: 2 },
+  "pr44-quien-lo-dijo": { card: 3, quiz: 1 },
+  "pr44-reloj": { card: 3, quiz: 2 },
+  "organiza-la-biblia": { card: 5, quiz: 5 },
+  "biblia-colores": { card: 5, quiz: 0 },
+  "biblia-orden": { card: 3, quiz: 2 },
+  "ideales-voto": { card: 2, quiz: 0 },
+  "ideales-ley": { card: 2, quiz: 3 },
+  "ideales-himno": { card: 3, quiz: 0 },
+  "padres-cap17": { card: 0, quiz: 5 },
+  "padres-cap18": { card: 0, quiz: 5 },
+};
+const capFor = (activity, kind) =>
+  Math.min(DAILY_LIMIT[kind], ACTIVITY_CAPS[activity]?.[kind] ?? DAILY_LIMIT[kind]);
 
 async function docHash(doc) {
   const data = new TextEncoder().encode(`${SALT}:${doc}`);
@@ -32,6 +61,10 @@ async function docHash(doc) {
 
 const normalizeDoc = (raw) => String(raw ?? "").replace(/\D/g, "");
 const normalizeName = (raw) => String(raw ?? "").trim().replace(/\s+/g, " ");
+const normalizeAge = (raw) => {
+  const n = Number.parseInt(raw, 10);
+  return Number.isInteger(n) && n >= 1 && n <= 15 ? n : null;
+};
 const todayInBogota = () =>
   new Intl.DateTimeFormat("en-CA", { timeZone: "America/Bogota" }).format(new Date());
 
@@ -53,9 +86,10 @@ async function todayCounts(db, playerId) {
 
 async function toProfile(db, row) {
   return {
-    player: { id: row.id, name: row.name, points: row.points },
+    player: { id: row.id, name: row.name, points: row.points, age: row.age ?? null },
     today: await todayCounts(db, row.id),
     limit: DAILY_LIMIT,
+    caps: ACTIVITY_CAPS,
   };
 }
 
@@ -91,9 +125,9 @@ app.post("/api/register", async (c) => {
     return c.json({ error: `Ese documento ya está registrado a nombre de ${existing.name}.` }, 409);
   }
   const row = await c.env.DB.prepare(
-    "INSERT INTO adventurers_players (name, doc_hash, doc_hint) VALUES (?, ?, ?) RETURNING id, name, points"
+    "INSERT INTO adventurers_players (name, doc_hash, doc_hint, age) VALUES (?, ?, ?, ?) RETURNING id, name, points, age"
   )
-    .bind(name, hash, doc.slice(-2))
+    .bind(name, hash, doc.slice(-2), normalizeAge(body.age))
     .first();
   return c.json(await toProfile(c.env.DB, row), 201);
 });
@@ -103,11 +137,26 @@ app.post("/api/login", async (c) => {
   const doc = normalizeDoc(body.doc);
   if (!doc) return c.json({ error: "Escribe el número de documento." }, 400);
   const row = await c.env.DB.prepare(
-    "SELECT id, name, points FROM adventurers_players WHERE doc_hash = ?"
+    "SELECT id, name, points, age FROM adventurers_players WHERE doc_hash = ?"
   )
     .bind(await docHash(doc))
     .first();
   if (!row) return c.json({ error: "not_found" }, 404);
+  return c.json(await toProfile(c.env.DB, row));
+});
+
+app.post("/api/edad", async (c) => {
+  const body = await c.req.json().catch(() => ({}));
+  const doc = normalizeDoc(body.doc);
+  const age = normalizeAge(body.age);
+  if (!doc) return c.json({ error: "Falta el documento." }, 400);
+  if (age === null) return c.json({ error: "Escribe una edad entre 1 y 15 años." }, 400);
+  const row = await c.env.DB.prepare(
+    "UPDATE adventurers_players SET age = ?2, updated_at = datetime('now') WHERE doc_hash = ?1 RETURNING id, name, points, age"
+  )
+    .bind(await docHash(doc), age)
+    .first();
+  if (!row) return c.json({ error: "El documento no coincide con ningún perfil." }, 401);
   return c.json(await toProfile(c.env.DB, row));
 });
 
@@ -126,7 +175,7 @@ app.post("/api/score", async (c) => {
 
   if (body.correct === false) {
     const row = await c.env.DB.prepare(
-      "SELECT id, name, points FROM adventurers_players WHERE doc_hash = ?"
+      "SELECT id, name, points, age FROM adventurers_players WHERE doc_hash = ?"
     )
       .bind(hash)
       .first();
@@ -146,8 +195,8 @@ app.post("/api/score", async (c) => {
      WHERE doc_hash = ?1
        AND (SELECT COUNT(*) FROM adventurers_interactions i
               WHERE i.player_id = adventurers_players.id
-                AND i.day = ?2 AND i.delta > 0 AND i.kind = ?3) < ${DAILY_LIMIT[kind]}
-     RETURNING id, name, points`
+                AND i.day = ?2 AND i.delta > 0 AND i.kind = ?3) < ${capFor(activity, kind)}
+     RETURNING id, name, points, age`
   )
     .bind(hash, today, scopedKind)
     .first();
@@ -163,10 +212,14 @@ app.post("/api/score", async (c) => {
     .bind(hash)
     .first();
   if (!exists) return c.json({ error: "El documento no coincide con ningún perfil." }, 401);
+  const tope = capFor(activity, kind);
   const label = kind === "quiz" ? "preguntas" : "juego";
+  if (tope === 0) {
+    return c.json({ error: `Esta actividad no da puntos de ${label}.`, limit: DAILY_LIMIT }, 429);
+  }
   return c.json(
     {
-      error: `🌙 ¡Ya sumaste tus ${DAILY_LIMIT[kind]} puntos de ${label} de hoy en esta actividad!`,
+      error: `🌙 ¡Ya sumaste tus ${tope} puntos de ${label} de hoy en esta actividad!`,
       limit: DAILY_LIMIT,
     },
     429

@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1B2F6E">
+<title>La estatua del sueño</title>
+<meta name="description" content="Viste la estatua del sueño de Nabucodonosor: oro, plata, bronce, hierro y barro cocido, cada material en su parte, según Daniel 2:32-33. Primero se lee, después se juega.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
+<meta property="og:title" content="La estatua del sueño">
+<meta property="og:description" content="Toca el material y toca la parte: oro en la cabeza, plata en el pecho, bronce en el vientre, hierro en las piernas y barro en los pies. Y descubre por qué el rey hizo la suya toda de oro.">
+<meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr41-estatua-sueno/">
+<meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_CO">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="El Elohe Israel">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="/shared/profile.css">
+<style>
+  :root{
+    --lapis:#1B2F6E;
+    --lapis-deep:#12204D;
+    --gold:#F0B429;
+    --gold-soft:#FFD97A;
+    --brick:#C2542B;
+    --cream:#FFF6E3;
+    --verde:#2E9E5B;
+    --verde-deep:#1E7040;
+    --ink:#231A0F;
+    --piedra:#8E9AA6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--lapis);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,217,122,.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(240,180,41,.07), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 46px, rgba(255,255,255,.035) 46px 48px),
+      repeating-linear-gradient(90deg, transparent 0 92px, rgba(255,255,255,.03) 92px 94px);
+    color:var(--cream);
+    min-height:100%;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+  header{text-align:center;padding:10px 16px 12px}
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;
+    font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);
+  }
+  h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.5rem,5vw,2.3rem);line-height:1.15;margin-top:6px}
+  .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+  @media (max-width:600px){.subtitle{display:none}header{padding-bottom:8px}}
+
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 12px 0;max-width:1000px;margin:0 auto}
+  .topbar .back-link{white-space:nowrap;flex-shrink:0}
+  .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
+  .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
+  .player-chip + .menu-wrap{margin-left:0}
+  @media (max-width:480px){
+    .topbar{gap:8px;padding:10px 10px 0}
+    .bl-text,.mb-text{display:none}
+    .back-link{padding:8px 10px}
+    .menu-btn{padding:8px 12px}
+  }
+  .back-link{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--gold-soft);text-decoration:none;border:2px solid transparent;border-radius:999px;padding:8px 16px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-btn{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;border:2px solid var(--gold);
+    background:transparent;color:var(--gold-soft);border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .menu-panel{
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
+  }
+  .menu-panel[hidden]{display:none}
+  .menu-item{
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;background:transparent;border:none;
+    color:var(--ink);border-radius:12px;padding:12px 14px;min-height:44px;cursor:pointer;
+  }
+  .menu-item:hover{background:rgba(240,180,41,.25)}
+  .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
+
+  section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
+  section.active{display:block}
+
+  /* ══════════ LEER ══════════ */
+  #leer{max-width:680px}
+  .read-card{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:22px 18px;margin-bottom:18px;box-shadow:0 8px 0 rgba(0,0,0,.28);
+  }
+  .read-card h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.12rem;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .read-card p{line-height:1.6;margin-bottom:10px}
+  .read-card p:last-child{margin-bottom:0}
+  .pasaje{
+    background:#fff;border-left:6px solid var(--lapis);border-radius:12px;padding:14px 14px 14px 16px;
+    line-height:1.7;font-size:1rem;
+  }
+  .pasaje b{font-family:'Fredoka',sans-serif;color:var(--brick);font-size:.85em;vertical-align:.25em;margin-right:2px}
+  .source{font-size:.82rem;opacity:.75;margin-top:12px}
+  .source a{color:var(--brick);font-weight:700}
+  .mat-lista{list-style:none;margin-top:4px}
+  .mat-lista li{
+    display:flex;gap:12px;align-items:center;padding:10px 4px;
+    border-bottom:2px dashed rgba(35,26,15,.15);
+  }
+  .mat-lista li:last-child{border-bottom:none}
+  .swatch{
+    width:34px;height:34px;border-radius:10px;border:3px solid var(--ink);flex-shrink:0;
+  }
+  .swatch.doble{background:linear-gradient(135deg,#5A6068 0 50%,#B4573A 50% 100%)}
+  .mat-lista .mnom{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.02rem}
+  .mat-lista .mpar{font-size:.9rem;opacity:.82}
+  .aviso{
+    background:rgba(194,84,43,.12);border:2px dashed var(--brick);border-radius:14px;
+    padding:12px 14px;font-size:.92rem;line-height:1.55;
+  }
+  .read-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+
+  /* ══════════ JUEGO ══════════ */
+  .stage{max-width:560px;margin:0 auto;text-align:center}
+  .round-label{
+    font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.14em;
+    text-transform:uppercase;font-size:.78rem;margin-bottom:10px;
+  }
+  .game-card{
+    background:var(--cream);color:var(--ink);border-radius:28px;border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);padding:18px 14px 22px;
+  }
+  .orden{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.05rem,4.4vw,1.35rem);line-height:1.3;min-height:2.6em;display:flex;align-items:center;justify-content:center}
+  .orden .blank{
+    display:inline-block;min-width:3.2em;border-bottom:4px solid var(--brick);
+    color:transparent;user-select:none;
+  }
+  .fb{
+    margin-top:12px;font-weight:700;font-size:.98rem;line-height:1.5;border-radius:14px;padding:11px 12px;
+    background:rgba(35,26,15,.06);border:2px solid rgba(35,26,15,.14);
+  }
+  .fb.ok{background:rgba(46,158,91,.16);border-color:var(--verde)}
+  .fb.bad{background:rgba(194,84,43,.14);border-color:var(--brick)}
+  .fb .ref{display:block;font-weight:800;font-size:.82rem;opacity:.75;margin-top:4px;font-family:'Fredoka',sans-serif}
+  .fb[hidden]{display:none}
+
+  /* estatua */
+  .estatua{width:100%;max-width:290px;height:auto;display:block;margin:0 auto}
+  .estatua .zona{fill:#EDE2CA;stroke:#3A2E1B;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round}
+  .estatua .piso{stroke:#3A2E1B;stroke-width:4;stroke-linecap:round}
+  .estatua .hit{fill:#231A0F;fill-opacity:0;cursor:pointer}
+  .estatua .hit.off{pointer-events:none}
+  .estatua .hit.activa{fill:var(--gold);fill-opacity:.30;animation:latir 1.1s ease-in-out infinite}
+  .estatua .hit.lista{pointer-events:none}
+  .estatua .rotulo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:12.5px;fill:#231A0F;text-anchor:middle}
+  .estatua .lider{stroke:#231A0F;stroke-width:2;stroke-linecap:round;fill:none}
+  .estatua .piedra{fill:var(--piedra);stroke:#3A2E1B;stroke-width:3.5}
+  .estatua .grieta{stroke:#231A0F;stroke-width:3;stroke-linecap:round;fill:none}
+  .estatua .oculto{display:none}
+  .estatua.rota .zona{opacity:.45}
+  @keyframes latir{0%,100%{fill-opacity:.16}50%{fill-opacity:.38}}
+  @keyframes rodar{from{transform:translate(0,0)}to{transform:translate(-72px,14px)}}
+  .estatua .piedra.rueda{animation:rodar .9s ease-in forwards}
+
+  /* paleta */
+  .paleta{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:9px;margin-top:14px}
+  .mat{
+    font-family:'Fredoka',sans-serif;font-size:.98rem;font-weight:600;
+    background:#fff;color:var(--ink);border:3px solid var(--lapis);border-radius:16px;
+    padding:9px 8px;min-height:52px;cursor:pointer;display:flex;align-items:center;gap:9px;text-align:left;
+  }
+  .mat .bolita{width:26px;height:26px;border-radius:50%;border:3px solid var(--ink);flex-shrink:0}
+  .mat:active{transform:translateY(2px)}
+  .mat:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+  .mat.sel{background:var(--gold);border-color:var(--brick);box-shadow:0 0 0 4px rgba(240,180,41,.4)}
+  .mat:disabled{opacity:.42;cursor:default}
+
+  .opts{display:grid;gap:10px;margin-top:12px}
+  .opt{
+    font-family:'Fredoka',sans-serif;font-size:1.02rem;font-weight:600;
+    background:#fff;color:var(--ink);border:3px solid var(--lapis);border-radius:16px;
+    padding:13px 14px;min-height:52px;cursor:pointer;text-align:left;
+  }
+  .opt:active{transform:translateY(2px)}
+  .opt:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+  .opt.ok{background:var(--verde);border-color:var(--verde-deep);color:#fff}
+  .opt.bad{background:var(--brick);border-color:#8f3a1c;color:#fff}
+  .opt:disabled{cursor:default;opacity:.9}
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+  .btn{
+    font-family:'Fredoka',sans-serif;font-size:1.08rem;font-weight:600;border:none;border-radius:999px;
+    padding:14px 26px;min-height:48px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.3);
+  }
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-gold{background:var(--gold);color:var(--lapis-deep)}
+  .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
+  .btn-sm{font-size:.95rem;padding:10px 18px;min-height:44px}
+  .btn[hidden]{display:none}
+
+  .cierre{
+    margin-top:16px;background:rgba(255,255,255,.07);border:2px dashed var(--gold);border-radius:16px;
+    padding:14px;font-family:'Fredoka',sans-serif;font-weight:600;line-height:1.5;
+  }
+  .cierre .cita{display:block;font-weight:400;font-family:'Nunito',sans-serif;font-size:.92rem;opacity:.9;margin-top:8px}
+  .practice-note{margin-top:16px;text-align:center;font-weight:700;font-size:.95rem;color:var(--gold-soft);opacity:.92}
+  .practice-note[hidden]{display:none}
+  .clase-note{margin-top:10px;font-size:.85rem;color:var(--gold-soft);opacity:.85;font-weight:700}
+  .clase-note[hidden]{display:none}
+
+  /* ══════════ IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:560px;margin:0 auto 18px}
+  .sheet{background:#fff;color:#000;border-radius:18px;padding:24px 20px;max-width:700px;margin:0 auto}
+  .sheet h2{font-family:'Fredoka',sans-serif;font-size:1.3rem;margin-bottom:4px}
+  .sheet .sub{font-size:.9rem;opacity:.75;margin-bottom:14px}
+  .sheet .estatua{max-width:330px}
+  .sheet .estatua .zona{fill:#fff;stroke:#000}
+  .sheet .estatua .piso{stroke:#000}
+  .sheet .estatua .rotulo{fill:#000}
+  .sheet .estatua .lider{stroke:#000}
+  .sheet .leyenda{list-style:none;margin-top:14px;column-gap:18px}
+  .sheet .leyenda li{display:flex;gap:10px;align-items:center;padding:5px 0;font-size:.95rem}
+  .sheet .leyenda .box{width:22px;height:22px;border:2px solid #000;flex-shrink:0}
+  .sheet .pie{margin-top:14px;font-size:.9rem;line-height:1.5;border-top:2px solid #000;padding-top:10px}
+
+  /* ══════════ PADRES ══════════ */
+  #padres{max-width:720px}
+  .parent-box{
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:22px;
+    padding:20px 18px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
+  }
+  .parent-box h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.18rem;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .parent-box p{margin-bottom:10px;line-height:1.55}
+  .parent-box p:last-child{margin-bottom:0}
+  .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
+  .parent-box li{margin-bottom:6px}
+  .parent-box a{color:var(--brick);font-weight:700}
+  .verse{
+    background:#fff;border-left:6px solid var(--lapis);border-radius:12px;padding:12px 14px;
+    font-style:italic;line-height:1.6;margin:0 0 10px;
+  }
+  .verse cite{display:block;font-style:normal;font-family:'Fredoka',sans-serif;font-size:.85rem;opacity:.75;margin-top:6px}
+
+  @media print{
+    body{background:#fff;color:#000}
+    header,.topbar,#leer,#juego,#padres,.print-note{display:none!important}
+    section{display:block!important;padding:0}
+    #material{display:block!important}
+    .sheet{border:none;padding:0;max-width:none}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="/" aria-label="Todas las actividades">← <span class="bl-text">Actividades</span></a>
+  <div class="player-chip" id="playerChip"></div>
+  <div class="menu-wrap">
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
+    <div class="menu-panel" id="menuPanel" hidden>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="juego">🎮 Jugar</button>
+      <button class="menu-item" data-tab="material">🖨️ Hoja para colorear</button>
+      <button class="menu-item" data-tab="padres">👪 Para padres</button>
+      <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 41 · El horno de fuego</div>
+  <h1>La estatua del sueño</h1>
+  <p class="subtitle">Cada material en su parte. Primero se lee, después se juega.</p>
+</header>
+
+<!-- ══════════ LEER ══════════ -->
+<section id="leer" class="active">
+  <div class="read-card">
+    <h2>📖 El sueño de la gran imagen · Daniel 2:31-35</h2>
+    <div class="pasaje">
+      <p><b>31</b> Tú, oh rey, veías, y he aquí una gran imagen. Esta imagen, que era muy grande, y cuya gloria era muy sublime, estaba en pie delante de ti, y su aspecto era terrible.</p>
+      <p><b>32</b> La cabeza de esta imagen era de oro fino; su pecho y sus brazos, de plata; su vientre y sus muslos, de bronce;</p>
+      <p><b>33</b> sus piernas, de hierro; sus pies, en parte de hierro y en parte de barro cocido.</p>
+      <p><b>34</b> Estabas mirando, hasta que una piedra fue cortada, no con mano, e hirió a la imagen en sus pies de hierro y de barro cocido, y los desmenuzó.</p>
+      <p><b>35</b> Entonces fueron desmenuzados también el hierro, el barro cocido, el bronce, la plata y el oro, y fueron como tamo de las eras del verano, y se los llevó el viento sin que de ellos quedara rastro alguno. Mas la piedra que hirió a la imagen fue hecha un gran monte que llenó toda la tierra.</p>
+    </div>
+    <p class="source">Texto bíblico: <strong>Daniel 2</strong>, versión Reina-Valera 1960, palabra por palabra. Puedes leer el capítulo completo en <a href="https://www.biblegateway.com/passage/?search=Daniel+2&amp;version=RVR1960" target="_blank" rel="noopener">Daniel 2 · BibleGateway</a>.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>🎨 Cinco partes, cinco materiales</h2>
+    <ul class="mat-lista" id="matLista"></ul>
+    <p class="source">Los cinco materiales y las cinco partes salen de Daniel 2:32-33, palabra por palabra.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>🔥 ¿Por qué el rey hizo la suya toda de oro?</h2>
+    <p>A Nabucodonosor se le quedaron grabadas unas palabras del sueño: <strong>«Tú eres aquella cabeza de oro»</strong> (Daniel 2:38). Sus sabios le propusieron hacer una imagen parecida a la del sueño y levantarla donde todos pudieran ver la cabeza de oro.</p>
+    <div class="pasaje">
+      <p>«En vez de reproducir la imagen tal como la había visto, iba a superar el original. En su imagen no habría descenso de valores desde la cabeza hasta los pies, sino que se la haría <strong>por completo de oro</strong>, para que toda ella simbolizara a Babilonia como reino eterno, indestructible y todopoderoso...»</p>
+    </div>
+    <p style="margin-top:10px">Esa estatua de oro medía <strong>sesenta codos de altura y seis codos de anchura</strong>, y la levantó en la <strong>llanura de Dura</strong>. Ahí es donde tres hebreos —Sadrac, Mesac y Abed-nego— se quedaron de pie cuando todos se postraron.</p>
+    <p class="source">Cita de <em>Profetas y Reyes</em>, cap. 41, «El horno de fuego», de Elena G. de White. Los libros están en <a href="https://egwwritings.org" target="_blank" rel="noopener">egwwritings.org</a>.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>🧭 Una cosa que este juego no dice</h2>
+    <p class="aviso">Este juego <strong>no te dice qué reino es cada material</strong>. El capítulo 41 solo cuenta que la cabeza de oro representaba el reino de Nabucodonosor, y eso sí lo verás aquí. Lo demás lo estudiarás cuando te toque; no te lo vamos a inventar.</p>
+  </div>
+
+  <div class="read-cta">
+    <button class="btn btn-gold" id="toGameBtn">Ya lo leí · ¡A jugar! ▶</button>
+  </div>
+</section>
+
+<!-- ══════════ JUEGO ══════════ -->
+<section id="juego">
+  <div class="stage">
+    <div class="round-label" id="roundLabel">¿Listo, aventurero?</div>
+
+    <div class="game-card">
+      <div class="orden" id="orden">Toca <strong>▶ Empezar</strong> para vestir la estatua del sueño.</div>
+      <div id="svgWrap"></div>
+      <div class="paleta" id="paleta"></div>
+      <div class="opts" id="opts" hidden></div>
+      <div class="fb" id="fb" aria-live="polite" hidden></div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-gold" id="mainBtn">▶ Empezar</button>
+      <button class="btn btn-outline btn-sm" id="retoBtn" hidden>🧠 Reto extra</button>
+    </div>
+
+    <div class="cierre" id="cierre" hidden></div>
+    <p class="practice-note" id="practiceNote" hidden></p>
+    <p class="clase-note" id="claseNote" hidden></p>
+  </div>
+</section>
+
+<!-- ══════════ IMPRIMIBLE ══════════ -->
+<section id="material">
+  <p class="print-note">Usa <strong>Ctrl/Cmd + P</strong> para imprimir esta hoja en tamaño carta. La estatua sale en blanco y negro, con el nombre del material dentro de cada parte.</p>
+  <div class="sheet">
+    <h2>La estatua del sueño · para colorear</h2>
+    <p class="sub">Daniel 2:32-33 · Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué</p>
+    <div id="svgPrint"></div>
+    <ul class="leyenda" id="leyendaPrint"></ul>
+    <div class="pie">
+      <p><strong>Para el niño:</strong> colorea cada parte con el color de su material y di en voz alta de qué era hecha. Los pies llevan dos colores: la mitad de hierro y la mitad de barro cocido.</p>
+      <p style="margin-top:6px"><strong>Al reverso:</strong> dibuja la estatua que el rey Nabucodonosor levantó en la llanura de Dura y coloréala <strong>toda de oro</strong>, sin descenso de valores (Profetas y Reyes, cap. 41).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PADRES ══════════ -->
+<section id="padres">
+  <div class="parent-box">
+    <h2>📖 La historia</h2>
+    <p>Nabucodonosor soñó con una gran imagen hecha de cinco materiales que iban bajando de valor: oro en la cabeza y barro en los pies. Una piedra la golpeó en los pies y la deshizo, y esa piedra se hizo un monte que llenó la tierra.</p>
+    <p>El capítulo 41 de <em>Profetas y Reyes</em> cuenta lo que el rey hizo después: mandó levantar su propia estatua en la llanura de Dura, pero <strong>toda de oro</strong>, «sin descenso de valores desde la cabeza hasta los pies», para que Babilonia pareciera un reino eterno. De ahí sale el juego: si el niño sabe de qué era hecha cada parte de la estatua del sueño, entiende de una qué fue lo que el rey cambió.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>💡 ¿Qué aprende su hijo?</h2>
+    <p>Que cada parte de la estatua tenía su material, en este orden exacto, y que la piedra golpeó justo en los pies, que eran la parte más débil.</p>
+    <p class="verse">«La cabeza de esta imagen era de oro fino; su pecho y sus brazos, de plata; su vientre y sus muslos, de bronce; sus piernas, de hierro; sus pies, en parte de hierro y en parte de barro cocido.»<cite>Daniel 2:32-33 (Reina-Valera 1960)</cite></p>
+    <p><strong>Honestidad:</strong> los materiales y las partes son de Daniel 2:32-33. La piedra y el reino eterno son de Daniel 2:34-35 y 44-45. Lo de la estatua de Dura «toda de oro», los sesenta codos y la frase «Tú eres aquella cabeza de oro» son del capítulo 41 y de Daniel 2:38. <strong>El juego no le asigna un reino a cada material</strong>, porque el capítulo 41 solo identifica la cabeza de oro con el reino de Nabucodonosor.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🏠 Cómo jugar la dinámica</h2>
+    <ol>
+      <li><strong>Lean primero</strong> la pestaña 📖. El juego repasa lo leído; no lo enseña desde cero.</li>
+      <li>En 🎮 el niño <strong>toca un material</strong> de la paleta y después <strong>toca la parte</strong> del cuerpo. No hay que arrastrar nada.</li>
+      <li>Cada parte da <strong>un punto</strong> y son cinco: cabeza, pecho y brazos, vientre y muslos, piernas y pies. Los pies necesitan los dos materiales para dar el punto.</li>
+      <li>La dificultad se ajusta a la <strong>clase</strong> del niño: a los más pequeños la app les dice qué parte sigue y les muestra el versículo con el espacio en blanco; a <strong>Constructores</strong> y <strong>Manos Ayudadoras</strong> los deja escoger la parte que quieran y les agrega dos retos con preguntas del capítulo 41 (los sesenta codos, la llanura de Dura, los tres hebreos y de qué era hecha la estatua que el rey levantó). Las preguntas rotan, así que no salen siempre las mismas.</li>
+      <li>El final <strong>no da puntos</strong> a propósito: es la piedra que desmenuza la estatua. Léanlo juntos en voz alta.</li>
+    </ol>
+  </div>
+
+  <div class="parent-box">
+    <h2>⭐ El reto de la semana</h2>
+    <p>Que su hijo recite las cinco partes con su material, de la cabeza a los pies, sin mirar: <em>oro, plata, bronce, hierro, hierro y barro</em>. Y que responda esta pregunta del campamento: <strong>¿de qué era hecha la estatua que Nabucodonosor levantó en Dura?</strong> Respuesta: <strong>toda de oro</strong>.</p>
+    <p>Esta actividad da hasta <strong>5 puntos al día</strong> (uno por parte vestida) y <strong>2 más</strong> para Constructores y Manos Ayudadoras en los dos retos. No llega a diez porque el contenido son cinco partes, y no vamos a inventar rondas para rellenar.</p>
+  </div>
+</section>
+
+<script src="/shared/profile.js"></script>
+<script>
+  const ACTIVITY = 'pr41-estatua-sueno';
+
+  // ── Contenido. Todo sale de Daniel 2:31-35, 38, 44-45 y de Profetas y Reyes cap. 41. ──
+  const MATERIALES = [
+    {id:'oro',    name:'Oro fino',     color:'#E3AC24', valor:1},
+    {id:'plata',  name:'Plata',        color:'#C7CDD4', valor:2},
+    {id:'bronce', name:'Bronce',       color:'#B5723A', valor:3},
+    {id:'hierro', name:'Hierro',       color:'#5A6068', valor:4},
+    {id:'barro',  name:'Barro cocido', color:'#B4573A', valor:5}
+  ];
+  const MAT = {};
+  MATERIALES.forEach(m => { MAT[m.id] = m });
+
+  // Las cinco partes van en el orden del versículo, de la cabeza a los pies.
+  const PARTES = [
+    {id:'cabeza',  name:'la cabeza',              materiales:['oro'],    ref:'Daniel 2:32',
+     phrase:'La cabeza de esta imagen era de oro fino',
+     hueco:'La cabeza de esta imagen era de __ fino'},
+    {id:'pecho',   name:'el pecho y los brazos',  materiales:['plata'],  ref:'Daniel 2:32',
+     phrase:'su pecho y sus brazos, de plata',
+     hueco:'Su pecho y sus brazos, de __'},
+    {id:'vientre', name:'el vientre y los muslos',materiales:['bronce'], ref:'Daniel 2:32',
+     phrase:'su vientre y sus muslos, de bronce',
+     hueco:'Su vientre y sus muslos, de __'},
+    {id:'piernas', name:'las piernas',            materiales:['hierro'], ref:'Daniel 2:33',
+     phrase:'sus piernas, de hierro',
+     hueco:'Sus piernas, de __'},
+    {id:'pies',    name:'los pies',               materiales:['hierro','barro'], ref:'Daniel 2:33',
+     phrase:'sus pies, en parte de hierro y en parte de barro cocido',
+     hueco:'Sus pies, en parte de __ y en parte de __ cocido'}
+  ];
+
+  // Los dos retos de Constructores y Manos Ayudadoras. Cada reto tiene varias
+  // preguntas y AvProfile.pick rota entre ellas, para que no salga siempre igual.
+  const PREGUNTAS_CAP41 = [
+    {
+      titulo:'los sesenta codos',
+      q:'¿Cuánto medía de altura la estatua de oro que el rey levantó?',
+      options:[
+        'Sesenta codos',
+        'Seis codos',
+        'Dieciséis codos',
+        'Treinta codos',
+        'Cien codos'
+      ],
+      correct:'Sesenta codos',
+      explica:'Medía «sesenta codos de altura y seis codos de anchura». Los seis codos eran lo ancho, no lo alto.',
+      ref:'Profetas y Reyes, cap. 41 · Daniel 3:1'
+    },
+    {
+      titulo:'la llanura',
+      q:'¿En qué lugar levantó el rey Nabucodonosor su estatua de oro?',
+      options:[
+        'En la llanura de Dura',
+        'En el monte Carmelo',
+        'A la entrada del palacio de Babilonia',
+        'A la orilla del río Quebar',
+        'En la llanura de Sinar'
+      ],
+      correct:'En la llanura de Dura',
+      explica:'La levantó en la llanura de Dura, donde todo el pueblo pudiera verla.',
+      ref:'Profetas y Reyes, cap. 41 · Daniel 3:1'
+    },
+    {
+      titulo:'los que no se postraron',
+      q:'Cuando sonó la música, todos se postraron ante la estatua menos unos hebreos. ¿Cuántos eran?',
+      options:[
+        'Tres: Sadrac, Mesac y Abed-nego',
+        'Dos: Sadrac y Mesac',
+        'Cuatro, contando a Daniel',
+        'Uno solo: Daniel',
+        'Siete jóvenes de Judá'
+      ],
+      correct:'Tres: Sadrac, Mesac y Abed-nego',
+      explica:'Fueron tres: Sadrac, Mesac y Abed-nego. Se quedaron de pie mientras todos los demás se inclinaban.',
+      ref:'Profetas y Reyes, cap. 41 · Daniel 3:12'
+    }
+  ];
+
+  const PREGUNTAS_DURA = [
+    {
+      titulo:'la estatua de Dura',
+      q:'¿De qué material era la estatua que el rey Nabucodonosor levantó en la llanura de Dura?',
+      options:[
+        'Toda de oro, de la cabeza a los pies',
+        'De oro en la cabeza y plata en el pecho, igual que la del sueño',
+        'De bronce, porque era más resistente',
+        'De hierro y barro cocido',
+        'De plata, para que brillara con el sol'
+      ],
+      correct:'Toda de oro, de la cabeza a los pies',
+      explica:'El rey quiso superar el original: «no habría descenso de valores desde la cabeza hasta los pies, sino que se la haría por completo de oro».',
+      ref:'Profetas y Reyes, cap. 41 · Daniel 2:38'
+    },
+    {
+      titulo:'la estatua de Dura',
+      q:'En la estatua del sueño los materiales bajaban de valor de la cabeza a los pies. ¿Y en la que el rey levantó en Dura?',
+      options:[
+        'No bajaban: era toda de oro',
+        'Bajaban igual que en el sueño',
+        'Bajaban al revés: barro en la cabeza y oro en los pies',
+        'Era toda de bronce',
+        'Era de piedra, como la del monte'
+      ],
+      correct:'No bajaban: era toda de oro',
+      explica:'«En su imagen no habría descenso de valores desde la cabeza hasta los pies, sino que se la haría por completo de oro, para que toda ella simbolizara a Babilonia como reino eterno».',
+      ref:'Profetas y Reyes, cap. 41 · Daniel 2:38'
+    }
+  ];
+
+  const CLASES_MAYORES = ['Constructores','Manos Ayudadoras'];
+  const CLASES_PEQUES = ['Principiantes','Corderitos','Aves Madrugadoras'];
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const shuffle = arr => {
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]] }
+    return a;
+  };
+
+  // ── SVG de la estatua, escrito a mano. Sirve en pantalla y en la hoja impresa. ──
+  function estatuaSVG(conRotulos){
+    const rot = (x, y, t) => conRotulos ? `<text class="rotulo" x="${x}" y="${y}">${t}</text>` : '';
+    return `
+<svg class="estatua" viewBox="0 0 220 448" role="img" aria-label="Estatua del sueño de Nabucodonosor con sus cinco partes">
+  <g class="zona" data-part="cabeza">
+    <rect x="98" y="66" width="24" height="26" rx="8"/>
+    <circle cx="110" cy="46" r="30"/>
+  </g>
+  <g class="zona" data-part="pecho">
+    <rect x="46" y="98" width="24" height="82" rx="12"/>
+    <rect x="150" y="98" width="24" height="82" rx="12"/>
+    <rect x="74" y="88" width="72" height="90" rx="14"/>
+  </g>
+  <g class="zona" data-part="vientre">
+    <rect x="82" y="248" width="26" height="58" rx="10"/>
+    <rect x="112" y="248" width="26" height="58" rx="10"/>
+    <rect x="80" y="176" width="60" height="78" rx="12"/>
+  </g>
+  <g class="zona" data-part="piernas">
+    <rect x="85" y="302" width="20" height="70" rx="8"/>
+    <rect x="115" y="302" width="20" height="70" rx="8"/>
+  </g>
+  <g class="zona" data-part="pies">
+    <g data-sub="hierro">
+      <rect x="72" y="366" width="36" height="22" rx="6"/>
+      <rect x="112" y="366" width="36" height="22" rx="6"/>
+    </g>
+    <g data-sub="barro">
+      <rect x="66" y="384" width="42" height="20" rx="8"/>
+      <rect x="112" y="384" width="42" height="20" rx="8"/>
+    </g>
+  </g>
+
+  <g class="grietas oculto">
+    <path class="grieta" d="M110 372 l-12 16 l14 10"/>
+    <path class="grieta" d="M96 300 l16 -14 l-8 -18 l14 -12"/>
+    <path class="grieta" d="M92 176 l20 -16 l-10 -22"/>
+    <path class="grieta" d="M100 76 l18 -10"/>
+  </g>
+  <circle class="piedra oculto" cx="188" cy="384" r="22"/>
+
+  <line class="piso" x1="14" y1="410" x2="206" y2="410"/>
+
+  ${rot(110, 52, 'ORO')}
+  ${rot(110, 140, 'PLATA')}
+  ${rot(110, 218, 'BRONCE')}
+  ${conRotulos ? '<line class="lider" x1="74" y1="332" x2="86" y2="336"/>' : ''}
+  ${rot(46, 330, 'HIERRO')}
+  ${rot(110, 434, 'PIES: HIERRO Y BARRO')}
+
+  <g class="hits">
+    <rect class="hit off" data-hit="cabeza"  x="76" y="12"  width="68"  height="82"/>
+    <rect class="hit off" data-hit="pecho"   x="42" y="94"  width="136" height="84"/>
+    <rect class="hit off" data-hit="vientre" x="74" y="178" width="72"  height="124"/>
+    <rect class="hit off" data-hit="piernas" x="76" y="302" width="68"  height="62"/>
+    <rect class="hit off" data-hit="pies"    x="62" y="364" width="96"  height="44"/>
+  </g>
+</svg>`;
+  }
+
+  // ── Leer + hoja imprimible ──
+  document.getElementById('matLista').innerHTML = PARTES.map(p => {
+    const doble = p.materiales.length > 1;
+    const nombres = p.materiales.map(id => MAT[id].nombre).join(' y ');
+    const sw = doble
+      ? '<span class="swatch doble"></span>'
+      : `<span class="swatch" style="background:${MAT[p.materiales[0]].color}"></span>`;
+    return `<li>${sw}<span>
+      <span class="mnom">${esc(nombres)}</span><br>
+      <span class="mpar">«${esc(p.frase)}» · ${esc(p.ref)}</span>
+    </span></li>`;
+  }).join('');
+
+  document.getElementById('svgPrint').innerHTML = estatuaSVG(true);
+  document.getElementById('leyendaPrint').innerHTML = MATERIALES.map(m =>
+    `<li><span class="box" style="background:${m.color}"></span><span><strong>${esc(m.nombre)}</strong> — ${
+      esc(PARTES.filter(p => p.materiales.includes(m.id)).map(p => p.nombre).join(' y '))
+    }</span></li>`).join('');
+
+  // ── Estado de la partida ──
+  const svgWrap = document.getElementById('svgWrap');
+  const paletaEl = document.getElementById('paleta');
+  const optsEl = document.getElementById('opts');
+  const ordenEl = document.getElementById('orden');
+  const fbEl = document.getElementById('fb');
+  const mainBtn = document.getElementById('mainBtn');
+  const retoBtn = document.getElementById('retoBtn');
+  const roundLabel = document.getElementById('roundLabel');
+  const cierreEl = document.getElementById('cierre');
+  const practiceNote = document.getElementById('practiceNote');
+  const claseNote = document.getElementById('claseNote');
+
+  let match = null;
+  let svg = null;
+
+  function modoClase(){
+    const c = AvProfile.clubClass();
+    if(CLASES_MAYORES.includes(c)) return 'libre';
+    if(CLASES_PEQUES.includes(c)) return 'versiculo';
+    return 'guiado'; // Abejitas, Rayitos y quien juegue sin perfil
+  }
+  const esMayor = () => CLASES_MAYORES.includes(AvProfile.clubClass());
+
+  function pintarEstatua(){
+    svgWrap.innerHTML = estatuaSVG(false);
+    svg = svgWrap.querySelector('svg');
+    svg.querySelectorAll('.hit').forEach(h => {
+      h.addEventListener('click', () => tocarParte(h.dataset.hit));
+    });
+  }
+
+  function zona(id){ return svg.querySelector(`.zona[data-part="${id}"]`) }
+  function hit(id){ return svg.querySelector(`.hit[data-hit="${id}"]`) }
+
+  function pintarZona(parteId, matIds){
+    const g = zona(parteId);
+    if(parteId === 'pies'){
+      matIds.forEach(id => {
+        const sub = g.querySelector(`g[data-sub="${id}"]`);
+        if(sub) sub.style.fill = MAT[id].color;
+      });
+    }else{
+      g.style.fill = MAT[matIds[0]].color;
+    }
+  }
+
+  function pintarPaleta(){
+    paletaEl.hidden = false;
+    paletaEl.innerHTML = MATERIALES.map(m => `
+      <button class="mat" data-mat="${m.id}" aria-pressed="false">
+        <span class="bolita" style="background:${m.color}"></span>
+        <span>${esc(m.nombre)}</span>
+      </button>`).join('');
+    paletaEl.querySelectorAll('.mat').forEach(b => {
+      b.addEventListener('click', () => elegirMaterial(b.dataset.mat));
+    });
+  }
+
+  function marcarSeleccion(){
+    paletaEl.querySelectorAll('.mat').forEach(b => {
+      const sel = b.dataset.mat === match.sel;
+      b.classList.toggle('sel', sel);
+      b.setAttribute('aria-pressed', String(sel));
+    });
+  }
+
+  function decirFb(text, clase, ref){
+    fbEl.className = 'fb' + (clase ? ' ' + clase : '');
+    fbEl.innerHTML = text + (ref ? `<span class="ref">${esc(ref)}</span>` : '');
+    fbEl.hidden = false;
+  }
+
+  // ── Fase 1: vestir la estatua (5 puntos de tipo card, uno por parte) ──
+  function start(){
+    match = {
+      fase:'vestir', modo:modoClase(), sel:null,
+      pendientes:PARTES.map(p => p.id),
+      objetivo:null, piesPuestos:[], ganados:0,
+      retos:[], retoIdx:0, quizPaso:0
+    };
+    cierreEl.hidden = true;
+    optsEl.hidden = true;
+    retoBtn.hidden = true;
+    delete mainBtn.dataset.mode;
+    mainBtn.hidden = true;
+    fbEl.hidden = true;
+    pintarEstatua();
+    pintarPaleta();
+    siguienteParte();
+    refrescarNota();
+  }
+
+  function siguienteParte(){
+    if(!match.pendientes.length){ pasarARetos(); return }
+    match.sel = null;
+    match.piesPuestos = [];
+    marcarSeleccion();
+    if(match.modo === 'libre'){
+      match.objetivo = null;
+      svg.querySelectorAll('.hit').forEach(h => {
+        h.classList.toggle('off', !match.pendientes.includes(h.dataset.hit));
+        h.classList.remove('activa');
+      });
+    }else{
+      match.objetivo = match.pendientes[0];
+      svg.querySelectorAll('.hit').forEach(h => {
+        const on = h.dataset.hit === match.objetivo;
+        h.classList.toggle('off', !on);
+        h.classList.toggle('activa', on);
+      });
+    }
+    pintarOrden();
+    roundLabel.textContent = `Vistiendo la estatua · ${PARTES.length - match.pendientes.length + 1} de ${PARTES.length}`;
+    mainBtn.hidden = true;
+  }
+
+  function pintarOrden(){
+    if(match.modo === 'libre'){
+      ordenEl.innerHTML = 'Toca un <strong>material</strong> y después la <strong>parte</strong> que le toca. Quedan ' +
+        match.pendientes.length + (match.pendientes.length === 1 ? ' parte.' : ' partes.');
+      return;
+    }
+    const p = PARTES.find(x => x.id === match.objetivo);
+    if(match.modo === 'versiculo'){
+      const conHuecos = esc(p.hueco).split('__').join('<span class="blank">material</span>');
+      ordenEl.innerHTML = `«${conHuecos}»`;
+      return;
+    }
+    ordenEl.innerHTML = `Le toca <strong>${esc(p.nombre)}</strong>. Toca su material y luego la parte que brilla.`;
+  }
+
+  function elegirMaterial(id){
+    if(!match || match.phase !== 'vestir') return;
+    match.sel = (match.sel === id) ? null : id;
+    marcarSeleccion();
+    if(match.sel && match.objetivo){
+      decirFb(`Ahora toca <strong>${esc(PARTES.find(x => x.id === match.objetivo).nombre)}</strong> en la estatua.`, '');
+    }else if(match.sel){
+      decirFb('Ahora toca la parte de la estatua que lleva ese material.', '');
+    }else{
+      fbEl.hidden = true;
+    }
+  }
+
+  function tocarParte(parteId){
+    if(!match || match.phase !== 'vestir') return;
+    if(!match.pendientes.includes(parteId)) return;
+    if(match.objetivo && parteId !== match.objetivo) return;
+    if(!match.sel){
+      decirFb('Primero toca un material de la paleta 👇', '');
+      return;
+    }
+    const parte = PARTES.find(p => p.id === parteId);
+    const elegido = match.sel;
+    const nombreMat = MAT[elegido].nombre;
+
+    if(parteId === 'pies'){
+      if(match.piesPuestos.includes(elegido)){
+        decirFb(`Ya pusiste <strong>${esc(nombreMat)}</strong> en los pies. Falta la otra mitad.`, '');
+        return;
+      }
+      if(parte.materiales.includes(elegido)){
+        match.piesPuestos.push(elegido);
+        pintarZona('pies', [elegido]);
+        if(match.piesPuestos.length === 2){
+          cerrarParte(parte, true, `✅ ¡Los pies completos! «${parte.frase}».`);
+        }else{
+          const falta = parte.materiales.find(m => m !== elegido);
+          decirFb(`✅ Bien, media parte de <strong>${esc(nombreMat)}</strong>. Los pies llevan dos materiales: falta <strong>${esc(MAT[falta].nombre)}</strong>.`, 'bien', parte.ref);
+          match.sel = null;
+          marcarSeleccion();
+        }
+        return;
+      }
+      pintarZona('pies', parte.materiales);
+      cerrarParte(parte, false, `❌ Los pies no eran de ${esc(nombreMat.toLowerCase())}. «${parte.frase}»: mitad hierro, mitad barro.`);
+      return;
+    }
+
+    const correcto = parte.materiales[0];
+    if(elegido === correcto){
+      pintarZona(parteId, [correcto]);
+      cerrarParte(parte, true, `✅ ¡Sí! «${parte.frase}».`);
+    }else{
+      pintarZona(parteId, [correcto]);
+      cerrarParte(parte, false, `❌ No era ${esc(nombreMat.toLowerCase())}. «${parte.frase}» — la pintamos de ${esc(MAT[correcto].nombre.toLowerCase())}.`);
+    }
+  }
+
+  function cerrarParte(parte, acerto, text){
+    match.pendientes = match.pendientes.filter(id => id !== parte.id);
+    match.sel = null;
+    marcarSeleccion();
+    const h = hit(parte.id);
+    h.classList.remove('activa');
+    h.classList.add('off','lista');
+    let cola = '';
+    if(AvProfile.get()){
+      if(AvProfile.canScore('card')){
+        AvProfile.score(acerto, 'card');
+        if(acerto){ match.ganados++; cola = ' <strong>+1 ⭐</strong>' }
+      }else{
+        cola = ' <em>(práctica: los puntos de hoy ya están completos)</em>';
+      }
+    }
+    refrescarNota();
+    decirFb(text + cola, acerto ? 'bien' : 'mal', parte.ref);
+    mainBtn.textContent = match.pendientes.length ? 'Siguiente parte ▶' : 'Terminé la estatua ▶';
+    mainBtn.hidden = false;
+  }
+
+  // ── Fase 2: los dos retos (solo Constructores y Manos Ayudadoras suman) ──
+  function pasarARetos(){
+    paletaEl.hidden = true;
+    svg.querySelectorAll('.hit').forEach(h => h.classList.add('off'));
+    if(esMayor()){
+      arrancarRetos();
+    }else{
+      match.phase = 'pre-cierre';
+      roundLabel.textContent = '¡Estatua completa!';
+      ordenEl.innerHTML = '🏛️ <strong>¡Vestiste la estatua entera!</strong> Cada parte con su material, como en Daniel 2:32-33.';
+      decirFb('Si quieres, hay dos retos más de <strong>Constructores</strong> y <strong>Manos Ayudadoras</strong>. Puedes intentarlos aunque no sumen puntos.', '');
+      retoBtn.hidden = false;
+      mainBtn.textContent = 'Ver la piedra ▶';
+      mainBtn.hidden = false;
+    }
+  }
+
+  function arrancarRetos(){
+    retoBtn.hidden = true;
+    match.phase = 'reto';
+    match.retos = [
+      AvProfile.pick(`${ACTIVITY}:cap41`, PREGUNTAS_CAP41, 1, q => q.q)[0] || PREGUNTAS_CAP41[0],
+      AvProfile.pick(`${ACTIVITY}:dura`, PREGUNTAS_DURA, 1, q => q.q)[0] || PREGUNTAS_DURA[0]
+    ];
+    mostrarReto(0);
+  }
+
+  function sumaQuiz(acerto){
+    let cola = '';
+    if(esMayor() && AvProfile.get()){
+      if(AvProfile.canScore('quiz')){
+        AvProfile.score(acerto, 'quiz');
+        if(acerto){ match.ganados++; cola = ' <strong>+1 ⭐</strong>' }
+      }else{
+        cola = ' <em>(práctica: los puntos de hoy ya están completos)</em>';
+      }
+    }
+    refrescarNota();
+    return cola;
+  }
+
+  function mostrarReto(i){
+    const q = match.retos[i];
+    match.retoIdx = i;
+    match.quizPaso = 1;
+    roundLabel.textContent = `Reto ${i + 1} de ${match.retos.length} · ${q.titulo}`;
+    paletaEl.hidden = true;
+    fbEl.hidden = true;
+    mainBtn.hidden = true;
+    ordenEl.innerHTML = esc(q.q);
+    optsEl.hidden = false;
+    optsEl.innerHTML = shuffle(q.opciones).map(o =>
+      `<button class="opt" data-op="${esc(o)}">${esc(o)}</button>`).join('');
+    optsEl.querySelectorAll('.opt').forEach(b => {
+      b.addEventListener('click', () => responderReto(b, q));
+    });
+  }
+
+  function responderReto(button, q){
+    if(match.quizPaso !== 1) return;
+    match.quizPaso = 2;
+    const acerto = button.dataset.op === q.correcta;
+    optsEl.querySelectorAll('.opt').forEach(b => {
+      b.disabled = true;
+      if(b.dataset.op === q.correcta) b.classList.add('ok');
+      else if(b === button) b.classList.add('bad');
+    });
+    const cola = sumaQuiz(acerto);
+    decirFb((acerto ? '✅ ¡Eso es! ' : `❌ La respuesta era <strong>${esc(q.correcta)}</strong>. `) +
+      esc(q.explica) + cola, acerto ? 'bien' : 'mal', q.ref);
+    const hayMas = match.retoIdx + 1 < match.retos.length;
+    mainBtn.textContent = hayMas ? `Reto ${match.retoIdx + 2} ▶` : 'Ver la piedra ▶';
+    mainBtn.hidden = false;
+  }
+
+  // ── Cierre sin puntos: la piedra ──
+  function cierre(){
+    match.phase = 'cierre';
+    roundLabel.textContent = 'Y entonces… la piedra';
+    paletaEl.hidden = true;
+    optsEl.hidden = true;
+    fbEl.hidden = true;
+    retoBtn.hidden = true;
+    ordenEl.innerHTML = '🪨 <strong>Una piedra golpeó la estatua en los pies</strong> y la deshizo entera.';
+    const piedra = svg.querySelector('.piedra');
+    const grietas = svg.querySelector('.grietas');
+    piedra.classList.remove('oculto');
+    piedra.classList.add('rueda');
+    window.setTimeout(() => {
+      grietas.classList.remove('oculto');
+      svg.classList.add('rota');
+    }, 700);
+    cierreEl.hidden = false;
+    cierreEl.innerHTML = `Esta parte <strong>no da puntos</strong>: es para leerla juntos en voz alta.
+      <span class="cita">«Estabas mirando, hasta que una piedra fue cortada, no con mano, e hirió a la imagen en sus pies de hierro y de barro cocido, y los desmenuzó... Mas la piedra que hirió a la imagen fue hecha un gran monte que llenó toda la tierra.» Daniel 2:34-35 (Reina-Valera 1960)</span>
+      <span class="cita">«Y en los días de estos reyes el Dios del cielo levantará un reino que no será jamás destruido, ni será el reino dejado a otro pueblo... pero él permanecerá para siempre.» Daniel 2:44 (Reina-Valera 1960)</span>
+      <span class="cita">El rey quiso una estatua <strong>toda de oro</strong> para que Babilonia pareciera eterna. La estatua de oro se olvidó; el reino de Dios no.</span>`;
+    const p = AvProfile.get();
+    if(p && match.ganados){
+      decirFb(`⭐ Sumaste <strong>${match.ganados}</strong> punto${match.ganados === 1 ? '' : 's'} en esta match.`, 'bien');
+    }
+    mainBtn.dataset.mode = 'again';
+    mainBtn.textContent = '🔁 Otra vez';
+    mainBtn.hidden = false;
+    match.phase = 'fin';
+    updateIdleHint();
+  }
+
+  // ── Botones ──
+  mainBtn.addEventListener('click', () => {
+    if(!match || match.phase === 'fin'){ start(); return }
+    if(match.phase === 'vestir'){ siguienteParte(); return }
+    if(match.phase === 'pre-cierre'){ cierre(); return }
+    if(match.phase === 'reto'){
+      if(match.quizPaso === 2){
+        if(match.retoIdx + 1 < match.retos.length){ mostrarReto(match.retoIdx + 1); return }
+        cierre();
+      }
+      return;
+    }
+    cierre();
+  });
+  retoBtn.addEventListener('click', () => { if(match) arrancarRetos() });
+
+  // ── Avisos de perfil y de clase ──
+  // La nota de práctica se refresca también en mitad de la partida: si no hay
+  // perfil o se acabó el cupo del día, el niño tiene que verlo mientras juega.
+  function refrescarNota(){
+    const p = AvProfile.get();
+    if(!p){
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.hidden = false;
+      return false;
+    }
+    const sinCupo = !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    if(sinCupo){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: esto es <strong>práctica</strong>.';
+      practiceNote.hidden = false;
+    }else{
+      practiceNote.hidden = true;
+    }
+    return sinCupo;
+  }
+
+  function updateIdleHint(){
+    const sinCupo = refrescarNota();
+    if(match && match.phase !== 'fin') return;
+    const c = AvProfile.clubClass();
+    if(c){
+      claseNote.textContent = CLASES_MAYORES.includes(c)
+        ? `🎖️ Clase ${c}: escoges tú el orden de las partes y te tocan los dos retos (5 + 2 puntos).`
+        : `🎖️ Clase ${c}: la app te va diciendo qué parte sigue (5 puntos). Los dos retos son de Constructores y Manos Ayudadoras.`;
+      claseNote.hidden = false;
+    }else{
+      claseNote.hidden = true;
+    }
+    mainBtn.textContent = mainBtn.dataset.mode === 'again'
+      ? (sinCupo ? '🔁 Otra vez (práctica)' : '🔁 Otra vez')
+      : (sinCupo ? '▶ Empezar (práctica)' : '▶ Empezar');
+  }
+  AvProfile.onChange(updateIdleHint);
+
+  // ── Navegación ──
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
+  }
+  document.getElementById('toGameBtn').addEventListener('click', () => goTo('juego'));
+
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  function closeMenu(){
+    menuPanel.hidden = true;
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  menuBtn.addEventListener('click', () => {
+    menuPanel.hidden = !menuPanel.hidden;
+    menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
+  });
+  document.addEventListener('click', e => { if(!e.target.closest('.menu-wrap')) closeMenu() });
+  document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => { goTo(btn.dataset.tab); closeMenu() });
+  });
+  document.getElementById('changePlayerBtn').addEventListener('click', () => { closeMenu(); AvProfile.open() });
+
+  pintarEstatua();
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 5, quiz: 2},   // lo que vale esta actividad; el techo del backend es 5+5
+    autoOpen: true
+  });
+  updateIdleHint();
+</script>
+</body>
+</html>

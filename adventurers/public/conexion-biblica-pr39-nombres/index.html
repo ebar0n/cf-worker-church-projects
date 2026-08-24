@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1B2F6E">
-<title>El cambia-nombres de Babilonia</title>
-<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Babilonia les cambió el nombre a los cuatro jóvenes, pero Dios sabe cómo se llaman de verdad. Una partida diaria: 5 emparejamientos + 5 preguntas relámpago.">
+<title>Los cuatro nombres</title>
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Primero lees Daniel 1:6-7 y después despejas el tablero de memoria: Daniel–Beltsasar, Ananías–Sadrac, Misael–Mesac, Azarías–Abed-nego.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
-<meta property="og:title" content="El cambia-nombres de Babilonia">
-<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Empareja los nombres, las personas y los números del capítulo. 5 emparejamientos + 5 preguntas relámpago para el tablero del club.">
+<meta property="og:title" content="Los cuatro nombres">
+<meta property="og:description" content="Un tablero de memoria para aprenderse la tabla de identidad de Babilonia: el nombre hebreo de cada joven y el nombre que le pusieron en la corte.">
 <meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr39-nombres/">
 <meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
 <meta property="og:image:width" content="1200">
@@ -37,10 +37,8 @@
     --gold-soft:#FFD97A;
     --brick:#C2542B;
     --cream:#FFF6E3;
-    --ok:#2E9E5B;
-    --ok-deep:#1E7040;
-    --no:#D6453D;
-    --no-deep:#A32C26;
+    --verde:#2E9E5B;
+    --verde-deep:#1E7040;
     --ink:#231A0F;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -59,40 +57,13 @@
   }
   button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
-  /* ── Cabecera ── */
   header{text-align:center;padding:10px 16px 12px}
-  @media (max-width:600px){
-    .subtitle{display:none}
-    header{padding-bottom:8px}
-    .legend{gap:8px;margin-bottom:14px}
-    .legend-item{padding:8px 12px;font-size:.82rem}
-    .legend-item .big{font-size:1.3rem}
-  }
-  .eyebrow{
-    font-family:'Fredoka',sans-serif;
-    font-size:.8rem;
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    color:var(--gold-soft);
-  }
-  h1{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.5rem,5vw,2.3rem);
-    line-height:1.15;
-    margin-top:6px;
-  }
+  .eyebrow{font-family:'Fredoka',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-soft)}
+  h1{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.5rem,5vw,2.3rem);line-height:1.15;margin-top:6px}
   .subtitle{margin-top:6px;font-size:.95rem;opacity:.85}
+  @media (max-width:600px){.subtitle{display:none}header{padding-bottom:8px}}
 
-  /* ── Barra superior + menú ── */
-  .topbar{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:10px 12px 0;
-    max-width:1000px;
-    margin:0 auto;
-  }
+  .topbar{display:flex;align-items:center;gap:10px;padding:10px 12px 0;max-width:1000px;margin:0 auto}
   .topbar .back-link{white-space:nowrap;flex-shrink:0}
   .player-chip{margin-left:auto;min-width:0;display:flex;justify-content:flex-end}
   .menu-wrap{position:relative;margin-left:auto;flex-shrink:0}
@@ -103,354 +74,207 @@
     .back-link{padding:8px 10px}
     .menu-btn{padding:8px 12px}
   }
+  .back-link{
+    display:inline-block;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.9rem;
+    color:var(--gold-soft);text-decoration:none;border:2px solid transparent;border-radius:999px;padding:8px 16px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-btn{
-    font-family:'Fredoka',sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    border:2px solid var(--gold);
-    background:transparent;
-    color:var(--gold-soft);
-    border-radius:999px;
-    padding:8px 16px;
-    min-height:44px;
-    cursor:pointer;
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;border:2px solid var(--gold);
+    background:transparent;color:var(--gold-soft);border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer;
   }
   .menu-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-panel{
-    position:absolute;
-    right:0;
-    top:calc(100% + 8px);
-    z-index:50;
-    display:flex;
-    flex-direction:column;
-    min-width:240px;
-    background:var(--cream);
-    border:3px solid var(--gold);
-    border-radius:18px;
-    padding:8px;
-    box-shadow:0 10px 0 rgba(0,0,0,.3);
+    position:absolute;right:0;top:calc(100% + 8px);z-index:50;display:flex;flex-direction:column;min-width:250px;
+    background:var(--cream);border:3px solid var(--gold);border-radius:18px;padding:8px;box-shadow:0 10px 0 rgba(0,0,0,.3);
   }
   .menu-panel[hidden]{display:none}
   .menu-item{
-    font-family:'Fredoka',sans-serif;
-    font-size:1rem;
-    font-weight:600;
-    text-align:left;
-    background:transparent;
-    border:none;
-    color:var(--ink);
-    border-radius:12px;
-    padding:12px 14px;
-    min-height:44px;
-    cursor:pointer;
+    font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:600;text-align:left;background:transparent;border:none;
+    color:var(--ink);border-radius:12px;padding:12px 14px;min-height:44px;cursor:pointer;
   }
   .menu-item:hover{background:rgba(240,180,41,.25)}
   .menu-item:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
   .menu-item.active{background:var(--gold);color:var(--lapis-deep)}
 
-  /* ── Reto de puntos ── */
-  .judge{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:16px;
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:16px;
-    padding:12px 14px;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-  }
-  .judge span{flex-basis:100%;text-align:center}
-  .judge[hidden]{display:none}
-
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
 
-  .legend{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
-  .legend-item{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    border-radius:16px;
-    padding:10px 18px;
-    font-weight:800;
-    font-size:.95rem;
-    background:rgba(255,255,255,.08);
-    border:2px solid rgba(255,217,122,.5);
+  /* ══════════ LEER ══════════ */
+  #leer{max-width:680px}
+  .read-card{
+    background:var(--cream);color:var(--ink);border:5px solid var(--gold);border-radius:24px;
+    padding:22px 18px;margin-bottom:18px;box-shadow:0 8px 0 rgba(0,0,0,.28);
   }
-  .legend-item .big{font-size:1.7rem}
-  .legend[hidden]{display:none}
-  .practice-note{
-    margin-top:16px;
-    text-align:center;
-    font-weight:700;
-    font-size:.95rem;
-    color:var(--gold-soft);
-    opacity:.9;
+  .read-card h2{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.12rem;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px;
   }
-  .practice-note[hidden]{display:none}
+  .read-card p{line-height:1.6;margin-bottom:10px}
+  .read-card p:last-child{margin-bottom:0}
+  .pasaje{
+    font-family:'Fredoka',sans-serif;font-weight:600;color:var(--lapis);
+    font-size:clamp(1rem,4.2vw,1.15rem);line-height:1.55;
+    border-left:6px solid var(--gold);padding:4px 0 4px 14px;margin-bottom:12px;
+  }
+  .pasaje .ref{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;opacity:.7;margin-top:8px}
+  .tabla-nombres{width:100%;border-collapse:collapse;font-size:.95rem}
+  .tabla-nombres th,.tabla-nombres td{padding:9px 6px;text-align:left;border-bottom:2px dashed rgba(35,26,15,.18)}
+  .tabla-nombres th{font-family:'Fredoka',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;opacity:.75}
+  .tabla-nombres td:first-child{font-family:'Fredoka',sans-serif;font-weight:700;color:var(--lapis)}
+  .tabla-nombres td:last-child{font-family:'Fredoka',sans-serif;font-weight:700;color:var(--brick)}
+  .tabla-nombres tr:last-child td{border-bottom:none}
+  .quienes{list-style:none;margin-top:4px}
+  .quienes li{padding:8px 0;border-bottom:2px dashed rgba(35,26,15,.15);line-height:1.5}
+  .quienes li:last-child{border-bottom:none}
+  .quienes strong{font-family:'Fredoka',sans-serif;color:var(--lapis)}
+  .source{font-size:.82rem;opacity:.72;margin-top:12px}
+  .source a{color:var(--brick);font-weight:700}
+  .read-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:6px}
 
-  /* ══════════ MODO JUEGO ══════════ */
-  .stage{max-width:460px;margin:0 auto;text-align:center}
+  /* ══════════ JUEGO ══════════ */
+  .stage{max-width:560px;margin:0 auto;text-align:center}
   .round-label{
-    font-family:'Fredoka',sans-serif;
-    color:var(--gold-soft);
-    letter-spacing:.15em;
-    text-transform:uppercase;
-    font-size:.8rem;
-    margin-bottom:12px;
+    font-family:'Fredoka',sans-serif;color:var(--gold-soft);letter-spacing:.13em;
+    text-transform:uppercase;font-size:.78rem;margin-bottom:10px;
   }
   .game-card{
-    background:var(--cream);
-    color:var(--ink);
-    border-radius:28px;
-    border:6px solid var(--gold);
-    box-shadow:0 12px 0 rgba(0,0,0,.28);
-    padding:26px 18px 24px;
-    min-height:250px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    position:relative;
-    overflow:hidden;
-    transition:background .25s ease, border-color .25s ease, color .25s ease;
+    background:var(--cream);color:var(--ink);border-radius:28px;border:6px solid var(--gold);
+    box-shadow:0 12px 0 rgba(0,0,0,.28);padding:22px 14px;min-height:330px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;
   }
-  .game-card .emoji{
-    font-size:clamp(3.4rem,17vw,5rem);
-    line-height:1;
-    filter:drop-shadow(0 6px 0 rgba(0,0,0,.12));
-  }
-  .game-card .kicker{
-    font-family:'Fredoka',sans-serif;
-    font-size:.72rem;
-    font-weight:600;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    background:var(--brick);
-    color:#fff;
-    border-radius:999px;
-    padding:4px 12px;
-    max-width:100%;
-  }
-  .game-card .big-name{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.4rem,6.5vw,2.1rem);
-    line-height:1.15;
-    overflow-wrap:break-word;
-    max-width:100%;
-  }
-  .game-card .ask{font-weight:700;font-size:1rem;opacity:.75;max-width:100%}
-  .game-card .hint{font-weight:700;font-size:1rem;opacity:.65;max-width:100%}
-  .game-card.revealed-ok{background:var(--ok);border-color:var(--ok-deep);color:#fff}
-  .game-card.revealed-no{background:var(--no);border-color:var(--no-deep);color:#fff}
-  .game-card.revealed-ok .ask,.game-card.revealed-no .ask,
-  .game-card.revealed-ok .hint,.game-card.revealed-no .hint{opacity:.95}
-  .verdict{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(1.2rem,5.5vw,1.7rem);
-    animation:pop .35s cubic-bezier(.2,1.6,.4,1) both;
-    max-width:100%;
-  }
-  @keyframes pop{
-    from{transform:scale(.3);opacity:0}
-    to{transform:scale(1);opacity:1}
-  }
+  .game-card .emoji{font-size:clamp(2.6rem,12vw,4rem);line-height:1}
+  .game-card .title{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.1rem,4.6vw,1.5rem);line-height:1.25}
+  .game-card .hint{font-weight:700;font-size:.95rem;opacity:.75;line-height:1.45}
 
-  /* Botones de opción */
-  .options{display:none;flex-direction:column;gap:10px;margin-top:16px}
-  .options.show{display:flex}
+  .modo-pick{display:grid;gap:10px;width:100%}
+  .modo-btn{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;text-align:left;
+    background:#fff;color:var(--ink);border:3px solid var(--lapis);border-radius:16px;
+    padding:12px 14px;min-height:56px;cursor:pointer;line-height:1.3;
+  }
+  .modo-btn small{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;opacity:.7;margin-top:3px}
+  .modo-btn.on{background:var(--gold);border-color:var(--brick)}
+  .modo-btn:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+
+  .board{display:grid;gap:8px;width:100%}
+  .board.b4{grid-template-columns:repeat(2,1fr)}
+  .board.b12{grid-template-columns:repeat(3,1fr)}
+  .tile{
+    position:relative;min-height:76px;border-radius:14px;cursor:pointer;padding:6px 4px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    font-family:'Fredoka',sans-serif;font-weight:700;line-height:1.15;
+    background:var(--lapis);border:3px solid var(--lapis-deep);color:var(--gold-soft);
+    font-size:1.7rem;overflow-wrap:anywhere;transition:transform .12s ease;
+  }
+  .board.b12 .tile{min-height:70px}
+  .tile:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+  .tile .cara{display:none;flex-direction:column;align-items:center;gap:3px}
+  .tile .cara small{
+    font-family:'Nunito',sans-serif;font-weight:800;font-size:.6rem;text-transform:uppercase;
+    letter-spacing:.08em;opacity:.75;
+  }
+  .tile .cara b{font-size:clamp(.78rem,3.4vw,1rem)}
+  .board.b4 .tile .cara b{font-size:clamp(.95rem,4.4vw,1.2rem)}
+  .tile.up,.tile.done{background:#fff;border-color:var(--lapis);color:var(--ink);font-size:1rem}
+  .tile.up .dorso,.tile.done .dorso{display:none}
+  .tile.up .cara,.tile.done .cara{display:flex}
+  .tile.done{background:var(--verde);border-color:var(--verde-deep);color:#fff}
+  .tile.bad{background:var(--brick);border-color:#8f3a1c;color:#fff}
+  .tile.done,.tile[disabled]{cursor:default}
+  .tile.pop{transform:scale(1.06)}
+
+  .marcador{
+    display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.85rem;opacity:.85;
+  }
+  .feedback{
+    font-weight:800;font-size:.98rem;line-height:1.45;min-height:2.9em;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .feedback.ok{color:var(--verde-deep)}
+  .feedback.bad{color:var(--brick)}
+
+  .opts{display:grid;gap:9px;width:100%}
   .opt{
-    font-family:'Fredoka',sans-serif;
-    font-size:1.05rem;
-    font-weight:600;
-    width:100%;
-    min-height:56px;
-    padding:12px 16px;
-    border-radius:18px;
-    border:3px solid var(--gold);
-    background:var(--cream);
-    color:var(--ink);
-    cursor:pointer;
-    box-shadow:0 5px 0 rgba(0,0,0,.28);
-    transition:transform .1s ease;
-    overflow-wrap:break-word;
+    font-family:'Fredoka',sans-serif;font-size:.98rem;font-weight:600;line-height:1.3;
+    background:#fff;color:var(--ink);border:3px solid var(--lapis);border-radius:16px;
+    padding:12px 14px;min-height:52px;cursor:pointer;text-align:left;
   }
-  .opt:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.28)}
-  .opt:focus-visible{outline:3px solid #fff;outline-offset:3px}
-  .opt.pick-ok{background:var(--ok);border-color:var(--ok-deep);color:#fff}
-  .opt.pick-no{background:var(--no);border-color:var(--no-deep);color:#fff}
-  .opt.show-ok{background:var(--ok-soft,#BFE9CE);border-color:var(--ok-deep)}
-  .opt[disabled]{cursor:default}
-  @media (prefers-reduced-motion:reduce){
-    .verdict{animation:none}
-    .opt:active,.btn:active{transform:none}
-  }
+  .opt:active{transform:translateY(2px)}
+  .opt:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+  .opt.ok{background:var(--verde);border-color:var(--verde-deep);color:#fff}
+  .opt.bad{background:var(--brick);border-color:#8f3a1c;color:#fff}
+  .opt:disabled{cursor:default;opacity:.9}
 
-  .controls{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+  .repaso{list-style:none;width:100%;text-align:left;font-size:.9rem}
+  .repaso li{padding:7px 0;border-bottom:2px dashed rgba(35,26,15,.15);line-height:1.45}
+  .repaso li:last-child{border-bottom:none}
+  .repaso b{font-family:'Fredoka',sans-serif;color:var(--lapis)}
+
+  .controls{display:flex;gap:12px;justify-content:center;margin-top:18px;flex-wrap:wrap}
   .btn{
-    font-family:'Fredoka',sans-serif;
-    font-size:1.1rem;
-    font-weight:600;
-    border:none;
-    border-radius:999px;
-    padding:14px 30px;
-    min-height:48px;
-    cursor:pointer;
-    box-shadow:0 5px 0 rgba(0,0,0,.3);
-    transition:transform .1s ease;
+    font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:600;border:none;border-radius:999px;
+    padding:14px 26px;min-height:48px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.3);
   }
   .btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
   .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .btn-gold{background:var(--gold);color:var(--lapis-deep)}
   .btn-outline{background:transparent;color:var(--gold-soft);border:2px solid var(--gold);box-shadow:none}
-  .btn-outline:active{transform:translateY(2px)}
+  .btn-sm{font-size:.95rem;padding:10px 20px;min-height:44px}
   .btn[hidden]{display:none}
 
-  /* Pregunta relámpago */
-  .quiz-box{
-    margin-top:26px;
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:20px;
-    padding:18px 16px;
-    display:none;
-  }
-  .quiz-box.show{display:block}
-  .quiz-tag{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-size:.75rem;
-    font-weight:600;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    background:var(--brick);
-    color:#fff;
-    border-radius:999px;
-    padding:4px 12px;
-    margin-bottom:10px;
-  }
-  .quiz-q{font-size:1.1rem;font-weight:700}
-  .quiz-a{margin-top:10px;font-weight:800;color:var(--gold-soft);display:none}
-  .quiz-a.show{display:block}
-  .btn-sm{font-size:.95rem;padding:9px 20px;min-height:44px}
+  .practice-note{margin-top:16px;text-align:center;font-weight:700;font-size:.95rem;color:var(--gold-soft);opacity:.9;line-height:1.45}
+  .practice-note[hidden]{display:none}
 
-  /* ══════════ TARJETAS IMPRIMIBLES ══════════ */
-  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:600px;margin:0 auto 20px}
-  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
-  .mini-card{
-    background:var(--cream);
-    color:var(--ink);
-    border-radius:18px;
-    border:4px solid var(--gold);
-    padding:16px 8px 12px;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    min-height:120px;
-    box-shadow:0 5px 0 rgba(0,0,0,.25);
+  /* ══════════ IMPRIMIBLE ══════════ */
+  .print-note{text-align:center;font-size:.95rem;opacity:.85;max-width:560px;margin:0 auto 20px}
+  .sheet{background:#fff;color:#000;border-radius:18px;padding:26px 22px;max-width:700px;margin:0 auto}
+  .sheet h2{font-family:'Fredoka',sans-serif;font-size:1.3rem;margin-bottom:4px}
+  .sheet .sub{font-size:.9rem;opacity:.75;margin-bottom:14px}
+  .sheet h3{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin:18px 0 8px}
+  .sheet p{line-height:1.55;margin-bottom:8px}
+  .sheet table{width:100%;border-collapse:collapse;margin-bottom:8px}
+  .sheet th,.sheet td{border:2px solid #000;padding:8px;text-align:left;font-size:.95rem}
+  .sheet th{font-family:'Fredoka',sans-serif;font-size:.85rem;text-transform:uppercase}
+  .fichas-print{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .fichas-print div{
+    border:2px dashed #000;border-radius:8px;min-height:64px;padding:6px 4px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    font-family:'Fredoka',sans-serif;font-weight:700;font-size:.8rem;line-height:1.15;overflow-wrap:anywhere;
   }
-  .mini-card .emoji{font-size:2.4rem;line-height:1}
-  .mini-card .mc-text{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:.95rem;
-    line-height:1.2;
-    overflow-wrap:break-word;
-  }
-  .group-title{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1.2rem;
-    margin:26px 0 12px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-  .group-title .chip{font-size:1.4rem;background:var(--cream);border-radius:12px;padding:2px 10px}
-  .key-list{
-    background:rgba(255,255,255,.07);
-    border:2px dashed var(--gold);
-    border-radius:16px;
-    padding:14px 16px 14px 34px;
-    line-height:1.6;
-    font-weight:700;
-  }
-  .key-list li{margin-bottom:4px}
+  .fichas-print div small{font-family:'Nunito',sans-serif;font-weight:800;font-size:.55rem;text-transform:uppercase;opacity:.7}
 
-  /* ── Volver al índice ── */
-  .back-link{
-    display:inline-block;
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:.9rem;
-    color:var(--gold-soft);
-    text-decoration:none;
-    border:2px solid transparent;
-    border-radius:999px;
-    padding:8px 16px;
-    margin-bottom:8px;
-  }
-  .back-link:hover{border-color:var(--gold)}
-  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
-
-  /* ══════════ PARA PADRES ══════════ */
+  /* ══════════ PADRES ══════════ */
   #padres{max-width:720px}
   .parent-box{
-    background:var(--cream);
-    color:var(--ink);
-    border:4px solid var(--gold);
-    border-radius:22px;
-    padding:22px 20px;
-    margin-bottom:18px;
-    box-shadow:0 6px 0 rgba(0,0,0,.25);
+    background:var(--cream);color:var(--ink);border:4px solid var(--gold);border-radius:22px;
+    padding:22px 18px;margin-bottom:18px;box-shadow:0 6px 0 rgba(0,0,0,.25);
   }
   .parent-box h2{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:1.2rem;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:8px;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.18rem;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
   }
   .parent-box p{margin-bottom:10px;line-height:1.55}
   .parent-box p:last-child{margin-bottom:0}
   .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
   .parent-box li{margin-bottom:6px}
+  .parent-box a{color:var(--brick);font-weight:700}
   .verse{
-    border-left:5px solid var(--brick);
-    background:rgba(194,84,43,.08);
-    border-radius:0 12px 12px 0;
-    padding:12px 14px;
-    font-style:italic;
-    font-weight:700;
+    background:rgba(27,47,110,.08);border-left:6px solid var(--lapis);border-radius:10px;
+    padding:12px 14px;font-family:'Fredoka',sans-serif;font-weight:600;line-height:1.5;margin-bottom:10px;
   }
-  .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
+  .verse .ref{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;opacity:.7;margin-top:6px}
 
-  /* ── Impresión ── */
   @media print{
     body{background:#fff;color:#000}
-    header,.topbar,#juego,#padres,.print-note,.legend{display:none!important}
+    header,.topbar,#leer,#juego,#padres,.print-note{display:none!important}
     section{display:block!important;padding:0}
-    #tarjetas{display:block!important}
-    .card-grid{grid-template-columns:repeat(3,1fr);gap:8mm}
-    .mini-card{box-shadow:none;border-color:#C89B22;break-inside:avoid;padding:10mm 4mm;min-height:38mm}
-    .mini-card .emoji{font-size:14mm}
-    .group-title{color:#000;break-after:avoid}
-    .group-title .chip{border:1px solid #ccc}
-    .key-list{border:1px solid #ccc;color:#000;break-inside:avoid}
+    #material{display:block!important}
+    .sheet{border:none;padding:0;max-width:none}
   }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -461,8 +285,9 @@
   <div class="menu-wrap">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
     <div class="menu-panel" id="menuPanel" hidden>
-      <button class="menu-item active" data-tab="juego">🎮 Modo juego</button>
-      <button class="menu-item" data-tab="tarjetas">🖨️ Tarjetas para imprimir</button>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="juego">🎮 Jugar</button>
+      <button class="menu-item" data-tab="material">🖨️ Fichas para imprimir</button>
       <button class="menu-item" data-tab="padres">👪 Para padres</button>
       <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
     </div>
@@ -471,461 +296,721 @@
 
 <header>
   <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 39 · En la corte de Babilonia</div>
-  <h1>El cambia-nombres de Babilonia</h1>
-  <p class="subtitle">Babilonia les cambió el nombre… ¡pero Dios sabe cómo se llaman de verdad!</p>
+  <h1>Los cuatro nombres</h1>
+  <p class="subtitle">Primero se lee. Después se despeja el tablero.</p>
 </header>
 
-<!-- ══════════ MODO JUEGO ══════════ -->
-<section id="juego" class="active">
-  <div class="legend" id="legend">
-    <div class="legend-item"><span class="big">🃏</span> 5 parejas para emparejar</div>
-    <div class="legend-item"><span class="big">💬</span> 5 preguntas relámpago</div>
+<!-- ══════════ LEER ══════════ -->
+<section id="leer" class="active">
+  <div class="read-card">
+    <h2>📖 El día en que les cambiaron el nombre</h2>
+    <p class="pasaje">
+      «Y fueron entre ellos, de los hijos de Judá, Daniel, Ananías, Misael y Azarías. A éstos el jefe
+      de los eunucos puso nombres: y puso a Daniel, Beltsasar; y a Ananías, Sadrac; y a Misael, Mesac;
+      y a Azarías, Abed-nego.»
+      <span class="ref">Daniel 1:6-7 (RVR1960)</span>
+    </p>
+    <p class="pasaje">
+      «El príncipe encargado de los jóvenes cautivos» fue quien les puso esos nombres nuevos.
+      <span class="ref">Profetas y Reyes, cap. 39 (Elena G. de White, narrando el pasaje)</span>
+    </p>
+    <p>Cuatro jóvenes de Judá llegaron a la corte del rey de Babilonia. Allí les quitaron el nombre
+      que sus papás les habían puesto y les dieron uno nuevo. Esta es la tabla que hay que saberse:</p>
+    <table class="tabla-nombres">
+      <thead><tr><th>Nombre hebreo</th><th>Nombre de Babilonia</th></tr></thead>
+      <tbody id="tablaLeer"></tbody>
+    </table>
+    <p class="source">Fuente: <a href="https://www.biblegateway.com/passage/?search=Daniel%201&amp;version=RVR1960" target="_blank" rel="noopener">Daniel 1 (Reina-Valera 1960) en BibleGateway</a>. Los nombres se citan como aparecen en el capítulo 39 de <em>Profetas y Reyes</em>, de Elena G. de White.</p>
   </div>
 
+  <div class="read-card">
+    <h2>❓ ¿Por qué se los cambiaron?</h2>
+    <p class="pasaje">
+      «Los nombres de Daniel y sus compañeros fueron cambiados por otros que <strong>conmemoraban
+      divinidades caldeas</strong>.»
+      <span class="ref">Profetas y Reyes, cap. 39</span>
+    </p>
+    <p class="pasaje">
+      «El rey no obligó a los jóvenes hebreos a que renunciasen a su fe para hacerse idólatras, sino
+      que esperaba obtener esto <strong>gradualmente</strong>. Dándoles nombres que expresaban
+      sentimientos de idolatría […] esperaba inducirlos a renunciar a la religión de su nación.»
+      <span class="ref">Profetas y Reyes, cap. 39</span>
+    </p>
+    <p>Los papás hebreos ponían nombres con significado: en el nombre decían la clase de persona que
+      querían que su hijo llegara a ser. Babilonia les puso nombres que recordaban a sus propios
+      dioses. Era un cambio de nombre, sí, pero por dentro era un intento de cambiarles la fe.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>👑 Los tres que mandaban</h2>
+    <ul class="quienes" id="quienesLeer"></ul>
+    <p class="source">Los tres aparecen en el capítulo 39 y en Daniel 1. También van en el tablero.</p>
+  </div>
+
+  <div class="read-cta">
+    <button class="btn btn-gold" id="toGameBtn">Ya lo leí · ¡A jugar! ▶</button>
+  </div>
+</section>
+
+<!-- ══════════ JUEGO ══════════ -->
+<section id="juego">
   <div class="stage">
-    <div class="round-label" id="roundLabel">¿Listos, aventureros?</div>
+    <div class="round-label" id="roundLabel">Tablero de memoria</div>
 
     <div class="game-card" id="gameCard" aria-live="polite">
-      <div class="emoji">🃏</div>
-      <div class="big-name">¡Busca la pareja!</div>
-      <div class="hint">5 emparejamientos + 5 preguntas relámpago</div>
-    </div>
-
-    <div class="options" id="options"></div>
-
-    <div class="quiz-box" id="quizBox">
-      <span class="quiz-tag" id="quizTag">6–7 años</span>
-      <div class="quiz-q" id="quizQ"></div>
-      <div class="quiz-a" id="quizA"></div>
+      <div class="emoji">🧱</div>
+      <div class="title">Los cuatro nombres</div>
+      <div class="hint">Fichas boca abajo: encuentra el nombre hebreo y su nombre de Babilonia.</div>
     </div>
 
     <div class="controls">
-      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
+      <button class="btn btn-gold" id="mainBtn">▶ Empezar</button>
     </div>
 
-    <div class="judge" id="judge" hidden>
-      <span id="judgeQ">¿Acertó?</span>
-      <button class="btn btn-gold btn-sm" id="judgeYes">⭐ ¡Sí! +1</button>
-      <button class="btn btn-outline btn-sm" id="judgeNo">😅 Esta vez no</button>
-    </div>
-
-    <p class="practice-note" id="practiceNote" hidden>🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.</p>
+    <p class="practice-note" id="practiceNote" hidden></p>
   </div>
 </section>
 
-<!-- ══════════ TARJETAS IMPRIMIBLES ══════════ -->
-<section id="tarjetas">
-  <p class="print-note">
-    Usa <strong>Ctrl/Cmd + P</strong> para imprimir. Recorta las tarjetas, ponlas
-    <strong>boca abajo</strong> sobre la mesa y jueguen memoria de verdad: se levantan dos,
-    y si forman pareja, se quedan con ellas. Abajo va la <strong>hoja de respuestas</strong> para el adulto.
-  </p>
+<!-- ══════════ IMPRIMIBLE ══════════ -->
+<section id="material">
+  <p class="print-note">Usa <strong>Ctrl/Cmd + P</strong> para imprimir esta hoja: arriba queda la tabla para pegar en la nevera y abajo las 14 fichas para recortar y jugar memoria sin pantalla.</p>
+  <div class="sheet">
+    <h2>Los cuatro nombres · Tablero de memoria</h2>
+    <p class="sub">Conexión Bíblica · Profetas y Reyes cap. 39 · Daniel 1:6-7 · Club de Aventureros El Elohe Israel</p>
 
-  <div class="group-title"><span class="chip">🃏</span> Tarjetas para recortar (12 parejas = 24 tarjetas)</div>
-  <div class="card-grid" id="gridCards"></div>
+    <h3>La tabla de identidad</h3>
+    <table>
+      <thead><tr><th>Nombre hebreo</th><th>Nombre que le pusieron en Babilonia</th></tr></thead>
+      <tbody id="tablaPrint"></tbody>
+    </table>
+    <p><strong>Y los tres que mandaban:</strong> <span id="quienesPrint"></span></p>
 
-  <div class="group-title"><span class="chip">🔑</span> Hoja de respuestas (para el adulto)</div>
-  <ol class="key-list" id="keyList"></ol>
+    <h3>Fichas para recortar (7 parejas)</h3>
+    <p>Recorten por la línea punteada, revuelvan las 14 fichas boca abajo y jueguen memoria: cada
+      pareja es un nombre hebreo con su nombre de Babilonia, o un personaje con su oficio.</p>
+    <div class="fichas-print" id="fichasPrint"></div>
+  </div>
 </section>
 
-<!-- ══════════ PARA PADRES ══════════ -->
+<!-- ══════════ PADRES ══════════ -->
 <section id="padres">
   <div class="parent-box">
     <h2>📖 La historia</h2>
-    <p>Esta dinámica está basada en <strong>Daniel 1</strong> (capítulo 39 de <em>Profetas y Reyes</em>, «En la corte de Babilonia»). El rey <strong>Nabucodonosor</strong> ordenó a <strong>Aspenaz</strong>, príncipe de sus eunucos, que trajera jóvenes del linaje real de Judá para educarlos tres años en las letras y la lengua de los caldeos. Entre ellos estaban <strong>Daniel, Ananías, Misael y Azarías</strong>.</p>
-    <p>Lo primero que Babilonia les cambió fue el <strong>nombre</strong>: «puso a Daniel, Beltsasar; y a Ananías, Sadrac; y a Misael, Mesac; y a Azarías, Abed-nego». Los padres hebreos daban a sus hijos nombres de gran significado: con frecuencia expresaban en ellos los rasgos de carácter que deseaban ver crecer en sus hijos; los nombres nuevos <strong>conmemoraban divinidades caldeas</strong>. El rey esperaba que así, poco a poco, los jóvenes renunciaran a su fe. Pero ellos siguieron siendo fieles: Daniel pidió a <strong>Melsar</strong> una prueba de <strong>10 días</strong> con comida sencilla, y al final de esos diez días su rostro se veía <strong>mejor y más nutrido</strong> que el de los otros muchachos; y después de los <strong>tres años</strong> de estudio el <strong>rey</strong> los halló <strong>diez veces mejores</strong> que todos los magos y astrólogos de su reino.</p>
+    <p>Nabucodonosor mandó a <strong>Aspenaz</strong>, príncipe de sus eunucos, traer jóvenes del
+      linaje real de Judá para educarlos tres años en la lengua de los caldeos. Entre ellos estaban
+      <strong>Daniel, Ananías, Misael y Azarías</strong>. En la corte les cambiaron el nombre por
+      otros que «conmemoraban divinidades caldeas»: Beltsasar, Sadrac, Mesac y Abed-nego. Más
+      adelante, Daniel pidió a <strong>Melsar</strong>, el oficial encargado de los jóvenes, la
+      prueba de los diez días con alimento sencillo.</p>
   </div>
 
   <div class="parent-box">
     <h2>💡 ¿Qué aprende su hijo?</h2>
-    <ul>
-      <li><strong>Mi nombre y mi identidad son de Dios</strong>: aunque el mundo intente ponerme otra etiqueta, Dios sabe quién soy.</li>
-      <li><strong>Fidelidad en lo pequeño</strong>: fue la fidelidad en las cosas pequeñas lo que dio carácter a toda su vida.</li>
-      <li><strong>Los datos del capítulo</strong> (los cuatro nombres, el rey, el príncipe, el oficial, los 10 días, los 3 años) quedan aprendidos jugando, no memorizando listas.</li>
-    </ul>
-    <p class="verse">«Yo honraré a los que me honran» <span>1 Samuel 2:30</span></p>
+    <p>Una sola cosa, y bien: <strong>la tabla de identidad</strong>. Quién es quién con sus dos
+      nombres. Esto no es un dato de adorno: en el capítulo 41 aparecen Sadrac, Mesac y Abed-nego en
+      el horno de fuego, y si el niño no sabe que son Ananías, Misael y Azarías, para él son tres
+      desconocidos que salieron de la nada.</p>
+    <p>También aprende <em>por qué</em> se los cambiaron, que es la parte que el examen del campamento
+      suele preguntar.</p>
+    <div class="verse">«A éstos el jefe de los eunucos puso nombres: y puso a Daniel, Beltsasar; y a
+      Ananías, Sadrac; y a Misael, Mesac; y a Azarías, Abed-nego.»
+      <span class="ref">Daniel 1:7 (RVR1960)</span></div>
+    <p>Elena G. de White narra el mismo hecho así: «El príncipe encargado de los jóvenes cautivos»
+      les puso esos nombres. Esa frase es de <em>Profetas y Reyes</em>, cap. 39, no del versículo: el
+      que se memoriza para el examen es Daniel 1:7.</p>
   </div>
 
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Toquen <strong>▶ Jugar partida</strong>: salen <strong>5 emparejamientos</strong> y después <strong>5 preguntas relámpago</strong>.</li>
-      <li>En cada emparejamiento aparece una tarjeta (un nombre, una persona o una cosa) y tres botones grandes. Su hijo toca <strong>la pareja correcta</strong>: la app se califica sola y suma ⭐ 1 punto si acierta.</li>
-      <li>Si falla, no pasa nada: la app muestra con cariño la respuesta correcta («¡Casi! Mira…»). Lean juntos la pareja en voz alta antes de seguir.</li>
-      <li>Luego vienen las preguntas, marcadas por edades: una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>. El niño responde en voz alta, ustedes revelan la respuesta y confirman si acertó.</li>
-      <li>Las parejas y las preguntas <strong>no se repiten</strong> hasta agotarse: la app recuerda por niño lo que ya salió esta semana.</li>
-      <li>Impriman las tarjetas desde la pestaña <strong>🖨️</strong> y jueguen memoria de verdad, boca abajo sobre la mesa, sin pantalla.</li>
+      <li><strong>Lean juntos la pestaña 📖.</strong> El tablero no enseña la tabla, la revisa. Si el
+        niño no leyó, va a voltear fichas al azar.</li>
+      <li><strong>Toque de tablero.</strong> Se toca una ficha, se toca otra. Si son pareja, se
+        quedan verdes. Si no, la app le dice en voz escrita con quién iba de verdad y las tapa otra
+        vez. No hay que arrastrar nada.</li>
+      <li><strong>La dificultad depende de la clase del club</strong> (la app la toma de la edad del
+        perfil). Principiantes, Corderitos, Aves Madrugadoras y Abejitas Industriosas juegan dos
+        tableros de 3 parejas (6 fichas). Rayitos de Sol, Constructores y Manos Ayudadoras juegan un
+        tablero de 6 parejas. Usted puede cambiar el tablero a mano en la pantalla de inicio.</li>
+      <li><strong>El punto se gana por volteos, no por terminar.</strong> Como la app enseña la
+        pareja correcta cuando el niño falla, cualquiera despeja el tablero a fuerza de fallar: por
+        eso el punto solo entra si lo despeja dentro del presupuesto de volteos (8 en el tablero
+        pequeño, 16 en el grande). Quien leyó la tabla lo logra; quien voltea al azar, no.</li>
+      <li><strong>Al final, dos preguntas.</strong> Salen de una bolsa de seis por tamaño de tablero,
+        así que cambian de una partida a otra. Léalas en voz alta con él si todavía no lee corrido,
+        pero deje que él escoja.</li>
+      <li><strong>Sin pantalla:</strong> imprima la hoja 🖨️ y jueguen la misma memoria con las fichas
+        recortadas antes de dormir.</li>
     </ol>
-    <p>Las <strong>preguntas relámpago cubren todo el capítulo 39</strong>, así que también sirven como repaso para el examen didáctico de Conexión Bíblica 2026.</p>
-    <p>Conversen mientras juegan: <em>¿por qué crees que el rey les cambió el nombre? ¿Cómo te llama Dios a ti?</em></p>
   </div>
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 emparejamientos + 5 preguntas. Cada acierto suma <strong>⭐ 1 punto</strong> (las fallas no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de parejas y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir jugando? ¡Las partidas extra son de práctica! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
-    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+    <p>Que su hijo pueda decir de corrido, sin ver la tabla: «Daniel es Beltsasar, Ananías es Sadrac,
+      Misael es Mesac, Azarías es Abed-nego». Pregúntele suelto en el carro o mientras comen. Cuando
+      lo diga sin pensar, el capítulo 41 le va a caer como una película que ya conoce.</p>
+  </div>
+
+  <div class="parent-box">
+    <h2>🔎 Honestidad sobre el contenido</h2>
+    <p>Todo lo que suma puntos en este juego es dato del capítulo 39 y de Daniel 1: los cuatro pares
+      de nombres, los tres personajes con su cargo, la razón del cambio y lo que conmemoraban los
+      nombres nuevos. <strong>No usamos aquí el significado de cada nombre hebreo</strong> (por
+      ejemplo, qué quiere decir «Daniel»), porque el capítulo no lo dice: solo dice que los padres
+      hebreos ponían nombres con gran significado.</p>
+    <p>Los puntos: hasta <strong>2 de juego</strong> en el tablero pequeño (1 por tablero despejado
+      en 8 volteos o menos) o hasta <strong>3</strong> en el grande (1 por despejarlo y 2 más si lo
+      logra en 16 volteos o menos), y <strong>2 de preguntas</strong>. Este juego no llega a 10 y
+      está bien: vale lo que enseña, que es una tabla de siete filas.</p>
   </div>
 </section>
 
 <script src="/shared/profile.js"></script>
-
 <script>
-  // ── Datos del capítulo 39 (Daniel 1) ──
-  // group: bolsa de rotación · type: de dónde salen las 3 opciones
-  const PAIRS = [
-    // Grupo "nombres": nombre hebreo ↔ nombre de Babilonia + qué significaban
-    {group:'nombres', type:'caldeo',  emoji:'🧒', kicker:'Su nombre hebreo', prompt:'Daniel',    ask:'¿Cómo lo llamaron en Babilonia?', answer:'Beltsasar'},
-    {group:'nombres', type:'caldeo',  emoji:'🧒', kicker:'Su nombre hebreo', prompt:'Ananías',   ask:'¿Cómo lo llamaron en Babilonia?', answer:'Sadrac'},
-    {group:'nombres', type:'caldeo',  emoji:'🧒', kicker:'Su nombre hebreo', prompt:'Misael',    ask:'¿Cómo lo llamaron en Babilonia?', answer:'Mesac'},
-    {group:'nombres', type:'caldeo',  emoji:'🧒', kicker:'Su nombre hebreo', prompt:'Azarías',   ask:'¿Cómo lo llamaron en Babilonia?', answer:'Abed-nego'},
-    {group:'nombres', type:'hebreo',  emoji:'🏛️', kicker:'Su nombre en Babilonia', prompt:'Beltsasar', ask:'¿Cómo se llamaba de verdad?', answer:'Daniel'},
-    {group:'nombres', type:'hebreo',  emoji:'🏛️', kicker:'Su nombre en Babilonia', prompt:'Sadrac',    ask:'¿Cómo se llamaba de verdad?', answer:'Ananías'},
-    {group:'nombres', type:'hebreo',  emoji:'🏛️', kicker:'Su nombre en Babilonia', prompt:'Mesac',     ask:'¿Cómo se llamaba de verdad?', answer:'Misael'},
-    {group:'nombres', type:'hebreo',  emoji:'🏛️', kicker:'Su nombre en Babilonia', prompt:'Abed-nego', ask:'¿Cómo se llamaba de verdad?', answer:'Azarías'},
-    {group:'nombres', type:'sentido', emoji:'💛', kicker:'Los nombres que les pusieron sus papás', prompt:'Daniel, Ananías, Misael, Azarías', ask:'¿Qué hacían esos nombres?', answer:'Decían el carácter que querían ver en ellos'},
-    {group:'nombres', type:'sentido', emoji:'🗿', kicker:'Los nombres nuevos de Babilonia', prompt:'Beltsasar, Sadrac, Mesac, Abed-nego', ask:'¿Qué recordaban esos nombres?', answer:'Recordaban a los dioses caldeos'},
+  const ACTIVITY = 'pr39-nombres';
 
-    // Grupo "datos": persona ↔ quién era, y cosa ↔ número
-    {group:'datos', type:'oficio', emoji:'👑', kicker:'¿Quién era?', prompt:'Nabucodonosor', ask:'¿Qué era en la historia?', answer:'El rey de Babilonia'},
-    {group:'datos', type:'oficio', emoji:'🧔', kicker:'¿Quién era?', prompt:'Aspenaz', ask:'¿Qué era en la historia?', answer:'El príncipe de los eunucos'},
-    {group:'datos', type:'oficio', emoji:'🧑‍🍳', kicker:'¿Quién era?', prompt:'Melsar', ask:'¿Qué era en la historia?', answer:'El oficial de la prueba de los 10 días'},
-    {group:'datos', type:'oficio', emoji:'📜', kicker:'Su don especial', prompt:'Daniel', ask:'¿Qué recibió de Dios?', answer:'Entendimiento en visiones y sueños'},
-    {group:'datos', type:'oficio', emoji:'🧑‍🤝‍🧑', kicker:'¿Quiénes eran?', prompt:'Ananías, Misael y Azarías', ask:'¿Qué eran de Daniel?', answer:'Sus tres compañeros hebreos'},
-    {group:'datos', type:'persona', emoji:'👑', kicker:'Este era su puesto', prompt:'El rey de Babilonia', ask:'¿Quién era?', answer:'Nabucodonosor'},
-    {group:'datos', type:'persona', emoji:'🧔', kicker:'Este era su puesto', prompt:'El príncipe de los eunucos', ask:'¿Quién era?', answer:'Aspenaz'},
-    {group:'datos', type:'persona', emoji:'🧑‍🍳', kicker:'Este era su puesto', prompt:'El oficial a quien Daniel le pidió la prueba de 10 días', ask:'¿Quién era?', answer:'Melsar'},
-    {group:'datos', type:'persona', emoji:'🌙', kicker:'Este fue su don especial', prompt:'Entendió toda visión y sueños', ask:'¿Quién era?', answer:'Daniel'},
-    {group:'datos', type:'numero', emoji:'🥦', kicker:'Empareja con su número', prompt:'La prueba de la comida sencilla', ask:'¿Cuánto duró?', answer:'10 días'},
-    {group:'datos', type:'numero', emoji:'📚', kicker:'Empareja con su número', prompt:'El estudio de las letras y la lengua de los caldeos', ask:'¿Cuánto duró?', answer:'3 años'},
-    {group:'datos', type:'numero', emoji:'🧑‍🤝‍🧑', kicker:'Empareja con su número', prompt:'Los jóvenes hebreos de la historia', ask:'¿Cuántos eran?', answer:'4 jóvenes'},
-    {group:'datos', type:'numero', emoji:'⛓️', kicker:'Empareja con su número', prompt:'El cautiverio en Babilonia', ask:'¿Cuánto iba a durar?', answer:'70 años'},
-    {group:'datos', type:'numero', emoji:'🌟', kicker:'Empareja con su número', prompt:'La sabiduría que Dios les dio', ask:'¿Cuánto mejores los halló el rey?', answer:'Diez veces mejores que los magos'}
+  // Las 4 parejas de nombres son el corazón del juego (Daniel 1:6-7 tal como lo
+  // cita el cap. 39). Las 3 de personajes son los adultos que aparecen alrededor.
+  const NOMBRES = [
+    {id:'dan', a:'Daniel',   b:'Beltsasar', note:'«Puso a Daniel, Beltsasar.»'},
+    {id:'ana', a:'Ananías',  b:'Sadrac',    note:'«Y a Ananías, Sadrach.» En el cap. 41 es uno de los tres del horno.'},
+    {id:'mis', a:'Misael',   b:'Mesac',     note:'«Y a Misael, Mesach.» En el cap. 41 es uno de los tres del horno.'},
+    {id:'aza', a:'Azarías',  b:'Abed-nego', note:'«Y a Azarías, Abednego.» En el cap. 41 es uno de los tres del horno.'}
   ];
+  const PERSONAJES = [
+    {id:'nab', a:'Nabucodonosor', b:'El rey de Babilonia', note:'Ordenó traer a los jóvenes del linaje real y resolvió que los educaran tres años.'},
+    {id:'asp', a:'Aspenaz',       b:'Príncipe de los eunucos', note:'El rey le ordenó escoger a los muchachos «en quienes no hubiese tacha alguna».'},
+    {id:'mel', a:'Melsar',        b:'Encargado de los jóvenes', note:'Daniel le pidió la prueba de diez días con alimento sencillo.'}
+  ];
+  const TODAS = NOMBRES.concat(PERSONAJES);
 
-  // Opciones posibles por tipo (de aquí salen los dos distractores)
-  const OPTION_POOL = {
-    caldeo:  ['Beltsasar','Sadrac','Mesac','Abed-nego'],
-    hebreo:  ['Daniel','Ananías','Misael','Azarías'],
-    sentido: ['Decían el carácter que querían ver en ellos','Recordaban a los dioses caldeos','Eran nombres de comidas del rey'],
-    oficio:  ['El rey de Babilonia','El príncipe de los eunucos','El oficial de la prueba de los 10 días','Entendimiento en visiones y sueños','Sus tres compañeros hebreos'],
-    persona: ['Nabucodonosor','Aspenaz','Melsar','Daniel'],
-    numero:  ['10 días','3 años','4 jóvenes','70 años','Diez veces mejores que los magos']
+  const ETIQUETA = {
+    nombre: {a:'nombre hebreo', b:'en Babilonia'},
+    persona:{a:'personaje',     b:'su oficio'}
+  };
+  const tipoDe = p => (NOMBRES.some(n => n.id === p.id) ? 'nombre' : 'persona');
+
+  // Clases del club que juegan tableros pequeños de 3 parejas.
+  const CLASES_PEQUES = ['Principiantes','Corderitos','Aves Madrugadoras','Abejitas Industriosas'];
+  const TABLEROS_FACIL = 2;   // 2 tableros de 3 parejas
+  const PARES_FACIL = 3;
+  const PARES_COMPLETO = 6;   // 1 tablero de 6 parejas
+  // El punto de tablero se gana por eficiencia, no por terminar: sin presupuesto
+  // de volteos cualquiera despeja a fuerza de fallar, porque el feedback enseña
+  // la pareja correcta.
+  const VOLTEOS_BONO = {facil: 8, completo: 16};
+  const CARD_FACIL = 1;           // por tablero, solo dentro del presupuesto
+  const CARD_COMPLETO_BASE = 1;
+  const CARD_COMPLETO_BONO = 2;
+  const PREGUNTAS_POR_PARTIDA = 2;
+
+  // Bolsa de preguntas: cada modo tiene 6 y la partida usa 2, así que rotan por
+  // semana con AvProfile.pick. Ninguna se contesta con la respuesta de otra.
+  const PREGUNTAS = {
+    facil: [
+      {
+        q:'¿Para qué les cambiaron el nombre a los cuatro jóvenes?',
+        ok:'Para que poco a poco dejaran a su Dios y siguieran la religión del rey.',
+        malas:[
+          'Para que le rezaran al rey Nabucodonosor y ya no al Dios del cielo.',
+          'Para que adoraran al Dios de Israel llamándolo con un nombre nuevo.',
+          'Para que aprendieran a rezar a su Dios en el idioma de los caldeos.'
+        ],
+        foot:'El capítulo lo dice así: el rey «esperaba inducirlos a renunciar a la religión de su nación».'
+      },
+      {
+        q:'¿A quién le pidió Daniel la prueba de los diez días de comida sencilla?',
+        ok:'A Melsar, el oficial que estaba encargado de cuidar a los jóvenes.',
+        malas:[
+          'Al rey Nabucodonosor, que mandaba en toda la tierra de Babilonia.',
+          'A Aspenaz, el que escogió a los muchachos en el palacio del rey.',
+          'A los sabios caldeos que daban las clases dentro del palacio.'
+        ],
+        foot:'Daniel 1:11-12: Daniel le pidió los diez días de prueba a Melsar, el encargado de los jóvenes.'
+      },
+      {
+        q:'¿Cuántos años debían estudiar los jóvenes antes de servir al rey?',
+        ok:'Tres años, y al final se presentaban delante del rey.',
+        malas:[
+          'Diez años, uno por cada día de la prueba de Daniel.',
+          'Un año, porque el rey tenía mucha prisa por verlos.',
+          'Siete años, uno por cada ficha del tablero de nombres.'
+        ],
+        foot:'Daniel 1:5: «para que los criase tres años, y al fin de ellos se presentasen delante del rey».'
+      },
+      {
+        q:'¿Cuántos jóvenes de Judá aparecen con nombre en esta historia?',
+        ok:'Cuatro: Daniel, Ananías, Misael y Azarías.',
+        malas:[
+          'Tres: Sadrac, Mesac y Abed-nego, y nadie más.',
+          'Dos: Daniel y su amigo Beltsasar, nada más.',
+          'Siete: los siete sabios de la corte del rey.'
+        ],
+        foot:'Daniel 1:6 nombra a cuatro: Daniel, Ananías, Misael y Azarías. A cada uno le pusieron otro nombre.'
+      },
+      {
+        q:'¿Qué cargo tenía Aspenaz en la corte del rey de Babilonia?',
+        ok:'Era el príncipe de los eunucos, el jefe de los jóvenes.',
+        malas:[
+          'Era el rey de Babilonia, el dueño de todo el palacio.',
+          'Era el sacerdote que cuidaba el templo de los dioses.',
+          'Era uno de los cuatro jóvenes que trajeron de Judá.'
+        ],
+        foot:'Daniel 1:3: el rey mandó «a Aspenaz, príncipe de sus eunucos», traer a los jóvenes de Judá.'
+      },
+      {
+        q:'En Babilonia, ¿qué nombre nuevo le pusieron a Ananías?',
+        ok:'Sadrac, el mismo que estuvo después en el horno de fuego.',
+        malas:[
+          'Beltsasar, el nombre nuevo que le pusieron a Daniel.',
+          'Abed-nego, el nombre nuevo que le pusieron a Azarías.',
+          'Mesac, el nombre nuevo que le pusieron a Misael.'
+        ],
+        foot:'Daniel 1:7: «y a Ananías, Sadrac». En el cap. 41 es uno de los tres del horno.'
+      }
+    ],
+    completo: [
+      {
+        q:'¿Por qué el rey les cambió el nombre a los cuatro jóvenes hebreos?',
+        ok:'Porque esperaba inducirlos poco a poco a renunciar a la religión de su nación.',
+        malas:[
+          'Porque los sacerdotes del templo exigían un nombre nuevo a cada cautivo.',
+          'Porque en la corte nadie lograba pronunciar los nombres hebreos originales.',
+          'Porque era el castigo por negarse a beber del vino de la mesa del rey.',
+          'Porque el Dios de Israel se lo ordenó en un sueño al rey Nabucodonosor.'
+        ],
+        foot:'«El rey no obligó a los jóvenes hebreos a que renunciasen a su fe […] sino que esperaba obtener esto gradualmente. Dándoles nombres que expresaban sentimientos de idolatría […] esperaba inducirlos a renunciar a la religión de su nación.»'
+      },
+      {
+        q:'¿Qué conmemoraban los nombres nuevos que les pusieron en la corte?',
+        ok:'Divinidades caldeas, o sea los dioses que se adoraban en Babilonia.',
+        malas:[
+          'Al Dios de Israel, nombrado con las palabras de la lengua caldea.',
+          'Las victorias del ejército de Nabucodonosor sobre el reino de Judá.',
+          'Los ríos de Babilonia, junto a los cuales lloraban los cautivos.',
+          'Los tres años de estudio que debían cumplir dentro del palacio.'
+        ],
+        foot:'«Los nombres de Daniel y sus compañeros fueron cambiados por otros que conmemoraban divinidades caldeas.»'
+      },
+      {
+        q:'¿A quién le pidió Daniel la prueba de los diez días con legumbres y agua?',
+        ok:'A Melsar, el oficial que el rey había puesto para cuidar a los jóvenes.',
+        malas:[
+          'A Aspenaz, el que escogió a los muchachos del linaje real de Judá.',
+          'Al rey Nabucodonosor, en la audiencia del final de los tres años.',
+          'A los sabios caldeos que dictaban las lecciones dentro del palacio.',
+          'Al mayordomo que servía el vino en la mesa del rey cada noche.'
+        ],
+        foot:'Daniel 1:11-12: Daniel le propuso a Melsar diez días de prueba con legumbres y agua.'
+      },
+      {
+        q:'¿Cuánto tiempo debían estudiar los jóvenes antes de presentarse al rey?',
+        ok:'Tres años completos de enseñanza en la lengua de los caldeos.',
+        malas:[
+          'Diez años completos, uno por cada día de la prueba de Daniel.',
+          'Siete años completos, el tiempo que duraba el cautiverio.',
+          'Un solo año, porque el rey necesitaba consejeros de inmediato.',
+          'Tres meses completos, y después servían en la mesa del rey.'
+        ],
+        foot:'Daniel 1:5: «para que los criase tres años, y al fin de ellos se presentasen delante del rey».'
+      },
+      {
+        q:'¿Qué cargo tenía Aspenaz en la corte de Nabucodonosor?',
+        ok:'Príncipe de los eunucos: el rey le ordenó traer a los jóvenes de Judá.',
+        malas:[
+          'Sacerdote del templo: cuidaba a las divinidades caldeas del rey.',
+          'Mayordomo del vino: servía la mesa del rey todas las noches.',
+          'Maestro de los caldeos: dictaba las lecciones de lengua y letras.',
+          'Capitán del ejército: trajo cautivos a los jóvenes desde Judá.'
+        ],
+        foot:'Daniel 1:3: «dijo el rey a Aspenaz, príncipe de sus eunucos, que trajese de los hijos de Israel…».'
+      },
+      {
+        q:'¿Cuál de estas parejas de nombres es la correcta?',
+        ok:'Azarías, el que en Babilonia pasó a llamarse Abed-nego.',
+        malas:[
+          'Azarías, el que en Babilonia pasó a llamarse Beltsasar.',
+          'Misael, el que en Babilonia pasó a llamarse Sadrac.',
+          'Ananías, el que en Babilonia pasó a llamarse Mesac.',
+          'Daniel, el que en Babilonia pasó a llamarse Abed-nego.'
+        ],
+        foot:'Daniel 1:7: Daniel–Beltsasar, Ananías–Sadrac, Misael–Mesac, Azarías–Abed-nego.'
+      }
+    ]
   };
 
-  const QUIZ = [
-    {tag:'4–5 años', q:'¿Cuántos jóvenes hebreos eran? Cuenten con los dedos.', a:'4: Daniel, Ananías, Misael y Azarías'},
-    {tag:'4–5 años', q:'¿A qué ciudad se llevaron a Daniel y a sus amigos?', a:'A Babilonia'},
-    {tag:'4–5 años', q:'¿Cómo se llamaba el rey de Babilonia? Díganlo despacito.', a:'Na-bu-co-do-no-sor'},
-    {tag:'4–5 años', q:'En Babilonia le pusieron otro nombre a Daniel. ¿Cuál era?', a:'Beltsasar'},
-    {tag:'4–5 años', q:'¿Quién ayudó a los cuatro jóvenes todo el tiempo?', a:'Dios: él los honró porque ellos lo honraron'},
-    {tag:'4–5 años', q:'¿Cómo te llamas tú? ¡Dilo fuerte! Dios sabe tu nombre.', a:'😊 ¡Dios te conoce por tu nombre!'},
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const shuffle = arr => {
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]] }
+    return a;
+  };
 
-    {tag:'6–7 años', q:'¿Qué nombre nuevo le pusieron a Ananías?', a:'Sadrac'},
-    {tag:'6–7 años', q:'¿Qué nombre nuevo le pusieron a Misael?', a:'Mesac'},
-    {tag:'6–7 años', q:'¿Qué nombre nuevo le pusieron a Azarías?', a:'Abed-nego'},
-    {tag:'6–7 años', q:'¿Cuántos días duró la prueba de la comida sencilla?', a:'10 días'},
-    {tag:'6–7 años', q:'¿Cuántos años estudiaron en Babilonia?', a:'3 años'},
-    {tag:'6–7 años', q:'¿Cómo se llamaba el príncipe de los eunucos que trajo a los jóvenes?', a:'Aspenaz'},
-    {tag:'6–7 años', q:'¿Qué idioma tuvieron que aprender en la escuela del rey?', a:'La lengua (y las letras) de los caldeos'},
-    {tag:'6–7 años', q:'¿De qué familia venían los cuatro jóvenes?', a:'Del linaje real de los príncipes, de los hijos de Judá'},
-    {tag:'6–7 años', q:'¿Por qué les cambiaron los nombres en Babilonia?', a:'Porque los nombres nuevos recordaban a los dioses caldeos: querían que olvidaran a Dios'},
+  // ── Leer e imprimir ──
+  document.getElementById('tablaLeer').innerHTML = NOMBRES.map(p =>
+    `<tr><td>${esc(p.a)}</td><td>${esc(p.b)}</td></tr>`).join('');
+  document.getElementById('tablaPrint').innerHTML = NOMBRES.map(p =>
+    `<tr><td>${esc(p.a)}</td><td>${esc(p.b)}</td></tr>`).join('');
+  document.getElementById('quienesLeer').innerHTML = PERSONAJES.map(p =>
+    `<li><strong>${esc(p.a)}</strong> — ${esc(p.b)}. ${esc(p.nota)}</li>`).join('');
+  document.getElementById('quienesPrint').textContent =
+    PERSONAJES.map(p => `${p.a} (${p.b.toLowerCase()})`).join(' · ');
+  document.getElementById('fichasPrint').innerHTML = TODAS.map(p => {
+    const t = ETIQUETA[tipoDe(p)];
+    return `<div><small>${esc(t.a)}</small>${esc(p.a)}</div><div><small>${esc(t.b)}</small>${esc(p.b)}</div>`;
+  }).join('');
 
-    {tag:'8–9 años', q:'¿Cómo se llamaba el oficial a quien Daniel pidió la prueba de diez días?', a:'Melsar'},
-    {tag:'8–9 años', q:'¿Qué solían expresar los nombres que ponían los padres hebreos?', a:'Tenían gran significado: expresaban los rasgos de carácter que deseaban ver en sus hijos'},
-    {tag:'8–9 años', q:'¿Qué conmemoraban los nombres nuevos que les pusieron?', a:'Divinidades (dioses) caldeas'},
-    {tag:'8–9 años', q:'¿Qué esperaba lograr el rey poco a poco con los nombres nuevos y las costumbres paganas?', a:'Que renunciaran a la religión de su nación y participaran en el culto babilónico'},
-    {tag:'8–9 años', q:'¿Cuántas veces mejores los halló el rey que a todos los magos y astrólogos?', a:'Diez veces mejores'},
-    {tag:'8–9 años', q:'¿Cuántos años duraría el cautiverio en Babilonia?', a:'70 años'},
-    {tag:'8–9 años', q:'Además de conocimiento e inteligencia, ¿qué don recibió Daniel?', a:'Entendimiento en toda visión y sueños'},
-    {tag:'8–9 años', q:'¿Qué promesa se cumplió en ellos? (1 Samuel 2:30)', a:'«Yo honraré a los que me honran»'},
-    {tag:'8–9 años', q:'Según el capítulo, ¿qué dio carácter a toda su vida?', a:'La fidelidad en las cosas pequeñas'}
-  ];
-
-  // ── Partida: 5 emparejamientos + 5 preguntas ──
-  const ACTIVITY = 'pr39-nombres';
-  const MATCH_CARDS = 5;
-  const MATCH_QUIZ = 5;
-  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
-  let match = null; // {cards, quizzes, step, revealed, earned}
-
+  // ── Partida ──
   const gameCard = document.getElementById('gameCard');
-  const optionsBox = document.getElementById('options');
-  const quizBox = document.getElementById('quizBox');
   const mainBtn = document.getElementById('mainBtn');
   const roundLabel = document.getElementById('roundLabel');
-  const legend = document.getElementById('legend');
-  const judge = document.getElementById('judge');
-  const judgeQ = document.getElementById('judgeQ');
-  const judgeYes = document.getElementById('judgeYes');
-  const judgeNo = document.getElementById('judgeNo');
   const practiceNote = document.getElementById('practiceNote');
 
-  function shuffle(arr){
-    const a = arr.slice();
-    for(let i=a.length-1;i>0;i--){
-      const j = Math.floor(Math.random()*(i+1));
-      [a[i],a[j]] = [a[j],a[i]];
+  let match = null;
+  let modo = null;         // 'facil' | 'completo'
+  let modoManual = false;  // true solo si el adulto lo cambió a mano
+  let bloqueado = false;
+  let pantalla = 'inicio';   // 'inicio' | 'juego' | 'fin'
+  let timerTapar = null;
+
+  function modoPorClase(){
+    const clubClass = AvProfile.clubClass();
+    if(!clubClass) return 'completo';
+    return CLASES_PEQUES.indexOf(clubClass) >= 0 ? 'facil' : 'completo';
+  }
+
+  function paresDeLaPartida(m){
+    // Los cuatro pares de nombres van siempre; los personajes rotan por bolsa.
+    if(m === 'facil'){
+      const nombres = AvProfile.pick(`${ACTIVITY}:nombres`, NOMBRES, 4, p => p.id);
+      const extra = AvProfile.pick(`${ACTIVITY}:personajes`, PERSONAJES, TABLEROS_FACIL, p => p.id);
+      // Cada tablero: 2 pares de nombres + 1 personaje = 3 parejas / 6 fichas.
+      return [
+        shuffle(nombres.slice(0,2).concat(extra.slice(0,1))),
+        shuffle(nombres.slice(2,4).concat(extra.slice(1,2)))
+      ];
     }
-    return a;
-  }
-  const pairKey = it => it.prompt + ' → ' + it.answer;
-
-  function phase(){
-    if(!match) return 'idle';
-    if(match.step < MATCH_CARDS) return 'card';
-    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
-    return 'done';
+    const nombres = AvProfile.pick(`${ACTIVITY}:nombres`, NOMBRES, 4, p => p.id);
+    const extra = AvProfile.pick(`${ACTIVITY}:personajes`, PERSONAJES, PARES_COMPLETO - 4, p => p.id);
+    return [shuffle(nombres.concat(extra))];
   }
 
-  function pickMatchQuiz(){
-    const picked = [];
-    QUIZ_MIX.forEach(([tag, n]) => {
-      const group = QUIZ.filter(q => q.tag === tag);
-      picked.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.q));
+  function fichasDe(pares){
+    const fichas = [];
+    pares.forEach(p => {
+      const t = ETIQUETA[tipoDe(p)];
+      fichas.push({id:p.id, lado:'a', etiqueta:t.a, texto:p.a});
+      fichas.push({id:p.id, lado:'b', etiqueta:t.b, texto:p.b});
     });
-    return picked;
+    return shuffle(fichas);
   }
 
-  function pickMatchCards(){
-    const groups = Math.random() < .5 ? ['nombres','datos'] : ['datos','nombres'];
-    const picked = [
-      ...AvProfile.pick(`${ACTIVITY}:card:${groups[0]}`, PAIRS.filter(p => p.group === groups[0]), 3, pairKey),
-      ...AvProfile.pick(`${ACTIVITY}:card:${groups[1]}`, PAIRS.filter(p => p.group === groups[1]), 2, pairKey)
-    ];
-    return shuffle(picked).map(it => ({
-      ...it,
-      options: shuffle([it.answer].concat(
-        shuffle(OPTION_POOL[it.type].filter(o => o !== it.answer)).slice(0, 2)
-      ))
-    }));
-  }
-
-  function startMatch(){
-    legend.hidden = true;
+  function start(){
+    modo = modo || modoPorClase();
+    const tableros = paresDeLaPartida(modo).filter(t => t.length);
+    match = {
+      modo,
+      tableros,
+      idx: 0,
+      fase: 'tablero',
+      volteos: 0,
+      ganados: 0,
+      despejados: 0,
+      resueltas: [],
+      preguntas: AvProfile.pick(`${ACTIVITY}:quiz:${modo}`, PREGUNTAS[modo], PREGUNTAS_POR_PARTIDA, q => q.q),
+      qi: 0,
+      primera: null
+    };
     practiceNote.hidden = true;
-    match = {cards: pickMatchCards(), quizzes: pickMatchQuiz(), step: 0, revealed: false, earned: 0};
-    showStep();
+    pintarTablero();
   }
 
-  function showStep(){
-    judge.hidden = true;
-    match.revealed = false;
-    const ph = phase();
-    gameCard.classList.remove('revealed-ok','revealed-no');
-    if(ph === 'card'){
-      quizBox.classList.remove('show');
-      gameCard.style.display = '';
-      const it = match.cards[match.step];
-      roundLabel.textContent = `Pareja ${match.step + 1} de ${MATCH_CARDS}`;
-      gameCard.innerHTML = '';
-      gameCard.append(
-        el('div','kicker', it.kicker),
-        el('div','emoji', it.emoji),
-        el('div','big-name', it.prompt),
-        el('div','ask', it.ask)
-      );
-      renderOptions(it);
-      mainBtn.hidden = true;
-    }else if(ph === 'quiz'){
-      optionsBox.classList.remove('show');
-      optionsBox.innerHTML = '';
-      gameCard.style.display = 'none';
-      quizBox.classList.add('show');
-      const q = match.quizzes[match.step - MATCH_CARDS];
-      roundLabel.textContent = `Pregunta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
-      document.getElementById('quizTag').textContent = q.tag;
-      document.getElementById('quizQ').textContent = q.q;
-      const quizA = document.getElementById('quizA');
-      quizA.textContent = q.a;
-      quizA.classList.remove('show');
-      mainBtn.textContent = 'Ver respuesta';
-      mainBtn.hidden = false;
-    }else{
-      finishMatch();
-    }
-  }
-
-  function el(tag, cls, text){
-    const n = document.createElement(tag);
-    n.className = cls;
-    n.textContent = text;
-    return n;
-  }
-
-  function renderOptions(it){
-    optionsBox.innerHTML = '';
-    it.options.forEach(opt => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'opt';
-      b.textContent = opt;
-      b.addEventListener('click', () => answerCard(it, opt, b));
-      optionsBox.appendChild(b);
-    });
-    optionsBox.classList.add('show');
-  }
-
-  // El juego se califica solo: la opción tocada decide el punto.
-  function answerCard(it, opt, btn){
-    if(match.revealed) return;
-    match.revealed = true;
-    const correct = opt === it.answer;
-    optionsBox.querySelectorAll('.opt').forEach(b => {
-      b.disabled = true;
-      if(b.textContent === it.answer && !correct) b.classList.add('show-ok');
-    });
-    btn.classList.add(correct ? 'pick-ok' : 'pick-no');
-    gameCard.classList.add(correct ? 'revealed-ok' : 'revealed-no');
-
-    const canScore = !!AvProfile.get() && AvProfile.canScore('card');
-    if(canScore){
-      AvProfile.score(correct, 'card');
-      if(correct) match.earned++;
-    }
-    gameCard.innerHTML = '';
-    gameCard.append(
-      el('div','kicker', it.kicker),
-      el('div','big-name', it.prompt),
-      el('div','verdict', correct ? '⭐ ¡Sí! ¡Esa es la pareja!' : '💛 ¡Casi! Mira:'),
-      el('div','ask', it.prompt + ' → ' + it.answer)
+  function pintarTablero(){
+    pantalla = 'juego';
+    const pares = match.tableros[match.idx];
+    match.fichas = fichasDe(pares);
+    match.primera = null;
+    match.volteos = 0;   // el presupuesto de volteos se cuenta por tablero
+    bloqueado = false;
+    const total = match.fichas.length;
+    const tope = VOLTEOS_BONO[match.modo];
+    roundLabel.textContent = match.modo === 'facil'
+      ? `Tablero ${match.idx + 1} de ${match.tableros.length}`
+      : `Tablero completo · ${pares.length} parejas`;
+    const meta = `<div class="marcador"><span id="contVolteos">Volteos: 0</span><span>🎯 el punto es si lo despejas en ${tope} volteos o menos</span></div>`;
+    gameCard.innerHTML = `
+      <div class="title">Toca dos fichas y busca la pareja</div>
+      ${meta}
+      <div class="board ${total > 6 ? 'b12' : 'b4'}" id="board">
+        ${match.fichas.map((f, i) => `
+          <button class="tile" data-i="${i}" aria-label="Ficha ${i + 1} boca abajo">
+            <span class="dorso" aria-hidden="true">🧱</span>
+            <span class="cara"><small>${esc(f.etiqueta)}</small><b>${esc(f.texto)}</b></span>
+          </button>`).join('')}
+      </div>
+      <div class="feedback" id="feedback">Las fichas están boca abajo.</div>`;
+    gameCard.querySelectorAll('.tile').forEach(b =>
+      b.addEventListener('click', () => voltear(Number(b.dataset.i), b))
     );
-    if(!canScore){
-      gameCard.append(el('div','hint', AvProfile.get()
-        ? '🌙 Puntos completos: esta ronda es de práctica.'
-        : '👤 Sin perfil: esta ronda no suma al tablero.'));
+    mainBtn.hidden = true;
+  }
+
+  function pareja(id){ return TODAS.find(p => p.id === id) }
+
+  function voltear(i, button){
+    if(bloqueado || button.classList.contains('up') || button.classList.contains('done')) return;
+    const f = match.fichas[i];
+    button.classList.add('up','pop');
+    button.setAttribute('aria-label', `${f.etiqueta}: ${f.texto}`);
+    setTimeout(() => button.classList.remove('pop'), 140);
+    match.volteos++;
+    const cont = document.getElementById('contVolteos');
+    if(cont) cont.textContent = `Volteos: ${match.volteos}`;
+    const fb = document.getElementById('feedback');
+
+    if(!match.primera){
+      match.primera = {i, f, button};
+      fb.className = 'feedback';
+      fb.textContent = `${f.texto} — busca su pareja.`;
+      return;
     }
-    mainBtn.textContent = 'Siguiente ▶';
+    if(match.primera.i === i) return;
+
+    const a = match.primera;
+    match.primera = null;
+    const p = pareja(f.id);
+
+    if(a.f.id === f.id){
+      a.button.classList.remove('up'); a.button.classList.add('done');
+      button.classList.remove('up');   button.classList.add('done');
+      a.button.disabled = true; button.disabled = true;
+      fb.className = 'feedback bien';
+      fb.innerHTML = `✅ <span>${esc(p.a)} = ${esc(p.b)}. ${esc(p.nota)}</span>`;
+      match.resueltas.push(p);
+      if(gameCard.querySelectorAll('.tile.done').length === match.fichas.length){
+        bloqueado = true;
+        setTimeout(despejado, 700);
+      }
+      return;
+    }
+
+    // Falló: se dice con quién iba cada una antes de taparlas otra vez.
+    const pa = pareja(a.f.id);
+    bloqueado = true;
+    a.button.classList.add('bad'); button.classList.add('bad');
+    fb.className = 'feedback mal';
+    fb.innerHTML = `❌ <span>${esc(f.texto)} va con <strong>${esc(f.lado === 'a' ? p.b : p.a)}</strong>, y ${esc(a.f.texto)} va con <strong>${esc(a.f.lado === 'a' ? pa.b : pa.a)}</strong>.</span>`;
+    clearTimeout(timerTapar);
+    timerTapar = setTimeout(() => {
+      [a.button, button].forEach(b => {
+        b.classList.remove('up','mal');
+        const idx = Number(b.dataset.i);
+        b.setAttribute('aria-label', `Ficha ${idx + 1} boca abajo`);
+      });
+      fb.className = 'feedback';
+      fb.textContent = 'Inténtalo otra vez.';
+      bloqueado = false;
+    }, 2200);
+  }
+
+  async function sumar(n){
+    for(let i = 0; i < n; i++){
+      if(AvProfile.get() && AvProfile.canScore('card')){
+        await AvProfile.score(true, 'card');
+        match.ganados++;
+      }
+    }
+  }
+
+  function despejado(){
+    match.despejados++;
+    const pares = match.tableros[match.idx];
+    const tope = VOLTEOS_BONO[match.modo];
+    const enTope = match.volteos <= tope;
+    const puntos = match.modo === 'completo'
+      ? CARD_COMPLETO_BASE + (enTope ? CARD_COMPLETO_BONO : 0)
+      : (enTope ? CARD_FACIL : 0);
+    const antes = match.ganados;
+    const volteos = match.volteos;
+
+    // La pantalla y el botón se pintan YA: nunca detrás de un await de red.
+    roundLabel.textContent = '¡Tablero despejado!';
+    gameCard.innerHTML = `
+      <div class="emoji">🎉</div>
+      <div class="title">¡Despejado en ${volteos} volteos!</div>
+      <div class="hint">${enTope
+        ? `🎯 ${tope} volteos o menos: este tablero sí da punto.`
+        : `Esta vez fueron más de ${tope} volteos, así que este tablero no da punto. El repaso cuenta igual.`}</div>
+      <ul class="repaso">
+        ${pares.map(p => `<li><b>${esc(p.a)}</b> = ${esc(p.b)}. ${esc(p.nota)}</li>`).join('')}
+      </ul>
+      <div class="hint" id="puntosTablero">${puntos > 0
+        ? (AvProfile.get() && AvProfile.canScore('card') ? '⭐ Guardando tus puntos…' : 'Este tablero no sumó puntos (mira el aviso de abajo).')
+        : ''}</div>`;
+    const quedan = match.idx + 1 < match.tableros.length;
+    mainBtn.textContent = quedan ? 'Siguiente tablero ▶' : 'A las preguntas ▶';
     mainBtn.hidden = false;
+    match.phase = quedan ? 'entre-tableros' : 'a-preguntas';
+    avisoDeCupo();
+
+    if(puntos <= 0) return;
+    sumar(puntos).then(() => {
+      const ganados = match.ganados - antes;
+      const el = document.getElementById('puntosTablero');
+      if(!el) return;   // el niño ya pasó de pantalla
+      el.textContent = ganados > 0
+        ? `⭐ +${ganados} punto${ganados === 1 ? '' : 's'} de juego.`
+        : 'Este tablero no sumó puntos (mira el aviso de abajo), pero el repaso cuenta.';
+      avisoDeCupo();
+    });
   }
 
-  function revealQuiz(){
-    match.revealed = true;
-    document.getElementById('quizA').classList.add('show');
-    const p = AvProfile.get();
-    if(p && AvProfile.canScore('quiz')){
-      judgeQ.textContent = `¿${p.name} respondió bien?`;
-      judgeYes.hidden = false;
-      judgeNo.hidden = false;
-      judge.hidden = false;
-      mainBtn.hidden = true;
-    }else{
-      judgeQ.textContent = p
-        ? '🌙 Puntos completos: esta respuesta es de práctica.'
-        : '👤 Sin perfil: esta respuesta no suma al tablero.';
-      judgeYes.hidden = true;
-      judgeNo.hidden = true;
-      judge.hidden = false;
-      mainBtn.textContent = 'Siguiente ▶';
-      mainBtn.hidden = false;
+  function pintarPregunta(){
+    pantalla = 'juego';
+    const item = match.preguntas[match.qi];
+    const opciones = shuffle([item.ok].concat(item.malas));
+    roundLabel.textContent = `Pregunta ${match.qi + 1} de ${match.preguntas.length}`;
+    gameCard.innerHTML = `
+      <div class="title">${esc(item.q)}</div>
+      <div class="opts">
+        ${opciones.map((o, i) => `<button class="opt" data-i="${i}" data-ok="${o === item.ok ? '1' : '0'}">${esc(o)}</button>`).join('')}
+      </div>`;
+    gameCard.querySelectorAll('.opt').forEach(b =>
+      b.addEventListener('click', () => answer(b, item))
+    );
+    mainBtn.hidden = true;
+    match.phase = 'pregunta';
+  }
+
+  function answer(button, item){
+    if(match.respondida) return;
+    match.respondida = true;
+    const acerto = button.dataset.ok === '1';
+    gameCard.querySelectorAll('.opt').forEach(b => {
+      b.disabled = true;
+      if(b.dataset.ok === '1') b.classList.add('ok');
+      else if(b === button) b.classList.add('bad');
+    });
+    const pie = document.createElement('div');
+    pie.className = 'hint';
+    pie.innerHTML = `${acerto ? '✅ ¡Eso es!' : `❌ La respuesta es: <strong>${esc(item.ok)}</strong>`}<br>${esc(item.pie)}`;
+    gameCard.appendChild(pie);
+
+    if(AvProfile.get() && AvProfile.canScore('quiz')){
+      AvProfile.score(acerto, 'quiz');
+      if(acerto) match.ganados++;
     }
-  }
-
-  function nextStep(){
-    match.step++;
-    showStep();
+    mainBtn.textContent = match.qi + 1 < match.preguntas.length ? 'Siguiente pregunta ▶' : 'Ver el resultado ▶';
+    mainBtn.hidden = false;
   }
 
   function finishMatch(){
-    legend.hidden = false;
-    optionsBox.classList.remove('show');
-    optionsBox.innerHTML = '';
-    quizBox.classList.remove('show');
-    gameCard.style.display = '';
-    gameCard.classList.remove('revealed-ok','revealed-no');
-    roundLabel.textContent = '¡Bien hecho, aventureros!';
+    pantalla = 'fin';
+    roundLabel.textContent = '¡Ya te sabes la tabla!';
     const p = AvProfile.get();
-    gameCard.innerHTML = '';
-    gameCard.append(
-      el('div','emoji','🏁'),
-      el('div','big-name','¡Partida completa!')
-    );
-    if(p) gameCard.append(el('div','hint', `⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida.`));
-    if(p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz')){
-      gameCard.append(el('div','hint','🌙 Puntos de hoy completos: las próximas partidas son de práctica.'));
-    }
-    mainBtn.textContent = '🔁 Otra partida';
+    gameCard.innerHTML = `
+      <div class="emoji">🏅</div>
+      <div class="title">Los cuatro nombres</div>
+      <ul class="repaso">
+        ${NOMBRES.map(n => `<li><b>${esc(n.a)}</b> = ${esc(n.b)}</li>`).join('')}
+      </ul>
+      ${p ? `<div class="hint">⭐ Sumaste ${match.ganados} punto${match.ganados === 1 ? '' : 's'} en esta match.</div>` : ''}
+      <div class="hint">Cuando en el capítulo 41 metan a Sadrac, Mesac y Abed-nego al horno, tú ya sabes cómo se llamaban en su casa.</div>`;
+    mainBtn.dataset.mode = 'again';
+    mainBtn.textContent = '🔁 Otra match';
     mainBtn.hidden = false;
     match = null;
-    updateIdleHint();
+    avisoDeCupo();
   }
 
-  function updateIdleHint(){
-    if(match) return;
+  function pantallaInicio(){
+    pantalla = 'inicio';
+    // Sin elección manual, el modo se recalcula cada vez: al cargar aún no hay
+    // perfil y la clase llega después, con AvProfile.onChange.
+    if(!modoManual) modo = modoPorClase();
+    const clubClass = AvProfile.clubClass();
+    const fichasFacil = PARES_FACIL * 2;
+    roundLabel.textContent = 'Tablero de memoria';
+    gameCard.innerHTML = `
+      <div class="emoji">🧱</div>
+      <div class="title">Los cuatro nombres</div>
+      <div class="hint">${clubClass
+        ? `Clase <strong>${esc(clubClass)}</strong>: te toca ${modo === 'facil' ? `${TABLEROS_FACIL} tableros de ${fichasFacil} fichas` : `un tablero de ${PARES_COMPLETO} parejas`}.`
+        : 'Escoge el tamaño del tablero (o ingresa con tu documento y la app lo escoge por tu clase).'}</div>
+      <div class="modo-pick">
+        <button class="modo-btn ${modo === 'facil' ? 'on' : ''}" data-modo="facil">🟦 Tableros de ${fichasFacil} fichas
+          <small>${TABLEROS_FACIL} tableros de ${PARES_FACIL} parejas · ${CARD_FACIL} punto por tablero si lo despejas en ${VOLTEOS_BONO.facil} volteos o menos</small></button>
+        <button class="modo-btn ${modo === 'completo' ? 'on' : ''}" data-modo="completo">🟨 Un tablero de ${PARES_COMPLETO} parejas
+          <small>${CARD_COMPLETO_BASE} punto al despejarlo · ${CARD_COMPLETO_BONO} más si lo logras en ${VOLTEOS_BONO.completo} volteos o menos</small></button>
+      </div>
+      <div class="hint">Y al final, ${PREGUNTAS_POR_PARTIDA} preguntas del capítulo (cambian de una partida a otra).</div>`;
+    gameCard.querySelectorAll('.modo-btn').forEach(b =>
+      b.addEventListener('click', () => { modo = b.dataset.modo; modoManual = true; pantallaInicio() })
+    );
+    mainBtn.hidden = false;
+    avisoDeCupo();
+  }
+
+  function avisoDeCupo(){
     const p = AvProfile.get();
-    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    const sinCard = !!p && !AvProfile.canScore('card');
+    const sinQuiz = !!p && !AvProfile.canScore('quiz');
     if(!p){
       practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
       practiceNote.hidden = false;
-    }else if(practice){
-      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero.';
+    }else if(sinCard && sinQuiz){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy en esta actividad ya están completos: esto es <strong>práctica</strong>.';
+      practiceNote.hidden = false;
+    }else if(sinCard){
+      practiceNote.innerHTML = '🌙 Los puntos de juego de hoy ya están completos. Las <strong>preguntas</strong> sí suman.';
+      practiceNote.hidden = false;
+    }else if(sinQuiz){
+      practiceNote.innerHTML = '🌙 Los puntos de preguntas de hoy ya están completos. El <strong>tablero</strong> sí suma.';
       practiceNote.hidden = false;
     }else{
       practiceNote.hidden = true;
     }
-    if(mainBtn.textContent.includes('Otra partida')){
-      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
-    }else if(mainBtn.textContent.includes('partida')){
-      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
+    if(!match){
+      const practica = sinCard && sinQuiz;
+      mainBtn.textContent = mainBtn.dataset.mode === 'again'
+        ? (practica ? '🔁 Otra match (práctica)' : '🔁 Otra match')
+        : (practica ? '▶ Empezar (práctica)' : '▶ Empezar');
     }
   }
-  AvProfile.onChange(updateIdleHint);
 
   mainBtn.addEventListener('click', () => {
-    if(!match){ startMatch(); return; }
-    if(phase() === 'quiz' && !match.revealed){ revealQuiz(); return; }
-    nextStep();
+    if(!match){ start(); return }
+    if(match.phase === 'entre-tableros'){
+      match.idx++;
+      match.phase = 'tablero';
+      pintarTablero();
+      return;
+    }
+    if(match.phase === 'a-preguntas'){
+      match.qi = 0;
+      match.respondida = false;
+      pintarPregunta();
+      return;
+    }
+    if(match.phase === 'pregunta'){
+      if(match.qi + 1 < match.preguntas.length){
+        match.qi++;
+        match.respondida = false;
+        pintarPregunta();
+      }else{
+        finishMatch();
+      }
+      return;
+    }
   });
 
-  judgeYes.addEventListener('click', () => {
-    judge.hidden = true;
-    AvProfile.score(true, 'quiz');
-    match.earned++;
-    nextStep();
-  });
-  judgeNo.addEventListener('click', () => {
-    judge.hidden = true;
-    AvProfile.score(false, 'quiz');
-    nextStep();
-  });
-
-  // ── Tarjetas imprimibles: cada pareja se imprime en dos tarjetas ──
-  const PRINT_PAIRS = [
-    {a:{emoji:'🧒', text:'Daniel'},        b:{emoji:'🏛️', text:'Beltsasar'}},
-    {a:{emoji:'🧒', text:'Ananías'},       b:{emoji:'🏛️', text:'Sadrac'}},
-    {a:{emoji:'🧒', text:'Misael'},        b:{emoji:'🏛️', text:'Mesac'}},
-    {a:{emoji:'🧒', text:'Azarías'},       b:{emoji:'🏛️', text:'Abed-nego'}},
-    {a:{emoji:'👑', text:'Nabucodonosor'}, b:{emoji:'🏯', text:'El rey de Babilonia'}},
-    {a:{emoji:'🧔', text:'Aspenaz'},       b:{emoji:'🎖️', text:'El príncipe de los eunucos'}},
-    {a:{emoji:'🧑‍🍳', text:'Melsar'},        b:{emoji:'🥦', text:'El oficial de la prueba'}},
-    {a:{emoji:'⏳', text:'La prueba de la comida'}, b:{emoji:'🔟', text:'10 días'}},
-    {a:{emoji:'📚', text:'El estudio de los caldeos'}, b:{emoji:'3️⃣', text:'3 años'}},
-    {a:{emoji:'🧑‍🤝‍🧑', text:'Los jóvenes hebreos'}, b:{emoji:'4️⃣', text:'4 jóvenes'}},
-    {a:{emoji:'⛓️', text:'El cautiverio en Babilonia'}, b:{emoji:'7️⃣', text:'70 años'}},
-    {a:{emoji:'🌟', text:'La sabiduría que Dios les dio'}, b:{emoji:'🏆', text:'Diez veces mejores'}}
-  ];
-
-  function renderPrintCards(){
-    const grid = document.getElementById('gridCards');
-    const keyList = document.getElementById('keyList');
-    const cards = [];
-    PRINT_PAIRS.forEach(p => { cards.push(p.a); cards.push(p.b); });
-    grid.innerHTML = '';
-    cards.forEach(c => {
-      const card = document.createElement('div');
-      card.className = 'mini-card';
-      card.append(el('div','emoji', c.emoji), el('div','mc-text', c.text));
-      grid.appendChild(card);
-    });
-    keyList.innerHTML = '';
-    PRINT_PAIRS.forEach(p => {
-      const li = document.createElement('li');
-      li.textContent = `${p.a.text} ↔ ${p.b.text}`;
-      keyList.appendChild(li);
-    });
+  // ── Navegación ──
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
   }
-  renderPrintCards();
+  document.getElementById('toGameBtn').addEventListener('click', () => goTo('juego'));
 
-  // ── Menú ──
   const menuBtn = document.getElementById('menuBtn');
   const menuPanel = document.getElementById('menuPanel');
   function closeMenu(){
@@ -936,27 +1021,21 @@
     menuPanel.hidden = !menuPanel.hidden;
     menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
   });
-  document.addEventListener('click', e => {
-    if(!e.target.closest('.menu-wrap')) closeMenu();
-  });
+  document.addEventListener('click', e => { if(!e.target.closest('.menu-wrap')) closeMenu() });
   document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-      closeMenu();
-    });
+    btn.addEventListener('click', () => { goTo(btn.dataset.tab); closeMenu() });
   });
+  document.getElementById('changePlayerBtn').addEventListener('click', () => { closeMenu(); AvProfile.open() });
 
-  // ── Perfil y puntos (módulo compartido /shared/profile.js) ──
-  document.getElementById('changePlayerBtn').addEventListener('click', () => {
-    closeMenu();
-    AvProfile.open();
+  // Al ingresar o cambiar de jugador se repinta el inicio (cambia la clase y el
+  // tablero sugerido). En medio de la partida o en el resultado, solo el aviso.
+  AvProfile.onChange(() => { if(pantalla === 'inicio') pantallaInicio(); else avisoDeCupo() });
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 4, quiz: 2},   // lo que vale esta actividad; el techo del backend es 5+5
   });
-
-  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
-  updateIdleHint();
+  pantallaInicio();
 </script>
 </body>
 </html>

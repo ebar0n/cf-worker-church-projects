@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1B2F6E">
 <title>Colorea la corte de Babilonia</title>
-<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Un cuaderno para colorear con el dedo: 5 retos de color + 5 preguntas de «colorea y cuenta». ¡Suma puntos para el tablero del Club de Aventureros!">
+<meta name="description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Primero se lee Daniel 1; después el niño toca la parte que la app nombra en cada lámina, la pinta del color que quiera y le cuenta al adulto por qué está ahí.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Club de Aventureros El Elohe Israel · Iglesia Adventista Jordán Ibagué">
 <meta property="og:title" content="Colorea la corte de Babilonia">
-<meta property="og:description" content="Conexión Bíblica · Profetas y Reyes cap. 39. Cuatro escenas para colorear con el dedo: la puerta del palacio, la mesa del rey, el plato de Daniel y los cuatro jóvenes.">
+<meta property="og:description" content="Cuatro láminas de la corte de Babilonia. La app nombra una parte, el niño la busca y la toca, y después la pinta del color que quiera. El color nunca se califica.">
 <meta property="og:url" content="https://aventureros.iglesiajordanibague.org/conexion-biblica-pr39-colorear/">
 <meta property="og:image" content="https://aventureros.iglesiajordanibague.org/og/club.png">
 <meta property="og:image:width" content="1200">
@@ -98,6 +98,19 @@
     .back-link{padding:8px 10px}
     .menu-btn{padding:8px 12px}
   }
+  .back-link{
+    display:inline-block;
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    color:var(--gold-soft);
+    text-decoration:none;
+    border:2px solid transparent;
+    border-radius:999px;
+    padding:8px 16px;
+  }
+  .back-link:hover{border-color:var(--gold)}
+  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .menu-btn{
     font-family:'Fredoka',sans-serif;
     font-size:1rem;
@@ -118,7 +131,7 @@
     z-index:50;
     display:flex;
     flex-direction:column;
-    min-width:250px;
+    min-width:255px;
     background:var(--cream);
     border:3px solid var(--gold);
     border-radius:18px;
@@ -146,22 +159,47 @@
   section{display:none;padding:0 16px 60px;max-width:1000px;margin:0 auto}
   section.active{display:block}
 
-  .back-link{
-    display:inline-block;
+  /* ══════════ LEER ══════════ */
+  #leer{max-width:680px}
+  .read-card{
+    background:var(--cream);
+    color:var(--ink);
+    border:5px solid var(--gold);
+    border-radius:24px;
+    padding:22px 20px;
+    margin-bottom:18px;
+    box-shadow:0 8px 0 rgba(0,0,0,.28);
+  }
+  .read-card h2{
     font-family:'Fredoka',sans-serif;
     font-weight:600;
-    font-size:.9rem;
-    color:var(--gold-soft);
-    text-decoration:none;
-    border:2px solid transparent;
-    border-radius:999px;
-    padding:8px 16px;
-    margin-bottom:8px;
+    font-size:1.15rem;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:8px;
   }
-  .back-link:hover{border-color:var(--gold)}
-  .back-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .read-card p{margin-bottom:11px;line-height:1.6}
+  .read-card p:last-child{margin-bottom:0}
+  .read-card .cita{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:1.05rem;
+    line-height:1.5;
+    border-left:5px solid var(--brick);
+    background:rgba(194,84,43,.08);
+    border-radius:0 12px 12px 0;
+    padding:11px 14px;
+    margin-bottom:12px;
+  }
+  .read-card .cita b{display:block;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:800;color:var(--brick);margin-top:6px}
+  .read-card ul,.read-card ol{margin:0 0 11px 22px;line-height:1.6}
+  .read-card li{margin-bottom:6px}
+  .source{font-size:.82rem;opacity:.75;margin-top:12px;line-height:1.5}
+  .source a{color:var(--brick);font-weight:700}
+  .read-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:4px 0 10px}
 
-  /* ══════════ MODO JUEGO ══════════ */
+  /* ══════════ JUEGO ══════════ */
   .stage{max-width:480px;margin:0 auto;text-align:center}
   .round-label{
     font-family:'Fredoka',sans-serif;
@@ -200,29 +238,8 @@
     font-size:clamp(1.15rem,5vw,1.5rem);
     line-height:1.25;
   }
-  .prompt .small-text{margin-top:8px;font-weight:700;font-size:.95rem;opacity:.7}
+  .prompt .small-text{margin-top:8px;font-weight:700;font-size:.95rem;opacity:.75;line-height:1.45}
   .prompt .small-text[hidden]{display:none}
-
-  .options{display:flex;flex-direction:column;gap:10px;margin-top:14px}
-  .options[hidden]{display:none}
-  .option{
-    font-family:'Fredoka',sans-serif;
-    font-size:1.05rem;
-    font-weight:600;
-    min-height:56px;
-    border:4px solid var(--lapis);
-    background:#fff;
-    color:var(--ink);
-    border-radius:18px;
-    padding:12px 14px;
-    cursor:pointer;
-    line-height:1.2;
-  }
-  .option:hover{background:var(--gold-soft)}
-  .option:focus-visible{outline:3px solid var(--brick);outline-offset:3px}
-  .option.right{background:var(--ok);border-color:#1E7040;color:#fff}
-  .option.wrong{background:#D6453D;border-color:#A32C26;color:#fff}
-  .option:disabled{cursor:default}
 
   /* Cuaderno de colorear */
   .scene-tabs{
@@ -245,6 +262,7 @@
     line-height:1.15;
   }
   .scene-tab.active{background:var(--gold);color:var(--lapis-deep)}
+  .scene-tab.pagada::after{content:' ⭐'}
   .scene-tab:focus-visible{outline:3px solid #fff;outline-offset:2px}
 
   .canvas-frame{
@@ -254,6 +272,7 @@
     box-shadow:0 10px 0 rgba(0,0,0,.28);
     padding:8px;
   }
+  .canvas-frame.buscando{border-color:var(--brick)}
   .scene-holder{display:none}
   .scene-holder.active{display:block}
   .scene-svg{width:100%;height:auto;display:block}
@@ -265,6 +284,7 @@
     stroke-linecap:round;
     cursor:pointer;
   }
+  .scene-svg .z:focus-visible{outline:none;stroke:var(--brick);stroke-width:8}
   .scene-svg .ink{
     fill:none;
     stroke:var(--ink);
@@ -287,11 +307,15 @@
     stroke:none;
     pointer-events:none;
   }
+  /* La zona correcta solo se resalta DESPUÉS de responder: mientras se busca,
+     el dibujo no da pistas. */
   .scene-svg .z.target{
-    stroke-width:7;
+    stroke:var(--ok);
+    stroke-width:8;
     stroke-dasharray:12 9;
     animation:dance 1.1s linear infinite;
   }
+  .scene-svg .z.miss{stroke:var(--brick);stroke-width:8}
   @keyframes dance{to{stroke-dashoffset:-42}}
 
   /* Paleta de colores */
@@ -301,6 +325,7 @@
     gap:8px;
     margin-top:14px;
   }
+  .palette[hidden]{display:none}
   .swatch{
     min-height:56px;
     border-radius:16px;
@@ -319,6 +344,7 @@
   .swatch.dark-text{color:var(--ink);text-shadow:none}
   .swatch.sel{border-color:#fff;box-shadow:0 0 0 4px var(--gold)}
   .swatch:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .palette-hint{margin-top:8px;font-size:.85rem;font-weight:700;color:var(--gold-soft);opacity:.9;line-height:1.4}
 
   .controls{display:flex;gap:12px;justify-content:center;margin-top:18px;flex-wrap:wrap}
   .btn{
@@ -355,8 +381,20 @@
     font-family:'Fredoka',sans-serif;
     font-weight:600;
   }
-  .judge span{flex-basis:100%;text-align:center;line-height:1.35}
+  .judge span{flex-basis:100%;text-align:center;line-height:1.4}
   .judge[hidden]{display:none}
+  .judge details.clave{
+    margin-top:10px;
+    text-align:left;
+    font-weight:400;
+    line-height:1.45;
+  }
+  .judge details.clave summary{
+    cursor:pointer;
+    font-weight:600;
+    font-size:.85rem;
+  }
+  .judge details.clave[open] summary{margin-bottom:6px}
 
   .practice-note{
     margin-top:16px;
@@ -365,11 +403,12 @@
     font-size:.95rem;
     color:var(--gold-soft);
     opacity:.9;
+    line-height:1.45;
   }
   .practice-note[hidden]{display:none}
 
   @media (prefers-reduced-motion:reduce){
-    .scene-svg .z.target{animation:none;stroke-dasharray:none;stroke-width:7}
+    .scene-svg .z.target{animation:none;stroke-dasharray:none}
     .btn{transition:none}
   }
 
@@ -402,14 +441,22 @@
     text-align:center;
     font-size:.85rem;
     margin-bottom:10px;
-    color:#444;
+    color:#333;
+    line-height:1.4;
+  }
+  .print-sheet .sheet-line{
+    font-size:.85rem;
+    color:#000;
+    margin-bottom:10px;
+    letter-spacing:.02em;
   }
   .print-sheet .sheet-foot{
     text-align:center;
     font-size:.75rem;
     margin-top:8px;
-    color:#666;
+    color:#444;
   }
+  /* Hoja en blanco y negro: el color de la pantalla nunca llega al papel. */
   .print-sheet .scene-svg .z{fill:#fff;stroke:#000;cursor:default}
   .print-sheet .scene-svg .ink{stroke:#000}
   .print-sheet .scene-svg .skin{fill:#fff;stroke:#000}
@@ -439,6 +486,7 @@
   .parent-box p:last-child{margin-bottom:0}
   .parent-box ol,.parent-box ul{margin:0 0 10px 22px;line-height:1.55}
   .parent-box li{margin-bottom:6px}
+  .parent-box a{color:var(--brick);font-weight:700}
   .verse{
     border-left:5px solid var(--brick);
     background:rgba(194,84,43,.08);
@@ -449,13 +497,14 @@
   }
   .verse span{display:block;font-style:normal;font-weight:800;font-size:.85rem;margin-top:6px;color:var(--brick)}
 
-  /* ── Impresión ── */
+  /* ── Impresión: solo las láminas, limpias, en blanco y negro ── */
   @media print{
-    body{background:#fff;color:#000}
-    header,.topbar,#juego,#padres,.print-note{display:none!important}
+    body{background:#fff!important;background-image:none!important;color:#000}
+    header,.topbar,#leer,#juego,#padres,.print-note{display:none!important}
     section{display:block!important;padding:0}
     #material{display:block!important}
     .print-sheet{
+      background:#fff!important;
       border:none;
       border-radius:0;
       padding:0;
@@ -465,9 +514,15 @@
       break-inside:avoid;
     }
     .print-sheet:last-child{break-after:auto;page-break-after:auto}
-    .print-sheet .scene-svg{width:100%;max-height:22cm}
+    .print-sheet .scene-svg{width:100%;max-height:21cm}
+    .print-sheet .scene-svg .z{fill:#fff!important;stroke:#000!important}
+    .print-sheet .scene-svg .ink{stroke:#000!important}
+    .print-sheet .scene-svg .skin{fill:#fff!important;stroke:#000!important}
+    .print-sheet .scene-svg .lbl{fill:#000!important}
     .print-sheet h3{font-size:16pt;margin:6mm 0 2mm}
-    .print-sheet .sheet-sub{font-size:10pt}
+    .print-sheet .sheet-sub{font-size:10pt;color:#000}
+    .print-sheet .sheet-line{font-size:10pt}
+    .print-sheet .sheet-foot{font-size:8pt;color:#000}
   }
 </style>
 </head>
@@ -479,7 +534,8 @@
   <div class="menu-wrap">
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">☰ <span class="mb-text">Menú</span></button>
     <div class="menu-panel" id="menuPanel" hidden>
-      <button class="menu-item active" data-tab="juego">🖍️ Cuaderno para colorear</button>
+      <button class="menu-item active" data-tab="leer">📖 Leer primero</button>
+      <button class="menu-item" data-tab="juego">🖍️ Buscar y colorear</button>
       <button class="menu-item" data-tab="material">🖨️ Hojas para imprimir</button>
       <button class="menu-item" data-tab="padres">👪 Para padres</button>
       <button class="menu-item" id="changePlayerBtn">👤 Cambiar jugador</button>
@@ -490,22 +546,63 @@
 <header>
   <div class="eyebrow">Conexión Bíblica · Profetas y Reyes · Cap. 39 · En la corte de Babilonia</div>
   <h1>Colorea la corte de Babilonia</h1>
-  <p class="subtitle">Toca un color, toca el dibujo… ¡y la historia se llena de colores!</p>
+  <p class="subtitle">La app nombra una parte, tú la buscas y la tocas… y después la pintas como quieras.</p>
 </header>
+
+<!-- ══════════ LEER ══════════ -->
+<section id="leer" class="active">
+  <div class="read-card">
+    <h2>📖 Daniel 1 · lo que pasó</h2>
+    <p>Nabucodonosor, rey de Babilonia, se llevó cautivos a unos muchachos del <strong>linaje real de Judá</strong>. Le ordenó a <strong>Aspenaz</strong>, príncipe de sus eunucos, que trajese “muchachos en quienes no hubiese tacha alguna, y de buen parecer, y enseñados en toda sabiduría… e idóneos para estar en el palacio del rey”.</p>
+    <div class="cita">“Y fueron entre ellos, de los hijos de Judá, <strong>Daniel, Ananías, Misael y Azarías</strong>.”<b>Daniel 1:6</b></div>
+    <p>En el palacio les cambiaron los nombres, para que recordaran a los dioses caldeos: a Daniel lo llamaron <strong>Beltsasar</strong>; a Ananías, <strong>Sadrac</strong>; a Misael, <strong>Mesac</strong>; y a Azarías, <strong>Abed-nego</strong>. Debían estudiar <strong>tres años</strong> las letras y la lengua de los caldeos.</p>
+    <p>Les sirvieron la comida y el vino de la mesa del rey. Parecía un favor… pero una porción de esa comida <strong>se ofrecía a los ídolos</strong>: comerla habría sido rendir homenaje a los dioses de Babilonia.</p>
+    <div class="cita">“<strong>Propuso en su corazón</strong> de no contaminarse en la ración de la comida del rey, ni en el vino de su beber.”<b>Daniel 1:8</b></div>
+    <p>Sus tres compañeros apoyaron la decisión. “Puso Dios a Daniel en gracia y en buena voluntad con el príncipe de los eunucos”, pero el príncipe tuvo miedo: “Tengo temor de mi señor el rey, que señaló vuestra comida y vuestra bebida”. Entonces Daniel le pidió a <strong>Melsar</strong>, el oficial encargado de ellos, una prueba de <strong>diez días</strong> con <strong>alimento sencillo y agua</strong>.</p>
+    <div class="cita">“Pareció el rostro de ellos <strong>mejor y más nutrido de carne</strong>, que los otros muchachos que comían de la ración de la comida del rey.”<b>Daniel 1:15</b></div>
+    <p>“A estos cuatro muchachos dióles Dios conocimiento e inteligencia en todas las letras y ciencia: mas Daniel tuvo entendimiento en toda visión y sueños.” Cuando el rey los examinó, “no fué hallado entre todos ellos otro como Daniel, Ananías, Misael, y Azarías”, y los halló <strong>diez veces mejores</strong> que todos los magos y astrólogos de su reino.</p>
+    <p class="source">Pasaje: <a href="https://www.biblegateway.com/passage/?search=Daniel%201&amp;version=RVR1960" target="_blank" rel="noopener">Daniel 1 (Reina-Valera 1960) en BibleGateway</a>. Las frases entre comillas son las que cita el capítulo 39 de <em>Profetas y Reyes</em>.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>🏛️ La escena del capítulo 39</h2>
+    <p>El capítulo se titula <strong>“En la corte de Babilonia”</strong>. Cuenta que esos jóvenes fueron llevados “desde la comparativa sencillez de su hogar judío… a la más magnífica de las ciudades, y a la corte del mayor monarca del mundo”.</p>
+    <p>El rey no los obligó a cambiar de religión de golpe: <strong>esperaba lograrlo poco a poco</strong>, con nombres nuevos, con costumbres idólatras y con los ritos del culto pagano. La primera prueba fue la comida.</p>
+    <p>Los cuatro también sabían que el vino y el lujo <strong>dañarían su cuerpo y su mente</strong>: conocían la historia de <strong>Nadab y Abihú</strong> y sus resultados, y sus padres les habían enseñado hábitos de estricta templanza.</p>
+    <p>Y el capítulo deja una frase para guardar: <strong>“Fué la fidelidad en las cosas pequeñas lo que dió carácter a toda su vida”.</strong></p>
+    <p class="source">Fuente: Elena G. de White, <em>Profetas y Reyes</em>, cap. 39, “En la corte de Babilonia”. Disponible en <a href="https://egwwritings.org/" target="_blank" rel="noopener">egwwritings.org</a>.</p>
+  </div>
+
+  <div class="read-card">
+    <h2>🖍️ Cómo se juega</h2>
+    <ol>
+      <li>Salen <strong>tres láminas para buscar</strong>, una por una: la mesa del rey, el plato de Daniel y los cuatro jóvenes. La puerta del palacio está siempre lista para pintar, sin ronda.</li>
+      <li>En cada lámina la app <strong>nombra una parte del relato</strong> (“toca la copa del rey”). Tú la buscas en el dibujo y la <strong>tocas</strong>. Mientras buscas, los colores se esconden.</li>
+      <li>La app te dice si era esa, te muestra cuál era y te cuenta <strong>por qué está ahí</strong>. Cuéntaselo al adulto con tus palabras.</li>
+      <li>Después <strong>pintas la lámina del color que quieras</strong>. El color nunca se califica: no hay colores malos.</li>
+      <li>Al final, le cuentas al adulto <strong>por qué Daniel dijo NO</strong> a la comida y al vino del rey.</li>
+    </ol>
+    <p class="source">⭐ 3 puntos por encontrar las partes (uno por lámina con ronda) + 1 punto por contarlo = <strong>4 puntos al día</strong>. Una lámina que ya pagó hoy no vuelve a pagar, aunque se borre el dibujo.</p>
+  </div>
+
+  <div class="read-cta">
+    <button class="btn btn-gold" id="toGameBtn">Ya lo leí · ¡A jugar! ▶</button>
+  </div>
+</section>
 
 <!-- ══════════ MOLDES DE LOS DIBUJOS (SVG inline, se clonan al juego y a las hojas) ══════════ -->
 <template id="tplPuerta">
   <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="La puerta del palacio de Babilonia">
-    <rect class="z" data-zone="cielo" data-label="el cielo" x="8" y="8" width="304" height="284" rx="18"/>
-    <path class="z" data-zone="escalones" data-label="los escalones" d="M56 252 h208 v14 h-208 Z M40 268 h240 v18 h-240 Z"/>
+    <rect class="z" data-zone="cielo" data-label="el cielo de Babilonia" x="8" y="8" width="304" height="284" rx="18"/>
+    <path class="z" data-zone="escalones" data-label="los escalones de la entrada" d="M36 252 h248 v40 h-248 Z"/>
     <path class="z" data-zone="muro" data-label="el muro de ladrillos" d="M76 252 V128 Q160 48 244 128 V252 Z"/>
     <path class="z" data-zone="torreIzq" data-label="la torre de la izquierda" d="M16 252 V128 h60 V252 Z"/>
     <path class="z" data-zone="torreDer" data-label="la torre de la derecha" d="M244 252 V128 h60 V252 Z"/>
-    <path class="z" data-zone="almenas" data-label="las puntas de las torres" d="M10 128 V72 h76 v56 Z M234 128 V72 h76 v56 Z"/>
-    <path class="z" data-zone="arco" data-label="el arco de la puerta" d="M96 182 Q96 158 160 150 Q224 158 224 182 L212 182 Q212 168 160 160 Q108 168 108 182 Z"/>
-    <path class="z" data-zone="puertaIzq" data-label="la hoja izquierda de la puerta" d="M100 252 V182 Q100 166 158 160 V252 Z"/>
-    <path class="z" data-zone="puertaDer" data-label="la hoja derecha de la puerta" d="M216 252 V182 Q216 166 162 160 V252 Z"/>
-    <path class="z" data-zone="banderines" data-label="los banderines" d="M48 14 h58 q-12 29 0 58 h-58 Z M272 14 h-58 q12 29 0 58 h58 Z"/>
+    <path class="z" data-zone="almenas" data-label="las puntas de arriba de las torres" d="M10 128 V72 h76 v56 Z M234 128 V72 h76 v56 Z"/>
+    <path class="z" data-zone="puertaIzq" data-label="la hoja izquierda de la puerta" d="M100 252 V188 Q100 172 158 166 V252 Z"/>
+    <path class="z" data-zone="puertaDer" data-label="la hoja derecha de la puerta" d="M216 252 V188 Q216 172 162 166 V252 Z"/>
+    <path class="z" data-zone="arco" data-label="el arco de la puerta" d="M94 188 Q94 150 160 142 Q226 150 226 188 L208 188 Q208 172 160 166 Q112 172 112 188 Z"/>
+    <path class="z" data-zone="banderines" data-label="los banderines de las torres" d="M48 14 h58 q-12 29 0 58 h-58 Z M272 14 h-58 q12 29 0 58 h58 Z"/>
     <g class="ink">
       <path d="M46 72 V14"/>
       <path d="M274 72 V14"/>
@@ -513,8 +610,9 @@
       <path d="M258 78 v44 M286 78 v44"/>
       <path d="M16 164 h60 M16 196 h60 M16 228 h60"/>
       <path d="M244 164 h60 M244 196 h60 M244 228 h60"/>
-      <path d="M160 166 V250"/>
-      <path d="M136 212 a8 8 0 1 0 0.1 0 M184 212 a8 8 0 1 0 0.1 0"/>
+      <path d="M36 266 h248 M36 279 h248"/>
+      <path d="M160 172 V250"/>
+      <path d="M136 214 a8 8 0 1 0 0.1 0 M184 214 a8 8 0 1 0 0.1 0"/>
     </g>
   </svg>
 </template>
@@ -526,14 +624,14 @@
     <path class="z" data-zone="mantel" data-label="el mantel de la mesa" d="M44 232 h232 v54 q-116 14 -232 0 Z"/>
     <path class="z" data-zone="corona" data-label="la corona del rey" d="M16 96 V42 L30 14 L46 42 L62 12 L78 42 L94 14 L108 42 V96 Z"/>
     <ellipse class="z" data-zone="bandeja" data-label="la bandeja del banquete" cx="70" cy="192" rx="58" ry="16"/>
-    <path class="z" data-zone="manjares" data-label="los manjares del rey" d="M32 116 h72 q14 0 14 14 v36 q0 14 -14 14 h-72 q-14 0 -14 -14 v-36 q0 -14 14 -14 Z"/>
+    <path class="z" data-zone="manjares" data-label="los manjares del rey" d="M18 178 q0 -22 20 -28 q6 -20 26 -20 q20 0 26 20 q22 6 22 28 Z M48 116 h40 v18 h-40 Z M46 125 a12 12 0 1 0 0.1 0 M90 125 a12 12 0 1 0 0.1 0"/>
     <path class="z" data-zone="copa" data-label="la copa del rey" d="M128 130 h88 l-6 58 h-76 Z M152 188 h40 v10 h-40 Z M140 198 h64 v10 h-64 Z"/>
     <path class="z" data-zone="vino" data-label="el vino de la copa" d="M122 70 h100 l-6 60 h-88 Z"/>
     <path class="z" data-zone="jarra" data-label="la jarra del banquete" d="M254 116 h28 v14 h8 q10 0 10 12 v50 q0 14 -14 14 h-46 q-14 0 -14 -14 v-50 q0 -12 10 -12 h8 Z"/>
     <g class="ink">
       <path d="M24 232 h272"/>
       <path d="M32 70 a5 5 0 1 0 0.1 0 M62 70 a5 5 0 1 0 0.1 0 M92 70 a5 5 0 1 0 0.1 0"/>
-      <path d="M68 122 V174"/>
+      <path d="M34 164 q16 -12 32 0 q16 -12 32 0"/>
       <path d="M226 152 h-8"/>
       <path d="M128 130 h88"/>
     </g>
@@ -543,18 +641,18 @@
 <template id="tplLegumbres">
   <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="El plato de legumbres y el vaso de agua de Daniel">
     <rect class="z" data-zone="fondo" data-label="el fondo" x="8" y="8" width="304" height="284" rx="18"/>
-    <path class="z" data-zone="mesa" data-label="la mesa" d="M12 226 h296 v62 h-296 Z"/>
-    <path class="z" data-zone="hoja" data-label="la hoja verde" d="M64 64 q0 -20 20 -20 h28 q20 0 20 20 v24 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
+    <path class="z" data-zone="mesa" data-label="la mesa de la prueba" d="M12 226 h296 v62 h-296 Z"/>
+    <path class="z" data-zone="hoja" data-label="la hoja verde de encima" d="M98 38 q40 30 0 66 q-40 -36 0 -66 Z"/>
     <path class="z" data-zone="gotas" data-label="las gotas de agua" d="M176 20 q8 16 25 26 q8 5 8 16 v26 q0 16 -16 16 h-34 q-16 0 -16 -16 v-26 q0 -11 8 -16 q17 -10 25 -26 Z M277 6 q8 16 25 26 q8 5 8 16 v26 q0 16 -16 16 h-34 q-16 0 -16 -16 v-26 q0 -11 8 -16 q17 -10 25 -26 Z"/>
     <path class="z" data-zone="vaso" data-label="el vaso de Daniel" d="M244 116 h66 v96 q0 14 -14 14 h-38 q-14 0 -14 -14 Z"/>
     <path class="z" data-zone="agua" data-label="el agua del vaso" d="M250 150 h54 v58 q0 10 -10 10 h-34 q-10 0 -10 -10 Z"/>
-    <rect class="z" data-zone="platoBorde" data-label="el plato" x="10" y="170" width="228" height="56" rx="26"/>
-    <path class="z" data-zone="legumbres" data-label="las legumbres de Daniel" d="M16 124 q0 -20 20 -20 h28 q20 0 20 20 v26 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
-    <path class="z" data-zone="legumbres" data-label="las legumbres de Daniel" d="M90 124 q0 -20 20 -20 h28 q20 0 20 20 v26 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
-    <path class="z" data-zone="legumbres" data-label="las legumbres de Daniel" d="M164 124 q0 -20 20 -20 h28 q20 0 20 20 v26 q0 20 -20 20 h-28 q-20 0 -20 -20 Z"/>
+    <rect class="z" data-zone="platoBorde" data-label="el plato de Daniel" x="10" y="170" width="228" height="56" rx="26"/>
+    <circle class="z" data-zone="legumbres" data-label="las legumbres de Daniel" cx="52" cy="140" r="32"/>
+    <circle class="z" data-zone="legumbres" data-label="las legumbres de Daniel" cx="124" cy="140" r="32"/>
+    <circle class="z" data-zone="legumbres" data-label="las legumbres de Daniel" cx="196" cy="140" r="32"/>
     <g class="ink">
-      <path d="M98 52 V100 M98 68 l-18 -10 M98 84 l18 -10"/>
-      <path d="M50 104 v-10 M124 104 v-10 M198 104 v-10"/>
+      <path d="M98 44 V102 M98 60 l-14 -8 M98 60 l14 -8 M98 78 l-16 -8 M98 78 l16 -8"/>
+      <path d="M40 132 q12 10 24 0 M112 132 q12 10 24 0 M184 132 q12 10 24 0"/>
       <path d="M30 208 h190"/>
       <path d="M244 132 h66"/>
     </g>
@@ -565,7 +663,7 @@
   <svg class="scene-svg" viewBox="0 0 320 300" role="img" aria-label="Los cuatro jóvenes hebreos de pie junto al trono del rey">
     <rect class="z" data-zone="fondo" data-label="el fondo del palacio" x="8" y="8" width="304" height="284" rx="18"/>
     <path class="z" data-zone="piso" data-label="el piso del palacio" d="M8 250 h304 v42 h-304 Z"/>
-    <ellipse class="z" data-zone="alfombra" data-label="la alfombra" cx="140" cy="256" rx="126" ry="34"/>
+    <ellipse class="z" data-zone="alfombra" data-label="la alfombra del salón" cx="140" cy="256" rx="126" ry="34"/>
     <path class="z" data-zone="trono" data-label="el trono del rey" d="M236 72 q0 -16 16 -16 h26 q16 0 16 16 V152 h8 v38 h-72 v-38 h8 Z M230 190 h72 v28 h-72 Z M234 218 h16 v32 h-16 Z M282 218 h16 v32 h-16 Z"/>
     <path class="z" data-zone="corona" data-label="la corona del rey" d="M238 84 V28 L250 10 L262 28 L272 8 L284 28 L296 10 L302 28 V84 Z"/>
     <circle class="skin" cx="39" cy="94" r="17"/>
@@ -594,35 +692,36 @@
   </svg>
 </template>
 
-<!-- ══════════ CUADERNO PARA COLOREAR ══════════ -->
-<section id="juego" class="active">
+<!-- ══════════ BUSCAR Y COLOREAR ══════════ -->
+<section id="juego">
   <div class="stage">
-    <div class="round-label" id="roundLabel">¡Toca un color y pinta!</div>
+    <div class="round-label" id="roundLabel">¿Listo para buscar?</div>
 
     <div class="prompt" id="prompt">
       <span class="tag" id="promptTag" hidden></span>
-      <div class="big-text" id="promptText">🖍️ Colorea libre… ¡o toca «Jugar partida»!</div>
-      <div class="small-text" id="promptHint">5 retos de color + 5 preguntas de «colorea y cuenta»</div>
+      <div class="big-text" id="promptText">🖍️ Colorea libre… ¡o toca «Empezar»!</div>
+      <div class="small-text" id="promptHint">4 láminas: buscas la parte que te digo, y después la pintas como quieras.</div>
     </div>
-
-    <div class="options" id="options" hidden></div>
 
     <div class="scene-tabs" id="sceneTabs"></div>
 
-    <div class="canvas-frame">
+    <div class="canvas-frame" id="canvasFrame">
       <div id="sceneWrap"></div>
     </div>
 
     <div class="palette" id="palette"></div>
+    <p class="palette-hint" id="paletteHint">Toca un color y luego el dibujo. El color que elijas <strong>siempre está bien</strong>.</p>
 
     <div class="controls">
-      <button class="btn btn-gold" id="mainBtn">▶ Jugar partida</button>
-      <button class="btn btn-outline btn-sm" id="eraseSceneBtn">🧽 Borrar esta escena</button>
-      <button class="btn btn-outline btn-sm" id="eraseAllBtn">♻️ Empezar de nuevo</button>
+      <button class="btn btn-gold" id="mainBtn">▶ Empezar</button>
+      <button class="btn btn-outline btn-sm" id="helpBtn" hidden>🤔 No la encuentro</button>
+      <button class="btn btn-outline btn-sm" id="eraseSceneBtn">🧽 Borrar los colores de esta lámina</button>
     </div>
 
     <div class="judge" id="judge" hidden>
       <span id="judgeMsg"></span>
+      <button class="btn btn-gold btn-sm" id="judgeYes" hidden>⭐ ¡Lo contó! +1</button>
+      <button class="btn btn-outline btn-sm" id="judgeNo" hidden>😅 Todavía no</button>
     </div>
 
     <p class="practice-note" id="practiceNote" hidden></p>
@@ -632,9 +731,9 @@
 <!-- ══════════ HOJAS PARA IMPRIMIR ══════════ -->
 <section id="material">
   <p class="print-note">
-    Las <strong>cuatro escenas en blanco y negro</strong>, una por hoja, listas para crayones.
-    Usa <strong>Ctrl/Cmd + P</strong> e imprime en hoja carta: se imprimen solo los dibujos.
-    Al frente de cada hoja escriban el nombre del niño y la fecha… ¡y luego péguenlas en la nevera!
+    Las <strong>cuatro láminas en blanco y negro</strong>, una por hoja, listas para crayones.
+    Usa <strong>Ctrl/Cmd + P</strong> e imprime en hoja carta: salen solo los dibujos, sin fondos oscuros
+    y sin los colores de la pantalla. El adulto lee el nombre de una parte y el niño la señala en el papel.
   </p>
   <div id="printSheets"></div>
 </section>
@@ -643,40 +742,45 @@
 <section id="padres">
   <div class="parent-box">
     <h2>📖 La historia</h2>
-    <p>Este cuaderno está basado en <strong>Daniel 1</strong> (capítulo 39 de <em>Profetas y Reyes</em>, «En la corte de Babilonia»). Daniel, Ananías, Misael y Azarías fueron llevados cautivos desde Judá hasta Babilonia, a la corte del rey <strong>Nabucodonosor</strong>, para estudiar durante <strong>tres años</strong> las letras y la lengua de los caldeos. Allí les cambiaron los nombres: Beltsasar, Sadrac, Mesac y Abed-nego.</p>
-    <p>Les sirvieron la comida y el vino de la mesa del rey, pero una porción de esos alimentos se ofrecía a los ídolos: comerlos habría sido rendir homenaje a los dioses de Babilonia. Daniel <strong>propuso en su corazón no contaminarse</strong> y pidió a <strong>Melsar</strong> una prueba de <strong>diez días</strong> con alimento sencillo y agua. Al final de la prueba sus rostros se veían mejores y más nutridos, y Dios les dio conocimiento e inteligencia: el rey los halló <strong>diez veces mejores</strong> que todos los magos y astrólogos de su reino.</p>
+    <p>Esta actividad está basada en <strong>Daniel 1</strong> y en el capítulo 39 de <em>Profetas y Reyes</em>, «En la corte de Babilonia». Daniel, Ananías, Misael y Azarías fueron llevados cautivos desde Judá a la corte de <strong>Nabucodonosor</strong> para estudiar <strong>tres años</strong> las letras y la lengua de los caldeos. Allí les cambiaron los nombres: Beltsasar, Sadrac, Mesac y Abed-nego.</p>
+    <p>Les sirvieron la comida y el vino de la mesa del rey, pero una porción de esos alimentos se ofrecía a los ídolos: comerlos habría sido rendir homenaje a los dioses de Babilonia. Daniel <strong>propuso en su corazón no contaminarse</strong> y pidió a <strong>Melsar</strong> una prueba de <strong>diez días</strong> con alimento sencillo y agua. Al final sus rostros se veían mejores y más nutridos, y el rey los halló <strong>diez veces mejores</strong> que todos los magos y astrólogos de su reino.</p>
+    <p>Todo el contenido de esta actividad sale de ahí: <strong>no hay aplicaciones a la vida de hoy</strong> mezcladas con el repaso. Si quieren hacer ese salto, háganlo conversando después de jugar.</p>
   </div>
 
   <div class="parent-box">
     <h2>💡 ¿Qué aprende su hijo?</h2>
+    <p>Esta es la actividad <strong>de identificar y contar</strong>. Su objetivo propio es uno solo: que el niño <strong>reconozca en la escena la parte que se le nombra</strong> (la copa del rey, el plato de la prueba, la túnica de Daniel, el trono) y sepa <strong>decir por qué está ahí</strong>. Es la única de las actividades del capítulo que también sale en papel, y la única que un niño de <strong>Principiantes o Corderitos</strong> puede jugar completa solo, porque no hay que leer nada para jugar.</p>
     <ul>
-      <li><strong>Decidir antes</strong>: Daniel ya había decidido en su corazón, y por eso no dudó cuando llegó la bandeja del rey.</li>
-      <li><strong>Cuidar el cuerpo</strong>: la comida sencilla y el agua los dejaron más fuertes y más sanos que a los demás.</li>
-      <li><strong>Ser fiel en lo pequeño</strong>: «Fue la fidelidad en las cosas pequeñas lo que dio carácter a toda su vida».</li>
-      <li>Y, mientras colorea, los <strong>nombres, los números y los lugares</strong> del capítulo se quedan solitos en la memoria.</li>
+      <li><strong>Vocabulario de la escena</strong>: los objetos del relato dejan de ser palabras y se vuelven cosas que el niño puede señalar.</li>
+      <li><strong>La decisión de Daniel</strong>: por qué esa comida y ese vino eran un problema, y qué pidió en su lugar.</li>
+      <li><strong>Los nombres y los números</strong>: cuatro jóvenes, tres años, diez días, diez veces mejores.</li>
     </ul>
-    <p class="verse">«Yo honraré a los que me honran» <span>1 Samuel 2:30</span></p>
+    <p class="verse">«Propuso en su corazón de no contaminarse en la ración de la comida del rey, ni en el vino de su beber» <span>Daniel 1:8</span></p>
   </div>
 
   <div class="parent-box">
     <h2>🏠 Cómo jugar la dinámica</h2>
     <ol>
-      <li>Su hijo toca un <strong>color</strong> de la paleta y después toca la <strong>zona del dibujo</strong>. No hay que arrastrar el dedo: tocar y tocar.</li>
-      <li>Con los botones de arriba del dibujo cambia de <strong>escena</strong>: la puerta del palacio, la mesa del rey, el plato de Daniel y los cuatro jóvenes.</li>
-      <li>Toquen <strong>▶ Jugar partida</strong>. Primero vienen <strong>5 retos de color</strong>: la app pide algo concreto («pinta de dorado la copa del rey») y marca la zona con un contorno que baila. Cuando terminen, toquen <strong>✅ Ya lo pinté</strong> y la app revisa sola el color.</li>
-      <li>Si no coincide, hay <strong>un segundo intento</strong>; si tampoco, la app lo pinta y explica con cariño. Cada reto suma máximo <strong>⭐ 1 punto</strong>.</li>
-      <li>Después vienen <strong>5 preguntas de «colorea y cuenta»</strong>, marcadas por edades (una de <strong>4–5</strong>, dos de <strong>6–7</strong> y dos de <strong>8–9 años</strong>): el niño sigue pintando mientras usted lee la pregunta, y responde tocando una de las opciones grandes.</li>
-      <li>Los retos y las preguntas <strong>no se repiten</strong> hasta agotarse: la app recuerda por niño lo que ya salió esta semana.</li>
-      <li>El dibujo <strong>se guarda solo</strong> en este dispositivo, así que pueden seguir coloreando mañana. Con <strong>♻️ Empezar de nuevo</strong> queda todo en blanco otra vez.</li>
-      <li>En la pestaña <strong>🖨️</strong> están las cuatro escenas en blanco y negro para imprimir y colorear con crayones, sin pantalla.</li>
+      <li>Primero abran la pestaña <strong>📖 Leer</strong> y lean juntos el pasaje. El juego repasa lo leído; no lo enseña desde cero.</li>
+      <li>Toquen <strong>▶ Empezar</strong>. Salen las <strong>tres láminas con ronda, en orden</strong>: la mesa del rey, el plato de Daniel y los cuatro jóvenes. La puerta del palacio queda solo para pintar: en el capítulo no hay nada que preguntar en ella.</li>
+      <li>En cada lámina la app <strong>nombra una parte que el capítulo menciona</strong> («toca la copa del rey», «toca lo que Daniel no quiso beber») y el niño la busca y la toca. Mientras busca, el dibujo <strong>no da pistas</strong> y la <strong>paleta de colores está escondida</strong>, para que nadie gaste un intento intentando paint.</li>
+      <li>Si toca otra, la app le dice <strong>qué tocó</strong> («esa es la bandeja del banquete») y le queda otro intento. Si toca la otra mitad del mismo objeto (el vino en vez de la copa, el vaso en vez del agua), la app se lo dice y <strong>no le gasta el intento</strong>. Los más pequeños tienen <strong>tres intentos</strong>; los mayores, uno. Si no la encuentra, el botón <strong>🤔 No la encuentro</strong> se la muestra sin puntos.</li>
+      <li>Al resolver, la app <strong>siempre</strong> marca en verde la parte correcta y explica <strong>por qué está ahí</strong>, según el capítulo. Pídale a su hijo que se lo repita con sus palabras: eso es lo que se le va a preguntar en el campamento.</li>
+      <li>Después el niño <strong>pinta la lámina del color que quiera</strong>. El color no se revisa nunca y no hay colores equivocados.</li>
+      <li>Al final viene la única pregunta de la partida: el niño le cuenta <strong>con sus palabras</strong> por qué Daniel dijo NO a la comida y al vino del rey. La respuesta <strong>no sale en pantalla</strong> mientras él habla: está guardada en «👪 Solo para el adulto», dentro del recuadro de confirmación, y aparece completa después de que usted marque ⭐ o 😅.</li>
+      <li>La dificultad se ajusta sola a la <strong>clase del club</strong> de su hijo (la que aparece en el chip de arriba): a los más pequeños les toca buscar las partes grandes y evidentes; a Constructores y Manos Ayudadoras, las difíciles.</li>
+      <li>Las partes preguntadas <strong>no se repiten</strong> hasta agotarse: la app recuerda por niño lo que ya salió esta semana.</li>
+      <li>Los colores <strong>se guardan solos</strong> en este dispositivo, así que pueden seguir pintando mañana. <strong>🧽 Borrar los colores</strong> deja la lámina en blanco otra vez.</li>
+      <li>En la pestaña <strong>🖨️</strong> están las cuatro láminas en blanco y negro para imprimir y colorear con crayones, sin pantalla.</li>
     </ol>
-    <p>Mientras colorean, conversen: <em>¿por qué Daniel dijo no a la copa del rey? ¿En qué cosa pequeña podemos ser fieles hoy?</em></p>
   </div>
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Jueguen <strong>una partida por día</strong>: 5 retos de color + 5 preguntas. Cada acierto suma <strong>⭐ 1 punto</strong> (los errores no restan); en <em>esta</em> actividad se pueden ganar máximo <strong>5 puntos de retos y 5 de preguntas</strong> por día, y cada juego del club tiene su propio cupo. ¿Quieren seguir? ¡Las partidas extra son de práctica y el cuaderno siempre se puede colorear! El acumulado aparece en el 🏆 tablero de puntos del club.</p>
-    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos en su perfil: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
+    <p>Esta actividad da <strong>4 puntos al día</strong>, no diez: <strong>3 por identificar</strong> (uno por cada lámina con ronda) y <strong>1 por contar</strong> por qué Daniel dijo no. No hay rondas de relleno: solo se pregunta por cosas que el capítulo nombra, y la lámina de la puerta del palacio no paga punto porque todo lo que hay en ella es adorno del dibujo.</p>
+    <p><strong>Una lámina que ya pagó hoy no vuelve a pagar hoy</strong>, ni siquiera borrando los colores y empezando de nuevo. Si su hijo falla una lámina, esa lámina también queda jugada por hoy: se puede volver a jugar para practicar, pero sin puntos. Mañana se reinicia. Así el punto significa haber reconocido la parte, no haber repetido la partida.</p>
+    <p>Las partidas extra son de <strong>práctica</strong> y la app lo avisa en pantalla. Colorear se puede siempre, con o sin partida y con o sin perfil.</p>
+    <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
   </div>
 </section>
 
@@ -684,11 +788,8 @@
 
 <script>
   const ACTIVITY = 'pr39-colorear';
-  const MATCH_CARDS = 5;
-  const MATCH_QUIZ = 5;
-  const QUIZ_MIX = [['4–5 años', 1], ['6–7 años', 2], ['8–9 años', 2]];
 
-  // ── Colores de la paleta ──
+  // ── Colores de la paleta. Son solo para pintar: el color nunca se califica. ──
   const COLORS = [
     {key:'rojo',    name:'Rojo',    hex:'#D6453D'},
     {key:'naranja', name:'Naranja', hex:'#E8752B'},
@@ -704,123 +805,142 @@
   const COLOR_BY_KEY = {};
   COLORS.forEach(c => COLOR_BY_KEY[c.key] = c);
 
-  // ── Escenas ──
+  // ── Las cuatro láminas, en el orden del relato ──
   const SCENES = [
-    {id:'puerta',    tpl:'tplPuerta',    tab:'🏛️ La puerta del palacio', title:'La puerta del palacio de Babilonia', sub:'Aquí llegaron Daniel y sus tres amigos, llevados cautivos desde Judá.'},
+    {id:'puerta',    tpl:'tplPuerta',    tab:'🏛️ La puerta del palacio', title:'La puerta del palacio de Babilonia', sub:'Aquí llegaron Daniel, Ananías, Misael y Azarías, llevados cautivos desde Judá.'},
     {id:'mesa',      tpl:'tplMesa',      tab:'👑 La mesa del rey',        title:'La mesa del rey Nabucodonosor', sub:'La comida y el vino del rey estaban consagrados a los ídolos: Daniel dijo no.'},
-    {id:'legumbres', tpl:'tplLegumbres', tab:'🥦 El plato de Daniel',     title:'El plato de legumbres y el vaso de agua', sub:'La prueba de diez días: alimento sencillo y agua.'},
-    {id:'jovenes',   tpl:'tplJovenes',   tab:'🧑‍🤝‍🧑 Los cuatro jóvenes',  title:'Los cuatro jóvenes ante el rey', sub:'Daniel, Ananías, Misael y Azarías: diez veces mejores que todos los sabios.'}
+    {id:'legumbres', tpl:'tplLegumbres', tab:'🥦 El plato de Daniel',     title:'El plato de la prueba de diez días', sub:'Daniel pidió a Melsar alimento sencillo y agua durante diez días.'},
+    {id:'jovenes',   tpl:'tplJovenes',   tab:'🧑‍🤝‍🧑 Los cuatro jóvenes',  title:'Los cuatro jóvenes delante del rey', sub:'El rey los halló diez veces mejores que todos los magos y astrólogos de su reino.'}
   ];
   const SCENE_BY_ID = {};
   SCENES.forEach(s => SCENE_BY_ID[s.id] = s);
 
-  // ── Retos de color (24) ──
-  const RETOS = [
-    // La puerta del palacio (5)
-    {scene:'puerta', zones:['cielo'], color:'azul', text:'Pinta de azul el cielo de Babilonia.', tip:'Babilonia era la ciudad más grande del mundo… ¡y allí llegaron los cuatro amigos!'},
-    {scene:'puerta', zones:['muro'], color:'cafe', text:'Pinta de café el muro de ladrillos del palacio.', tip:'El palacio del rey Nabucodonosor era enorme.'},
-    {scene:'puerta', zones:['puertaIzq','puertaDer'], color:'dorado', text:'Pinta de dorado las dos hojas de la puerta.', tip:'Son dos: la de la izquierda y la de la derecha.'},
-    {scene:'puerta', zones:['banderines'], color:'rojo', text:'Pinta de rojo los banderines de las torres.', tip:'Uno arriba de cada torre.'},
-    {scene:'puerta', zones:['almenas'], color:'morado', text:'Pinta de morado las puntas de las torres.', tip:'El bloque cuadrado de arriba de cada torre.'},
-    // La mesa del rey (6)
-    {scene:'mesa', zones:['copa'], color:'dorado', text:'Pinta de dorado la copa del rey.', tip:'La parte de abajo de la copa, con su pie: de esa copa Daniel no quiso beber.'},
-    {scene:'mesa', zones:['vino'], color:'morado', text:'Pinta de morado el vino de la copa.', tip:'Es la parte de arriba de la copa: «ni en el vino de su beber», dice Daniel 1.'},
-    {scene:'mesa', zones:['mantel'], color:'rojo', text:'Pinta de rojo el mantel de la mesa del rey.', tip:'El mantel es la tela que cuelga de la mesa.'},
-    {scene:'mesa', zones:['corona'], color:'dorado', text:'Pinta de dorado la corona del rey Nabucodonosor.', tip:'La corona grande del lado izquierdo, con puntas.'},
-    {scene:'mesa', zones:['jarra'], color:'naranja', text:'Pinta de naranja la jarra del banquete.', tip:'La jarra grande del lado derecho de la copa.'},
-    {scene:'mesa', zones:['manjares'], color:'rosado', text:'Pinta de rosado los manjares de la bandeja del rey.', tip:'Es la comida grande que está sobre la bandeja.'},
-    // El plato de Daniel (6)
-    {scene:'legumbres', zones:['legumbres'], color:'verde', text:'Pinta de verde las legumbres de Daniel.', tip:'Son las tres del plato: hay que pintarlas todas.'},
-    {scene:'legumbres', zones:['agua'], color:'azul', text:'Pinta de azul el agua del vaso.', tip:'Daniel pidió alimento sencillo y agua.'},
-    {scene:'legumbres', zones:['hoja'], color:'verde', text:'Pinta de verde la hoja que está sobre el plato.', tip:'La hoja grande de arriba, sobre el plato.'},
-    {scene:'legumbres', zones:['platoBorde'], color:'naranja', text:'Pinta de naranja el plato de Daniel.', tip:'El plato grande que está debajo de las legumbres.'},
-    {scene:'legumbres', zones:['mesa'], color:'cafe', text:'Pinta de café la mesa donde está el plato.', tip:'La tabla de madera bajo el plato.'},
-    {scene:'legumbres', zones:['gotas'], color:'celeste', text:'Pinta de celeste las dos gotas de agua.', tip:'Son dos: las dos bolitas grandes de arriba, junto al vaso.'},
-    // Los cuatro jóvenes (7)
-    {scene:'jovenes', zones:['tunicaDaniel'], color:'azul', text:'Pinta de azul la túnica de Daniel.', tip:'Daniel es el primero de la fila.'},
-    {scene:'jovenes', zones:['tunicaAnanias'], color:'rojo', text:'Pinta de rojo la túnica de Ananías.', tip:'A Ananías le pusieron el nombre Sadrac.'},
-    {scene:'jovenes', zones:['tunicaMisael'], color:'verde', text:'Pinta de verde la túnica de Misael.', tip:'A Misael le pusieron el nombre Mesac.'},
-    {scene:'jovenes', zones:['tunicaAzarias'], color:'morado', text:'Pinta de morado la túnica de Azarías.', tip:'A Azarías le pusieron el nombre Abed-nego.'},
-    {scene:'jovenes', zones:['trono'], color:'dorado', text:'Pinta de dorado el trono del rey.', tip:'La silla grande del rey, al lado derecho de los cuatro jóvenes.'},
-    {scene:'jovenes', zones:['alfombra'], color:'rosado', text:'Pinta de rosado la alfombra del palacio.', tip:'Es el óvalo del piso donde están parados.'},
-    {scene:'jovenes', zones:['corona'], color:'dorado', text:'Pinta de dorado la corona sobre el trono.', tip:'Arriba del trono, con puntas.'}
+  // ── Retos de identificación. Solo se pregunta por cosas que el capítulo
+  //    NOMBRA (la copa, el vino, los manjares, la mesa, las legumbres, el agua,
+  //    el plato, la corona, el trono, los cuatro jóvenes). Los adornos del
+  //    dibujo (muros, torres, banderines, mantel, jarra, alfombra, piso...) se
+  //    pueden paint, pero nunca pagan punto: acertarlos no prueba haber leído.
+  //    `nivel` no sube la rareza de la forma, sube la exigencia del enunciado.
+  //    Cada `why` es un dato del capítulo 39 / Daniel 1. ──
+  const ZONAS = [
+    // La mesa del rey
+    {scene:'mesa', zone:'copa',      nivel:1, ask:'la copa del rey',            why:'De esta copa Daniel no quiso beber: «propuso en su corazón de no contaminarse... ni en el vino de su beber».'},
+    {scene:'mesa', zone:'corona',    nivel:1, ask:'la corona del rey',          why:'Es la corona de Nabucodonosor, el rey que mandó traer a los muchachos y ordenó que comieran de su mesa.'},
+    {scene:'mesa', zone:'mesa',      nivel:1, ask:'la mesa del rey',            why:'Comer de la mesa del rey parecía un favor, pero una porción de esa comida se ofrecía a los ídolos.'},
+    {scene:'mesa', zone:'vino',      nivel:2, ask:'el vino de la copa',         why:'Daniel y sus amigos sabían que el vino dañaría sus facultades físicas y mentales.'},
+    {scene:'mesa', zone:'manjares',  nivel:2, ask:'los manjares del rey',       why:'Estaban consagrados a la idolatría: compartirlos habría sido rendir homenaje a los dioses de Babilonia.'},
+    {scene:'mesa', zone:'bandeja',   nivel:2, ask:'la bandeja del banquete',    why:'Aun hacer como que comían de esta bandeja habría sido negar su fe.'},
+    {scene:'mesa', zone:'manjares',  nivel:3, ask:'lo que estaba consagrado a los ídolos', why:'Los manjares del rey estaban consagrados a la idolatría: compartirlos habría sido rendir homenaje a los dioses de Babilonia.'},
+    {scene:'mesa', zone:'vino',      nivel:3, ask:'lo que Daniel no quiso beber',          why:'El vino del rey: «ni en el vino de su beber». Sabían que dañaría sus facultades físicas y mentales.'},
+    {scene:'mesa', zone:'mesa',      nivel:3, ask:'de dónde venía la ración que el rey señaló', why:'De la mesa del rey: Nabucodonosor señaló para los jóvenes una ración diaria de su propia comida y de su vino.'},
+    // El plato de Daniel
+    {scene:'legumbres', zone:'legumbres',  nivel:1, ask:'las legumbres de Daniel',     why:'Es el alimento sencillo que Daniel pidió para la prueba de diez días, en lugar de la comida del rey.'},
+    {scene:'legumbres', zone:'agua',       nivel:1, ask:'el agua del vaso',            why:'Daniel pidió agua en lugar del vino del rey.'},
+    {scene:'legumbres', zone:'mesa',       nivel:1, ask:'la mesa de la prueba',        why:'En esta mesa comieron los cuatro hebreos durante los diez días de la prueba.'},
+    {scene:'legumbres', zone:'vaso',       nivel:2, ask:'el vaso de Daniel',           why:'Daniel le pidió a Melsar, el oficial encargado de ellos, que los excusara de beber el vino del rey.'},
+    {scene:'legumbres', zone:'platoBorde', nivel:2, ask:'el plato de la prueba',       why:'Melsar aceptó la prueba, aunque con temor de que la concesión desagradara al rey.'},
+    {scene:'legumbres', zone:'legumbres',  nivel:3, ask:'lo que Daniel pidió comer durante los diez días', why:'Legumbres: alimento sencillo, en lugar de la ración de la comida del rey.'},
+    {scene:'legumbres', zone:'agua',       nivel:3, ask:'lo que Daniel pidió beber en lugar del vino del rey', why:'Agua. Así se guardaron de contaminarse con el vino de la mesa del rey.'},
+    {scene:'legumbres', zone:'platoBorde', nivel:3, ask:'dónde les sirvieron la prueba de diez días',        why:'Melsar aceptó la prueba de diez días, aunque con temor de que la concesión desagradara al rey.'},
+    // Los cuatro jóvenes
+    {scene:'jovenes', zone:'tunicaDaniel',   nivel:1, ask:'la túnica de Daniel',   why:'Daniel es uno de los cuatro muchachos de Judá que el capítulo nombra: «Daniel, Ananías, Misael y Azarías» (Daniel 1:6). En Babilonia lo llamaron Beltsasar.'},
+    {scene:'jovenes', zone:'corona',         nivel:1, ask:'la corona del rey',     why:'El rey los examinó y los halló diez veces mejores que todos los magos y astrólogos de su reino.'},
+    {scene:'jovenes', zone:'trono',          nivel:2, ask:'el trono del rey',      why:'Dios les dio conocimiento e inteligencia en todas las letras y ciencia, y a Daniel, entendimiento en toda visión y sueños.'},
+    {scene:'jovenes', zone:'tunicaAnanias',  nivel:2, ask:'la túnica del que en Babilonia llamaron Sadrac', why:'Sadrac es Ananías: en el palacio les cambiaron los nombres por otros que recordaban dioses caldeos.'},
+    {scene:'jovenes', zone:'tunicaMisael',   nivel:3, ask:'la túnica del que en Babilonia llamaron Mesac',  why:'Mesac es Misael.'},
+    {scene:'jovenes', zone:'tunicaAzarias',  nivel:3, ask:'la túnica del que en Babilonia llamaron Abed-nego', why:'Abed-nego es Azarías.'},
+    {scene:'jovenes', zone:'tunicaDaniel',   nivel:3, ask:'la túnica del que en Babilonia llamaron Beltsasar', why:'Beltsasar es Daniel.'}
   ];
 
-  // ── Preguntas «colorea y cuenta» (23) ──
-  const QUIZ = [
-    // 4–5 años (6)
-    {tag:'4–5 años', q:'¿Cómo se llamaba el joven valiente de esta historia?', opts:['Daniel','Noé','David'], a:'Daniel'},
-    {tag:'4–5 años', q:'¿Cuántos amigos hebreos eran en total?', opts:['4','10','2'], a:'4'},
-    {tag:'4–5 años', q:'¿Qué pidió Daniel para comer y beber?', opts:['Comida sencilla y agua','El vino del rey','Dulces del palacio'], a:'Comida sencilla y agua'},
-    {tag:'4–5 años', q:'¿Qué NO quiso beber Daniel?', opts:['El vino del rey','El agua','La leche'], a:'El vino del rey'},
-    {tag:'4–5 años', q:'¿A quién quería honrar Daniel?', opts:['A Dios','A los ídolos','A nadie'], a:'A Dios'},
-    {tag:'4–5 años', q:'Después de la prueba, ¿cómo se veían sus caras?', opts:['Mejores y más sanas','Más tristes','Iguales'], a:'Mejores y más sanas'},
-    // 6–7 años (9)
-    {tag:'6–7 años', q:'¿Cuántos días duró la prueba de la comida?', opts:['10 días','3 días','70 días'], a:'10 días'},
-    {tag:'6–7 años', q:'¿Cómo se llamaba el rey de Babilonia?', opts:['Nabucodonosor','Faraón','Melsar'], a:'Nabucodonosor'},
-    {tag:'6–7 años', q:'¿A qué ciudad se llevaron cautivo a Daniel?', opts:['A Babilonia','A Jerusalén','A Egipto'], a:'A Babilonia'},
-    {tag:'6–7 años', q:'¿Cuántos años estudiaron en la corte del rey?', opts:['3 años','10 años','7 años'], a:'3 años'},
-    {tag:'6–7 años', q:'¿Qué nombre nuevo le pusieron a Daniel?', opts:['Beltsasar','Sadrac','Aspenaz'], a:'Beltsasar'},
-    {tag:'6–7 años', q:'¿Cómo se llamaban los tres amigos de Daniel?', opts:['Ananías, Misael y Azarías','Melsar, Aspenaz y Sadrac','Sadrac, Nadab y Abihú'], a:'Ananías, Misael y Azarías'},
-    {tag:'6–7 años', q:'¿Qué estudiaron durante esos tres años?', opts:['Las letras y la lengua de los caldeos','A construir muros','A cocinar para el rey'], a:'Las letras y la lengua de los caldeos'},
-    {tag:'6–7 años', q:'¿Dónde propuso Daniel no contaminarse?', opts:['En su corazón','En un papel','En voz alta ante el rey'], a:'En su corazón'},
-    {tag:'6–7 años', q:'¿A quién le pidió Daniel la prueba de los diez días?', opts:['A Melsar','Al rey Nabucodonosor','A sus papás'], a:'A Melsar'},
-    // 8–9 años (8)
-    {tag:'8–9 años', q:'¿Por qué comer de la mesa del rey deshonraba a Dios?', opts:['Porque una porción se ofrecía a los ídolos','Porque estaba fría','Porque era muy poca'], a:'Porque una porción se ofrecía a los ídolos'},
-    {tag:'8–9 años', q:'¿Cuántas veces mejores los halló el rey que a los magos y astrólogos?', opts:['Diez veces mejores','Tres veces mejores','Cien veces mejores'], a:'Diez veces mejores'},
-    {tag:'8–9 años', q:'¿Cómo se llamaba el príncipe de los eunucos?', opts:['Aspenaz','Melsar','Beltsasar'], a:'Aspenaz'},
-    {tag:'8–9 años', q:'Además del conocimiento, ¿qué don especial recibió Daniel?', opts:['Entendimiento en toda visión y sueños','Fuerza para pelear','Una voz para cantar'], a:'Entendimiento en toda visión y sueños'},
-    {tag:'8–9 años', q:'¿Qué promesa de 1 Samuel 2:30 se cumplió en ellos?', opts:['«Yo honraré a los que me honran»','«No temas, yo te ayudo»','«Yo soy el pan de vida»'], a:'«Yo honraré a los que me honran»'},
-    {tag:'8–9 años', q:'¿Cuántos años duraría el cautiverio en Babilonia?', opts:['70 años','40 años','7 años'], a:'70 años'},
-    {tag:'8–9 años', q:'Según el capítulo, ¿qué dio carácter a toda su vida?', opts:['La fidelidad en las cosas pequeñas','La riqueza del palacio','La fuerza de su cuerpo'], a:'La fidelidad en las cosas pequeñas'},
-    {tag:'8–9 años', q:'¿Por qué el príncipe temía cambiarles la comida?', opts:['Temía que el rey lo condenara si los veía tristes','No había más comida','No sabía cocinar legumbres'], a:'Temía que el rey lo condenara si los veía tristes'}
-  ];
+  // Zonas que son dos mitades del mismo objeto: tocar la hermana no gasta intento.
+  const EQUIVALE = {copa:['vino'], vino:['copa'], vaso:['agua'], agua:['vaso']};
 
-  // ── Utilidades ──
-  function shuffle(arr){
-    const a = arr.slice();
-    for(let i=a.length-1;i>0;i--){
-      const j = Math.floor(Math.random()*(i+1));
-      [a[i],a[j]] = [a[j],a[i]];
-    }
-    return a;
-  }
+  // La lámina de la puerta del palacio se pinta, pero no tiene rondas: todo lo
+  // que hay en ella es adorno del dibujo, no dato del capítulo. Por eso la
+  // match paga 3 puntos por identificar + 1 por contar = 4.
+  const SCENES_JUEGO = SCENES.filter(s => ZONAS.some(z => z.scene === s.id));
+  const TOTAL_PUNTOS = SCENES_JUEGO.length + 1;
+
+  // Dificultad y número de intentos por CLASE del club (no por rango de edad).
+  const NIVEL_POR_CLASE = {
+    'Principiantes':1, 'Corderitos':1, 'Aves Madrugadoras':1,
+    'Abejitas Industriosas':2, 'Rayitos de Sol':2,
+    'Constructores':3, 'Manos Ayudadoras':3
+  };
+  const INTENTOS_POR_CLASE = {
+    'Principiantes':3, 'Corderitos':3, 'Aves Madrugadoras':3,
+    'Abejitas Industriosas':2, 'Rayitos de Sol':2,
+    'Constructores':1, 'Manos Ayudadoras':1
+  };
+  const NIVEL_DEFECTO = 2, INTENTOS_DEFECTO = 2;
+
+  // La única roundLabel de tipo quiz: la cuenta el adulto.
+  const CUENTA = {
+    pregunta: 'Cuéntale a tu adulto: ¿por qué Daniel dijo NO a la comida y al vino del rey?',
+    clave: 'Cuenta como sí si dice algo así: una parte de esa comida y ese vino <strong>se ofrecía a los ídolos</strong>, y comerla habría sido honrar a los dioses de Babilonia en vez de a Dios. Daniel <strong>propuso en su corazón no contaminarse</strong>.',
+    respuesta: 'Porque el alimento de la mesa del rey estaba consagrado a la idolatría: compartirlo habría sido rendir homenaje a los dioses de Babilonia. Daniel «propuso en su corazón de no contaminarse en la ración de la comida del rey, ni en el vino de su beber» (Daniel 1:8).'
+  };
+
   const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
   // ── Elementos ──
   const sceneWrap = document.getElementById('sceneWrap');
   const sceneTabs = document.getElementById('sceneTabs');
+  const canvasFrame = document.getElementById('canvasFrame');
   const palette = document.getElementById('palette');
+  const paletteHint = document.getElementById('paletteHint');
   const promptTag = document.getElementById('promptTag');
   const promptText = document.getElementById('promptText');
   const promptHint = document.getElementById('promptHint');
-  const optionsBox = document.getElementById('options');
   const roundLabel = document.getElementById('roundLabel');
   const mainBtn = document.getElementById('mainBtn');
+  const helpBtn = document.getElementById('helpBtn');
   const judge = document.getElementById('judge');
   const judgeMsg = document.getElementById('judgeMsg');
+  const judgeYes = document.getElementById('judgeYes');
+  const judgeNo = document.getElementById('judgeNo');
   const practiceNote = document.getElementById('practiceNote');
 
   // ── Estado del cuaderno ──
   let activeScene = SCENES[0].id;
   let selectedColor = 'dorado';
-  let painted = {}; // {escena: {zona: colorKey}}
+  let painted = {};   // {escena: {zona: colorKey}}
+  let cobrado = {};   // {fecha, escenas:{...}, cuenta:bool} — lo ya pagado HOY
 
-  function storeKey(){
-    const p = AvProfile.get();
-    return `${ACTIVITY}:progreso:${p ? p.id : 'anon'}`;
-  }
-  function loadPainted(){
+  const hoyBogota = () => new Intl.DateTimeFormat('en-CA', {timeZone:'America/Bogota'}).format(new Date());
+  const quien = () => { const p = AvProfile.get(); return p ? p.id : 'anon' };
+
+  function keyPintado(){ return `${ACTIVITY}:progreso:${quien()}` }
+  function keyCobrado(){ return `${ACTIVITY}:cobrado:${quien()}` }
+
+  function loadPintado(){
     let data = null;
-    try{ data = JSON.parse(localStorage.getItem(storeKey()) || 'null') }catch(e){ data = null }
+    try{ data = JSON.parse(localStorage.getItem(keyPintado()) || 'null') }catch(e){ data = null }
     painted = (data && typeof data === 'object') ? data : {};
     SCENES.forEach(s => { if(!painted[s.id] || typeof painted[s.id] !== 'object') painted[s.id] = {} });
   }
-  function savePainted(){
-    try{ localStorage.setItem(storeKey(), JSON.stringify(painted)) }catch(e){}
+  function savePintado(){
+    try{ localStorage.setItem(keyPintado(), JSON.stringify(painted)) }catch(e){}
   }
 
-  // ── Construir escenas y hojas imprimibles ──
+  // Registro anti-repesca: lo que ya pagó hoy no vuelve a pagar hoy, aunque se
+  // borren los colores o se juegue otra match.
+  function loadCobrado(){
+    let data = null;
+    try{ data = JSON.parse(localStorage.getItem(keyCobrado()) || 'null') }catch(e){ data = null }
+    if(!data || typeof data !== 'object' || data.fecha !== hoyBogota()){
+      cobrado = {fecha: hoyBogota(), escenas: {}, cuenta: false};
+    }else{
+      cobrado = {fecha: data.fecha, escenas: (data.escenas && typeof data.escenas === 'object') ? data.escenas : {}, cuenta: !!data.cuenta};
+    }
+  }
+  function saveCobrado(){
+    try{ localStorage.setItem(keyCobrado(), JSON.stringify(cobrado)) }catch(e){}
+  }
+  const laminaLibre = id => !cobrado.escenas[id];
+  const cuentaLibre = () => !cobrado.cuenta;
+
+  // ── Construir láminas y hojas imprimibles ──
   SCENES.forEach((s, i) => {
     const tab = document.createElement('button');
     tab.className = 'scene-tab' + (i === 0 ? ' active' : '');
@@ -836,6 +956,13 @@
     sceneWrap.appendChild(holder);
   });
 
+  // Las zonas del cuaderno también se pueden recorrer con teclado.
+  sceneWrap.querySelectorAll('.z').forEach(z => {
+    z.setAttribute('tabindex','0');
+    z.setAttribute('role','button');
+    z.setAttribute('aria-label', z.dataset.label || 'zona del dibujo');
+  });
+
   const printSheets = document.getElementById('printSheets');
   SCENES.forEach((s, i) => {
     const sheet = document.createElement('div');
@@ -845,11 +972,15 @@
     const sub = document.createElement('p');
     sub.className = 'sheet-sub';
     sub.textContent = s.sub;
+    const line = document.createElement('p');
+    line.className = 'sheet-line';
+    line.textContent = 'Nombre: ______________________________   Fecha: ____________';
     const foot = document.createElement('p');
     foot.className = 'sheet-foot';
-    foot.textContent = 'Club de Aventureros · Profetas y Reyes cap. 39 · En la corte de Babilonia';
+    foot.textContent = 'Club de Aventureros El Elohe Israel · Profetas y Reyes cap. 39 · En la corte de Babilonia · Daniel 1';
     sheet.appendChild(h3);
     sheet.appendChild(sub);
+    sheet.appendChild(line);
     sheet.appendChild(document.getElementById(s.tpl).content.cloneNode(true));
     sheet.appendChild(foot);
     printSheets.appendChild(sheet);
@@ -882,7 +1013,7 @@
     zoneEls(sceneId, zone).forEach(el => { el.style.fill = c ? c.hex : '' });
     if(c) painted[sceneId][zone] = colorKey;
     else delete painted[sceneId][zone];
-    savePainted();
+    savePintado();
   }
   function repaintAll(){
     SCENES.forEach(s => {
@@ -893,12 +1024,27 @@
       });
     });
   }
-  sceneWrap.addEventListener('click', e => {
-    const z = e.target.closest('.z');
-    if(!z) return;
+
+  function tocarZona(z){
     const holder = z.closest('.scene-holder');
     if(!holder) return;
+    // Mientras se busca, el toque identifica: no pinta encima de la respuesta.
+    if(match && phase() === 'buscar' && holder.dataset.scene === laminaActual().scene){
+      evaluarToque(z.dataset.zone);
+      return;
+    }
     paint(holder.dataset.scene, z.dataset.zone, selectedColor);
+  }
+  sceneWrap.addEventListener('click', e => {
+    const z = e.target.closest('.z');
+    if(z) tocarZona(z);
+  });
+  sceneWrap.addEventListener('keydown', e => {
+    if(e.key !== 'Enter' && e.key !== ' ') return;
+    const z = e.target.closest('.z');
+    if(!z) return;
+    e.preventDefault();
+    tocarZona(z);
   });
 
   function showScene(id){
@@ -910,233 +1056,274 @@
     const t = e.target.closest('.scene-tab');
     if(t) showScene(t.dataset.scene);
   });
+  function marcarPagadas(){
+    sceneTabs.querySelectorAll('.scene-tab').forEach(t => t.classList.toggle('pagada', !!cobrado.escenas[t.dataset.scene]));
+  }
 
+  // Borrar los colores NO borra el registro de lo ya cobrado hoy.
   document.getElementById('eraseSceneBtn').addEventListener('click', () => {
     painted[activeScene] = {};
-    savePainted();
-    repaintAll();
-  });
-  document.getElementById('eraseAllBtn').addEventListener('click', () => {
-    SCENES.forEach(s => { painted[s.id] = {} });
-    savePainted();
+    savePintado();
     repaintAll();
   });
 
-  function clearTargets(){
-    sceneWrap.querySelectorAll('.z.target').forEach(el => el.classList.remove('target'));
-  }
-  function markTargets(reto){
-    clearTargets();
-    reto.zones.forEach(zone => zoneEls(reto.scene, zone).forEach(el => el.classList.add('target')));
+  function limpiarMarcas(){
+    sceneWrap.querySelectorAll('.z.target,.z.miss').forEach(el => el.classList.remove('target','miss'));
   }
 
-  // ══════════ PARTIDA ══════════
-  let match = null; // {retos, quizzes, step, tries, answered, earned}
+  // ══════════ PARTIDA: 4 láminas + 1 «cuéntalo» ══════════
+  let match = null;
+
+  function nivelDelNino(){ return NIVEL_POR_CLASE[AvProfile.clubClass()] || NIVEL_DEFECTO }
+  function intentosDelNino(){ return INTENTOS_POR_CLASE[AvProfile.clubClass()] || INTENTOS_DEFECTO }
 
   function phase(){
     if(!match) return 'idle';
-    if(match.step < MATCH_CARDS) return 'card';
-    if(match.step < MATCH_CARDS + MATCH_QUIZ) return 'quiz';
-    return 'done';
+    if(match.paso >= SCENES_JUEGO.length) return 'cuenta';
+    return match.pintando ? 'pintar' : 'buscar';
   }
-  function canScoreNow(kind){
-    const p = AvProfile.get();
-    return !!p && AvProfile.canScore(kind);
+  const laminaActual = () => match.laminas[match.paso];
+
+  function armarLaminas(){
+    const nivel = nivelDelNino();
+    return SCENES_JUEGO.map(s => {
+      let pool = ZONAS.filter(z => z.scene === s.id && z.nivel === nivel);
+      if(pool.length < 2) pool = ZONAS.filter(z => z.scene === s.id && z.nivel <= nivel);
+      if(!pool.length) pool = ZONAS.filter(z => z.scene === s.id);
+      const got = AvProfile.pick(`${ACTIVITY}:zona:${s.id}:n${nivel}`, pool, 1, z => z.zone);
+      return got[0] || pool[0];
+    });
   }
 
-  function pickMatchRetos(){
-    const order = shuffle(SCENES.map(s => s.id));
-    const counts = [2, 1, 1, 1];
-    const out = [];
-    order.forEach((sceneId, i) => {
-      const pool = RETOS.filter(r => r.scene === sceneId);
-      out.push(...AvProfile.pick(`${ACTIVITY}:reto:${sceneId}`, pool, counts[i], r => r.text));
-    });
-    return out.slice(0, MATCH_CARDS);
-  }
-  function pickMatchQuiz(){
-    const out = [];
-    QUIZ_MIX.forEach(([tag, n]) => {
-      const group = QUIZ.filter(q => q.tag === tag);
-      out.push(...AvProfile.pick(`${ACTIVITY}:quiz:${tag}`, group, n, q => q.q));
-    });
-    return out.slice(0, MATCH_QUIZ);
-  }
-
-  function startMatch(){
+  function start(){
     practiceNote.hidden = true;
-    const p0 = AvProfile.get();
-    match = {
-      practice: !p0 || (!AvProfile.canScore('card') && !AvProfile.canScore('quiz')),
-      retos: pickMatchRetos(),
-      quizzes: pickMatchQuiz(),
-      step: 0,
-      tries: 0,
-      answered: false,
-      earned: 0
-    };
-    showStep();
-  }
-
-  function showStep(){
-    judge.hidden = true;
-    optionsBox.hidden = true;
-    optionsBox.innerHTML = '';
-    match.tries = 0;
-    match.answered = false;
-    const ph = phase();
-    if(ph === 'card'){
-      const r = match.retos[match.step];
-      // Si esa zona ya venía con el color pedido, la dejamos en blanco: el reto
-      // se gana pintando, no encontrándolo hecho de una partida anterior.
-      r.zones.forEach(z => { if(painted[r.scene][z] === r.color) paint(r.scene, z, null) });
-      showScene(r.scene);
-      markTargets(r);
-      roundLabel.textContent = `Reto de color ${match.step + 1} de ${MATCH_CARDS}`;
-      promptTag.hidden = true;
-      promptText.textContent = '🖍️ ' + r.text;
-      promptHint.textContent = r.tip;
-      promptHint.hidden = false;
-      mainBtn.textContent = '✅ Ya lo pinté';
-      mainBtn.hidden = false;
-    }else if(ph === 'quiz'){
-      clearTargets();
-      const q = match.quizzes[match.step - MATCH_CARDS];
-      roundLabel.textContent = `Colorea y cuenta ${match.step - MATCH_CARDS + 1} de ${MATCH_QUIZ}`;
-      promptTag.hidden = false;
-      promptTag.textContent = q.tag;
-      promptText.textContent = q.q;
-      promptHint.textContent = 'Sigue pintando lo que quieras… y toca tu respuesta.';
-      promptHint.hidden = false;
-      shuffle(q.opts).forEach(opt => {
-        const b = document.createElement('button');
-        b.className = 'option';
-        b.type = 'button';
-        b.textContent = opt;
-        b.addEventListener('click', () => answerQuiz(b, opt, q));
-        optionsBox.appendChild(b);
-      });
-      optionsBox.hidden = false;
-      mainBtn.hidden = true;
-    }else{
-      finishMatch();
-    }
+    loadCobrado();
+    match = {laminas: armarLaminas(), paso: 0, intentos: 0, pintando: false, ganados: 0};
+    mostrarPaso();
   }
 
   function feedback(html){
     judgeMsg.innerHTML = html;
+    judgeYes.hidden = true;
+    judgeNo.hidden = true;
     judge.hidden = false;
   }
 
-  function checkReto(){
-    const r = match.retos[match.step];
-    const target = COLOR_BY_KEY[r.color];
-    const done = r.zones.every(z => painted[r.scene][z] === r.color);
-    if(done){
-      clearTargets();
-      if(canScoreNow('card')){
-        AvProfile.score(true, 'card');
-        match.earned++;
-        feedback(`⭐ ¡Perfecto! Quedó ${esc(target.name.toLowerCase())}. <strong>+1 punto</strong>`);
-      }else{
-        feedback(`⭐ ¡Perfecto! Quedó ${esc(target.name.toLowerCase())}. ${AvProfile.get() ? '🌙 Este reto es de práctica.' : '👤 Sin perfil: no suma al tablero.'}`);
-      }
-      match.answered = true;
-      mainBtn.textContent = 'Siguiente ▶';
-      return;
-    }
-    match.tries++;
-    if(match.tries === 1){
-      const faltan = r.zones.filter(z => painted[r.scene][z] !== r.color);
-      const labelEl = zoneEls(r.scene, faltan[0])[0];
-      const label = labelEl ? labelEl.dataset.label : 'esa parte';
-      feedback(`😊 Casi, casi. Falta pintar <strong>${esc(label)}</strong> de <strong>${esc(target.name.toLowerCase())}</strong>. Toca el color ${esc(target.name.toLowerCase())} y luego el dibujo… ¡tienes otro intento!`);
-      return;
-    }
-    // Segundo intento: lo pintamos juntos y explicamos con cariño.
-    r.zones.forEach(z => paint(r.scene, z, r.color));
-    clearTargets();
-    if(canScoreNow('card')){
-      AvProfile.score(false, 'card');
-    }
-    feedback(`🤗 Tranquilo, mira: así queda <strong>${esc(target.name.toLowerCase())}</strong>. Lo pintamos juntos. ¡En el siguiente reto te va a salir!`);
-    match.answered = true;
-    mainBtn.textContent = 'Siguiente ▶';
-    mainBtn.hidden = false;
+  function mostrarPaso(){
+    judge.hidden = true;
+    limpiarMarcas();
+    match.intentos = 0;
+    match.pintando = false;
+    helpBtn.hidden = true;
+
+    if(match.paso >= SCENES_JUEGO.length){ pedirCuenta(); return }
+
+    const l = laminaActual();
+    const s = SCENE_BY_ID[l.scene];
+    showScene(l.scene);
+    canvasFrame.classList.add('buscando');
+    roundLabel.textContent = `Lámina ${match.paso + 1} de ${SCENES_JUEGO.length} · ${s.title}`;
+    promptTag.hidden = false;
+    promptTag.textContent = 'Busca y toca';
+    promptText.textContent = '👉 Toca ' + l.ask;
+    const cupo = laminaLibre(l.scene) && puedeSumar('card');
+    promptHint.innerHTML = 'Tócalo en el dibujo. Tienes <strong>' + intentosDelNino() +
+      (intentosDelNino() === 1 ? ' intento' : ' intentos') + '</strong>.' +
+      (cupo ? '' : ' <em>Esta lámina ya no suma hoy: es práctica.</em>');
+    promptHint.hidden = false;
+    // Mientras se busca no se pinta: la paleta se esconde para que el niño no
+    // gaste un intento obedeciendo el «toca un color y luego el dibujo».
+    palette.hidden = true;
+    paletteHint.textContent = 'Primero busca la parte que te pedí; los colores salen después.';
+    mainBtn.hidden = true;
+    helpBtn.hidden = false;
   }
 
-  function answerQuiz(btn, opt, q){
-    if(match.answered) return;
-    match.answered = true;
-    const ok = opt === q.a;
-    optionsBox.querySelectorAll('.option').forEach(b => {
-      b.disabled = true;
-      if(b.textContent === q.a) b.classList.add('right');
-    });
-    if(!ok) btn.classList.add('wrong');
-    if(canScoreNow('quiz')){
-      AvProfile.score(ok, 'quiz');
-      if(ok) match.earned++;
-      feedback(ok ? '⭐ ¡Correcto! <strong>+1 punto</strong>' : `😊 La respuesta era: <strong>${esc(q.a)}</strong>. ¡Ya la sabes para la próxima!`);
+  function puedeSumar(kind){
+    return !!AvProfile.get() && AvProfile.canScore(kind);
+  }
+
+  function resolver(acerto, mostrada){
+    const l = laminaActual();
+    limpiarMarcas();
+    zoneEls(l.scene, l.zone).forEach(el => el.classList.add('target'));
+    canvasFrame.classList.remove('buscando');
+
+    // La lámina se marca como jugada aunque falle o pida ayuda: así no se puede
+    // repetir la partida para volver a cobrar el mismo punto hoy.
+    let nota = '';
+    if(laminaLibre(l.scene) && puedeSumar('card')){
+      AvProfile.score(acerto && !mostrada, 'card');
+      cobrado.escenas[l.scene] = true;
+      saveCobrado();
+      marcarPagadas();
+      if(acerto && !mostrada){ match.ganados++; nota = ' <strong>+1 punto</strong>' }
+      else nota = ' Esta lámina ya quedó jugada por hoy.';
+    }else if(!AvProfile.get()){
+      nota = ' 👤 Sin perfil: no suma al tablero.';
     }else{
-      const nota = AvProfile.get() ? '🌙 Esta pregunta es de práctica.' : '👤 Sin perfil: no suma al tablero.';
-      feedback(ok ? `⭐ ¡Correcto! ${nota}` : `😊 La respuesta era: <strong>${esc(q.a)}</strong>. ${nota}`);
+      nota = ' 🌙 Esta lámina ya no suma hoy: es práctica.';
     }
-    mainBtn.textContent = 'Siguiente ▶';
+
+    const cab = mostrada
+      ? '🤗 Mira, aquí está: <strong>' + esc(l.ask) + '</strong>, la parte marcada en verde.'
+      : (acerto
+        ? '⭐ ¡Esa es! Era <strong>' + esc(l.ask) + '</strong>.'
+        : '😊 La correcta es la que quedó marcada en verde: <strong>' + esc(l.ask) + '</strong>.');
+    feedback(cab + nota + '<br>📖 ' + esc(l.why) + '<br>🗣️ Cuéntaselo a tu adulto con tus palabras.');
+
+    match.pintando = true;
+    palette.hidden = false;
+    paletteHint.innerHTML = 'Toca un color y luego el dibujo. El color que elijas <strong>siempre está bien</strong>.';
+    promptTag.textContent = 'Ahora pinta';
+    promptText.textContent = '🖍️ Pinta esta lámina del color que quieras';
+    promptHint.innerHTML = 'Toca un color y luego el dibujo. <strong>El color nunca se califica</strong>: aquí no hay colores equivocados.';
+    helpBtn.hidden = true;
+    mainBtn.textContent = match.paso < SCENES_JUEGO.length - 1 ? 'Ya la pinté · siguiente ▶' : 'Ya la pinté ▶';
     mainBtn.hidden = false;
   }
 
-  function nextStep(){
-    match.step++;
-    showStep();
+  function evaluarToque(zone){
+    const l = laminaActual();
+    if(zone === l.zone){ resolver(true, false); return }
+    const hermanas = EQUIVALE[l.zone] || [];
+    if(hermanas.indexOf(zone) >= 0){
+      const otra = zoneEls(l.scene, zone)[0];
+      const name = otra && otra.dataset.label ? otra.dataset.label : 'la otra mitad';
+      limpiarMarcas();
+      feedback('🤏 ¡Casi! Eso es <strong>' + esc(name) + '</strong>, la otra parte del mismo objeto. Busca <strong>' +
+        esc(l.ask) + '</strong>: <strong>no te gasté el intento</strong>.');
+      return;
+    }
+    match.intentos++;
+    const el = zoneEls(l.scene, zone)[0];
+    const tocado = el && el.dataset.label ? el.dataset.label : 'otra parte';
+    if(match.intentos >= intentosDelNino()){
+      zoneEls(l.scene, zone).forEach(x => x.classList.add('miss'));
+      resolver(false, false);
+      return;
+    }
+    limpiarMarcas();
+    zoneEls(l.scene, zone).forEach(x => x.classList.add('miss'));
+    const quedan = intentosDelNino() - match.intentos;
+    feedback('🤏 Eso que tocaste es <strong>' + esc(tocado) + '</strong>. Busca <strong>' + esc(l.ask) +
+      '</strong>: te queda' + (quedan === 1 ? '' : 'n') + ' <strong>' + quedan + '</strong> intento' + (quedan === 1 ? '' : 's') + '.');
+  }
+
+  function pedirCuenta(){
+    limpiarMarcas();
+    canvasFrame.classList.remove('buscando');
+    roundLabel.textContent = 'Última roundLabel · cuéntalo tú';
+    promptTag.hidden = false;
+    promptTag.textContent = 'Lo confirma el adulto';
+    promptText.textContent = '🗣️ ' + CUENTA.pregunta;
+    // La clave NO se muestra aquí: el niño la leería y el punto sería gratis.
+    promptHint.innerHTML = 'Cuéntaselo a tu adulto <strong>con tus palabras</strong>.';
+    promptHint.hidden = false;
+    palette.hidden = true;
+    paletteHint.textContent = 'Primero cuéntalo; los colores siguen ahí después.';
+    mainBtn.hidden = true;
+    helpBtn.hidden = true;
+
+    const p = AvProfile.get();
+    if(cuentaLibre() && puedeSumar('quiz')){
+      judgeMsg.innerHTML = '👪 Adulto: ¿' + esc(p.name) + ' lo contó con sus palabras?' +
+        '<details class="clave"><summary>👪 Solo para el adulto</summary>' + CUENTA.clave + '</details>';
+      judgeYes.hidden = false;
+      judgeNo.hidden = false;
+      judge.hidden = false;
+    }else{
+      const nota = !p ? '👤 Sin perfil: esta ronda no suma al tablero.'
+        : (cuentaLibre() ? '🌙 Los puntos de preguntas ya están completos hoy: esta ronda es de práctica.'
+                         : '🌙 Esta roundLabel ya sumó hoy: ahora es práctica.');
+      feedback(nota + '<br>Cuéntalo igual: 📖 ' + esc(CUENTA.respuesta));
+      mainBtn.textContent = 'Ver mi resultado ▶';
+      mainBtn.hidden = false;
+      match.cuentaHecha = true;
+    }
+  }
+
+  function calificarCuenta(acerto){
+    AvProfile.score(acerto, 'quiz');
+    cobrado.cuenta = true;
+    saveCobrado();
+    if(acerto) match.ganados++;
+    feedback((acerto ? '⭐ ¡Muy bien contado! <strong>+1 punto</strong>' : '😊 Todavía no, y no pasa nada.') +
+      '<br>📖 ' + esc(CUENTA.respuesta) + '<br>' + CUENTA.clave);
+    match.cuentaHecha = true;
+    mainBtn.textContent = 'Ver mi resultado ▶';
+    mainBtn.hidden = false;
   }
 
   function finishMatch(){
-    clearTargets();
-    optionsBox.hidden = true;
-    optionsBox.innerHTML = '';
+    limpiarMarcas();
+    canvasFrame.classList.remove('buscando');
     const p = AvProfile.get();
-    roundLabel.textContent = '¡Qué cuaderno tan bonito!';
+    roundLabel.textContent = '¡Qué láminas tan bonitas!';
     promptTag.hidden = true;
-    promptText.textContent = '🏁 ¡Partida completa!';
+    promptText.textContent = '🏁 ¡Terminaste la partida!';
     promptHint.hidden = false;
-    promptHint.textContent = (p && !match.practice)
-      ? `⭐ Sumaste ${match.earned} punto${match.earned === 1 ? '' : 's'} en esta partida. Puedes seguir coloreando todo lo que quieras.`
-      : 'Puedes seguir coloreando todo lo que quieras.';
+    promptHint.textContent = p
+      ? `⭐ Sumaste ${match.ganados} punto${match.ganados === 1 ? '' : 's'} de los ${TOTAL_PUNTOS} de esta actividad. Puedes seguir pintando todo lo que quieras.`
+      : 'Puedes seguir pintando todo lo que quieras.';
     judge.hidden = true;
-    mainBtn.textContent = '🔁 Otra partida';
+    helpBtn.hidden = true;
+    palette.hidden = false;
+    paletteHint.innerHTML = 'Toca un color y luego el dibujo. El color que elijas <strong>siempre está bien</strong>.';
+    mainBtn.dataset.mode = 'again';
+    mainBtn.textContent = '🔁 Otra vez';
     mainBtn.hidden = false;
     match = null;
     updateIdleHint();
   }
 
+  mainBtn.addEventListener('click', () => {
+    if(!match){ start(); return }
+    const f = phase();
+    if(f === 'pintar'){ match.paso++; mostrarPaso(); return }
+    if(f === 'cuenta' && match.cuentaHecha){ finishMatch(); return }
+  });
+
+  helpBtn.addEventListener('click', () => {
+    if(match && phase() === 'buscar') resolver(false, true);
+  });
+
+  judgeYes.addEventListener('click', () => calificarCuenta(true));
+  judgeNo.addEventListener('click', () => calificarCuenta(false));
+
   function updateIdleHint(){
     if(match) return;
+    palette.hidden = false;
+    loadCobrado();
+    marcarPagadas();
     const p = AvProfile.get();
-    const practice = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    const sinCupo = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
+    const pagadas = SCENES_JUEGO.filter(s => cobrado.escenas[s.id]).length;
     if(!p){
-      practiceNote.innerHTML = '👤 Estás coloreando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero. Toca el botón 👤 de arriba para ingresar. Colorear se puede siempre.';
       practiceNote.hidden = false;
-    }else if(practice){
-      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: las partidas ahora son <strong>de práctica</strong> y no suman al tablero. ¡El cuaderno se puede colorear siempre!';
+    }else if(sinCupo){
+      practiceNote.innerHTML = '🌙 Los puntos de hoy ya están completos: esto es <strong>práctica</strong>. ¡Las láminas se pueden pintar siempre!';
+      practiceNote.hidden = false;
+    }else if(pagadas || cobrado.cuenta){
+      practiceNote.innerHTML = `⭐ Hoy ya cobraste <strong>${pagadas} de ${SCENES_JUEGO.length}</strong> láminas${cobrado.cuenta ? ' y el «cuéntalo»' : ''}. Las que ya cobraste no vuelven a sumar hoy, pero se pueden jugar y pintar.`;
       practiceNote.hidden = false;
     }else{
       practiceNote.hidden = true;
     }
-    if(mainBtn.textContent.indexOf('Otra partida') !== -1){
-      mainBtn.textContent = practice ? '🔁 Otra partida (práctica)' : '🔁 Otra partida';
-    }else if(mainBtn.textContent.indexOf('partida') !== -1){
-      mainBtn.textContent = practice ? '▶ Partida de práctica' : '▶ Jugar partida';
-    }
+    const practica = !p || sinCupo;
+    mainBtn.textContent = mainBtn.dataset.mode === 'again'
+      ? (practica ? '🔁 Otra vez (práctica)' : '🔁 Otra vez')
+      : (practica ? '▶ Empezar (práctica)' : '▶ Empezar');
   }
 
-  mainBtn.addEventListener('click', () => {
-    if(!match){ startMatch(); return; }
-    if(phase() === 'card' && !match.answered){ checkReto(); return; }
-    if(match.answered){ nextStep(); }
-  });
+  // ── Navegación ──
+  function goTo(tab){
+    document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    document.querySelectorAll('section').forEach(s => s.classList.toggle('active', s.id === tab));
+  }
+  document.getElementById('toGameBtn').addEventListener('click', () => goTo('juego'));
 
-  // ── Menú ──
   const menuBtn = document.getElementById('menuBtn');
   const menuPanel = document.getElementById('menuPanel');
   function closeMenu(){
@@ -1147,32 +1334,27 @@
     menuPanel.hidden = !menuPanel.hidden;
     menuBtn.setAttribute('aria-expanded', String(!menuPanel.hidden));
   });
-  document.addEventListener('click', e => {
-    if(!e.target.closest('.menu-wrap')) closeMenu();
-  });
+  document.addEventListener('click', e => { if(!e.target.closest('.menu-wrap')) closeMenu() });
   document.querySelectorAll('.menu-item[data-tab]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.menu-item[data-tab]').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-      closeMenu();
-    });
+    btn.addEventListener('click', () => { goTo(btn.dataset.tab); closeMenu() });
   });
-
-  document.getElementById('changePlayerBtn').addEventListener('click', () => {
-    closeMenu();
-    AvProfile.open();
-  });
+  document.getElementById('changePlayerBtn').addEventListener('click', () => { closeMenu(); AvProfile.open() });
 
   // ── Iniciar ──
   AvProfile.onChange(() => {
-    loadPainted();
+    loadPintado();
+    loadCobrado();
     repaintAll();
     updateIdleHint();
   });
-  AvProfile.init({ chip: document.getElementById('playerChip'), activity: ACTIVITY, autoOpen: true });
-  loadPainted();
+  AvProfile.init({
+    chip: document.getElementById('playerChip'),
+    activity: ACTIVITY,
+    caps: {card: 4, quiz: 1},   // lo que vale esta actividad; el techo del backend es 5+5
+    autoOpen: true
+  });
+  loadPintado();
+  loadCobrado();
   repaintAll();
   updateIdleHint();
 </script>
