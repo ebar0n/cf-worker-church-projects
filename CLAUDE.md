@@ -162,10 +162,8 @@ flow never renders, so it is where stale markup hides.
 A CSS rule whose class no longer appears anywhere in the markup means that component
 renders unstyled. Nothing fails; it just looks broken.
 
-## Conventions
-
-**Code in English, content in Spanish** — including branch names and commit messages in
-English. The exception is comments, which are Spanish.
+## Content
 
 Every biblical fact has to be traceable to the chapter or passage the activity cites; if
-it comes from elsewhere, the page says so.
+it comes from elsewhere, the page says so. The activities are graded at camp, so a
+plausible-sounding detail that isn't in the cited text is a defect, not a flourish.
