@@ -170,10 +170,3 @@ is Spanish, and so are the comments explaining *why*.
 
 Every biblical fact has to be traceable to the chapter or passage the activity cites; if
 it comes from elsewhere, the page says so.
-
-## Working agreements
-
-- Don't deploy ad hoc. Do the whole job, then one commit, PR, merge; the automatic deploy
-  takes it from there.
-- **Never run a migration against production without asking**, and don't assume the
-  hosted deploy command applies them.
