@@ -101,7 +101,6 @@ points in `localStorage` when offline, and rotates questions per child per ISO w
   deploy takes it from there.
 - **Never run a migration against production without asking**, and never assume the
   hosted deploy command applies them.
-- Don't delegate everything to subagents — they're slow and they undo each other's work
-  (a deleted game reappeared three times because agents were still running).
-- Ask before adding a capability nobody requested. Audio was built, and removed, because
-  the question asked was whether it was *possible*.
+- Don't fan work out to subagents here. They're slower than doing it, and parallel
+  agents editing the same pages undo each other: a deleted activity came back three
+  times because agents were still running.
