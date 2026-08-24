@@ -151,7 +151,7 @@
   .racha .num{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(1.5rem,7vw,2.1rem);line-height:1.1}
   .racha .lbl{font-size:.9rem;opacity:.85;margin-top:2px}
   .semana{display:flex;justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap}
-  .dia{width:38px;text-align:center;font-size:.72rem;font-weight:700;opacity:.85}
+  .dia{width:38px;text-align:center;font-size:.8rem;font-weight:700;opacity:.85}
   .dia .bola{
     display:block;width:34px;height:34px;margin:0 auto 4px;border-radius:50%;
     border:3px solid rgba(255,246,227,.45);display:grid;place-items:center;font-size:.85rem;
@@ -196,7 +196,7 @@
     display:flex;align-items:center;gap:8px;
   }
   .tarjeta .tag{
-    display:inline-block;font-family:'Fredoka',sans-serif;font-size:.72rem;font-weight:600;
+    display:inline-block;font-family:'Fredoka',sans-serif;font-size:.8rem;font-weight:600;
     letter-spacing:.08em;text-transform:uppercase;background:var(--brick);color:#fff;
     border-radius:999px;padding:4px 12px;margin-bottom:10px;
   }
@@ -1138,7 +1138,7 @@
     rachaNum.textContent = n > 0 ? `🔥 ${n} día${n === 1 ? '' : 's'}` : '🌱 Empezando';
     rachaLbl.textContent = n > 0
       ? `seguidos con los tres momentos · hoy vas ${marcados(d)} de 3`
-      : `hoy vas ${marcados(d)} de 3. Complétalos y arranca la racha.`;
+      : `Hoy vas ${marcados(d)} de 3. Complétalos y arranca la racha.`;
 
     const k = hoyKey();
     semanaBox.innerHTML = Array.from({length:7}, (_, idx) => {

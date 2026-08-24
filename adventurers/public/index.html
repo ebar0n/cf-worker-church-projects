@@ -91,10 +91,12 @@
   }
   .card-grid{
     display:grid;
+    align-items:stretch;
     grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
     gap:18px;
   }
   .activity-card{
+    position:relative;
     display:flex;
     flex-direction:column;
     gap:10px;
@@ -111,15 +113,23 @@
   .activity-card:focus-visible{outline:3px solid #fff;outline-offset:4px}
   .activity-card .emoji{font-size:3rem;line-height:1}
   .activity-card .recommended{
-    align-self:flex-start;
+    position:absolute;
+    top:-10px;
+    right:14px;
     font-family:'Fredoka',sans-serif;
-    font-size:.78rem;
+    font-size:.8rem;
     font-weight:700;
-    letter-spacing:.04em;
+    letter-spacing:.03em;
     background:var(--gold);
     color:var(--lapis-deep);
+    border:2px solid var(--cream);
     border-radius:999px;
-    padding:4px 12px;
+    padding:3px 11px;
+    box-shadow:0 2px 0 rgba(0,0,0,.25);
+    white-space:nowrap;
+    max-width:calc(100% - 28px);
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
   .activity-card .source{
     align-self:flex-start;
@@ -133,6 +143,10 @@
     border:1px solid rgba(27,47,110,.2);
     border-radius:999px;
     padding:3px 10px;
+    white-space:nowrap;
+    max-width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
   .activity-card h2{
     font-family:'Fredoka',sans-serif;
@@ -171,31 +185,42 @@
     border-bottom:1px solid rgba(240,180,41,.28);
   }
   .tabs-row{
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    padding:10px 16px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:6px;
+    padding:10px 12px;
     max-width:1000px;
     margin:0 auto;
-    scrollbar-width:none;
+  }
+  @media (min-width:520px){
+    .tabs-row{display:flex;gap:8px;padding:10px 16px}
   }
   .tabs-row::-webkit-scrollbar{display:none}
   /* Con espacio de sobra las pestañas se centran; en pantalla angosta van al
      inicio para que el scroll horizontal no corte la primera. */
+  @media (min-width:520px){
+    .tab{font-size:.92rem;padding:8px 16px}
+  }
   @media (min-width:720px){
     .tabs-row{justify-content:center}
   }
   .tab{
     font-family:'Fredoka',sans-serif;
-    font-size:.92rem;
+    font-size:.8rem;
     font-weight:600;
     white-space:nowrap;
     flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    padding:8px 4px;
+    overflow:hidden;
+    text-overflow:ellipsis;
     background:transparent;
     color:var(--gold-soft);
     border:2px solid rgba(240,180,41,.45);
     border-radius:999px;
-    padding:8px 16px;
     min-height:44px;
     cursor:pointer;
   }
@@ -401,7 +426,7 @@
         <span class="go">Estudiar ▶</span>
       </a>
       <a class="activity-card" data-from="0" data-to="6" href="/organiza-la-biblia/">
-        <span class="source">39 libros · Antiguo Testamento</span>
+        <span class="source">Los 39 libros del AT</span>
         <span class="emoji">📚</span>
         <h2>Organiza la Biblia</h2>
         <p>Clasificar los libros por familia y ordenarlos contra reloj, que es como califican.</p>
@@ -602,7 +627,7 @@
     document.querySelectorAll('.card-grid').forEach(grid => {
       const cards = [...grid.querySelectorAll('.activity-card')];
       cards.forEach(t => {
-        const badge = t.querySelector('.recomendada');
+        const badge = t.querySelector('.recommended');
         if(badge) badge.remove();
         t.style.order = '';
       });
@@ -617,7 +642,7 @@
         if(fits){
           recommended++;
           const badge = document.createElement('span');
-          badge.className = 'recomendada';
+          badge.className = 'recommended';
           badge.textContent = '⭐ Para ' + clubClass;
           t.insertBefore(badge, t.firstElementChild);
         }
