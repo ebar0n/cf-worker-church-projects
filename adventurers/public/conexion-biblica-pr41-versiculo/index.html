@@ -1063,7 +1063,7 @@
     if(!c) return 'Ingresa tu perfil para ajustar la dificultad a tu clase.';
     const n = nivel();
     const paga = citaPaga();
-    return `Clase ${c} · ${n.fracs.length} escalón${n.fracs.length === 1 ? '' : 'es'} de práctica · ${paga ? 'versículo + cita = 2 puntos' : 'versículo = 1 punto'}`;
+    return `Clase ${c} · ${n.fracs.length} ${n.fracs.length === 1 ? 'escalón' : 'escalones'} de práctica · ${paga ? 'versículo + cita = 2 puntos' : 'versículo = 1 punto'}`;
   }
 
   function updateIdleHint(){

@@ -966,7 +966,7 @@
     }).join('');
 
     momentosBox.querySelectorAll('[data-hora]').forEach(inp => {
-      inp.addEventListener('change', () => {
+      inp.addEventListener('input', () => {
         estado.horas[Number(inp.dataset.hora)] = inp.value.slice(0, 24);
         guardar();
       });

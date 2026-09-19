@@ -40,7 +40,13 @@ async function run(slug,older){
  const t=setup(slug,older),{d,w,read,click,settle,check,scores,visible}=t;
  try {
   if(slug==='pr44-reloj'){
+   // A tap that repaints the cards must not discard the family's typed hour.
+   const hour=d.querySelector('[data-hora="0"]');
+   hour.value='Antes del desayuno';hour.dispatchEvent(new w.Event('input',{bubbles:true}));
    for(let i=0;i<3;i++){click(`[data-orar="${i}"]`);check();click(`[data-si="${i}"]`)}
+   assert.equal(d.querySelector('[data-hora="0"]').value,'Antes del desayuno');
+   read('cargar(); paint()');
+   assert.equal(d.querySelector('[data-hora="0"]').value,'Antes del desayuno');
    click('#anclaVerBtn');click('#anclaSi');click('#charlaSi');
    // Clearing a habit marker must not repay the same moment.
    click('[data-desmarcar="0"]');click('[data-orar="0"]');click('[data-si="0"]');

@@ -353,7 +353,7 @@
     card.innerHTML = `
       <div class="title">${r.porLibro
         ? `¿De qué color va <strong>${esc(libro)}</strong>?`
-        : `¿De qué color van los <strong>${esc(r.nombre)}</strong>?`}</div>
+        : `¿Qué color lleva la familia <strong>${esc(r.nombre)}</strong>?`}</div>
       ${r.porLibro ? `<div class="hint">Piensa a qué familia pertenece.</div>` : ''}
       <div class="colors">
         ${shuffle(FAMILIES).map(f =>
@@ -378,8 +378,8 @@
     const pie = document.createElement('div');
     pie.className = 'pista';
     pie.innerHTML = acerto
-      ? `✅ ¡Eso es! Los <strong>${esc(fam.nombre)}</strong> van de <strong>${esc(fam.color)}</strong>.`
-      : `Era <strong>${esc(fam.color)}</strong>: así van los <strong>${esc(fam.nombre)}</strong>.`;
+      ? `✅ ¡Eso es! La familia <strong>${esc(fam.nombre)}</strong> va de <strong>${esc(fam.color)}</strong>.`
+      : `Era <strong>${esc(fam.color)}</strong>: así va la familia <strong>${esc(fam.nombre)}</strong>.`;
     card.appendChild(pie);
     if(AvProfile.get() && AvProfile.canScore('card')){
       AvProfile.score(acerto, 'card');
@@ -396,7 +396,7 @@
       <div class="emoji">🎨</div>
       <div class="title">¡Los cinco colores!</div>
       ${p ? `<div class="hint">⭐ Sumaste ${match.ganados} punto${match.ganados === 1 ? '' : 's'}.</div>` : ''}
-      <div class="hint">Ya puedes pintar las 39 fichas sin equivocarte.</div>`;
+      <div class="hint">Sigue practicando estos colores para pintar las 39 fichas.</div>`;
     mainBtn.dataset.modo = 'otra';
     mainBtn.textContent = '🔁 Otra vez';
     mainBtn.hidden = false;
