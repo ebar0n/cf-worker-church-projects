@@ -34,7 +34,7 @@ const ACTIVITY_CAPS = {
   pr39: { card: 5, quiz: 0 },
   "pr39-prueba10": { card: 5, quiz: 0 },
   "pr39-nombres": { card: 4, quiz: 2 },
-  "pr39-colorear": { card: 4, quiz: 1 },
+  "pr39-colorear": { card: 3, quiz: 1 },
   "pr41-estatua-sueno": { card: 5, quiz: 2 },
   "pr41-secuencia": { card: 5, quiz: 1 },
   "pr41-versiculo": { card: 1, quiz: 1 },
@@ -90,6 +90,7 @@ async function toProfile(db, row) {
     today: await todayCounts(db, row.id),
     limit: DAILY_LIMIT,
     caps: ACTIVITY_CAPS,
+    day: todayInBogota(),
   };
 }
 
@@ -164,7 +165,14 @@ app.post("/api/score", async (c) => {
   const body = await c.req.json().catch(() => ({}));
   const doc = normalizeDoc(body.doc);
   if (!doc) return c.json({ error: "Falta el documento." }, 400);
-  const kind = body.kind === "quiz" ? "quiz" : "card";
+  if (typeof body.correct !== "boolean" || !["card", "quiz"].includes(body.kind)) {
+    return c.json({ error: "Envía correct como booleano y kind como card o quiz." }, 400);
+  }
+  const requestId = body.requestId ?? null;
+  if (requestId !== null && (typeof requestId !== "string" || !/^[a-zA-Z0-9-]{16,80}$/.test(requestId))) {
+    return c.json({ error: "Identificador de intento inválido." }, 400);
+  }
+  const kind = body.kind;
   const activity = body.activity === undefined ? ACTIVITIES[0] : String(body.activity);
   if (!ACTIVITIES.includes(activity)) {
     return c.json({ error: `La actividad '${activity}' no existe.` }, 400);
@@ -173,45 +181,45 @@ app.post("/api/score", async (c) => {
   const hash = await docHash(doc);
   const today = todayInBogota();
 
-  if (body.correct === false) {
-    const row = await c.env.DB.prepare(
-      "SELECT id, name, points, age FROM adventurers_players WHERE doc_hash = ?"
-    )
-      .bind(hash)
-      .first();
-    if (!row) return c.json({ error: "El documento no coincide con ningún perfil." }, 401);
-    await c.env.DB.prepare(
-      "INSERT INTO adventurers_interactions (player_id, delta, day, kind) VALUES (?, 0, ?, ?)"
-    )
-      .bind(row.id, today, scopedKind)
-      .run();
-    return c.json(await toProfile(c.env.DB, row));
-  }
+  const player = await c.env.DB.prepare(
+    "SELECT id, name, points, age FROM adventurers_players WHERE doc_hash = ?"
+  ).bind(hash).first();
+  if (!player) return c.json({ error: "El documento no coincide con ningún perfil." }, 401);
 
-  const row = await c.env.DB.prepare(
-    `UPDATE adventurers_players SET
-       points = points + 1,
-       updated_at = datetime('now')
-     WHERE doc_hash = ?1
-       AND (SELECT COUNT(*) FROM adventurers_interactions i
-              WHERE i.player_id = adventurers_players.id
-                AND i.day = ?2 AND i.delta > 0 AND i.kind = ?3) < ${capFor(activity, kind)}
-     RETURNING id, name, points, age`
-  )
-    .bind(hash, today, scopedKind)
-    .first();
-  if (row) {
-    await c.env.DB.prepare(
-      "INSERT INTO adventurers_interactions (player_id, delta, day, kind) VALUES (?, 1, ?, ?)"
-    )
-      .bind(row.id, today, scopedKind)
-      .run();
-    return c.json(await toProfile(c.env.DB, row));
+  // El intento y el total se escriben en una sola transacción. El INSERT decide
+  // el cupo y el UPDATE solo suma si se insertó; los reenvíos son idempotentes.
+  const delta = body.correct ? 1 : 0;
+  const [inserted, updated] = await c.env.DB.batch([
+    c.env.DB.prepare(`
+      INSERT INTO adventurers_interactions (player_id, delta, day, kind, request_id)
+      SELECT ?1, ?2, ?3, ?4, ?5
+      WHERE (?2 = 0 OR (
+        SELECT COUNT(*) FROM adventurers_interactions
+        WHERE player_id = ?1 AND day = ?3 AND delta > 0 AND kind = ?4
+      ) < ?6)
+      ON CONFLICT(player_id, request_id) DO NOTHING
+      RETURNING id
+    `).bind(player.id, delta, today, scopedKind, requestId, capFor(activity, kind)),
+    c.env.DB.prepare(`
+      UPDATE adventurers_players SET points = points + ?2, updated_at = datetime('now')
+      WHERE id = ?1 AND changes() = 1
+      RETURNING id, name, points, age
+    `).bind(player.id, delta),
+  ]);
+  if (inserted.results.length) {
+    return c.json(await toProfile(c.env.DB, updated.results[0]));
   }
-  const exists = await c.env.DB.prepare("SELECT id FROM adventurers_players WHERE doc_hash = ?")
-    .bind(hash)
-    .first();
-  if (!exists) return c.json({ error: "El documento no coincide con ningún perfil." }, 401);
+  if (requestId !== null) {
+    const replay = await c.env.DB.prepare(
+      "SELECT id FROM adventurers_interactions WHERE player_id = ? AND request_id = ?"
+    ).bind(player.id, requestId).first();
+    if (replay) {
+      const current = await c.env.DB.prepare(
+        "SELECT id, name, points, age FROM adventurers_players WHERE id = ?"
+      ).bind(player.id).first();
+      return c.json(await toProfile(c.env.DB, current));
+    }
+  }
   const tope = capFor(activity, kind);
   const label = kind === "quiz" ? "preguntas" : "juego";
   if (tope === 0) {

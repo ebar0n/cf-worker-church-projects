@@ -357,7 +357,7 @@
       ${r.porLibro ? `<div class="hint">Piensa a qué familia pertenece.</div>` : ''}
       <div class="colors">
         ${shuffle(FAMILIES).map(f =>
-          `<button class="color-btn" data-family="${esc(f.name)}" style="background:${f.hex}">${esc(f.color)}</button>`
+          `<button class="color-btn" data-family="${esc(f.nombre)}" style="background:${f.hex}">${esc(f.color)}</button>`
         ).join('')}
       </div>`;
     card.querySelectorAll('.color-btn').forEach(b =>
@@ -368,11 +368,11 @@
   function answer(button, correcta){
     if(match.respondida) return;
     match.respondida = true;
-    const acerto = button.dataset.fam === correcta;
+    const acerto = button.dataset.family === correcta;
     const fam = FAMILIES.find(f => f.nombre === correcta);
     card.querySelectorAll('.color-btn').forEach(b => {
       b.disabled = true;
-      if(b.dataset.fam === correcta) b.classList.add('ok');
+      if(b.dataset.family === correcta) b.classList.add('ok');
       else if(b === button) b.classList.add('bad');
     });
     const pie = document.createElement('div');

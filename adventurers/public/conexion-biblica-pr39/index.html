@@ -763,7 +763,7 @@
     gameCard.innerHTML = `
       <div class="mark">${bien ? '✅' : '❌'}</div>
       <div class="verdict">${mesa}</div>
-      <div class="hint">${f.emoji} ${esc(f.name)}<br>${esc(razon)}</div>
+      <div class="hint">${f.emoji} ${esc(f.name)}<br>${esc(razon)}<br>${f.src ? `📖 ${esc(f.src)}` : 'Ejemplo para practicar: el capítulo no menciona este alimento concreto.'}</div>
       <div class="hint">${bien ? gesto : (elegido === null ? '⏱ Se acabó el tiempo. El bloque vuelve a cero.' : 'El bloque vuelve a cero. ¡Tranquilo, siguen tarjetas!')}</div>
       ${bloqueNuevo ? '<div class="hint">🎉 <strong>¡Cuatro seguidas! ⭐ +1</strong></div>' : ''}
       ${bloqueSinTexto ? `<div class="hint">📖 Cuatro seguidas, pero este bloque no traía ${SRC_MIN} tarjetas del capítulo: todavía no paga ⭐. ¡Sigan!</div>` : ''}`;
@@ -791,14 +791,14 @@
     rondaDeVoz();
   }
 
-  // Última roundLabel: el niño lo DICE y el adulto confirma. No se graba nada.
+  // Última ronda: el niño lo DICE y el adulto confirma. No se graba nada.
   function rondaDeVoz(){
     match.phase = 'voz';
     match.respondida = false;
     choices.hidden = true;
     tracker.hidden = true;
     judge.hidden = true;
-    roundLabel.textContent = 'Última roundLabel · a decirlo en voz alta';
+    roundLabel.textContent = 'Última ronda · a decirlo en voz alta';
     gameCard.className = 'game-card';
     gameCard.innerHTML = `
       <div class="emoji">🗣️</div>

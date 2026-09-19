@@ -903,12 +903,12 @@
     }
     match.chips.push({emoji: el.emoji, ok: gana});
     pintarChips();
-    if(gana && !sumo) fbDato.textContent = el.dato + ' (Esta roundLabel es de práctica: no suma al tablero.)';
+    if(gana && !sumo) fbDato.textContent = el.dato + ' (Esta ronda es de práctica: no suma al tablero.)';
 
     match.phase = 'cerrada';
     match.roundLabel++;
     const quedan = match.roundLabel < match.elems.length;
-    mainBtn.textContent = quedan ? 'Siguiente roundLabel ▶'
+    mainBtn.textContent = quedan ? 'Siguiente ronda ▶'
       : (match.quizzes.length ? 'Ahora 2 preguntas ▶' : 'Ver el resultado ▶');
     mainBtn.hidden = false;
   }
@@ -973,7 +973,7 @@
     cont.innerHTML = `
       <div class="big">🦁</div>
       <div class="t">¡Terminaste!</div>
-      ${p ? `<div>⭐ Sumaste <strong>${earned}</strong> punto${earned === 1 ? '' : 's'} en esta match.</div>` : ''}
+      ${p ? `<div>⭐ Sumaste <strong>${earned}</strong> punto${earned === 1 ? '' : 's'} en esta partida.</div>` : ''}
       <p class="verse">«El Dios mío envió su ángel, el cual cerró la boca de los leones.»<span>Daniel 6:22</span></p>`;
     sceneWrap.innerHTML = '';
     board.classList.remove('hidden-board');
@@ -984,7 +984,7 @@
     sceneWrap.appendChild(cont);
     match = null;
     mainBtn.dataset.mode = 'again';
-    mainBtn.textContent = '🔁 Otra match';
+    mainBtn.textContent = '🔁 Otra partida';
     mainBtn.hidden = false;
     updateIdleHint();
   }
@@ -1037,7 +1037,7 @@
       practiceNote.hidden = !clubClass;
     }
     mainBtn.textContent = mainBtn.dataset.mode === 'again'
-      ? (practica ? '🔁 Otra match (práctica)' : '🔁 Otra match')
+      ? (practica ? '🔁 Otra partida (práctica)' : '🔁 Otra partida')
       : (practica ? '▶ Empezar (práctica)' : '▶ Empezar');
   }
   AvProfile.onChange(updateIdleHint);

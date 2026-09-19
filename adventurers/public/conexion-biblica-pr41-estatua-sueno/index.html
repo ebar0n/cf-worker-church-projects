@@ -709,7 +709,8 @@
   function siguienteParte(){
     if(!match.pendientes.length){ pasarARetos(); return }
     match.sel = null;
-    match.piesPuestos = [];
+    // En modo libre se puede dejar un pie a medias y completar otra parte.
+    if(match.modo !== 'libre') match.piesPuestos = [];
     marcarSeleccion();
     if(match.modo === 'libre'){
       match.objetivo = null;
@@ -924,7 +925,7 @@
       <span class="cita">El rey quiso una estatua <strong>toda de oro</strong> para que Babilonia pareciera eterna. La estatua de oro se olvidó; el reino de Dios no.</span>`;
     const p = AvProfile.get();
     if(p && match.ganados){
-      decirFb(`⭐ Sumaste <strong>${match.ganados}</strong> punto${match.ganados === 1 ? '' : 's'} en esta match.`, 'bien');
+      decirFb(`⭐ Sumaste <strong>${match.ganados}</strong> punto${match.ganados === 1 ? '' : 's'} en esta partida.`, 'bien');
     }
     mainBtn.dataset.mode = 'again';
     mainBtn.textContent = '🔁 Otra vez';

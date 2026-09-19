@@ -395,7 +395,7 @@
           ${shuffle([correcta, ...otros]).map(o =>
             `<button class="option" data-op="${esc(o)}">${esc(o)}</button>`).join('')}
         </div>`;
-      card.querySelectorAll('.opcion').forEach(b =>
+      card.querySelectorAll('.option').forEach(b =>
         b.addEventListener('click', () => answerWhichNext(b, correcta, r.familia)));
       mainBtn.hidden = true;
       return;
@@ -411,8 +411,8 @@
         <div class="order-row">
           ${shuffle(fam.libros).map(l =>
             `<button class="tile" data-book="${esc(l)}">${esc(l)}</button>`).join('')}
-        </div>`;
-      card.querySelectorAll('.ficha').forEach(b =>
+        </div><div class="pista" aria-live="polite"></div>`;
+      card.querySelectorAll('.tile').forEach(b =>
         b.addEventListener('click', () => tapTile(b, fam)));
       mainBtn.hidden = true;
       return;
@@ -425,7 +425,7 @@
     if(match.respondida) return;
     match.respondida = true;
     const acerto = button.dataset.op === correcta;
-    card.querySelectorAll('.opcion').forEach(b => {
+    card.querySelectorAll('.option').forEach(b => {
       b.disabled = true;
       if(b.dataset.op === correcta) b.classList.add('ok');
       else if(b === button) b.classList.add('bad');
@@ -447,12 +447,12 @@
   function tapTile(button, fam){
     if(button.classList.contains('placed')) return;
     const esperado = fam.libros[match.orden.puestos];
-    if(button.dataset.libro === esperado){
+    if(button.dataset.book === esperado){
       button.classList.add('placed');
-      button.innerHTML = `<span class="n">${match.orden.puestos + 1}.</span> ${esc(button.dataset.libro)}`;
+      button.innerHTML = `<span class="n">${match.orden.puestos + 1}.</span> ${esc(button.dataset.book)}`;
       match.orden.puestos++;
       if(match.orden.puestos === fam.libros.length){
-        card.querySelectorAll('.ficha').forEach(b => b.disabled = true);
+        card.querySelectorAll('.tile').forEach(b => b.disabled = true);
         const pie = document.createElement('div');
         pie.className = 'pista';
         pie.innerHTML = `✅ ¡Los ${fam.libros.length} ${esc(fam.nombre)} en orden!`;

@@ -164,28 +164,28 @@
     color:var(--lapis);
   }
   .opts{display:grid;gap:10px;width:100%}
-  .opt-fam{
+  .opt-family{
     font-family:'Fredoka',sans-serif;font-size:1.02rem;font-weight:600;text-align:left;
     background:#fff;color:var(--ink);border:4px solid var(--fc);border-radius:16px;
     padding:12px 14px;min-height:52px;cursor:pointer;display:flex;align-items:center;gap:10px;
   }
-  .opt-fam .dot{width:22px;height:22px;border-radius:50%;background:var(--fc);border:2px solid rgba(0,0,0,.3);flex-shrink:0}
-  .opt-fam .color-name{margin-left:auto;font-size:.8rem;opacity:.7;text-transform:uppercase;letter-spacing:.06em}
-  .opt-fam:active{transform:translateY(2px)}
-  .opt-fam:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
-  .opt-fam.ok{background:var(--fc);color:#fff;box-shadow:inset 0 0 0 3px #fff}
-  .opt-fam.ok .color-name,.opt-fam.bad .color-name{opacity:.9}
-  .opt-fam.bad{background:#5b5b5b;border-color:#3d3d3d;color:#fff}
-  .opt-fam:disabled{cursor:default}
+  .opt-family .dot{width:22px;height:22px;border-radius:50%;background:var(--fc);border:2px solid rgba(0,0,0,.3);flex-shrink:0}
+  .opt-family .color-name{margin-left:auto;font-size:.8rem;opacity:.7;text-transform:uppercase;letter-spacing:.06em}
+  .opt-family:active{transform:translateY(2px)}
+  .opt-family:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .opt-family.ok{background:var(--fc);color:#fff;box-shadow:inset 0 0 0 3px #fff}
+  .opt-family.ok .color-name,.opt-family.bad .color-name{opacity:.9}
+  .opt-family.bad{background:#5b5b5b;border-color:#3d3d3d;color:#fff}
+  .opt-family:disabled{cursor:default}
   .feedback{
     font-weight:800;font-size:1rem;line-height:1.45;border-radius:14px;padding:10px 12px;width:100%;
     background:rgba(46,158,91,.16);border:3px solid var(--verde-deep);
   }
   .feedback.bad{background:rgba(194,84,43,.14);border-color:var(--brick)}
   .pistas{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
-  .hint{width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,.15);border:2px solid rgba(0,0,0,.3)}
-  .hint.ok{background:var(--verde)}
-  .hint.no{background:var(--brick)}
+  .pistas .pip{width:16px;height:16px;border-radius:50%;background:rgba(0,0,0,.15);border:2px solid rgba(0,0,0,.3)}
+  .pistas .pip.ok{background:var(--verde)}
+  .pistas .pip.no{background:var(--brick)}
 
   /* Cronómetro y tablero de orden */
   .crono{
@@ -208,26 +208,26 @@
   .slot.fallo{border-color:var(--brick)}
   .slot .vacio{opacity:.4}
   .banco{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px;width:100%}
-  .ficha-btn{
+  .tile-btn{
     font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;
     background:#fff;color:var(--ink);border:4px solid var(--fc);border-radius:14px;
     padding:10px 8px;min-height:48px;cursor:pointer;
   }
-  .ficha-btn:active{transform:translateY(2px)}
-  .ficha-btn:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
-  .ficha-btn.usada{visibility:hidden}
-  .ficha-btn.bad{background:var(--brick);color:#fff;border-color:#8f3a1c}
+  .tile-btn:active{transform:translateY(2px)}
+  .tile-btn:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .tile-btn.usada{visibility:hidden}
+  .tile-btn.bad{background:var(--brick);color:#fff;border-color:#8f3a1c}
 
-  .fam-pick{display:grid;gap:10px;width:100%}
-  .fam-pick-btn{
+  .family-pick{display:grid;gap:10px;width:100%}
+  .family-pick-btn{
     font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.02rem;text-align:left;
     background:#fff;color:var(--ink);border:4px solid var(--fc);border-radius:16px;
     padding:12px 14px;min-height:56px;cursor:pointer;display:flex;align-items:center;gap:10px;
   }
-  .fam-pick-btn .dot{width:22px;height:22px;border-radius:50%;background:var(--fc);border:2px solid rgba(0,0,0,.3);flex-shrink:0}
-  .fam-pick-btn .sub{display:block;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;opacity:.7}
-  .fam-pick-btn.hecha{opacity:.75}
-  .fam-pick-btn:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
+  .family-pick-btn .dot{width:22px;height:22px;border-radius:50%;background:var(--fc);border:2px solid rgba(0,0,0,.3);flex-shrink:0}
+  .family-pick-btn .sub{display:block;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;opacity:.7}
+  .family-pick-btn.hecha{opacity:.75}
+  .family-pick-btn:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
 
   .modo-btns{display:grid;gap:12px;width:100%}
   .modo-btn{
@@ -478,7 +478,7 @@
   };
   const TODAS_LAS_FAMS = FAMILIES.map(f => f.id);
 
-  /* Tropiezos permitidos: [familias de hasta 6 books, familias grandes] por clubClass.
+  /* Tropiezos permitidos: [familias de hasta 6 libros, familias grandes] por clubClass.
      Los más pequeños necesitan margen; los mayores ordenan las familias cortas sin errores. */
   const TOLERANCIA = {
     'Principiantes':          [2, 3],
@@ -542,7 +542,7 @@
   const judgeQ = document.getElementById('judgeQ');
   const practiceNote = document.getElementById('practiceNote');
 
-  const BLOQUE = 5; // books por bloque en el juego de clasificar
+  const BLOQUE = 5; // libros por bloque en el juego de clasificar
   let modo = null;      // null | 'clasificar' | 'ordenar'
   let cla = null;       // estado del juego de clasificar
   let ord = null;       // estado del juego de ordenar
@@ -560,7 +560,7 @@
       <div class="family-head">
         <span class="family-dot"></span>
         <span class="family-name">${esc(f.name)}</span>
-        <span class="family-meta">${f.books.length} books · color ${esc(f.color)}</span>
+        <span class="family-meta">${f.books.length} libros · color ${esc(f.color)}</span>
       </div>
       <ol class="family-books">
         ${f.books.map((l, i) => `<li><span class="n">${i+1}</span>${esc(l)}</li>`).join('')}
@@ -569,14 +569,14 @@
 
   const conteo = document.getElementById('conteoLeer');
   conteo.textContent = CUADRAN
-    ? `${CUENTAS.join(' + ')} = ${TOTAL} books ✔ la cuenta cuadra`
+    ? `${CUENTAS.join(' + ')} = ${TOTAL} libros ✔ la cuenta cuadra`
     : `⚠️ ¡Ojo! La cuenta no cuadra: ${CUENTAS.join(' + ')} = ${TOTAL} y deben ser 39. Avísale al director del club.`;
   if(!CUADRAN) conteo.classList.add('bad');
 
   document.getElementById('fichasPrint').innerHTML = TODOS.map(b =>
     `<div class="tile">
-      <span class="name">${esc(b.name)}</span>
-      <span class="point"></span>
+      <span class="nombre">${esc(b.name)}</span>
+      <span class="punto"></span>
     </div>`).join('');
 
   document.getElementById('panelPrint').innerHTML = FAMILIES.map(f => `
@@ -603,13 +603,13 @@
       <div class="title">¿Qué vas a practicar?</div>
       <div class="modo-btns">
         <button class="modo-btn" data-modo="clasificar">🎨 Clasificar por familia
-          <span class="sub">Sale un libro y tocas su familia. Bloques de 5 books: el bloque sin errores vale ⭐ 1.</span></button>
+          <span class="sub">Sale un libro y tocas su familia. Bloques de 5 libros: el bloque sin errores vale ⭐ 1.</span></button>
         <button class="modo-btn" data-modo="ordenar">⏱️ Ordenar contra reloj
           <span class="sub">Una familia revuelta y tú la pones en orden. Se guarda tu mejor tiempo.</span></button>
       </div>
-      <div class="clubClass-note">${clubClass
-        ? `Tu clubClass es <strong>${esc(clubClass)}</strong>: trabajas con ${esc(nombres)} (${books} books).`
-        : `Sin perfil trabajas con <strong>los 39 books</strong>. Si ingresas, la app ajusta los libros a tu clase del club.`}</div>`;
+      <div class="clase-note">${clubClass
+        ? `Tu clase es <strong>${esc(clubClass)}</strong>: trabajas con ${esc(nombres)} (${books} libros).`
+        : `Sin perfil trabajas con <strong>los 39 libros</strong>. Si ingresas, la app ajusta los libros a tu clase del club.`}</div>`;
     gameCard.querySelectorAll('.modo-btn').forEach(b => b.addEventListener('click', () => {
       if(b.dataset.modo === 'clasificar') empezarBloque();
       else pantallaFamilias();
@@ -642,7 +642,7 @@
     gameCard.innerHTML = `
       <div class="pistas">${cla.books.map((_, i) => {
         const r = cla.resultados[i];
-        return `<span class="hint ${r === true ? 'ok' : r === false ? 'no' : ''}"></span>`;
+        return `<span class="pip ${r === true ? 'ok' : r === false ? 'no' : ''}"></span>`;
       }).join('')}</div>
       <div class="hint">¿De qué familia es este libro?</div>
       <div class="book-grande">${esc(b.name)}</div>
@@ -653,7 +653,7 @@
             <span class="color-name">${esc(f.color)}</span>
           </button>`).join('')}
       </div>`;
-    gameCard.querySelectorAll('.opt-fam').forEach(btn =>
+    gameCard.querySelectorAll('.opt-family').forEach(btn =>
       btn.addEventListener('click', () => responderFamilia(btn, b))
     );
   }
@@ -661,11 +661,11 @@
   function responderFamilia(btn, libro){
     if(cla.respondida) return;
     cla.respondida = true;
-    const acerto = btn.dataset.fam === libro.fam;
+    const acerto = btn.dataset.family === libro.fam;
     const f = famDe(libro.fam);
-    gameCard.querySelectorAll('.opt-fam').forEach(b => {
+    gameCard.querySelectorAll('.opt-family').forEach(b => {
       b.disabled = true;
-      if(b.dataset.fam === libro.fam) b.classList.add('ok');
+      if(b.dataset.family === libro.fam) b.classList.add('ok');
       else if(b === btn) b.classList.add('bad');
     });
     cla.resultados[cla.i] = acerto;
@@ -673,8 +673,8 @@
     const fb = document.createElement('div');
     fb.className = 'feedback' + (acerto ? '' : ' mal');
     fb.innerHTML = acerto
-      ? `✅ ¡Sí! <strong>${esc(libro.name)}</strong> es de <strong>${esc(f.name)}</strong> (${esc(f.color)}) y va en el puesto ${libro.rank + 1} de esa familia.`
-      : `❌ No. <strong>${esc(libro.name)}</strong> es de <strong>${esc(f.name)}</strong> (${esc(f.color)}), puesto ${libro.rank + 1} de esa familia.`;
+      ? `✅ ¡Sí! <strong>${esc(libro.name)}</strong> es de <strong>${esc(f.name)}</strong> (${esc(f.color)}) y va en el puesto ${libro.pos + 1} de esa familia.`
+      : `❌ No. <strong>${esc(libro.name)}</strong> es de <strong>${esc(f.name)}</strong> (${esc(f.color)}), puesto ${libro.pos + 1} de esa familia.`;
     gameCard.appendChild(fb);
     mainBtn.textContent = cla.i + 1 < cla.books.length ? 'Siguiente libro ▶' : 'Ver el bloque ▶';
     mainBtn.hidden = false;
@@ -692,7 +692,7 @@
       <div class="emoji">${limpio ? '🏅' : '💪'}</div>
       <div class="title">${limpio ? '¡Bloque perfecto!' : `Fallaste ${cla.fallos} de ${cla.books.length}`}</div>
       <div class="feedback${limpio ? '' : ' bad'}">${limpio
-        ? (sumo ? '⭐ +1 punto: cinco books seguidos sin un solo error.' : 'Cinco books seguidos sin un solo error. ¡Así se hace!')
+        ? (sumo ? '⭐ +1 punto: cinco libros seguidos sin un solo error.' : 'Cinco libros seguidos sin un solo error. ¡Así se hace!')
         : 'El punto se gana solo con el bloque completo sin errores. Repite y lo logras.'}</div>
       <div class="opts">${cla.books.map((b, i) => {
         const f = famDe(b.fam);
@@ -727,14 +727,14 @@
           const ya = hechas.indexOf(f.id) !== -1 ? ' · ⭐ ya sumada hoy' : '';
           return `<button class="family-pick-btn${hechas.indexOf(f.id) !== -1 ? ' hecha' : ''}" data-family="${f.id}" style="${styleFam(f)}">
             <span class="dot"></span>
-            <span>${esc(f.name)} · ${f.books.length} books
+            <span>${esc(f.name)} · ${f.books.length} libros
               <span class="sub">${esc(mejor)}${ya}</span></span>
           </button>`;
         }).join('')}
       </div>
       <div class="hint">Cada familia bien ordenada vale ⭐ 1 punto, una vez al día.</div>`;
-    gameCard.querySelectorAll('.fam-pick-btn').forEach(b =>
-      b.addEventListener('click', () => pantallaListo(b.dataset.fam))
+    gameCard.querySelectorAll('.family-pick-btn').forEach(b =>
+      b.addEventListener('click', () => pantallaListo(b.dataset.family))
     );
     updateIdleHint();
   }
@@ -742,19 +742,19 @@
   function pantallaListo(famId){
     const f = famDe(famId);
     const permitidos = permitidosPara(f);
-    roundLabel.textContent = `${f.name} · ${f.books.length} books`;
+    roundLabel.textContent = `${f.name} · ${f.books.length} libros`;
     gameCard.innerHTML = `
       <div class="emoji">⏱️</div>
       <div class="title">${esc(f.name)}</div>
-      <div class="hint">Vas a tocar los ${f.books.length} books <strong>en orden</strong>, del primero al último.
+      <div class="hint">Vas a tocar los ${f.books.length} libros <strong>en orden</strong>, del primero al último.
         El reloj arranca cuando toques el botón. ${permitidos
           ? `Con ${permitidos} tropiezos o menos ganas el punto.`
           : 'Sin ningún error ganas el punto.'}</div>
-      <div class="clubClass-note">Consejo: en el campamento el panel se arma <strong>por familias y en orden</strong>. Practica hasta que te salga sin pensar.</div>`;
+      <div class="clase-note">Consejo: en el campamento el panel se arma <strong>por familias y en orden</strong>. Practica hasta que te salga sin pensar.</div>`;
     mainBtn.textContent = '▶ ¡Ya! Arranca el reloj';
     mainBtn.hidden = false;
     mainBtn.dataset.accion = 'arrancar';
-    mainBtn.dataset.fam = famId;
+    mainBtn.dataset.family = famId;
     menuJuegoBtn.hidden = false;
   }
 
@@ -799,12 +799,12 @@
       </div>
       <div class="hint">Toca el libro que sigue</div>
       <div class="banco" style="${styleFam(f)}" id="banco">
-        ${ord.banco.map(b => `<button class="tile-btn${b.rank < ord.i ? ' usada' : ''}" data-pos="${b.pos}">${esc(b.name)}</button>`).join('')}
+        ${ord.banco.map(b => `<button class="tile-btn${b.pos < ord.i ? ' usada' : ''}" data-pos="${b.pos}">${esc(b.name)}</button>`).join('')}
       </div>
       <div class="feedback${ord.fallos ? ' bad' : ''}" id="ordFb">${ord.fallos
         ? `Tropiezos: ${ord.fallos} (te ${ord.permitidos - ord.fallos >= 0 ? 'quedan ' + (ord.permitidos - ord.fallos) : 'pasaste del límite'})`
         : 'Sin errores hasta ahora. ¡Vamos!'}</div>`;
-    gameCard.querySelectorAll('.ficha-btn').forEach(btn => {
+    gameCard.querySelectorAll('.tile-btn').forEach(btn => {
       if(btn.classList.contains('usada')) return;
       btn.addEventListener('click', () => tocarLibro(btn, Number(btn.dataset.pos)));
     });
@@ -845,7 +845,7 @@
       if(fb3 && fallosPrevios) fb3.className = 'feedback mal';
     });
     gameCard.appendChild(seguir);
-    gameCard.querySelectorAll('.ficha-btn').forEach(b => { b.disabled = true });
+    gameCard.querySelectorAll('.tile-btn').forEach(b => { b.disabled = true });
   }
 
   function terminarOrden(){
@@ -864,7 +864,7 @@
     gameCard.innerHTML = `
       <div class="emoji">${bien ? '🏁' : '💪'}</div>
       <div class="title">${fmt(ms)}</div>
-      <div class="feedback${ok ? '' : ' bad'}">
+      <div class="feedback${bien ? '' : ' bad'}">
         ${bien ? `✅ ${esc(f.name)} en orden` : `Te faltó orden: ${ord.fallos} tropiezo${ord.fallos === 1 ? '' : 's'} y se permitían ${ord.permitidos}.`}
         ${sumo ? ' · ⭐ +1 punto' : yaSumada && bien ? ' · esta familia ya sumó hoy' : ''}
         ${nuevoRecord
@@ -887,7 +887,7 @@
   /* ══════════ Botones principales ══════════ */
   mainBtn.addEventListener('click', () => {
     const accion = mainBtn.dataset.accion;
-    if(accion === 'arrancar'){ mainBtn.dataset.accion = ''; arrancar(mainBtn.dataset.fam); return }
+    if(accion === 'arrancar'){ mainBtn.dataset.accion = ''; arrancar(mainBtn.dataset.family); return }
     if(accion === 'familias'){ mainBtn.dataset.accion = ''; pantallaFamilias(); return }
     if(modo === 'clasificar'){
       if(!cla){ empezarBloque(); return }
@@ -907,7 +907,7 @@
     const p = AvProfile.get();
     const sinCupo = !!p && !AvProfile.canScore('card') && !AvProfile.canScore('quiz');
     if(!p){
-      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero y salen los 39 books. Toca el botón 👤 de arriba para ingresar.';
+      practiceNote.innerHTML = '👤 Estás jugando <strong>sin perfil</strong>: los aciertos no suman al tablero y salen los 39 libros. Toca el botón 👤 de arriba para ingresar.';
       practiceNote.hidden = false;
     }else if(sinCupo){
       practiceNote.innerHTML = '🌙 Los puntos de hoy en esta actividad ya están completos: esto es <strong>práctica</strong>, y practicar el tiempo sí cuenta para el campamento.';
