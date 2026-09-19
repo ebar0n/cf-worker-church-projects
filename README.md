@@ -24,7 +24,8 @@ cf-worker-church-projects/
     │   ├── 0001_create_adventurers_players.sql
     │   ├── 0002_add_interaction_kind.sql
     │   ├── 0003_scope_kind_to_activity.sql
-    │   └── 0004_add_player_age.sql
+    │   ├── 0004_add_player_age.sql
+    │   └── 0005_idempotent_scores.sql
     └── public/                   # Static assets served by the Worker
         ├── index.html            # Home: tabbed activity index
         ├── manifest.webmanifest  # Installable app (PWA)
@@ -103,7 +104,7 @@ Profiles are keyed by the child's document number, so one family can't add point
 
 - The profile UI lives in a shared module (`public/shared/profile.js` + `.css`) used by the home page and every activity: include both files and call `AvProfile.init({chip, activity, caps, autoOpen})`. It renders the player chip (tap to switch player), the trophy that opens the leaderboard, the login overlay, and exposes `get/clubClass/canScore/cap/score/pick/open/onChange`.
 - One simple form: typing the document looks up the profile live — if it exists it greets by name; if new, the name and age fields appear to create it. Profiles created before the age column are asked for it on next login.
-- The document is **never stored or displayed in plain text** — only a salted SHA-256 hash is kept (plus the last 2 digits as a hint column); the leaderboard shows names and points only.
+- The server stores a salted SHA-256 hash of the document (plus the last 2 digits as a hint). The browser keeps the document locally for login and offline score delivery; the public leaderboard shows names and points only.
 
 #### Installable and offline
 
@@ -111,7 +112,7 @@ The site is a PWA: `manifest.webmanifest` plus icons generated from the club's o
 
 `sw.js` precaches every activity and the shared module. Navigations go to the network first — so a deploy shows up at once while online — and fall back to cache when there is none. `/api/*` is never cached. **Bump `VERSION` in `sw.js` whenever an activity is deleted**, or its cached copy keeps opening a page that no longer exists.
 
-Points survive having no signal: a correct answer given offline is queued in `localStorage` and sent when the connection returns or the app is reopened — not via Background Sync, which iOS does not have. Resending is safe because the cap lives on the server. The chip shows how many are waiting.
+Points survive having no signal: a correct answer given offline is queued in `localStorage` and sent when the connection returns or the app is reopened — not via Background Sync, which iOS does not have. Each attempt has a stable request ID; the server inserts the attempt and updates the total in one D1 batch transaction, so retries do not duplicate points and concurrent requests cannot exceed the cap. The chip shows how many are waiting.
 
 API (Hono, in `src/index.js`):
 
@@ -167,3 +168,12 @@ Identifiers, CSS classes and commit messages are in **English**; comments and ev
 2. Add its own `wrangler.jsonc` (unique `name`, its own subdomain route) and a `public/` directory.
 3. Add its tables as D1 migrations using a club prefix (the D1 database `church-jordan-projects` is shared).
 4. Document it in this README.
+
+
+### Activity audit
+
+See [the activity-by-activity audit](adventurers/AUDIT.md) for objectives, findings,
+source references and verification coverage. `yarn verify` now completes all 18
+activities in jsdom for ages 4 and 9 and verifies shared-profile regressions.
+With `yarn dev` running, `yarn verify:api` checks real local D1 transactions,
+concurrent scores, retries and per-activity caps. It refuses non-local hosts.

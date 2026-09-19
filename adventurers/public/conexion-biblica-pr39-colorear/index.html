@@ -749,7 +749,7 @@
 
   <div class="parent-box">
     <h2>💡 ¿Qué aprende su hijo?</h2>
-    <p>Esta es la actividad <strong>de identificar y contar</strong>. Su objetivo propio es uno solo: que el niño <strong>reconozca en la escena la parte que se le nombra</strong> (la copa del rey, el plato de la prueba, la túnica de Daniel, el trono) y sepa <strong>decir por qué está ahí</strong>. Es la única de las actividades del capítulo que también sale en papel, y la única que un niño de <strong>Principiantes o Corderitos</strong> puede jugar completa solo, porque no hay que leer nada para jugar.</p>
+    <p>Esta es la actividad <strong>de identificar y contar</strong>. Su objetivo propio es uno solo: que el niño <strong>reconozca en la escena la parte que se le nombra</strong> (la copa del rey, el plato de la prueba, la túnica de Daniel, el trono) y sepa <strong>decir por qué está ahí</strong>. Es la única de las actividades del capítulo que también sale en papel, y la única que un niño de <strong>Principiantes o Corderitos</strong> puede jugar con un adulto que lea la consigna en voz alta.</p>
     <ul>
       <li><strong>Vocabulario de la escena</strong>: los objetos del relato dejan de ser palabras y se vuelven cosas que el niño puede señalar.</li>
       <li><strong>La decisión de Daniel</strong>: por qué esa comida y ese vino eran un problema, y qué pidió en su lugar.</li>
@@ -763,7 +763,7 @@
     <ol>
       <li>Primero abran la pestaña <strong>📖 Leer</strong> y lean juntos el pasaje. El juego repasa lo leído; no lo enseña desde cero.</li>
       <li>Toquen <strong>▶ Empezar</strong>. Salen las <strong>tres láminas con ronda, en orden</strong>: la mesa del rey, el plato de Daniel y los cuatro jóvenes. La puerta del palacio queda solo para pintar: en el capítulo no hay nada que preguntar en ella.</li>
-      <li>En cada lámina la app <strong>nombra una parte que el capítulo menciona</strong> («toca la copa del rey», «toca lo que Daniel no quiso beber») y el niño la busca y la toca. Mientras busca, el dibujo <strong>no da pistas</strong> y la <strong>paleta de colores está escondida</strong>, para que nadie gaste un intento intentando paint.</li>
+      <li>En cada lámina la app <strong>nombra una parte del dibujo relacionada con el capítulo</strong> («toca la copa del rey», «toca lo que Daniel no quiso beber») y el niño la busca y la toca. Mientras busca, el dibujo <strong>no da pistas</strong> y la <strong>paleta de colores está escondida</strong>, para que nadie gaste un intento intentando pintar.</li>
       <li>Si toca otra, la app le dice <strong>qué tocó</strong> («esa es la bandeja del banquete») y le queda otro intento. Si toca la otra mitad del mismo objeto (el vino en vez de la copa, el vaso en vez del agua), la app se lo dice y <strong>no le gasta el intento</strong>. Los más pequeños tienen <strong>tres intentos</strong>; los mayores, uno. Si no la encuentra, el botón <strong>🤔 No la encuentro</strong> se la muestra sin puntos.</li>
       <li>Al resolver, la app <strong>siempre</strong> marca en verde la parte correcta y explica <strong>por qué está ahí</strong>, según el capítulo. Pídale a su hijo que se lo repita con sus palabras: eso es lo que se le va a preguntar en el campamento.</li>
       <li>Después el niño <strong>pinta la lámina del color que quiera</strong>. El color no se revisa nunca y no hay colores equivocados.</li>
@@ -777,7 +777,7 @@
 
   <div class="parent-box">
     <h2>⭐ El reto de la semana</h2>
-    <p>Esta actividad da <strong>4 puntos al día</strong>, no diez: <strong>3 por identificar</strong> (uno por cada lámina con ronda) y <strong>1 por contar</strong> por qué Daniel dijo no. No hay rondas de relleno: solo se pregunta por cosas que el capítulo nombra, y la lámina de la puerta del palacio no paga punto porque todo lo que hay en ella es adorno del dibujo.</p>
+    <p>Esta actividad da <strong>4 puntos al día</strong>, no diez: <strong>3 por identificar</strong> (uno por cada lámina con ronda) y <strong>1 por contar</strong> por qué Daniel dijo no. No hay rondas de relleno: se relacionan los personajes y alimentos del relato con el dibujo. Las túnicas, la copa y el trono son recursos de la ilustración; el texto no describe su aspecto. La lámina de la puerta del palacio no paga punto porque todo lo que hay en ella es adorno del dibujo.</p>
     <p><strong>Una lámina que ya pagó hoy no vuelve a pagar hoy</strong>, ni siquiera borrando los colores y empezando de nuevo. Si su hijo falla una lámina, esa lámina también queda jugada por hoy: se puede volver a jugar para practicar, pero sin puntos. Mañana se reinicia. Así el punto significa haber reconocido la parte, no haber repetido la partida.</p>
     <p>Las partidas extra son de <strong>práctica</strong> y la app lo avisa en pantalla. Colorear se puede siempre, con o sin partida y con o sin perfil.</p>
     <p>El perfil se crea una sola vez con el nombre y el número de documento del niño o la niña. El documento es la llave para sumar puntos: <strong>nunca aparece en el tablero</strong>, solo el nombre.</p>
@@ -1213,7 +1213,7 @@
   function pedirCuenta(){
     limpiarMarcas();
     canvasFrame.classList.remove('buscando');
-    roundLabel.textContent = 'Última roundLabel · cuéntalo tú';
+    roundLabel.textContent = 'Última ronda · cuéntalo tú';
     promptTag.hidden = false;
     promptTag.textContent = 'Lo confirma el adulto';
     promptText.textContent = '🗣️ ' + CUENTA.pregunta;
@@ -1235,7 +1235,7 @@
     }else{
       const nota = !p ? '👤 Sin perfil: esta ronda no suma al tablero.'
         : (cuentaLibre() ? '🌙 Los puntos de preguntas ya están completos hoy: esta ronda es de práctica.'
-                         : '🌙 Esta roundLabel ya sumó hoy: ahora es práctica.');
+                         : '🌙 Esta ronda ya sumó hoy: ahora es práctica.');
       feedback(nota + '<br>Cuéntalo igual: 📖 ' + esc(CUENTA.respuesta));
       mainBtn.textContent = 'Ver mi resultado ▶';
       mainBtn.hidden = false;
@@ -1350,7 +1350,7 @@
   AvProfile.init({
     chip: document.getElementById('playerChip'),
     activity: ACTIVITY,
-    caps: {card: 4, quiz: 1},   // lo que vale esta actividad; el techo del backend es 5+5
+    caps: {card: 3, quiz: 1},   // lo que vale esta actividad; el techo del backend es 5+5
     autoOpen: true
   });
   loadPintado();

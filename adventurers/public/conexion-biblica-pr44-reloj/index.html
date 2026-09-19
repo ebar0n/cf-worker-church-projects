@@ -572,7 +572,7 @@
     {
       id:'treinta-dias', era:'capitulo',
       q:'¿Por cuántos días prohibía el decreto pedirle algo a Dios?',
-      r:'Treinta días. Y Daniel siguió orando tres veces al día todo ese tiempo.',
+      r:'Treinta días. Daniel siguió orando a pesar del decreto.',
       pista:'Es casi un mes entero.'
     },
     {
@@ -688,10 +688,10 @@
       id:'el-momento-que-se-olvida', ic:'⏰', era:'hoy', anclaEra:'capitulo', tit:'El momento que se te olvida',
       cuerpo:'Hoy ora también en el momento que más se te olvida. Pon una alarma o un papel donde lo veas.',
       anclaP:'¿Por cuántos días prohibía el decreto pedir algo a Dios?',
-      anclaR:'Treinta días. Y Daniel siguió orando tres veces al día durante todo ese tiempo.',
+      anclaR:'Treinta días. Daniel siguió orando a pesar del decreto.',
       pista:'Es casi un mes entero.',
       chica:'¿Dónde vas a pegar el papel para no olvidarte mañana? Ve y pégalo ahora.',
-      grande:'Daniel aguantó treinta días de decreto porque ya tenía el hábito antes. ¿Qué les hace falta para no fallar mañana?'
+      grande:'Daniel mantuvo su oración a pesar del decreto porque ya tenía el hábito antes. ¿Qué les hace falta para no fallar mañana?'
     },
     {
       id:'perdon-y-orar', ic:'🤝', era:'hoy', anclaEra:'capitulo', tit:'Pide perdón y oren juntos',
@@ -966,7 +966,7 @@
     }).join('');
 
     momentosBox.querySelectorAll('[data-hora]').forEach(inp => {
-      inp.addEventListener('change', () => {
+      inp.addEventListener('input', () => {
         estado.horas[Number(inp.dataset.hora)] = inp.value.slice(0, 24);
         guardar();
       });
@@ -1004,7 +1004,7 @@
     box.innerHTML = `
       <span>${idleNote}</span>
       <span class="dato-p">📖 ${esc(dato.q)}</span>
-      ${esChica() && dato.hint ? `<span class="dato-hint">💡 Pista: ${esc(dato.pista)}</span>` : ''}
+      ${esChica() && dato.pista ? `<span class="dato-hint">💡 Pista: ${esc(dato.pista)}</span>` : ''}
       <span class="dato-r">✅ Respuesta del capítulo 44: ${esc(dato.r)}</span>
       <button class="btn btn-verde btn-sm" data-si="${i}">${yaMarcado ? `⭐ Sí, dijo el dato${suma ? ' +1' : ''}` : `⭐ Oró y lo dijo${suma ? ' +1' : ''}`}</button>
       ${yaMarcado ? '' : `<button class="btn btn-outline btn-sm" data-solo="${i}">🙏 Oró, pero no dijo el dato</button>`}

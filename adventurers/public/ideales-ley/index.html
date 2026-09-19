@@ -289,7 +289,7 @@
       <li>Vienen <strong>2 rondas de memoria</strong>: primero con la mitad de la lista visible, después sin nada.
       Su hijo los dice en voz alta y usted confirma.</li>
       <li>Y <strong>3 preguntas de orden</strong> que la app califica sola: qué punto es el número tal, cuál va después
-      de cuál, y ordenar tres revueltos.</li>
+      de cuál, y elegir cuál va primero entre tres puntos revueltos.</li>
     </ol>
     <p>Vale <strong>5 puntos al día</strong>: dos de decirla y tres de saber el orden.</p>
   </div>
@@ -342,7 +342,7 @@
   }
 
   function optionsFor(correcta, cuantas){
-    const otras = shuffle(LAW_POINTS.filter(p => p.word !== correcta)).slice(0, cuantas - 1);
+    const otras = shuffle(LAW_POINTS.filter(p => p.palabra !== correcta)).slice(0, cuantas - 1);
     return shuffle([correcta, ...otras.map(o => o.palabra)]);
   }
 
@@ -391,7 +391,7 @@
         <div class="options">
           ${opciones.map(o => `<button class="option" data-op="${esc(o)}">${esc(o)}</button>`).join('')}
         </div>`;
-      card.querySelectorAll('.opcion').forEach(b =>
+      card.querySelectorAll('.option').forEach(b =>
         b.addEventListener('click', () => answer(b, correcta)));
       mainBtn.hidden = true;
       return;
@@ -404,12 +404,12 @@
     if(match.dicho) return;
     match.dicho = true;
     const acerto = button.dataset.op === correcta;
-    card.querySelectorAll('.opcion').forEach(b => {
+    card.querySelectorAll('.option').forEach(b => {
       b.disabled = true;
       if(b.dataset.op === correcta) b.classList.add('ok');
       else if(b === button) b.classList.add('bad');
     });
-    const punto = LAW_POINTS.find(p => p.word === correcta);
+    const punto = LAW_POINTS.find(p => p.palabra === correcta);
     const pie = document.createElement('div');
     pie.className = 'pista';
     pie.innerHTML = acerto

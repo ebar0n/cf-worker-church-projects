@@ -389,7 +389,7 @@
       <li>Si no quedó perfecta, tiene <strong>un segundo intento de práctica</strong>: el tablero se vacía y arma otra vez. Los puntos ya quedaron fijados en el primer intento, porque la respuesta correcta se mostró al revisar.</li>
       <li>Al final, con las tiras en la pantalla (o las de la hoja impresa en la mano), el niño <strong>cuenta la cadena en voz alta</strong>, uniendo cada eslabón con un «y entonces, porque...». Usted marca ⭐ si la contó completa.</li>
     </ol>
-    <p>La cantidad de tiras depende de la <strong>clase</strong> del niño: cinco para Principiantes, Corderitos y Aves Madrugadoras; siete para Abejitas Industriosas y Rayitos de Sol; las nueve para Constructores y Manos Ayudadoras. En las clases pequeñas, los eslabones del medio rotan de un día a otro.</p>
+    <p>La cantidad de tiras depende de la <strong>clase</strong> del niño: cinco para Principiantes, Corderitos y Aves Madrugadoras; siete para Abejitas Industriosas y Rayitos de Sol; las nueve para Constructores y Manos Ayudadoras. En las clases pequeñas se usa una cadena breve que conserva la negativa a adorar y el rescate; las fichas siempre salen revueltas.</p>
   </div>
 
   <div class="parent-box">
@@ -494,16 +494,13 @@
     return (clubClass && TIRAS_POR_CLASE[clubClass]) || 7;
   }
 
-  // El primero y el último eslabón siempre están (el orgullo abre y el decreto
-  // cierra); los del medio rotan por niño y por semana.
+  // sin-rotacion: una cadena causal fija por edad; se barajan las fichas, no se omiten hechos esenciales.
+  // Las cadenas breves conservan la negativa de los jóvenes y el rescate:
+  // omitirlos dejaba a los pequeños sin la causa ni el desenlace del horno.
   function armarSubconjunto(n){
     if(n >= CADENA.length) return CADENA.slice();
-    const medios = CADENA.slice(1, CADENA.length - 1);
-    const elegidos = AvProfile.pick(`${ACTIVITY}:eslabones:${n}`, medios, n - 2, e => String(e.id));
-    const ids = new Set(elegidos.map(e => e.id));
-    ids.add(CADENA[0].id);
-    ids.add(CADENA[CADENA.length - 1].id);
-    return CADENA.filter(e => ids.has(e.id));
+    const indices = n <= 5 ? [0, 3, 4, 7, 8] : [0, 2, 3, 4, 6, 7, 8];
+    return indices.map(i => CADENA[i]);
   }
 
   const shuffle = arr => {
@@ -589,7 +586,7 @@
         const a = match.slots[i], b = match.slots[i + 1];
         if(marcar){
           const bien = a !== null && b !== null && a + 1 === b;
-          html += `<div class="eslabon ${ok ? 'bien' : 'bad'}">${bien ? '✅ y por eso…' : '❌ y por eso…'}</div>`;
+          html += `<div class="eslabon ${bien ? 'bien' : 'bad'}">${bien ? '✅ y por eso…' : '❌ y por eso…'}</div>`;
         }else{
           html += '<div class="eslabon">↓ y por eso…</div>';
         }
@@ -780,7 +777,7 @@
       <div class="title">Ya sabes por qué se encendió el horno</div>
       ${p ? `<div class="puntaje">⭐ ${total} punto${total === 1 ? '' : 's'} en esta partida</div>` : ''}
       <div class="hint">Todo empezó con el orgullo de un rey y terminó con ese mismo rey bendiciendo al Dios de Sadrac, Mesac y Abed-nego.</div>`;
-    mainBtn.textContent = '🔁 Otra match';
+    mainBtn.textContent = '🔁 Otra partida';
     mainBtn.dataset.act = 'empezar';
     mainBtn.hidden = false;
     altBtn.hidden = true;

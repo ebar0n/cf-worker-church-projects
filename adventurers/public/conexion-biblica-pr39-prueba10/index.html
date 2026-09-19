@@ -731,7 +731,7 @@
     gameCard.innerHTML = `
       <div class="emoji">🏅</div>
       <div class="title">${pares === total ? '¡Toda la línea en orden!' : `${pares} de ${total} pasos en orden`}</div>
-      ${ganados ? `<div class="hint">⭐ Sumaste ${ganados} punto${ganados === 1 ? '' : 's'} en esta match.</div>` : '<div class="hint">Esta match fue de <strong>práctica</strong>: no sumó puntos al tablero.</div>'}
+      ${ganados ? `<div class="hint">⭐ Sumaste ${ganados} punto${ganados === 1 ? '' : 's'} en esta partida.</div>` : '<div class="hint">Esta partida fue de <strong>práctica</strong>: no sumó puntos al tablero.</div>'}
       <div class="dato">Primero lo propuso en su corazón. Después lo pidió. Después vinieron los diez días.<span class="cita">Daniel 1:8</span></div>`;
     match = null;
     mainBtn.dataset.mode = 'again';

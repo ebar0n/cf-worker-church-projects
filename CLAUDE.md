@@ -21,7 +21,7 @@ assumptions across.
 ```bash
 nvm use          # Node 24, pinned by .nvmrc — do this first
 yarn dev         # applies local migrations, then wrangler dev on :8787
-yarn verify      # both check scripts (also what CI runs)
+yarn verify      # all regression checks (also what CI runs)
 yarn migrate --local|--remote
 yarn deploy      # migrations --remote, then wrangler deploy
 ```
@@ -30,7 +30,10 @@ There is no test runner, bundler or lint step. `yarn verify` is the whole gate:
 
 ```bash
 node scripts/check-games.mjs            # the contract; all activities, no filter
-node scripts/check-text.mjs             # plays all 18 in jsdom
+node scripts/check-text.mjs             # exploratory clicks and broken-text checks
+node scripts/check-activities.mjs       # completes all 18 at ages 4 and 9, checks awards
+node scripts/check-profile.mjs          # offline retries, identity and daily caps
+yarn verify:api                         # local D1 integration; start yarn dev first
 node scripts/check-text.mjs pr44        # substring-filter to one or a few activities
 DBG=1 node scripts/check-text.mjs pr39  # log every click, to see where a game stalls
 node scripts/check-text.mjs pr39 40     # second arg caps the click count (default 400)
@@ -72,9 +75,10 @@ Three things have to agree, and they are in different files:
 3. The page's own `AvProfile.init({activity, caps})` — the same numbers, client-side, so
    the UI stops offering points it wouldn't get.
 
-The server-side cap is enforced **inside the `UPDATE ... WHERE` subquery** that counts
-today's rows, so it is atomic and a direct POST can't outrun it. The page's copy is a
-courtesy; if the two disagree the server wins and the child sees a 429.
+The server checks the daily cap in a conditional INSERT, then updates the player
+total only when that INSERT wrote a row (`changes() = 1`). Both statements run in
+one D1 batch transaction. Migration `0005` adds a unique player/request ID pair,
+so retrying an uncertain delivery cannot award twice. The server cap is authoritative.
 
 `kind` is stored as `'<activity>:<type>'`, which is why migration `0003` had to rewrite
 existing rows. Every answer is a row in `adventurers_interactions` — `delta` 1 for

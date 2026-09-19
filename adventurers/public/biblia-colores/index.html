@@ -353,11 +353,11 @@
     card.innerHTML = `
       <div class="title">${r.porLibro
         ? `¿De qué color va <strong>${esc(libro)}</strong>?`
-        : `¿De qué color van los <strong>${esc(r.nombre)}</strong>?`}</div>
+        : `¿Qué color lleva la familia <strong>${esc(r.nombre)}</strong>?`}</div>
       ${r.porLibro ? `<div class="hint">Piensa a qué familia pertenece.</div>` : ''}
       <div class="colors">
         ${shuffle(FAMILIES).map(f =>
-          `<button class="color-btn" data-family="${esc(f.name)}" style="background:${f.hex}">${esc(f.color)}</button>`
+          `<button class="color-btn" data-family="${esc(f.nombre)}" style="background:${f.hex}">${esc(f.color)}</button>`
         ).join('')}
       </div>`;
     card.querySelectorAll('.color-btn').forEach(b =>
@@ -368,18 +368,18 @@
   function answer(button, correcta){
     if(match.respondida) return;
     match.respondida = true;
-    const acerto = button.dataset.fam === correcta;
+    const acerto = button.dataset.family === correcta;
     const fam = FAMILIES.find(f => f.nombre === correcta);
     card.querySelectorAll('.color-btn').forEach(b => {
       b.disabled = true;
-      if(b.dataset.fam === correcta) b.classList.add('ok');
+      if(b.dataset.family === correcta) b.classList.add('ok');
       else if(b === button) b.classList.add('bad');
     });
     const pie = document.createElement('div');
     pie.className = 'pista';
     pie.innerHTML = acerto
-      ? `✅ ¡Eso es! Los <strong>${esc(fam.nombre)}</strong> van de <strong>${esc(fam.color)}</strong>.`
-      : `Era <strong>${esc(fam.color)}</strong>: así van los <strong>${esc(fam.nombre)}</strong>.`;
+      ? `✅ ¡Eso es! La familia <strong>${esc(fam.nombre)}</strong> va de <strong>${esc(fam.color)}</strong>.`
+      : `Era <strong>${esc(fam.color)}</strong>: así va la familia <strong>${esc(fam.nombre)}</strong>.`;
     card.appendChild(pie);
     if(AvProfile.get() && AvProfile.canScore('card')){
       AvProfile.score(acerto, 'card');
@@ -396,7 +396,7 @@
       <div class="emoji">🎨</div>
       <div class="title">¡Los cinco colores!</div>
       ${p ? `<div class="hint">⭐ Sumaste ${match.ganados} punto${match.ganados === 1 ? '' : 's'}.</div>` : ''}
-      <div class="hint">Ya puedes pintar las 39 fichas sin equivocarte.</div>`;
+      <div class="hint">Sigue practicando estos colores para pintar las 39 fichas.</div>`;
     mainBtn.dataset.modo = 'otra';
     mainBtn.textContent = '🔁 Otra vez';
     mainBtn.hidden = false;

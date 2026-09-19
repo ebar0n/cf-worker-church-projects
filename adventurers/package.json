@@ -1,13 +1,14 @@
 {
   "name": "adventurers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "packageManager": "yarn@1.22.22",
   "engines": {
     "node": ">=24"
   },
   "scripts": {
-    "verify": "node scripts/check-games.mjs && node scripts/check-text.mjs",
+    "verify": "node scripts/check-games.mjs && node scripts/check-text.mjs && node scripts/check-activities.mjs && node scripts/check-profile.mjs",
+    "verify:api": "node scripts/check-score-api.mjs",
     "migrate": "CI=true wrangler d1 migrations apply church-jordan-projects",
     "dev": "yarn migrate --local && wrangler dev",
     "deploy": "yarn migrate --remote && wrangler deploy"

@@ -15,7 +15,7 @@
 // Subirla purga las cachés viejas, así que basta un solo número: obligatorio
 // cuando se borra una actividad, porque si no la copia cacheada sigue
 // abriendo un juego que ya no existe. check-games.mjs exige que coincidan.
-const VERSION = "1.0.0";
+const VERSION = "1.0.1";
 const SHELL = `aventureros-shell-${VERSION}`;
 const RUNTIME = `aventureros-runtime-${VERSION}`;
 

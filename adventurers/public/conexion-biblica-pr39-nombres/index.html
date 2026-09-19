@@ -803,7 +803,7 @@
     clearTimeout(timerTapar);
     timerTapar = setTimeout(() => {
       [a.button, button].forEach(b => {
-        b.classList.remove('up','mal');
+        b.classList.remove('up','bad');
         const idx = Number(b.dataset.i);
         b.setAttribute('aria-label', `Ficha ${idx + 1} boca abajo`);
       });
@@ -813,11 +813,11 @@
     }, 2200);
   }
 
-  async function sumar(n){
+  async function sumar(n, partida){
     for(let i = 0; i < n; i++){
       if(AvProfile.get() && AvProfile.canScore('card')){
         await AvProfile.score(true, 'card');
-        match.ganados++;
+        partida.ganados++;
       }
     }
   }
@@ -840,7 +840,7 @@
       <div class="title">¡Despejado en ${volteos} volteos!</div>
       <div class="hint">${enTope
         ? `🎯 ${tope} volteos o menos: este tablero sí da punto.`
-        : `Esta vez fueron más de ${tope} volteos, así que este tablero no da punto. El repaso cuenta igual.`}</div>
+        : `Esta vez fueron más de ${tope} volteos: ${match.modo === 'completo' ? 'ganas el punto por completarlo, sin el bono' : 'este tablero no da punto'}. El repaso cuenta igual.`}</div>
       <ul class="repaso">
         ${pares.map(p => `<li><b>${esc(p.a)}</b> = ${esc(p.b)}. ${esc(p.note)}</li>`).join('')}
       </ul>
@@ -854,8 +854,10 @@
     avisoDeCupo();
 
     if(puntos <= 0) return;
-    sumar(puntos).then(() => {
-      const ganados = match.ganados - antes;
+    const partida = match;
+    sumar(puntos, partida).then(() => {
+      if(match !== partida) return;
+      const ganados = partida.ganados - antes;
       const el = document.getElementById('puntosTablero');
       if(!el) return;   // el niño ya pasó de pantalla
       el.textContent = ganados > 0
@@ -893,7 +895,7 @@
     });
     const pie = document.createElement('div');
     pie.className = 'hint';
-    pie.innerHTML = `${acerto ? '✅ ¡Eso es!' : `❌ La respuesta es: <strong>${esc(item.ok)}</strong>`}<br>${esc(item.pie)}`;
+    pie.innerHTML = `${acerto ? '✅ ¡Eso es!' : `❌ La respuesta es: <strong>${esc(item.ok)}</strong>`}<br>${esc(item.foot)}`;
     gameCard.appendChild(pie);
 
     if(AvProfile.get() && AvProfile.canScore('quiz')){
@@ -914,10 +916,10 @@
       <ul class="repaso">
         ${NOMBRES.map(n => `<li><b>${esc(n.a)}</b> = ${esc(n.b)}</li>`).join('')}
       </ul>
-      ${p ? `<div class="hint">⭐ Sumaste ${match.ganados} punto${match.ganados === 1 ? '' : 's'} en esta match.</div>` : ''}
+      ${p ? `<div class="hint">⭐ Sumaste ${match.ganados} punto${match.ganados === 1 ? '' : 's'} en esta partida.</div>` : ''}
       <div class="hint">Cuando en el capítulo 41 metan a Sadrac, Mesac y Abed-nego al horno, tú ya sabes cómo se llamaban en su casa.</div>`;
     mainBtn.dataset.mode = 'again';
-    mainBtn.textContent = '🔁 Otra match';
+    mainBtn.textContent = '🔁 Otra partida';
     mainBtn.hidden = false;
     match = null;
     avisoDeCupo();
@@ -973,7 +975,7 @@
     if(!match){
       const practica = sinCard && sinQuiz;
       mainBtn.textContent = mainBtn.dataset.mode === 'again'
-        ? (practica ? '🔁 Otra match (práctica)' : '🔁 Otra match')
+        ? (practica ? '🔁 Otra partida (práctica)' : '🔁 Otra partida')
         : (practica ? '▶ Empezar (práctica)' : '▶ Empezar');
     }
   }

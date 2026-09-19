@@ -1,0 +1,30 @@
+// Local integration test; deliberately refuses non-local targets.
+import assert from 'node:assert/strict';
+const base=process.env.TEST_BASE_URL||'http://localhost:8787';
+assert.ok(['localhost','127.0.0.1'].includes(new URL(base).hostname),'Only run against local D1');
+const doc=String(Date.now());
+async function post(path,body){const r=await fetch(base+'/api/'+path,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});return {status:r.status,body:await r.json()}}
+assert.equal((await post('register',{doc,name:'Auditoría local',age:9})).status,201);
+const entry={doc,activity:'biblia-colores',kind:'card',correct:true,requestId:crypto.randomUUID()};
+const same=await Promise.all(Array.from({length:8},()=>post('score',entry)));
+assert.ok(same.every(r=>r.status===200),JSON.stringify(same));
+assert.ok(same.every(r=>r.body.player.points===1),'Retry responses must include current total');
+assert.equal((await post('login',{doc})).body.player.points,1,'Retries must award once');
+const concurrent=await Promise.all(Array.from({length:15},()=>post('score',{...entry,requestId:crypto.randomUUID()})));
+assert.equal(concurrent.filter(r=>r.status===200).length,4);
+assert.ok(concurrent.every(r=>[200,429].includes(r.status)));
+let profile=(await post('login',{doc})).body;
+assert.equal(profile.player.points,5);assert.equal(profile.today['biblia-colores'].card,5);
+assert.equal((await post('score',entry)).status,200,'Retry remains accepted at cap');
+assert.equal((await post('score',{...entry,requestId:crypto.randomUUID(),correct:false})).status,200);
+assert.equal((await post('login',{doc})).body.player.points,5,'Wrong answers never subtract/add');
+assert.equal((await post('score',{...entry,requestId:crypto.randomUUID(),kind:'quiz'})).status,429);
+assert.equal((await post('score',{...entry,correct:'false'})).status,400);
+assert.equal((await post('score',{...entry,kind:'unknown'})).status,400);
+assert.equal((await post('score',{...entry,activity:'unknown'})).status,400);
+assert.equal((await post('score',{...entry,doc:'000000000000000'})).status,401);
+for(let i=0;i<4;i++)assert.equal((await post('score',{...entry,activity:'pr39-colorear',requestId:crypto.randomUUID()})).status,i<3?200:429);
+profile=(await post('login',{doc})).body;
+assert.equal(profile.player.points,8);assert.equal(profile.today['pr39-colorear'].card,3);
+assert.equal(profile.caps['pr39-colorear'].card,3);assert.match(profile.day,/^\d{4}-\d{2}-\d{2}$/);
+console.log('✓ Local D1: duplicate delivery, concurrency, caps, validation, wrong answers, independent activities');

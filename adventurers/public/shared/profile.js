@@ -34,7 +34,7 @@
   // Debe coincidir con la versión de package.json; check-games.mjs lo exige.
   // Va embebida, no en un endpoint, para que se lea también sin señal: así se
   // sabe si el teléfono ya se actualizó incluso en el wifi del campamento.
-  const APP_VERSION = '1.0.0';
+  const APP_VERSION = '1.0.1';
   const PKEY = 'aventureros-player';
   let player = null;
   try{ player = JSON.parse(localStorage.getItem(PKEY) || 'null') }catch(e){ player = null }
@@ -77,9 +77,15 @@
     Object.keys(t).forEach(k => { out[k] = normToday(t[k]) });
     return out;
   };
+  const bogotaDay = () => new Intl.DateTimeFormat('en-CA', {timeZone:'America/Bogota'}).format(new Date());
   const todayFor = activity => {
     if(!player) return {card: 0, quiz: 0};
-    return normToday((player.today || {})[activity || ACTIVITY]);
+    const current = activity || ACTIVITY;
+    const counts = player.day && player.day !== bogotaDay()
+      ? {card: 0, quiz: 0} : normToday((player.today || {})[current]);
+    loadQueue().filter(e => e.doc === player.doc && e.activity === current && e.correct)
+      .forEach(e => counts[e.kind === 'quiz' ? 'quiz' : 'card']++);
+    return counts;
   };
 
   const listeners = [];
@@ -110,7 +116,9 @@
       ...data.player,
       doc: String(doc).replace(/\D/g,''),
       today: normTodayMap(data.today),
-      limit: data.limit || LIMIT_FALLBACK
+      limit: data.limit || LIMIT_FALLBACK,
+      caps: data.caps || {},
+      day: data.day || bogotaDay()
     };
     save();
     emit();
@@ -118,7 +126,7 @@
   // El tope real es el menor entre el del servidor y el que declaró la actividad.
   function capFor(kind){
     const l = (player && player.limit) || LIMIT_FALLBACK;
-    const servidor = l[kind] ?? 5;
+    const servidor = Math.min(l[kind] ?? 5, player?.caps?.[ACTIVITY]?.[kind] ?? 5);
     const propio = CAPS && Number.isFinite(CAPS[kind]) ? CAPS[kind] : servidor;
     return Math.min(servidor, Math.max(0, propio));
   }
@@ -131,11 +139,12 @@
 
   async function refresh(){
     if(!player || !player.doc) return;
+    const doc = player.doc;
     try{
-      const data = await api('login', {doc: player.doc});
-      setFromResponse(data, player.doc);
+      const data = await api('login', {doc});
+      if(player?.doc === doc) setFromResponse(data, doc);
     }catch(err){
-      if(err.status === 404){
+      if(err.status === 404 && player?.doc === doc){
         player = null;
         save();
         emit();
@@ -148,12 +157,12 @@
   // El tope diario lo impone el servidor, así que reenviar nunca infla puntos.
   const QKEY = 'aventureros-cola';
   const loadQueue = () => {
-    try{ return JSON.parse(localStorage.getItem(QKEY) || '[]') }catch(e){ return [] }
+    try{ const q = JSON.parse(localStorage.getItem(QKEY) || '[]'); return Array.isArray(q) ? q : [] }catch(e){ return [] }
   };
   const saveQueue = q => {
     try{ localStorage.setItem(QKEY, JSON.stringify(q)) }catch(e){}
   };
-  const pendingCount = () => loadQueue().filter(it => it.correct).length;
+  const pendingCount = () => loadQueue().filter(it => it.correct && it.doc === player?.doc).length;
 
   function enqueue(entry){
     const q = loadQueue();
@@ -173,21 +182,29 @@
       const queue = loadQueue();
       if(!queue.length) break;
       const entry = queue[0];
+      if(!entry.requestId){
+        entry.requestId = crypto.randomUUID();
+        saveQueue(queue);
+      }
       try{
         const data = await api('score', entry);
         if(entry.correct) sent++;
-        setFromResponse(data, entry.doc);
+        saveQueue(loadQueue().slice(1));
+        if(player?.doc === entry.doc) setFromResponse(data, entry.doc);
+        emit();
+        continue;
       }catch(err){
         // Sin red: se deja la cola intacta para el próximo intento.
-        if(err.status === undefined) break;
+        if(err.status === undefined || err.status >= 500) break;
         // 429 = ya llegó al tope del día; 4xx = intento inservible. Se descarta.
         if(err.status === 429 && entry.activity){
           const l = (player && player.limit) || LIMIT_FALLBACK;
           const type = entry.kind === 'quiz' ? 'quiz' : 'card';
-          if(player){
+          if(player?.doc === entry.doc){
             player.today = normTodayMap(player.today);
-            player.today[entry.activity] = todayFor(entry.activity);
-            player.today[entry.activity][type] = l[type] ?? 5;
+            player.today[entry.activity] = normToday(player.today[entry.activity]);
+            player.today[entry.activity][type] = Math.min(l[type] ?? 5, player.caps?.[entry.activity]?.[type] ?? 5);
+            player.day = bogotaDay();
             save();
           }
         }
@@ -202,16 +219,17 @@
   // Los envíos se encolan en serie: dos aciertos seguidos no se pisan.
   let scoreChain = Promise.resolve();
   function score(correct, kind){
-    scoreChain = scoreChain.then(() => sendScore(correct, kind), () => sendScore(correct, kind));
+    if(!player) return Promise.resolve();
+    // Capturar al responder: cambiar de jugador no transfiere intentos en vuelo.
+    const entry = {doc: player.doc, correct, kind, activity: ACTIVITY, requestId: crypto.randomUUID()};
+    const cap = capFor(kind === 'quiz' ? 'quiz' : 'card');
+    scoreChain = scoreChain.then(() => sendScore(entry, cap), () => sendScore(entry, cap));
     return scoreChain;
   }
-  async function sendScore(correct, kind){
-    if(!player) return;
+  async function sendScore(entry, cap){
+    const {correct, kind, activity, doc} = entry;
     const tipo = kind === 'quiz' ? 'quiz' : 'card';
-    // Un acierto por encima del tope de la actividad no se envía: se ignora en
-    // silencio. Así ningún juego puede pasarse aunque su lógica interna falle.
-    if(correct && todayFor(ACTIVITY)[tipo] >= capFor(tipo)) return;
-    const entry = {doc: player.doc, correct, kind, activity: ACTIVITY};
+    if(correct && player?.doc === doc && todayFor(activity)[tipo] >= cap) return;
     if(!navigator.onLine){
       enqueue(entry);
       if(correct) toast('📴 Sin señal: tu punto queda guardado y se enviará solo.');
@@ -219,20 +237,20 @@
     }
     try{
       const data = await api('score', entry);
-      setFromResponse(data, player.doc);
+      if(player?.doc === doc) setFromResponse(data, doc);
     }catch(err){
-      if(err.status === undefined){
+      if(err.status === undefined || err.status >= 500){
         // Falló la red, no el servidor: se guarda para después.
         enqueue(entry);
         if(correct) toast('📴 Sin señal: tu punto queda guardado y se enviará solo.');
         return;
       }
-      if(err.status === 429 && ACTIVITY){
-        const l = player.limit || LIMIT_FALLBACK;
+      if(err.status === 429 && player?.doc === doc){
         const type = kind === 'quiz' ? 'quiz' : 'card';
         player.today = normTodayMap(player.today);
-        player.today[ACTIVITY] = todayFor(ACTIVITY);
-        player.today[ACTIVITY][type] = l[type] ?? 5;
+        player.today[activity] = normToday(player.today[activity]);
+        player.today[activity][type] = cap;
+        player.day = bogotaDay();
         save();
         emit();
       }
@@ -505,8 +523,7 @@
         el.innerHTML = offline + `<button type="button" class="pf-chip pf-chip-empty" title="Ingresar">👤 Ingresar</button>`;
       }else if(ACTIVITY){
         const t = todayFor(ACTIVITY);
-        const l = player.limit || LIMIT_FALLBACK;
-        const max = (l.card ?? 5) + (l.quiz ?? 5);
+        const max = capFor('card') + capFor('quiz');
         const clase = classForAge(player.age);
         el.innerHTML = offline + `<button type="button" class="pf-chip" title="${clase ? esc(clase) + ' · ' : ''}Cambiar jugador">🧒 ${esc(player.name)}${clase ? `<span class="c-clase"> · ${esc(clase)}</span>` : ''} · ⭐ ${player.points}${espera}<span class="c-hoy"> · ${t.card + t.quiz}/${max} aquí hoy</span></button>`;
       }else{
@@ -632,8 +649,8 @@
   // Sella la versión al final de la página. Sirve para saber, mirando el
   // teléfono, si la app instalada ya tomó el último despliegue.
   function stampVersion(){
-    const foot = document.querySelector('footer');
-    if(!foot || foot.querySelector('.pf-version')) return;
+    const foot = document.querySelector('footer') || document.body.appendChild(document.createElement('footer'));
+    if(foot.querySelector('.pf-version')) return;
     const tag = document.createElement('div');
     tag.className = 'pf-version';
     tag.textContent = 'v' + APP_VERSION;
@@ -649,8 +666,7 @@
     if(opts.autoOpen && !player) open();
     registerSW();
     stampVersion();
-    refresh();
-    flushQueue();
+    refresh().then(flushQueue);
     window.addEventListener('online', () => { emit(); flushQueue() });
     window.addEventListener('offline', emit);
     window.addEventListener('storage', e => {

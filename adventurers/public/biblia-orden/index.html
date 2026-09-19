@@ -191,6 +191,7 @@
   .color-btn:disabled{cursor:default}
 
   .order-row{display:grid;gap:8px;width:100%}
+  .pista:empty{display:none}
   .tile{
     font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;background:#fff;color:var(--ink);
     border:3px solid var(--lapis);border-radius:14px;padding:13px 14px;min-height:50px;cursor:pointer;text-align:left;
@@ -395,7 +396,7 @@
           ${shuffle([correcta, ...otros]).map(o =>
             `<button class="option" data-op="${esc(o)}">${esc(o)}</button>`).join('')}
         </div>`;
-      card.querySelectorAll('.opcion').forEach(b =>
+      card.querySelectorAll('.option').forEach(b =>
         b.addEventListener('click', () => answerWhichNext(b, correcta, r.familia)));
       mainBtn.hidden = true;
       return;
@@ -406,13 +407,14 @@
       match.orden = {familia: fam, puestos: 0};
       roundLabel.textContent = `Ordena · ${match.paso - WHICH_NEXT_ROUNDS + 1} de ${SORT_ROUNDS}`;
       card.innerHTML = `
-        <div class="title">Toca los <strong>${esc(fam.nombre)}</strong> en orden</div>
+        <div class="title">Ordena la familia <strong>${esc(fam.nombre)}</strong></div>
         <div class="hint">Del primero al último. ${fam.libros.length} libros.</div>
+        <div class="pista" aria-live="polite"></div>
         <div class="order-row">
           ${shuffle(fam.libros).map(l =>
             `<button class="tile" data-book="${esc(l)}">${esc(l)}</button>`).join('')}
         </div>`;
-      card.querySelectorAll('.ficha').forEach(b =>
+      card.querySelectorAll('.tile').forEach(b =>
         b.addEventListener('click', () => tapTile(b, fam)));
       mainBtn.hidden = true;
       return;
@@ -425,7 +427,7 @@
     if(match.respondida) return;
     match.respondida = true;
     const acerto = button.dataset.op === correcta;
-    card.querySelectorAll('.opcion').forEach(b => {
+    card.querySelectorAll('.option').forEach(b => {
       b.disabled = true;
       if(b.dataset.op === correcta) b.classList.add('ok');
       else if(b === button) b.classList.add('bad');
@@ -447,16 +449,15 @@
   function tapTile(button, fam){
     if(button.classList.contains('placed')) return;
     const esperado = fam.libros[match.orden.puestos];
-    if(button.dataset.libro === esperado){
+    if(button.dataset.book === esperado){
+      card.querySelector('.pista').textContent = '';
       button.classList.add('placed');
-      button.innerHTML = `<span class="n">${match.orden.puestos + 1}.</span> ${esc(button.dataset.libro)}`;
+      button.innerHTML = `<span class="n">${match.orden.puestos + 1}.</span> ${esc(button.dataset.book)}`;
       match.orden.puestos++;
       if(match.orden.puestos === fam.libros.length){
-        card.querySelectorAll('.ficha').forEach(b => b.disabled = true);
-        const pie = document.createElement('div');
-        pie.className = 'pista';
-        pie.innerHTML = `✅ ¡Los ${fam.libros.length} ${esc(fam.nombre)} en orden!`;
-        card.appendChild(pie);
+        card.querySelectorAll('.tile').forEach(b => b.disabled = true);
+        const pie = card.querySelector('.pista');
+        pie.innerHTML = `✅ ¡Los ${fam.libros.length} libros de la familia ${esc(fam.nombre)} en orden!`;
         if(AvProfile.get() && AvProfile.canScore('quiz')){
           AvProfile.score(true, 'quiz');
           match.ganados++;
@@ -469,7 +470,10 @@
       button.classList.add('wrong');
       setTimeout(() => button.classList.remove('wrong'), 600);
       const pista = card.querySelector('.pista');
-      if(pista) pista.innerHTML = `Ahora va <strong>${esc(esperado)}</strong>.`;
+      if(pista){
+        pista.innerHTML = `Ahora va <strong>${esc(esperado)}</strong>.`;
+        pista.scrollIntoView({block:'nearest'});
+      }
       if(!match.falloContado){
         match.falloContado = true;
         if(AvProfile.get() && AvProfile.canScore('quiz')) AvProfile.score(false, 'quiz');
